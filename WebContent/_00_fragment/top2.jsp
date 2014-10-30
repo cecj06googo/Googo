@@ -118,7 +118,7 @@
                                 <a href="#">新品上架</a>
                             </li>
                             <li>
-                                <a href="#">車輛管理</a>
+                                <a href="<c:url value='/_06_manage/product.jsp'/>">車輛管理</a>
                             </li>
                             <li>
                                 <a href="#">配件管理</a>
