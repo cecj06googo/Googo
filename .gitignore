@@ -1,13 +1,13 @@
-# µù¸Ñ, ·|³Q©¿²¤.
-# ¥i¥[¤J·Q­n©¿²¤°lÂÜªºÀÉ®×, ¥Ø¿ı, °ÆÀÉ¦W,ect.
+# è¨»è§£, æœƒè¢«å¿½ç•¥.
+# å¯åŠ å…¥æƒ³è¦å¿½ç•¥è¿½è¹¤çš„æª”æ¡ˆ, ç›®éŒ„, å‰¯æª”å,ect.
 
-#¤£­n°lÂÜ°ÆÀÉ¦W¬°.classµ²§ÀªºÀÉ®×
+#ä¸è¦è¿½è¹¤å‰¯æª”åç‚º.classçµå°¾çš„æª”æ¡ˆ
 *.class
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# ©¿²¤°ÆÀÉ¦W¬°¥H¤Uµ²§ÀªºÀÉ®×
+# å¿½ç•¥å‰¯æª”åç‚ºä»¥ä¸‹çµå°¾çš„æª”æ¡ˆ
 # Package Files # 
 *.war
 *.ear
@@ -15,5 +15,5 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# ©¿²¤META-INF/¥Ø¿ı¤U©Ò¦³ÀÉ®×
+# å¿½ç•¥META-INF/ç›®éŒ„ä¸‹æ‰€æœ‰æª”æ¡ˆ
 # META-INF/
