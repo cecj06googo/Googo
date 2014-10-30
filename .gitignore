@@ -17,3 +17,4 @@ hs_err_pid*
 
 # 忽略META-INF/目錄下所有檔案
 # META-INF/
+build/
