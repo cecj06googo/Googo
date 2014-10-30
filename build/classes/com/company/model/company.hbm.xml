@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.company.model.CompanyVO" table="Company" >
+        
+        <id name="comID" column="com_id">
+            <generator class="identity" />
+        </id>
+        
+        <property name="comAccount" column="com_account" />
+        <property name="comPwd" column="com_pwd" />
+        <property name="comName" column="com_name" />
+        <property name="comOwner" column="com_owner" />
+        <property name="comAddr" column="com_address" />
+        <property name="comTel" column="com_tel" />
+        <property name="comFax" column="com_fax" />
+        <property name="comVAT" column="com_vat" />
+        <property name="comPic" column="com_pic" />
+        
+        
+<!-- Product       
+    <set name="" table="" lazy="false" cascade="all" inverse="true" order-by="">
+        <key><column name="" /></key>
+        <one-to-many class="" />
+    </set>
+-->
+<!-- Orders
+    <set name="" table="" lazy="false" cascade="all" inverse="true" order-by="">
+        <key><column name="" /></key>
+        <one-to-many class="" />
+    </set>
+-->   
+    </class>
+</hibernate-mapping>
