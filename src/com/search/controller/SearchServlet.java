@@ -23,7 +23,7 @@ public class SearchServlet extends HttpServlet{
 		
 		String location = request.getParameter("location");
 		String prod_type_str = request.getParameter("prod_type");
-//		System.out.println("location1="+location);
+		System.out.println("有進來SearchServlet");
 		
 		try{
 		// 進行資料型態的轉換
