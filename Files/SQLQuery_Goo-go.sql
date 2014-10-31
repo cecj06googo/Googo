@@ -111,11 +111,28 @@ Create Table Product(
                         
 insert into Product values (1,'賓士320',1,1000,0.78,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (1,'福特123',1,2000,0.85,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (1,'汽車1',1,3000,0.85,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (1,'汽車2',1,4000,0.45,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (2,'野狼125',2,3000,0.93,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (2,'競戰150',2,4000,0.77,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (3,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (3,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (3,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (4,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (4,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (4,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (5,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (5,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (5,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (6,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (6,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (6,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (7,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (7,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (7,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (8,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (8,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (8,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
 
 Create Table Accessory(
             acc_id          int NOT NULL IDENTITY(1,1) Primary Key ,
