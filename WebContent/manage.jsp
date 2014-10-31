@@ -254,12 +254,6 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery Version 1.11.0 -->
-    <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-  
     <!-- Morris Charts JavaScript -->
     <script src="${pageContext.request.contextPath}/js/plugins/morris/raphael.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/plugins/morris/morris.min.js"></script>
