@@ -36,7 +36,7 @@ public class SearchServlet extends HttpServlet{
 				System.out.print(acomVO.getCom_address());
 				System.out.println();
 			}
-			RequestDispatcher rd = request.getRequestDispatcher("/index.html");
+			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 			rd.forward(request, response);
 
 		} catch(NumberFormatException e){

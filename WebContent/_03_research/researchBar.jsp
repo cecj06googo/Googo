@@ -6,24 +6,23 @@
         <div class="well" >
         <div class="row" >
         <div class="col-lg-12 text-center">
-                	<form class="form-inline" role="form" action="_03_research/research.jsp" method="get">
+                	<form class="form-inline" role="form" action="SearchServlet.do" method="post">
                       <div class="form-group">
-                            <select class="form-control input-lg" >
+                            <select class="form-control input-lg" name="location">
                                 <option>地區</option>
-                                <option>台北</option>
-                                <option>桃園</option>
-                                <option>宜蘭</option>
-                                <option>高雄</option>
-                                <option>墾丁</option>
+                                <option value="臺北">臺北</option>
+                                <option value="桃園">桃園</option>
+                                <option value="宜蘭">宜蘭</option>
+                                <option value="高雄">高雄</option>
+                                <option value="墾丁">墾丁</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <select class="form-control input-lg" >
-                                <option>地區</option>
-                                <option>汽車</option>
-                                <option>機車</option>
-                                <option>腳踏車</option>
-                                <option>4</option>   
+                            <select class="form-control input-lg" name="prod_type">
+                                <option>交通工具</option>
+                                <option value="1">汽車</option>
+                                <option value="2">機車</option>
+                                <option value="3">腳踏車</option>
                             </select>
                         </div>
             
