@@ -48,4 +48,50 @@
   </servlet-mapping>
   
   
+   <servlet>
+    <servlet-name>Insert</servlet-name>
+    <servlet-class>com.orders.controller.OrdersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Insert</servlet-name>
+    <url-pattern>/Insert.gg</url-pattern>
+  </servlet-mapping>
+
+ <servlet>
+    <servlet-name>Select</servlet-name>
+    <servlet-class>com.orders.controller.OrdersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Select</servlet-name>
+    <url-pattern>/Select.gg</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>fakeDataTest</servlet-name>
+    <servlet-class>com.orders.controller.fakeData</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>fakeDataTest</servlet-name>
+    <url-pattern>/fakeData.gg</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>onLoadDAO</servlet-name>
+    <servlet-class>com.orders.controller.onLoad</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>onLoadDAO</servlet-name>
+    <url-pattern>/orderOnLoad.gg</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Delete</servlet-name>
+    <servlet-class>com.orders.controller.OrdersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Delete</servlet-name>
+    <url-pattern>/Delete.gg</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
