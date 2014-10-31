@@ -86,7 +86,13 @@ INSERT INTO Company VALUES ('chilly123@google.com', 'chilly123', '商寶國際�
 INSERT INTO Company VALUES ('batman123@google.com', 'batman123', '玩美離島租車', '林山良', '臺中市北區健行路779號1樓', '07001234', '0415006879', 22971937);
 INSERT INTO Company VALUES ('super123@yahoo.com.tw', 'super123', '遠信租車', '沈文斌', '臺北市中正區衡陽路51號6樓之4', '022114566', '0287563547', 25053931);
 INSERT INTO Company VALUES ('joke123@hotmail.net', 'joke123', '非常租車租車', '楊長庚', '新北市土城區中央路2段386號(1樓)', '092156546', null, 29169462);
-
+INSERT INTO Company VALUES ('antai123@pchome.com', 'antai123', '安泰租車', '李小泰', '臺北市內湖區新湖二路196號1樓', '0200422940', '02004229340', 12144165);
+INSERT INTO Company VALUES ('antai124@pchome.com', 'antai124', '安泰1租車', '李小泰1', '臺北市內湖區新湖二路197號1樓', '0200422941', '02004229341', 12144166);
+INSERT INTO Company VALUES ('antai125@pchome.com', 'antai125', '安泰2租車', '李小泰2', '臺北市內湖區新湖二路198號1樓', '0200422942', '02004229342', 12144167);
+INSERT INTO Company VALUES ('antai126@pchome.com', 'antai126', '安泰3租車', '李小泰3', '臺北市內湖區新湖二路199號1樓', '0200422943', '02004229343', 12144168);
+INSERT INTO Company VALUES ('antai127@pchome.com', 'antai127', '安泰4租車', '李小泰4', '臺北市內湖區新湖二路200號1樓', '0200422944', '02004229344', 12144169);
+INSERT INTO Company VALUES ('antai128@pchome.com', 'antai128', '安泰5租車', '李小泰5', '臺北市內湖區新湖二路201號1樓', '0200422945', '02004229345', 12144170);
+INSERT INTO Company VALUES ('antai129@pchome.com', 'antai129', '安泰6租車', '李小泰6', '臺北市內湖區新湖二路202號1樓', '0200422946', '02004229346', 12144171);
 
 Create Table Product(
 		    prod_id         int NOT NULL IDENTITY(1,1) Primary Key ,
@@ -133,6 +139,33 @@ insert into Product values (7,'Fighter150',2,7000,0.95,'101010','ss',null,null,n
 insert into Product values (8,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (8,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (8,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (9,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (9,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (9,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (10,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (10,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (10,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (11,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (11,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (11,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (12,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (12,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (12,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (13,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (13,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (13,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (14,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (14,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (14,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (15,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (15,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (15,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (16,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (16,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (16,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (17,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (17,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (17,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
 
 Create Table Accessory(
             acc_id          int NOT NULL IDENTITY(1,1) Primary Key ,

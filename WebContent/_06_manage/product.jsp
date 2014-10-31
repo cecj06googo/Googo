@@ -273,7 +273,6 @@ $("td[class!=text-center]").click(function(){
 	$("td[class!=text-center]" ).attr( "data-target", "#prod_detail" );
 })
 
-
 </script>
 
 </body>
