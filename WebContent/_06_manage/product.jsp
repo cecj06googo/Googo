@@ -267,16 +267,11 @@
 <script src="js/bootstrap.min.js"></script>
 
 <script>
+
 $("td[class!=text-center]").click(function(){
-	$( "td" ).attr( "data-toggle", "modal" );
-	$( "td" ).attr( "data-target", "#prod_detail" );
+	$("td[class!=text-center]").attr( "data-toggle", "modal" );
+	$("td[class!=text-center]" ).attr( "data-target", "#prod_detail" );
 })
-	
-	//$("td[data-target=#myModal]").click(function(ev) {
-	
-  //  $("#editProduct").one('show.bs.modal', function(){
-    //	$("#prod_detail").modal('hide');
-//	});
 
 </script>
 

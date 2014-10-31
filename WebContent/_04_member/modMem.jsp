@@ -49,6 +49,12 @@
                         </div>
                     </div>
                     <div class="control-group form-group">
+                        <label>密碼確認:</label>
+                        <div class="controls ">
+                            <input type="password" class="form-control" id="mem_pwd" placeholder="請再次輸入密碼" >
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
                         <label>姓名:</label>
                         <div class="controls ">
                             <input type="text" class="form-control" id="mem_name" placeholder="黃詩芸"  required >
