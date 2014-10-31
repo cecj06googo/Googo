@@ -11,7 +11,7 @@ go
 use GGDB
 go
 
---drop table ¨M©w¦¹µ{¦¡³]­p¶¶§Ç
+--drop table æ±ºå®šæ­¤ç¨‹å¼è¨­è¨ˆé †åº
 --IF EXISTS (SELECT name FROM GGDB.sys.tables WHERE name = N'Question_temp')
 --BEGIN
 --drop table Member;
@@ -26,16 +26,16 @@ go
 --drop table Ord_temp;
 --END
 
---ª`·N! 
--- CONSTRAINT ¦X¬ù¦WºÙ FOREIGN KEY (¦¹ªí®æÄæ¦ì¦WºÙ) REFERENCES ¹ïÀ³ªí®æ¦WºÙ (¹ïÀ³ªí®æÄæ¦ì¦WºÙ),
--- ¦X¬ù¦WºÙ¥i¶Ã¨ú¡A¨â­Óªí®æ¥u»İ­n¦³¤@­Ó¦X¬ù´N¦n
+--æ³¨æ„! 
+-- CONSTRAINT åˆç´„åç¨± FOREIGN KEY (æ­¤è¡¨æ ¼æ¬„ä½åç¨±) REFERENCES å°æ‡‰è¡¨æ ¼åç¨± (å°æ‡‰è¡¨æ ¼æ¬„ä½åç¨±),
+-- åˆç´„åç¨±å¯äº‚å–ï¼Œå…©å€‹è¡¨æ ¼åªéœ€è¦æœ‰ä¸€å€‹åˆç´„å°±å¥½
 -- EX : CONSTRAINT Product_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 
---«Øªí®æ³W®æ
---ª÷ÃB«¬ºA¨Ï¥Îmoney
---¦h«¬ºA¨Ï¥Îint
+--å»ºè¡¨æ ¼è¦æ ¼
+--é‡‘é¡å‹æ…‹ä½¿ç”¨money
+--å¤šå‹æ…‹ä½¿ç”¨int
 
---ªí®æ«Ø¥ßªÌ½Ğ¦Û¦æ¥[¤J°²¸ê®Æ
+--è¡¨æ ¼å»ºç«‹è€…è«‹è‡ªè¡ŒåŠ å…¥å‡è³‡æ–™
 
 Create Table Member(
 			mem_id           int NOT NULL IDENTITY(1,1) PRIMARY KEY, 
@@ -54,11 +54,11 @@ Create Table Member(
  );
 			 
 
-insert into Member values ('aaa@abc.com.tw','aaa123','±i§g¶®',0,'2000-11-17','A223456789','0312345678','0912365478','¥x¤¤¥«¦è¤Ù°Ïªe«n¸ô¤G¬q280¸¹12¼Ó',1,1);
-insert into Member values ('bbb@abc.com.tw','aaa123','¤ı¤p©ú',1,'1992-6-30','A187654321','0287654321','0987654321','¥x¥_¥«¤j¦w°ÏÃ¹´µºÖ¸ô¤G¬q280¸¹',1,1);
-insert into Member values ('ccc@abc.com.tw','aaa123','³¯ªüµØ',1,'1988-5-17','A158459845','0225556987','0932666888','¥x¥_¥«¤¤¥¿°Ï©M¥­ªF¸ô¤@¬q56¸¹',1,1);
-insert into Member values ('ddd@abc.com.tw','aaa123','ªL¤p¬ü',0,'1975-9-5','A256842951','0233587964','0910258666','¥x¥_¥«¤j¦w°Ï´_¿³«n¸ô¤@¬q390¸¹',1,1);
-insert into Member values ('eee@abc.com.tw','aaa123','°¨¤p¤E',1,'1977-12-1','A123666999','0233657777','0910222333','¥x¥_¥««H¸q°ÏªQ¹Ø¸ô20¸¹',1,1);
+insert into Member values ('aaa@abc.com.tw','aaa123','å¼µå›é›…',0,'2000-11-17','A223456789','0312345678','0912365478','å°ä¸­å¸‚è¥¿å±¯å€æ²³å—è·¯äºŒæ®µ280è™Ÿ12æ¨“',1,1);
+insert into Member values ('bbb@abc.com.tw','aaa123','ç‹å°æ˜',1,'1992-6-30','A187654321','0287654321','0987654321','å°åŒ—å¸‚å¤§å®‰å€ç¾…æ–¯ç¦è·¯äºŒæ®µ280è™Ÿ',1,1);
+insert into Member values ('ccc@abc.com.tw','aaa123','é™³é˜¿è¯',1,'1988-5-17','A158459845','0225556987','0932666888','å°åŒ—å¸‚ä¸­æ­£å€å’Œå¹³æ±è·¯ä¸€æ®µ56è™Ÿ',1,1);
+insert into Member values ('ddd@abc.com.tw','aaa123','æ—å°ç¾',0,'1975-9-5','A256842951','0233587964','0910258666','å°åŒ—å¸‚å¤§å®‰å€å¾©èˆˆå—è·¯ä¸€æ®µ390è™Ÿ',1,1);
+insert into Member values ('eee@abc.com.tw','aaa123','é¦¬å°ä¹',1,'1977-12-1','A123666999','0233657777','0910222333','å°åŒ—å¸‚ä¿¡ç¾©å€æ¾å£½è·¯20è™Ÿ',1,1);
 
 
 
@@ -75,17 +75,17 @@ Create Table Company(
 
 );
 
--- ·s¼W¸ê®Æ ( ¥Ø«e10µ§°²¸ê®Æ )
-INSERT INTO Company VALUES ('kitty123@google.com', 'kitty123', 'ªøºa¯²¨®', 'ªL«T§»', '°ª¶¯¥««eÂí°Ï³Í±Û¤T¸ô115¸¹', '0788303030', '0756157892', 22843188);
-INSERT INTO Company VALUES ('snoppy123@google.com', 'snoppy123', '¥xÆW¤j­ô¤j¯²¨®', '®]»Ê¿A', '»O¥_¥«¤hªL°Ï©¾¸Û¸ô1¬q125¸¹2¼Ó', '0275012300', null, 22843574);
-INSERT INTO Company VALUES ('micky123@pchome.com', 'micky123', '¥xÆW¯²¨®', '®}­S·Ö±Ó', '»O¥_¥«¤º´ò°Ï·s´ò¤T¸ô196¸¹3¼Ó', '0200422939', '0200422939', 12144164);
-INSERT INTO Company VALUES ('monkey123@pchome.com', 'monkey123', '¦Ë«C¸»¯²¨®', 'ªL¯Àªâ', '®ç¶é¿¤®ç¶é¥«¤¤®H¤Gµó208¸¹5¼Ó', '25429778', null, 22529771);
-INSERT INTO Company VALUES ('kelly123@yahoo.com', 'kelly123', '«a¨È¯²¨®', 'ÁÂ§Ó¯è', '·s¥_¥«·s²ø°ÏºÖ¹Øµó99«Ñ11§Ë4¤§2¸¹(3¼Ó)', '86610100', null, 22825576);
-INSERT INTO Company VALUES ('cindy123@pchome.com', 'cindy123', '¥ş®a¯²¨®', '»p²E¦N', '·s¥_¥«¥Ã©M°Ï¤¤¥¿¸ô609«Ñ4¸¹', '23581727', null, 23270841);
-INSERT INTO Company VALUES ('chilly123@google.com', 'chilly123', '°ÓÄ_°ê»Ú¯²¨®', '§õ°¶®R', '»O¥_¥«ªQ¤s°Ï¼y«°µó23-2¸¹3¼Ó', '0215123456', '0255896123', 23164551);
-INSERT INTO Company VALUES ('batman123@google.com', 'batman123', 'ª±¬üÂ÷®q¯²¨®', 'ªL¤s¨}', '»O¤¤¥«¥_°Ï°·¦æ¸ô779¸¹1¼Ó', '07001234', '0415006879', 22971937);
-INSERT INTO Company VALUES ('super123@yahoo.com.tw', 'super123', '»·«H¯²¨®', '¨H¤åÙy', '»O¥_¥«¤¤¥¿°Ï¿Å¶§¸ô51¸¹6¼Ó¤§4', '022114566', '0287563547', 25053931);
-INSERT INTO Company VALUES ('joke123@hotmail.net', 'joke123', '«D±`¯²¨®¯²¨®', '·¨ªø©°', '·s¥_¥«¤g«°°Ï¤¤¥¡¸ô2¬q386¸¹(1¼Ó)', '092156546', null, 29169462);
+-- æ–°å¢è³‡æ–™ ( ç›®å‰10ç­†å‡è³‡æ–™ )
+INSERT INTO Company VALUES ('kitty123@google.com', 'kitty123', 'é•·æ¦®ç§Ÿè»Š', 'æ—ä¿Šå®', 'é«˜é›„å¸‚å‰é®å€å‡±æ—‹ä¸‰è·¯115è™Ÿ', '0788303030', '0756157892', 22843188);
+INSERT INTO Company VALUES ('snoppy123@google.com', 'snoppy123', 'å°ç£å¤§å“¥å¤§ç§Ÿè»Š', 'å­«éŠ˜æ¾¤', 'è‡ºåŒ—å¸‚å£«æ—å€å¿ èª è·¯1æ®µ125è™Ÿ2æ¨“', '0275012300', null, 22843574);
+INSERT INTO Company VALUES ('micky123@pchome.com', 'micky123', 'å°ç£ç§Ÿè»Š', 'å¾èŒƒç…¦æ•', 'è‡ºåŒ—å¸‚å…§æ¹–å€æ–°æ¹–ä¸‰è·¯196è™Ÿ3æ¨“', '0200422939', '0200422939', 12144164);
+INSERT INTO Company VALUES ('monkey123@pchome.com', 'monkey123', 'ç«¹é’èœ“ç§Ÿè»Š', 'æ—ç´ èŠ¬', 'æ¡ƒåœ’ç¸£æ¡ƒåœ’å¸‚ä¸­åŸ”äºŒè¡—208è™Ÿ5æ¨“', '25429778', null, 22529771);
+INSERT INTO Company VALUES ('kelly123@yahoo.com', 'kelly123', 'å† äºç§Ÿè»Š', 'è¬å¿—èˆª', 'æ–°åŒ—å¸‚æ–°èŠå€ç¦å£½è¡—99å··11å¼„4ä¹‹2è™Ÿ(3æ¨“)', '86610100', null, 22825576);
+INSERT INTO Company VALUES ('cindy123@pchome.com', 'cindy123', 'å…¨å®¶ç§Ÿè»Š', 'è£´æ·³å‰', 'æ–°åŒ—å¸‚æ°¸å’Œå€ä¸­æ­£è·¯609å··4è™Ÿ', '23581727', null, 23270841);
+INSERT INTO Company VALUES ('chilly123@google.com', 'chilly123', 'å•†å¯¶åœ‹éš›ç§Ÿè»Š', 'æå‰å¨œ', 'è‡ºåŒ—å¸‚æ¾å±±å€æ…¶åŸè¡—23-2è™Ÿ3æ¨“', '0215123456', '0255896123', 23164551);
+INSERT INTO Company VALUES ('batman123@google.com', 'batman123', 'ç©ç¾é›¢å³¶ç§Ÿè»Š', 'æ—å±±è‰¯', 'è‡ºä¸­å¸‚åŒ—å€å¥è¡Œè·¯779è™Ÿ1æ¨“', '07001234', '0415006879', 22971937);
+INSERT INTO Company VALUES ('super123@yahoo.com.tw', 'super123', 'é ä¿¡ç§Ÿè»Š', 'æ²ˆæ–‡æ–Œ', 'è‡ºåŒ—å¸‚ä¸­æ­£å€è¡¡é™½è·¯51è™Ÿ6æ¨“ä¹‹4', '022114566', '0287563547', 25053931);
+INSERT INTO Company VALUES ('joke123@hotmail.net', 'joke123', 'éå¸¸ç§Ÿè»Šç§Ÿè»Š', 'æ¥Šé•·åºš', 'æ–°åŒ—å¸‚åœŸåŸå€ä¸­å¤®è·¯2æ®µ386è™Ÿ(1æ¨“)', '092156546', null, 29169462);
 
 
 Create Table Product(
@@ -109,12 +109,12 @@ Create Table Product(
 
 );
                         
-insert into Product values (1,'»«¤h320',1,1000,0.78,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (1,'ºÖ¯S123',1,2000,0.85,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (2,'³¥¯T125',2,3000,0.93,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (2,'Äv¾Ô150',2,4000,0.77,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (3,'ªk©Ô§Q211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (3,'«O®É±¶-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (1,'è³“å£«320',1,1000,0.78,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (1,'ç¦ç‰¹123',1,2000,0.85,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (2,'é‡ç‹¼125',2,3000,0.93,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (2,'ç«¶æˆ°150',2,4000,0.77,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (3,'æ³•æ‹‰åˆ©211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (3,'ä¿æ™‚æ·-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (3,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
 
 Create Table Accessory(
@@ -138,15 +138,15 @@ Create Table Ord_status(
 			status_char         varchar(20) NOT NULL
 );
 
-insert into Ord_status values ('¥¼³B²z');
-insert into Ord_status values ('¤w±µ¨ü');
-insert into Ord_status values ('¤w¥X¨®');
-insert into Ord_status values ('µ²³æ');
-insert into Ord_status values ('·|­û¨ú®ø');
-insert into Ord_status values ('°Ó®a¨ú®ø');
-insert into Ord_status values ('·|­û¹O®É');
-insert into Ord_status values ('°Ó®a¹O®É');
-insert into Ord_status values ('²§±`¥¼ÁÙ');
+insert into Ord_status values ('æœªè™•ç†');
+insert into Ord_status values ('å·²æ¥å—');
+insert into Ord_status values ('å·²å‡ºè»Š');
+insert into Ord_status values ('çµå–®');
+insert into Ord_status values ('æœƒå“¡å–æ¶ˆ');
+insert into Ord_status values ('å•†å®¶å–æ¶ˆ');
+insert into Ord_status values ('æœƒå“¡é€¾æ™‚');
+insert into Ord_status values ('å•†å®¶é€¾æ™‚');
+insert into Ord_status values ('ç•°å¸¸æœªé‚„');
 
 Create Table Orders(
 		    ord_id          int NOT NULL IDENTITY(1,1) Primary Key ,
@@ -162,7 +162,7 @@ Create Table Orders(
 			CONSTRAINT Orders_mem_id_fk FOREIGN KEY (mem_id) REFERENCES Member (mem_id),
 			CONSTRAINT Orders_ord_status_fk FOREIGN KEY (ord_status) REFERENCES Ord_status (ord_status),
 );
---·|­ûID:6 ±Mªù·s¼W¥¼³B²z­q³æ
+--æœƒå“¡ID:6 å°ˆé–€æ–°å¢æœªè™•ç†è¨‚å–®
 --insert into Orders values (1,6,5,'2014-06-28 13:40:20','2014-01-01 13:20:00','2014-01-05 14:20:00',3000)
 
 insert into Orders values (1,5,1,'2014-06-28 13:40:20','2014-01-01 13:20:00','2014-01-05 14:20:00',3000);
@@ -225,41 +225,41 @@ Create Table Ord_item(
 );
 
 
-insert into Ord_item values (1,1,1,'¯²¨®­W¥D1','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (2,1,1,'¯²¨®­W¥D2','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (3,1,1,'¯²¨®­W¥D3','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (4,1,1,'¯²¨®­W¥D4','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (5,1,1,'¯²¨®­W¥D5','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (6,1,1,'¯²¨®­W¥D1','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (7,1,1,'¯²¨®­W¥D2','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (8,1,1,'¯²¨®­W¥D3','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (9,1,1,'¯²¨®­W¥D4','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (10,1,1,'¯²¨®­W¥D5','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (11,1,1,'¯²¨®­W¥D1','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (12,1,1,'¯²¨®­W¥D2','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (13,1,1,'¯²¨®­W¥D3','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (14,1,1,'¯²¨®­W¥D4','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (15,1,1,'¯²¨®­W¥D5','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (16,1,1,'¯²¨®­W¥D1','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (17,1,1,'¯²¨®­W¥D2','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (18,1,1,'¯²¨®­W¥D3','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (19,1,1,'¯²¨®­W¥D4','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (20,1,1,'¯²¨®­W¥D5','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (21,1,1,'¯²¨®­W¥D1','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (22,1,1,'¯²¨®­W¥D2','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (23,1,1,'¯²¨®­W¥D3','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (24,1,1,'¯²¨®­W¥D4','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (25,1,1,'¯²¨®­W¥D5','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (26,1,1,'¯²¨®­W¥D1','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (27,1,1,'¯²¨®­W¥D2','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (28,1,1,'¯²¨®­W¥D3','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (29,1,1,'¯²¨®­W¥D4','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (30,1,1,'¯²¨®­W¥D5','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (31,1,1,'¯²¨®­W¥D1','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (32,1,1,'¯²¨®­W¥D2','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (33,1,1,'¯²¨®­W¥D3','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (34,1,1,'¯²¨®­W¥D4','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (35,1,1,'¯²¨®­W¥D5','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (1,1,1,'ç§Ÿè»Šè‹¦ä¸»1','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (2,1,1,'ç§Ÿè»Šè‹¦ä¸»2','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (3,1,1,'ç§Ÿè»Šè‹¦ä¸»3','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (4,1,1,'ç§Ÿè»Šè‹¦ä¸»4','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (5,1,1,'ç§Ÿè»Šè‹¦ä¸»5','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (6,1,1,'ç§Ÿè»Šè‹¦ä¸»1','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (7,1,1,'ç§Ÿè»Šè‹¦ä¸»2','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (8,1,1,'ç§Ÿè»Šè‹¦ä¸»3','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (9,1,1,'ç§Ÿè»Šè‹¦ä¸»4','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (10,1,1,'ç§Ÿè»Šè‹¦ä¸»5','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (11,1,1,'ç§Ÿè»Šè‹¦ä¸»1','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (12,1,1,'ç§Ÿè»Šè‹¦ä¸»2','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (13,1,1,'ç§Ÿè»Šè‹¦ä¸»3','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (14,1,1,'ç§Ÿè»Šè‹¦ä¸»4','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (15,1,1,'ç§Ÿè»Šè‹¦ä¸»5','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (16,1,1,'ç§Ÿè»Šè‹¦ä¸»1','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (17,1,1,'ç§Ÿè»Šè‹¦ä¸»2','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (18,1,1,'ç§Ÿè»Šè‹¦ä¸»3','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (19,1,1,'ç§Ÿè»Šè‹¦ä¸»4','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (20,1,1,'ç§Ÿè»Šè‹¦ä¸»5','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (21,1,1,'ç§Ÿè»Šè‹¦ä¸»1','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (22,1,1,'ç§Ÿè»Šè‹¦ä¸»2','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (23,1,1,'ç§Ÿè»Šè‹¦ä¸»3','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (24,1,1,'ç§Ÿè»Šè‹¦ä¸»4','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (25,1,1,'ç§Ÿè»Šè‹¦ä¸»5','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (26,1,1,'ç§Ÿè»Šè‹¦ä¸»1','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (27,1,1,'ç§Ÿè»Šè‹¦ä¸»2','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (28,1,1,'ç§Ÿè»Šè‹¦ä¸»3','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (29,1,1,'ç§Ÿè»Šè‹¦ä¸»4','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (30,1,1,'ç§Ÿè»Šè‹¦ä¸»5','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (31,1,1,'ç§Ÿè»Šè‹¦ä¸»1','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (32,1,1,'ç§Ÿè»Šè‹¦ä¸»2','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (33,1,1,'ç§Ÿè»Šè‹¦ä¸»3','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (34,1,1,'ç§Ÿè»Šè‹¦ä¸»4','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (35,1,1,'ç§Ÿè»Šè‹¦ä¸»5','0987654321','0234567890','gg@ya.123',null,null);
 
 
 Create Table Question_temp(
