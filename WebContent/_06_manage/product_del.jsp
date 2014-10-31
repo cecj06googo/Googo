@@ -5,6 +5,7 @@
 	<div class="modal-dialog modal-sm">
   	<div class="modal-content">
 		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		    <h3 class="modal-title">刪除商品 <small>delete</small></h3>
 		</div>
 		
@@ -14,8 +15,8 @@
 			    <h4 style="color:red;font-weight:bold;">確定要刪除此商品?</h4>
 			    <form role="form" action="#" method="get">
 			    <input type="hidden" name="prod_id?">
-			    <button type="submit" class="btn btn-lg btn-danger pull-right">確認</button>
-		        <button type="reset" class="btn btn-lg btn-success pull-right">取消</button>
+			    <button type="submit" class="btn btn-lg btn-danger pull-right" data-dismiss="modal">確認</button>
+		        <button type="reset" class="btn btn-lg btn-success pull-right" data-dismiss="modal">取消</button>
 		        </form><!-- /.form-->
 			</div>
 			</div>

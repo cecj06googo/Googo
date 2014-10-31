@@ -85,8 +85,9 @@
                         <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                         	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    </tr>
-                    <tr>
+                        </td>
+                    </tr>
+                    <tr >
                         <td>2</td>
                         <td>呱呱</td>
                         <td>呱呱</td>
@@ -96,7 +97,8 @@
                         <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                         	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    </tr>
+                        </td>                    
+                    </tr>
                     <tr>
                         <td>3</td>
                         <td>呱呱</td>
@@ -107,7 +109,8 @@
                         <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                         	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    </tr>
+                        </td>                    
+                    </tr>
                 </tbody>
             </table>
 			</div>
@@ -180,7 +183,7 @@
             <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
-                    <tr >
+                    <tr>
                         <th>商品編號</th>
                         <th>呱呱</th>
                         <th>呱呱</th>
@@ -235,7 +238,8 @@
                         <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                         	<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    </tr>
+                        </td>                    
+                     </tr>
                 </tbody>
             </table>
 			</div>
@@ -243,7 +247,8 @@
 			</div>
 			</div>
 			</div><!--/.腳踏車-->
-			
+		<!--商品明細 -->	
+		<jsp:include page="/_06_manage/prod_detail.jsp" />	
 		<!--修改商品-->
 		<jsp:include page="/_06_manage/product_edit.jsp" /> 
 		<!--刪除商品-->
@@ -260,11 +265,20 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-  
 
-</body>
+<script>
+$("td[class!=text-center]").click(function(){
+	$( "td" ).attr( "data-toggle", "modal" );
+	$( "td" ).attr( "data-target", "#prod_detail" );
+})
+	
+	//$("td[data-target=#myModal]").click(function(ev) {
+	
+  //  $("#editProduct").one('show.bs.modal', function(){
+    //	$("#prod_detail").modal('hide');
+//	});
 
-</html>
+</script>
 
 </body>
 </html>

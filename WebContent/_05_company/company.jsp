@@ -215,6 +215,7 @@
             </div>
         </div>
         <!-- /.配件 -->
+        <!-- 商品明細 -->
 		<jsp:include page="/_05_company/prod_detail.jsp" />
         <hr>
 	   <!-- Footer -->
