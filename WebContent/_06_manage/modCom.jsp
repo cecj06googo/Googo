@@ -55,6 +55,13 @@
                      </div>
                  </div>
                  <div class="control-group form-group">
+                     <label>密碼確認:</label>
+                     <div class="controls ">
+                         <input type="password" class="form-control" id="com_pwd" placeholder="請再次輸入密碼" >
+                     	
+                     </div>
+                 </div>
+                 <div class="control-group form-group">
                      <label>商家名稱:</label>
                      <div class="controls ">
                          <input type="text" class="form-control" id="com_name" placeholder="拉拉租車小舖">
