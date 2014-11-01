@@ -94,6 +94,15 @@ INSERT INTO Company VALUES ('antai127@pchome.com', 'antai127', '安泰4租車', 
 INSERT INTO Company VALUES ('antai128@pchome.com', 'antai128', '安泰5租車', '李小泰5', '臺北市內湖區新湖二路201號1樓', '0200422945', '02004229345', 12144170);
 INSERT INTO Company VALUES ('antai129@pchome.com', 'antai129', '安泰6租車', '李小泰6', '臺北市內湖區新湖二路202號1樓', '0200422946', '02004229346', 12144171);
 
+Create Table Product_Type(
+            prodtype_id int   NOT NULL Primary Key,
+			prodtype_name varchar(32) NOT NULL,
+); 
+insert into Product_Type values (1,'汽車');
+insert into Product_Type values (2,'機車');
+insert into Product_Type values (3,'腳踏車');
+
+
 Create Table Product(
 		    prod_id         int NOT NULL IDENTITY(1,1) Primary Key ,
 			com_id          int NOT NULL,
@@ -112,7 +121,7 @@ Create Table Product(
 			prod_control    int,
 
 			CONSTRAINT Product_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
-
+			CONSTRAINT Product_com_type_fk FOREIGN KEY (prod_type) REFERENCES Product_Type (prodtype_id),
 );
                         
 insert into Product values (1,'賓士320',1,1000,0.78,'101010','ss',null,null,null,1,null,null,null);
