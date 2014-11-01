@@ -24,19 +24,19 @@
 			<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 			<!-- form-->	
-		      <form role="form">
+		      <form role="form" action="<%=request.getContextPath()%>/Login.gg" method="post">
 		        <div class="form-group">
-		          <label > E-mail:</label>
-		          <input type="text" class="form-control" id="inputEmail">
+		          <label > E-mail:</label><font size="-1" color="#FF0000">${ErrorMsg.errorLogin}</font>
+		          <input type="text" class="form-control" id="inputEmail" name="user_account">
 		        </div>
 		        <div class="form-group">
 		          <a class="pull-right" href="#" data-toggle="modal" data-target="#forgetpwd" id="forget" data-dismiss="modal">忘記密碼?</a>
 		          <label>密碼:</label>
-		          <input type="password" class="form-control" id="inputPassword">
+		          <input type="password" class="form-control" id="inputPassword" name="user_pwd">
 		        </div>
 		        <div class="form-group">
-                        <label><input type="radio" name="optionsRadios" id="member" value="1">一般會員</label>
-                        <label><input type="radio" name="optionsRadios" id="company" value="0">商家會員</label>
+                        <label><input type="radio" name="optionsRadios" id="member" value="Mem" checked >一般會員</label>
+                        <label><input type="radio" name="optionsRadios" id="company" value="Com">商家會員</label>
                 </div>
 		        <div class="login-or">
 			    <hr class="hr-or">
@@ -46,6 +46,7 @@
 		          <label><input type="checkbox">自動登入 </label>
 		        </div>
 		        <button type="submit" class="btn btn-lg btn-primary pull-right">Login</button>
+		        <input type="hidden" name="action" value="login">
 		      </form>
 		      <!--/. form-->
  		    </div>

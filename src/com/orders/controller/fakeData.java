@@ -55,6 +55,7 @@ public class fakeData extends HttpServlet{
 			String user_id = request.getParameter("user_id");
 			//登入時要去資料庫檢查看帳號是屬於com_id(商家)還是mem_id(會員)
 			session.setAttribute("user_id", user_id);  //session存值
+			session.setAttribute("Identity", "Mem");  //session存值(代表登入的是會員)
 			
 			/******************** (Send the Success view) ************/
 			String url = "/orderOnLoad.gg";

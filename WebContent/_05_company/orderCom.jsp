@@ -108,6 +108,7 @@ $(document).ready(function(){
 				<th>訂單金額</th>
 				<th>處理狀態</th>
 <!-- 				會員不能修改訂單狀態， <th>假按鈕</th>這欄要判斷session內登入的是商家才顯示-->
+				<th>按了會得到404</th>
 				<th>取消訂單</th>
 			</tr>
 		</thead>
@@ -120,6 +121,15 @@ $(document).ready(function(){
 					<td><a href="#">HONDA-Accord進口新登場</a></td>
 					<td><a href="#">${ordVO.item_total}</a></td>
 					<td>${ordVO.status_char}</td>
+
+					<td>
+						<FORM METHOD="post"
+							ACTION="<%=request.getContextPath()%>/emp/${ordVO.ord_id}">
+							<input type="submit" value="修改"> <input type="hidden"
+								name="empno" value="${empVO.empno}"> <input
+								type="hidden" name="action" value="getOne_For_Update">
+						</FORM>
+					</td>
 					
 					<c:if test="${ordVO.status_char != '未處理'}">
 					<td>
