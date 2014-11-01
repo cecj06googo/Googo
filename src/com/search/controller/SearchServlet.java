@@ -33,17 +33,24 @@ public class SearchServlet extends HttpServlet{
 		System.out.println("prod_type="+prod_type_str);
 		System.out.println("keySearch="+keySearch);
 		System.out.println("有進來SearchServlet");
-		
+		//檢查是否輸入查詢條件全部空白
 		if((location.equals(nonLocation))&&(prod_type_str.equals(nonProdType)&&keySearch.isEmpty())){ //地區和交通工具和關鍵字都沒有選擇
 			request.setAttribute("ErrMsg", "請輸入"+nonLocation+"或"+nonProdType+"搜尋");
 			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 			rd.forward(request, response);
 			return;
 		}
-		
-		
+		//檢查是否有違法字元，以避免injection攻擊
+		CharSequence illegal1 = "'" , illegal2 = "\"" , illegal3 = ";" ,illegal4 = "=" ;
+		if (keySearch.contains(illegal1) || keySearch.contains(illegal2)|| keySearch.contains(illegal3) || keySearch.contains(illegal4)) {
+			request.setAttribute("ErrMsg", "不可含有以下字元:   ' \" ; =");
+			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+			rd.forward(request, response);
+			return;
+		}
+				
 		try{
-		// 進行資料型態的轉換
+			//避免發生中文字轉數字發生轉換錯誤
 			Integer prod_type=null;
 			if(!(prod_type_str.equals(nonProdType))){ //交通工具非空的
 			    prod_type = Integer.parseInt(prod_type_str);
@@ -64,36 +71,5 @@ public class SearchServlet extends HttpServlet{
 			throw new ServletException(e); 
 		}
 		
-		
-		
-		
-		
-//		try{
-//			// 進行資料型態的轉換
-//			qty = Integer.parseInt(qtyStr.trim());
-//			bookID = Integer.parseInt(idStr.trim());
-//			price = Double.parseDouble(priceStr.trim());
-//			discount = Double.parseDouble(discountStr.trim());
-//		} catch(NumberFormatException e){
-//			throw new ServletException(e); 
-//		}
-//		RequestDispatcher rd = request.getRequestDispatcher("/_03_listBooks/DisplayPageProducts?pageNo=" + pageNo);
-//		rd.forward(request, response);
-		
-	}
-	
-	
-//	public static void main(String args[]){
-//		String location ="";
-//		int prod_type =1;
-//		SearchService searchSvc = new SearchService();
-//		Set<SearchComVO> comSet= searchSvc.getCompanysByCondition(location, prod_type);
-//		for (SearchComVO acomVO : comSet) {
-//			System.out.print(acomVO.getCom_id() + ",");
-//			System.out.print(acomVO.getCom_name() + ",");
-//			System.out.print(acomVO.getCom_address());
-//			System.out.println();
-//		}
-//	
-//	}//main
-}
+     }//protected void doPost	
+}//public class SearchServlet 

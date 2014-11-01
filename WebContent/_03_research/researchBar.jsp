@@ -27,7 +27,7 @@
                         </div>
             
                          <div class="form-group input-group">
-                                <input type="text" class="form-control input-lg" name="keySearch" placeholder="商店名、地址關鍵字搜尋">
+                                <input type="text" class="form-control input-lg" name="keySearch" placeholder="商店名、地址、商品名">
                                 <span class="input-group-btn"><button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button></span>
                          </div>
                          <div>

@@ -17,10 +17,9 @@ public class SearchComDAO implements SearchComDAO_interface {
 	String passwd = "sa123456";
 
 	private static final String GET_ONE_STMT = "select com_id,com_name,com_address from Company where com_id = ?";
-	private static  String Search_Com_STMT = "select distinct com.com_id,com.com_name,com.com_address"
+	private String Search_Com_STMT = "select distinct com.com_id,com.com_name,com.com_address"
 			+ " FROM   Company   com   JOIN  Product   prod "
-			+ "ON     com.com_id  =  prod.com_id "
-			+ "where 1=1";
+			+ "ON     com.com_id  =  prod.com_id " + "where 1=1";
 
 	public Set<SearchComVO> SearchByCondition(String location,
 			Integer prod_type, String keySearch) {
@@ -36,17 +35,23 @@ public class SearchComDAO implements SearchComDAO_interface {
 		// ----------------------------------------------
 
 		try {
-			if ((!location.equals(nonLocation))){ //地區不是空的
-				Search_Com_STMT += " and com.com_address like '%"+location+"%'"; 
+			if ((!location.equals(nonLocation))) { // 地區不是空的
+				Search_Com_STMT += " and com.com_address like '%" + location
+						+ "%'";
 			}
-			if (prod_type != null){ //交通工具不是空的
-				Search_Com_STMT += " and prod.prod_type = "+prod_type; 
+			if (prod_type != null) { // 交通工具不是空的
+				Search_Com_STMT += " and prod.prod_type = " + prod_type;
 			}
-
-		    Class.forName(driver);
+			if (!(keySearch.isEmpty())) {// keySearch不是空的
+				Search_Com_STMT += " and (com.com_name like'%" + keySearch
+						+ "%' " + "or com.com_address like '%" + keySearch
+						+ "%' " + "or prod.prod_name like '%" + keySearch
+						+ "%')";
+			}
+			System.out.println(Search_Com_STMT); // Antai test
+			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			stmt = con.createStatement();
-			System.out.println(Search_Com_STMT);	 //Antai test	
 			rs = stmt.executeQuery(Search_Com_STMT);
 			while (rs.next()) {
 				comVO = new SearchComVO();
@@ -102,8 +107,7 @@ public class SearchComDAO implements SearchComDAO_interface {
 		return comVO;
 	}// public SearchComVO findByPrimaryKey
 
-	public static void closeResource(Connection con, Statement stmt,
-			ResultSet rs) {
+	public void closeResource(Connection con, Statement stmt, ResultSet rs) {
 		if (rs != null) {
 			try {
 				rs.close();
@@ -125,6 +129,7 @@ public class SearchComDAO implements SearchComDAO_interface {
 				e.printStackTrace(System.err);
 			}
 		}
-	}// public void closeResource(Connection con,Statement
-		// stmt,ResultSet rs)
+	}// public void closeResource()
+
+
 }// public class SearchComDAO implements SearchComDAO_interface
