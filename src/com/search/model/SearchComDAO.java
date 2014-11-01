@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -16,26 +17,37 @@ public class SearchComDAO implements SearchComDAO_interface {
 	String passwd = "sa123456";
 
 	private static final String GET_ONE_STMT = "select com_id,com_name,com_address from Company where com_id = ?";
-	private static final String Search_Com_STMT = "select distinct com.com_id,com.com_name,com.com_address"
+	private static  String Search_Com_STMT = "select distinct com.com_id,com.com_name,com.com_address"
 			+ " FROM   Company   com   JOIN  Product   prod "
 			+ "ON     com.com_id  =  prod.com_id "
-			+ "where  com.com_address like ? and prod.prod_type =?";
+			+ "where 1=1";
 
-	public Set<SearchComVO> SearchByCondition(String location, Integer prod_type) {
+	public Set<SearchComVO> SearchByCondition(String location,
+			Integer prod_type, String keySearch) {
 		Set<SearchComVO> comSet = new LinkedHashSet<SearchComVO>();
 
 		SearchComVO comVO = null;
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
+		// ----------可能需要改變的參數-------------------
+		String nonLocation = "地區";
+		String nonProdType = "交通工具";
+		// ----------------------------------------------
 
 		try {
-			Class.forName(driver);
+			if ((!location.equals(nonLocation))){ //地區不是空的
+				Search_Com_STMT += " and com.com_address like '%"+location+"%'"; 
+			}
+			if (prod_type != null){ //交通工具不是空的
+				Search_Com_STMT += " and prod.prod_type = "+prod_type; 
+			}
+
+		    Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(Search_Com_STMT);
-			pstmt.setString(1, "%" + location + "%");
-			pstmt.setInt(2, prod_type);
-			rs = pstmt.executeQuery();
+			stmt = con.createStatement();
+			System.out.println(Search_Com_STMT);	 //Antai test	
+			rs = stmt.executeQuery(Search_Com_STMT);
 			while (rs.next()) {
 				comVO = new SearchComVO();
 				comVO.setCom_id(rs.getInt("com_id"));
@@ -51,7 +63,7 @@ public class SearchComDAO implements SearchComDAO_interface {
 					+ se.getMessage());
 			// Clean up JDBC resources
 		} finally {
-			closeResource(con, pstmt, rs);
+			closeResource(con, stmt, rs);
 		}// finally
 		return comSet;
 	}// public SearchComVO SearchByCondition(String location,Integer prod_type )
@@ -90,7 +102,7 @@ public class SearchComDAO implements SearchComDAO_interface {
 		return comVO;
 	}// public SearchComVO findByPrimaryKey
 
-	public static void closeResource(Connection con, PreparedStatement pstmt,
+	public static void closeResource(Connection con, Statement stmt,
 			ResultSet rs) {
 		if (rs != null) {
 			try {
@@ -99,9 +111,9 @@ public class SearchComDAO implements SearchComDAO_interface {
 				se.printStackTrace(System.err);
 			}
 		}
-		if (pstmt != null) {
+		if (stmt != null) {
 			try {
-				pstmt.close();
+				stmt.close();
 			} catch (SQLException se) {
 				se.printStackTrace(System.err);
 			}
@@ -113,6 +125,6 @@ public class SearchComDAO implements SearchComDAO_interface {
 				e.printStackTrace(System.err);
 			}
 		}
-	}// public void closeResource(Connection con,PreparedStatement
-		// pstmt,ResultSet rs)
+	}// public void closeResource(Connection con,Statement
+		// stmt,ResultSet rs)
 }// public class SearchComDAO implements SearchComDAO_interface

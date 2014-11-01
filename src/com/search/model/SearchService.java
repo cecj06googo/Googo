@@ -10,7 +10,7 @@ public class SearchService {
 	public SearchComVO getOneCom(Integer com_id) {
 		return dao.findByPrimaryKey(com_id);
 	}
-	public Set<SearchComVO> getCompanysByCondition(String location,Integer prod_type) {
-		return dao.SearchByCondition(location,prod_type );
+	public Set<SearchComVO> getCompanysByCondition(String location,Integer prod_type,String keySearch) {
+		return dao.SearchByCondition(location,prod_type ,keySearch);
 	}
 }

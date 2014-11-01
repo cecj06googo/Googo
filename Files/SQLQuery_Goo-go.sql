@@ -91,8 +91,8 @@ INSERT INTO Company VALUES ('antai124@pchome.com', 'antai124', '安泰1租車', 
 INSERT INTO Company VALUES ('antai125@pchome.com', 'antai125', '安泰2租車', '李小泰2', '臺北市內湖區新湖二路198號1樓', '0200422942', '02004229342', 12144167);
 INSERT INTO Company VALUES ('antai126@pchome.com', 'antai126', '安泰3租車', '李小泰3', '臺北市內湖區新湖二路199號1樓', '0200422943', '02004229343', 12144168);
 INSERT INTO Company VALUES ('antai127@pchome.com', 'antai127', '安泰4租車', '李小泰4', '臺北市內湖區新湖二路200號1樓', '0200422944', '02004229344', 12144169);
-INSERT INTO Company VALUES ('antai128@pchome.com', 'antai128', '安泰5租車', '李小泰5', '臺北市內湖區新湖二路201號1樓', '0200422945', '02004229345', 12144170);
-INSERT INTO Company VALUES ('antai129@pchome.com', 'antai129', '安泰6租車', '李小泰6', '臺北市內湖區新湖二路202號1樓', '0200422946', '02004229346', 12144171);
+INSERT INTO Company VALUES ('antai128@pchome.com', 'antai128', '只有機車租車', '李小泰5', '臺北市內湖區新湖二路201號1樓', '0200422945', '02004229345', 12144170);
+INSERT INTO Company VALUES ('antai129@pchome.com', 'antai129', '只有汽車租車', '李小泰6', '臺北市內湖區新湖二路202號1樓', '0200422946', '02004229346', 12144171);
 
 Create Table Product_Type(
             prodtype_id int   NOT NULL Primary Key,
@@ -169,12 +169,12 @@ insert into Product values (14,'Fighter150',2,7000,0.95,'101010','ss',null,null,
 insert into Product values (15,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (15,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (15,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (16,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (16,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (16,'Fighter148',2,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (16,'Fighter149',2,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (16,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (17,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (17,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (17,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (17,'保時捷-T2',1,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
 
 Create Table Accessory(
             acc_id          int NOT NULL IDENTITY(1,1) Primary Key ,

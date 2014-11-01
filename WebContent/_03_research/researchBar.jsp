@@ -26,12 +26,15 @@
                             </select>
                         </div>
             
-                        <div class="form-group input-group">
-                                <input type="text" class="form-control input-lg" placeholder="請輸入關鍵字">
+                         <div class="form-group input-group">
+                                <input type="text" class="form-control input-lg" name="keySearch" placeholder="商店名、地址關鍵字搜尋">
                                 <span class="input-group-btn"><button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button></span>
                          </div>
-
+                         <div>
+                             <Font color="red">${ErrMsg}</Font>     
+                         </div>
                     </form> 
+                    
                 </div>
             </div> 
         </div>

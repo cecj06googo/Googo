@@ -20,23 +20,44 @@ public class SearchServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(false);
+		//----------可能需要改變的參數-------------------
+		String nonLocation= "地區";
+		String nonProdType= "交通工具";
+		//----------------------------------------------
+        //思考若空白要返回何頁面是否是原來頁面?
 		
 		String location = request.getParameter("location");
 		String prod_type_str = request.getParameter("prod_type");
+		String keySearch = request.getParameter("keySearch");
+		System.out.println("location="+location);
+		System.out.println("prod_type="+prod_type_str);
+		System.out.println("keySearch="+keySearch);
 		System.out.println("有進來SearchServlet");
+		
+		if((location.equals(nonLocation))&&(prod_type_str.equals(nonProdType)&&keySearch.isEmpty())){ //地區和交通工具和關鍵字都沒有選擇
+			request.setAttribute("ErrMsg", "請輸入"+nonLocation+"或"+nonProdType+"搜尋");
+			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+			rd.forward(request, response);
+			return;
+		}
+		
 		
 		try{
 		// 進行資料型態的轉換
-			int prod_type = Integer.parseInt(prod_type_str.trim());
+			Integer prod_type=null;
+			if(!(prod_type_str.equals(nonProdType))){ //交通工具非空的
+			    prod_type = Integer.parseInt(prod_type_str);
+			}
+			
 			SearchService searchSvc = new SearchService();
-			Set<SearchComVO> comSet= searchSvc.getCompanysByCondition(location, prod_type);
+			Set<SearchComVO> comSet= searchSvc.getCompanysByCondition(location, prod_type,keySearch);
 			for (SearchComVO acomVO : comSet) {
 				System.out.print(acomVO.getCom_id() + ",");
 				System.out.print(acomVO.getCom_name() + ",");
 				System.out.print(acomVO.getCom_address());
 				System.out.println();
 			}
-			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/_03_research/research.jsp");
 			rd.forward(request, response);
 
 		} catch(NumberFormatException e){
