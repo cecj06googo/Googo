@@ -102,22 +102,5 @@
     <url-pattern>/Login.gg</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-    <servlet-name>DesignAccessDB</servlet-name>
-    <servlet-class>com.template.controller.Prototype_OrderTemp_Servlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DesignAccessDB</servlet-name>
-    <url-pattern>/DesignAccessDB</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>GetAccessory</servlet-name>
-    <servlet-class>com.template.model.Accessory_Retrieval</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GetAccessory</servlet-name>
-    <url-pattern>/GetAccessory</url-pattern>
-  </servlet-mapping>
   
 </web-app>
