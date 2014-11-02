@@ -1,5 +1,6 @@
 package com.search.model;
 
+import java.util.List;
 import java.util.Set;
 
 public class SearchService {
@@ -10,7 +11,7 @@ public class SearchService {
 	public SearchComVO getOneCom(Integer com_id) {
 		return dao.findByPrimaryKey(com_id);
 	}
-	public Set<SearchComVO> getCompanysByCondition(String location,Integer prod_type,String keySearch) {
+	public List<SearchComVO> getCompanysByCondition(String location,Integer prod_type,String keySearch) {
 		return dao.SearchByCondition(location,prod_type ,keySearch);
 	}
 }
