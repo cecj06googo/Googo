@@ -36,12 +36,14 @@
                                         <i class="fa fa-book fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">3</div>
+                                        <div class="huge">
+                                     ${newOrd}
+                                        </div>
                                         <div>新訂單喔!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="<c:url value='/_05_company/orderCom.jsp'/>">
                                 <div class="panel-footer">
                                     <span class="pull-left">訂單管理</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -82,7 +84,7 @@
                                         <i class="fa  fa-exclamation-triangle fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">1</div>
+                                        <div class="huge">${noReCar}</div>
                                         <div>尚未還車!</div>
                                     </div>
                                 </div>

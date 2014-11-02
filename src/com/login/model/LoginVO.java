@@ -6,15 +6,28 @@ package com.login.model;
 
 public class LoginVO implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
-	
+	private Integer com_id;
 	private String com_account;
 	private String com_pwd;
 	private String mem_account;
 	private String mem_pwd;
+	private Integer mem_id;
 	
 	
 	
 	
+	public Integer getCom_id() {
+		return com_id;
+	}
+	public void setCom_id(Integer com_id) {
+		this.com_id = com_id;
+	}
+	public Integer getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(Integer mem_id) {
+		this.mem_id = mem_id;
+	}
 	public String getCom_account() {
 		return com_account;
 	}

@@ -19,7 +19,7 @@
   </h1> 
  <BR>
  
- <a href="<%=request.getContextPath()%>/productsDetails.jsp"><input type="button" value="再訂一筆" /></a>
+ <a href="<%=request.getContextPath()%>/_04_member/productsDetails.jsp"><input type="button" value="再訂一筆" /></a>
  </CENTER>
 </body>
 </html>

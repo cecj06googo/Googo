@@ -60,10 +60,13 @@ public class OrdersService {
 	} // end addOrder
 	
 	
-	public List<OrdersVO> ordSearch(Integer user_id,Integer sel_stus,String sel_time){
-		return dao.user_getAll(user_id,sel_stus,sel_time);
+	public List<OrdersVO> ordSearch_mem(Integer user_id,Integer sel_stus,String sel_time){
+		return dao.mem_getAll(user_id,sel_stus,sel_time);
 	}// end ordSearch
 	
+	public List<OrdersVO> ordSearch_com(Integer user_id,Integer sel_stus,String sel_time){
+		return dao.com_getAll(user_id,sel_stus,sel_time);
+	}// end ordSearch
 	public void ordDelete(Integer ord_id, Integer ord_status){
 		dao.user_delete(ord_id , ord_status);
 	}// end ordSearch

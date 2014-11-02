@@ -228,7 +228,7 @@ public class OrdersServlet extends HttpServlet {
 						request.setAttribute("ordersVO", ordersVO);
 						msgOK.put("InsertOK",
 								"<Font color='red'>訂單新增成功</Font><hr>");
-						String url = "/ThanksForOrdering.jsp";
+						String url = "/_04_member/ThanksForOrdering.jsp";
 						RequestDispatcher successView = request
 								.getRequestDispatcher(url);
 						successView.forward(request, response);
@@ -236,7 +236,7 @@ public class OrdersServlet extends HttpServlet {
 					} else {
 
 						// 有errorMsg轉回原頁面
-						String url = "/productsDetails.jsp";
+						String url = "/_04_member/productsDetails.jsp";
 						RequestDispatcher successView = request
 								.getRequestDispatcher(url);
 						successView.forward(request, response);
@@ -291,7 +291,7 @@ public class OrdersServlet extends HttpServlet {
 				// ---------------呼叫database----------------------
 				if (errorMsg.isEmpty()) {
 					OrdersService odrSvc = new OrdersService();
-					List<OrdersVO> ordVO = odrSvc.ordSearch(user_id, sel_stus,
+					List<OrdersVO> ordVO = odrSvc.ordSearch_mem(user_id, sel_stus,
 							sel_time);
 					request.setAttribute("ordVO", ordVO);
 					if (ordVO.isEmpty()) {
@@ -411,7 +411,7 @@ public class OrdersServlet extends HttpServlet {
 					if (errorMsg.isEmpty()) {
 						OrdersService odrSvc = new OrdersService();
 						odrSvc.ordDelete(ord_id, ord_status);
-						List<OrdersVO> ordVO = odrSvc.ordSearch(user_id,
+						List<OrdersVO> ordVO = odrSvc.ordSearch_mem(user_id,
 								sel_stus, sel_time);
 
 						request.setAttribute("ordVO", ordVO);

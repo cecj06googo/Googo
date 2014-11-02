@@ -32,7 +32,7 @@ public class fakeData extends HttpServlet{
 		session.setAttribute("mem_id", mem_id);  //session存值
 		
 		/******************** (Send the Success view) ************/
-		String url = "/productsDetails.jsp";
+		String url = "/_04_member/productsDetails.jsp";
 		RequestDispatcher successView = request
 				.getRequestDispatcher(url);									
 		successView.forward(request, response);
@@ -51,12 +51,12 @@ public class fakeData extends HttpServlet{
 		}// end select
 		
 		
-		if ("login".equals(action)) {
+		if ("fakeLogin_mem".equals(action)) {
 			String user_id = request.getParameter("user_id");
 			//登入時要去資料庫檢查看帳號是屬於com_id(商家)還是mem_id(會員)
 			session.setAttribute("user_id", user_id);  //session存值
 			session.setAttribute("Identity", "Mem");  //session存值(代表登入的是會員)
-			
+			request.removeAttribute("action");
 			/******************** (Send the Success view) ************/
 			String url = "/orderOnLoad.gg";
 			

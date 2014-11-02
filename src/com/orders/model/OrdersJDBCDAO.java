@@ -28,7 +28,13 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 			+ "ON ord.ord_status =  sta.ord_status "
 			+ "WHERE  mem_id = ? "
 			+ "ORDER BY ord.ord_status";
-
+	
+	private static final String SELECT_GETALL_Com = 
+			" SELECT ord.ord_id, ord.ord_status, sta.status_char, ord_time, ord_getday, ord_reday ,item_total "
+			+ "FROM Orders ord JOIN Ord_status sta  "
+			+ "ON ord.ord_status =  sta.ord_status "
+			+ "WHERE  com_id = ? "
+			+ "ORDER BY ord.ord_status";
 	private static final String DELETE_GETALL_Mem = "UPDATE Orders SET ord_status = ? WHERE ord_id = ?";
 			
 	//指令碼用""+""時 有可能會發生指令錯誤(原因不明)  
@@ -106,7 +112,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 	} // end insert
 
 	@Override
-	public List<OrdersVO> user_getAll(Integer user_id, Integer sel_stus,
+	public List<OrdersVO> mem_getAll(Integer mem_id, Integer sel_stus,
 			String sel_time) {
 		List<OrdersVO> list = new ArrayList<OrdersVO>();
 		OrdersVO ordVO = null;
@@ -119,7 +125,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(SELECT_GETALL_Mem);
-			pstmt.setInt(1, user_id);
+			pstmt.setInt(1, mem_id);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -171,8 +177,77 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 			}
 		}
 		return list;
-	} // end select
+	} // end mem_getAll
 
+	@Override
+	public List<OrdersVO> com_getAll(Integer com_id,Integer sel_stus,String sel_time){
+		List<OrdersVO> list = new ArrayList<OrdersVO>();
+		OrdersVO ordVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_GETALL_Com);
+			pstmt.setInt(1, com_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ordVO = new OrdersVO();
+				ordVO.setOrd_status(rs.getInt("ord_status"));
+				ordVO.setOrd_time(rs.getTimestamp("ord_time"));
+				if (Conditions(ordVO, sel_stus, sel_time) == false) {
+					continue;
+				}
+				ordVO.setOrd_time(rs.getTimestamp("ord_time"));
+				ordVO.setOrd_id(rs.getInt("ord_id"));
+				ordVO.setOrd_getday(rs.getTimestamp("ord_getday"));
+				ordVO.setStatus_char(rs.getString("status_char"));
+				ordVO.setOrd_reday(rs.getTimestamp("ord_reday"));
+				ordVO.setItem_total(rs.getDouble("item_total"));
+				list.add(ordVO);
+			}
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}// end com_getAll
+	
+	
+	
 	
 	@Override
 	public void user_delete(Integer ord_id , Integer ord_status) {

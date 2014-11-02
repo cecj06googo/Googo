@@ -6,22 +6,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 public class LoginJDBCDAO implements LoginDAO_interface {
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
 	String userid = "sa";
 	String passwd = "P@ssw0rd";
 
-	private static final String MEM_LOGIN_CHECK = "SELECT count(*) FROM  Member WHERE mem_account = ? AND   mem_pwd = ?";
+	private static final String MEM_LOGIN_CHECK = "SELECT mem_id FROM  Member WHERE mem_account = ? AND   mem_pwd = ?";
 
-	private static final String COM_LOGIN_CHECK = "SELECT count(*) FROM  Company WHERE com_account = ? AND   com_pwd = ?";
+	private static final String COM_LOGIN_CHECK = "SELECT com_id FROM  Company WHERE com_account = ? AND   com_pwd = ?";
 
 	// 指令碼用""+""時 有可能會發生指令錯誤(原因不明)
 
 	@Override
-	public Boolean login(String user_account, String user_pwd,
+	public LoginVO login(String user_account, String user_pwd,
 			String user_identity) {
-
+		LoginVO loginVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -39,19 +40,20 @@ public class LoginJDBCDAO implements LoginDAO_interface {
 			pstmt.setString(1, user_account);
 			pstmt.setString(2, user_pwd);
 			rs = pstmt.executeQuery();
-			int num = -1;
+
 			while (rs.next()) {
-				num = rs.getInt(1);
+				if ("Mem".equals(user_identity)) {
+					loginVO = new LoginVO();
+					loginVO.setMem_id(rs.getInt("mem_id"));
+				} else if ("Com".equals(user_identity)) {
+					loginVO = new LoginVO();
+					loginVO.setCom_id(rs.getInt("com_id"));
+				}
 			}
 
-			if (num == 1) {
-				return true;
-			} else if (num == 0) {
-				return false;
-			} else {
-				System.out.println("有怪數字");
-				return false;
-			}
+		
+				return loginVO;
+		
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "

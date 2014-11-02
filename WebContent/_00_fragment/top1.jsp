@@ -36,7 +36,7 @@
                         <a href="<c:url value='/_02_register/register.jsp'/>">註冊</a>
                     </li>
                     <li>
-                        <a href="#myModal" data-toggle="modal" data-target="#login" >登入</a>
+                        <a href="#myModal"  data-toggle="modal" data-target="#login" >登入</a>
                     </li>
                     <li>
                         <a href="<c:url value='/_00_fragment/about.jsp'/>">關於</a>

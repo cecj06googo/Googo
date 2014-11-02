@@ -13,17 +13,17 @@
 <jsp:include page="/_00_fragment/top1.jsp" />
 <br>
 	<!-- 顯示session中的假資料 -->
-	<c:if test="${not empty sessionScope.com_id}">
+	<c:if test="${not empty sessionScope.mem_id}">
 		<p>
 			session內的會員編號：
-			<c:out value="${sessionScope.com_id}" />
+			<c:out value="${sessionScope.mem_id}" />
 		</p>
 	</c:if>
 	<hr>
-	<c:if test="${not empty sessionScope.mem_id}">
+	<c:if test="${not empty sessionScope.com_id}">
 		<p>
 			session內的商家編號：
-			<c:out value="${sessionScope.mem_id}" />
+			<c:out value="${sessionScope.com_id}" />
 		</p>
 	</c:if>
 	<!-- Compiler會騙人啦討厭 =3=  -->
@@ -33,11 +33,12 @@
 		<font color="blue"><b>訂單</b></font>
 		<form action="<%=request.getContextPath()%>/fakeData.gg" method="post">
 			------------------- 訂單主表-------------------
+			<LI>會員編號: <input type="text" name="mem_id" value="1" /><font size="-1" color="#FF0000">${ErrorMsg.errorMem_id}</font>
+			<p></LI> 
 			<LI>商家編號: <input type="text" name="com_id" value="1" /><font size="-1" color="#FF0000">${ErrorMsg.errorCom_id}</font>
 			<p></LI>
-			<LI>會員編號: <input type="text" name="mem_id" value="1" /><font size="-1" color="#FF0000">${ErrorMsg.errorMem_id}</font>
-			<p></LI> <input type="submit" value="存入session" />
 			<input type="hidden" name="action" value="insert">
+			<input type="submit" value="存入session" />
 		</form>
 		<form action="<%=request.getContextPath()%>/Insert.gg" method="post">
 			<LI>訂購時間: <input type="text" name="ord_time"
