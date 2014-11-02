@@ -12,11 +12,11 @@ public class CompanyService {
 	}
 	
 	// 驗證帳號是否重複
-	synchronized public boolean accountExists(String account) throws IOException {
-		boolean existAccount = false; // 檢查account是否已經存在
+	synchronized public boolean verifyAccount(String account) throws IOException {
+		boolean existAccount = false;    // 檢查account是否已經存在
 		List<CompanyVO> list = dao.getAll();
 		for (CompanyVO cv : list) {
-			if (cv.getComAccount().equals(account.trim())) {
+			if ( cv.getComAccount().equals(account.trim())) {
 				existAccount = true;
 				break;
 			}
@@ -26,7 +26,7 @@ public class CompanyService {
 	
 	// 驗證統一編號是否重複
 	synchronized public boolean verifyVAT(String VAT) throws IOException {
-		boolean existVAT = false; // 檢查VAT是否已經存在
+		boolean existVAT = false;    // 檢查VAT是否已經存在
 		List<CompanyVO> list = dao.getAll();
 		for (CompanyVO cv : list) {
 			if (cv.getComVAT().equals(VAT.trim())) {
@@ -38,10 +38,9 @@ public class CompanyService {
 	}
 	
 	public CompanyVO addCompany(String comAccount,String comPwd,String comName,String comOwner,
-		    String comAddr, String comTel, String comFax, String comVAT, byte[] comPic) {
+	        String comAddr, String comTel, String comFax, String comVAT, byte[] comPic) {
 		
 		CompanyVO comVO = new CompanyVO();
-		
 		comVO.setComAccount(comAccount);
 		comVO.setComPwd(comPwd);
 		comVO.setComName(comName);
@@ -53,7 +52,6 @@ public class CompanyService {
 		comVO.setComPic(comPic);
 		
 		dao.insert(comVO);
-		
 		return comVO;
 	}
 	
@@ -61,7 +59,6 @@ public class CompanyService {
 		    String comAddr, String comTel, String comFax, String comVAT, byte[] comPic) {
 		
 		CompanyVO comVO = new CompanyVO();
-		
 		comVO.setComID(comID);
 		comVO.setComAccount(comAccount);
 		comVO.setComPwd(comPwd);
@@ -72,8 +69,8 @@ public class CompanyService {
 		comVO.setComFax(comFax);
 		comVO.setComVAT(comVAT);
 		comVO.setComPic(comPic);
-		dao.update(comVO);
 		
+		dao.update(comVO);
 		return dao.findByPrimaryKey(comID);
 	}
 	

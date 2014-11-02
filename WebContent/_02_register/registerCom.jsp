@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-      	<form name="register_company" id="register_company" action="#" method="get" novalidate>
+      	<form name="register_company" id="register_company" action="Company.Register" method="get" novalidate>
               <div class="control-group form-group ">
                   <label>帳號:</label>
                   <div class="controls input-group">

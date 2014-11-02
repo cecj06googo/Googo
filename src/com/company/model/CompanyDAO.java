@@ -102,7 +102,7 @@ public class CompanyDAO implements ICompanyDAO {
 	public static void main(String[] args) {
 		CompanyDAO dao = new CompanyDAO();
 		
-//		/* 新增  */
+//		// 新增  
 //		CompanyVO comVO1 = new CompanyVO();
 //		comVO1.setComAccount("app@com.tw");
 //		comVO1.setComPwd("app123");
@@ -114,7 +114,7 @@ public class CompanyDAO implements ICompanyDAO {
 //		comVO1.setComVAT("12478965");
 //		dao.insert(comVO1);
 		
-//		/* 修改 */
+//		// 修改 
 //		CompanyVO comVO2 = new CompanyVO();
 //		comVO2.setComID(11);
 //		comVO2.setComPwd("Wu123");
@@ -125,7 +125,7 @@ public class CompanyDAO implements ICompanyDAO {
 //		comVO2.setComFax("");
 //		dao.update(comVO2);
 		
-//		/* 修改回來 */
+//		// 修改回來 
 //		CompanyVO comVO3 = new CompanyVO();
 //		comVO3.setComID(1);
 //		comVO3.setComPwd("kitty123");
@@ -137,7 +137,7 @@ public class CompanyDAO implements ICompanyDAO {
 //		dao.update(comVO3);
 		
 		
-		/* 單一查詢 */
+		// 單一查詢 
 		CompanyVO comVO4 = dao.findByPrimaryKey(1);
 		System.out.print(comVO4.getComID() + ",");
 		System.out.print(comVO4.getComPwd() + ",");
@@ -151,7 +151,7 @@ public class CompanyDAO implements ICompanyDAO {
 		System.out.println("---------------------");
 		
 		
-		/* 全部查詢 */
+		// 全部查詢 
 		List<CompanyVO> list = dao.getAll();
 		for(CompanyVO aCom : list) {
 		System.out.print(aCom.getComID() + ",");

@@ -26,7 +26,6 @@
     <servlet-name>RegisterCompany</servlet-name>
     <url-pattern>/Company.Register</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <display-name>UpdateCompany</display-name>
     <servlet-name>UpdateCompany</servlet-name>
@@ -36,6 +35,26 @@
     <servlet-name>UpdateCompany</servlet-name>
     <url-pattern>/Company.Update</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <display-name>ShowImage</display-name>
+    <servlet-name>ShowImage</servlet-name>
+    <servlet-class>com.company.controller.ShowImage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowImage</servlet-name>
+    <url-pattern>/image</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <display-name>GetOneCompany</display-name>
+    <servlet-name>GetOneCompany</servlet-name>
+    <servlet-class>com.company.controller.GetOneCompany</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetOneCompany</servlet-name>
+    <url-pattern>/DisplayProfile</url-pattern>
+  </servlet-mapping>
+  
   
   <servlet>
     <display-name>SearchServlet</display-name>
