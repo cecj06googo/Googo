@@ -72,6 +72,7 @@ Create Table Company(
 			com_tel        varchar(15) NOT NULL,
 			com_fax        varchar(15) NULL,
 			com_vat        varchar(8) UNIQUE NOT NULL,
+			com_pic        varchar(max) NULL
 
 );
 

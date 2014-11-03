@@ -173,7 +173,7 @@ public class RegisterCompany extends HttpServlet {
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("companyVO", companyVO);
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/C_registerCom.jsp");
+						.getRequestDispatcher("/Temp/_02_register/C_registerCom.jsp");
 				failureView.forward(req, res);
 				return;    //程式中斷
 			}
@@ -189,7 +189,7 @@ public class RegisterCompany extends HttpServlet {
 		} catch (Exception e) {
 			errorMsgs.put("errorException", e.getMessage());
 			RequestDispatcher failureView = req
-					.getRequestDispatcher("/C_registerCom.jsp");
+					.getRequestDispatcher("/Temp/_02_register/C_registerCom.jsp");
 			failureView.forward(req, res);
 		}
 	} // end doPost()

@@ -319,7 +319,7 @@ site 750*500
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
                 </div>
                 <div class="col-md-4">
-                    <a class="btn btn-lg btn-default btn-block" href="<%=request.getContextPath()%>/C_registerCom.jsp">註冊商家</a>
+                    <a class="btn btn-lg btn-default btn-block" href="<%=request.getContextPath()%>/Temp/_02_register/C_registerCom.jsp">註冊商家</a>
                 </div>
             </div>
         </div>
@@ -328,7 +328,7 @@ site 750*500
 
 
 		<h4>UpdateCompany</h4>
-		<form method="POST" id="updateCom" action="DisplayProfile">
+		<form method="POST" id="updateCom" action="<%=request.getContextPath()%>/DisplayProfile">
 			<input type="text" name="comID" id="comID" /> <input type="submit"
 				id="enter" value="確認"> <input type="hidden" name="action"
 				value="getOne_For_Display">

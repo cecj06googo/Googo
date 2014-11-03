@@ -179,7 +179,7 @@
 				<!-- 商家修改資料 -->
 					<div class="row">
 					<div class="col-lg-6">
-						<form name="comFormU" enctype="multipart/form-data" method="POST" action="Company.Update" id="editCompany">
+						<form name="comFormU" enctype="multipart/form-data" method="POST" action="<%=request.getContextPath()%>/Company.Update" id="editCompany">
 							<div class="control-group form-group ">
 								<label>帳號:</label>
 								<div class="controls">
