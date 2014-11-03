@@ -1,6 +1,7 @@
 package com.search.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
@@ -41,9 +42,9 @@ public class SearchServlet extends HttpServlet{
 			return;
 		}
 		//檢查是否有違法字元，以避免injection攻擊
-		CharSequence illegal1 = "'" , illegal2 = "\"" , illegal3 = ";" ,illegal4 = "=" ;
-		if (keySearch.contains(illegal1) || keySearch.contains(illegal2)|| keySearch.contains(illegal3) || keySearch.contains(illegal4)) {
-			request.setAttribute("ErrMsg", "不可含有以下字元:   ' \" ; =");
+		CharSequence illegal1 = "'" , illegal2 = "\"" , illegal3 = ";" ,illegal4 = "=", illegal5 = "," ;
+		if (keySearch.contains(illegal1) || keySearch.contains(illegal2)|| keySearch.contains(illegal3) || keySearch.contains(illegal4)|| keySearch.contains(illegal5)) {
+			request.setAttribute("ErrMsg", "不可含有以下字元:   ' \" ; = ,");
 			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 			rd.forward(request, response);
 			return;
@@ -57,13 +58,14 @@ public class SearchServlet extends HttpServlet{
 			}
 			
 			SearchService searchSvc = new SearchService();
-			Set<SearchComVO> comSet= searchSvc.getCompanysByCondition(location, prod_type,keySearch);
-			for (SearchComVO acomVO : comSet) {
+			List<SearchComVO> comList= searchSvc.getCompanysByCondition(location, prod_type,keySearch);
+			for (SearchComVO acomVO : comList) {
 				System.out.print(acomVO.getCom_id() + ",");
 				System.out.print(acomVO.getCom_name() + ",");
 				System.out.print(acomVO.getCom_address());
 				System.out.println();
 			}
+			request.setAttribute("comList", comList);
 			RequestDispatcher rd = request.getRequestDispatcher("/_03_research/research.jsp");
 			rd.forward(request, response);
 

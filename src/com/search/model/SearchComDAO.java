@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SearchComDAO implements SearchComDAO_interface {
@@ -21,9 +23,9 @@ public class SearchComDAO implements SearchComDAO_interface {
 			+ " FROM   Company   com   JOIN  Product   prod "
 			+ "ON     com.com_id  =  prod.com_id " + "where 1=1";
 
-	public Set<SearchComVO> SearchByCondition(String location,
+	public List<SearchComVO> SearchByCondition(String location,
 			Integer prod_type, String keySearch) {
-		Set<SearchComVO> comSet = new LinkedHashSet<SearchComVO>();
+		List<SearchComVO> comList = new ArrayList<SearchComVO>();
 
 		SearchComVO comVO = null;
 		Connection con = null;
@@ -58,7 +60,7 @@ public class SearchComDAO implements SearchComDAO_interface {
 				comVO.setCom_id(rs.getInt("com_id"));
 				comVO.setCom_name(rs.getString("com_name"));
 				comVO.setCom_address(rs.getString("com_address"));
-				comSet.add(comVO);
+				comList.add(comVO);
 			}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -70,7 +72,7 @@ public class SearchComDAO implements SearchComDAO_interface {
 		} finally {
 			closeResource(con, stmt, rs);
 		}// finally
-		return comSet;
+		return comList;
 	}// public SearchComVO SearchByCondition(String location,Integer prod_type )
 
 	public SearchComVO findByPrimaryKey(Integer com_id) {
