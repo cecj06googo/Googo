@@ -157,7 +157,7 @@
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Pie Chart Example with Tooltips</h3>
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Pie Chart </h3>
                             </div>
                             <div class="panel-body">
                                 <div class="flot-chart">
@@ -263,7 +263,7 @@
 
     <!-- Flot Charts JavaScript -->
     <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
-    <script src="${pageContext.request.contextPath}/js/plugins/flot/jquery.flot.js"></script>
+ <!--  <script src="${pageContext.request.contextPath}/js/plugins/flot/jquery.flot.js"></script> -->  
     <script src="${pageContext.request.contextPath}/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/plugins/flot/jquery.flot.resize.js"></script>
     <script src="${pageContext.request.contextPath}/js/plugins/flot/jquery.flot.pie.js"></script>
