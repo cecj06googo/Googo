@@ -11,7 +11,7 @@ public class LoginJDBCDAO implements LoginDAO_interface {
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
 	String userid = "sa";
-	String passwd = "P@ssw0rd";
+	String passwd = "sa123456";
 
 	private static final String MEM_LOGIN_CHECK = "SELECT mem_id FROM  Member WHERE mem_account = ? AND   mem_pwd = ?";
 

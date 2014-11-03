@@ -10,7 +10,7 @@
 		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
 		<property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;DatabaseName=GGDB</property>
 		<property name="hibernate.connection.username">sa</property>
-		<property name="hibernate.connection.password">1111</property>       
+		<property name="hibernate.connection.password">sa123456</property>       
 		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
 		<property name="hibernate.c3p0.min_size">5</property>
 		<property name="hibernate.c3p0.max_size">20</property>

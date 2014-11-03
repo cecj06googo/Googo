@@ -11,7 +11,7 @@ public class Prototype_OrderTemp_DAO {
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String url = "jdbc:sqlserver://localhost:1433; databaseName=GGDB";
 	String user = "sa";
-	String pw = "P@ssw0rd";
+	String pw = "sa123456";
 	
 	private static final String pstmt_Insert = "insert into Ord_temp (ordt_content, com_id) values(?, ?)";
 	private static final String pstmt_Retrieve = "select ordt_content from Ord_temp where ordt_id = ? AND com_id = ?";

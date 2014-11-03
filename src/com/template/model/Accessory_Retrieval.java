@@ -33,7 +33,7 @@ public class Accessory_Retrieval extends HttpServlet {
 		String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		String url = "jdbc:sqlserver://localhost:1433; databaseName=GGDB";
 		String user = "sa";
-		String pw = "P@ssw0rd";
+		String pw = "sa123456";
 		
 		String pstmt_Retrieve = "select acc_detail, acc_price from Accessory where com_id = ?";
 		
