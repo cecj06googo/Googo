@@ -37,7 +37,7 @@
 							<h3>
 								<a href="<c:url value='/_05_company/company.jsp'/>">${SearchComVO.com_name}</a>
 							</h3>
-							<p>位於北市信義路上，可愛的租車鋪，機車車齡三年內，提供租車服務以及機車托運，也讓您選擇自己喜愛的優良車種，擁有超值的機車租賃。
+							<p>${SearchComVO.com_name}，地點位於${SearchComVO.com_address}，是一家信賴的商家。
 							</p>
 						</div>
 				</c:forEach>

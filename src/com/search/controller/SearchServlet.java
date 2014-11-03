@@ -42,9 +42,9 @@ public class SearchServlet extends HttpServlet{
 			return;
 		}
 		//檢查是否有違法字元，以避免injection攻擊
-		CharSequence illegal1 = "'" , illegal2 = "\"" , illegal3 = ";" ,illegal4 = "=" ;
-		if (keySearch.contains(illegal1) || keySearch.contains(illegal2)|| keySearch.contains(illegal3) || keySearch.contains(illegal4)) {
-			request.setAttribute("ErrMsg", "不可含有以下字元:   ' \" ; =");
+		CharSequence illegal1 = "'" , illegal2 = "\"" , illegal3 = ";" ,illegal4 = "=", illegal5 = "," ;
+		if (keySearch.contains(illegal1) || keySearch.contains(illegal2)|| keySearch.contains(illegal3) || keySearch.contains(illegal4)|| keySearch.contains(illegal5)) {
+			request.setAttribute("ErrMsg", "不可含有以下字元:   ' \" ; = ,");
 			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 			rd.forward(request, response);
 			return;
