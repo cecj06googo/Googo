@@ -3,9 +3,12 @@ package com.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -16,8 +19,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-public class CheckAccountServlet extends HttpServlet{
+import org.json.simple.JSONValue;
 
+public class CheckAccountServlet extends HttpServlet{
+	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
+	String userid = "sa";
+	String passwd = "P@ssw0rd";
+	String checkAccount = "select count(*) from Member where mem_account=?";
+	
 	private static final long serialVersionUID = 1L;
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -25,55 +35,60 @@ public class CheckAccountServlet extends HttpServlet{
 	}
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 		throws ServletException, IOException {
+		System.out.println("進入check servlet");
 		Connection con=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
 		PrintWriter out = res.getWriter();
 		String mem_account = req.getParameter("mem_account");
-		String checkAccount = "select count(*) from Member where mem_account=? ";
 		try {
-				Context ctx = new InitialContext();
-				DataSource ds= (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
-				con = ds.getConnection();
+				Class.forName(driver);
+				con = DriverManager.getConnection(url, userid, passwd);
 				pstmt = con.prepareStatement(checkAccount);
+				
 				pstmt.setString(1,mem_account);
 				
 				rs = pstmt.executeQuery();
-				String strMsg = "�b���i�ϥ�";
+				Map m1 = new HashMap();
 				
-				rs.next();
+				
+				 rs.next();
 				 if(rs.getInt(1) >= 1){
-					 strMsg =  "�b���w�s�b";
-				 }
-				 out.print(strMsg);
-			} catch (NamingException e) {
+					 m1.put("valid",false);
+				 }else{
+					 m1.put("valid",true);
+				 }		 
+				 
+				 String jsonString = JSONValue.toJSONString(m1);                    
+				 out.println(jsonString);
+			
+			}  catch (SQLException e) {
 				e.printStackTrace();
-			} catch (SQLException e) {
+			}catch (ClassNotFoundException e) {
 				e.printStackTrace();
-			}finally{
-				if(rs != null){
+			}finally {
+				if (rs != null) {
 					try {
 						rs.close();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
 					}
-					}
-					if(pstmt != null){
-					 try {
+				}
+				if (pstmt != null) {
+					try {
 						pstmt.close();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
 					}
-					}if (con != null) {
-					 try {
+				}
+				if (con != null) {
+					try {
 						con.close();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
 					}
-					}
+				}
 			}
 	}
 }

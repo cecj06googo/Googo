@@ -45,7 +45,7 @@
 		        <div class="form-group pull-left">
 		          <label><input type="checkbox">自動登入 </label>
 		        </div>
-		        <button type="submit" class="btn btn-lg btn-primary pull-right">Login</button>
+		        <button type="submit" class="btn btn-lg btn-primary pull-right">登入</button>
 		        <input type="hidden" name="action" value="login">
 		      </form>
 		      <!--/. form-->
