@@ -34,13 +34,12 @@ public class MemServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		
-		if ("insert".equals(action)) { 
+		if ("insertMem".equals(action)) { 
 			Map<String, String> errorMsgs = new HashMap<String, String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-				System.out.println("接收");
 				String mem_account = req.getParameter("mem_account").trim();
 				if (mem_account == null || mem_account.trim().length() == 0) {
 					errorMsgs.put("errorAccount", "帳號欄請勿空白");
@@ -86,7 +85,7 @@ public class MemServlet extends HttpServlet {
 				}
 				String mem_idnumber = req.getParameter("mem_idnumber").trim();
 				if (mem_idnumber == null || mem_idnumber.trim().length() == 0) {
-					mem_idnumber="不給身分證";
+					errorMsgs.put("errorIdnumber","請輸入身分證!");
 				}
 				String mem_tel = req.getParameter("mem_tel").trim();
 				if (mem_tel == null || mem_tel.trim().length() == 0) {
@@ -129,17 +128,12 @@ public class MemServlet extends HttpServlet {
 				}
 				
 				/***************************2.開始新增資料***************************************/
-				System.out.println("開始新增");
 				MemService memSvc = new MemService();
-				System.out.println("new");
-				memVO = memSvc.addMem(mem_account,mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address);
-				System.out.println("add");
+				memVO = memSvc.addMem(mem_account,mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address);				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
-				System.out.println("url錯誤");
-				successView.forward(req, res);				
-				System.out.println("新增完畢");
+				successView.forward(req, res);		
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				errorMsgs.put("errorException",e.getMessage());

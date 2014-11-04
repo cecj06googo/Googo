@@ -1,49 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
+
 	<form name="register_member" id="register_member" action="<%=request.getContextPath()%>/_02_register/register.do" method="post" novalidate>
              <div class="control-group form-group ">
-                <label>帳號:</label>
-                <div class="controls input-group" >
-                    <input type="text" class="form-control " name="mem_account" value="${memVO.mem_account}" placeholder="請輸入e-mail" >
-               	<span class="input-group-addon"><i class="fa fa-thumbs-o-up"></i></span><!-- fa fa-ban-->
+                <label class="control-label">帳號:</label>
+                <div class="controls" >
+                    <input type="text" class="form-control " id="mem_account" name="mem_account" value="${memVO.mem_account}" placeholder="請輸入e-mail" >
                 </div>
                 <font color="red" size="-1">${errorMsgs.errorAccount}</font>
+                <div id="div1"></div>
             </div>
             <div class="control-group form-group">
-                <label>密碼:</label>
+                <label  class="control-label">密碼:</label>
                 <div class="controls ">
-                    <input type="password" class="form-control" name="mem_pwd0" value="${memVO.mem_pwd}" placeholder="請輸入6~12，包含英文與數字" >
+                    <input type="password" class="form-control" name="mem_pwd" value="${memVO.mem_pwd}" placeholder="請輸入6~12，包含英文與數字" >
                 </div>
                  <font color="red" size="-1">${errorMsgs.errorPwd}</font>
             </div>
             <div class="control-group form-group">
-                <label>密碼確認:</label>
+                <label  class="control-label">密碼確認:</label>
                 <div class="controls ">
-                    <input type="password" class="form-control" name="mem_pwd" value="${memVO.mem_pwd}" placeholder="請再次輸入密碼" >
+                    <input type="password" class="form-control" name="mem_pwd0" value="${memVO.mem_pwd}" placeholder="請再次輸入密碼" >
                 </div>
             </div>
             <div class="control-group form-group">
-                <label>姓名:</label>
+                <label  class="control-label">姓名:</label>
                 <div class="controls ">
                     <input type="text" class="form-control" name="mem_name" value="${memVO.mem_name}" required >
                 </div>
                 <font color="red" size="-1">${errorMsgs.errorName}</font>
             </div>
             <div class="control-group form-group">
-                <label><input type="radio" name="mem_gender" id="mem_gender" value="1">先生</label>
-                <label><input type="radio" name="mem_gender" id="mem_gender" value="0">小姐</label>
+                <label class="control-label"><input type="radio" name="mem_gender" id="mem_gender" value="1">先生</label>
+                <label class="control-label"><input type="radio" name="mem_gender" id="mem_gender" value="0">小姐</label>
                 <br><font color="red" size="-1">${errorMsgs.errorGender}</font>
             </div>
+           
 <!--日期===================================-->
             <div class="control-group form-group">
-                <label>生日:</label>
+                <label class="control-label">生日:</label>
                 <div class="controls" >
-                <!--<div class="controls input-group" >
-                  <span class="input-group-addon">
-				  <span class="glyphicon glyphicon-calendar"></span></span>-->
 					 <input class="form-control form_datetime" name="mem_bdate" id="mem_bdate" value="${memVO.mem_bdate}"  type="text" readonly >
-				
 				</div>
 				<font color="red" size="-1">${errorMsgs.errorDate}</font>
 			</div>
@@ -52,6 +54,7 @@
                    <div class="controls ">
                        <input type="text" class="form-control"  name="mem_idnumber"  value="${memVO.mem_idnumber}">
                    </div>
+                   <font color="red" size="-1">${errorMsgs.errorIdnumber}</font>
               </div>
               <div class="control-group form-group">
                   <label>電話:</label>
@@ -74,7 +77,7 @@
                   </div>
               </div>
               <br>
-               <input type="hidden" name="action" value="insert">
+               <input type="hidden" name="action" value="insertMem">
               <a class="btn btn-success" data-toggle="modal" data-target="#register_success">假送出</a>
           <!--<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#register_success">送出</button>  -->  
               <button type="submit" class="btn btn-danger">送出 </button>
@@ -87,8 +90,10 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
-   <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
+
 
 <script>
  (function($){
@@ -98,9 +103,195 @@
 	       forceParse:true,
 	       initialDate:new Date(),
 	       pickerPosition: "bottom-left",
-	       minView:2,
-	    });
+	       minView:2,});
+	       
+	/*   $("#mem_bdate").on("dp.change dp.show",function(e) {
+           $('#register_member').bootstrapValidator({
+        	   feedbackIcons: {
+		            valid: 'glyphicon glyphicon-ok',
+		            invalid: 'glyphicon glyphicon-remove',
+		            validating: 'glyphicon glyphicon-refresh'
+		        },
+		        fields: {
+		        	 mem_bdate: {
+			                validators: {
+			                    notEmpty: {
+			                        message: '生日不可空白'
+			                    },
+			                }
+			            }
+		        }
+           });
+       });*/
 	   $("#mem_bdate").css('cursor','default');
 	   $("#mem_bdate").css('background-color','white');
+	  
+	   /*$("#mem_account").blur(function(){
+		   var account = $(this).val();
+		  $.get("CheckAccountServlet",{'mem_account':account},function(data){
+			    $("#div1").html("<h2>"+data+"</h2>");
+		  });
+	   });
+	   
+	    remote: {
+              message: '帳號已存在，請重新輸入',
+              url: 'CheckAccountServlet',
+              data:{
+              	mem_account: mem_account
+              }
+          }
+	   
+	   
+	   
+	   */
+
+	   
+	   
+	   $(document).ready(function() {
+		    $('#register_member').bootstrapValidator({
+		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+		        feedbackIcons: {
+		            valid: 'glyphicon glyphicon-ok',
+		            invalid: 'glyphicon glyphicon-remove',
+		            validating: 'glyphicon glyphicon-refresh'
+		        },
+	        	
+		        fields: {
+		        	mem_account: {
+		        		trigger: 'keyup blur',
+		                message: '此E-mail無效',
+		                validators: {
+		                    notEmpty: {
+		                        message: '帳號不可空白，請填入E-mail'
+		                    },
+		                    emailAddress: {
+		                        message: '此E-mail無效,請輸入正確格式'
+		                    },
+		                    remote: {
+                                url: 'memAccountCheck.jsp',
+                                type: "post",
+                                async: false,
+                                message: '帳號重複，請重新輸入',
+                            },
+		                    
+		                }
+		            },
+		            mem_pwd: {
+		            	trigger:'keyup blur',
+		                validators: {
+		                	notEmpty: {
+		                        message: '密碼不可空白'
+		                    },
+		                	stringLength: {
+			                        min: 6,
+			                        max: 12,
+			                        message: '密碼長度限6~12字數'
+		                    },
+		                    regexp: {
+		                        regexp: /^(?=.*\d)(?=.*[a-z]).{6,12}$/,
+		                        message: '需包含英文及數字'
+		                    },
+		                    identical: {
+		                        field: 'mem_pwd0',
+		                        message: '與確認密碼不相同'
+		                    }
+		                }
+		            },
+		            mem_pwd0: {
+		            	trigger: 'keyup blur',
+		                validators: {
+		                	notEmpty: {
+		                        message: '密碼確認不可空白'
+		                    },
+		                    identical: {
+		                        field: 'mem_pwd',
+		                        message: '與密碼不相同'
+		                    },
+		                    stringLength: {
+		                        min: 6,
+		                        max: 12,
+		                        message: '密碼長度限6~12字數'
+		                    },
+		                    regexp: {
+		                        regexp: /^(?=.*\d)(?=.*[a-z]).{6,12}$/,
+		                        message: '需包含英文及數字'
+		                    }
+		                }
+		            },
+		            mem_name: {
+		            	trigger: 'keyup blur',
+		                validators: {
+		                	notEmpty: {
+		                        message: '姓名不可空白'
+		                    },
+		                    regexp: {
+		                        regexp:  /^[\u4e00-\u9fa5]+$/,
+		                        message: '只能填寫中文'
+		                    },
+		                }
+		            },
+		          
+		            mem_gender: {
+		                validators: {
+		                	trigger: '',
+		                    notEmpty: {
+		                        message: '請選擇性別'
+		                    }
+		                }
+		            },
+		            
+		            mem_idnumber: {
+		            	trigger: 'keyup blur',
+		                validators: {
+		                	notEmpty: {
+		                        message: '身分證不可空白'
+		                    },
+		                    regexp: {
+		                        regexp:  /^[A-Z]{1}[1-2]{1}[0-9]{8}$/,
+		                        message: '身分證格式錯誤'
+		                    },
+		                }
+		            },
+		            mem_bdate: {
+		            	trigger: 'change',
+		                validators: {
+		                	notEmpty: {
+		                        message: '生日不可空白'
+		                    },
+		                }
+		            },
+		            mem_tel: {
+		            	trigger: 'keyup blur',
+		                validators: {
+		                	notEmpty: {
+		                        message: '電話不可空白'
+		                    },
+		                    regexp: {
+		                        regexp:  /^[0-9]{8,12}$/,
+		                        message: '電話格式錯誤'
+		                    },
+		                }
+		            },
+		            mem_phone: {
+		            	trigger: 'keyup blur',
+		                validators: {
+		                	notEmpty: {
+		                        message: '行動電話不可空白'
+		                    },
+		                    regexp: {
+		                        regexp:  /^[0-9]{10,15}$/,
+		                        message: '行動電話格式錯誤'
+		                    },
+		                }
+		            },
+		        }}
+		    );
+		});
+	   
+	   
+	   
+	   
+	   
 	 })(jQuery)
 </script>
+

@@ -28,12 +28,11 @@ public class MemDAO implements MemDAO_interface {
 	
 	@Override
 	public void insert(MemVO memVO)  {
-		System.out.println("進入DAOinsert");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
-			System.out.println("進入DAOinsert try");
+			
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
@@ -46,7 +45,7 @@ public class MemDAO implements MemDAO_interface {
 			pstmt.setString(7, memVO.getMem_tel());
 			pstmt.setString(8, memVO.getMem_phone());
 			pstmt.setString(9, memVO.getMem_address());
-			pstmt.setInt(10,1);
+			pstmt.setInt(10,0);
 			pstmt.setInt(11,1);
 			pstmt.executeUpdate();
 			// Handle any SQL errors
