@@ -139,4 +139,13 @@
     <url-pattern>/GetAccessory</url-pattern>
   </servlet-mapping>
   
+  	<servlet>
+		<servlet-name>MemServlet</servlet-name>
+		<servlet-class>com.member.controller.MemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemServlet</servlet-name>
+		<url-pattern>/_02_register/register.do</url-pattern>
+	</servlet-mapping>
+  
 </web-app>
