@@ -54,7 +54,7 @@ public class SearchServlet extends HttpServlet{
 			//避免發生中文字轉數字發生轉換錯誤
 			Integer prod_type=null;
 			if(!(prod_type_str.equals(nonProdType))){ //交通工具非空的
-			    prod_type = Integer.parseInt(prod_type_str);
+			    prod_type = Integer.parseInt(prod_type_str);			   
 			}
 			
 			SearchService searchSvc = new SearchService();
