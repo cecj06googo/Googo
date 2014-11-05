@@ -48,14 +48,14 @@
                 <div class="control-group form-group">
                 <label  class="control-label">密碼:</label>
                 <div class="controls ">
-                    <input type="password" class="form-control" name="mem_pwd" value="${memVO.mem_pwd}">
+                    <input type="password" class="form-control" name="mem_pwd0" value="${memVO.mem_pwd}">
                 </div>
                  <font color="red" size="-1">${errorMsgs.errorPwd}</font>
 	            </div>
 	            <div class="control-group form-group">
 	                <label  class="control-label">密碼確認:</label>
 	                <div class="controls ">
-	                    <input type="password" class="form-control" name="mem_pwd0" value="${memVO.mem_pwd}">
+	                    <input type="password" class="form-control" name="mem_pwd" value="${memVO.mem_pwd}">
 	                </div>
 	            </div>
 	            <div class="control-group form-group">
@@ -177,7 +177,7 @@
 	        	
 		        fields: {
 		        	
-		            mem_pwd: {
+		            mem_pwd0: {
 		            	trigger:'keyup blur',
 		                validators: {
 		                	notEmpty: {
@@ -192,20 +192,17 @@
 		                    	regexp: /^(?=.*\d)(?=.*[a-z]).{6,12}$/,
 		                        message: '需包含英文及數字'
 		                    },
-		                    identical: {
-		                        field: 'mem_pwd0',
-		                        message: '與確認密碼不相同'
-		                    }
+		                    
 		                }
 		            },
-		            mem_pwd0: {
+		            mem_pwd: {
 		            	trigger: 'keyup blur',
 		                validators: {
 		                	notEmpty: {
 		                        message: '密碼確認不可空白'
 		                    },
 		                    identical: {
-		                        field: 'mem_pwd',
+		                        field: 'mem_pwd0',
 		                        message: '與密碼不相同'
 		                    },
 		                    stringLength: {
