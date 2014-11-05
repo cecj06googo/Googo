@@ -59,10 +59,13 @@
 					<ul class="pagination">
 					    <li><a href="#">&laquo;</a></li>
 					    <c:forEach var="i" begin="1" end="<%=pageNumber%>">					
-							<c:if test="${i} == <%=whichPage%>">
-							<li class="active"><a href="#">i</a></li>
+							<c:if test="${i == whichPage}">
+							<li class="active"><a href="${pageContext.request.contextPath}/SearchServlet.do?whichPage=${i}&location=${location}">${i}</a></li>
 							</c:if>
-							<li><a href="#">${i}</a></li>					
+							<c:if test="${i != whichPage}">
+							${location}
+							<li><a href="${pageContext.request.contextPath}/SearchServlet.do?whichPage=${i}&location=<%= java.net.URLEncoder.encode((String)request.getAttribute("location"),"UTF-8") %>">${i}</a></li>	
+							</c:if>				
 					    </c:forEach>
 					    <li><a href="#">&raquo;</a></li>
 					</ul>

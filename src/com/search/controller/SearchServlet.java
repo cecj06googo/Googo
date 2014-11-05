@@ -20,7 +20,7 @@ public class SearchServlet extends HttpServlet{
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(true);
 		//----------可能需要改變的參數-------------------
 		String nonLocation= "地區";
 		String nonProdType= "交通工具";
@@ -28,6 +28,7 @@ public class SearchServlet extends HttpServlet{
         //思考若空白要返回何頁面是否是原來頁面?
 		
 		String location = request.getParameter("location");
+		//String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
 		String prod_type_str = request.getParameter("prod_type");
 		String keySearch = request.getParameter("keySearch");
 		System.out.println("location="+location);
@@ -56,7 +57,7 @@ public class SearchServlet extends HttpServlet{
 			if(!(prod_type_str.equals(nonProdType))){ //交通工具非空的
 			    prod_type = Integer.parseInt(prod_type_str);			   
 			}
-			
+			//session.removeAttribute("comList");//將要搜尋時先把session的comList清空
 			SearchService searchSvc = new SearchService();
 			List<SearchComVO> comList= searchSvc.getCompanysByCondition(location, prod_type,keySearch);
 			for (SearchComVO acomVO : comList) {
@@ -66,12 +67,19 @@ public class SearchServlet extends HttpServlet{
 				System.out.println();
 			}
 			request.setAttribute("comList", comList);
+			request.setAttribute("location", location);
+			request.setAttribute("prod_type", prod_type);
+			request.setAttribute("keySearch", keySearch);
+			//String whichPage = request.getParameter("whichPage");
+			//request.setAttribute("whichPage", whichPage);//給research.jsp下方頁數使用
+			//session.setAttribute("comList", comList);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/_03_research/research.jsp");
+			//System.out.println("SerchServlete執行完畢");
 			rd.forward(request, response);
 
 		} catch(NumberFormatException e){
 			throw new ServletException(e); 
-		}
-		
+		} 
      }//protected void doPost	
 }//public class SearchServlet 

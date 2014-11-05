@@ -31,5 +31,7 @@
               whichPage=pageNumber;
               pageIndex=pageIndexArray[pageNumber-1];
          }
-    } 
+    } finally{
+         request.setAttribute("whichPage", whichPage);//給research.jsp下方頁數使用
+    }
 %>
