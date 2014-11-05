@@ -157,4 +157,15 @@
 		<url-pattern>/CheckAccountServlet</url-pattern>
 	</servlet-mapping>
   
+  	<servlet>
+		<servlet-name>OpenAccount</servlet-name>
+		<servlet-class>com.member.controller.ActivateAccountServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OpenAccount</servlet-name>
+		<url-pattern>/OpenAccount</url-pattern>
+	</servlet-mapping>
+  
+  
+  
 </web-app>

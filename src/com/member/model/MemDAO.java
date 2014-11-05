@@ -16,7 +16,7 @@ public class MemDAO implements MemDAO_interface {
 	String passwd = "P@ssw0rd";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO Member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO Member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 	private static final String UPDATE = 
 		"UPDATE Member set mem_pwd=?, mem_name=?, mem_gender=?, mem_bdate=?, mem_idnumber=?, mem_tel=?, mem_phone?, mem_address=? where mem_id = ?";
 	private static final String DELETE = 
@@ -25,6 +25,8 @@ public class MemDAO implements MemDAO_interface {
 		"SELECT mem_account,mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address FROM Member where mem_id = ?";
 	private static final String GET_ALL_STMT = 
 		"SELECT mem_account,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address FROM Member order by empno";
+	private static final String OPEN_ACCOUNT= 
+		"UPDATE Member set mem_open=1 where mem_qq=?";
 	
 	@Override
 	public void insert(MemVO memVO)  {
@@ -47,6 +49,7 @@ public class MemDAO implements MemDAO_interface {
 			pstmt.setString(9, memVO.getMem_address());
 			pstmt.setInt(10,0);
 			pstmt.setInt(11,1);
+			pstmt.setString(12,memVO.getMem_qq());
 			pstmt.executeUpdate();
 			// Handle any SQL errors
 		} catch (ClassNotFoundException e) {
@@ -247,6 +250,47 @@ public class MemDAO implements MemDAO_interface {
 		return null;
 	}
 	
+	public void open(String mem_qq) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(OPEN_ACCOUNT);
+
+			pstmt.setString(1,mem_qq);
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
 	
 
 }

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.member.model.*"%>
+<%
+	MemVO memVO = (MemVO) request.getAttribute("memVO");
+%>    
+    
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -107,8 +112,9 @@
 	                  </div>
 	              </div>
 	              <br>
-	              <!--  <input type="hidden" name="action" value="updateMem">
-	               	<div id="modConfirm" class="modal fade" role="dialog" aria-labelledby="modConfirm" aria-hidden="false">
+	                <input type="hidden" name="action" value="updateMem">
+	                <input type="hidden" name="mem_id" value="${memVO.mem_id}">
+	               <!--	<div id="modConfirm" class="modal fade" role="dialog" aria-labelledby="modConfirm" aria-hidden="false">
 					<div class="modal-dialog modal-sm">
 				  	<div class="modal-content">
 					<div class="modal-header">
