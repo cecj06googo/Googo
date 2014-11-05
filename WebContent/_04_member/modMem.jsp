@@ -198,6 +198,10 @@
 		                    	regexp: /^(?=.*\d)(?=.*[a-z]).{6,12}$/,
 		                        message: '需包含英文及數字'
 		                    },
+		                    identical: {
+		                        field: 'mem_pwd',
+		                        message: '與確認密碼不相同'
+		                    },
 		                    
 		                }
 		            },

@@ -135,7 +135,7 @@ public class MemServlet extends HttpServlet {
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/				
 				req.getSession().setAttribute("memVO", memVO); 
 				String url = "/index.jsp";
-				Thread.sleep(5000);
+				Thread.sleep(4000);
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);	
 				EmailUtils.sendAccountActivateEmail(memVO);  
