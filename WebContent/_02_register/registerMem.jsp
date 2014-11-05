@@ -2,11 +2,9 @@
     pageEncoding="UTF-8"%>
 <link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
-	<form name="register_member" id="register_member" action="<%=request.getContextPath()%>/_02_register/register.do" method="post" novalidate>
+	<form name="register_member" id="register_member" action="<%=request.getContextPath()%>/member.do" method="post" >
              <div class="control-group form-group ">
                 <label class="control-label">帳號:</label>
                 <div class="controls" >
@@ -78,9 +76,10 @@
               </div>
               <br>
                <input type="hidden" name="action" value="insertMem">
-              <a class="btn btn-success" data-toggle="modal" data-target="#register_success">假送出</a>
+              
           <!--<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#register_success">送出</button>  -->  
-              <button type="submit" class="btn btn-danger">送出 </button>
+          	  <button type="reset" class="btn btn-primary" >取消 </button>
+              <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#register_success">送出 </button>
            	
           </form>
            
@@ -104,49 +103,10 @@
 	       initialDate:new Date(),
 	       pickerPosition: "bottom-left",
 	       minView:2,});
-	       
-	/*   $("#mem_bdate").on("dp.change dp.show",function(e) {
-           $('#register_member').bootstrapValidator({
-        	   feedbackIcons: {
-		            valid: 'glyphicon glyphicon-ok',
-		            invalid: 'glyphicon glyphicon-remove',
-		            validating: 'glyphicon glyphicon-refresh'
-		        },
-		        fields: {
-		        	 mem_bdate: {
-			                validators: {
-			                    notEmpty: {
-			                        message: '生日不可空白'
-			                    },
-			                }
-			            }
-		        }
-           });
-       });*/
+	      
 	   $("#mem_bdate").css('cursor','default');
 	   $("#mem_bdate").css('background-color','white');
 	  
-	   /*$("#mem_account").blur(function(){
-		   var account = $(this).val();
-		  $.get("CheckAccountServlet",{'mem_account':account},function(data){
-			    $("#div1").html("<h2>"+data+"</h2>");
-		  });
-	   });
-	   
-	    remote: {
-              message: '帳號已存在，請重新輸入',
-              url: 'CheckAccountServlet',
-              data:{
-              	mem_account: mem_account
-              }
-          }
-	   
-	   
-	   
-	   */
-
-	   
-	   
 	   $(document).ready(function() {
 		    $('#register_member').bootstrapValidator({
 		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -247,7 +207,7 @@
 		                        message: '身分證不可空白'
 		                    },
 		                    regexp: {
-		                        regexp:  /^[A-Z]{1}[1-2]{1}[0-9]{8}$/,
+		                        regexp:  /^[a-zA-Z]{1}[1-2]{1}[0-9]{8}$/,
 		                        message: '身分證格式錯誤'
 		                    },
 		                }

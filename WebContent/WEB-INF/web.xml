@@ -145,7 +145,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MemServlet</servlet-name>
-		<url-pattern>/_02_register/register.do</url-pattern>
+		<url-pattern>/member.do</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
