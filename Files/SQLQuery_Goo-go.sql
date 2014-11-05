@@ -44,7 +44,7 @@ Create Table Member(
             mem_name		 varchar(32) NOT NULL, 
             mem_gender 	     int NOT NULL, 
             mem_bdate 		 Date NOT NULL, 
-            mem_idnumer      varchar(32),
+            mem_idnumber      varchar(32),
 			mem_tel		     varchar(15) NOT NULL, 
             mem_phone		 varchar(15) NOT NULL, 
             mem_address      varchar(64) NOT NULL, 

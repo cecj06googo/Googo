@@ -33,7 +33,7 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <div class="fill" style="background-image:url('img/01.jpg');"></div>
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/img/01.jpg');"></div>
                 <div class="carousel-caption">
                     <h1>One more for good measure.</h1>
               		<p>123</p>
@@ -41,13 +41,13 @@
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('img/02.jpg');"></div>
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/img/2.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>Caption 2</h2>
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('img/03.jpg');"></div>
+                <div class="fill" style="background-image:url('${pageContext.request.contextPath}/img/4.JPG');"></div>
                 <div class="carousel-caption">
                     <h2>Caption 3</h2>
                 </div>
