@@ -104,6 +104,22 @@ insert into Product_Type values (2,'機車');
 insert into Product_Type values (3,'腳踏車');
 
 
+Create Table Product_Kind(
+		    prodkind_id       int NOT NULL Primary Key ,
+			prodkind_name         varchar(32) NOT NULL,
+);
+
+
+insert into Product_Kind values (1,'轎車');
+insert into Product_Kind values (2,'休旅車');
+insert into Product_Kind values (3,'大型重型機車');
+insert into Product_Kind values (4,'普通重型機車');
+insert into Product_Kind values (5,'普通輕型機車');
+insert into Product_Kind values (6,'越野腳踏車');
+insert into Product_Kind values (7,'摺疊腳踏車');
+insert into Product_Kind values (8,'電動腳踏車');
+insert into Product_Kind values (9,'一般腳踏車');
+
 Create Table Product(
 		    prod_id         int NOT NULL IDENTITY(1,1) Primary Key ,
 			com_id          int NOT NULL,
@@ -123,7 +139,11 @@ Create Table Product(
 
 			CONSTRAINT Product_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 			CONSTRAINT Product_com_type_fk FOREIGN KEY (prod_type) REFERENCES Product_Type (prodtype_id),
+			CONSTRAINT Product_prod_kind_fk FOREIGN KEY (prod_kind) REFERENCES Product_Kind (prodkind_id),
 );
+
+
+
                         
 insert into Product values (1,'賓士320',1,1000,0.78,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (1,'福特123',1,2000,0.85,'101010','ss',null,null,null,1,null,null,null);
