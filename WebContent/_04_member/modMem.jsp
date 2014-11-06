@@ -54,14 +54,14 @@
                 <div class="control-group form-group">
                 <label  class="control-label">密碼:</label>
                 <div class="controls ">
-                    <input type="password" class="form-control" name="mem_pwd0" value="">
+                    <input type="password" class="form-control" name="mem_pwd0" value="${memVO.mem_pwd}">
                 </div>
                  <font color="red" size="-1">${errorMsgs.errorPwd}</font>
 	            </div>
 	            <div class="control-group form-group">
 	                <label  class="control-label">密碼確認:</label>
 	                <div class="controls ">
-	                    <input type="password" class="form-control" name="mem_pwd" value="">
+	                    <input type="password" class="form-control" name="mem_pwd" value="${memVO.mem_pwd}">
 	                </div>
 	            </div>
 	            <div class="control-group form-group">
@@ -114,7 +114,7 @@
 	              </div>
 	              <br>
 	                <input type="hidden" name="action" value="updateMem">
-	               <input type="hidden" name="mem_id" value="1">
+	                <input type="hidden" name="mem_id" value="${memVO.mem_id}">
 	               <!--	<div id="modConfirm" class="modal fade" role="dialog" aria-labelledby="modConfirm" aria-hidden="false">
 					<div class="modal-dialog modal-sm">
 				  	<div class="modal-content">
@@ -296,9 +296,6 @@
 		        }}
 		    );
 		});
-	   
-	   
-	   
 })(jQuery)
 </script>
 

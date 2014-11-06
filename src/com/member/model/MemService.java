@@ -40,7 +40,7 @@ public class MemService {
 		return memVO;
 	}
 
-	public void updateMem(String mem_pwd, String mem_name, Integer mem_gender,
+	public MemVO updateMem(String mem_pwd, String mem_name, Integer mem_gender,
 			java.sql.Date mem_bdate, String mem_idnumber, String mem_tel, String mem_phone,String mem_address,Integer mem_id) {
 
 		MemVO memVO = new MemVO();
@@ -49,24 +49,24 @@ public class MemService {
 		memVO.setMem_pwd(MemService.getMD5Endocing(encrypedString));
 		memVO.setMem_name(mem_name);
 		memVO.setMem_gender(mem_gender);
-		memVO.setMem_bdate(mem_bdate);		memVO.setMem_idnumber(mem_idnumber);
+		memVO.setMem_bdate(mem_bdate);
+		memVO.setMem_idnumber(mem_idnumber);
 		memVO.setMem_tel(mem_tel);
 		memVO.setMem_phone(mem_phone);
 		memVO.setMem_address(mem_address);
 		memVO.setMem_id(mem_id);
 		dao.update(memVO);
-		System.out.println("進入Service update");
-		
+		System.out.println("進入Servier update");
+		return memVO;
 	}
 
 	public void deleteMem(Integer mem_id) {
 		dao.delete(mem_id);
 	}
 
-	public MemVO getOneMem(Integer mem_id) {
+	public MemVO getOneEmp(Integer mem_id) {
 		return dao.findByPrimaryKey(mem_id);
 	}
-	
 
 	public List<MemVO> getAll() {
 		return dao.getAll();
@@ -76,8 +76,8 @@ public class MemService {
 		return dao.getAll(map);
 	}
 	
-	public MemVO openMem(String mem_qq) {
-		return dao.open(mem_qq);
+	public void openMem(String mem_qq) {
+		dao.open(mem_qq);
 	}
 	
 	
