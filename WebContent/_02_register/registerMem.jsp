@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="control-group form-group">
-                <label  class="control-label">姓名:</label>
+                <label>姓名:</label>
                 <div class="controls ">
                     <input type="text" class="form-control" name="mem_name" value="${memVO.mem_name}" required >
                 </div>
@@ -41,7 +41,7 @@
            
 <!--日期===================================-->
             <div class="control-group form-group">
-                <label class="control-label">生日:</label>
+                <label>生日:</label>
                 <div class="controls" >
 					 <input class="form-control form_datetime" name="mem_bdate" id="mem_bdate" value="${memVO.mem_bdate}"  type="text" readonly >
 				</div>

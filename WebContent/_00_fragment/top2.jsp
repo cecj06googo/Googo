@@ -115,7 +115,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-th-list"></i> 庫存管理 <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">新品上架</a>
+                                <a href="<c:url value='/_06_manage/productInsert.jsp'/>">新品上架</a>
                             </li>
                             <li>
                                 <a href="<c:url value='/_06_manage/product.jsp'/>">車輛管理</a>
