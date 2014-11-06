@@ -8,10 +8,10 @@ public class SendMailTestMain {
 		  * subjectTitle 是信件主旨，messageContent 是信件內容，以上都是String宣告 用法詳見SendMailTestMain.java
 		  * */
 		SendMail sendmail = new SendMail();
-		String recieverAdress = "raniantheone@gmail.com,"//收件者郵件地址
-				+ "e810616@yahoo.com.tw,a99402351@gmail.com,irischou07@gmail.com,ggyy40706@yahoo.com.tw,"
+		String recieverAdress = "e810616@yahoo.com.tw";//收件者郵件地址
+			/*	+ "e810616@yahoo.com.tw,a99402351@gmail.com,irischou07@gmail.com,ggyy40706@yahoo.com.tw,"
 				+ "davidfinal25@gmail.com,jeffreykuo0327@gmail.com,"
-				+ "antai0926@gmail.com,antai0926test@gmail.com";
+				+ "antai0926@gmail.com,antai0926test@gmail.com";*/
 		String subjectTitle = "JavaMail Test";//信件主旨
 		String messageContent = "親愛的收信者您好,\n"//信件內容
 				+ "此封信件為如何使用SendMail範例,\n"
