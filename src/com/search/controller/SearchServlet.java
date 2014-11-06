@@ -20,16 +20,22 @@ public class SearchServlet extends HttpServlet{
 		   request.setCharacterEncoding("UTF-8");
 		   System.out.println("進入doGet");
 		   String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
-		   System.out.println("location="+location);
-		   doPostdoGetShare(request,response,location);
+		   String prod_type_str = new String((request.getParameter("prod_type")).getBytes("ISO-8859-1"),"UTF-8");
+		   String keySearch = new String((request.getParameter("keySearch")).getBytes("ISO-8859-1"),"UTF-8");
+		   System.out.println("getlocation="+location);
+		   System.out.println("getprod_type_str="+prod_type_str);
+		   System.out.println("getkeySearch="+keySearch);
+		   doPostdoGetShare(request,response,location,prod_type_str,keySearch);
 		}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 	    String location = request.getParameter("location");
-		doPostdoGetShare(request,response,location);
+	    String prod_type_str = request.getParameter("prod_type");
+		String keySearch = request.getParameter("keySearch");
+		doPostdoGetShare(request,response,location,prod_type_str,keySearch);
      }//protected void doPost	
-	protected void doPostdoGetShare(HttpServletRequest request, HttpServletResponse response,String location) throws ServletException, IOException{
+	protected void doPostdoGetShare(HttpServletRequest request, HttpServletResponse response,String location,String prod_type_str,String keySearch) throws ServletException, IOException{
 		    
 			HttpSession session = request.getSession(true);
 			//----------可能需要改變的參數-------------------
@@ -38,8 +44,7 @@ public class SearchServlet extends HttpServlet{
 			//----------------------------------------------
 	    
 			//String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
-			String prod_type_str = request.getParameter("prod_type");
-			String keySearch = request.getParameter("keySearch");
+			
 			System.out.println("location="+location);
 			System.out.println("prod_type="+prod_type_str);
 			System.out.println("keySearch="+keySearch);
@@ -70,7 +75,7 @@ public class SearchServlet extends HttpServlet{
 			try{
 				//避免發生中文字轉數字發生轉換錯誤
 				Integer prod_type=null;
-				if(prod_type_str != null){
+				if(prod_type_str != null && !prod_type_str.isEmpty()){
 					if(!(prod_type_str.equals(nonProdType))){ //交通工具非空的
 					    prod_type = Integer.parseInt(prod_type_str);			   
 					}

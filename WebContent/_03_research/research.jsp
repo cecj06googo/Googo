@@ -60,11 +60,10 @@
 					    <li><a href="#">&laquo;</a></li>
 					    <c:forEach var="i" begin="1" end="<%=pageNumber%>">					
 							<c:if test="${i == whichPage}">
-							<li class="active"><a href="${pageContext.request.contextPath}/SearchServlet.do?whichPage=${i}&location=${location}">${i}</a></li>
+							<li class="active"><a href="${pageContext.request.contextPath}/SearchServlet.do?whichPage=${i}&location=${location}&prod_type=${prod_type}&keySearch=${keySearch}">${i}</a></li>
 							</c:if>
 							<c:if test="${i != whichPage}">
-							${location}
-							<li><a href="${pageContext.request.contextPath}/SearchServlet.do?whichPage=${i}&location=${location}">${i}</a></li>	
+							<li><a href="${pageContext.request.contextPath}/SearchServlet.do?whichPage=${i}&location=${location}&prod_type=${prod_type}&keySearch=${keySearch}">${i}</a></li>	
 							</c:if>				
 					    </c:forEach>
 					    <li><a href="#">&raquo;</a></li>
