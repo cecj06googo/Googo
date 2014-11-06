@@ -21,7 +21,7 @@
 }
 </style>
 <script>
-	// 	動態顯示第二、三張圖片的欄位
+	// 	動態顯示第一、二、三張圖片的欄位
 	window.onload = function() {
 		document.getElementById("prodPic").addEventListener("change",
 				clickDiv1, false);
@@ -147,8 +147,13 @@
 			<div class="control-group form-group">
                 <label>手自排:</label>
                 <div class="controls ">
-                    <input type="text" class="form-control" name="prodControl" value="1">
-                </div>
+                <select name="prodControl">
+					<option value="1" selected>手排</option>
+					<option value="2">自排</option>
+					<option value="3">手自排</option>
+				</select>
+					<font size="-1" color="#FF0000">${ErrorMsg.errorProdControl}</font>
+			</div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdControl}</font>
             </div>
             <div class="control-group form-group">
@@ -158,28 +163,28 @@
                 </div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdArticle}</font>
             </div>
-            <div class="control-group form-group">
+            <div class="control-group form-group" id="pic1">
                    <label >商品封面圖片:</label>
                    <img src="img/13.jpg">
                    <input type="file" name="prodPic" id="prodPic">
                    <font size="-1" color="#FF0000">${ErrorMsg.errorProdPic}</font>
             </div>
-            <div class="control-group form-group" id="pic1">
-                   <label >商品圖片:</label>
-                   <img src="img/13.jpg">
-                   <input type="file" name="prodSubPic1" id="prodSubPic1">
-                   <font size="-1" color="#FF0000">${ErrorMsg.errorProdSsubpic1}</font>
-            </div>
             <div class="control-group form-group" id="pic2">
                    <label >商品圖片:</label>
                    <img src="img/13.jpg">
-                   <input type="file" name="prodSubPic2" id="prodSubPic2">
-                     <font size="-1" color="#FF0000">${ErrorMsg.errorProdSsubpic2}</font>
+                   <input type="file" name="prodSubPic1" id="prodSubPic1">
+                   <font size="-1" color="#FF0000">${ErrorMsg.errorProdSsubpic1}</font><br>
             </div>
             <div class="control-group form-group" id="pic3">
                    <label >商品圖片:</label>
                    <img src="img/13.jpg">
-                   <input type="file" name="prodSubPic3" id="prodSubPic3">
+                   <input type="file" name="prodSubPic2" id="prodSubPic2">
+                   <font size="-1" color="#FF0000">${ErrorMsg.errorProdSsubpic2}</font><br>
+            </div>
+            <div class="control-group form-group" id="pic4">
+                   <label >商品圖片:</label>
+                   <img src="img/13.jpg">
+                   <input type="file" name="prodSubPic3" id="prodSubPic3"><br>
                      <font size="-1" color="#FF0000">${ErrorMsg.errorProdSsubpic3}</font>
             </div>
        
