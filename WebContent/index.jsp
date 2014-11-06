@@ -67,8 +67,15 @@
     <div class="container">
 		<br>
 		<!-- Search bar -->
+		<div class="well">
+		<div class="row">
+		<div class="col-lg-12 text-center">
      	<jsp:include page="/_03_research/researchBar.jsp" />
       
+		</div>
+		</div>
+		</div>
+		<!-- /.Search bar -->
 
         <!-- Portfolio Section -->
         <div class="row">

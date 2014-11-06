@@ -11,7 +11,6 @@
                     <input type="text" class="form-control " id="mem_account" name="mem_account" value="${memVO.mem_account}" placeholder="請輸入e-mail" >
                 </div>
                 <font color="red" size="-1">${errorMsgs.errorAccount}</font>
-                <div id="div1"></div>
             </div>
             <div class="control-group form-group">
                 <label  class="control-label">密碼:</label>
