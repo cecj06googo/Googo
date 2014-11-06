@@ -257,6 +257,7 @@
 							<input type="hidden" name="comID" value="${companyVO.comID}"> 
 							<input type="hidden" name="comAccount" value="${companyVO.comAccount}">
 							<input type="hidden" name="comVAT" value="${companyVO.comVAT}">
+							<input type="hidden" name="comStatus" value="${companyVO.comStatus}">
 							<button type="submit" class="btn btn-danger">儲存</button>
 						</form>
 					</div>

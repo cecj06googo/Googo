@@ -1,7 +1,7 @@
 package com.company.model;
 
 public class CompanyVO {
-	private int comID;
+	private Integer comID;
 	private String comAccount;
 	private String comPwd;
 	private String comName;
@@ -11,12 +11,13 @@ public class CompanyVO {
 	private String comFax;
 	private String comVAT;
 	private byte[] comPic;
+	private Integer comStatus;
 	
-	public int getComID() {
+	public Integer getComID() {
 		return comID;
 	}
 	
-	public void setComID(int comID) {
+	public void setComID(Integer comID) {
 		this.comID = comID;
 	}
 	
@@ -91,4 +92,14 @@ public class CompanyVO {
 	public void setComPic(byte[] comPic) {
 		this.comPic = comPic;
 	}
+
+	public Integer getComStatus() {
+		return comStatus;
+	}
+
+	public void setComStatus(Integer comStatus) {
+		this.comStatus = comStatus;
+	}
+	
+	
 }

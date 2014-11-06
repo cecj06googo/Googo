@@ -150,6 +150,8 @@ public class RegisterCompany extends HttpServlet {
 //				e.printStackTrace();
 //			}
 			
+			Integer comStatus = 0;    // 未開通狀態
+			System.out.println(comStatus);
 			// 準備傳回jsp網頁顯示內容的VO
 			CompanyVO companyVO = new CompanyVO();
 			companyVO.setComAccount(comAccount);
@@ -161,6 +163,7 @@ public class RegisterCompany extends HttpServlet {
 			companyVO.setComFax(comFax);
 			companyVO.setComVAT(comVAT);
 			companyVO.setComPic(comPic);
+			companyVO.setComStatus(comStatus);
 
 			// 1.接收請求參數 - 重複註冊的錯誤處理
 			CompanyService comService = new CompanyService();
@@ -180,7 +183,7 @@ public class RegisterCompany extends HttpServlet {
 
 			// 2.開始新增資料
 			companyVO = comService.addCompany(comAccount, comPwd, comName,
-					comOwner, comAddr, comTel, comFax, comVAT, comPic);
+					comOwner, comAddr, comTel, comFax, comVAT, comPic, comStatus);
 			
 			// 3.新增完成,準備轉交
 			RequestDispatcher successView = req.getRequestDispatcher("/C_index.jsp");

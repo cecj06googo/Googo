@@ -38,7 +38,7 @@ public class CompanyService {
 	}
 	
 	public CompanyVO addCompany(String comAccount,String comPwd,String comName,String comOwner,
-	        String comAddr, String comTel, String comFax, String comVAT, byte[] comPic) {
+	        String comAddr, String comTel, String comFax, String comVAT, byte[] comPic, Integer comStatus) {
 		
 		CompanyVO comVO = new CompanyVO();
 		comVO.setComAccount(comAccount);
@@ -50,13 +50,14 @@ public class CompanyService {
 		comVO.setComFax(comFax);
 		comVO.setComVAT(comVAT);
 		comVO.setComPic(comPic);
+		comVO.setComStatus(comStatus);
 		
 		dao.insert(comVO);
 		return comVO;
 	}
 	
 	public CompanyVO updateCompany(Integer comID, String comAccount,String comPwd,String comName,String comOwner,
-		    String comAddr, String comTel, String comFax, String comVAT, byte[] comPic) {
+		    String comAddr, String comTel, String comFax, String comVAT, byte[] comPic, Integer comStatus) {
 		
 		CompanyVO comVO = new CompanyVO();
 		comVO.setComID(comID);
@@ -69,6 +70,7 @@ public class CompanyService {
 		comVO.setComFax(comFax);
 		comVO.setComVAT(comVAT);
 		comVO.setComPic(comPic);
+		comVO.setComStatus(comStatus);
 		
 		dao.update(comVO);
 		return dao.findByPrimaryKey(comID);

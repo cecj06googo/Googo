@@ -44,21 +44,20 @@ Create Table Member(
             mem_name		 varchar(32) NOT NULL, 
             mem_gender 	     int NOT NULL, 
             mem_bdate 		 Date NOT NULL, 
-            mem_idnumer      varchar(32),
+            mem_idnumber      varchar(32),
 			mem_tel		     varchar(15) NOT NULL, 
             mem_phone		 varchar(15) NOT NULL, 
             mem_address      varchar(64) NOT NULL, 
-            mem_open         int, 
             mem_status       int,
-
+			mem_qq           varchar(32),
  );
 			 
 
-insert into Member values ('aaa@abc.com.tw','aaa123','張君雅',0,'2000-11-17','A223456789','0312345678','0912365478','台中市西屯區河南路二段280號12樓',1,1);
-insert into Member values ('bbb@abc.com.tw','aaa123','王小明',1,'1992-6-30','A187654321','0287654321','0987654321','台北市大安區羅斯福路二段280號',1,1);
-insert into Member values ('ccc@abc.com.tw','aaa123','陳阿華',1,'1988-5-17','A158459845','0225556987','0932666888','台北市中正區和平東路一段56號',1,1);
-insert into Member values ('ddd@abc.com.tw','aaa123','林小美',0,'1975-9-5','A256842951','0233587964','0910258666','台北市大安區復興南路一段390號',1,1);
-insert into Member values ('eee@abc.com.tw','aaa123','馬小九',1,'1977-12-1','A123666999','0233657777','0910222333','台北市信義區松壽路20號',1,1);
+insert into Member values ('aaa@abc.com.tw','aaa123','張君雅',0,'2000-11-17','A223456789','0312345678','0912365478','台中市西屯區河南路二段280號12樓',1,1,'123');
+insert into Member values ('bbb@abc.com.tw','aaa123','王小明',1,'1992-6-30','A187654321','0287654321','0987654321','台北市大安區羅斯福路二段280號',1,1,'123');
+insert into Member values ('ccc@abc.com.tw','aaa123','陳阿華',1,'1988-5-17','A158459845','0225556987','0932666888','台北市中正區和平東路一段56號',1,1,'123');
+insert into Member values ('ddd@abc.com.tw','aaa123','林小美',0,'1975-9-5','A256842951','0233587964','0910258666','台北市大安區復興南路一段390號',1,1,'123');
+insert into Member values ('eee@abc.com.tw','aaa123','馬小九',1,'1977-12-1','A123666999','0233657777','0910222333','台北市信義區松壽路20號',1,1,'123');
 
 
 
@@ -73,27 +72,30 @@ Create Table Company(
 			com_fax        varchar(15) NULL,
 			com_vat        varchar(8) UNIQUE NOT NULL,
 			com_pic        varchar(max) NULL
+			com_status      int NOT NULL DEFAULT((0)),
+			com_hashURL    varchar(32),
+			
 
 );
 
 -- 新增資料 ( 目前10筆假資料 )
-INSERT INTO Company VALUES ('kitty123@google.com', 'kitty123', '長榮租車', '林俊宏', '高雄市前鎮區凱旋三路115號', '0788303030', '0756157892', 22843188, NULL);
-INSERT INTO Company VALUES ('snoppy123@google.com', 'snoppy123', '台灣大哥大租車', '孫銘澤', '臺北市士林區忠誠路1段125號2樓', '0275012300', null, 22843574, NULL);
-INSERT INTO Company VALUES ('micky123@pchome.com', 'micky123', '台灣租車', '徐范煦敏', '臺北市內湖區新湖三路196號3樓', '0200422939', '0200422939', 12144164, NULL);
-INSERT INTO Company VALUES ('monkey123@pchome.com', 'monkey123', '竹青蜓租車', '林素芬', '桃園縣桃園市中埔二街208號5樓', '25429778', null, 22529771, NULL);
-INSERT INTO Company VALUES ('kelly123@yahoo.com', 'kelly123', '冠亞租車', '謝志航', '新北市新莊區福壽街99巷11弄4之2號(3樓)', '86610100', null, 22825576, NULL);
-INSERT INTO Company VALUES ('cindy123@pchome.com', 'cindy123', '全家租車', '裴淳吉', '新北市永和區中正路609巷4號', '23581727', null, 23270841, NULL);
-INSERT INTO Company VALUES ('chilly123@google.com', 'chilly123', '商寶國際租車', '李偉娜', '臺北市松山區慶城街23-2號3樓', '0215123456', '0255896123', 23164551,NULL);
-INSERT INTO Company VALUES ('batman123@google.com', 'batman123', '玩美離島租車', '林山良', '臺中市北區健行路779號1樓', '07001234', '0415006879', 22971937,NULL);
-INSERT INTO Company VALUES ('super123@yahoo.com.tw', 'super123', '遠信租車', '沈文斌', '臺北市中正區衡陽路51號6樓之4', '022114566', '0287563547', 25053931,NULL);
-INSERT INTO Company VALUES ('joke123@hotmail.net', 'joke123', '非常租車租車', '楊長庚', '新北市土城區中央路2段386號(1樓)', '092156546', null, 29169462,NULL);
-INSERT INTO Company VALUES ('antai123@pchome.com', 'antai123', '安泰租車', '李小泰', '臺北市內湖區新湖二路196號1樓', '0200422940', '02004229340', 12144165,NULL);
-INSERT INTO Company VALUES ('antai124@pchome.com', 'antai124', '安泰1租車', '李小泰1', '臺北市內湖區新湖二路197號1樓', '0200422941', '02004229341', 12144166,NULL);
-INSERT INTO Company VALUES ('antai125@pchome.com', 'antai125', '安泰2租車', '李小泰2', '臺北市內湖區新湖二路198號1樓', '0200422942', '02004229342', 12144167,NULL);
-INSERT INTO Company VALUES ('antai126@pchome.com', 'antai126', '安泰3租車', '李小泰3', '臺北市內湖區新湖二路199號1樓', '0200422943', '02004229343', 12144168,NULL);
-INSERT INTO Company VALUES ('antai127@pchome.com', 'antai127', '安泰4租車', '李小泰4', '臺北市內湖區新湖二路200號1樓', '0200422944', '02004229344', 12144169,NULL);
-INSERT INTO Company VALUES ('antai128@pchome.com', 'antai128', '只有機車租車', '李小泰5', '臺北市內湖區新湖二路201號1樓', '0200422945', '02004229345', 12144170,NULL);
-INSERT INTO Company VALUES ('antai129@pchome.com', 'antai129', '只有汽車租車', '李小泰6', '臺北市內湖區新湖二路202號1樓', '0200422946', '02004229346', 12144171,NULL);
+INSERT INTO Company VALUES ('kitty123@google.com', 'kitty123', '長榮租車', '林俊宏', '高雄市前鎮區凱旋三路115號', '0788303030', '0756157892', 22843188, NULL, 0, NULL);
+INSERT INTO Company VALUES ('snoppy123@google.com', 'snoppy123', '台灣大哥大租車', '孫銘澤', '臺北市士林區忠誠路1段125號2樓', '0275012300', null, 22843574, NULL, 0, NULL);
+INSERT INTO Company VALUES ('micky123@pchome.com', 'micky123', '台灣租車', '徐范煦敏', '臺北市內湖區新湖三路196號3樓', '0200422939', '0200422939', 12144164, NULL, 0, NULL);
+INSERT INTO Company VALUES ('monkey123@pchome.com', 'monkey123', '竹青蜓租車', '林素芬', '桃園縣桃園市中埔二街208號5樓', '25429778', null, 22529771, NULL, 0, NULL);
+INSERT INTO Company VALUES ('kelly123@yahoo.com', 'kelly123', '冠亞租車', '謝志航', '新北市新莊區福壽街99巷11弄4之2號(3樓)', '86610100', null, 22825576, NULL, 0, NULL);
+INSERT INTO Company VALUES ('cindy123@pchome.com', 'cindy123', '全家租車', '裴淳吉', '新北市永和區中正路609巷4號', '23581727', null, 23270841, NULL, 0, NULL);
+INSERT INTO Company VALUES ('chilly123@google.com', 'chilly123', '商寶國際租車', '李偉娜', '臺北市松山區慶城街23-2號3樓', '0215123456', '0255896123', 23164551,NULL, 0, NULL);
+INSERT INTO Company VALUES ('batman123@google.com', 'batman123', '玩美離島租車', '林山良', '臺中市北區健行路779號1樓', '07001234', '0415006879', 22971937,NULL, 0, NULL);
+INSERT INTO Company VALUES ('super123@yahoo.com.tw', 'super123', '遠信租車', '沈文斌', '臺北市中正區衡陽路51號6樓之4', '022114566', '0287563547', 25053931,NULL, 0, NULL);
+INSERT INTO Company VALUES ('joke123@hotmail.net', 'joke123', '非常租車租車', '楊長庚', '新北市土城區中央路2段386號(1樓)', '092156546', null, 29169462,NULL, 0, NULL);
+INSERT INTO Company VALUES ('antai123@pchome.com', 'antai123', '安泰租車', '李小泰', '臺北市內湖區新湖二路196號1樓', '0200422940', '02004229340', 12144165,NULL, 0, NULL);
+INSERT INTO Company VALUES ('antai124@pchome.com', 'antai124', '安泰1租車', '李小泰1', '臺北市內湖區新湖二路197號1樓', '0200422941', '02004229341', 12144166,NULL, 0, NULL);
+INSERT INTO Company VALUES ('antai125@pchome.com', 'antai125', '安泰2租車', '李小泰2', '臺北市內湖區新湖二路198號1樓', '0200422942', '02004229342', 12144167,NULL, 0, NULL);
+INSERT INTO Company VALUES ('antai126@pchome.com', 'antai126', '安泰3租車', '李小泰3', '臺北市內湖區新湖二路199號1樓', '0200422943', '02004229343', 12144168,NULL, 0, NULL);
+INSERT INTO Company VALUES ('antai127@pchome.com', 'antai127', '安泰4租車', '李小泰4', '臺北市內湖區新湖二路200號1樓', '0200422944', '02004229344', 12144169,NULL, 0, NULL);
+INSERT INTO Company VALUES ('antai128@pchome.com', 'antai128', '只有機車租車', '李小泰5', '臺北市內湖區新湖二路201號1樓', '0200422945', '02004229345', 12144170,NULL, 0, NULL);
+INSERT INTO Company VALUES ('antai129@pchome.com', 'antai129', '只有汽車租車', '李小泰6', '臺北市內湖區新湖二路202號1樓', '0200422946', '02004229346', 12144171,NULL, 0, NULL);
 
 Create Table Product_Type(
             prodtype_id int   NOT NULL Primary Key,

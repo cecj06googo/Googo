@@ -46,7 +46,7 @@ public class UpdateCompany extends HttpServlet {
 		req.setAttribute("errorMsgs", errorMsgs);
 
 		byte[] comPic = null;
-		Integer comID = null;
+		Integer comID = null, comStatus = null;
 		String comAccount = null, comPwd = null, comName = null, comOwner = null, 
 			   comAddr = null, comTel = null, comFax = null, comVAT = null;
 
@@ -126,6 +126,10 @@ public class UpdateCompany extends HttpServlet {
 						else if ("comVAT".equals(item.getFieldName())) {
 							comVAT = fieldvalue;
 						}
+						else if("comStatus".equals(item.getFieldName())) {
+							comStatus = new Integer(fieldvalue.trim());
+							System.out.println(comStatus + "@@@@");
+						}
 					} 
 					else {
 						// **需在前端設計圖片格式驗證
@@ -161,6 +165,7 @@ public class UpdateCompany extends HttpServlet {
 				companyVO.setComFax(comFax);
 				companyVO.setComVAT(comVAT);
 				companyVO.setComPic(comPic);    // 替換圖片
+				companyVO.setComStatus(comStatus);
 				
 				// 1.接收請求參數 - 重複註冊的錯誤處理
 				if (!errorMsgs.isEmpty()) {
@@ -178,7 +183,7 @@ public class UpdateCompany extends HttpServlet {
 				}
 				companyVO = comService.updateCompany(comID, comAccount, comPwd,
 						comName, comOwner, comAddr, comTel, comFax, comVAT,
-						comPic);
+						comPic, comStatus);
 				
 				// 3.新增完成,準備轉交(Send the Success view)				
 				req.setAttribute("companyVO", companyVO);
