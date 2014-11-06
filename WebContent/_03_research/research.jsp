@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page import="java.util.*"%>
+<%@ page import="com.search.model.*"%>
+<%@ page import="com.search.controller.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,9 +28,10 @@
 			</div>
 			<!-- /.地圖-->
 			<!-- 商家列表 -->
-			<!-- 右Projects Row -->
+			<!-- 右Projects Row -->			
 			<div class="col-md-7">
-				<c:forEach var="SearchComVO" items="${comList}" begin="1" end="6">
+	        <%@ include file="page1.file" %>
+				<c:forEach var="SearchComVO" items="${comList}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 						<!-- 第1筆商家 -->
 						<div class="col-md-6 img-portfolio">
 							<a href="<c:url value='/_05_company/company.jsp'/>"> <img
@@ -53,13 +57,16 @@
 			<div class="row text-center">
 				<div class="col-lg-12">
 					<ul class="pagination">
-						<li><a href="#">&laquo;</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">&raquo;</a></li>
+					    <li><a href="#">&laquo;</a></li>
+					    <c:forEach var="i" begin="1" end="<%=pageNumber%>">					
+							<c:if test="${i == whichPage}">
+							<li class="active"><a href="${pageContext.request.contextPath}/SearchServlet.do?whichPage=${i}&location=${location}&prod_type=${prod_type}&keySearch=${keySearch}">${i}</a></li>
+							</c:if>
+							<c:if test="${i != whichPage}">
+							<li><a href="${pageContext.request.contextPath}/SearchServlet.do?whichPage=${i}&location=${location}&prod_type=${prod_type}&keySearch=${keySearch}">${i}</a></li>	
+							</c:if>				
+					    </c:forEach>
+					    <li><a href="#">&raquo;</a></li>
 					</ul>
 				</div>
 			</div>

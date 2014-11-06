@@ -17,7 +17,15 @@ public class MemVO implements java.io.Serializable{
 	private String mem_address;
 	private Integer mem_open;
 	private Integer mem_status;
+	private String mem_qq;
 	
+	
+	public String getMem_qq() {
+		return mem_qq;
+	}
+	public void setMem_qq(String mem_qq) {
+		this.mem_qq = mem_qq;
+	}
 	public Integer getMem_id() {
 		return mem_id;
 	}

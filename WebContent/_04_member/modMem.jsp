@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.member.model.*"%>
+
+<%
+	MemVO memVO = (MemVO) request.getAttribute("memVO");
+%>    
+    
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -59,7 +65,7 @@
 	                </div>
 	            </div>
 	            <div class="control-group form-group">
-	                <label  class="control-label">姓名:</label>
+	                <label>姓名:</label>
 	                <div class="controls ">
 	                    <input type="text" class="form-control" name="mem_name" value="${memVO.mem_name}" >
 	                </div>
@@ -73,7 +79,7 @@
 	           
 	<!--日期===================================-->
 	            <div class="control-group form-group">
-	                <label class="control-label">生日:</label>
+	                <label>生日:</label>
 	                <div class="controls" >
 						 <input class="form-control form_datetime" name="mem_bdate" id="mem_bdate" value="${memVO.mem_bdate}"  type="text" readonly >
 					</div>
@@ -107,8 +113,9 @@
 	                  </div>
 	              </div>
 	              <br>
-	              <!--  <input type="hidden" name="action" value="updateMem">
-	               	<div id="modConfirm" class="modal fade" role="dialog" aria-labelledby="modConfirm" aria-hidden="false">
+	                <input type="hidden" name="action" value="updateMem">
+	                <input type="hidden" name="mem_id" value="${memVO.mem_id}">
+	               <!--	<div id="modConfirm" class="modal fade" role="dialog" aria-labelledby="modConfirm" aria-hidden="false">
 					<div class="modal-dialog modal-sm">
 				  	<div class="modal-content">
 					<div class="modal-header">
@@ -191,6 +198,10 @@
 		                    regexp: {
 		                    	regexp: /^(?=.*\d)(?=.*[a-z]).{6,12}$/,
 		                        message: '需包含英文及數字'
+		                    },
+		                    identical: {
+		                        field: 'mem_pwd',
+		                        message: '與確認密碼不相同'
 		                    },
 		                    
 		                }

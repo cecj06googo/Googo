@@ -15,14 +15,14 @@ import javax.xml.bind.DatatypeConverter;
   
 public class MemService {
 	public static final String KEY = "GoogoCarGoogoCar";
-	private MemDAO_interface dao;
+	private MemDAO dao;
 
 	public MemService() {
 		dao = new MemDAO();
 	}
 
 	public MemVO addMem(String mem_account, String mem_pwd, String mem_name,Integer mem_gender,java.sql.Date mem_bdate,
-			String mem_idnumber, String mem_tel,String mem_phone,String mem_address) {
+			String mem_idnumber, String mem_tel,String mem_phone,String mem_address,String mem_qq) {
 		
 		MemVO memVO = new MemVO();
 		memVO.setMem_account(mem_account);
@@ -35,7 +35,7 @@ public class MemService {
 		memVO.setMem_tel(mem_tel);
 		memVO.setMem_phone(mem_phone);
 		memVO.setMem_address(mem_address);
-		
+		memVO.setMem_qq(mem_qq);
 		dao.insert(memVO);
 		return memVO;
 	}
@@ -44,7 +44,7 @@ public class MemService {
 			java.sql.Date mem_bdate, String mem_idnumber, String mem_tel, String mem_phone,String mem_address,Integer mem_id) {
 
 		MemVO memVO = new MemVO();
-
+		System.out.println("進入Servier");
 		String encrypedString = MemService.encryptString(mem_pwd);
 		memVO.setMem_pwd(MemService.getMD5Endocing(encrypedString));
 		memVO.setMem_name(mem_name);
@@ -56,7 +56,7 @@ public class MemService {
 		memVO.setMem_address(mem_address);
 		memVO.setMem_id(mem_id);
 		dao.update(memVO);
-
+		System.out.println("進入Servier update");
 		return memVO;
 	}
 
@@ -75,6 +75,11 @@ public class MemService {
 	public List<MemVO> getAll(Map<String, String[]> map) {
 		return dao.getAll(map);
 	}
+	
+	public void openMem(String mem_qq) {
+		dao.open(mem_qq);
+	}
+	
 	
 	/**
      * 依MD5演算法將參數字串message轉換為128位元(16個位元組)的資料。

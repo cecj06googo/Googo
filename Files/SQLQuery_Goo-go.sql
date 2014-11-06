@@ -48,17 +48,16 @@ Create Table Member(
 			mem_tel		     varchar(15) NOT NULL, 
             mem_phone		 varchar(15) NOT NULL, 
             mem_address      varchar(64) NOT NULL, 
-            mem_open         int, 
             mem_status       int,
-
+			mem_qq           varchar(32),
  );
 			 
 
-insert into Member values ('aaa@abc.com.tw','aaa123','張君雅',0,'2000-11-17','A223456789','0312345678','0912365478','台中市西屯區河南路二段280號12樓',1,1);
-insert into Member values ('bbb@abc.com.tw','aaa123','王小明',1,'1992-6-30','A187654321','0287654321','0987654321','台北市大安區羅斯福路二段280號',1,1);
-insert into Member values ('ccc@abc.com.tw','aaa123','陳阿華',1,'1988-5-17','A158459845','0225556987','0932666888','台北市中正區和平東路一段56號',1,1);
-insert into Member values ('ddd@abc.com.tw','aaa123','林小美',0,'1975-9-5','A256842951','0233587964','0910258666','台北市大安區復興南路一段390號',1,1);
-insert into Member values ('eee@abc.com.tw','aaa123','馬小九',1,'1977-12-1','A123666999','0233657777','0910222333','台北市信義區松壽路20號',1,1);
+insert into Member values ('aaa@abc.com.tw','aaa123','張君雅',0,'2000-11-17','A223456789','0312345678','0912365478','台中市西屯區河南路二段280號12樓',1,'123');
+insert into Member values ('bbb@abc.com.tw','aaa123','王小明',1,'1992-6-30','A187654321','0287654321','0987654321','台北市大安區羅斯福路二段280號',1,'123');
+insert into Member values ('ccc@abc.com.tw','aaa123','陳阿華',1,'1988-5-17','A158459845','0225556987','0932666888','台北市中正區和平東路一段56號',1,'123');
+insert into Member values ('ddd@abc.com.tw','aaa123','林小美',0,'1975-9-5','A256842951','0233587964','0910258666','台北市大安區復興南路一段390號',1,'123');
+insert into Member values ('eee@abc.com.tw','aaa123','馬小九',1,'1977-12-1','A123666999','0233657777','0910222333','台北市信義區松壽路20號',1,'123');
 
 
 
@@ -104,6 +103,22 @@ insert into Product_Type values (2,'機車');
 insert into Product_Type values (3,'腳踏車');
 
 
+Create Table Product_Kind(
+		    prodkind_id       int NOT NULL Primary Key ,
+			prodkind_name         varchar(32) NOT NULL,
+);
+
+
+insert into Product_Kind values (1,'轎車');
+insert into Product_Kind values (2,'休旅車');
+insert into Product_Kind values (3,'大型重型機車');
+insert into Product_Kind values (4,'普通重型機車');
+insert into Product_Kind values (5,'普通輕型機車');
+insert into Product_Kind values (6,'越野腳踏車');
+insert into Product_Kind values (7,'摺疊腳踏車');
+insert into Product_Kind values (8,'電動腳踏車');
+insert into Product_Kind values (9,'一般腳踏車');
+
 Create Table Product(
 		    prod_id         int NOT NULL IDENTITY(1,1) Primary Key ,
 			com_id          int NOT NULL,
@@ -123,7 +138,11 @@ Create Table Product(
 
 			CONSTRAINT Product_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 			CONSTRAINT Product_com_type_fk FOREIGN KEY (prod_type) REFERENCES Product_Type (prodtype_id),
+			CONSTRAINT Product_prod_kind_fk FOREIGN KEY (prod_kind) REFERENCES Product_Kind (prodkind_id),
 );
+
+
+
                         
 insert into Product values (1,'賓士320',1,1000,0.78,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (1,'福特123',1,2000,0.85,'101010','ss',null,null,null,1,null,null,null);
