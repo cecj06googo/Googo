@@ -16,7 +16,7 @@ public class MemDAO implements MemDAO_interface {
 	String passwd = "P@ssw0rd";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO Member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+		"INSERT INTO Member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String UPDATE = 
 		"UPDATE Member set mem_pwd=?, mem_name=?, mem_gender=?, mem_bdate=?, mem_idnumber=?, mem_tel=?, mem_phone=?, mem_address=? where mem_id = ?";
 	private static final String DELETE = 
@@ -26,7 +26,7 @@ public class MemDAO implements MemDAO_interface {
 	private static final String GET_ALL_STMT = 
 		"SELECT mem_account,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address FROM Member order by empno";
 	private static final String OPEN_ACCOUNT= 
-		"UPDATE Member set mem_open=1 where mem_qq=?";
+		"UPDATE Member set mem_status=1 where mem_qq=?";
 	
 	@Override
 	public void insert(MemVO memVO)  {
@@ -48,8 +48,7 @@ public class MemDAO implements MemDAO_interface {
 			pstmt.setString(8, memVO.getMem_phone());
 			pstmt.setString(9, memVO.getMem_address());
 			pstmt.setInt(10,0);
-			pstmt.setInt(11,1);
-			pstmt.setString(12,memVO.getMem_qq());
+			pstmt.setString(11,memVO.getMem_qq());
 			pstmt.executeUpdate();
 			// Handle any SQL errors
 		} catch (ClassNotFoundException e) {
