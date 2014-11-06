@@ -133,9 +133,8 @@ public class MemServlet extends HttpServlet {
 				MemService memSvc = new MemService();
 				memVO = memSvc.addMem(mem_account,mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address,mem_qq);				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-		
 				SendActivateAccount.sendAccount(memVO,req.getServerName(),req.getLocalPort(),req.getContextPath()); 
-				//req.getSession().setAttribute("memVO", memVO); 
+				req.getSession().setAttribute("memVO", memVO); 
 				String url = "/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);	
@@ -157,6 +156,7 @@ public class MemServlet extends HttpServlet {
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer mem_id = new Integer(req.getParameter("mem_id").trim());
+				
 				
 				String mem_pwd = req.getParameter("mem_pwd").trim();
 				if (mem_pwd == null || mem_pwd.trim().length() == 0) {
@@ -199,9 +199,9 @@ public class MemServlet extends HttpServlet {
 				if (mem_tel == null || mem_tel.trim().length() == 0) {
 					errorMsgs.put("errorTel", "電話請勿空白");
 				}
-				String memTelReg = "^[(0-9)-]{8,15}$";
+				String memTelReg = "^[(0-9)-]{7,15}$";
 				if (!mem_tel.trim().matches(memTelReg)) {
-					errorMsgs.put("errorTel", "電話格式錯誤，請輸入數字且至少8碼");
+					errorMsgs.put("errorTel", "電話格式錯誤，請輸入數字且至少7碼");
 				}
 				String mem_phone = req.getParameter("mem_phone").trim();
 				if (mem_phone == null || mem_phone.trim().length() == 0) {
@@ -239,7 +239,8 @@ public class MemServlet extends HttpServlet {
 				/***************************2.開始修改資料****************************************/
 				System.out.println("開始修改資料");
 				MemService memSvc = new MemService();
-				memVO = memSvc.updateMem(mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address,mem_id);
+				memSvc.updateMem(mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address,mem_id);
+				memVO = memSvc.getOneMem(mem_id);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/	
 				System.out.println("修改完成");
 				String url = "/_04_member/modMem.jsp";
@@ -249,8 +250,8 @@ public class MemServlet extends HttpServlet {
 
 				/***************************其他可能的錯誤處理**************************************/
 			} catch (Exception e) {
-				System.out.println("ffff");
-				errorMsgs.put("errorException",e.getMessage());
+				System.out.println("update Exception");
+				e.printStackTrace();
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/_04_member/modMem.jsp");
 				failureView.forward(req, res);

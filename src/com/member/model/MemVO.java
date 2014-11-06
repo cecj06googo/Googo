@@ -15,7 +15,6 @@ public class MemVO implements java.io.Serializable{
 	private String mem_tel;
 	private String mem_phone;
 	private String mem_address;
-	private Integer mem_open;
 	private Integer mem_status;
 	private String mem_qq;
 	
@@ -86,12 +85,6 @@ public class MemVO implements java.io.Serializable{
 	}
 	public void setMem_address(String mem_address) {
 		this.mem_address = mem_address;
-	}
-	public Integer getMem_open() {
-		return mem_open;
-	}
-	public void setMem_open(Integer mem_open) {
-		this.mem_open = mem_open;
 	}
 	public Integer getMem_status() {
 		return mem_status;

@@ -16,17 +16,17 @@ public class MemDAO implements MemDAO_interface {
 	String passwd = "P@ssw0rd";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO Member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+		"INSERT INTO Member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String UPDATE = 
 		"UPDATE Member set mem_pwd=?, mem_name=?, mem_gender=?, mem_bdate=?, mem_idnumber=?, mem_tel=?, mem_phone=?, mem_address=? where mem_id = ?";
 	private static final String DELETE = 
-		"UPDATE Member set  mem_status=0 where mem_id = ?";
+		"UPDATE Member set  mem_status=2 where mem_id = ?";
 	private static final String GET_ONE_STMT = 
 		"SELECT mem_account,mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address FROM Member where mem_id = ?";
 	private static final String GET_ALL_STMT = 
 		"SELECT mem_account,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address FROM Member order by empno";
 	private static final String OPEN_ACCOUNT= 
-		"UPDATE Member set mem_open=1 where mem_qq=?";
+		"UPDATE Member set mem_status=1 where mem_qq=?";
 	
 	@Override
 	public void insert(MemVO memVO)  {
@@ -48,9 +48,9 @@ public class MemDAO implements MemDAO_interface {
 			pstmt.setString(8, memVO.getMem_phone());
 			pstmt.setString(9, memVO.getMem_address());
 			pstmt.setInt(10,0);
-			pstmt.setInt(11,1);
-			pstmt.setString(12,memVO.getMem_qq());
+			pstmt.setString(11,memVO.getMem_qq());
 			pstmt.executeUpdate();
+			
 			// Handle any SQL errors
 		} catch (ClassNotFoundException e) {
 			System.out.println("Couldn't load database driver. "
@@ -193,7 +193,6 @@ public class MemDAO implements MemDAO_interface {
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				// empVo 也稱為 Domain objects
 				memVO = new MemVO();
 				memVO.setMem_account(rs.getString("mem_account"));
 				memVO.setMem_pwd(rs.getString("mem_pwd"));
@@ -252,11 +251,13 @@ public class MemDAO implements MemDAO_interface {
 		return null;
 	}
 	
-	public void open(String mem_qq) {
+	public MemVO open(String mem_qq) {
 
+		MemVO memVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		PreparedStatement pstmt1 = null;
+		ResultSet rs = null;
 		try {
 
 			Class.forName(driver);
@@ -264,7 +265,24 @@ public class MemDAO implements MemDAO_interface {
 			pstmt = con.prepareStatement(OPEN_ACCOUNT);
 
 			pstmt.setString(1,mem_qq);
-			pstmt.executeUpdate();
+			
+			pstmt1 = con.prepareStatement("SELECT mem_id,mem_account,mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address FROM Member where mem_qq = ?");
+			pstmt1.setString(1,mem_qq);
+			rs = pstmt1.executeQuery();
+			
+			while (rs.next()) {
+				// empVo 也稱為 Domain objects
+				memVO = new MemVO();
+				memVO.setMem_account(rs.getString("mem_account"));
+				memVO.setMem_pwd(rs.getString("mem_pwd"));
+				memVO.setMem_name(rs.getString("mem_name"));
+				memVO.setMem_gender(rs.getInt("mem_gender"));
+				memVO.setMem_bdate(rs.getDate("mem_bdate"));
+				memVO.setMem_idnumber(rs.getString("mem_idnumber"));
+				memVO.setMem_tel(rs.getString("mem_tel"));
+				memVO.setMem_phone(rs.getString("mem_phone"));
+				memVO.setMem_address(rs.getString("mem_address"));
+			}
 
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
@@ -291,7 +309,7 @@ public class MemDAO implements MemDAO_interface {
 				}
 			}
 		}
-
+		return memVO;
 	}
 	
 

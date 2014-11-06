@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.member.model.MemService;
 //import com.member.model.MemVO;
+import com.member.model.MemVO;
 
 
 public class ActivateAccountServlet extends HttpServlet {  
@@ -34,11 +35,11 @@ public class ActivateAccountServlet extends HttpServlet {
 				return;	
 			}
 	        MemService memSvc = new MemService();
-			memSvc.openMem(mem_qq);				
+			MemVO memVO = memSvc.openMem(mem_qq);				
 			
 
 			/***************************3.新增完成,準備轉交(Send the Success view)***********/
-			//request.getSession().setAttribute("memVO", memVO); 
+			request.getSession().setAttribute("memVO", memVO); 
 			String url = "/index.jsp";
 			RequestDispatcher successView = request.getRequestDispatcher(url); 
 			successView.forward(request, response);		
