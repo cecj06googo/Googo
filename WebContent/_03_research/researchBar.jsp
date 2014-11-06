@@ -8,7 +8,7 @@
         <div class="col-lg-12 text-center">
                 	<form class="form-inline" role="form" action="SearchServlet.do" method="post">
                       <div class="form-group">
-                            <select class="form-control input-lg" name="location">
+                            <select  class="form-control input-lg" name="location">
                                 <option>地區</option>
                                 <option value="臺北">臺北</option>
                                 <option value="桃園">桃園</option>
