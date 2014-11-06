@@ -2,6 +2,7 @@ package com.search.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -16,26 +17,26 @@ import com.search.model.*;
 
 public class SearchServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		   request.setCharacterEncoding("UTF-8");
 		   System.out.println("進入doGet");
 		   String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
 		   System.out.println("location="+location);
-		   request.setAttribute("location", location);
-	       doPost(request, response);
+		   doPostdoGetShare(request,response,location);
 		}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPostdoGetShare(request,response);
+		request.setCharacterEncoding("UTF-8");
+	    String location = request.getParameter("location");
+		doPostdoGetShare(request,response,location);
      }//protected void doPost	
-	protected void doPostdoGetShare(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		 request.setCharacterEncoding("UTF-8");
+	protected void doPostdoGetShare(HttpServletRequest request, HttpServletResponse response,String location) throws ServletException, IOException{
+		    
 			HttpSession session = request.getSession(true);
 			//----------可能需要改變的參數-------------------
 			String nonLocation= "地區";
 			String nonProdType= "交通工具";
 			//----------------------------------------------
-	        //思考若空白要返回何頁面是否是原來頁面?
-			
-			String location = request.getParameter("location");
+	    
 			//String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
 			String prod_type_str = request.getParameter("prod_type");
 			String keySearch = request.getParameter("keySearch");
@@ -52,18 +53,27 @@ public class SearchServlet extends HttpServlet{
 			}
 			//檢查是否有違法字元，以避免injection攻擊
 			CharSequence illegal1 = "'" , illegal2 = "\"" , illegal3 = ";" ,illegal4 = "=", illegal5 = "," ;
-			if (keySearch.contains(illegal1) || keySearch.contains(illegal2)|| keySearch.contains(illegal3) || keySearch.contains(illegal4)|| keySearch.contains(illegal5)) {
-				request.setAttribute("ErrMsg", "不可含有以下字元:   ' \" ; = ,");
-				RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-				rd.forward(request, response);
-				return;
+			try{
+				if(keySearch != null){ //關鍵字搜尋不等於空的
+					if (keySearch.contains(illegal1) || keySearch.contains(illegal2)|| keySearch.contains(illegal3) || keySearch.contains(illegal4)|| keySearch.contains(illegal5)) {
+						request.setAttribute("ErrMsg", "不可含有以下字元:   ' \" ; = ,");
+						RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+						rd.forward(request, response);
+						return;
+					}
+				}
+			}catch(Exception e){
+				System.out.println("58行發生錯誤");
+				System.out.println(keySearch);
 			}
 					
 			try{
 				//避免發生中文字轉數字發生轉換錯誤
 				Integer prod_type=null;
-				if(!(prod_type_str.equals(nonProdType))){ //交通工具非空的
-				    prod_type = Integer.parseInt(prod_type_str);			   
+				if(prod_type_str != null){
+					if(!(prod_type_str.equals(nonProdType))){ //交通工具非空的
+					    prod_type = Integer.parseInt(prod_type_str);			   
+					}
 				}
 				//session.removeAttribute("comList");//將要搜尋時先把session的comList清空
 				SearchService searchSvc = new SearchService();

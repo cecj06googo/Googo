@@ -64,7 +64,7 @@
 							</c:if>
 							<c:if test="${i != whichPage}">
 							${location}
-							<li><a href="${pageContext.request.contextPath}/SearchServlet.do?whichPage=${i}&location=<%= java.net.URLEncoder.encode((String)request.getAttribute("location"),"UTF-8") %>">${i}</a></li>	
+							<li><a href="${pageContext.request.contextPath}/SearchServlet.do?whichPage=${i}&location=${location}">${i}</a></li>	
 							</c:if>				
 					    </c:forEach>
 					    <li><a href="#">&raquo;</a></li>

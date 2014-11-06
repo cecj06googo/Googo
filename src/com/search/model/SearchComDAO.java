@@ -44,7 +44,7 @@ public class SearchComDAO implements SearchComDAO_interface {
 			if (prod_type != null) { // 交通工具不是空的
 				Search_Com_STMT += " and prod.prod_type = " + prod_type;
 			}
-			if (!(keySearch.isEmpty())) {// keySearch不是空的
+			if (keySearch != null) {// keySearch不是空的
 				Search_Com_STMT += " and (com.com_name like'%" + keySearch
 						+ "%' " + "or com.com_address like '%" + keySearch
 						+ "%' " + "or prod.prod_name like '%" + keySearch
