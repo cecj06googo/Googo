@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.member.model.*"%>
+
 <%
 	MemVO memVO = (MemVO) request.getAttribute("memVO");
 %>    

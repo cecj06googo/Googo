@@ -44,7 +44,7 @@ public class MemService {
 			java.sql.Date mem_bdate, String mem_idnumber, String mem_tel, String mem_phone,String mem_address,Integer mem_id) {
 
 		MemVO memVO = new MemVO();
-
+		System.out.println("進入Servier");
 		String encrypedString = MemService.encryptString(mem_pwd);
 		memVO.setMem_pwd(MemService.getMD5Endocing(encrypedString));
 		memVO.setMem_name(mem_name);
@@ -56,7 +56,7 @@ public class MemService {
 		memVO.setMem_address(mem_address);
 		memVO.setMem_id(mem_id);
 		dao.update(memVO);
-
+		System.out.println("進入Servier update");
 		return memVO;
 	}
 

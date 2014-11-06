@@ -50,15 +50,15 @@ Create Table Member(
             mem_address      varchar(64) NOT NULL, 
             mem_open         int, 
             mem_status       int,
-
+			mem_qq           varchar(32),
  );
 			 
 
-insert into Member values ('aaa@abc.com.tw','aaa123','張君雅',0,'2000-11-17','A223456789','0312345678','0912365478','台中市西屯區河南路二段280號12樓',1,1);
-insert into Member values ('bbb@abc.com.tw','aaa123','王小明',1,'1992-6-30','A187654321','0287654321','0987654321','台北市大安區羅斯福路二段280號',1,1);
-insert into Member values ('ccc@abc.com.tw','aaa123','陳阿華',1,'1988-5-17','A158459845','0225556987','0932666888','台北市中正區和平東路一段56號',1,1);
-insert into Member values ('ddd@abc.com.tw','aaa123','林小美',0,'1975-9-5','A256842951','0233587964','0910258666','台北市大安區復興南路一段390號',1,1);
-insert into Member values ('eee@abc.com.tw','aaa123','馬小九',1,'1977-12-1','A123666999','0233657777','0910222333','台北市信義區松壽路20號',1,1);
+insert into Member values ('aaa@abc.com.tw','aaa123','張君雅',0,'2000-11-17','A223456789','0312345678','0912365478','台中市西屯區河南路二段280號12樓',1,1,'123');
+insert into Member values ('bbb@abc.com.tw','aaa123','王小明',1,'1992-6-30','A187654321','0287654321','0987654321','台北市大安區羅斯福路二段280號',1,1,'123');
+insert into Member values ('ccc@abc.com.tw','aaa123','陳阿華',1,'1988-5-17','A158459845','0225556987','0932666888','台北市中正區和平東路一段56號',1,1,'123');
+insert into Member values ('ddd@abc.com.tw','aaa123','林小美',0,'1975-9-5','A256842951','0233587964','0910258666','台北市大安區復興南路一段390號',1,1,'123');
+insert into Member values ('eee@abc.com.tw','aaa123','馬小九',1,'1977-12-1','A123666999','0233657777','0910222333','台北市信義區松壽路20號',1,1,'123');
 
 
 
