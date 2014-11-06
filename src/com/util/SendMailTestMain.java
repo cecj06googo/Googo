@@ -8,9 +8,6 @@ public class SendMailTestMain {
 		  * subjectTitle 是信件主旨，messageContent 是信件內容，以上都是String宣告 用法詳見SendMailTestMain.java
 		  * */
 		SendMail sendmail = new SendMail();
-		String username = "antai0926test@gmail.com";//寄信者信箱地址
-		String password = "abc123456";//收件者郵件地址(此為假的密碼不可登入)
-		String senderAdress = "antai0926test@gmail.com";//寄信者信箱地址
 		String recieverAdress = "raniantheone@gmail.com,"//收件者郵件地址
 				+ "e810616@yahoo.com.tw,a99402351@gmail.com,irischou07@gmail.com,ggyy40706@yahoo.com.tw,"
 				+ "davidfinal25@gmail.com,jeffreykuo0327@gmail.com,"
@@ -24,8 +21,7 @@ public class SendMailTestMain {
 				+ "相關程式在com.util的package,請參考SendMailTestMain.java\n"
 				+ "實作方法可參考:http://www.tutorialspoint.com/javamail_api/javamail_api_sending_simple_email.htm\n"
 				+ "CECJ06專題小組";
-		sendmail.send(username, password, senderAdress, recieverAdress,
-				subjectTitle, messageContent);
+		sendmail.send(recieverAdress,subjectTitle, messageContent);
 
 	}
 

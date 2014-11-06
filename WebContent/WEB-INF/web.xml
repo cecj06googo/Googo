@@ -158,12 +158,12 @@
 	</servlet-mapping>
   
   	<servlet>
-		<servlet-name>OpenAccount</servlet-name>
+		<servlet-name>ActivateAccount</servlet-name>
 		<servlet-class>com.member.controller.ActivateAccountServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>OpenAccount</servlet-name>
-		<url-pattern>/OpenAccount</url-pattern>
+		<servlet-name>ActivateAccount</servlet-name>
+		<url-pattern>/ActivateAccount</url-pattern>
 	</servlet-mapping>
   
   

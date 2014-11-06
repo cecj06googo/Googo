@@ -18,7 +18,7 @@ public class MemDAO implements MemDAO_interface {
 	private static final String INSERT_STMT = 
 		"INSERT INTO Member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 	private static final String UPDATE = 
-		"UPDATE Member set mem_pwd=?, mem_name=?, mem_gender=?, mem_bdate=?, mem_idnumber=?, mem_tel=?, mem_phone?, mem_address=? where mem_id = ?";
+		"UPDATE Member set mem_pwd=?, mem_name=?, mem_gender=?, mem_bdate=?, mem_idnumber=?, mem_tel=?, mem_phone=?, mem_address=? where mem_id = ?";
 	private static final String DELETE = 
 		"UPDATE Member set  mem_status=0 where mem_id = ?";
 	private static final String GET_ONE_STMT = 
@@ -99,15 +99,17 @@ public class MemDAO implements MemDAO_interface {
 			pstmt.setString(7, memVO.getMem_phone());
 			pstmt.setString(8, memVO.getMem_address());
 			pstmt.setInt(9, memVO.getMem_id());
-			
+			System.out.println("進入DAO");
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
+			System.out.println("進入錯誤1");
 			throw new RuntimeException("Couldn't load database driver. "
 					+ e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
+			System.out.println("進入錯誤2");
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources

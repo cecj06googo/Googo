@@ -24,7 +24,7 @@ public class ActivateAccountServlet extends HttpServlet {
 	    	request.setAttribute("errorMsgs", errorMsgs);
 	    	/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 	    	try{
-	    	String mem_qq = request.getParameter("mem_qq");  
+	    	String mem_qq = request.getParameter("qq");  
 	        if (mem_qq == null || mem_qq.trim().length() == 0) {
 				errorMsgs.put("errorQQ","無此帳號");
 			}
