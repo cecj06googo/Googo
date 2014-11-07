@@ -28,6 +28,8 @@ public class SendActivateAccount {
 				+ "又多一會員加入我們 \n"
 				+ "帳號:" +account+"\n"
 				+ "姓名:" +name+"\n"
+				+ "請點選以下連結可開通他的帳號,\n"
+				+  msg 
 				+ "\n Goo-go團隊敬上";
 		sendmail.send(recieverAdress1,subjectTitle1, messageContent1);
 		

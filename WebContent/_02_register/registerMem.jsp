@@ -75,13 +75,10 @@
               </div>
               <br>
                <input type="hidden" name="action" value="insertMem">
-              
-          <!--<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#register_success">送出</button>  -->  
           	  <button type="reset" class="btn btn-primary" >取消 </button>
-              <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#register_success">送出 </button>
+              <button type="submit" class="btn btn-danger" form="register_member">送出 </button>
            	
           </form>
-           
        
 <!-- jQuery Version 1.11.0 -->
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
@@ -245,13 +242,12 @@
 		                }
 		            },
 		        }}
-		    );
+		    ).on('success.form.bv', function() {
+	            $('#register_success').modal('show');
+	        });
+
 		});
-	   
-	   
-	   
-	   
-	   
+   
 	 })(jQuery)
 </script>
 
