@@ -33,7 +33,7 @@
         <div class="tab-pane fade active in" id="register-two">
                      <br>
            <div class="col-lg-12">
-          	  <img class="img-responsive" src="http://placehold.it/1200x300" alt="">
+          	  <img class="img-responsive" src="${pageContext.request.contextPath}/img/42.jpg" alt="">
    			</div>
      		<div class="col-lg-5 col-lg-offset-1">
          			<br>

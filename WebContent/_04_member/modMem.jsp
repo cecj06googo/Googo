@@ -37,7 +37,7 @@
         		<!--標籤1內容-->
                 <div class="tab-pane fade active in" id="register-one"><br>
                     <div class="col-lg-12">
-               			<img class="img-responsive" src="http://placehold.it/1200x300" alt="">
+               			<img class="img-responsive" src="${pageContext.request.contextPath}/img/41.png" alt="">
         			</div>
             		<div class="col-lg-1"></div>
         		<div class="col-lg-5"><br>

@@ -33,7 +33,8 @@
                 <font color="red" size="-1">${errorMsgs.errorName}</font>
             </div>
             <div class="control-group form-group">
-                <label class="control-label"><input type="radio" name="mem_gender" id="mem_gender" value="1">先生</label>
+            	<input type="hidden"  id="mem_gender1" value="${memVO.mem_gender}">
+                <label class="control-label"><input type="radio" name="mem_gender" id="mem_gender" value="1" >先生</label>
                 <label class="control-label"><input type="radio" name="mem_gender" id="mem_gender" value="0">小姐</label>
                 <br><font color="red" size="-1">${errorMsgs.errorGender}</font>
             </div>
@@ -102,8 +103,12 @@
 	      
 	   $("#mem_bdate").css('cursor','default');
 	   $("#mem_bdate").css('background-color','white');
-	  
+
+	    
 	   $(document).ready(function() {
+		   /*var gender =  $('#mem_gender1').val();
+		   $('#mem_gender[value="1"]').attr("checked");*/
+		  
 		    $('#register_member').bootstrapValidator({
 		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
 		        feedbackIcons: {
