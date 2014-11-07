@@ -37,10 +37,9 @@
                         <div class="form-group">
                             <select class="form-control input-lg" >
                                 <option>名稱</option> <!--純顯示 不能給user選-->
-                                <option>???</option>
-                                <option>???</option>
-                                <option>???</option>
-                                <option>???</option>   
+                                <option>類型</option>
+                                <option>乘載人數</option>
+                                <option>說明</option>
                             </select>
                         </div>
             
@@ -65,19 +64,17 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>商品編號</th>
-                        <th>呱呱</th>
-                        <th>呱呱</th>
-                        <th>呱呱</th>
-                        <th>呱呱</th>
+                        <th>商品名稱</th>
+                        <th>優惠</th>
                         <th>價格</th>
+                        <th>總數量</th>
+                        <th>現有數量</th>
                         <th class="text-center ath">修改/刪除</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>呱呱</td>
                         <td>呱呱</td>
                         <td>呱呱</td>
                         <td>呱呱</td>
@@ -92,7 +89,6 @@
                         <td>呱呱</td>
                         <td>呱呱</td>
                         <td>呱呱</td>
-                        <td>呱呱</td>
                         <td>2500/天</td>
                         <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
@@ -101,7 +97,6 @@
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>呱呱</td>
                         <td>呱呱</td>
                         <td>呱呱</td>
                         <td>呱呱</td>
@@ -130,10 +125,11 @@
             <table class="table table-hover">
                 <thead>
                     <tr >
-                        <th>商品編號</th>
-                        <th>呱呱</th>
-                        <th>呱呱</th>
-                        <th>呱呱</th>
+                        <th>商品名稱</th>
+                        <th>優惠</th>
+                        <th>價格</th>
+                        <th>總數量</th>
+                        <th>現有數量</th>
                         <th  class="text-center ath">修改/刪除</th>
                     </tr>
                 </thead>
@@ -142,6 +138,7 @@
                         <td>1</td>
                         <td>Mark</td>
                         <td>Otto</td>
+                        <td>呱呱</td>
                         <td>@mdo</td>
                         <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
@@ -150,6 +147,7 @@
                     <tr>
                         <td>2</td>
                         <td>Jacob</td>
+                        <td>呱呱</td>
                         <td>Thornton</td>
                         <td>@fat</td>
                         <td class="text-center">
@@ -160,8 +158,9 @@
                         <td>3</td>
                         <td>Larry</td>
                         <td>the Bird</td>
+                        <td>呱呱</td>
                         <td>@twitter</td>
-                         <td class="text-center">
+                        <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                         	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                         </td>                    </tr>
@@ -184,10 +183,11 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>商品編號</th>
-                        <th>呱呱</th>
-                        <th>呱呱</th>
-                        <th>呱呱</th>
+                        <th>商品名稱</th>
+                        <th>優惠</th>
+                        <th>價格</th>
+                        <th>總數量</th>
+                        <th>現有數量</th>
                         <th class="text-center ath">修改/刪除</th>
                     </tr>
                 </thead>
@@ -196,6 +196,7 @@
                         <td>1</td>
                         <td>Mark</td>
                         <td>Otto</td>
+                        <td>呱呱</td>
                         <td>@mdo</td>
                         <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
@@ -204,20 +205,22 @@
                     </tr>
                     <tr>
                         <td>2</td>
+                        <td>呱呱</td>
                         <td>Jacob</td>
                         <td>Thornton</td>
                         <td>@fat</td>
-                         <td class="text-center">
+                        <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                         	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                         </td>
                     </tr>
                     <tr>
                         <td>3</td>
+                        <td>呱呱</td>
                         <td>Larry</td>
                         <td>the Bird</td>
                         <td>@twitter</td>
-                         <td class="text-center">
+                        <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                         	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                         </td>                    </tr>
@@ -226,6 +229,7 @@
                         <td>aaa</td>
                         <td>Otto</td>
                         <td>@mdo</td>
+                        <td>呱呱</td>
                         <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                         	<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
@@ -233,6 +237,7 @@
                      <tr>
                         <td>5</td>
                         <td>bbb</td>
+                        <td>呱呱</td>
                         <td>Otto</td>
                         <td>@mdo</td>
                         <td class="text-center">

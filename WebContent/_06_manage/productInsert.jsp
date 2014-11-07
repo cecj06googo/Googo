@@ -144,6 +144,13 @@
                 </div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdCc}</font>
             </div>
+            <div class="control-group form-group">
+                <label>數量:</label>
+                <div class="controls ">
+                    <input type="text" class="form-control" name="prodAmount" value="1">
+                </div>
+                <font size="-1" color="#FF0000">${ErrorMsg.errorProdAmount}</font>
+            </div>
 			<div class="control-group form-group">
                 <label>手自排:</label>
                 <div class="controls ">
