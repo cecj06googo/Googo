@@ -79,7 +79,7 @@
 	${MsgOK.InsertOK}            		
             				
  <!--上架商品form===============================================-->
-         <form name="comFormU" id="comFormU" action="<%=request.getContextPath()%>/Insert_prod.in" enctype="multipart/form-data" method="post" >
+         <form name="comFormU" id="comFormU" action="<%=request.getContextPath()%>/prod.in" enctype="multipart/form-data" method="post" >
              <div class="control-group form-group">
              <label class="control-label">商品種類</label>
                 <label class="control-label"><input type="radio" name="prodType" value="1">汽車</label>
@@ -143,13 +143,6 @@
                     <input type="text" class="form-control" name="prodCc" value="1">
                 </div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdCc}</font>
-            </div>
-            <div class="control-group form-group">
-                <label>數量:</label>
-                <div class="controls ">
-                    <input type="text" class="form-control" name="prodAmount" value="1">
-                </div>
-                <font size="-1" color="#FF0000">${ErrorMsg.errorProdAmount}</font>
             </div>
 			<div class="control-group form-group">
                 <label>手自排:</label>

@@ -205,13 +205,13 @@ Create Table Prod_plate(
 			
 );
 
-insert into Prod_plate values ('轎車111', 1, 1);
-insert into Prod_plate values ('轎車222', 1, 0);
-insert into Prod_plate values ('轎車333', 1, 1);
-insert into Prod_plate values ('轎車444', 1, 1);
-insert into Prod_plate values ('轎車555', 1, 1);
-insert into Prod_plate values ('轎車666', 1, 1);
-insert into Prod_plate values ('轎車777', 1, 1);
+insert into Prod_plate values ('111', 1, 1);
+insert into Prod_plate values ('222', 1, 0);
+insert into Prod_plate values ('333', 1, 1);
+insert into Prod_plate values ('444', 1, 1);
+insert into Prod_plate values ('555', 1, 1);
+insert into Prod_plate values ('666', 1, 1);
+insert into Prod_plate values ('777', 1, 1);
 
 
 Create Table Accessory(

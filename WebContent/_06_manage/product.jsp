@@ -67,15 +67,13 @@
                         <th>商品名稱</th>
                         <th>優惠</th>
                         <th>價格</th>
-                        <th>總數量</th>
-                        <th>現有數量</th>
+                        <th>車號</th>
                         <th class="text-center ath">修改/刪除</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>呱呱</td>
                         <td>呱呱</td>
                         <td>呱呱</td>
                         <td>2500/天</td>
@@ -88,7 +86,6 @@
                         <td>2</td>
                         <td>呱呱</td>
                         <td>呱呱</td>
-                        <td>呱呱</td>
                         <td>2500/天</td>
                         <td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
@@ -97,7 +94,6 @@
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>呱呱</td>
                         <td>呱呱</td>
                         <td>呱呱</td>
                         <td>2500/天</td>
