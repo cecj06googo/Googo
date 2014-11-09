@@ -36,7 +36,7 @@
             <div class="tab-pane fade active in" id="register-one"><br>
             	<div class="row">
                     <div class="col-lg-12">
-               			<img class="img-responsive" src="http://placehold.it/1200x300" alt="">
+               			<img class="img-responsive" src="${pageContext.request.contextPath}/img/41.png" alt="">
         			</div></div>
         		<div class="row">
         		<div class="col-lg-5 col-lg-offset-1"><br>
@@ -50,7 +50,7 @@
            <div class="tab-pane fade" id="register-two"><br>
            		<div class="row">
                 <div class="col-lg-12">
-               			<img class="img-responsive" src="http://placehold.it/1200x300" alt="">
+               			<img class="img-responsive" src="${pageContext.request.contextPath}/img/42.jpg" alt="">
         		</div>
         		</div>
         		<div class="row">

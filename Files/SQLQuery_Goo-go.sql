@@ -135,7 +135,7 @@ Create Table Product(
 			prod_cc         int,
 			prod_carrier    int,
 			prod_control    int,
-
+			
 			CONSTRAINT Product_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 			CONSTRAINT Product_com_type_fk FOREIGN KEY (prod_type) REFERENCES Product_Type (prodtype_id),
 			CONSTRAINT Product_prod_kind_fk FOREIGN KEY (prod_kind) REFERENCES Product_Kind (prodkind_id),
@@ -195,6 +195,24 @@ insert into Product values (16,'Fighter150',2,7000,0.95,'101010','ss',null,null,
 insert into Product values (17,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (17,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
 insert into Product values (17,'保時捷-T2',1,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+
+Create Table Prod_plate(
+		    plate_id		varchar(32) NOT NULL Primary Key,
+			prod_id			int NOT NULL,
+			plate_status    int NOT NULL,
+
+			CONSTRAINT Prod_plate_prod_id_fk FOREIGN KEY (prod_id) REFERENCES Product (prod_id),
+			
+);
+
+insert into Prod_plate values ('111', 1, 1);
+insert into Prod_plate values ('222', 1, 0);
+insert into Prod_plate values ('333', 1, 1);
+insert into Prod_plate values ('444', 1, 1);
+insert into Prod_plate values ('555', 1, 1);
+insert into Prod_plate values ('666', 1, 1);
+insert into Prod_plate values ('777', 1, 1);
+
 
 Create Table Accessory(
             acc_id          int NOT NULL IDENTITY(1,1) Primary Key ,

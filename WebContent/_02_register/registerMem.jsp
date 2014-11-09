@@ -33,7 +33,8 @@
                 <font color="red" size="-1">${errorMsgs.errorName}</font>
             </div>
             <div class="control-group form-group">
-                <label class="control-label"><input type="radio" name="mem_gender" id="mem_gender" value="1">先生</label>
+            	<input type="hidden"  id="mem_gender1" value="${memVO.mem_gender}">
+                <label class="control-label"><input type="radio" name="mem_gender" id="mem_gender" value="1" >先生</label>
                 <label class="control-label"><input type="radio" name="mem_gender" id="mem_gender" value="0">小姐</label>
                 <br><font color="red" size="-1">${errorMsgs.errorGender}</font>
             </div>
@@ -75,13 +76,10 @@
               </div>
               <br>
                <input type="hidden" name="action" value="insertMem">
-              
-          <!--<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#register_success">送出</button>  -->  
           	  <button type="reset" class="btn btn-primary" >取消 </button>
-              <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#register_success">送出 </button>
+              <button type="submit" class="btn btn-danger" form="register_member">送出 </button>
            	
           </form>
-           
        
 <!-- jQuery Version 1.11.0 -->
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
@@ -105,8 +103,12 @@
 	      
 	   $("#mem_bdate").css('cursor','default');
 	   $("#mem_bdate").css('background-color','white');
-	  
+
+	    
 	   $(document).ready(function() {
+		   /*var gender =  $('#mem_gender1').val();
+		   $('#mem_gender[value="1"]').attr("checked");*/
+		  
 		    $('#register_member').bootstrapValidator({
 		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
 		        feedbackIcons: {
@@ -245,13 +247,12 @@
 		                }
 		            },
 		        }}
-		    );
+		    ).on('success.form.bv', function() {
+	            $('#register_success').modal('show');
+	        });
+
 		});
-	   
-	   
-	   
-	   
-	   
+   
 	 })(jQuery)
 </script>
 
