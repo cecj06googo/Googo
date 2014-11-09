@@ -12,6 +12,7 @@ public class CompanyVO {
 	private String comVAT;
 	private byte[] comPic;
 	private Integer comStatus;
+	private String comHashURL;
 	
 	public Integer getComID() {
 		return comID;
@@ -100,6 +101,16 @@ public class CompanyVO {
 	public void setComStatus(Integer comStatus) {
 		this.comStatus = comStatus;
 	}
+
+	public String getComHashURL() {
+		return comHashURL;
+	}
+
+	public void setComHashURL(String comHashURL) {
+		this.comHashURL = comHashURL;
+	}
+	
+	
 	
 	
 }
