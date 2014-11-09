@@ -16,8 +16,8 @@
 html, body, #map-canvas {
 	height: 400px;
 	width: 400px;
- 	margin: 10px; 
- 	padding: 10px; 
+	margin: 10px;
+	padding: 10px;
 }
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
@@ -92,7 +92,7 @@ html, body, #map-canvas {
 
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-<!-- Google Map Start-->
+<!-- Google Map End-->
 
 </head>
 <body>
@@ -101,21 +101,20 @@ html, body, #map-canvas {
 	<!-- Page Content -->
 	<div class="container">
 		<br>
-			<!-- Search bar -->
+		<!-- Search bar -->
 		<div class="well">
-		<div class="row">
-		<div class="col-lg-12 text-center">
-     	<jsp:include page="/_03_research/researchBar.jsp" />
-		</div>
-		</div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<jsp:include page="/_03_research/researchBar.jsp" />
+				</div>
+			</div>
 		</div>
 		<!-- /.Search bar -->
 		<!-- 搜尋結果 -->
 		<div class="row">
 			<!-- 地圖-->
 			<div class="col-md-5" id="map-canvas">
-
-<!-- 				<div id="map-canvas"></div> -->
+				<!-- 				<div id="map-canvas"></div> -->
 				<!-- 				<img class="img-responsive" -->
 				<%-- 					src="${pageContext.request.contextPath}/img/06.jpg"> <br> --%>
 			</div>
