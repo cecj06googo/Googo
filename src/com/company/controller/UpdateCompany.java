@@ -128,7 +128,7 @@ public class UpdateCompany extends HttpServlet {
 						}
 						else if("comStatus".equals(item.getFieldName())) {
 							comStatus = new Integer(fieldvalue.trim());
-							System.out.println(comStatus + "@@@@");
+							System.out.println("開通狀態: " + comStatus);
 						}
 					} 
 					else {

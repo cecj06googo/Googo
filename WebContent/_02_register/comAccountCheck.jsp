@@ -14,7 +14,7 @@
 		CompanyService comService = new CompanyService();
 		Map m1 = new HashMap();
 		boolean valid = comService.verifyAccount(comAccount);
-		System.out.println(valid);
+		System.out.println("帳號驗證的結果: " + valid);
 		m1.put("valid", valid);
 		String jsonString = JSONValue.toJSONString(m1); 
 		System.out.println(jsonString);
