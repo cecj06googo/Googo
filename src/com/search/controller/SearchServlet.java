@@ -2,6 +2,7 @@ package com.search.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -87,13 +88,19 @@ public class SearchServlet extends HttpServlet{
 					    prod_type = Integer.parseInt(prod_type_str);			   
 				}
 				SearchService searchSvc = new SearchService();
+				List<String> comAdressArray = new ArrayList<String>();
+				List<String> comNameArray = new ArrayList<String>();
 				List<SearchComVO> comList= searchSvc.getCompanysByCondition(location, prod_type,keySearch);
 				for (SearchComVO acomVO : comList) {
 					System.out.print(acomVO.getCom_id() + ",");
 					System.out.print(acomVO.getCom_name() + ",");
+					comNameArray.add("\""+acomVO.getCom_name()+"\"");
 					System.out.print(acomVO.getCom_address());
+					comAdressArray.add("\""+acomVO.getCom_address()+"\""); //把每一家地址存入
 					System.out.println();
 				}
+				request.setAttribute("comAdressArray", comAdressArray);//為了給research.jsp的javaScript使用
+				request.setAttribute("comNameArray", comNameArray);//為了給research.jsp的javaScript使用
 				request.setAttribute("comList", comList);//為了給research.jsp計算總商店筆數
 				request.setAttribute("location", location);//給換分頁時傳回使用
 				request.setAttribute("prod_type", prod_type);//給換分頁時傳回使用

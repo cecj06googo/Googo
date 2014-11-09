@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#info{
+display:none;
+}
+#table1{
+   border:1px solid green;
+   width:600px;
+   border-collapse:collapse;
+}
+#table1 th,#table1 td{
+   border:1px solid green;
+   padding:4px;
+}
+#table1>tbody>tr:hover{
+  background-color:orange;
+}
+</style>
+</head>
+<body>
+<input type="button" value="Load" id="buttonLoad">
+<span id="info"><img src="Images/ajax-loader.gif">執行中...</span>
+<div id="div1"></div>
+<table id="table1"><thead><tr><th>產品編號</th><th>產品名稱</th><th>產品價格</th><th>庫存量</th></tr></thead><tbody></tbody></table>
+<script>
+var btn = document.getElementById("buttonLoad");
+var myDiv = document.getElementById("div1");
+var myTable = document.getElementById("table1");
+var myInfo = document.getElementById("info");
+var xhr = null;
+btn.addEventListener("click",load,false);
+function load(){   
+   //步驟一建立XMLHttpReqeust物件
+   xhr = new XMLHttpRequest();   
+   if(xhr != null){
+	   //步驟二對Server發出要求
+	   //readyState屬性值改變時會觸發readystatechange事件
+	   //Ajax運作時會將readyState屬性值依序改變 0->1->2->3->4
+	   //因此readystatechange事件會發生4次
+	   xhr.addEventListener("readystatechange",callback,false);
+	   var url = "GetProducts.jsp";
+	   xhr.open("get",url,true);//true表示非同步
+	   xhr.send();	
+	  
+	   
+   }else{
+	   myDiv.innerHTML = "您的瀏覽器不支援Ajax功能";
+   }
+     
+}
+function callback(){
+	//console.log(xhr.readyState);
+	//readyState=4表示資料已經全部傳到了client端
+	if(xhr.readyState == 1){
+		 myInfo.style.display = "inline";
+	}
+	else if(xhr.readyState == 4){
+		myInfo.style.display = "none";
+		//刪除tbody下的所有tr
+		  while (myTable.childNodes[1].hasChildNodes()) { 
+			 myTable.childNodes[1].removeChild(myTable.childNodes[1].firstChild);
+		  } 
+		  //顯示Table
+		  //myTable.style.display = "inline";
+		  
+		//status = 200表示Server端程式的執行沒有錯誤
+		if(xhr.status == 200){
+			//步驟三接收Server端回應的結果
+			var datas = xhr.responseText;
+			//data 得到的是一個JSON字串
+			//使用前必須先轉型成JSON物件
+			//有兩種轉型的做法
+			//舊的轉型寫法
+			//data = eval('(' + data + ')');
+			//新的轉型寫法
+			datas = JSON.parse(datas);
+			
+			
+			//顯示資料在網頁上
+			for (var i=0,max=datas.length;i<max;i++){			 
+				 
+				  
+				  //產生table row
+				  //<td>ProductId</td>
+				  var txtId = document.createTextNode(datas[i].ProductID);
+				  var cellId = document.createElement("td");				
+				  cellId.appendChild(txtId);
+
+				  //<td>ProductName</td>
+				  var txtProductName = document.createTextNode(datas[i].ProductName);
+				  var cellProductName = document.createElement("td");
+				  cellProductName.appendChild(txtProductName);
+				  
+
+				  //<td>UnitPrice</td>
+				  var txtUnitPrice = document.createTextNode(datas[i].UnitPrice);
+				  var cellUnitPrice = document.createElement("td");
+				  cellUnitPrice.appendChild(txtUnitPrice);
+				  
+				  //<td>UnitsInStock</td>
+				  var txtUnitsInStock = document.createTextNode(datas[i].UnitsInStock);
+				  var cellUnitsInStock = document.createElement("td");
+				  cellUnitsInStock.appendChild(txtUnitsInStock);
+				  
+				  var row = document.createElement("tr");
+				  row.appendChild(cellId);
+				  row.appendChild(cellProductName);
+				  row.appendChild(cellUnitPrice);
+				  row.appendChild(cellUnitsInStock);
+				  
+				 
+				  myTable.childNodes[1].appendChild(row);
+				  
+				  
+				  
+			  }
+		}else{
+			myDiv.innerHTML = xhr.status + ":" + xhr.statusText;
+		}
+	}
+}
+</script>
+</body>
+</html>

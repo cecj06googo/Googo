@@ -35,18 +35,49 @@ html, body, #map-canvas {
 				mapOptions);
 
 		setMarkers(map, beaches);
-	}
-
+	}//end function initialize()
+    
+	function addressToLatLng(addr) {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+            "address": addr
+        }, function (results, status) {
+        	var LatLng=["123","456"]
+            if (status == google.maps.GeocoderStatus.OK) {
+                //alert(results[0].geometry.location.lat() + "," + results[0].geometry.location.lng());
+                LatLng=[results[0].geometry.location.lat(), results[0].geometry.location.lng()];
+                //alert(LatLng);
+                //alert(results[0].geometry.location);                
+            } else {
+                //查無經緯度
+            }
+        	return LatLng;
+        });//end  geocoder.geocode
+    }//end function addressToLatLng(addr) 
+	
+	
 	/**
 	 * Data for the markers consisting of a name, a LatLng and a zIndex for
 	 * the order in which these markers should display on top of each
 	 * other.
 	 */
-	var beaches = [ [ 'Bondi Beach', -33.890542, 151.274856, 4 ],
-			[ 'Coogee Beach', -33.923036, 151.259052, 5 ],
-			[ 'Cronulla Beach', -34.028249, 151.157507, 3 ],
-			[ 'Manly Beach', -33.80010128657071, 151.28747820854187, 2 ],
-			[ 'Maroubra Beach', -33.950198, 151.259302, 1 ] ];
+    var comAdressArray = <%= request.getAttribute("comAdressArray")%>;
+    var comNameArray = <%= request.getAttribute("comNameArray")%>; 
+   // var comAdressArray =["a","v","c"];
+	var beaches = [ [ 'Bondi Beach', -33.890542, 151.274856],
+			[ 'Coogee Beach', -33.923036, 151.259052],
+			[ 'Cronulla Beach', -34.028249, 151.157507],
+			[ 'Manly Beach', -33.80010128657071, 151.28747820854187],
+			[ 'Maroubra Beach', -33.950198, 151.259302] ];
+	function prepareAdressToLatLng(){
+		for(var i = 0; i < comAdressArray.length; i++){
+			var comLatLngArray= new Array();
+			comLatLngArray.push(addressToLatLng(comAdressArray[i]));
+			alert(comLatLngArray);
+		}
+	
+		
+	}
 
 	function setMarkers(map, locations) {
 		// Add markers to the map
@@ -85,11 +116,14 @@ html, body, #map-canvas {
 				// icon: image,
 				shape : shape,
 				title : beach[0],
-				zIndex : beach[3]
+				//zIndex : beach[3]
 			});
-		}
-	}
-
+		}//end for (var i = 0; i < locations.length; i++)
+		//alert(comlist);
+		//addressToLatLng("新北市新莊區中正路694巷54號");
+		//repareAdressToLatLng();
+		
+	}//end function setMarkers(map, locations)
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 <!-- Google Map End-->
