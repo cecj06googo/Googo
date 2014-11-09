@@ -15,8 +15,8 @@
 <style>
 html, body, #map-canvas {
 	height: 100%;
-	margin: 100px;
-	padding: 100px
+	margin: 0px;
+	padding: 0px
 }
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
@@ -105,12 +105,12 @@ html, body, #map-canvas {
 		<!-- 搜尋結果 -->
 		<div class="row">
 			<!-- 地圖-->
-<!-- 			<div id="map-canvas"></div> Antai add-->
-			<div class="col-md-5" >
+			<!-- 			<div class="col-md-5"  > -->
+
 			<div id="map-canvas"></div>
-<!-- 				<img class="img-responsive" -->
-<%-- 					src="${pageContext.request.contextPath}/img/06.jpg"> <br> --%>
-			</div>
+			<!-- 				<img class="img-responsive" -->
+			<%-- 					src="${pageContext.request.contextPath}/img/06.jpg"> <br> --%>
+			<!-- 			</div> -->
 			<!-- /.地圖-->
 			<!-- 商家列表 -->
 			<!-- 右Projects Row -->
