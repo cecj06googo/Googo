@@ -206,7 +206,7 @@
                                    placeholder="請輸入e-mail" value="${companyVO.comAccount}" >
                        	<span class="input-group-addon"><i class="fa fa-thumbs-o-up"></i></span><!-- fa fa-ban-->
                         </div>
-                        <span><font color="red" size="-1">${errorMsgs.errorAccountEmpty}${errorMsgs.errorAccountFormat}${errorMsgs.errorAccountDup}</font></span>
+                        <span><font color="red" size="-1">${errorMsgs.errorAccount}</font></span>
                     </div>
                     <div class="control-group form-group">
                         <label>密碼:</label>
@@ -214,49 +214,49 @@
                             <input type="text" class="form-control" name="comPwd" id="com_pwd" 
                                    placeholder="請輸入6~12，包含英文與數字" value="${companyVO.comPwd}">
                         </div>
-                        <span><font color="red" size="-1">${errorMsgs.errorPwdEmpty}${errorMsgs.errorPwdFormat}</font> </span>
+                        <span><font color="red" size="-1">${errorMsgs.errorPwd}</font></span>
                     </div>
                     <div class="control-group form-group">
                         <label>商家名稱:</label>
                         <div class="controls ">
                             <input type="text" class="form-control" name="comName" id="com_name" value="${companyVO.comName}">
                         </div>
-                        <span><font color="red" size="-1">${errorMsgs.errorNameEmpty}${errorMsgs.errorNameFormat}</font></span>
+                        <span><font color="red" size="-1">${errorMsgs.errorName}</font></span>
                     </div>
                     <div class="control-group form-group">
                         <label>負責人:</label>
                         <div class="controls ">
                             <input type="text" class="form-control" name="comOwner" id="com_owner" value="${companyVO.comOwner}">
                         </div>
-                        <span><font color="red" size="-1">${errorMsgs.errorOwnerEmpty}${errorMsgs.errorOwnerFormat}</font></span>
+                        <span><font color="red" size="-1">${errorMsgs.errorOwner}</font></span>
                     </div>
 					<div class="control-group form-group">
                         <label>地址:</label>
                         <div class="controls ">
                             <input type="text" class="form-control" name="comAddr" id="com_address" value="${companyVO.comAddr}">
                         </div>
-                        <span><font color="red" size="-1">${errorMsgs.errorAddrEmpty}${errorMsgs.errorAddrFormat}</font></span>
+                        <span><font color="red" size="-1">${errorMsgs.errorAddr}</font></span>
                     </div>
                     <div class="control-group form-group">
                         <label>電話:</label>
                         <div class="controls ">
                             <input type="text" class="form-control" name="comTel" id="com_tel" value="${companyVO.comTel}">
                         </div>
-                        <span><font color="red" size="-1">${errorMsgs.errorTelEmpty}${errorMsgs.errorTelFormat}</font></span>
+                        <span><font color="red" size="-1">${errorMsgs.errorTel}</font></span>
                     </div>
                     <div class="control-group form-group">
                         <label>fax:</label>
                         <div class="controls ">
                             <input type="text" class="form-control" name="comFax" id="com_fax" value="${companyVO.comFax}">
                         </div>
-                        <span><font color="red" size="-1">${errorMsgs.errorFaxFormat}</font></span>
+                        <span><font color="red" size="-1">${errorMsgs.errorFax}</font></span>
                     </div>
                     <div class="control-group form-group">
                         <label>營業統編:</label>
                         <div class="controls ">
                             <input type="text" class="form-control" name="comVAT" id="com_vat"  value="${companyVO.comVAT}">
                         </div>
-                        <span><font color="red" size="-1">${errorMsgs.errorVATEmpty}${errorMsgs.errorVATFormat}${errorMsgs.errorVATDup}</font></span>
+                        <span><font color="red" size="-1">${errorMsgs.errorVAT}</font></span>
                     </div>
                    
                     <br>

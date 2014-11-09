@@ -18,7 +18,8 @@
         <property name="comFax" column="com_fax" />
         <property name="comVAT" column="com_vat" />
         <property name="comPic" column="com_pic" />
-        
+        <property name="comStatus" column="com_status" />
+        <property name="comHashURL" column="com_hashURL" />
         
 <!-- Product       
     <set name="" table="" lazy="false" cascade="all" inverse="true" order-by="">

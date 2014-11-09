@@ -229,6 +229,18 @@
         </div>  <!--/. well -->
 		<br>
 
+<hr>
+<h4>UpdateCompany - 抱歉暫時借我開個洞...</h4>
+		<form method="POST" id="updateCom" action="<%=request.getContextPath()%>/DisplayProfile">
+			<input type="text" name="comID" id="comID" /> <input type="submit"
+				id="enter" value="確認"> <input type="hidden" name="action"
+				value="getOne_For_Display">
+		</form>
+		<div>
+			<font color="red" size="-1">${errorMsgs.errorComIDEmpty}${errorMsgs.errorComIDFormat}${errorMsgs.errorComIDDup}</font>
+		</div>
+
+<hr>
 
 		<br>
         <!-- Footer -->

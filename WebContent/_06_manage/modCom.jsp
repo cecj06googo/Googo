@@ -2,10 +2,21 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.company.model.*"%>
+
+<%
+	CompanyVO companyVO = (CompanyVO) request.getAttribute("companyVO");
+%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <jsp:include page="/_00_fragment/css2.jsp" />
+<link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>	
+
 <title>Goo-go</title>
 
 </head>
@@ -25,6 +36,11 @@
          <div class="col-lg-12">
              <h2 class="page-header"><i class="fa  fa-briefcase"></i> 修改商家資料 <small>modification</small> </h2>
          </div><!--/.標頭-->
+         
+         <div>
+		 	<font color="red" size="3">${successMsgs.seccessUpdate}</font>
+		</div>
+         
         <!--商家修改資料內容-->
          <div class="col-lg-12">
 		<!--內容-->
@@ -32,97 +48,158 @@
  	   <!--標籤2內容-->
         <div class="tab-pane fade active in" id="register-two">
                      <br>
-           <div class="col-lg-12">
-          	  <img class="img-responsive" src="${pageContext.request.contextPath}/img/42.jpg" alt="">
-   			</div>
-     		<div class="col-lg-5 col-lg-offset-1">
-         			<br>
+<!--      		<div class="col-lg-5 col-lg-offset-1"> -->
+<!--          			<br> -->
+        
+        <div class="col-lg-12 col-lg-offset-1">
+			<img class="img-responsive" 
+				src='${pageContext.servletContext.contextPath}/image?comID=${companyVO.comID}' alt=""> <!-- http://placehold.it/750x450  -->
+				
+				<br><br>
+		   </div>
          				
      	<!--修改商家form-->
-     	<form name="register_company" id="register_company" action="#" method="get" novalidate>
+     	<form name="Update_company" enctype="multipart/form-data" id="updateComForm" action="<%=request.getContextPath()%>/Company.Update" 
+     	      method="POST" novalidate>
+     	      <div class="col-lg-4">
                  <div class="control-group form-group ">
-                     <label>帳號:</label>
-                     <div class="controls input-group">
-                         <input type="text" class="form-control" id="com_account" placeholder="e810616@yahoo.com.tw" disabled >
-                    	<span class="input-group-addon"><i class="fa fa-ban"></i></span><!-- fa fa-ban -->
+                     <label class="control-label">帳號:</label>
+                     <div class="controls">
+                         <input type="text" class="form-control" name="comAccount" id="com_account" 
+                          value="${companyVO.comAccount}" disabled>
+<!--                     	<span class="input-group-addon"><i class="fa fa-ban"></i></span>fa fa-ban -->
                      </div>
+                     <span><font color="red" size="-1">${errorMsgs.errorAccount}</font></span>
                  </div>
                  <div class="control-group form-group">
-                     <label>密碼:</label>
+                     <label class="control-label">密碼:</label>
                      <div class="controls ">
-                         <input type="password" class="form-control" id="com_pwd" placeholder="******" >
-                     	
+                         <input type="password" class="form-control" name="comPwd" id="com_pwd" 
+                          placeholder="" value="${companyVO.comPwd}"
+                          data-toggle="tooltip" data-placement="top" title="<h5>請輸入6-12個字元，英文數字至少各一。<h5>"  >
                      </div>
+                     <span><font color="red" size="-1">${errorMsgs.errorPwd}</font></span>
                  </div>
                  <div class="control-group form-group">
-                     <label>密碼確認:</label>
+                     <label class="control-label">密碼確認:</label>
                      <div class="controls ">
-                         <input type="password" class="form-control" id="com_pwd" placeholder="請再次輸入密碼" >
-                     	
+                         <input type="password" class="form-control" name="comPwdConfirm" id="com_pwd"
+                          placeholder="請再次輸入密碼" value="${companyVO.comPwd}"
+                          data-toggle="tooltip" data-placement="top" title="<h5>請再次輸入密碼<h5>" >
                      </div>
                  </div>
                  <div class="control-group form-group">
                      <label>商家名稱:</label>
                      <div class="controls ">
-                         <input type="text" class="form-control" id="com_name" placeholder="拉拉租車小舖">
+                         <input type="text" class="form-control" name="comName" id="com_name"
+                          placeholder="" value="${companyVO.comName}" >
                      </div>
+                     <span><font color="red" size="-1">${errorMsgs.errorName}</font></span>
                  </div>
                  <div class="control-group form-group">
                      <label>負責人:</label>
                      <div class="controls ">
-                         <input type="text" class="form-control" id="com_owner" placeholder="黃詩芸">
+                         <input type="text" class="form-control" name="comOwner" id="com_owner"
+                          placeholder="" value="${companyVO.comOwner}">
                      </div>
+                     <span><font color="red" size="-1">${errorMsgs.errorOwner}</font></span>
+                 </div>
+             </div><!-- 分列 -->
+             <div class="col-lg-5 col-lg-offset-1">
+            	<div class="control-group form-group">
+                     <label>營業統編:</label>
+                     <div class="controls ">
+                         <input type="text" class="form-control" name="comVAT" id="com_vat" 
+                         placeholder="" value="${companyVO.comVAT}" disabled>
+                     </div>
+                     <span><font color="red" size="-1">${errorMsgs.errorVAT}</font></span>
                  </div>
 				<div class="control-group form-group">
                      <label>地址:</label>
                      <div class="controls ">
-                         <input type="text" class="form-control" id="com_address" placeholder="復興南路一段390號">
+                         <input type="text" class="form-control" name="comAddr" id="com_address" 
+                         placeholder="" value="${companyVO.comAddr}">
                      </div>
+                     <span><font color="red" size="-1">${errorMsgs.errorAddr}</font></span>
                  </div>
                  <div class="control-group form-group">
                      <label>電話:</label>
                      <div class="controls ">
-                         <input type="tel" class="form-control" id="com_tel" placeholder="02-22223333">
+                         <input type="tel" class="form-control" name="comTel" id="com_tel"
+                          placeholder="" value="${companyVO.comTel}">
                      </div>
+                     <span><font color="red" size="-1">${errorMsgs.errorTel}</font></span>
                  </div>
                  <div class="control-group form-group">
                      <label>fax:</label>
                      <div class="controls ">
-                         <input type="tel" class="form-control" id="com_fax" placeholder="02-22225555">
+                         <input type="tel" class="form-control" name="comFax" id="com_fax"
+                          placeholder="" value="${companyVO.comFax}">
                      </div>
+                     <span><font color="red" size="-1">${errorMsgs.errorFax}</font></span>
                  </div>
                  <div class="control-group form-group">
-                     <label>營業統編:</label>
-                     <div class="controls ">
-                         <input type="text" class="form-control" id="com_vat" placeholder="12345678">
-                     </div>
-                 </div>
-                 <!--選取檔案-->
-               	<div class="control-group form-group">
-                     <label>商家封面圖片:</label>
-                     <img src="img/13.jpg">
-                     <input type="file">
-                 </div>
-                 <br> 
-                 <button type="submit" class="btn btn-success">送出</button>
-                 <button type="submit" class="btn btn-danger">取消 </button>
-             
-             </form>
+					 <label>商家封面圖片:</label> <input type="file" name="comPic">
+				 </div>
+				 <span></span>
+                </div> <!-- 分列 --> 
+                 
+           <div class="col-lg-12"> 
+           		<br>  
+                <input type="hidden" name="action" value="update"> 
+				<input type="hidden" name="comID" value="${companyVO.comID}"> 
+				<input type="hidden" name="comAccount" value="${companyVO.comAccount}">
+				<input type="hidden" name="comVAT" value="${companyVO.comVAT}">
+				<input type="hidden" name="comStatus" value="${companyVO.comStatus}">
+                <button type="submit" data-loading-text="Loading..." class="btn btn-danger">儲存</button>
            </div>
+            </form>
+           </div>  
+           
+		   
+<!-- 				選取檔案 -->
+<!-- 				<form name="imageupload" enctype="multipart/form-data" action="image" method="POST"> -->
+<!-- 					<div class="control-group form-group"> -->
+<!-- 						<label>商家封面圖片:</label> <input type="file" name="file">  -->
+<%-- 						<input type="hidden" name="comID2" value="<%=companyVO.getComID()%>"> --%>
+<!-- 					</div> -->
+<!-- 				</form> -->
+		  	
         </div><!--/.標籤2內容-->
                  
-        
         </div><!--/.內容-->
                  
    		</div><!--/.商家修改資料內容-->
             
         </div><!--/.修改-->
         
-
+        
         </div><!-- /.container-fluid -->
-
     </div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
+
+
+<!-- jQuery Version 1.11.0 -->
+	<script src="<%=request.getContextPath()%>/js/jquery-1.11.0.js"></script>
+
+	<!-- Morris Charts JavaScript -->
+	<script src="<%=request.getContextPath()%>/js/plugins/morris/raphael.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/plugins/morris/morris.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/plugins/morris/morris-data.js"></script>
+
+	<!-- Flot Charts JavaScript -->
+	<!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
+	<script src="<%=request.getContextPath()%>/js/plugins/flot/jquery.flot.js"></script>
+	<script src="<%=request.getContextPath()%>/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/plugins/flot/jquery.flot.resize.js"></script>
+	<script src="<%=request.getContextPath()%>/js/plugins/flot/jquery.flot.pie.js"></script>
+	<script src="<%=request.getContextPath()%>/js/plugins/flot/flot-data.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
 
 <script>
@@ -130,6 +207,157 @@
 $("#selectModCom").addClass("active");
 </script>
 
+<script>
+$("[data-toggle='tooltip']").tooltip({html : true });
+
+(function($){
+	$(document).ready(function() {
+	    $("#updateComForm").bootstrapValidator({
+	    	feedbackIcons: {
+	    		valid : 'glyphicon glyphicon-ok',
+				invalid: 'glyphicon glyphicon-remove',
+				validating: 'glyphicon glyphicon-refresh'
+	    	},
+	    	
+	    	fields: {
+	    		comPwd: {
+					trigger: 'keyup blur',
+					validators: {
+						notEmpty: {
+							message: '密碼欄請勿空白'
+						},
+						stringLength: {
+							min: 6,
+							max: 12,
+							message: '密碼長度限6至12字數'
+						},
+						regexp: {
+							regexp: /^(?=.*\d)(?=.*[a-z]).{6,12}$/,
+		                    message: '需包含英文及數字'
+						},
+						identical: {
+							field: 'comPwdConfirm',
+							message: '與密碼不相符, 再試一次?'
+						},
+					} // end validators
+				}, // end comPwd
+				
+				comPwdConfirm: {
+					trigger: 'keyup blur',
+					validators: {
+						notEmpty: {
+							message: '密碼確認不可空白'
+						},
+						identical: {
+							field: 'comPwd',
+							message:'與密碼不相符, 再試一次?'
+						},
+						stringLength: {
+							min: 6,
+							max: 12,
+							message: '密碼長度限6~12字數'
+						},
+						regexp: {
+							regexp: /^(?=.*\d)(?=.*[a-z]).{6,12}$/,
+	                        message: '需包含英文及數字'
+						}
+					} // end validators
+				}, // end comPwdConfirm
+				
+				comName: {
+					trigger: 'keyup blur',
+					validators: {
+						notEmpty: {
+							message: '姓名不可空白'
+						},
+						stringLength: {
+							min: 1,
+							max: 32,
+							message: '姓名長度限1~32字數'
+						},
+						regexp : {
+							regexp: /^[(\u4e00-\u9fa5)\-(a-zA-Z0-9)]+$/,
+							message: '只能是中、英文字母、數字和-'
+						},
+					} // end validators
+				}, // end comName
+				
+				comOwner: {
+					trigger: 'keyup blur',
+					validators: {
+						notEmpty: {
+							message:'公司負責人姓名請勿空白'
+						},
+						stringLength: {
+							min: 1,
+							max: 32,
+							message: '姓名長度限1~32字數'
+						},
+						regexp : {
+							regexp: /^[(\u4e00-\u9fa5)\-(a-zA-Z0-9)]+$/,
+							message: '只能是中、英文字母、數字和-'
+						},
+					} // end validators
+				}, // end comOwner
+				
+				comAddr: {
+					trigger: 'keyup blur',
+					validators: {
+						notEmpty: {
+							message:'地址請勿空白'
+						},
+						stringLength: {
+							min: 5,
+							max: 64,
+							message: '地址限5~64字數'
+						},
+						regexp : {
+							regexp: /^[(\u4e00-\u9fa5)\-(a-zA-Z0-9_)]+$/,
+							message: '只能是中、英文字母、數字和-'
+						},
+					} // end validators
+				}, // end comAddr
+				comTel: {
+					trigger: 'keyup blur',
+					validators: {
+						notEmpty: {
+	                        message: '電話請勿空白'
+	                    },
+	                    stringLength: {
+							min: 8,
+							max: 15,
+							message: '電話號碼至少8碼, 至多15碼'
+						},
+	                    regexp: {
+	                        regexp:  /^[(0-9)-]{8,15}$/,
+	                        message: '電話格式錯誤, 只能是數字和-'
+	                    },
+					} // end validators
+				}, // end comTel
+				comFax: {
+					trigger: 'keyup blur',
+					validators: {
+						stringLength: {
+							min: 8,
+							max: 15,
+							message: '傳真號碼至少8碼, 至多15碼'
+						},
+	                    regexp: {
+	                        regexp:  /^[(0-9)-]{8,15}$/,
+	                        message: '傳真號碼格式錯誤, 只能是數字和-'
+	                    },
+					} // end validators
+				}, // end comFax
+	    	} // end fields
+	    }).on('success.form.bv', function() {
+	    	
+	    	
+	    }); // end bootstrapValidator
+	}); // end ready 
+
+})(jQuery)
+
+</script>
 
 </body>
 </html>

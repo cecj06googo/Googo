@@ -37,7 +37,7 @@ public class GetOneCompany extends HttpServlet {
 				errorMsgs.put("errorComIDEmpty", "請輸入商家編號");
 			// 若有輸入內容不符, 返回首頁提示錯誤訊息
 			if (!errorMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/C_index.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
 				failureView.forward(req, res);
 				return;    //程式中斷
 			}
@@ -51,7 +51,7 @@ public class GetOneCompany extends HttpServlet {
 			}
 			// 若有輸入內容不符, 返回首頁提示錯誤訊息
 			if (!errorMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/C_index.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
 				failureView.forward(req, res);
 				return;    //程式中斷
 			}
@@ -64,20 +64,20 @@ public class GetOneCompany extends HttpServlet {
 			
 			// 若有輸入內容不符, 返回首頁提示錯誤訊息
 			if (!errorMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/C_index.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
 				failureView.forward(req, res);
 				return;    //程式中斷
 			}
 			
 			// 3.查詢完成,準備轉交
 			req.setAttribute("companyVO", oneComVO);
-			RequestDispatcher successView = req.getRequestDispatcher("/Temp/_06_manage/edit_company.jsp");
+			RequestDispatcher successView = req.getRequestDispatcher("/_06_manage/modCom.jsp");
 			successView.forward(req, res);
 
 		// 其他可能的錯誤處理
 		} catch (Exception e) {
 			errorMsgs.put("errorNull","無法取得資料:" + e.getMessage());
-			RequestDispatcher failureView = req.getRequestDispatcher("/C_index.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
 			failureView.forward(req, res);
 		}
 	} // end doPost()
