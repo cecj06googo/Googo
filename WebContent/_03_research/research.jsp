@@ -101,8 +101,15 @@ html, body, #map-canvas {
 	<!-- Page Content -->
 	<div class="container">
 		<br>
-		<!-- Search bar -->
-		<jsp:include page="/_03_research/researchBar.jsp" />
+			<!-- Search bar -->
+		<div class="well">
+		<div class="row">
+		<div class="col-lg-12 text-center">
+     	<jsp:include page="/_03_research/researchBar.jsp" />
+		</div>
+		</div>
+		</div>
+		<!-- /.Search bar -->
 		<!-- 搜尋結果 -->
 		<div class="row">
 			<!-- 地圖-->
