@@ -46,7 +46,7 @@ public class UpdateCompany extends HttpServlet {
 		req.setAttribute("errorMsgs", errorMsgs);
 
 		byte[] comPic = null;
-		Integer comID = null;
+		Integer comID = null, comStatus = null;
 		String comAccount = null, comPwd = null, comName = null, comOwner = null, 
 			   comAddr = null, comTel = null, comFax = null, comVAT = null;
 
@@ -75,56 +75,60 @@ public class UpdateCompany extends HttpServlet {
 						else if ("comPwd".equals(item.getFieldName())) {
 							comPwd = fieldvalue.trim();
 							if (comPwd == null || comPwd.trim().length() == 0)
-								errorMsgs.put("errorPwdEmpty", "密碼欄請勿空白");
+								errorMsgs.put("errorPwd", "密碼欄請勿空白");
 							
 							String comPwdReg = "^[\\w]{6,12}$";
 							if (!comPwd.trim().matches(comPwdReg))
-								errorMsgs.put("errorPwdFormat",	"密碼格式有誤(英數各一,長度限6~12字數");
+								errorMsgs.put("errorPwd",	"密碼格式有誤(英數各一,長度限6~12字數");
 						} 
 						else if ("comName".equals(item.getFieldName())) {
 							comName = fieldvalue;
 							if (comName == null || comName.trim().length() == 0)
-								errorMsgs.put("errorNameEmpty", "公司名稱請勿空白");
+								errorMsgs.put("errorName", "公司名稱請勿空白");
 							
 							String comNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,32}$";
 							if (!comName.trim().matches(comNameReg))
-								errorMsgs.put("errorNameFormat", "公司名稱:只能是中、英文字母、數字和_ , 且長度必需在1到32之間");
+								errorMsgs.put("errorName", "公司名稱:只能是中、英文字母、數字和_ , 且長度必需在1到32之間");
 						} 
 						else if ("comOwner".equals(item.getFieldName())) {
 							comOwner = fieldvalue;
 							if (comOwner == null || comOwner.trim().length() == 0)
-								errorMsgs.put("errorOwnerEmpty", "公司代表人姓名請勿空白");
+								errorMsgs.put("errorOwner", "公司代表人姓名請勿空白");
 							
 							String comOwnerReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,32}$";
 							if (!comOwner.trim().matches(comOwnerReg))
-								errorMsgs.put("errorOwnerFormat", "公司名:只能是中、英文字母、數字和_ , 且長度必需在1到32之間");
+								errorMsgs.put("errorOwner", "公司名:只能是中、英文字母、數字和_ , 且長度必需在1到32之間");
 						}
 						else if ("comAddr".equals(item.getFieldName())) {
 							comAddr = fieldvalue;
 							if (comAddr == null || comAddr.trim().length() == 0)
-								errorMsgs.put("errorAddrEmpty", "公司地址請勿空白");
+								errorMsgs.put("errorAddr", "公司地址請勿空白");
 								
 							String comAddrReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,32}$";
 							if (!comAddr.trim().matches(comAddrReg))
-								errorMsgs.put("errorAddrFormat", "公司名:只能是中、英文字母、數字和_ , 且長度必需在1到32之間");
+								errorMsgs.put("errorAddr", "公司名:只能是中、英文字母、數字和_ , 且長度必需在1到32之間");
 						} 
 						else if ("comTel".equals(item.getFieldName())) {
 							comTel = fieldvalue;
 							if (comTel == null || comTel.trim().length() == 0)
-								errorMsgs.put("errorTelEmpty", "公司電話請勿空白");
+								errorMsgs.put("errorTel", "公司電話請勿空白");
 							
 							String comTelReg = "^[(0-9)-]{8,15}$";
 							if (!comTel.trim().matches(comTelReg))
-								errorMsgs.put("errorTelFormat", "公司電話:只能是數字和-，且至少8碼");
+								errorMsgs.put("errorTel", "公司電話:只能是數字和-，且至少8碼");
 						} 
 						else if ("comFax".equals(item.getFieldName())) {
 							comFax = fieldvalue;
 							String comFaxReg = "^[(0-9)-]{8,15}$";
 							if ((comFax.trim().length() != 0) && !comFax.trim().matches(comFaxReg))
-								errorMsgs.put("errorFaxFormat", "公司傳真:只能是數字和-，且至少8碼");
+								errorMsgs.put("errorFax", "公司傳真:只能是數字和-，且至少8碼");
 						} 
 						else if ("comVAT".equals(item.getFieldName())) {
 							comVAT = fieldvalue;
+						}
+						else if("comStatus".equals(item.getFieldName())) {
+							comStatus = new Integer(fieldvalue.trim());
+							System.out.println(comStatus + "@@@@");
 						}
 					} 
 					else {
@@ -161,12 +165,13 @@ public class UpdateCompany extends HttpServlet {
 				companyVO.setComFax(comFax);
 				companyVO.setComVAT(comVAT);
 				companyVO.setComPic(comPic);    // 替換圖片
+				companyVO.setComStatus(comStatus);
 				
 				// 1.接收請求參數 - 重複註冊的錯誤處理
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("companyVO", companyVO);
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/Temp/_06_manage/edit_company.jsp");
+							.getRequestDispatcher("/_06_manage/modCom.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -178,12 +183,12 @@ public class UpdateCompany extends HttpServlet {
 				}
 				companyVO = comService.updateCompany(comID, comAccount, comPwd,
 						comName, comOwner, comAddr, comTel, comFax, comVAT,
-						comPic);
+						comPic, comStatus);
 				
 				// 3.新增完成,準備轉交(Send the Success view)				
 				req.setAttribute("companyVO", companyVO);
 				successMsgs.put("seccessUpdate", "修改完成");
-				String url = "/Temp/_06_manage/edit_company.jsp";
+				String url = "/_06_manage/modCom.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				// res.sendRedirect(url);
@@ -192,7 +197,7 @@ public class UpdateCompany extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.put("errorException", e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/Temp/_06_manage/edit_company.jsp");
+						.getRequestDispatcher("/_06_manage/modCom.jsp");
 				failureView.forward(req, res);
 			}
 		} // end if

@@ -186,9 +186,7 @@
 									<input type="text" class="form-control" name="comAccount"
 										id="com_account" value="${companyVO.comAccount}" disabled /> 
 								</div>
-								<span>
-								<font color="red" size="-1">${errorMsgs.errorAccountEmpty}${errorMsgs.errorAccountFormat}${errorMsgs.errorAccountDup}</font>
-								</span>
+								<span><font color="red" size="-1">${errorMsgs.errorAccount}</font></span>
 							</div>
 							<div class="control-group form-group">
 								<label>密碼:</label>
@@ -196,9 +194,7 @@
 									<input type="text" class="form-control" name="comPwd"
 										id="com_pwd" value="${companyVO.comPwd}">
 								</div>
-								<span>
-								<font color="red" size="-1">${errorMsgs.errorPwdEmpty}${errorMsgs.errorPwdFormat}</font>
-								</span>
+								<span><font color="red" size="-1">${errorMsgs.errorPwd}</font></span>
 							</div>
 							<div class="control-group form-group">
 								<label>商家名稱:</label>
@@ -257,6 +253,7 @@
 							<input type="hidden" name="comID" value="${companyVO.comID}"> 
 							<input type="hidden" name="comAccount" value="${companyVO.comAccount}">
 							<input type="hidden" name="comVAT" value="${companyVO.comVAT}">
+							<input type="hidden" name="comStatus" value="${companyVO.comStatus}">
 							<button type="submit" class="btn btn-danger">儲存</button>
 						</form>
 					</div>

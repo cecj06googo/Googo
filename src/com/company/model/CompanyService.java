@@ -13,12 +13,12 @@ public class CompanyService {
 	
 	// 驗證帳號是否重複
 	synchronized public boolean verifyAccount(String account) throws IOException {
-		boolean existAccount = false;    // 檢查account是否已經存在
+		boolean existAccount = true;    // 檢查account是否已經存在
 		List<CompanyVO> list = dao.getAll();
 		for (CompanyVO cv : list) {
-			if ( cv.getComAccount().equals(account.trim())) {
-				existAccount = true;
-				break;
+			if (cv.getComAccount().equals(account.trim())) {
+				existAccount = false;
+				return existAccount;
 			}
 		}
 		return existAccount;
@@ -26,19 +26,19 @@ public class CompanyService {
 	
 	// 驗證統一編號是否重複
 	synchronized public boolean verifyVAT(String VAT) throws IOException {
-		boolean existVAT = false;    // 檢查VAT是否已經存在
+		boolean existVAT = true;    // 檢查VAT是否已經存在
 		List<CompanyVO> list = dao.getAll();
 		for (CompanyVO cv : list) {
 			if (cv.getComVAT().equals(VAT.trim())) {
-				existVAT = true;
-				break;
+				existVAT = false;
+				return existVAT;
 			}
 		}
 		return existVAT;
 	}
 	
 	public CompanyVO addCompany(String comAccount,String comPwd,String comName,String comOwner,
-	        String comAddr, String comTel, String comFax, String comVAT, byte[] comPic) {
+	        String comAddr, String comTel, String comFax, String comVAT, Integer comStatus, String comHashURL) {
 		
 		CompanyVO comVO = new CompanyVO();
 		comVO.setComAccount(comAccount);
@@ -49,14 +49,15 @@ public class CompanyService {
 		comVO.setComTel(comTel);
 		comVO.setComFax(comFax);
 		comVO.setComVAT(comVAT);
-		comVO.setComPic(comPic);
+		comVO.setComStatus(comStatus);
+		comVO.setComHashURL(comHashURL);
 		
 		dao.insert(comVO);
 		return comVO;
 	}
 	
 	public CompanyVO updateCompany(Integer comID, String comAccount,String comPwd,String comName,String comOwner,
-		    String comAddr, String comTel, String comFax, String comVAT, byte[] comPic) {
+		    String comAddr, String comTel, String comFax, String comVAT, byte[] comPic, Integer comStatus) {
 		
 		CompanyVO comVO = new CompanyVO();
 		comVO.setComID(comID);
@@ -69,6 +70,7 @@ public class CompanyService {
 		comVO.setComFax(comFax);
 		comVO.setComVAT(comVAT);
 		comVO.setComPic(comPic);
+		comVO.setComStatus(comStatus);
 		
 		dao.update(comVO);
 		return dao.findByPrimaryKey(comID);
