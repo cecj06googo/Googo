@@ -14,10 +14,10 @@
 <!-- Google Map Start-->
 <style>
 html, body, #map-canvas {
-	height: 100px;
-	width: 100px;
-	margin: 100px;
-	padding: 100px;
+	height: 400px;
+	width: 400px;
+ 	margin: 10px; 
+ 	padding: 10px; 
 }
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
