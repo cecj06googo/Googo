@@ -29,62 +29,17 @@ html, body, #map-canvas {
 	function initialize() {
 		var mapOptions = {
 			zoom : 10,
-			center : new google.maps.LatLng(-33.9, 151.2)
+			center : new google.maps.LatLng(25.02, 121.41)
+		//center : new google.maps.LatLng(-33.890542, 151.274856)
 		}
 		var map = new google.maps.Map(document.getElementById('map-canvas'),
 				mapOptions);
-
-		setMarkers(map, beaches);
+		findComMarkers(map);
+		//setMarkers(map, beaches);
 	}//end function initialize()
-	
-    var comAdressArray = <%= request.getAttribute("comAdressArray")%>;
-    var comNameArray = <%= request.getAttribute("comNameArray")%>; 
-    
-	function addressToLatLng(addr) {//將中文地址轉為經緯度
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({
-            "address": addr
-        }, function (results, status) {
-        	//var LatLng=["123","456"]
-            if (status == google.maps.GeocoderStatus.OK) {
-                //alert(results[0].geometry.location.lat() + "," + results[0].geometry.location.lng());
-                //LatLng=[results[0].geometry.location.lat(), results[0].geometry.location.lng()];
-                //alert(LatLng);
-                //alert(results[0].geometry.location);
-            	var position = results[0].geometry.location;
-            	alert(position);
-            } else {
-            	alert("查無經緯度");
-                //查無經緯度
-            }
-        	return position;
-        });//end  geocoder.geocode
-    }//end function addressToLatLng(addr) 
-	
-	
-	/**
-	 * Data for the markers consisting of a name, a LatLng and a zIndex for
-	 * the order in which these markers should display on top of each
-	 * other.
-	 */
 
-   // var comAdressArray =["a","v","c"];
-	var beaches = [ [ 'Bondi Beach', -33.890542, 151.274856],
-			[ 'Coogee Beach', -33.923036, 151.259052],
-			[ 'Cronulla Beach', -34.028249, 151.157507],
-			[ 'Manly Beach', -33.80010128657071, 151.28747820854187],
-			[ 'Maroubra Beach', -33.950198, 151.259302] ];
-	function prepareAdressToLatLng(){
-		for(var i = 0; i < comAdressArray.length; i++){
-			var comLatLngArray= new Array();
-			//comLatLngArray.push(addressToLatLng(comAdressArray[i]));
-			alert(addressToLatLng("新北市新莊區中正路694巷54號"));
-			//alert(comLatLngArray);
-			alert("123");
-		}
-	
-		
-	}
+	var comAdressArray = <%=request.getAttribute("comAdressArray")%>; //公司地址陣列
+	var comNameArray =<%=request.getAttribute("comNameArray")%>;//公司名稱陣列
 
 	function setMarkers(map, locations) {
 		// Add markers to the map
@@ -114,24 +69,37 @@ html, body, #map-canvas {
 			coords : [ 1, 1, 1, 20, 18, 20, 18, 1 ],
 			type : 'poly'
 		};
-		for (var i = 0; i < locations.length; i++) {
-			var beach = locations[i];
-			var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
-			var marker = new google.maps.Marker({
-				position : myLatLng,
-				map : map,
-				// icon: image,
-				shape : shape,
-				title : beach[0],
-				//zIndex : beach[3]
-			});
-		}//end for (var i = 0; i < locations.length; i++)
-		//alert(comlist);
-		//addressToLatLng("新北市新莊區中正路694巷54號");
-		//prepareAdressToLatLng();
-		 prepareAdressToLatLng();
-		
+		var beach = locations;
+		var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
+		var marker = new google.maps.Marker({
+			position : myLatLng,
+			map : map,
+			// icon: image,
+			shape : shape,
+			title : beach[0],
+		//zIndex : beach[3]
+		});
 	}//end function setMarkers(map, locations)
+	function addressToLatLng(comName,addr, map) {//將中文地址轉為經緯度
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode({
+			"address" : addr
+		}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				var coordinate = [comName, results[0].geometry.location.lat(),
+						results[0].geometry.location.lng() ]
+				setMarkers(map, coordinate);
+				//alert(position);
+			} else {
+				alert("查無經緯度");
+			}
+		});//end  geocoder.geocode
+	}//end function addressToLatLng(addr) 
+	function findComMarkers(map) {
+		for (var i = 0; i < comAdressArray.length; i++) {
+			addressToLatLng(comNameArray[i],comAdressArray[i], map); //傳入地址陣列
+		}
+	}
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 <!-- Google Map End-->
