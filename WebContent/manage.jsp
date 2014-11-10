@@ -36,20 +36,22 @@
                                         <i class="fa fa-book fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">
-                                     ${newOrd}
-                                        </div>
+                                        <div class="huge">${newOrd}</div>
                                         <div>新訂單喔!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="<c:url value='/_05_company/orderCom.jsp'/>">
+                            <FORM METHOD="post"
+							ACTION="<%=request.getContextPath()%>/newOrd.gg" name="newOrd">
+                            <a href="#" onclick="document.newOrd.submit();">
                                 <div class="panel-footer">
                                     <span class="pull-left">訂單管理</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                     <div class="clearfix"></div>
                                 </div>
                             </a>
+                            <input type="hidden" name="action" value="newOrd"/>
+                           </FORM>
                         </div>
                     </div><!--/.訂單-->
                     <!--取車-->
@@ -65,7 +67,7 @@
                                         <div>已取車輛</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                        
                             <a href="#">
                                 <div class="panel-footer">
                                     <span class="pull-left">庫存管理</span>
@@ -89,13 +91,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <FORM METHOD="post"
+							ACTION="<%=request.getContextPath()%>/noreCar.gg" name="noreCar">
+                            <a href="#" onclick="document.noreCar.submit();">
+                            
                                 <div class="panel-footer">
                                     <span class="pull-left">查看訂單</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                     <div class="clearfix"></div>
                                 </div>
                             </a>
+                            <input type="hidden" name="action" value="noreCar"/>
+                            </FORM>
                         </div>
                     </div><!--/.取車-->
                     <!--問券-->

@@ -106,7 +106,7 @@
                         <a href="<c:url value='/manage.jsp'/>"><i class="fa fa-fw fa-bar-chart-o"></i> 報表分析</a>
                     </li>
                     <li id="selectOrder">
-                        <a href="#"><i class="fa fa-fw fa-book"></i> 訂單管理</a>
+                        <a href="<c:url value='/_05_company/orderCom.jsp'/>"><i class="fa fa-fw fa-book"></i> 訂單管理</a>
                     </li>
                     <li id="Survey">
                         <a href="#"><i class="fa fa-fw fa-file-text-o"></i> 問券分析</a>
