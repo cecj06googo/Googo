@@ -107,7 +107,7 @@ $(document).ready(function(){
 		</thead>
 		
 			<c:forEach var="ordVO" items="${ordVO}">
-			<c:if test="${ordVO.status_char == '未處理'}"> <!-- 只顯示未處理 -->
+<%-- 			<c:if test="${ordVO.status_char == '未處理'}"> <!-- 只顯示未處理 --> --%>
 				<tr align='center' valign='middle'>
 					<td>${ordVO.ord_id}</td>
 					<td>${ordVO.ord_time}</td>
@@ -150,7 +150,7 @@ $(document).ready(function(){
 					</td>
 					</c:if>
 				</tr>
-				</c:if>
+<%-- 				</c:if> --%>
 			</c:forEach>
 		</table>
 	</c:if>
@@ -191,6 +191,10 @@ $(document).ready(function(){
 </div>
 </div>
 </div>
+<% 
+    request.removeAttribute("ordVO"); // 顯示MsgOK.InsertOK後，就要立刻移除，以免每次回到首 頁都會顯示新增成功的訊息 
+ %>
+
 </body>
 
 </html>
