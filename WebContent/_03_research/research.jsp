@@ -36,22 +36,28 @@ html, body, #map-canvas {
 
 		setMarkers(map, beaches);
 	}//end function initialize()
+	
+    var comAdressArray = <%= request.getAttribute("comAdressArray")%>;
+    var comNameArray = <%= request.getAttribute("comNameArray")%>; 
     
-	function addressToLatLng(addr) {
+	function addressToLatLng(addr) {//將中文地址轉為經緯度
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({
             "address": addr
         }, function (results, status) {
-        	var LatLng=["123","456"]
+        	//var LatLng=["123","456"]
             if (status == google.maps.GeocoderStatus.OK) {
                 //alert(results[0].geometry.location.lat() + "," + results[0].geometry.location.lng());
-                LatLng=[results[0].geometry.location.lat(), results[0].geometry.location.lng()];
+                //LatLng=[results[0].geometry.location.lat(), results[0].geometry.location.lng()];
                 //alert(LatLng);
-                //alert(results[0].geometry.location);                
+                //alert(results[0].geometry.location);
+            	var position = results[0].geometry.location;
+            	alert(position);
             } else {
+            	alert("查無經緯度");
                 //查無經緯度
             }
-        	return LatLng;
+        	return position;
         });//end  geocoder.geocode
     }//end function addressToLatLng(addr) 
 	
@@ -61,8 +67,7 @@ html, body, #map-canvas {
 	 * the order in which these markers should display on top of each
 	 * other.
 	 */
-    var comAdressArray = <%= request.getAttribute("comAdressArray")%>;
-    var comNameArray = <%= request.getAttribute("comNameArray")%>; 
+
    // var comAdressArray =["a","v","c"];
 	var beaches = [ [ 'Bondi Beach', -33.890542, 151.274856],
 			[ 'Coogee Beach', -33.923036, 151.259052],
@@ -72,8 +77,10 @@ html, body, #map-canvas {
 	function prepareAdressToLatLng(){
 		for(var i = 0; i < comAdressArray.length; i++){
 			var comLatLngArray= new Array();
-			comLatLngArray.push(addressToLatLng(comAdressArray[i]));
-			alert(comLatLngArray);
+			//comLatLngArray.push(addressToLatLng(comAdressArray[i]));
+			alert(addressToLatLng("新北市新莊區中正路694巷54號"));
+			//alert(comLatLngArray);
+			alert("123");
 		}
 	
 		
@@ -121,7 +128,8 @@ html, body, #map-canvas {
 		}//end for (var i = 0; i < locations.length; i++)
 		//alert(comlist);
 		//addressToLatLng("新北市新莊區中正路694巷54號");
-		//repareAdressToLatLng();
+		//prepareAdressToLatLng();
+		 prepareAdressToLatLng();
 		
 	}//end function setMarkers(map, locations)
 	google.maps.event.addDomListener(window, 'load', initialize);
