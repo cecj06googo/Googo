@@ -96,7 +96,12 @@ html, body, #map-canvas {
 		});//end  geocoder.geocode
 	}//end function addressToLatLng(addr) 
 	function findComMarkers(map) {
-		for (var i = 0; i < comAdressArray.length; i++) {
+		var rowsPerPage = <%=request.getAttribute("rowsPerPage") %>;
+		var pageIndex = <%=request.getAttribute("pageIndex") %>;
+		//for (var i = 0; i < comAdressArray.length; i++) {
+		alert(rowsPerPage);
+		alert(pageIndex);
+		for (var i = pageIndex; i <= (pageIndex+rowsPerPage-1); i++) {	
 			addressToLatLng(comNameArray[i],comAdressArray[i], map); //傳入地址陣列
 		}
 	}
