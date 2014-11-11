@@ -49,6 +49,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
 <script>
+/* 我先拿掉關鍵字搜索驗證by Antai 
  (function($){
 	   $(document).ready(function() {
 		    $('#research').bootstrapValidator({
@@ -65,8 +66,8 @@
 		        		trigger: 'keyup blur',
 		                validators: {
 		                	regexp: {
-		                        regexp: /^(?=.*\d).{6,12}$/,
-		                        message: '需包含英文及數字'
+		                        regexp: /[^;\"\'=/\\,]/,
+		                        message: '不可含有特殊字元:( " ; \' = , \\ \/)'
 		                    },		                    
 		                }
 		            },
@@ -90,4 +91,5 @@
 		});
    
 	 })(jQuery)
+	 */
 </script>

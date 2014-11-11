@@ -22,7 +22,6 @@ html, body, #map-canvas {
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 <script>
-
 	function initialize() {
 		initMapCenter();
 	}//end function initialize()
@@ -71,7 +70,22 @@ html, body, #map-canvas {
 			}
 		});//end  geocoder.geocode
 	}//end function addressToLatLng(addr) 
+	function showTaiwan(){
+		 var mapOptions = {
+					zoom : 7, //zoom:10, 越大顯示區域越小(精細)
+					center : new google.maps.LatLng(23.58, 121.00)
+				}
+		 var map = new google.maps.Map(document.getElementById('map-canvas'),
+					mapOptions);
+		 return map;
+	}
 	function findComMarkers(map) {
+		if(comAdressArray.length==0){//若沒有商家地址資料
+			showTaiwan();
+		   // alert("沒有商家地址資料");
+		   //這地方要加入處理顯示沒有商家資料利用jQuery?
+		   return;
+		}
 		var rowsPerPage = <%=request.getAttribute("rowsPerPage") %>;
 		var whichPage= <%=request.getAttribute("whichPage")%>;//此頁第幾頁
 		//alert("rowsPerPage="+rowsPerPage);
@@ -87,27 +101,33 @@ html, body, #map-canvas {
 	}
 	function initMapCenter(){ //先查詢縣市初步位置再將中心點設置在該地區
 		var addr = "台灣<%=request.getAttribute("location")%>"; 
-		//alert(location);
-		var geocoder = new google.maps.Geocoder();
-		geocoder.geocode({
-			"address" : addr
-		}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				var mapOptions = {
-						zoom : 10, //zoom:10, 越大顯示區域越小(精細)
-						center : new google.maps.LatLng(results[0].geometry.location.lat(),
-								results[0].geometry.location.lng())
-					//center : new google.maps.LatLng(-33.890542, 151.274856)
-					}
-				var map = new google.maps.Map(document.getElementById('map-canvas'),
-						mapOptions);
-				findComMarkers(map);
-				//alert(position);
-			} else {
-				alert("查無經緯度");
-			}
-		});//end  geocoder.geocode
-	}
+		//搜尋時地區沒有設值
+		if("<%=request.getAttribute("location")%>"=="null"){
+			 findComMarkers(showTaiwan());
+			 return;
+		}else{ //進入此else表示有根據地區搜尋
+			var geocoder = new google.maps.Geocoder();
+			geocoder.geocode({
+				"address" : addr
+			}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					var mapOptions = {
+							zoom : 10, //zoom:10, 越大顯示區域越小(精細)
+							center : new google.maps.LatLng(results[0].geometry.location.lat(),
+									results[0].geometry.location.lng())
+						//center : new google.maps.LatLng(-33.890542, 151.274856)
+						}
+					var map = new google.maps.Map(document.getElementById('map-canvas'),
+							mapOptions);
+					findComMarkers(map);
+					//alert(position);
+				} else {//代表地址轉換成經緯度失效
+					alert("無法初始地圖中心點");
+					showTaiwan(); //只show出台灣地圖
+				}
+			});//end  geocoder.geocode			
+		}//end else 進入此else表示有根據地區搜尋	
+	}//end function initMapCenter()
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 <!-- Google Map End-->
