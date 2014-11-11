@@ -35,7 +35,6 @@ html, body, #map-canvas {
 		var map = new google.maps.Map(document.getElementById('map-canvas'),
 				mapOptions);
 		findComMarkers(map);
-		//setMarkers(map, beaches);
 	}//end function initialize()
 
 	var comAdressArray = <%=request.getAttribute("comAdressArray")%>; //公司地址陣列
@@ -97,8 +96,14 @@ html, body, #map-canvas {
 	function findComMarkers(map) {
 		var rowsPerPage = <%=request.getAttribute("rowsPerPage") %>;
 		var whichPage= <%=request.getAttribute("whichPage")%>;//此頁第幾頁
-
-		for (var i = ((whichPage-1)*rowsPerPage); i <= (whichPage*rowsPerPage-1); i++) {	
+		//alert("rowsPerPage="+rowsPerPage);
+		//alert("whichPage="+whichPage);
+		var startIndex=(whichPage-1)*rowsPerPage;//該頁起始筆數
+		var endIndex = (whichPage*rowsPerPage-1); //該頁終止筆數
+		if((comAdressArray.length-1)<endIndex){//當最後一頁顯示筆數不足rowsPerPage
+			endIndex = comAdressArray.length-1; //則將剩餘的顯示
+		}
+		for (var i = startIndex; i <= endIndex ; i++) {	
 			addressToLatLng(comNameArray[i],comAdressArray[i], map); //傳入地址陣列
 		}
 	}

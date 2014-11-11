@@ -24,7 +24,6 @@
 <%  try {
       whichPage = Integer.parseInt(request.getParameter("whichPage"));
       pageIndex=pageIndexArray[whichPage-1]; //根據第幾頁找出該頁第一筆的index 因為從1開始所以要-1
-      request.setAttribute("pageIndex",pageIndex);//給Google Map 顯示Markers用
     } catch (NumberFormatException e) { 
        whichPage=1;
        pageIndex=0;
