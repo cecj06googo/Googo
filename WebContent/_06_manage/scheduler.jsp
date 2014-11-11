@@ -9,9 +9,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler.js"></script>	
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_timeline.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_minical.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_treetimeline.js"></script>
 <jsp:include page="/_00_fragment/css2.jsp" />
 
 <title>Goo-go</title>
+
 <script type="text/javascript" charset="utf-8">
         function init() {
 
@@ -20,27 +22,44 @@
             scheduler.config.details_on_create=true;
             scheduler.config.details_on_dblclick=true;
             scheduler.config.xml_date="%Y-%m-%d %H:%i";
-
-            
+         
             //車名
-            var sections=[
-                {key:1, label:"Nissan LAVINA"},
-                {key:2, label:"Toyota Yaris"},
-                {key:3, label:"Ferrari Miller"},
-                {key:4, label:"Mazda 3"}
-            ];
-
+            var elements = [ // original hierarhical array to display
+			{key:1, label:"NISSAN LAVINA", open: true, children: [
+				{key:2, label:"1051-EE"},
+				{key:3, label:"1548-AA"},
+				{key:4, label:"5894-BB"},
+			]},
+			{key:5, label:"MAZDA 3", open:true, children: [
+				{key:6, label:"BB-4654"},
+				{key:7, label:"BB-7854"},
+				{key:8, label:"YY-4654"},
+				{key:9, label:"BB-4666"}
+			]},
+			{key:10, label:"機車", open:true, children: [
+                {key:11, label:"AAA-513"},
+                {key:12, label:"AAA-514"},
+                {key:13, label:"AAA-515"},
+                {key:14, label:"AAA-516"},
+                {key:15, label:"AAA-517"},
+            ]},
+			];
+            
             scheduler.createTimelineView({
+            	section_autoheight: false,
                 name:	"timeline",
                 x_unit:	"hour",
                 x_date:	"%H:%i",
+                //顯示幾個日期
                 x_step:	3,
                 x_size: 24,
                 x_start: 0,
-                x_length: 24,
-                y_unit:	sections,
+                x_length:24,
+                y_unit:	elements,
                 y_property:	"section_id",
-                render:"bar",
+                render: "tree",
+    			folder_dy:20,
+    			dy:30,
                 second_scale:{
                     x_unit: "day", // unit which should be used for second scale
                     x_date: "%F %d" // date format which should be used for second scale, "July 01"
@@ -49,30 +68,30 @@
 
             
             //Data loading
-            scheduler.config.lightbox.sections=[
-                {name:"description", height:20, map_to:"text", type:"textarea" , focus:true},
-                {name:"custom", height:23, type:"select", options:sections, map_to:"section_id" },
-                {name:"time", height:72, type:"time", map_to:"auto"}
-            ];
+            scheduler.config.lightbox.sections=[	                                
+			{name:"description", height:130, map_to:"text", type:"textarea" , focus:true},
+			{name:"custom", height:23, type:"timeline", options:null , map_to:"section_id" }, //type should be the same as name of the tab
+			{name:"time", height:72, type:"time", map_to:"auto"}
+			];
+            
 			//開始時間
             scheduler.init('scheduler_car',new Date(2014,5,30),"timeline");
             scheduler.parse([
-                { start_date: "2014-06-30 09:00", end_date: "2014-07-01 12:00", text:"車牌 A-12458", section_id:1},
-                { start_date: "2014-06-30 10:00", end_date: "2014-06-30 21:00", text:"車牌 A-89411", section_id:1},
-                { start_date: "2014-06-30 10:00", end_date: "2014-07-01 14:00", text:"車牌 A-64168", section_id:1},
-                { start_date: "2014-06-30 16:00", end_date: "2014-07-02 17:00", text:"車牌 A-46598", section_id:1},
+                { start_date: "2014-07-01 09:00", end_date: "2014-07-02 12:00", text:"訂單 -12458", section_id:2},
+                { start_date: "2014-06-30 10:00", end_date: "2014-06-30 21:00", text:"訂單-89411", section_id:2},
+                { start_date: "2014-06-30 10:00", end_date: "2014-06-30 14:00", text:"訂單-64168", section_id:3},
+                { start_date: "2014-06-30 16:00", end_date: "2014-07-02 17:00", text:"訂單-46598", section_id:4},
 
-                { start_date: "2014-06-30 12:00", end_date: "2014-07-02 20:00", text:"車牌 B-48865", section_id:2},
-                { start_date: "2014-06-30 14:00", end_date: "2014-06-30 18:00", text:"車牌 B-44864", section_id:2},
-                { start_date: "2014-06-30 16:30", end_date: "2014-07-01 18:00", text:"車牌 B-46558", section_id:2},
-                { start_date: "2014-06-30 18:30", end_date: "2014-07-01 00:00", text:"車牌 B-45564", section_id:2},
-
-                { start_date: "2014-06-30 08:00", end_date: "2014-07-01 12:00", text:"車牌 C-32421", section_id:3},
-                { start_date: "2014-07-01 14:30", end_date: "2014-07-02 16:45", text:"車牌 C-14244", section_id:3},
-
-                { start_date: "2014-07-01 09:20", end_date: "2014-07-01 18:20", text:"車牌 D-52688", section_id:4},
-                { start_date: "2014-06-30 11:40", end_date: "2014-06-30 21:30", text:"車牌 D-46588", section_id:4},
-                { start_date: "2014-07-01 12:00", end_date: "2014-07-02 18:00", text:"車牌 D-12458", section_id:4}
+                { start_date: "2014-06-30 12:00", end_date: "2014-07-02 20:00", text:"訂單-48865", section_id:6},
+                { start_date: "2014-06-30 09:00", end_date: "2014-06-30 18:00", text:"訂單-44864", section_id:7},
+                { start_date: "2014-06-30 16:30", end_date: "2014-07-01 18:00", text:"訂單-46558", section_id:8},
+                { start_date: "2014-06-30 18:30", end_date: "2014-07-01 00:00", text:"訂單-45564", section_id:9},
+             
+                { start_date: "2014-06-30 12:00", end_date: "2014-07-02 20:00", text:"訂單-48865", section_id:11},
+                { start_date: "2014-06-30 14:00", end_date: "2014-07-01 08:00", text:"訂單-44864", section_id:12},
+                { start_date: "2014-06-30 16:30", end_date: "2014-07-01 18:00", text:"訂單-46558", section_id:13},
+                { start_date: "2014-06-30 18:30", end_date: "2014-07-01 00:00", text:"訂單-45564", section_id:14},
+                { start_date: "2014-06-30 15:30", end_date: "2014-07-01 15:00", text:"訂單-45588", section_id:15},
             ],"json");
         }
         function show_minical(){
@@ -105,7 +124,7 @@
     <div class="row">
      	<!--標頭-->
          <div class="col-lg-12">
-             <h2 class="page-header">車輛狀況<small>scheduler</small> </h2>
+             <h2 class="page-header"><i class="fa fa-calendar"></i> 車輛調度      <small>scheduler</small> </h2>
          </div><!--/.標頭-->
          <!--條件搜尋-->
          <div class="col-md-10 text-center">
@@ -127,8 +146,8 @@
         </div> 
         </div><!--/.條件搜尋-->
         <!--scheduler-->
-		<div class="col-md-12" >
-		<div id="scheduler_car" class="dhx_cal_container" style='width:1100px; height:800px; border-style:solid;border-color:#CECECE;border-width:1px;'>
+		<div class="col-md-12">
+		<div id="scheduler_car" class="dhx_cal_container" style='width:1100px; height:500px; border-style:solid;border-color:#CECECE;border-width:1px;'>
 			<div class="dhx_cal_navline">
 				<div class="dhx_cal_prev_button">&nbsp;</div>
 				<div class="dhx_cal_next_button">&nbsp;</div>
@@ -140,7 +159,7 @@
 				<div class="dhx_cal_tab" name="timeline_tab" style="right:280px;font-size:14px;"></div>
 				<div class="dhx_cal_tab" name="month_tab" style="right:76px;font-size:14px;"></div>
 			</div>
-			<div class="dhx_cal_header" style="font-size:14px;">
+			<div class="dhx_cal_header" style="font-size:15px;">
 			</div>
 			<div class="dhx_cal_data" style="font-size:14px;">
 			</div>		
@@ -151,5 +170,9 @@
         </div><!-- /.container-fluid -->
     </div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
+<script>
+//top2左方功能列選項
+$("#scheduler").addClass("active");
+</script>
 </body>
 </html>
