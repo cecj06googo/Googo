@@ -22,33 +22,15 @@ html, body, #map-canvas {
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 <script>
-	// The following example creates complex markers to indicate beaches near
-	// Sydney, NSW, Australia. Note that the anchor is set to
-	// (0,32) to correspond to the base of the flagpole.
 
 	function initialize() {
-		var mapOptions = {
-			zoom : 10,
-			center : new google.maps.LatLng(25.02, 121.41)
-		//center : new google.maps.LatLng(-33.890542, 151.274856)
-		}
-		var map = new google.maps.Map(document.getElementById('map-canvas'),
-				mapOptions);
-		findComMarkers(map);
+		initMapCenter();
 	}//end function initialize()
 
 	var comAdressArray = <%=request.getAttribute("comAdressArray")%>; //公司地址陣列
 	var comNameArray =<%=request.getAttribute("comNameArray")%>;//公司名稱陣列
 	function setMarkers(map, locations) {
-		// Add markers to the map
 
-		// Marker sizes are expressed as a Size of X,Y
-		// where the origin of the image (0,0) is located
-		// in the top left of the image.
-
-		// Origins, anchor positions and coordinates of the marker
-		// increase in the X direction to the right and in
-		// the Y direction down.
 		var image = {
 			url : 'images/icon1.jpg',
 			// This marker is 20 pixels wide by 32 pixels tall.
@@ -58,11 +40,7 @@ html, body, #map-canvas {
 			// The anchor for this image is the base of the flagpole at 0,32.
 			anchor : new google.maps.Point(0, 32)
 		};
-		// Shapes define the clickable region of the icon.
-		// The type defines an HTML &lt;area&gt; element 'poly' which
-		// traces out a polygon as a series of X,Y points. The final
-		// coordinate closes the poly by connecting to the first
-		// coordinate.
+
 		var shape = {
 			coords : [ 1, 1, 1, 20, 18, 20, 18, 1 ],
 			type : 'poly'
@@ -106,6 +84,29 @@ html, body, #map-canvas {
 		for (var i = startIndex; i <= endIndex ; i++) {	
 			addressToLatLng(comNameArray[i],comAdressArray[i], map); //傳入地址陣列
 		}
+	}
+	function initMapCenter(){ //先查詢縣市初步位置再將中心點設置在該地區
+		var addr = "台灣<%=request.getAttribute("location")%>"; 
+		//alert(location);
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode({
+			"address" : addr
+		}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				var mapOptions = {
+						zoom : 10, //zoom:10, 越大顯示區域越小(精細)
+						center : new google.maps.LatLng(results[0].geometry.location.lat(),
+								results[0].geometry.location.lng())
+					//center : new google.maps.LatLng(-33.890542, 151.274856)
+					}
+				var map = new google.maps.Map(document.getElementById('map-canvas'),
+						mapOptions);
+				findComMarkers(map);
+				//alert(position);
+			} else {
+				alert("查無經緯度");
+			}
+		});//end  geocoder.geocode
 	}
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
