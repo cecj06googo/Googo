@@ -20,7 +20,7 @@
 		try{
 			//SQL Server
 			DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
-			conn = DriverManager.getConnection(url, "sa", "1111");
+			conn = DriverManager.getConnection(url, "sa", "sa123456");
 		
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1,mem_account);
