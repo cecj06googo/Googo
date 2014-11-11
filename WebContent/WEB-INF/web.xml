@@ -157,6 +157,15 @@
     <url-pattern>/GetAccessory</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>LoadDesign</servlet-name>
+    <servlet-class>com.template.model.Design_Retrieval</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoadDesign</servlet-name>
+    <url-pattern>/LoadDesign</url-pattern>
+  </servlet-mapping>
+  
   	<servlet>
 		<servlet-name>MemServlet</servlet-name>
 		<servlet-class>com.member.controller.MemServlet</servlet-class>
