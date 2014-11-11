@@ -9,8 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <jsp:include page="/_00_fragment/css.jsp" />
+<%@ include file="page1.file"%>
 <title>Goo-go</title>
-
 <!-- Google Map Start-->
 <style>
 html, body, #map-canvas {
@@ -40,7 +40,6 @@ html, body, #map-canvas {
 
 	var comAdressArray = <%=request.getAttribute("comAdressArray")%>; //公司地址陣列
 	var comNameArray =<%=request.getAttribute("comNameArray")%>;//公司名稱陣列
-
 	function setMarkers(map, locations) {
 		// Add markers to the map
 
@@ -97,11 +96,9 @@ html, body, #map-canvas {
 	}//end function addressToLatLng(addr) 
 	function findComMarkers(map) {
 		var rowsPerPage = <%=request.getAttribute("rowsPerPage") %>;
-		var pageIndex = <%=request.getAttribute("pageIndex") %>;
-		//for (var i = 0; i < comAdressArray.length; i++) {
-		alert(rowsPerPage);
-		alert(pageIndex);
-		for (var i = pageIndex; i <= (pageIndex+rowsPerPage-1); i++) {	
+		var whichPage= <%=request.getAttribute("whichPage")%>;//此頁第幾頁
+
+		for (var i = ((whichPage-1)*rowsPerPage); i <= (whichPage*rowsPerPage-1); i++) {	
 			addressToLatLng(comNameArray[i],comAdressArray[i], map); //傳入地址陣列
 		}
 	}
@@ -137,7 +134,6 @@ html, body, #map-canvas {
 			<!-- 商家列表 -->
 			<!-- 右Projects Row -->
 			<div class="col-md-7">
-				<%@ include file="page1.file"%>
 				<c:forEach var="SearchComVO" items="${comList}"
 					begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 					<!-- 第1筆商家 -->
