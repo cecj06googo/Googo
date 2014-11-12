@@ -9,12 +9,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.company.model.CompanyService;
 import com.company.model.CompanyVO;
 
 public class GetOneCompany extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	CompanyVO comVO;
 
     public GetOneCompany() {
         super();
@@ -29,36 +31,40 @@ public class GetOneCompany extends HttpServlet {
 		Map<String, String> errorMsgs = new HashMap<String, String>();
 		req.setAttribute("errorMsgs", errorMsgs);
 		
+		HttpSession session = req.getSession();
+		comVO = (CompanyVO) session.getAttribute("LoginComOK");
+
+		
 		// 1.接收請求參數 - 重複註冊的錯誤處理
 		try {
-			String str = req.getParameter("comID");
-
-			if (str == null || (str.trim()).length() == 0)
-				errorMsgs.put("errorComIDEmpty", "請輸入商家編號");
-			// 若有輸入內容不符, 返回首頁提示錯誤訊息
-			if (!errorMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
-				failureView.forward(req, res);
-				return;    //程式中斷
-			}
-			
-			Integer comID = null;
-			try {
-				comID = new Integer(str);
-			} catch (Exception e) {
-				e.getStackTrace();
-				errorMsgs.put("errorComIDFormat", "員工編號格式不正確");
-			}
-			// 若有輸入內容不符, 返回首頁提示錯誤訊息
-			if (!errorMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
-				failureView.forward(req, res);
-				return;    //程式中斷
-			}
+//			String str = req.getParameter("comID");
+//
+//			if (str == null || (str.trim()).length() == 0)
+//				errorMsgs.put("errorComIDEmpty", "請輸入商家編號");
+//			// 若有輸入內容不符, 返回首頁提示錯誤訊息
+//			if (!errorMsgs.isEmpty()) {
+//				RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
+//				failureView.forward(req, res);
+//				return;    //程式中斷
+//			}
+//			
+//			Integer comID = null;
+//			try {
+//				comID = new Integer(str);
+//			} catch (Exception e) {
+//				e.getStackTrace();
+//				errorMsgs.put("errorComIDFormat", "員工編號格式不正確");
+//			}
+//			// 若有輸入內容不符, 返回首頁提示錯誤訊息
+//			if (!errorMsgs.isEmpty()) {
+//				RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
+//				failureView.forward(req, res);
+//				return;    //程式中斷
+//			}
 			
 			// 2.開始查詢資料
 			CompanyService comService = new CompanyService();
-			CompanyVO oneComVO = comService.getOneCom(comID);
+			CompanyVO oneComVO = comService.getOneCom(comVO.getComID());
 			if (oneComVO == null)
 				errorMsgs.put("errorComIDDup","查無資料");
 			

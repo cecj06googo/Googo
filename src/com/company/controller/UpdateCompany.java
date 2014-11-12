@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -40,9 +41,9 @@ public class UpdateCompany extends HttpServlet {
 		Map<String, String> errorMsgs = new HashMap<String, String>();
 		Map<String, String> successMsgs = new HashMap<String, String>();
 
-		// HttpSession session = req.getSession();
-		// session.setAttribute("successMsgs", successMsgs); //顯示正常訊息
-		req.setAttribute("successMsgs", successMsgs);
+		HttpSession session = req.getSession();
+		session.setAttribute("successMsgs", successMsgs); //顯示正常訊息
+//		req.setAttribute("successMsgs", successMsgs);
 		req.setAttribute("errorMsgs", errorMsgs);
 
 		byte[] comPic = null;
@@ -179,7 +180,7 @@ public class UpdateCompany extends HttpServlet {
 				// 2.開始新增資料
 				CompanyService comService = new CompanyService();
 				if (comPic == null) {
-					comPic =  comService.getOneCom(comID).getComPic();    // 取出原商家圖片
+					comPic = comService.getOneCom(comID).getComPic();    // 取出原商家圖片
 				}
 				companyVO = comService.updateCompany(comID, comAccount, comPwd,
 						comName, comOwner, comAddr, comTel, comFax, comVAT,

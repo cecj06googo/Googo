@@ -83,7 +83,7 @@
              <!-- /.提醒 -->
              <!-- 商家專區 -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-briefcase"></i> 商家專區 <b class="caret"></b></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-briefcase"></i> 商家專區 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="<c:url value='/_06_manage/modCom.jsp'/>"><i class="fa fa-fw fa-pencil"></i> 修改商家資訊</a>
@@ -94,7 +94,9 @@
                      
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> 登出</a>
+                            <c:if test="${not empty LoginComOK}">
+	                        	<a href="${pageContext.request.contextPath}/_01_login/logout.jsp"><i class="fa fa-fw fa-power-off"> </i>登出</a>
+	                        </c:if>
                         </li>
                     </ul>
                 </li>
