@@ -804,10 +804,11 @@ $(function() {
     	.done(function(data){
     		//console.log(data);
     		//add element shell
+    		$("#content").empty();
     		designResult = $(data);
     		designResult.addClass("ui-draggable element")
-    					.prepend('<div class="close">×</div>');
-    		designResult.appendTo("#content");
+    					.prepend('<div class="close">×</div>')
+    					.appendTo("#content");
     	});
 	});
 });
