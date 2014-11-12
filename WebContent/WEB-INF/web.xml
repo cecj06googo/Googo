@@ -161,6 +161,10 @@
       <param-name>mustMemLogin2</param-name>
       <param-value>/_04_member/*</param-value>
     </init-param>
+        <init-param>
+      <param-name>mustMemLogin3</param-name>
+      <param-value>/_05_company/*</param-value>
+    </init-param>
   </filter>
   <filter-mapping>
     <filter-name>LoginMemFilter</filter-name>
@@ -174,10 +178,6 @@
     <filter-class>com.login.filter.LoginComFilter</filter-class>
     <init-param>
       <param-name>mustComLogin1</param-name>
-      <param-value>/_05_company/*</param-value>
-    </init-param>
-    <init-param>
-      <param-name>mustComLogin2</param-name>
       <param-value>/_06_manage/*</param-value>
     </init-param>
   </filter>
