@@ -173,6 +173,24 @@ $(function() {
                 return true;
             });
         },
+        
+        loadDesign: function(){
+        	$.ajax({
+            	url: contextPath + "/LoadDesign",
+        		dataType: "html",
+        		type: "POST",
+        		data: { com_id_form_view : $("#com_id_form_view").val() },
+        	})
+        	.done(function(data){
+        		//console.log(data);
+        		//add element shell
+        		$("#content").empty();
+        		designResult = $(data);
+        		designResult.addClass("ui-draggable element")
+        					.prepend('<div class="close">×</div>')
+        					.appendTo("#content");
+        	});
+        },
 
         // form title options
         // modified: no need any more 
@@ -797,18 +815,6 @@ $(function() {
 	
 	//modified: load form for editing
 	$("#save_form_design").on("click", function(){
-		$.ajax({
-        	url: contextPath + "/LoadDesign",
-    		dataType: "html",
-    	})
-    	.done(function(data){
-    		//console.log(data);
-    		//add element shell
-    		$("#content").empty();
-    		designResult = $(data);
-    		designResult.addClass("ui-draggable element")
-    					.prepend('<div class="close">×</div>')
-    					.appendTo("#content");
-    	});
+		form_builder.loadDesign();
 	});
 });

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="com.template.model.Prototype_OrderTemp_VO"%>
 <% Prototype_OrderTemp_VO tempVo = (Prototype_OrderTemp_VO)request.getAttribute("tempVo"); %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set value="<%= request.getSession().getAttribute(\"user_id\").toString() %>" var="currentCom" />
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,9 @@
 <link href="<%=request.getContextPath()%>/css/form_builder.css" rel="stylesheet">
 
 <script>
-// 提供form_builder.js使用的路徑
+// 取得當前登入商家 id 供設計器使用
+var currentCom = <%= request.getSession().getAttribute("user_id").toString() %>;
+// 提供 form_builder.js 使用的路徑
 var contextPath = '<%=request.getContextPath()%>';
 // top2左方功能列選項
 $("#selectManage").addClass("active");
@@ -51,7 +54,7 @@ $("#selectManage").addClass("active");
             
             <!-- modified: document heading  -->
             <div class="col-lg-offset-1 col-md-10">
-            	<div class="alert alert-danger" role="alert">This is modified version for various tests.</div>
+            	<div class="alert alert-danger" role="alert">This is modified version for various tests. Current company id: ${currentCom} </div>
             </div>
             
             <div class="col-lg-offset-1 col-sm-10 col-md-10">
@@ -72,7 +75,7 @@ $("#selectManage").addClass("active");
 						</div>
 						<!-- modified: button - save form -->
 						<form id="form_view" action="<%=request.getContextPath()%>/DesignAccessDB" method="post">
-							com_id<input type="text" name="com_id_form_view" id="com_id_form_view" /><br>
+							com_id<input type="text" name="com_id_form_view" id="com_id_form_view" value="${currentCom}" /><br>
 							command<input type="text" id="command" name="command" value="insert" readonly /><br>
 							content<textarea name="content_form_view" id="content_form_view"></textarea><br>
 							<button type="button" class="btn btn-primary" id="save_form_view">Save Form for View</button>
@@ -80,7 +83,7 @@ $("#selectManage").addClass("active");
 						
 						<form id="form_load" action="<%=request.getContextPath()%>/DesignAccessDB" method="post">
 							This form is used to load previous design result for editing.
-							com_id<input type="text" name="com_id_form_view" id="com_id_form_view" /><br>
+							com_id<input type="text" name="com_id_form_view" id="com_id_form_view" value="${currentCom}" /><br>
 							command<input type="text" id="command" name="command" value="load" readonly /><br>
 						</form>
 						<button type="button" class="btn btn-primary" id="save_form_design">Load Form for Editing</button>

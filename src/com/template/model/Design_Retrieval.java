@@ -35,6 +35,7 @@ public class Design_Retrieval extends HttpServlet {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		int com_id = 1;
 		String designResult = "";
 		StringWriter out = new StringWriter();
 		response.setCharacterEncoding("UTF-8");
@@ -45,8 +46,11 @@ public class Design_Retrieval extends HttpServlet {
 			conn = DriverManager.getConnection(url, user, pw);
 			pstmt = conn.prepareStatement(pstmt_Retrieve);
 			
-			//lock in for testing, company number 1
-			pstmt.setInt(1, 1);
+			if(request.getParameter("com_id_form_view") != null){
+				com_id = Integer.parseInt((String)request.getParameter("com_id_form_view"));	
+			}
+			System.out.println("Load design of: " + com_id);
+			pstmt.setInt(1, com_id);
 			
 			rs = pstmt.executeQuery();
 			
