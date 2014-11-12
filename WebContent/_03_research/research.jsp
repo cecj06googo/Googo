@@ -151,10 +151,8 @@ html, body, #map-canvas {
 		<!-- 搜尋結果 -->
 		<div class="row">
 			<!-- 地圖-->
-			<div class="col-md-5" id="map-canvas">
-				<!-- 				<div id="map-canvas"></div> -->
-				<!-- 				<img class="img-responsive" -->
-				<%-- 					src="${pageContext.request.contextPath}/img/06.jpg"> <br> --%>
+			<div class="col-md-5">
+				<div id="map-canvas"></div>
 			</div>
 			<!-- /.地圖-->
 			<!-- 商家列表 -->
