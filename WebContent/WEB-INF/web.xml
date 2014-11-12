@@ -95,12 +95,21 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>onLoadDAO</servlet-name>
+    <servlet-name>onloadMem</servlet-name>
     <servlet-class>com.orders.controller.onLoad</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>onLoadDAO</servlet-name>
-    <url-pattern>/orderOnLoad.gg</url-pattern>
+    <servlet-name>onloadMem</servlet-name>
+    <url-pattern>/onloadMem.gg</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>onloadCom</servlet-name>
+    <servlet-class>com.orders.controller.onLoad</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>onloadCom</servlet-name>
+    <url-pattern>/onloadCom.gg</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -110,6 +119,15 @@
   <servlet-mapping>
     <servlet-name>Delete</servlet-name>
     <url-pattern>/Delete.gg</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>s</servlet-name>
+    <servlet-class>com.orders.controller.OrdersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>s</servlet-name>
+    <url-pattern>/se.gg</url-pattern>
   </servlet-mapping>
   
   <servlet>

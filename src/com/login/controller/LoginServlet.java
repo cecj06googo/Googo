@@ -1,9 +1,7 @@
 package com.login.controller;
 
 import java.io.IOException;
-
 import java.util.HashMap;
-
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.connector.Request;
 
 import com.login.model.LoginService;
 import com.login.model.LoginVO;
@@ -67,7 +67,8 @@ public class LoginServlet extends HttpServlet {
 				} else if (loginVO.getCom_id() != null) {
 					session.setAttribute("Identity", user_identity);
 					session.setAttribute("user_id", loginVO.getCom_id()); 
-					url = "/orderOnLoad.gg";
+					url = "/onloadCom.gg";
+					request.setAttribute("onloadCom", "onloadCom");
 					System.out.println(loginVO.getCom_id());
 				} else {
 					errorMsg.put("errorLogin", "登入失敗，請檢查e-mail帳號及密碼");

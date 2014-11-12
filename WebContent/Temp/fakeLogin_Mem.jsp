@@ -18,7 +18,7 @@
         <div class="col-lg-12 text-center">
 
 	<form action="<%=request.getContextPath()%>/fakeData.gg" method="post">
-		會員ID：<input type="text"  name="user_id" value="1" /><BR>
+		會員ID：<input type="text"  name="user_id" value="3" /><BR>
 		<c:if test="${not empty sessionScope.user_id}">
 			<font><c:out value="目前session內的會員編號：${sessionScope.user_id}" /></font>
 		</c:if>

@@ -47,7 +47,7 @@ public class onLoad extends HttpServlet {
 			List<OrdersVO> ordVO = odrSvc.ordSearch_com(com_id, sel_stus,
 					sel_time);
 
-			System.out.println(ordVO.size());
+			System.out.println("資料庫總訂單數量:"+ordVO.size());
 
 			int newOrd = 0;
 			int noReCar = 0;
@@ -124,7 +124,7 @@ public class onLoad extends HttpServlet {
 			List<OrdersVO> ordVO = odrSvc.ordSearch_com(com_id, sel_stus,
 					sel_time);
 
-			System.out.println(ordVO.size());
+			System.out.println("未處理訂單數量:" + ordVO.size());
 			request.setAttribute("ordVO", ordVO);
 			/******************** (Send the Success view) ************/
 			String url = "/_05_company/orderCom.jsp";
@@ -143,7 +143,7 @@ public class onLoad extends HttpServlet {
 			List<OrdersVO> ordVO = odrSvc.ordSearch_com(com_id, sel_stus,
 					sel_time);
 
-			System.out.println(ordVO.size());
+			System.out.println("未還車訂單數量:"+ordVO.size());
 			request.setAttribute("ordVO", ordVO);
 			/******************** (Send the Success view) ************/
 			String url = "/_05_company/orderCom.jsp";
