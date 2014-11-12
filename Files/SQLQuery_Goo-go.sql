@@ -97,6 +97,7 @@ INSERT INTO Company VALUES ('antai126@pchome.com', 'antai126', '安泰3租車', 
 INSERT INTO Company VALUES ('antai127@pchome.com', 'antai127', '安泰4租車', '李小泰4', '臺北市內湖區新湖二路200號1樓', '0200422944', '02004229344', 12144169,NULL, 0, NULL);
 INSERT INTO Company VALUES ('antai128@pchome.com', 'antai128', '只有機車租車', '李小泰5', '臺北市內湖區新湖二路201號1樓', '0200422945', '02004229345', 12144170,NULL, 0, NULL);
 INSERT INTO Company VALUES ('antai129@pchome.com', 'antai129', '只有汽車租車', '李小泰6', '臺北市內湖區新湖二路202號1樓', '0200422946', '02004229346', 12144171,NULL, 0, NULL);
+INSERT INTO Company VALUES ('eee@abc.com.tw', 'aaa123', '馬小九只有ㄐ車', '馬小九', '臺北市內湖區新湖二路202號1樓', '0233657777', '0910222333', 12144172,NULL, 0, NULL);
 
 Create Table Product_Type(
             prodtype_id int   NOT NULL Primary Key,

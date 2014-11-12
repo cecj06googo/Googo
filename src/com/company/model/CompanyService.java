@@ -76,6 +76,14 @@ public class CompanyService {
 		return dao.findByPrimaryKey(comID);
 	}
 	
+	// 暫時定義
+	public CompanyVO updateComStatus(Integer comID, Integer comStatus) {
+		CompanyVO comVO = new CompanyVO();
+		comVO.setComID(comID);
+		comVO.setComStatus(comStatus);
+		return dao.findByPrimaryKey(comID);
+	}
+	
 	public CompanyVO getOneCom(Integer comID) {
 		return dao.findByPrimaryKey(comID);
 	}
