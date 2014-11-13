@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>    
+	pageEncoding="UTF-8" import="com.template.model.Prototype_OrderTemp_VO, com.member.model.MemVO"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -11,23 +15,10 @@
 <body>
 <jsp:include page="/_00_fragment/top1.jsp" />
 <br>
-	<!-- 顯示session中的假資料 -->
-	<c:if test="${not empty sessionScope.mem_id}">
-		<p>
-			session內的會員編號：
-			<c:out value="${sessionScope.mem_id}" />
-		</p>
-	</c:if>
-	<hr>
-	<c:if test="${not empty sessionScope.com_id}">
-		<p>
-			session內的商家編號：
-			<c:out value="${sessionScope.com_id}" />
-		</p>
-	</c:if>
-	<!-- Compiler會騙人啦討厭 =3=  -->
-	<hr>
-	${MsgOK.InsertOK}
+
+<h2>Current Com: ${LoginComOK.comID}</h2>
+<h2>Current Mem: ${LoginMemOK.mem_id}</h2>
+
 	<OL>
 		<font color="blue"><b>訂單</b></font>
 		<form action="<%=request.getContextPath()%>/fakeData.gg" method="post">
