@@ -15,7 +15,7 @@ import com.company.model.CompanyVO;
 import com.login.model.LoginService;
 import com.member.model.MemService;
 import com.member.model.MemVO;
-
+import com.orders.controller.LoginOrdersOnLoad;
 public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -95,7 +95,7 @@ public class LoginServlet extends HttpServlet {
 		// 3. 進行 Business Logic 運算
 		System.out.println("會員種類: " + userIdentity);
 		
-		Integer	userId;
+		Integer	userId = null; //要設初值才能傳進方法內
 		MemVO memVO = null;
 		CompanyVO comVO = null;
 		try {
@@ -114,6 +114,9 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("LoginComOK", comVO);
 				System.out.println("session裡面: " + comVO.getComName());
 			}
+			//阿阮新增-userIdentity存進session內比較好比對
+			session.setAttribute("userIdentity", userIdentity);
+			//阿阮新增-------------------------------
 		} catch(Exception e) {
 			e.getStackTrace();
 			errorMsg.put("LoginError", "該帳號不存在或密碼錯誤");
@@ -141,6 +144,10 @@ public class LoginServlet extends HttpServlet {
 					return;
 				} else {
 					System.out.println("進入商家後端");
+					//阿阮新增-----------
+					LoginOrdersOnLoad OCOL = new LoginOrdersOnLoad();  
+					session = OCOL.ComOnLoad(session,userId);
+					//----------------
 					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/manage.jsp"));
 					return;
 				}
