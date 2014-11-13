@@ -2,6 +2,8 @@ package com.orders.controller;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.member.model.MemVO;
 import com.orders.model.OrdersService;
 import com.orders.model.OrdersVO;
 
@@ -70,7 +73,7 @@ public class OrdersServlet extends HttpServlet {
 			Timestamp ord_time = null;
 			Timestamp ord_getday = null;
 			Timestamp ord_reday = null;
-			Double item_total = null;
+			Integer item_total = null;
 			Integer prod_id = null;
 			Integer acc_id = null;
 
@@ -172,7 +175,7 @@ public class OrdersServlet extends HttpServlet {
 								"格式錯誤，範例： 2014-10-20 07:06:32");
 					}
 					try {
-						item_total = Double.parseDouble(_item_total.trim());
+						item_total = Integer.parseInt(_item_total.trim());
 					} catch (Exception e) {
 						errorMsg.put("errorItem_total", "訂單金額應該為整數");
 					}
@@ -313,7 +316,7 @@ public class OrdersServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			} // end Mem if
-			
+
 			if ("Com".equals(Identity)) {
 				try {
 					// ------------------資料接收----------------------
@@ -376,14 +379,12 @@ public class OrdersServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 			} // end Com if
-			
-			
+
 		} // end select
 
 		// ------------------取消訂單----------------------
-		if ("delete".equals(action)) {
-			// 要判斷session內的(字串?)是商家還是會員
-			// 訂單狀態(目前先為會員取消 5)
+		if ("cancelMem".equals(action)) {
+			// 訂單狀態(5 = 會員取消 )
 			Integer ord_status = 5;
 
 			// String暫時接收屬性
@@ -396,6 +397,9 @@ public class OrdersServlet extends HttpServlet {
 			Integer ord_id = null;
 			Integer sel_stus = null;
 			String sel_time = "";
+			// 現在時間
+			Timestamp cancelTime = null;
+			cancelTime = new Timestamp(System.currentTimeMillis());
 
 			// ------------------資料接收----------------------
 			try {
@@ -478,7 +482,7 @@ public class OrdersServlet extends HttpServlet {
 					// ---------------寫入database----------------------
 					if (errorMsg.isEmpty()) {
 						OrdersService odrSvc = new OrdersService();
-						odrSvc.ordDelete(ord_id, ord_status);
+						odrSvc.ordCancel(ord_id, ord_status, cancelTime);
 						List<OrdersVO> ordVO = odrSvc.ordSearch_mem(user_id,
 								sel_stus, sel_time);
 
@@ -491,6 +495,130 @@ public class OrdersServlet extends HttpServlet {
 					/******************** (Send the Success view) ************/
 
 					String url = "/_04_member/orderMem.jsp";
+					RequestDispatcher successView = request
+							.getRequestDispatcher(url);
+
+					successView.forward(request, response);
+
+				} else {
+					errorMsg.put("errTitle", "此表單不是上傳檔案的表單");
+				} // end if 表單驗證
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} // end deleteMem
+
+		if ("cancelCom".equals(action)) {
+			// 訂單狀態(6 = 商家取消 )
+			Integer ord_status = 6;
+
+			// String暫時接收屬性
+			Object _user_id = "";
+			String _ord_id = "";
+			Object _sel_stus = "";
+			Object _sel_time = "";
+			// 真接收屬性
+			Integer user_id = null;
+			Integer ord_id = null;
+			Integer sel_stus = null;
+			String sel_time = "";
+			// 現在時間
+			Timestamp cancelTime = null;
+			cancelTime = new Timestamp(System.currentTimeMillis());
+			// ------------------資料接收----------------------
+			try {
+				// ------------------表單驗證----------------------
+				Map<String, String[]> dataMap = request.getParameterMap();
+				Iterator<Map.Entry<String, String[]>> entries = dataMap
+						.entrySet().iterator();
+				if (entries != null) { // 如果這是一個上傳資料的表單
+					// 讀取使用者輸入資料
+					String name = "";
+					String value = "";
+					while (entries.hasNext()) {
+						Map.Entry<String, String[]> entry = entries.next();
+						name = entry.getKey();
+						Object valueObj = entry.getValue();
+
+						if (valueObj == null) {
+							value = "";
+						} else if (valueObj instanceof String[]) {
+							String[] values = (String[]) valueObj;
+							for (int i = 0; i < values.length; i++) {
+								value = values[i] + ",";
+							}
+							value = value.substring(0, value.length() - 1);
+						} else {
+							value = valueObj.toString();
+						}
+
+						if (name.equalsIgnoreCase("_ord_id")) {
+							_ord_id = value;
+						} else {
+							continue;
+						}
+
+					} // end while
+
+					_ord_id = request.getParameter("ord_id");
+					_user_id = session.getAttribute("user_id");
+					_sel_stus = session.getAttribute("sel_stus");
+					_sel_time = session.getAttribute("sel_time");
+					// ------------------資料驗證+轉型----------------------
+					try {
+						user_id = Integer.parseInt(_user_id.toString().trim());
+					} catch (NumberFormatException e) {
+						errorMsg.put("errorSelect", "看到鬼，ID應該為整數");
+					} catch (NullPointerException e) {
+						errorMsg.put("errorSelect", "看到鬼，ID應該為整數不應為空值");
+					}
+
+					try {
+						ord_id = Integer.parseInt(_ord_id.toString().trim());
+					} catch (NumberFormatException e) {
+						errorMsg.put("errorSelect", "看到鬼，訂單編號被竄改");
+					} catch (NullPointerException e) {
+						errorMsg.put("errorSelect", "看到鬼，訂單編號應該為整數不應為空值");
+					}
+
+					try {
+						sel_stus = Integer
+								.parseInt(_sel_stus.toString().trim());
+					} catch (NumberFormatException e) {
+						errorMsg.put("errorSelect", "看到鬼，訂單狀態編號被竄改");
+					} catch (NullPointerException e) {
+						errorMsg.put("errorSelect", "看到鬼，訂單編號應該為整數不應為空值");
+					}
+
+					try {
+						sel_time = _sel_time.toString().trim();
+
+						if (sel_time.trim().length() < 2
+								|| sel_time.trim().length() > 3) {
+							errorMsg.put("errorSelect", "看到鬼，訂單日期被竄改");
+						}
+					} catch (NumberFormatException e) {
+						errorMsg.put("errorSelect", "看到鬼，訂單日期被竄改");
+					} catch (NullPointerException e) {
+						errorMsg.put("errorSelect", "看到鬼，訂單日期應該為整數不應為空值");
+					}
+
+					// ---------------寫入database----------------------
+					if (errorMsg.isEmpty()) {
+						OrdersService odrSvc = new OrdersService();
+						odrSvc.ordCancel(ord_id, ord_status, cancelTime);
+						List<OrdersVO> ordVO = odrSvc.ordSearch_com(user_id,
+								sel_stus, sel_time);
+						request.setAttribute("ordVO", ordVO);
+						if (ordVO.isEmpty()) {
+							msgOK.put("SearchNull", "沒有資料");
+						}
+					}
+
+					/******************** (Send the Success view) ************/
+
+					String url = "/_05_company/orderCom.jsp";
 					RequestDispatcher successView = request
 							.getRequestDispatcher(url);
 

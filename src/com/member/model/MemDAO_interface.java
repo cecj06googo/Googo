@@ -13,4 +13,3 @@ public interface MemDAO_interface {
      public List<MemVO> getAll(Map<String, String[]> map); 
      
 }
-

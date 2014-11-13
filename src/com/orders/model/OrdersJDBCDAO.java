@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,20 +24,20 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 			"INSERT INTO Ord_item (ord_id,prod_id,acc_id,item_name,item_tel,item_phone,item_email,pritem_acc,item_all)"
 			+ " VALUES (?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_GETALL_Mem = 
-			" SELECT ord.ord_id, ord.ord_status, sta.status_char, ord_time, ord_getday, ord_reday ,item_total "
+			" SELECT ord.ord_id, ord.ord_status, sta.status_char, ord_time, ord_getday, ord_reday , ord_deleteTime , item_total "
 			+ "FROM Orders ord JOIN Ord_status sta  "
 			+ "ON ord.ord_status =  sta.ord_status "
 			+ "WHERE  mem_id = ? "
 			+ "ORDER BY ord.ord_status";
 	
 	private static final String SELECT_GETALL_Com = 
-			" SELECT ord.ord_id, ord.ord_status, sta.status_char, ord_time, ord_getday, ord_reday ,item_total "
+			" SELECT ord.ord_id, ord.ord_status, sta.status_char, mem_account , ord_time, ord_getday, ord_reday , ord_cancelTime , item_total "
 			+ "FROM Orders ord JOIN Ord_status sta  "
 			+ "ON ord.ord_status =  sta.ord_status "
-			+ "WHERE  com_id = ? "
+			+ "JOIN Member mem  ON ord.mem_id = mem.mem_id WHERE com_id = ? "
 			+ "ORDER BY ord.ord_status";
-	private static final String DELETE_GETALL_Mem = "UPDATE Orders SET ord_status = ? WHERE ord_id = ?";
-			
+	private static final String CANCEL_ORDER = "UPDATE Orders SET ord_status = ?, ord_cancelTime = ? WHERE ord_id = ?";
+	
 	//指令碼用""+""時 有可能會發生指令錯誤(原因不明)  
 	  
 	@Override
@@ -140,7 +141,8 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 				ordVO.setOrd_getday(rs.getTimestamp("ord_getday"));
 				ordVO.setStatus_char(rs.getString("status_char"));
 				ordVO.setOrd_reday(rs.getTimestamp("ord_reday"));
-				ordVO.setItem_total(rs.getDouble("item_total"));
+				ordVO.setOrd_cancelTime(rs.getTimestamp("ord_deleteTime"));
+				ordVO.setItem_total(rs.getInt("item_total"));
 				list.add(ordVO);
 			}
 
@@ -207,7 +209,9 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 				ordVO.setOrd_getday(rs.getTimestamp("ord_getday"));
 				ordVO.setStatus_char(rs.getString("status_char"));
 				ordVO.setOrd_reday(rs.getTimestamp("ord_reday"));
-				ordVO.setItem_total(rs.getDouble("item_total"));
+				ordVO.setOrd_cancelTime(rs.getTimestamp("ord_cancelTime"));
+				ordVO.setItem_total(rs.getInt("item_total"));
+				ordVO.setMem_account(accountAddStar(rs.getString("mem_account")));
 				list.add(ordVO);
 			}
 
@@ -250,7 +254,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 	
 	
 	@Override
-	public void user_delete(Integer ord_id , Integer ord_status) {
+	public void user_cancel(Integer ord_id , Integer ord_status,Timestamp cancelTime) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -259,9 +263,10 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(DELETE_GETALL_Mem);
+			pstmt = con.prepareStatement(CANCEL_ORDER);
 			pstmt.setInt(1, ord_status);
-			pstmt.setInt(2, ord_id);
+			pstmt.setTimestamp(2, cancelTime);
+			pstmt.setInt(3, ord_id);
 			pstmt.executeUpdate();
 			
 			
@@ -305,7 +310,24 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 	
 	
 	// 非資料庫存取的方法(看是要放在controller或DAO這裡)
-
+	public String accountAddStar(String _mem_account){
+		
+		StringBuilder mem_account = new StringBuilder().append(_mem_account);
+		int index= mem_account.indexOf("@");
+		StringBuilder acc_ago = new StringBuilder().append(mem_account.substring(0,index));
+		StringBuilder acc_first = new StringBuilder().append(mem_account.substring(0,1));
+		StringBuilder acc_last = new StringBuilder().append(mem_account.substring(index-1));
+		StringBuilder newAccount = new StringBuilder().append(acc_first);
+		int length = acc_ago.length()-2;
+		for(int i = 0; i < length; i++){
+			newAccount.append("*");
+		}
+		newAccount.append(acc_last);
+		return newAccount.toString();
+	}
+	
+	
+	
 	public boolean Conditions(OrdersVO ordVO, Integer sel_stus, String sel_time) {
 		Integer ord_status = ordVO.getOrd_status();
 		if (sel_stus == 0 || sel_stus.equals(ord_status)) {
@@ -315,7 +337,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 		}
 		return false;
 	}
-
+	
 	public Boolean con_Time(OrdersVO ordVO, String sel_time) {
 		long _user_long = -1;
 

@@ -83,4 +83,65 @@ public class LoginJDBCDAO implements LoginDAO_interface {
 		} // end finally
 	} // end login
 
+	public Integer loginId(String userAccount, String userPwd, String userIdentity) {
+		Integer userId = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName(driver);
+
+			con = DriverManager.getConnection(url, userid, passwd);
+			if ("Mem".equals(userIdentity)) {
+				pstmt = con.prepareStatement(MEM_LOGIN_CHECK);
+
+			} else if ("Com".equals(userIdentity)) {
+				pstmt = con.prepareStatement(COM_LOGIN_CHECK);
+			}
+
+			pstmt.setString(1, userAccount);
+			pstmt.setString(2, userPwd);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				if ("Mem".equals(userIdentity)) {
+					userId = rs.getInt("mem_id");
+				} else if ("Com".equals(userIdentity)) {
+					userId = rs.getInt("com_id");
+				}
+			}
+				return userId;
+		
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+
+		} // end finally
+		
+	}
+	
+	
 } // end DAO

@@ -58,7 +58,7 @@ public class fakeData extends HttpServlet{
 			session.setAttribute("Identity", "Mem");  //session存值(代表登入的是會員)
 			request.removeAttribute("action");
 			/******************** (Send the Success view) ************/
-			String url = "/orderOnLoad.gg";
+			String url = "/onloadMem.gg";
 			
 			RequestDispatcher successView = request
 					.getRequestDispatcher(url);									

@@ -13,7 +13,7 @@ public class OrdersService {
 
 	public OrdersVO addOrder(Integer _ord_status, Integer _com_id,
 			Integer _mem_id, Timestamp _ord_time, Timestamp _ord_getday,
-			Timestamp _ord_reday, Double _item_total, Integer _prod_id,
+			Timestamp _ord_reday, Integer _item_total, Integer _prod_id,
 			Integer _acc_id, String _item_name, String _item_phone,
 			String _item_tel, String _item_email, String _pritem_acc,
 			String _item_all) {
@@ -61,13 +61,21 @@ public class OrdersService {
 	
 	
 	public List<OrdersVO> ordSearch_mem(Integer user_id,Integer sel_stus,String sel_time){
+		System.out.println("會員ID:"+user_id);
+		System.out.println("訂單選擇狀態:"+sel_stus);
+		System.out.println("訂單選擇時間:"+sel_time);
 		return dao.mem_getAll(user_id,sel_stus,sel_time);
 	}// end ordSearch
 	
 	public List<OrdersVO> ordSearch_com(Integer user_id,Integer sel_stus,String sel_time){
+		System.out.println("商家ID:"+user_id);
+		System.out.println("訂單選擇狀態:"+sel_stus);
+		System.out.println("訂單選擇時間:"+sel_time);
 		return dao.com_getAll(user_id,sel_stus,sel_time);
 	}// end ordSearch
-	public void ordDelete(Integer ord_id, Integer ord_status){
-		dao.user_delete(ord_id , ord_status);
+	public void ordCancel(Integer ord_id, Integer ord_status,Timestamp cancelTime){
+		System.out.println("被刪除的訂單ID:"+ord_id);
+		System.out.println("訂單狀態更改為:"+ord_status);
+		dao.user_cancel(ord_id , ord_status,cancelTime);
 	}// end ordSearch
 }

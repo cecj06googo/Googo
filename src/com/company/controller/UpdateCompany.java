@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -40,9 +41,9 @@ public class UpdateCompany extends HttpServlet {
 		Map<String, String> errorMsgs = new HashMap<String, String>();
 		Map<String, String> successMsgs = new HashMap<String, String>();
 
-		// HttpSession session = req.getSession();
-		// session.setAttribute("successMsgs", successMsgs); //顯示正常訊息
-		req.setAttribute("successMsgs", successMsgs);
+		HttpSession session = req.getSession(false);
+		session.setAttribute("successMsgs", successMsgs); //顯示正常訊息
+//		req.setAttribute("successMsgs", successMsgs);
 		req.setAttribute("errorMsgs", errorMsgs);
 
 		byte[] comPic = null;
@@ -169,7 +170,7 @@ public class UpdateCompany extends HttpServlet {
 				
 				// 1.接收請求參數 - 重複註冊的錯誤處理
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("companyVO", companyVO);
+					session.setAttribute("LoginComOK", companyVO);
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/_06_manage/modCom.jsp");
 					failureView.forward(req, res);
@@ -179,19 +180,19 @@ public class UpdateCompany extends HttpServlet {
 				// 2.開始新增資料
 				CompanyService comService = new CompanyService();
 				if (comPic == null) {
-					comPic =  comService.getOneCom(comID).getComPic();    // 取出原商家圖片
+					comPic = comService.getOneCom(comID).getComPic();    // 取出原商家圖片
 				}
 				companyVO = comService.updateCompany(comID, comAccount, comPwd,
 						comName, comOwner, comAddr, comTel, comFax, comVAT,
 						comPic, comStatus);
 				
 				// 3.新增完成,準備轉交(Send the Success view)				
-				req.setAttribute("companyVO", companyVO);
+				session.setAttribute("LoginComOK", companyVO);
 				successMsgs.put("seccessUpdate", "修改完成");
-				String url = "/_06_manage/modCom.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
-				// res.sendRedirect(url);
+				String url = req.getContextPath() + "/_06_manage/modCom.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher(url);
+//				successView.forward(req, res);
+				res.sendRedirect(res.encodeRedirectURL(url));
 
 			// 其他可能的錯誤處理				
 			} catch (Exception e) {
