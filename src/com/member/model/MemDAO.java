@@ -22,7 +22,7 @@ public class MemDAO implements MemDAO_interface {
 	private static final String DELETE = 
 		"UPDATE Member set  mem_status=0 where mem_id = ?";
 	private static final String GET_ONE_STMT = 
-		"SELECT mem_account,mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address FROM Member where mem_id = ?";
+		"SELECT mem_account,mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address,mem_status FROM Member where mem_id = ?";
 	private static final String GET_ALL_STMT = 
 		"SELECT mem_account,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address FROM Member order by empno";
 	private static final String OPEN_ACCOUNT= 
@@ -203,6 +203,7 @@ public class MemDAO implements MemDAO_interface {
 				memVO.setMem_tel(rs.getString("mem_tel"));
 				memVO.setMem_phone(rs.getString("mem_phone"));
 				memVO.setMem_address(rs.getString("mem_address"));
+				memVO.setMem_status(rs.getInt("mem_status"));
 			}
 
 			// Handle any driver errors

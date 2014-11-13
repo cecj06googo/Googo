@@ -64,7 +64,7 @@ public class MemService {
 		dao.delete(mem_id);
 	}
 
-	public MemVO getOneEmp(Integer mem_id) {
+	public MemVO getOneMem(Integer mem_id) {
 		return dao.findByPrimaryKey(mem_id);
 	}
 
