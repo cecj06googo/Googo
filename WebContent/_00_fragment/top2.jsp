@@ -131,7 +131,7 @@
                         </ul>
                     </li>
                     <li id="selectDesignOrder">
-                        <a href="#"><i class="fa fa-fw fa-clipboard"></i> 設計訂單</a>
+                        <a href="<c:url value='/Temp/ApplySample_hooked.jsp' />"><i class="fa fa-fw fa-clipboard"></i> 設計訂單</a>
                     </li>
                     <li id="selectDesignStock">
                         <a href="#"><i class="fa fa-fw fa-edit"></i> 設計問券</a>

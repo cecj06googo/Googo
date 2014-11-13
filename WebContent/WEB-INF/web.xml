@@ -135,6 +135,8 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login.gg</url-pattern>
   </servlet-mapping>
+  
+  <!-- Begin: 設計器相關 -->
   <servlet>
     <servlet-name>DesignAccessDB</servlet-name>
     <servlet-class>com.template.controller.Prototype_OrderTemp_Servlet</servlet-class>
@@ -143,6 +145,7 @@
     <servlet-name>DesignAccessDB</servlet-name>
     <url-pattern>/DesignAccessDB</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>GetAccessory</servlet-name>
     <servlet-class>com.template.model.Accessory_Retrieval</servlet-class>
@@ -151,6 +154,17 @@
     <servlet-name>GetAccessory</servlet-name>
     <url-pattern>/GetAccessory</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>LoadDesign</servlet-name>
+    <servlet-class>com.template.model.Design_Retrieval</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoadDesign</servlet-name>
+    <url-pattern>/LoadDesign</url-pattern>
+  </servlet-mapping>
+  <!-- End: 設計器相關 -->
+  
   <servlet>
     <servlet-name>MemServlet</servlet-name>
     <servlet-class>com.member.controller.MemServlet</servlet-class>
@@ -218,4 +232,5 @@
     <filter-name>LoginComFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
 </web-app>
