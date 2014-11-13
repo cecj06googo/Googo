@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                             </div>                        
-                            <a href="#">
+                            <a href="<%=request.getContextPath()%>/_06_manage/product.jsp">
                                 <div class="panel-footer">
                                     <span class="pull-left">庫存管理</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

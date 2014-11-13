@@ -76,15 +76,20 @@ public class CompanyService {
 		return dao.findByPrimaryKey(comID);
 	}
 	
-	// 暫時定義
+	// 開通商家帳號
 	public CompanyVO updateComStatus(Integer comID, Integer comStatus) {
-		CompanyVO comVO = new CompanyVO();
+		CompanyVO comVO = dao.findByPrimaryKey(comID);
 		comVO.setComID(comID);
 		comVO.setComStatus(comStatus);
+		dao.update(comVO);
 		return dao.findByPrimaryKey(comID);
 	}
 	
 	public CompanyVO getOneCom(Integer comID) {
 		return dao.findByPrimaryKey(comID);
+	}
+	
+	public Integer openComAccount(String comHashURL) {
+		return dao.findByPrimaryKey(comHashURL);
 	}
 }
