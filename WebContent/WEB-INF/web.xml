@@ -189,6 +189,14 @@
     <servlet-name>ActivateAccount</servlet-name>
     <url-pattern>/ActivateAccount</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ActivateCompanyAccount</servlet-name>
+    <servlet-class>com.company.controller.ActivateCompanyAccount</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActivateCompanyAccount</servlet-name>
+    <url-pattern>/CActivateAccount</url-pattern>
+  </servlet-mapping>
   
 <!-- Filter設定 -->
   <filter>
