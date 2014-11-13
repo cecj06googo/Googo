@@ -8,5 +8,6 @@ public interface ICompanyDAO {
 	public void update(CompanyVO comVO);
 	public void delete(Integer comID);
 	public CompanyVO findByPrimaryKey(Integer comID);
+	public Integer findByPrimaryKey(String comHashURL);
     public List<CompanyVO> getAll();
 }

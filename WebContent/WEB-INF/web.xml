@@ -68,6 +68,14 @@
     <url-pattern>/Select.gg</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>SelectCom</servlet-name>
+    <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SelectCom</servlet-name>
+    <url-pattern>/SelectCom.gg</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>fakeDataTest</servlet-name>
     <servlet-class>com.orders.controller.fakeData</servlet-class>
   </servlet>
@@ -76,55 +84,38 @@
     <url-pattern>/fakeData.gg</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>onloadMem</servlet-name>
-    <servlet-class>com.orders.controller.onLoad</servlet-class>
+    <servlet-name>cancelCom</servlet-name>
+    <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>onloadMem</servlet-name>
-    <url-pattern>/onloadMem.gg</url-pattern>
+    <servlet-name>cancelCom</servlet-name>
+    <url-pattern>/cancelCom.gg</url-pattern>
+  </servlet-mapping>
+<!--   <servlet> -->
+<!--     <servlet-name>s</servlet-name> -->
+<!--     <servlet-class>com.orders.controller.OrdersServlet</servlet-class> -->
+<!--   </servlet> -->
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>s</servlet-name> -->
+<!--     <url-pattern>/se.gg</url-pattern> -->
+<!--   </servlet-mapping> -->
+  
+  <servlet>
+    <servlet-name>newOrdCom</servlet-name>
+    <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>newOrdCom</servlet-name>
+    <url-pattern>/newOrdCom.gg</url-pattern>
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>onloadCom</servlet-name>
-    <servlet-class>com.orders.controller.onLoad</servlet-class>
+    <servlet-name>reCarCom</servlet-name>
+    <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>onloadCom</servlet-name>
-    <url-pattern>/onloadCom.gg</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>Delete</servlet-name>
-    <servlet-class>com.orders.controller.OrdersServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Delete</servlet-name>
-    <url-pattern>/Delete.gg</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>s</servlet-name>
-    <servlet-class>com.orders.controller.OrdersServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>s</servlet-name>
-    <url-pattern>/se.gg</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>newOrd</servlet-name>
-    <servlet-class>com.orders.controller.onLoad</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>newOrd</servlet-name>
-    <url-pattern>/newOrd.gg</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>noreCar</servlet-name>
-    <servlet-class>com.orders.controller.onLoad</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>noreCar</servlet-name>
-    <url-pattern>/noreCar.gg</url-pattern>
+    <servlet-name>reCarCom</servlet-name>
+    <url-pattern>/reCarCom.gg</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -135,6 +126,8 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login.gg</url-pattern>
   </servlet-mapping>
+  
+  <!-- Begin: 設計器相關 -->
   <servlet>
     <servlet-name>DesignAccessDB</servlet-name>
     <servlet-class>com.template.controller.Prototype_OrderTemp_Servlet</servlet-class>
@@ -143,6 +136,7 @@
     <servlet-name>DesignAccessDB</servlet-name>
     <url-pattern>/DesignAccessDB</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>GetAccessory</servlet-name>
     <servlet-class>com.template.model.Accessory_Retrieval</servlet-class>
@@ -151,6 +145,17 @@
     <servlet-name>GetAccessory</servlet-name>
     <url-pattern>/GetAccessory</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>LoadDesign</servlet-name>
+    <servlet-class>com.template.model.Design_Retrieval</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoadDesign</servlet-name>
+    <url-pattern>/LoadDesign</url-pattern>
+  </servlet-mapping>
+  <!-- End: 設計器相關 -->
+  
   <servlet>
     <servlet-name>MemServlet</servlet-name>
     <servlet-class>com.member.controller.MemServlet</servlet-class>
@@ -174,6 +179,14 @@
   <servlet-mapping>
     <servlet-name>ActivateAccount</servlet-name>
     <url-pattern>/ActivateAccount</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ActivateCompanyAccount</servlet-name>
+    <servlet-class>com.company.controller.ActivateCompanyAccount</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActivateCompanyAccount</servlet-name>
+    <url-pattern>/CActivateAccount</url-pattern>
   </servlet-mapping>
   
 <!-- Filter設定 -->
@@ -218,4 +231,5 @@
     <filter-name>LoginComFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+
 </web-app>
