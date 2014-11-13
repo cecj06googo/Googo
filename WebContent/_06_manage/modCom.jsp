@@ -4,10 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.company.model.*"%>
 
-<%
-	CompanyVO companyVO = (CompanyVO) request.getAttribute("companyVO");
-%>
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,9 +33,7 @@
              <h2 class="page-header"><i class="fa  fa-briefcase"></i> 修改商家資料 <small>modification</small> </h2>
          </div><!--/.標頭-->
          
-         <div>
-		 	<font color="red" size="3">${successMsgs.seccessUpdate}</font>
-		</div>
+         <div id="successInfo"></div>
          
         <!--商家修改資料內容-->
          <div class="col-lg-12">
@@ -53,7 +47,7 @@
         
         <div class="col-lg-12 col-lg-offset-1">
 			<img class="img-responsive" 
-				src='${pageContext.servletContext.contextPath}/image?comID=${companyVO.comID}' alt=""> <!-- http://placehold.it/750x450  -->
+				src='${pageContext.servletContext.contextPath}/image?comID=${LoginComOK.comID}' alt=""> <!-- http://placehold.it/750x450  -->
 				
 				<br><br>
 		   </div>
@@ -66,7 +60,7 @@
                      <label class="control-label">帳號:</label>
                      <div class="controls">
                          <input type="text" class="form-control" name="comAccount" id="com_account" 
-                          value="${companyVO.comAccount}" disabled>
+                          value="${LoginComOK.comAccount}" disabled>
 <!--                     	<span class="input-group-addon"><i class="fa fa-ban"></i></span>fa fa-ban -->
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorAccount}</font></span>
@@ -75,7 +69,7 @@
                      <label class="control-label">密碼:</label>
                      <div class="controls ">
                          <input type="password" class="form-control" name="comPwd" id="com_pwd" 
-                          placeholder="" value="${companyVO.comPwd}"
+                          placeholder="" value="${LoginComOK.comPwd}"
                           data-toggle="tooltip" data-placement="top" title="<h5>請輸入6-12個字元，英文數字至少各一。<h5>"  >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorPwd}</font></span>
@@ -84,7 +78,7 @@
                      <label class="control-label">密碼確認:</label>
                      <div class="controls ">
                          <input type="password" class="form-control" name="comPwdConfirm" id="com_pwd"
-                          placeholder="請再次輸入密碼" value="${companyVO.comPwd}"
+                          placeholder="請再次輸入密碼" value="${LoginComOK.comPwd}"
                           data-toggle="tooltip" data-placement="top" title="<h5>請再次輸入密碼<h5>" >
                      </div>
                  </div>
@@ -92,7 +86,7 @@
                      <label>商家名稱:</label>
                      <div class="controls ">
                          <input type="text" class="form-control" name="comName" id="com_name"
-                          placeholder="" value="${companyVO.comName}" >
+                          placeholder="" value="${LoginComOK.comName}" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorName}</font></span>
                  </div>
@@ -100,7 +94,7 @@
                      <label>負責人:</label>
                      <div class="controls ">
                          <input type="text" class="form-control" name="comOwner" id="com_owner"
-                          placeholder="" value="${companyVO.comOwner}">
+                          placeholder="" value="${LoginComOK.comOwner}">
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorOwner}</font></span>
                  </div>
@@ -110,7 +104,7 @@
                      <label>營業統編:</label>
                      <div class="controls ">
                          <input type="text" class="form-control" name="comVAT" id="com_vat" 
-                         placeholder="" value="${companyVO.comVAT}" disabled>
+                         placeholder="" value="${LoginComOK.comVAT}" disabled>
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorVAT}</font></span>
                  </div>
@@ -118,7 +112,7 @@
                      <label>地址:</label>
                      <div class="controls ">
                          <input type="text" class="form-control" name="comAddr" id="com_address" 
-                         placeholder="" value="${companyVO.comAddr}">
+                         placeholder="" value="${LoginComOK.comAddr}">
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorAddr}</font></span>
                  </div>
@@ -126,7 +120,7 @@
                      <label>電話:</label>
                      <div class="controls ">
                          <input type="tel" class="form-control" name="comTel" id="com_tel"
-                          placeholder="" value="${companyVO.comTel}">
+                          placeholder="" value="${LoginComOK.comTel}">
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorTel}</font></span>
                  </div>
@@ -134,7 +128,7 @@
                      <label>fax:</label>
                      <div class="controls ">
                          <input type="tel" class="form-control" name="comFax" id="com_fax"
-                          placeholder="" value="${companyVO.comFax}">
+                          placeholder="" value="${LoginComOK.comFax}">
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorFax}</font></span>
                  </div>
@@ -147,10 +141,10 @@
            <div class="col-lg-12"> 
            		<br>  
                 <input type="hidden" name="action" value="update"> 
-				<input type="hidden" name="comID" value="${companyVO.comID}"> 
-				<input type="hidden" name="comAccount" value="${companyVO.comAccount}">
-				<input type="hidden" name="comVAT" value="${companyVO.comVAT}">
-				<input type="hidden" name="comStatus" value="${companyVO.comStatus}">
+				<input type="hidden" name="comID" value="${LoginComOK.comID}"> 
+				<input type="hidden" name="comAccount" value="${LoginComOK.comAccount}">
+				<input type="hidden" name="comVAT" value="${LoginComOK.comVAT}">
+				<input type="hidden" name="comStatus" value="${LoginComOK.comStatus}">
                 <button type="submit" data-loading-text="Loading..." class="btn btn-danger">儲存</button>
            </div>
             </form>
@@ -350,7 +344,7 @@ $("[data-toggle='tooltip']").tooltip({html : true });
 				}, // end comFax
 	    	} // end fields
 	    }).on('success.form.bv', function() {
-	    	
+	    	$("#successInfo").html('<font color="red" size="3">修改成功</font>');
 	    	
 	    }); // end bootstrapValidator
 	}); // end ready 

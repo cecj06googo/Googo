@@ -14,7 +14,8 @@ public class OrdersVO implements java.io.Serializable {
 	private Timestamp ord_time;
 	private Timestamp ord_getday;
 	private Timestamp ord_reday;
-	private Double item_total;
+	private Timestamp ord_cancelTime;
+	private Integer item_total;
 	private Integer prod_id;
 	private Integer acc_id;
 	private Integer ord_status;
@@ -28,7 +29,9 @@ public class OrdersVO implements java.io.Serializable {
 	//Ord_status table欄位(暫時先留在這裡，看未來程式怎樣改再作決定)
 	private String status_char;
 
-
+	//Member table欄位
+	private String mem_account;
+	
 	
 	
 	public Integer getOrd_id() {
@@ -67,10 +70,16 @@ public class OrdersVO implements java.io.Serializable {
 	public void setOrd_reday(Timestamp ord_reday) {
 		this.ord_reday = ord_reday;
 	}
-	public Double getItem_total() {
+	public Timestamp getOrd_cancelTime() {
+		return ord_cancelTime;
+	}
+	public void setOrd_cancelTime(Timestamp ord_cancelTime) {
+		this.ord_cancelTime = ord_cancelTime;
+	}
+	public Integer getItem_total() {
 		return item_total;
 	}
-	public void setItem_total(Double item_total) {
+	public void setItem_total(Integer item_total) {
 		this.item_total = item_total;
 	}
 	public Integer getProd_id() {
@@ -133,5 +142,10 @@ public class OrdersVO implements java.io.Serializable {
 	public void setStatus_char(String status_char) {
 		this.status_char = status_char;
 	}
-
+	public String getMem_account() {
+		return mem_account;
+	}
+	public void setMem_account(String mem_account) {
+		this.mem_account = mem_account;
+	}
 }

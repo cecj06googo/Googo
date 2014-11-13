@@ -47,27 +47,27 @@
                 <div class="control-group form-group ">
                     <label>帳號:</label>
                     <div class="controls input-group">
-                        <input type="text" class="form-control" id="mem_account" name="mem_account" value="${memVO.mem_account}" disabled>
+                        <input type="text" class="form-control" id="mem_account" name="mem_account" value="${LoginMemOK.mem_account}" disabled>
                    		<span class="input-group-addon"><i class="fa fa-ban"></i></span>
                     </div>
                 </div>
                 <div class="control-group form-group">
                 <label  class="control-label">密碼:</label>
                 <div class="controls ">
-                    <input type="password" class="form-control" name="mem_pwd0" value="${memVO.mem_pwd}">
+                    <input type="password" class="form-control" name="mem_pwd0" value="${LoginMemOK.mem_pwd}">
                 </div>
                  <font color="red" size="-1">${errorMsgs.errorPwd}</font>
 	            </div>
 	            <div class="control-group form-group">
 	                <label  class="control-label">密碼確認:</label>
 	                <div class="controls ">
-	                    <input type="password" class="form-control" name="mem_pwd" value="${memVO.mem_pwd}">
+	                    <input type="password" class="form-control" name="mem_pwd" value="${LoginMemOK.mem_pwd}">
 	                </div>
 	            </div>
 	            <div class="control-group form-group">
 	                <label>姓名:</label>
 	                <div class="controls ">
-	                    <input type="text" class="form-control" name="mem_name" value="${memVO.mem_name}" >
+	                    <input type="text" class="form-control" name="mem_name" value="${LoginMemOK.mem_name}" >
 	                </div>
 	                <font color="red" size="-1">${errorMsgs.errorName}</font>
 	            </div>
@@ -81,40 +81,40 @@
 	            <div class="control-group form-group">
 	                <label>生日:</label>
 	                <div class="controls" >
-						 <input class="form-control form_datetime" name="mem_bdate" id="mem_bdate" value="${memVO.mem_bdate}"  type="text" readonly >
+						 <input class="form-control form_datetime" name="mem_bdate" id="mem_bdate" value="${LoginMemOK.mem_bdate}"  type="text" readonly >
 					</div>
 					<font color="red" size="-1">${errorMsgs.errorDate}</font>
 				</div>
 				<div class="control-group form-group">
 	                   <label>身分證:</label>
 	                   <div class="controls ">
-	                       <input type="text" class="form-control"  name="mem_idnumber"  value="${memVO.mem_idnumber}">
+	                       <input type="text" class="form-control"  name="mem_idnumber"  value="${LoginMemOK.mem_idnumber}">
 	                   </div>
 	                   <font color="red" size="-1">${errorMsgs.errorIdnumber}</font>
 	              </div>
 	              <div class="control-group form-group">
 	                  <label>電話:</label>
 	                  <div class="controls ">
-	                      <input type="tel" class="form-control" name="mem_tel"  value="${memVO.mem_tel}">
+	                      <input type="tel" class="form-control" name="mem_tel"  value="${LoginMemOK.mem_tel}">
 	                  </div>
 	                  <font color="red" size="-1">${errorMsgs.errorTel}</font>
 	              </div>
 	              <div class="control-group form-group">
 	                  <label>行動電話:</label>
 	                  <div class="controls ">
-	                      <input type="tel" class="form-control" name="mem_phone"  value="${memVO.mem_phone}">
+	                      <input type="tel" class="form-control" name="mem_phone"  value="${LoginMemOK.mem_phone}">
 	                  </div>
 	                  <font color="red" size="-1">${errorMsgs.errorPhone}</font>
 	              </div>
 	              <div class="control-group form-group">
 	                  <label>地址:</label>
 	                  <div class="controls ">
-	                      <input type="text" class="form-control" name="mem_address"  value="${memVO.mem_address}">
+	                      <input type="text" class="form-control" name="mem_address"  value="${LoginMemOK.mem_address}">
 	                  </div>
 	              </div>
 	              <br>
 	                <input type="hidden" name="action" value="updateMem">
-	                <input type="hidden" name="mem_id" value="${memVO.mem_id}">
+	                <input type="hidden" name="mem_id" value="${LoginMemOK.mem_id}">
 	               <!--	<div id="modConfirm" class="modal fade" role="dialog" aria-labelledby="modConfirm" aria-hidden="false">
 					<div class="modal-dialog modal-sm">
 				  	<div class="modal-content">

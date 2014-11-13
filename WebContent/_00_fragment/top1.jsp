@@ -8,10 +8,10 @@
 <link href="${pageContext.request.contextPath}/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <!-- jQuery Version 1.11.0 -->
-<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script> --%>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
 
  <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -33,10 +33,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="<c:url value='/_02_register/register.jsp'/>">註冊</a>
+                    	<c:if test="${empty LoginMemOK && empty LoginComOK}">
+                       		<a href="<c:url value='/_02_register/register.jsp'/>">註冊</a>
+                       	</c:if>
                     </li>
                     <li>
-                        <a href="#myModal"  data-toggle="modal" data-target="#login" >登入</a>
+                    	<c:if test="${empty LoginMemOK && empty LoginComOK}">
+	                        <a href="#myModal"  data-toggle="modal" data-target="#login" >登入</a>
+	                    </c:if>
                     </li>
                     <li>
                         <a href="<c:url value='/_00_fragment/about.jsp'/>">關於</a>
@@ -55,7 +59,9 @@
 	                        </li>
 	                        <li class="divider"> </li>
 	                        <li>
-	                            <a href="#"><i class="fa fa-fw fa-power-off"> </i>登出</a>
+	                        	<c:if test="${not empty LoginMemOK}">
+	                            	<a href="${pageContext.request.contextPath}/_01_login/logout.jsp"><i class="fa fa-fw fa-power-off"> </i>登出</a>
+	                            </c:if>
 	                        </li>
                         </ul>
                     </li>

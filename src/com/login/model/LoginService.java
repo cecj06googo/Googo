@@ -15,4 +15,7 @@ public class LoginService {
 		return dao.login(user_account ,user_pwd,user_identity);
 	} // end 
 
+	public Integer loginCheckId(String userAccount, String userPwd, String userIdentity) {
+		return dao.loginId(userAccount, userPwd, userIdentity);
+	}
 }

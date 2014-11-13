@@ -10,21 +10,10 @@
 
 </head>
 <body>
+<jsp:include page="/_00_fragment/css.jsp" />
 <jsp:include page="/_00_fragment/top1.jsp" />
 	
-<script>
-$(document).ready(function(){
-	var formId ;
-	$("input[name^='deleteForm']").click(function() {
-		formId = this.name;
-		$('#deleteOrder').modal('toggle');
-	});
-	
-	$("button[name='deletecheck']").click(function() {
-		document.forms[formId].submit();
-	});
-});
-</script>
+
 	
     <div class="container">
 
@@ -112,12 +101,7 @@ $(document).ready(function(){
 					
 					<c:if test="${ordVO.status_char != '未處理'}">
 					<td>
-						<FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/emp/${ordVO.ord_id}" >
 							<input class="btn btn-default" type="submit" value="取消訂單" disabled >
-							<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
-							<input type="hidden" name="action" value="delete">
-						</FORM>
 					</td>
 					</c:if>
 					
@@ -127,7 +111,7 @@ $(document).ready(function(){
 							ACTION="<%=request.getContextPath()%>/Delete.gg" id="deleteForm${ordVO.ord_id}">
 							<input class="btn btn-danger" type="button" value="取消訂單 "title="取消訂單" name="deleteForm${ordVO.ord_id}" /> 
 							<input type="hidden" name="ord_id" value="${ordVO.ord_id}"/>
-							<input type="hidden" name="action" value="delete"/>
+							<input type="hidden" name="action" value="cancelMem"/>
 							<input type="submit" class="hide"  />
 							
 											
@@ -174,5 +158,17 @@ $(document).ready(function(){
 </div>
 
 </body>
-
+<script>
+$(document).ready(function(){
+	var formId ;
+	$("input[name^='deleteForm']").click(function() {
+		formId = this.name;
+		$('#deleteOrder').modal('toggle');
+	});
+	
+	$("button[name='deletecheck']").click(function() {
+		document.forms[formId].submit();
+	});
+});
+</script>
 </html>

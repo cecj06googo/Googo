@@ -10,6 +10,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_timeline.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_minical.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_treetimeline.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_collision.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_readonly.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_tooltip.js"></script>
 <jsp:include page="/_00_fragment/css2.jsp" />
 
 <title>Goo-go</title>
@@ -19,10 +22,70 @@
 
             scheduler.locale.labels.timeline_tab = "Timeline";
             scheduler.locale.labels.section_custom="Section";
-            scheduler.config.details_on_create=true;
-            scheduler.config.details_on_dblclick=true;
             scheduler.config.xml_date="%Y-%m-%d %H:%i";
-         
+            scheduler.config.drag_resize=false;
+            scheduler.config.drag_create=false;
+            scheduler.config.dblclick_create=false;
+            scheduler.config.readonly_form = true;
+            
+            //===============
+			// Tooltip related code
+			//===============
+
+			// we want to save "dhx_cal_data" div in a variable to limit look ups
+			var scheduler_container = document.getElementById("scheduler_car");
+			var scheduler_container_divs = scheduler_container.getElementsByTagName("div");
+			var dhx_cal_data = scheduler_container_divs[scheduler_container_divs.length-1];
+
+			// while target has parent node and we haven't reached dhx_cal_data
+			// we can keep checking if it is timeline section
+			scheduler.dhtmlXTooltip.isTooltipTarget = function(target) {
+				while (target.parentNode && target != dhx_cal_data) {
+					var css = target.className.split(" ")[0];
+					// if we are over matrix cell or tooltip itself
+					if (css == "dhx_matrix_scell" || css == "dhtmlXTooltip") {
+						return { classname: css };
+					}
+					target = target.parentNode;
+				}
+				return false;
+			};
+
+			scheduler.attachEvent("onMouseMove", function(id, e) {
+				var timeline_view = scheduler.matrix[scheduler.getState().mode];
+
+				// if we are over event then we can immediately return
+				// or if we are not on timeline view
+				if (id || !timeline_view) {
+					return;
+				}
+
+				// native mouse event
+				e = e||window.event;
+				var target = e.target||e.srcElement;
+
+				var tooltip = scheduler.dhtmlXTooltip;
+				var tooltipTarget = tooltip.isTooltipTarget(target);
+				if (tooltipTarget) {
+					if (tooltipTarget.classname == "dhx_matrix_scell") {
+						// we are over cell, need to get what cell it is and display tooltip
+						var section_id = scheduler.getActionData(e).section;
+						var section = timeline_view.y_unit[timeline_view.order[section_id]];
+
+						// showing tooltip itself
+						var text = "Tooltip for <b>"+section.label+"</b>";
+						tooltip.delay(tooltip.show, tooltip, [e, text]);
+					}
+					if (tooltipTarget.classname == "dhtmlXTooltip") {
+						dhtmlxTooltip.delay(tooltip.show, tooltip, [e, tooltip.tooltip.innerHTML]);
+					}
+				}
+			});
+            
+            
+            
+            
+            
             //車名
             var elements = [ // original hierarhical array to display
 			{key:1, label:"NISSAN LAVINA", open: true, children: [
@@ -68,11 +131,12 @@
 
             
             //Data loading
-            scheduler.config.lightbox.sections=[	                                
-			{name:"description", height:130, map_to:"text", type:"textarea" , focus:true},
-			{name:"custom", height:23, type:"timeline", options:null , map_to:"section_id" }, //type should be the same as name of the tab
-			{name:"time", height:72, type:"time", map_to:"auto"}
+           scheduler.config.lightbox.sections=[	                                               
+			{name:"time", height:36, type:"time", map_to:"auto" ,time_format:["%Y","%m","%d","%H:%i"]},
+			{name:"description", height:36, map_to:"text", type:"textarea"},
+			{name:"custom", height:23, type:"timeline", options:null , map_to:"section_id"}, //type should be the same as name of the tab
 			];
+
             
 			//開始時間
             scheduler.init('scheduler_car',new Date(2014,5,30),"timeline");
@@ -149,15 +213,16 @@
 		<div class="col-md-12">
 		<div id="scheduler_car" class="dhx_cal_container" style='width:1100px; height:500px; border-style:solid;border-color:#CECECE;border-width:1px;'>
 			<div class="dhx_cal_navline">
+		
 				<div class="dhx_cal_prev_button">&nbsp;</div>
 				<div class="dhx_cal_next_button">&nbsp;</div>
 				<div class="dhx_cal_today_button" style="font-size:14px;"></div>
 				<div class="dhx_minical_icon" id="dhx_minical_icon" onclick="show_minical()">&nbsp;</div>
 				<div class="dhx_cal_date" ></div>
-				<div class="dhx_cal_tab" name="day_tab" style="right:204px;font-size:14px;"></div>
+		        <div class="dhx_cal_tab" name="day_tab" style="right:204px;font-size:14px;"></div>
 				<div class="dhx_cal_tab" name="week_tab" style="right:140px;font-size:14px;"></div>
 				<div class="dhx_cal_tab" name="timeline_tab" style="right:280px;font-size:14px;"></div>
-				<div class="dhx_cal_tab" name="month_tab" style="right:76px;font-size:14px;"></div>
+			<div class="dhx_cal_tab" name="month_tab" style="right:76px;font-size:14px;"></div>
 			</div>
 			<div class="dhx_cal_header" style="font-size:15px;">
 			</div>
