@@ -63,8 +63,14 @@ $(function() {
         // delimiter to split value from display text in option based input
         delimeter: '=',
         
-        // collect json object from DB accessory
+        // collect json from DB accessory
         pre_databean: '',
+        
+        // collect html of design result from DB 
+        designResult: '',
+        
+        // counter for unique id of elements 
+        counter: 0,
         
         // set current element
         setElement: function(el) {
@@ -92,8 +98,8 @@ $(function() {
             return content
                     .replace(/\t/, '')
                     .replace(/ ui-draggable| element/gi, '')
-                    .replace(/<div class="close">.<\/div>/g, '')
-                    .replace(/ data-(.+)="(.+)"/g, '');
+                    .replace(/<div class="close">.<\/div>/g, '');
+                    //.replace(/ data-(.+)="(.+)"/g, ''); keep data-type to make sure loaded result functions correctly
         },
 
         // update source code
@@ -167,30 +173,49 @@ $(function() {
                 return true;
             });
         },
+        
+        loadDesign: function(){
+        	$.ajax({
+            	url: contextPath + "/LoadDesign",
+        		dataType: "html",
+        		type: "POST",
+        		data: { com_id_form_view : $("#com_id_form_view").val() },
+        	})
+        	.done(function(data){
+        		//console.log(data);
+        		//add element shell
+        		$("#content").empty();
+        		designResult = $(data);
+        		designResult.addClass("ui-draggable element")
+        					.prepend('<div class="close">×</div>')
+        					.appendTo("#content");
+        	});
+        },
 
         // form title options
-        title: {
-            // options class prefix
-            prefix: '.options_title_',
-
-            // get title options
-            get: function() {
-                var el = form_builder.getElement(),
-                    legend = el.find('legend');
-
-                $(this.prefix + 'name')
-                .val(legend.text())
-                .focus();
-            },
-
-            // set title options
-            set: function() {
-                var el = form_builder.getElement(),
-                    legend = el.find('legend');
-
-                legend.text($(this.prefix+'name').val());
-            }
-        },
+        // modified: no need any more 
+//        title: {
+//            // options class prefix
+//            prefix: '.options_title_',
+//
+//            // get title options
+//            get: function() {
+//                var el = form_builder.getElement(),
+//                    legend = el.find('legend');
+//
+//                $(this.prefix + 'name')
+//                .val(legend.text())
+//                .focus();
+//            },
+//
+//            // set title options
+//            set: function() {
+//                var el = form_builder.getElement(),
+//                    legend = el.find('legend');
+//
+//                legend.text($(this.prefix+'name').val());
+//            }
+//        },
 
         // text input options
         text: {
@@ -201,7 +226,7 @@ $(function() {
             get: function() {
                 var el = form_builder.getElement();
 
-                $(this.prefix + 'name').val('');
+                //$(this.prefix + 'name').val('');
                 $(this.prefix + 'label').val(el.find('label').text());
                 $(this.prefix + 'placeholder').val(el.find('input[type=text]').attr('placeholder'));
             },
@@ -210,14 +235,18 @@ $(function() {
             set: function() {
                 var el = form_builder.getElement(),
                     input = el.find('input[type=text]'),
-                    label = el.find('label'),
-                    name = form_builder.cleanName($(this.prefix + 'name').val());
+                    label = el.find('label');
+                    //name = form_builder.cleanName($(this.prefix + 'name').val());
 
-                input.attr('name', name);
+                //input.attr('name', name);
 
-                label.text($(this.prefix + 'label').val()).attr('for', name);
+                //label.text($(this.prefix + 'label').val()).attr('for', name);
 
-                input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
+                //input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
+                form_builder.counter++;
+                input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', 'custField_' + form_builder.counter);
+                input.attr('name', input.attr('id'));
+                label.text($(this.prefix + 'label').val()).attr('for', input.attr('id'));
             }
         },
 
@@ -230,7 +259,7 @@ $(function() {
             get: function() {
                 var el = form_builder.getElement();
 
-                $(this.prefix + 'name').val('');
+                //$(this.prefix + 'name').val('');
                 $(this.prefix + 'label').val(el.find('label').text());
                 $(this.prefix + 'placeholder').val(el.find('textarea').attr('placeholder'));
             },
@@ -241,9 +270,14 @@ $(function() {
                     textarea = el.find('textarea'),
                     label = el.find('label');
 
-                textarea.attr('name', form_builder.cleanName($(this.prefix + 'name').val()));
-                label.text($(this.prefix + 'label').val());
-                textarea.attr('placeholder', $(this.prefix + 'placeholder').val());
+//                textarea.attr('name', form_builder.cleanName($(this.prefix + 'name').val()));
+//                label.text($(this.prefix + 'label').val());
+//                textarea.attr('placeholder', $(this.prefix + 'placeholder').val());
+                
+                form_builder.counter++;
+                textarea.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', 'custField_' + form_builder.counter);
+                textarea.attr('name', textarea.attr('id'));
+                label.text($(this.prefix + 'label').val()).attr('for', textarea.attr('id'));
             }
         },
 
@@ -258,11 +292,11 @@ $(function() {
             get: function() {
                 var el = form_builder.getElement();
                     
-                $(this.prefix + 'name').val('');
+                //$(this.prefix + 'name').val('');
                 $(this.prefix + 'label').val(el.find('label').text());
                 
                 $.ajax({
-            		url: contextPath + "/GetAccessory",
+                	url: contextPath + "/GetAccessory",
             		dataType: "json",
             	})
             	.done(function(data){
@@ -289,9 +323,12 @@ $(function() {
                 	option.text(pre_databean[index].description);
                 	select.append(option);
                 });
-
-                select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()));
-                label.text($(this.prefix + 'label').val());
+                
+                form_builder.counter++;
+                select.attr('id', 'custPreField_' + form_builder.counter);
+                select.attr('name', select.attr('id'));
+                label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
+                
                 //select.append(list_options);
             }
         },
@@ -321,7 +358,7 @@ $(function() {
                     list_options += val_and_split + $(val).text()+"\n";
                 });
 
-                $(this.prefix + 'name').val('');
+                //$(this.prefix + 'name').val('');
                 $(this.prefix + 'label').val(el.find('label').text());
                 $(this.prefix + 'options').val(list_options);
             },
@@ -356,8 +393,10 @@ $(function() {
                     }
                 });
 
-                select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()));
-                label.text($(this.prefix + 'label').val());
+                form_builder.counter++;
+                select.attr('id', 'custField_' + form_builder.counter);
+                select.attr('name', select.attr('id'));
+                label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
                 select.html(list_options);
             }
         },
@@ -385,7 +424,7 @@ $(function() {
                     list_options += val_and_split + $(val).text()+"\n";
                 });
 
-                $(this.prefix + 'name').val('');
+                //$(this.prefix + 'name').val('');
                 $(this.prefix + 'label').val(el.find('label').text());
                 $(this.prefix + 'options').val(list_options);
             },
@@ -419,9 +458,12 @@ $(function() {
                         }
                     }
                 });
-
-                select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()) + '[]');
-                label.text($(this.prefix + 'label').val());
+                	
+                form_builder.counter++;
+                select.attr('id', 'custField_' + form_builder.counter);
+                //select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()) + '[]');
+                select.attr('name', select.attr('id'));
+                label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));;
                 select.html(list_options);
             }
         },
@@ -447,14 +489,16 @@ $(function() {
                     list_options += val_and_split + $(this).closest('label').text().trim() + "\n";
                 });
 
-                $(this.prefix + 'name').val('');
+                //$(this.prefix + 'name').val('');
                 $(this.prefix + 'label').val(el.find('label:first').text());
                 $(this.prefix + 'options').val(list_options);
             },
 
             // set checkbox options
             set: function() {
-                var el = form_builder.getElement(),
+            	//prepare index for group name: custField_box_
+            	form_builder.counter++;
+            	var el = form_builder.getElement(),
                     label = el.find('label:first'),
                     split = form_builder.delimeter,
 
@@ -465,7 +509,8 @@ $(function() {
                     checkbox_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
                     // element name
-                    name = form_builder.cleanName($(this.prefix + 'name').val()),
+                    //name = form_builder.cleanName($(this.prefix + 'name').val()),
+                    name = 'custField_box_' + form_builder.counter,
 
                     // options buffer
                     list_options = "\n";
@@ -522,14 +567,16 @@ $(function() {
                     list_options += val_and_split + $(this).closest('label').text().trim() + "\n";
                 });
 
-                $(this.prefix + 'name').val('');
+                //$(this.prefix + 'name').val('');
                 $(this.prefix + 'label').val(el.find('label:first').text());
                 $(this.prefix + 'options').val(list_options);
             },
 
             // set radio button options
             set: function() {
-                var el = form_builder.getElement(),
+            	//prepare index for group name: custField_box_
+            	form_builder.counter++;
+            	var el = form_builder.getElement(),
                     label = el.find('label:first'),
                     split = form_builder.delimeter,
 
@@ -540,7 +587,7 @@ $(function() {
                     radio_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
                     // element name
-                    name = form_builder.cleanName($(this.prefix + 'name').val()),
+                    name = 'custField_radio_' + form_builder.counter,
 
                     // options buffer
                     list_options = "\n";
@@ -596,6 +643,8 @@ $(function() {
         },
 
         // submit button options
+        // modified: no need
+        /* 
         submit: {
             // options class prefix
             prefix: '.options_submit_',
@@ -641,7 +690,7 @@ $(function() {
                 form_builder.method = $(this.prefix + 'method').val();
                 form_builder.action = $(this.prefix + 'action').val();
             }
-        }
+        }*/
     };
 
     // components are useable form elements that can be dragged or clicked
@@ -727,9 +776,11 @@ $(function() {
     // the form can also be given a title by clicking the legend at the top
     // as this is not a component, do the necessary leg work and show the options
     // modal accordingly
-    $("#content_form_name").on('click', function(e) {
-        form_builder.loadOptions.call(this, 'title');
-    });
+    
+    //modified: no need to set form name
+//    $("#content_form_name").on('click', function(e) {
+//        form_builder.loadOptions.call(this, 'title');
+//    });
 
     // create codemirror instance & assign to global var source
     source = CodeMirror.fromTextArea(document.getElementById("source"), {
@@ -762,5 +813,8 @@ $(function() {
 		$("#form_view").submit();
 	});
 	
-	//modified: save form for design
+	//modified: load form for editing
+	$("#save_form_design").on("click", function(){
+		form_builder.loadDesign();
+	});
 });
