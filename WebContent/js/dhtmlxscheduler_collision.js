@@ -9,7 +9,7 @@ This software is covered by GPL license. You also can obtain Commercial or Enter
 
 var temp_section;
 var before;
-
+var beforee;
 scheduler.config.collision_limit = 1;	
 
 function _setTempSection(event_id) { // for custom views (matrix, timeline, units)
@@ -19,35 +19,28 @@ function _setTempSection(event_id) { // for custom views (matrix, timeline, unit
 	}
 }
 
-scheduler.attachEvent("onBeforeDrag",function(id){
-	_setTempSection(id); 
-	return true;
-});
+//開lightbox修改
 scheduler.attachEvent("onBeforeLightbox",function(id){
 	var ev = scheduler.getEvent(id);
 	before = [ev.start_date, ev.end_date];
 	_setTempSection(id);
 	return true;
 });
+//lightbox save 修改前
 scheduler.attachEvent("onEventChanged",function(id){
 	if (!id || !scheduler.getEvent(id)) return true;
 	var ev = scheduler.getEvent(id);
+	
 	if (!scheduler.checkCollision(ev)){
 		if (!before) return false;
 		ev.start_date = before[0];
 		ev.end_date = before[1];
 		ev._timed=this.isOneDayEvent(ev);
 	}
+	
 	return true;
 });
-scheduler.attachEvent("onBeforeEventChanged",function(ev,e,is_new){
-	return scheduler.checkCollision(ev);
-});
-scheduler.attachEvent("onEventAdded",function(id,ev) {
-	var result = scheduler.checkCollision(ev);
-	if (!result)
-		scheduler.deleteEvent(id);
-});
+//light box save鍵
 scheduler.attachEvent("onEventSave",function(id, edited_ev, is_new){
 	edited_ev = scheduler._lame_clone(edited_ev);
 	edited_ev.id = id;
@@ -65,12 +58,40 @@ scheduler.attachEvent("onEventSave",function(id, edited_ev, is_new){
 	return scheduler.checkCollision(edited_ev); // in case user creates event on one date but then edited it another
 });
 
+//drag前存好訊息
+scheduler.attachEvent("onBeforeDrag",function(id){
+	var ev = scheduler.getEvent(id);
+	beforee = [ev.start_date, ev.end_date];
+	_setTempSection(id); 
+	return true;
+});
+//dnd前  還沒save
+scheduler.attachEvent("onBeforeEventChanged",function(ev,e,is_new){
+	ev.start_date = beforee[0];
+	ev.end_date = beforee[1];
+	return scheduler.checkCollision(ev);
+	
+});
+
+//adds a new event
+scheduler.attachEvent("onEventAdded",function(id,ev) {
+	
+	var result = scheduler.checkCollision(ev);
+	if (!result)
+		scheduler.deleteEvent(id);
+});/*
+scheduler.attachEvent("onEventSave",function(id,ev,is_new){
+	
+	ev.start_date=before[0];;
+	ev.end_date=before[1];
+});*/
 scheduler._check_sections_collision = function(first, second){
 	var map_to = scheduler._get_section_property();
 	if (first[map_to] == second[map_to] && first.id != second.id)
 		return true;
 	return false;
 };
+
 
 scheduler.checkCollision = function(ev) {
 	var evs = [];
@@ -94,7 +115,6 @@ scheduler.checkCollision = function(ev) {
 			}
 		}
 	}
-	
 
 	var checked_mode = scheduler._get_section_view();
 	var map_to = scheduler._get_section_property();

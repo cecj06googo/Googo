@@ -27,7 +27,7 @@
             scheduler.config.drag_create=false;
             scheduler.config.dblclick_create=false;
             scheduler.config.readonly_form = true;
-            
+         
             //===============
 			// Tooltip related code
 			//===============
@@ -50,7 +50,7 @@
 				}
 				return false;
 			};
-
+			
 			scheduler.attachEvent("onMouseMove", function(id, e) {
 				var timeline_view = scheduler.matrix[scheduler.getState().mode];
 
