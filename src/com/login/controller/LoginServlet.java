@@ -105,7 +105,7 @@ public class LoginServlet extends HttpServlet {
 			if ("Mem".equals(userIdentity)) {
 				MemService memService = new MemService();
 				System.out.println("mem會員ID = " + userId);
-				memVO = memService.getOneEmp(userId);
+				memVO = memService.getOneMem(userId);
 				session.setAttribute("LoginMemOK", memVO);
 			}
 			else if ("Com".equals(userIdentity)) {
