@@ -1,11 +1,8 @@
-package com.orders.controller;
+package com.orders.model;
 
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-
-import com.orders.model.OrdersService;
-import com.orders.model.OrdersVO;
 /*********************給其他Servlet呼叫的class**********************/
 public class LoginOrdersOnLoad {
 
