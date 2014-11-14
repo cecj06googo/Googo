@@ -177,7 +177,7 @@
   </servlet-mapping>
   
 <!-- Filter設定 -->
-  <filter>
+<filter>
     <display-name>LoginMemFilter</display-name>
     <icon/>
     <filter-name>LoginMemFilter</filter-name>
@@ -217,5 +217,5 @@
   <filter-mapping>
     <filter-name>LoginComFilter</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>
+ </filter-mapping>
 </web-app>
