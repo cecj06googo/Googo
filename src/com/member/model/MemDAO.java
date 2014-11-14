@@ -21,8 +21,9 @@ public class MemDAO implements MemDAO_interface {
 		"UPDATE Member set mem_pwd=?, mem_name=?, mem_gender=?, mem_bdate=?, mem_idnumber=?, mem_tel=?, mem_phone=?, mem_address=? where mem_id = ?";
 	private static final String DELETE = 
 		"UPDATE Member set  mem_status=0 where mem_id = ?";
+	// modified by Ranian to get mem_id
 	private static final String GET_ONE_STMT = 
-		"SELECT mem_account,mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address,mem_status FROM Member where mem_id = ?";
+		"SELECT mem_id, mem_account,mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address,mem_status FROM Member where mem_id = ?";
 	private static final String GET_ALL_STMT = 
 		"SELECT mem_account,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address FROM Member order by empno";
 	private static final String OPEN_ACCOUNT= 
@@ -194,6 +195,8 @@ public class MemDAO implements MemDAO_interface {
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
 				memVO = new MemVO();
+				// next line modified by Ranian to get member id
+				memVO.setMem_id(rs.getInt("mem_id"));
 				memVO.setMem_account(rs.getString("mem_account"));
 				memVO.setMem_pwd(rs.getString("mem_pwd"));
 				memVO.setMem_name(rs.getString("mem_name"));
