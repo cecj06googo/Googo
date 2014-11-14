@@ -40,8 +40,8 @@ public class SendActivateAccount {
   public static String generateActivateLink(CompanyVO comVO,String ServerName,int LocalPort,String ContextPath) { 
 	  
 	  String comURL = comVO.getComHashURL();
-	  System.out.println("http://"+ServerName+":"+LocalPort+ContextPath+"/ActivateAccount?v="+comURL);
-	  return "http://"+ServerName+":"+LocalPort+ContextPath+"/ActivateAccount?v="+comURL ;  
+	  System.out.println("http://"+ServerName+":"+LocalPort+ContextPath+"/CActivateAccount?v="+comURL);
+	  return "http://"+ServerName+":"+LocalPort+ContextPath+"/CActivateAccount?v="+comURL;  
   }   
 
  }  

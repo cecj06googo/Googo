@@ -80,6 +80,26 @@ public class CompanyDAO implements ICompanyDAO {
 		}
 		return comVO;
 	}
+	
+	@Override
+	public Integer findByPrimaryKey(String comHashURL) {
+		Integer comID = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try{
+			session.beginTransaction();
+			Query query = session.createQuery("from CompanyVO where comHashURL=:comHashURL");
+			query.setParameter("comHashURL", comHashURL);
+			List<CompanyVO> list = query.list();
+			for (CompanyVO comVO : list) {
+				comID = comVO.getComID();
+			}
+			session.getTransaction().commit();
+		} catch(RuntimeException rex) {
+			session.beginTransaction().rollback();
+			throw rex;
+		}
+		return comID;
+	}
 
 	@Override
 	public List<CompanyVO> getAll() {

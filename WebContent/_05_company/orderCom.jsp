@@ -26,11 +26,10 @@
         <div class="well" >
         <div class="row" >
         <div class="col-lg-12 text-center">
-                	<form class="form-inline" role="form" action="<%=request.getContextPath()%>/Select.gg" method="post" >
+                	<form class="form-inline" role="form" action="<%=request.getContextPath()%>/selectCom.gg" method="post" >
                       <div class="form-group">
-                      <font size="-1" color="#FF0000">${ErrorMsg.errorUser_id}</font>
                            <span style="font-size:20px;">請選擇搜尋條件</span> 
-                           <select class="form-control input-lg"  autofocus name="sel_stus" >
+                           <select class="form-control input-lg"  autofocus name="orderStatus" >
                                 <option selected>訂單狀態</option>
                                 <option value="0">所有</option>
                                 <option value="1">未處理</option>
@@ -44,7 +43,7 @@
                         </div>
                         <div class="form-group">
                        		
-                            <select class="form-control input-lg" name="sel_time" >
+                            <select class="form-control input-lg" name="orderTime" >
                             	<option selected>訂購時間</option>
                                 <option value="all">所有</option>
 								<option value="1W">最近一個禮拜</option>
@@ -58,13 +57,13 @@
                          </div>
                          <br>
                          <div class="form-group input-group">
-                         <c:if test="${not empty ErrorMsg.errorSel_stus}">
-                         <font size="-1" color="#FF0000">${ErrorMsg.errorSel_stus}</font>
+                         <c:if test="${not empty ErrMsg.ErrOrderStatus}">
+                         <font size="-1" color="#FF0000">${ErrMsg.ErrOrderStatus}</font>
                          <br>
                          </c:if>
-                    	 <font size="-1" color="#FF0000">${ErrorMsg.errorSel_time}</font>
+                    	 <font size="-1" color="#FF0000">${ErrMsg.ErrOrderTime}</font>
                     	 </div>
-							<input type="hidden" name="action" value="select">
+							<input type="hidden" name="action" value="selectCom">
                     </form> 
                 </div>
             </div> 
@@ -76,8 +75,9 @@
         <div class="row">
     	<div class="col-lg-12">
         <div class="table-responsive">
-        
-        
+        <c:if test="${not empty MsgOK}">
+        <center style="font-weight:bold; font-size: 14pt">${MsgOK.SearchNull} </center>
+        </c:if>
         <c:if test="${not empty ordVO}">
 		<table class="table table-bordered table-hover table-condensed">
 		<thead>
@@ -114,11 +114,33 @@
 					</td>
 					</c:if>
 					
+					<c:if test="${ordVO.status_char == '已接受'}">
+					<td>
+						<FORM METHOD="post"
+							ACTION="<%=request.getContextPath()%>/emp/${ordVO.ord_id}" >
+							<input class="btn btn-primary" type="button" value="取車確認 "title="取車確認" name="AcceptForm${ordVO.ord_id}" /> 
+							<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
+							<input type="hidden" name="action" value="delete">
+						</FORM>
+					</td>
+					</c:if>
+					
 					<c:if test="${ordVO.status_char == '已出車'}">
 					<td>
 						<FORM METHOD="post"
 							ACTION="<%=request.getContextPath()%>/emp/${ordVO.ord_id}" >
-							<input class="btn btn-warning" type="button" value="確認還車 "title="確認還車" name="deleteForm${ordVO.ord_id}" /> 
+							<input class="btn btn-warning" type="button" value="還車確認 "title="還車確認" name="deleteForm${ordVO.ord_id}" /> 
+							<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
+							<input type="hidden" name="action" value="cancel">
+						</FORM>
+					</td>
+					</c:if>
+					
+					<c:if test="${ordVO.status_char == '結單'}">
+					<td>
+						<FORM METHOD="post"
+							ACTION="<%=request.getContextPath()%>/emp/${ordVO.ord_id}" >
+							<input class="btn btn-info" type="button" value="訂單詳情 "title="訂單詳情" name="deleteForm${ordVO.ord_id}" /> 
 							<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
 							<input type="hidden" name="action" value="cancel">
 						</FORM>
@@ -126,6 +148,22 @@
 					</c:if>
 					
 					<c:if test="${ordVO.status_char == '商家取消' || ordVO.status_char == '會員取消'}">
+					<td>
+						<input class="btn btn-info" type="button" value="訂單詳情 "title="訂單詳情 " name="ordDetail${ordVO.ord_id}" /> 
+						<input type="hidden" name="mem_account${ordVO.ord_id}" value="${ordVO.mem_account}"/>
+						<input type="hidden" name="cancel${ordVO.ord_id}" value="${ordVO.ord_cancelTime}"/>
+					</td>
+					</c:if>
+					
+					<c:if test="${ordVO.status_char == '會員逾時'}">
+					<td>
+						<input class="btn btn-info" type="button" value="訂單詳情 "title="訂單詳情 " name="ordDetail${ordVO.ord_id}" /> 
+						<input type="hidden" name="mem_account${ordVO.ord_id}" value="${ordVO.mem_account}"/>
+						<input type="hidden" name="cancel${ordVO.ord_id}" value="${ordVO.ord_cancelTime}"/>
+					</td>
+					</c:if>
+					
+					<c:if test="${ordVO.status_char == '商家逾時'}">
 					<td>
 						<input class="btn btn-info" type="button" value="訂單詳情 "title="訂單詳情 " name="ordDetail${ordVO.ord_id}" /> 
 						<input type="hidden" name="mem_account${ordVO.ord_id}" value="${ordVO.mem_account}"/>
@@ -142,7 +180,7 @@
 					<c:if test="${ordVO.status_char == '未處理'}">
 					<td>
 						<FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/Delete.gg" id="deleteForm${ordVO.ord_id}">
+							ACTION="<%=request.getContextPath()%>/cancelCom.gg" id="deleteForm${ordVO.ord_id}">
 							<input class="btn btn-danger" type="button" value="取消訂單 "title="取消訂單" name="deleteForm${ordVO.ord_id}" /> 
 							<input type="hidden" name="ord_id" value="${ordVO.ord_id}"/>
 							<input type="hidden" name="action" value="cancelCom"/>
@@ -150,7 +188,7 @@
 						</FORM>
 					</td>
 					</c:if>
-					
+
 				</tr>
 			</c:forEach>
 		</table>

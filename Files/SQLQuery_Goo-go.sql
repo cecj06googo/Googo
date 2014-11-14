@@ -140,8 +140,8 @@ Create Table Product(
 			prod_cc         int,
 			prod_carrier    int,
 			prod_control    int,
-			plate_id		varchar(32) UNIQUE NOT NULL,
-			plate_status    int NOT NULL,
+			prod_plate		varchar(32) UNIQUE NOT NULL,
+			prod_status    int NOT NULL,
 			
 			CONSTRAINT Product_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 			CONSTRAINT Product_com_type_fk FOREIGN KEY (prod_type) REFERENCES Product_Type (prodtype_id),
