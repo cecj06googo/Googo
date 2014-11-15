@@ -40,24 +40,31 @@ public class LoginMemFilter implements Filter {
 		if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
 			HttpServletRequest req = (HttpServletRequest) request;
 			HttpServletResponse resp = (HttpServletResponse) response;
+			HttpSession session = req.getSession();
 			servletPath = req.getServletPath();  
 			contextPath = req.getContextPath();
 			requestURI  = req.getRequestURI();
 			isRequestedSessionIdValid = req.isRequestedSessionIdValid();
 			
-			System.out.println(requestURI);
+//			System.out.println(requestURI);
 			
 			if (mustLogin()) {    		  // 需要登入
-				if (checkLogin(req)) {    // 需要登入, 尚未登入
-					chain.doFilter(request, response);
-				} 
+				if (checkLogin(req)) {    // 需要登入, 尚未登入   
+					chain.doFilter(request, response);    // 已經登入
+//					session.removeAttribute("mustMemLogin");
+				}
 				else {
-					HttpSession session = req.getSession();
 					session.setAttribute("requestURI", requestURI);
 					if ( ! isRequestedSessionIdValid ) {
 						session.setAttribute("timeOut", "使用逾時，請重新登入");    /* 考慮移除? */
+						resp.sendRedirect(contextPath + "/_01_login/login.jsp");
+						return;
 					}
-					resp.sendRedirect(contextPath + "/_01_login/login.jsp");
+//					resp.sendRedirect(contextPath + "/_00_fragment/top1.jsp");
+					session.setAttribute("mustMemLogin", "mustMemLogin");
+					System.out.println("mem I'll be back.");
+					session.setAttribute("referURI", req.getHeader("referer"));    // 將原網頁路徑存入session
+					resp.sendRedirect(req.getHeader("referer"));
 					return;
 				}
 			} 
@@ -87,9 +94,9 @@ public class LoginMemFilter implements Filter {
 		for (String sURL : url) {
 			if (sURL.endsWith("*")) {    // 判斷是否為 * 結尾, 成立回傳true
 				
-				System.out.println("( " + sURL + " )");
+//				System.out.println("( " + sURL + " )");
 				sURL = sURL.substring(0, sURL.length() - 1);
-				System.out.println("[ " + sURL + " ]");
+//				System.out.println("[ " + sURL + " ]");
 				if (servletPath.startsWith(sURL)) {
 					login = true;
 					break;
@@ -101,7 +108,7 @@ public class LoginMemFilter implements Filter {
 				}
 			}
 		}
-		System.out.println("------------------");
+//		System.out.println("mem------------------");
 		return login;
 	}
 

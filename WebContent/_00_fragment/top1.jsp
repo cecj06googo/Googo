@@ -8,10 +8,10 @@
 <link href="${pageContext.request.contextPath}/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <!-- jQuery Version 1.11.0 -->
-<%-- <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script> --%>
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
  <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -77,4 +77,39 @@
 		<!-- 忘記密碼 -->
 		<jsp:include page="/_01_login/forgetPwd.jsp" />
 	
+<script>
+(function($) {
+	var errorMsg = '<%= session.getAttribute("LoginError") %>';
+	var timeOut = '<%= session.getAttribute("timeOut") %>';
+	var mustMemLogin = '<%= session.getAttribute("mustMemLogin") %>';
+	var mustComLogin = '<%= session.getAttribute("mustComLogin") %>';
+// 	alert("errorMsg = " + errorMsg + ", timeOut = " + timeOut 
+// 			+ ", mustMemLogin = " + mustMemLogin + ", mustComLogin = " + mustComLogin);
+	
+	if (mustMemLogin != "null") {
+// 		alert(mustMemLogin);
+		$('#login').modal('show');
+		<% session.removeAttribute("mustMemLogin"); %>
+	} 
+	else if (mustComLogin != "null") {
+// 		alert(mustComLogin);
+		$('#login').modal('show');
+	    <% session.removeAttribute("mustComLogin"); %>
+	}
+	else if (timeOut != 'null') {
+		$('#login').modal('show');
+	} 
+	else if (errorMsg != 'null') {
+		$('#login').modal('show');
+		<% session.removeAttribute("LoginError"); %>
+	}
+	else {
+// 		alert("安全");
+	}
+
+
+})(jQuery)
+
+
+</script>
 	
