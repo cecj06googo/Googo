@@ -13,11 +13,11 @@
 			<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 			    <h4 style="color:red;font-weight:bold;">確定要刪除此商品?</h4>
-			    <form role="form" action="#" method="get">
-			    <input type="hidden" name="prod_id?">
-			    <button type="submit" class="btn btn-lg btn-danger pull-right" data-dismiss="modal">確認</button>
+			    <FORM role="form" METHOD="post"	ACTION="<%=request.getContextPath()%>/prod.delete" name="prodDelete">
+                <button type="submit" class="btn btn-lg btn-danger pull-right" data-dismiss="modal">確認</button>
 		        <button type="reset" class="btn btn-lg btn-success pull-right" data-dismiss="modal">取消</button>
-		        </form><!-- /.form-->
+		        <input type="hidden" name="action" value="prodDelete"/>
+		        </FORM>
 			</div>
 			</div>
 		</div>
