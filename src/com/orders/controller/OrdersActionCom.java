@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.company.model.CompanyVO;
+import com.member.model.MemVO;
 import com.orders.model.OrdersService;
 import com.orders.model.OrdersVO;
 /*********************商家訂單動作**********************/
@@ -34,6 +35,7 @@ public class OrdersActionCom extends HttpServlet {
 		Map<String, String> errorMsg = new HashMap<String, String>();
 		Map<String, String> msgOK = new HashMap<String, String>();
 		request.setAttribute("ErrMsg", errorMsg); // 顯示錯誤訊息
+		request.setAttribute("MsgOK", msgOK); // 顯示成功訊息
 		String action = request.getParameter("action");
 		/*********************找時間刪掉**********************/
 		if ("fakeLogin_mem".equals(action)) {
@@ -79,6 +81,69 @@ public class OrdersActionCom extends HttpServlet {
 			}
 		}// end fakeLogin_mem if
 		/*******************************************/
+		
+		if ("selectCom".equals(action)) {
+			try {
+					// ------------------資料接收----------------------
+					// String暫時接收屬性
+					String _orderStatus = "";
+					// 真接收屬性
+					CompanyVO comVO = new CompanyVO();
+					Integer userId = null;
+					Integer orderStatus = null;
+					String orderTime = "";
+					try {
+					comVO = (CompanyVO)session.getAttribute("LoginComOK");
+					userId = comVO.getComID();
+					_orderStatus = request.getParameter("orderStatus");
+					orderTime = request.getParameter("orderTime");
+					}catch(Exception e){
+						System.out.println("selectCom 資料接收出錯");
+						e.printStackTrace();
+					}
+					// ------------------資料驗證+轉型----------------------
+					// 其實也可以直接轉(值都是用選擇器選的)，只怕有其他未知安全漏洞
+					try {
+						orderStatus = Integer
+								.parseInt(_orderStatus.toString().trim());
+					} catch (NumberFormatException e) {
+						errorMsg.put("ErrOrderStatus", "請選擇訂單狀態");
+					} catch (Exception e) {
+						errorMsg.put("ErrOrderStatus", "請選擇訂單狀態");
+					}
+
+					if (orderTime.trim().length() < 2
+							|| orderTime.trim().length() > 3) {
+						errorMsg.put("ErrOrderTime", "請選擇訂單時間");
+					}
+
+					/*******************(存取資料) *********************/
+					if (errorMsg.isEmpty()) {
+						OrdersService odrSvc = new OrdersService();
+						List<OrdersVO> ordVO = odrSvc.ordSearch_com(userId,
+								orderStatus, orderTime);
+						request.setAttribute("ordVO", ordVO);
+						if (ordVO.isEmpty()) {
+							msgOK.put("SearchNull", "沒有資料");
+						}
+					}
+
+					/*******************(轉向) *********************/
+					request.setAttribute("orderStatus", orderStatus);
+					request.setAttribute("orderTime", orderTime);
+					String url = "/_05_company/orderCom.jsp";
+					RequestDispatcher successView = request
+							.getRequestDispatcher(url);
+					successView.forward(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+		} // end select
+		
+		
+		
+		
+		
 		if ("newOrdCom".equals(action)) {
 			// 訂單狀態(1 = 未處理 )
 			Integer ord_status = 1;

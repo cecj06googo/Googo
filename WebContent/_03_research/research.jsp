@@ -212,8 +212,8 @@ html, body, #map-canvas {
 	<!-- /.container -->
 
 
-	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script> --%>
+<%-- 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
 
 
 </body>
