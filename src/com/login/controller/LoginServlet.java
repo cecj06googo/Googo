@@ -158,8 +158,6 @@ public class LoginServlet extends HttpServlet {
 //						getContextPath() + "/index.jsp"));
 			System.out.println("檢查referURI = " + referURI);
 			if (referURI == null || referURI.length() == 0) {
-				String path = request.getServletPath();
-				System.out.println("檢查path = " + path);
 				response.sendRedirect(response.encodeRedirectURL(request.
 						getContextPath()));
 				return;

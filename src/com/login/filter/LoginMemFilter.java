@@ -44,6 +44,7 @@ public class LoginMemFilter implements Filter {
 			servletPath = req.getServletPath();  
 			contextPath = req.getContextPath();
 			requestURI  = req.getRequestURI();
+			session.setAttribute("referURI", req.getHeader("referer"));    // 將原網頁路徑存入session
 			isRequestedSessionIdValid = req.isRequestedSessionIdValid();
 			
 //			System.out.println(requestURI);
@@ -63,7 +64,6 @@ public class LoginMemFilter implements Filter {
 //					resp.sendRedirect(contextPath + "/_00_fragment/top1.jsp");
 					session.setAttribute("mustMemLogin", "mustMemLogin");
 					System.out.println("mem I'll be back.");
-					session.setAttribute("referURI", req.getHeader("referer"));    // 將原網頁路徑存入session
 					resp.sendRedirect(req.getHeader("referer"));
 					return;
 				}
