@@ -190,46 +190,42 @@
   </servlet-mapping>
   
 <!-- Filter設定 -->
-<!--   <filter> -->
-<!--     <display-name>LoginMemFilter</display-name> -->
-<!--     <icon/> -->
-<!--     <filter-name>LoginMemFilter</filter-name> -->
-<!--     <filter-class>com.login.filter.LoginMemFilter</filter-class> -->
-<!--     <init-param> -->
-<!--       <param-name>mustMemLogin1</param-name> -->
-<!--       <param-value>/_03_research/*</param-value> -->
-<!--     </init-param> -->
+  <filter>
+    <display-name>LoginMemFilter</display-name>
+    <icon/>
+    <filter-name>LoginMemFilter</filter-name>
+    <filter-class>com.login.filter.LoginMemFilter</filter-class>
+    <init-param>
+      <param-name>mustMemLogin1</param-name>
+      <param-value>/_04_member/*</param-value>
+    </init-param>
 <!--     <init-param> -->
 <!--       <param-name>mustMemLogin2</param-name> -->
-<!--       <param-value>/_04_member/*</param-value> -->
-<!--     </init-param> -->
-<!--     <init-param> -->
-<!--       <param-name>mustMemLogin3</param-name> -->
 <!--       <param-value>/_05_company/company.jsp</param-value> -->
 <!--     </init-param> -->
-<!--   </filter> -->
-<!--   <filter-mapping> -->
-<!--     <filter-name>LoginMemFilter</filter-name> -->
-<!--     <url-pattern>/*</url-pattern> -->
-<!--   </filter-mapping> -->
-  
-<!--   <filter> -->
-<!--     <display-name>LoginComFilter</display-name> -->
-<!--     <icon/> -->
-<!--     <filter-name>LoginComFilter</filter-name> -->
-<!--     <filter-class>com.login.filter.LoginComFilter</filter-class> -->
-<!--     <init-param> -->
-<!--       <param-name>mustComLogin1</param-name> -->
-<!--       <param-value>/_06_manage/*</param-value> -->
-<!--     </init-param> -->
-<!--     <init-param> -->
-<!--       <param-name>mustComLogin3</param-name> -->
-<!--       <param-value>/_05_company/orderCom.jsp</param-value> -->
-<!--     </init-param> -->
-<!--   </filter> -->
-<!--   <filter-mapping> -->
-<!--     <filter-name>LoginComFilter</filter-name> -->
-<!--     <url-pattern>/*</url-pattern> -->
-<!--   </filter-mapping> -->
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginMemFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <display-name>LoginComFilter</display-name>
+    <icon/>
+    <filter-name>LoginComFilter</filter-name>
+    <filter-class>com.login.filter.LoginComFilter</filter-class>
+    <init-param>
+      <param-name>mustComLogin1</param-name>
+      <param-value>/_06_manage/*</param-value>
+    </init-param>
+    <init-param>
+      <param-name>mustComLogin3</param-name>
+      <param-value>/_05_company/orderCom.jsp</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginComFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
 </web-app>
