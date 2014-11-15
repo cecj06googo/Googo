@@ -1,3 +1,4 @@
+<%@page import="java.io.Console"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,6 +10,13 @@
 <title>Goo-go</title>
 
 </head>
+<script type="text/javascript">
+<%-- 	<% int prod= Integer.parseInt(prodId); %> --%>
+<%-- 	<% session.setAttribute("prodId", prod); %> --%>
+function loadIn(prodId){
+	alert(prodId);
+}
+</script>
 <body>
  <div id="wrapper">
 	<!-- top2 -->
@@ -22,37 +30,7 @@
             <div class="col-lg-12">
                 <h2 class="page-header"><i class="fa fa-fw fa-th-list"></i> 商品管理 <small>product</small> </h2>
             </div></div><!--/.標頭-->
-           <!--條件搜尋-->
-           	<div class="well col-md-10 col-md-offset-1 text-center " >
-		    <div class="row" >
-                	<form class="form-inline" role="form">
-                      <div class="form-group">
-                            <select class="form-control input-lg"  autofocus="" >
-                                <option>種類</option>  <!--純顯示 不能給user選-->
-                                <option>汽車</option>
-                                <option>機車</option>
-                                <option>腳踏車</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control input-lg" >
-                                <option>名稱</option> <!--純顯示 不能給user選-->
-                                <option>類型</option>
-                                <option>乘載人數</option>
-                                <option>說明</option>
-                            </select>
-                        </div>
-            
-                         <div class="form-group">
-                              <input type="text" class="form-control input-lg" placeholder="請輸入關鍵字">
-                         </div>
-						<button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button>
-                    </form> 
-              
-            </div> 
-        </div><!--/.條件搜尋-->
-        <!--filter參考  http://bootsnipp.com/snippets/featured/panel-table-with-filters-per-column -->  
-         
+        
         <!--汽車-->
         <div class="row">
 		<div class="col-md-10 col-md-offset-1">
@@ -72,36 +50,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>呱呱</td>
-                        <td>呱呱</td>
-                        <td>2500/天</td>
-                        <td class="text-center">
-                        	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                        	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
+                   <c:forEach var="ProductVO" items="${car}">
+                   	<tr>
+                    	<td>${ProductVO.prodName}</td>
+                    	<td>${ProductVO.prodDisc}</td>
+                    	<td>${ProductVO.prodPrice}</td>
+                    	<td>${ProductVO.prodPlate}</td>
+                    	<td class="text-center">
+                        	<a onclick="loadIn(${ProductVO.prodId})" class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
+                       		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                         </td>
-                    </tr>
-                    <tr >
-                        <td>2</td>
-                        <td>呱呱</td>
-                        <td>呱呱</td>
-                        <td>2500/天</td>
-                        <td class="text-center">
-                        	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                        	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>呱呱</td>
-                        <td>呱呱</td>
-                        <td>2500/天</td>
-                        <td class="text-center">
-                        	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                        	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    
-                    </tr>
+                    	</tr>
+                    </c:forEach>
                 </tbody>
             </table>
 			</div>
@@ -124,42 +84,23 @@
                         <th>商品名稱</th>
                         <th>優惠</th>
                         <th>價格</th>
-                        <th>總數量</th>
-                        <th>現有數量</th>
-                        <th  class="text-center ath">修改/刪除</th>
+                        <th>車號</th>
+                        <th class="text-center ath">修改/刪除</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>呱呱</td>
-                        <td>@mdo</td>
-                        <td class="text-center">
+                   <c:forEach var="ProductVO" items="${moto}">
+                    	<tr>
+                    	<td>${ProductVO.prodName}</td>
+                    	<td>${ProductVO.prodDisc}</td>
+                    	<td>${ProductVO.prodPrice}</td>
+                    	<td>${ProductVO.prodPlate}</td>
+                    	<td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                         	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>呱呱</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td class="text-center">
-                        	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                        	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>呱呱</td>
-                        <td>@twitter</td>
-                        <td class="text-center">
-                        	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                        	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    </tr>
+                        </td>
+                    	</tr>
+                    </c:forEach>                  
                 </tbody>
             </table>
 			</div>
@@ -182,65 +123,23 @@
                         <th>商品名稱</th>
                         <th>優惠</th>
                         <th>價格</th>
-                        <th>總數量</th>
-                        <th>現有數量</th>
+                        <th>車號</th>
                         <th class="text-center ath">修改/刪除</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>呱呱</td>
-                        <td>@mdo</td>
-                        <td class="text-center">
+                    <c:forEach var="ProductVO" items="${bike}">
+                    	<tr>
+                    	<td>${ProductVO.prodName}</td>
+                    	<td>${ProductVO.prodDisc}</td>
+                    	<td>${ProductVO.prodPrice}</td>
+                    	<td>${ProductVO.prodPlate}</td>
+                    	<td class="text-center">
                         	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                         	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>呱呱</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td class="text-center">
-                        	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                        	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>呱呱</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td class="text-center">
-                        	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                        	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    </tr>
-                     <tr>
-                        <td>4</td>
-                        <td>aaa</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>呱呱</td>
-                        <td class="text-center">
-                        	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                        	<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    </tr>
-                     <tr>
-                        <td>5</td>
-                        <td>bbb</td>
-                        <td>呱呱</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td class="text-center">
-                        	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                        	<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>                    
-                     </tr>
+                    	</tr>
+                    </c:forEach>  
                 </tbody>
             </table>
 			</div>

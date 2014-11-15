@@ -101,6 +101,33 @@
 <!--   </servlet-mapping> -->
   
   <servlet>
+		<servlet-name>prod</servlet-name>
+		<servlet-class>com.products.controller.ProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>prod</servlet-name>
+		<url-pattern>/prod.in</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>prodShow</servlet-name>
+		<servlet-class>com.products.controller.ProductOnload</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>prodShow</servlet-name>
+		<url-pattern>/prod.show</url-pattern>
+	</servlet-mapping>
+			<servlet>
+		<servlet-name>prodDelete</servlet-name>
+		<servlet-class>com.products.controller.ProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>prodDelete</servlet-name>
+		<url-pattern>/prod.delete</url-pattern>
+	</servlet-mapping>
+  
+  
+  
+  <servlet>
     <servlet-name>newOrdCom</servlet-name>
     <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
   </servlet>
