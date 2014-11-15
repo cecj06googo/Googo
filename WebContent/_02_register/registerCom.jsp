@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>	
 
 <style>
 #cropContainerHeader {
@@ -105,12 +103,10 @@
 <!--           </div> -->
           
 <!-- jQuery Version 1.11.0 -->
-<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script> --%>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
 
@@ -319,8 +315,6 @@
             $('#register_success').modal('show');
 		});
 	});
-	
-	
 	
 })(jQuery)
 
