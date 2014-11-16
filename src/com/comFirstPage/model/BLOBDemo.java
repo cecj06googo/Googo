@@ -40,6 +40,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			System.out.println("批次寫入所有圖片成功!");
 		} catch (Exception e) {
 			System.out.println("batchWriteInSQL 錯誤");
+			ConnectionUtil.closeConnection(conn);
 			e.printStackTrace();
 		}
 	}
@@ -57,6 +58,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			System.out.println("AllWriteInSQL is successful!");
 		} catch (Exception e) {
 			System.out.println("AllWriteInSQL 錯誤");
+			ConnectionUtil.closeConnection(conn);
 			e.printStackTrace();
 		}
 	}
@@ -76,6 +78,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			System.out.println("Insert blob is successful!");
 		} catch (Exception e) {
 			System.out.println("singleWriteInSQL 錯誤");
+			ConnectionUtil.closeConnection(conn);
 			e.printStackTrace();
 		}
 	}
@@ -91,6 +94,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			System.out.println("Clear VARBINARY is successful!");
 		} catch (Exception e) {
 			System.out.println("clearBlob 錯誤");
+			ConnectionUtil.closeConnection(conn);
 			e.printStackTrace();
 		}
 	}
@@ -104,6 +108,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			System.out.println("Clear AllPicture is successful!");
 		} catch (Exception e) {
 			System.out.println("clearAllBlob 錯誤");
+			ConnectionUtil.closeConnection(conn);
 			e.printStackTrace();
 		}
 	}
@@ -132,6 +137,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			} // end of if (rs.next())
 		} catch (Exception e) {
 			System.out.println("readBlobfromSQL 錯誤");
+			ConnectionUtil.closeConnection(conn);
 			e.printStackTrace();
 		}
 	}
@@ -148,7 +154,8 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			}
 		} catch (Exception e) {
 			System.out.println("getCountOfProductId 錯誤");
-			e.printStackTrace();
+			ConnectionUtil.closeConnection(conn);
+			e.printStackTrace();			
 		}
 		System.out.println("The count of " + countName + " = " + countNum);
 		return countNum;
