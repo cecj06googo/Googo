@@ -44,7 +44,7 @@ Create Table Member(
             mem_name		 varchar(32) NOT NULL, 
             mem_gender 	     int NOT NULL, 
             mem_bdate 		 Date NOT NULL, 
-            mem_idnumber      varchar(32),
+            mem_idnumber     varchar(32),
 			mem_tel		     varchar(15) NOT NULL, 
             mem_phone		 varchar(15) NOT NULL, 
             mem_address      varchar(64) NOT NULL, 
@@ -72,7 +72,7 @@ Create Table Company(
 			com_tel        varchar(15) NOT NULL,
 			com_fax        varchar(15) NULL,
 			com_vat        varchar(8) UNIQUE NOT NULL,
-			com_pic        varchar(max) NULL,
+			com_pic        varbinary(max) NULL,
 			com_status      int NOT NULL DEFAULT((0)),
 			com_hashURL    varchar(32),
 			
