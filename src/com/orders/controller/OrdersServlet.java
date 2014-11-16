@@ -264,7 +264,7 @@ public class OrdersServlet extends HttpServlet {
 		} // end insert
 
 		// ------------------搜尋訂單----------------------
-		if ("select".equals(action)) {
+		if ("selectCom".equals(action)) {
 			if ("Mem".equals(userIdentity)) {
 				try {
 					// ------------------資料接收----------------------
@@ -328,68 +328,7 @@ public class OrdersServlet extends HttpServlet {
 				}
 			} // end Mem if
 
-			if ("Com".equals(userIdentity)) {
-				try {
-					// ------------------資料接收----------------------
-					// String暫時接收屬性
-					String _orderStatus = "";
-					// 真接收屬性
-					CompanyVO comVO = new CompanyVO();
-					Integer userId = null;
-					Integer orderStatus = null;
-					String orderTime = "";
-					
-					comVO = (CompanyVO)session.getAttribute("LoginComOK");
-					userId = comVO.getComID();
-					_orderStatus = request.getParameter("orderStatus");
-					orderTime = request.getParameter("orderTime");
-					// ------------------資料驗證+轉型----------------------
-					// 其實也可以直接轉(值都是用選擇器選的)，只怕有其他未知安全漏洞
-//					try {
-//						userId = Integer.parseInt(_user_id.toString().trim());
-//					} catch (NumberFormatException e) {
-//						errorMsg.put("errorSelect", "看到鬼，ID應該為整數");
-//					} catch (NullPointerException e) {
-//						errorMsg.put("errorUser_id", "請重新登入");
-//					}
-					try {
-						orderStatus = Integer
-								.parseInt(_orderStatus.toString().trim());
-					} catch (NumberFormatException e) {
-						errorMsg.put("ErrOrderStatus", "請選擇訂單狀態");
-					} catch (Exception e) {
-						errorMsg.put("ErrOrderStatus", "請選擇訂單狀態");
-					}
-
-					if (orderTime.trim().length() < 2
-							|| orderTime.trim().length() > 3) {
-						errorMsg.put("ErrOrderTime", "請選擇訂單時間");
-					}
-
-					// ---------------呼叫database----------------------
-					if (errorMsg.isEmpty()) {
-						OrdersService odrSvc = new OrdersService();
-						List<OrdersVO> ordVO = odrSvc.ordSearch_com(userId,
-								orderStatus, orderTime);
-						request.setAttribute("ordVO", ordVO);
-						if (ordVO.isEmpty()) {
-							msgOK.put("SearchNull", "沒有資料");
-						}
-					}
-
-					/******************** (Send the Success view) ************/
-					request.setAttribute("orderStatus", orderStatus);
-					request.setAttribute("orderTime", orderTime);
-					String url = "/_05_company/orderCom.jsp";
-					RequestDispatcher successView = request
-							.getRequestDispatcher(url);
-
-					successView.forward(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} // end Com if
-
+			
 		} // end select
 
 		// ------------------取消訂單----------------------

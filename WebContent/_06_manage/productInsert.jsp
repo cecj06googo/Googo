@@ -79,7 +79,7 @@
 	${MsgOK.InsertOK}            		
             				
  <!--上架商品form===============================================-->
-         <form name="comFormU" id="comFormU" action="<%=request.getContextPath()%>/prod.in" enctype="multipart/form-data" method="post" >
+         <form name="prodInsert" action="<%=request.getContextPath()%>/prod.in" enctype="multipart/form-data" method="post" >
              <div class="control-group form-group">
              <label class="control-label">商品種類</label>
                 <label class="control-label"><input type="radio" name="prodType" value="1">汽車</label>
@@ -91,6 +91,14 @@
                 <label class="control-label">商品名稱:</label>
                 <div class="controls" >
                     <input type="text" class="form-control" name="prodName" value="1" placeholder="請輸入商品名稱" >
+                </div>
+                <font size="-1" color="#FF0000">${ErrorMsg.errorProdName}</font>
+                <div id="div1"></div>
+            </div>
+            <div class="control-group form-group ">
+                <label class="control-label">商品車號:</label>
+                <div class="controls" >
+                    <input type="text" class="form-control" name="prodPlate" value="1" placeholder="請輸入商品名稱" >
                 </div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdName}</font>
                 <div id="div1"></div>
@@ -187,20 +195,16 @@
                    <input type="file" name="prodSubPic3" id="prodSubPic3"><br>
                      <font size="-1" color="#FF0000">${ErrorMsg.errorProdSsubpic3}</font>
             </div>
-       
+      		
           	  <button type="reset" class="btn btn-primary" >取消 </button>
           	  <font size="-1" color="#FF0000">${ErrorMsg.errTitle}</font>
               <button type="submit" class="btn btn-danger" >新增</button>
-           	
           </form>
           </div>
           </div>
-
 </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->  
-
-	<!-- script -->
 	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
 
 	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
