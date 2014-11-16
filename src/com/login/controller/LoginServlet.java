@@ -31,10 +31,11 @@ public class LoginServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		Map<String, String> errorMsg = new HashMap<String, String>();
+//		Map<String, String> errorMsg = new HashMap<String, String>();
 		// Map<String, String> msgOK = new HashMap<String, String>();
-		request.setAttribute("ErrorMsg", errorMsg); // 顯示錯誤訊息
-
+//		request.setAttribute("ErrorMsg", errorMsg); // 顯示錯誤訊息
+//		session.setAttribute("ErrorMsg", errorMsg); // 顯示錯誤訊息
+		
 		// request.setAttribute("MsgOK", msgOK); // 顯示成功訊息
 
 		// 1. 讀取使用者資料
@@ -43,6 +44,8 @@ public class LoginServlet extends HttpServlet {
 		String userIdentity = request.getParameter("optionsRadios");
 //		String rm = request.getParameter("rememberMe");
 		String requestURI = (String) session.getAttribute("requestURI");
+		String referURI = (String) session.getAttribute("referURI");
+		boolean error = false;
 		
 		// 2. 檢查使用者輸入資料 (前端做, 這裡暫不做)
 		// 如果 userId 欄位為空白，放一個錯誤訊息到 errorMsgMap 之內
@@ -88,11 +91,11 @@ public class LoginServlet extends HttpServlet {
 //		response.addCookie(cookieRememberMe);
 		
 		// 如果 errorMsgMap 不是空的，表示有錯誤，交棒給login.jsp
-		if (!errorMsg.isEmpty()) {
-			RequestDispatcher rd = request.getRequestDispatcher("/_01_login/login.jsp");
-			rd.forward(request, response);
-			return;
-		}
+//		if (!errorMsg.isEmpty()) {
+//			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+//			rd.forward(request, response);
+//			return;
+//		}
 		
 		// 3. 進行 Business Logic 運算
 		System.out.println("會員種類: " + userIdentity);
@@ -121,12 +124,16 @@ public class LoginServlet extends HttpServlet {
 			//阿阮新增-------------------------------
 		} catch(Exception e) {
 			e.getStackTrace();
-			errorMsg.put("LoginError", "該帳號不存在或密碼錯誤");
+			session.setAttribute("LoginError", "該帳號不存在或密碼錯誤");
+			error = true;
 
 		}
 
 		// 4. 轉交
-		if (errorMsg.isEmpty()) {
+		if (!error) {
+			session.removeAttribute("LoginError");
+			session.removeAttribute("timeOut");
+//			session.removeAttribute("referURI");
 			if (memVO != null) {
 				if (requestURI != null) {
 					requestURI = (requestURI.length() == 0 ? request
@@ -140,11 +147,6 @@ public class LoginServlet extends HttpServlet {
 				}
 			}
 			else if (comVO != null) {
-				if (requestURI != null) {
-					requestURI = (requestURI.length() == 0 ? request.getContextPath() + "/manage.jsp" : requestURI);
-					response.sendRedirect(response.encodeRedirectURL(requestURI));
-					return;
-				} else {
 					System.out.println("進入商家後端");
 					//阿阮新增-----------
 					LoginOrdersOnLoad OCOL = new LoginOrdersOnLoad();  
@@ -152,14 +154,24 @@ public class LoginServlet extends HttpServlet {
 					//----------------
 					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/manage.jsp"));
 					return;
-				}
 			}
 		}
 		else {
-			// 如果errorMsgMap不是空的，表示有錯誤，交棒給login.jsp
-						RequestDispatcher rd = request.getRequestDispatcher("/_01_login/login.jsp");
-						rd.forward(request, response);
-						return;
+			// 如果errorMsg不是空的，表示有錯誤，交棒給login.jsp
+//			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+//						rd.forward(request, response);
+//			response.sendRedirect(response.encodeRedirectURL(request.
+//						getContextPath() + "/index.jsp"));
+			System.out.println("檢查referURI = " + referURI);
+			if (referURI == null || referURI.length() == 0) {
+				response.sendRedirect(response.encodeRedirectURL(request.
+						getContextPath()));
+				return;
+			} 
+			else {
+				response.sendRedirect(referURI);    // 導向至登入前原網頁
+				return;
+			}
 		}
 	} // end doPost
 }

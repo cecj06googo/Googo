@@ -68,13 +68,17 @@
                                     </div>
                                 </div>
                             </div>                        
-                            <a href="<%=request.getContextPath()%>/_06_manage/product.jsp">
+                            <FORM METHOD="post"
+							ACTION="<%=request.getContextPath()%>/prod.show" name="prodShow">
+                            <a href="#" onclick="document.prodShow.submit();">                        
                                 <div class="panel-footer">
                                     <span class="pull-left">庫存管理</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                     <div class="clearfix"></div>
                                 </div>
                             </a>
+                            <input type="hidden" name="action" value="prodShow"/>
+                            </FORM>
                         </div>
                     </div>
                     <!--/.取車-->
