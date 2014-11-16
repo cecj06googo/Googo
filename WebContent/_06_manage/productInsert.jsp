@@ -30,6 +30,7 @@
 		//onclick oninput onsubmit
 		document.getElementById("prodSubPic2").addEventListener("change",
 				clickDiv3, false);
+		
 	}
 
 	function clickDiv1() {
@@ -90,7 +91,7 @@
              <div class="control-group form-group ">
                 <label class="control-label">商品名稱:</label>
                 <div class="controls" >
-                    <input type="text" class="form-control" name="prodName" value="1" placeholder="請輸入商品名稱" >
+                    <input type="text" class="form-control" name="prodName" value="${ProductsVO.prodName}" placeholder="請輸入商品名稱" >
                 </div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdName}</font>
                 <div id="div1"></div>
@@ -98,7 +99,7 @@
             <div class="control-group form-group ">
                 <label class="control-label">商品車號:</label>
                 <div class="controls" >
-                    <input type="text" class="form-control" name="prodPlate" value="1" placeholder="請輸入商品名稱" >
+                    <input type="text" class="form-control" name="prodPlate" value="${ProductsVO.prodPlate}" placeholder="請輸入商品名稱" >
                 </div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdName}</font>
                 <div id="div1"></div>
@@ -106,14 +107,14 @@
             <div class="control-group form-group">
                 <label  class="control-label">商品價格:</label>
                 <div class="controls ">
-                    <input type="text"  class="form-control" name="prodPrice" value="1" placeholder="請輸入商品價格" >
+                    <input type="text"  class="form-control" name="prodPrice" value="${ProductsVO.prodPrice}" placeholder="請輸入商品價格" >
                 </div>
                  <font size="-1" color="#FF0000">${ErrorMsg.errorProdPrice}</font>
             </div>
             <div class="control-group form-group">
                 <label >商品優惠:</label>
                 <div class="controls ">
-                    <input type="text"  class="form-control" name="prodDisc" value="1" >
+                    <input type="text"  class="form-control" name="prodDisc" value="${ProductsVO.prodDisc}" placeholder="請輸入商品優惠">
                 </div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdDisc}</font>
             </div>
@@ -148,7 +149,7 @@
             <div class="control-group form-group">
                 <label>排氣量:</label>
                 <div class="controls ">
-                    <input type="text" class="form-control" name="prodCc" value="1">
+                    <input type="text" class="form-control" name="prodCc" value="${ProductsVO.prodCc}" placeholder="請輸入排氣量">
                 </div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdCc}</font>
             </div>
@@ -167,7 +168,7 @@
             <div class="control-group form-group">
                 <label>商品說明:</label>
                 <div class="controls ">
-                    <textarea rows="5" class="form-control" name="prodArticle" ></textarea>
+                    <textarea  rows="5" class="form-control" name="prodArticle" >${ProductsVO.prodArticle}</textarea>
                 </div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdArticle}</font>
             </div>
