@@ -1,106 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>Googo</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  <resource-ref>
-    <description>DB Connection</description>
-    <res-ref-name>jdbc/TestDB</res-ref-name>
-    <res-type>javax.sql.DataSource</res-type>
-    <res-auth>Container</res-auth>
-  </resource-ref>
-  <servlet>
-    <display-name>RegisterCompany</display-name>
-    <servlet-name>RegisterCompany</servlet-name>
-    <servlet-class>com.company.controller.RegisterCompany</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RegisterCompany</servlet-name>
-    <url-pattern>/Company.Register</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <display-name>UpdateCompany</display-name>
-    <servlet-name>UpdateCompany</servlet-name>
-    <servlet-class>com.company.controller.UpdateCompany</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>UpdateCompany</servlet-name>
-    <url-pattern>/Company.Update</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <display-name>ShowImage</display-name>
-    <servlet-name>ShowImage</servlet-name>
-    <servlet-class>com.company.controller.ShowImage</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ShowImage</servlet-name>
-    <url-pattern>/image</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <display-name>SearchServlet</display-name>
-    <servlet-name>SearchServlet</servlet-name>
-    <servlet-class>com.search.controller.SearchServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SearchServlet</servlet-name>
-    <url-pattern>/SearchServlet.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>Insert</servlet-name>
-    <servlet-class>com.orders.controller.OrdersServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Insert</servlet-name>
-    <url-pattern>/Insert.gg</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>Select</servlet-name>
-    <servlet-class>com.orders.controller.OrdersServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Select</servlet-name>
-    <url-pattern>/Select.gg</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>selectCom</servlet-name>
-    <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>selectCom</servlet-name>
-    <url-pattern>/selectCom.gg</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>fakeDataTest</servlet-name>
-    <servlet-class>com.orders.controller.fakeData</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>fakeDataTest</servlet-name>
-    <url-pattern>/fakeData.gg</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>cancelCom</servlet-name>
-    <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>cancelCom</servlet-name>
-    <url-pattern>/cancelCom.gg</url-pattern>
-  </servlet-mapping>
-<!--   <servlet> -->
-<!--     <servlet-name>s</servlet-name> -->
-<!--     <servlet-class>com.orders.controller.OrdersServlet</servlet-class> -->
-<!--   </servlet> -->
-<!--   <servlet-mapping> -->
-<!--     <servlet-name>s</servlet-name> -->
-<!--     <url-pattern>/se.gg</url-pattern> -->
-<!--   </servlet-mapping> -->
-  
-  <servlet>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>Googo</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/TestDB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	<servlet>
+		<display-name>RegisterCompany</display-name>
+		<servlet-name>RegisterCompany</servlet-name>
+		<servlet-class>com.company.controller.RegisterCompany</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterCompany</servlet-name>
+		<url-pattern>/Company.Register</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<display-name>UpdateCompany</display-name>
+		<servlet-name>UpdateCompany</servlet-name>
+		<servlet-class>com.company.controller.UpdateCompany</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateCompany</servlet-name>
+		<url-pattern>/Company.Update</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<display-name>ShowImage</display-name>
+		<servlet-name>ShowImage</servlet-name>
+		<servlet-class>com.company.controller.ShowImage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowImage</servlet-name>
+		<url-pattern>/image</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<display-name>SearchServlet</display-name>
+		<servlet-name>SearchServlet</servlet-name>
+		<servlet-class>com.search.controller.SearchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchServlet</servlet-name>
+		<url-pattern>/SearchServlet.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Insert</servlet-name>
+		<servlet-class>com.orders.controller.OrdersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Insert</servlet-name>
+		<url-pattern>/Insert.gg</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Select</servlet-name>
+		<servlet-class>com.orders.controller.OrdersServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Select</servlet-name>
+		<url-pattern>/Select.gg</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>selectCom</servlet-name>
+		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>selectCom</servlet-name>
+		<url-pattern>/selectCom.gg</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>fakeDataTest</servlet-name>
+		<servlet-class>com.orders.controller.fakeData</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>fakeDataTest</servlet-name>
+		<url-pattern>/fakeData.gg</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>cancelCom</servlet-name>
+		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cancelCom</servlet-name>
+		<url-pattern>/cancelCom.gg</url-pattern>
+	</servlet-mapping>
+	<!-- <servlet> -->
+	<!-- <servlet-name>s</servlet-name> -->
+	<!-- <servlet-class>com.orders.controller.OrdersServlet</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>s</servlet-name> -->
+	<!-- <url-pattern>/se.gg</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+	<servlet>
 		<servlet-name>prod</servlet-name>
 		<servlet-class>com.products.controller.ProductServlet</servlet-class>
 	</servlet>
@@ -108,7 +111,7 @@
 		<servlet-name>prod</servlet-name>
 		<url-pattern>/prod.in</url-pattern>
 	</servlet-mapping>
-		<servlet>
+	<servlet>
 		<servlet-name>prodShow</servlet-name>
 		<servlet-class>com.products.controller.ProductOnload</servlet-class>
 	</servlet>
@@ -116,7 +119,7 @@
 		<servlet-name>prodShow</servlet-name>
 		<url-pattern>/prod.show</url-pattern>
 	</servlet-mapping>
-			<servlet>
+	<servlet>
 		<servlet-name>prodDelete</servlet-name>
 		<servlet-class>com.products.controller.ProductServlet</servlet-class>
 	</servlet>
@@ -124,134 +127,134 @@
 		<servlet-name>prodDelete</servlet-name>
 		<url-pattern>/prod.delete</url-pattern>
 	</servlet-mapping>
-  
-  
-  
-  <servlet>
-    <servlet-name>newOrdCom</servlet-name>
-    <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>newOrdCom</servlet-name>
-    <url-pattern>/newOrdCom.gg</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>reCarCom</servlet-name>
-    <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>reCarCom</servlet-name>
-    <url-pattern>/reCarCom.gg</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>Login</servlet-name>
-    <servlet-class>com.login.controller.LoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Login</servlet-name>
-    <url-pattern>/Login.gg</url-pattern>
-  </servlet-mapping>
-  
-  <!-- Begin: 設計器相關 -->
-  <servlet>
-    <servlet-name>DesignAccessDB</servlet-name>
-    <servlet-class>com.template.controller.Prototype_OrderTemp_Servlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DesignAccessDB</servlet-name>
-    <url-pattern>/DesignAccessDB</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>GetAccessory</servlet-name>
-    <servlet-class>com.template.model.Accessory_Retrieval</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GetAccessory</servlet-name>
-    <url-pattern>/GetAccessory</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>LoadDesign</servlet-name>
-    <servlet-class>com.template.model.Design_Retrieval</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoadDesign</servlet-name>
-    <url-pattern>/LoadDesign</url-pattern>
-  </servlet-mapping>
-  <!-- End: 設計器相關 -->
-  
-  <servlet>
-    <servlet-name>MemServlet</servlet-name>
-    <servlet-class>com.member.controller.MemServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MemServlet</servlet-name>
-    <url-pattern>/member.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>CheckAccountServlet</servlet-name>
-    <servlet-class>com.member.controller.CheckAccountServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CheckAccountServlet</servlet-name>
-    <url-pattern>/CheckAccountServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>ActivateAccount</servlet-name>
-    <servlet-class>com.member.controller.ActivateAccountServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ActivateAccount</servlet-name>
-    <url-pattern>/ActivateAccount</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>ActivateCompanyAccount</servlet-name>
-    <servlet-class>com.company.controller.ActivateCompanyAccount</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ActivateCompanyAccount</servlet-name>
-    <url-pattern>/CActivateAccount</url-pattern>
-  </servlet-mapping>
-  
-<!-- Filter設定 -->
-  <filter>
-    <display-name>LoginMemFilter</display-name>
-    <icon/>
-    <filter-name>LoginMemFilter</filter-name>
-    <filter-class>com.login.filter.LoginMemFilter</filter-class>
-    <init-param>
-      <param-name>mustMemLogin1</param-name>
-      <param-value>/_04_member/*</param-value>
-    </init-param>
-<!--     <init-param> -->
-<!--       <param-name>mustMemLogin2</param-name> -->
-<!--       <param-value>/_05_company/company.jsp</param-value> -->
-<!--     </init-param> -->
-  </filter>
-  <filter-mapping>
-    <filter-name>LoginMemFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
 
-  <filter>
-    <display-name>LoginComFilter</display-name>
-    <icon/>
-    <filter-name>LoginComFilter</filter-name>
-    <filter-class>com.login.filter.LoginComFilter</filter-class>
-    <init-param>
-      <param-name>mustComLogin1</param-name>
-      <param-value>/_06_manage/*</param-value>
-    </init-param>
-    <init-param>
-      <param-name>mustComLogin3</param-name>
-      <param-value>/_05_company/orderCom.jsp</param-value>
-    </init-param>
-  </filter>
-  <filter-mapping>
-    <filter-name>LoginComFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+
+
+	<servlet>
+		<servlet-name>newOrdCom</servlet-name>
+		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>newOrdCom</servlet-name>
+		<url-pattern>/newOrdCom.gg</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>reCarCom</servlet-name>
+		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>reCarCom</servlet-name>
+		<url-pattern>/reCarCom.gg</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.login.controller.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login.gg</url-pattern>
+	</servlet-mapping>
+
+	<!-- Begin: 設計器相關 -->
+	<servlet>
+		<servlet-name>DesignAccessDB</servlet-name>
+		<servlet-class>com.template.controller.Prototype_OrderTemp_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DesignAccessDB</servlet-name>
+		<url-pattern>/DesignAccessDB</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GetAccessory</servlet-name>
+		<servlet-class>com.template.model.Accessory_Retrieval</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetAccessory</servlet-name>
+		<url-pattern>/GetAccessory</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>LoadDesign</servlet-name>
+		<servlet-class>com.template.model.Design_Retrieval</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadDesign</servlet-name>
+		<url-pattern>/LoadDesign</url-pattern>
+	</servlet-mapping>
+	<!-- End: 設計器相關 -->
+
+	<servlet>
+		<servlet-name>MemServlet</servlet-name>
+		<servlet-class>com.member.controller.MemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemServlet</servlet-name>
+		<url-pattern>/member.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CheckAccountServlet</servlet-name>
+		<servlet-class>com.member.controller.CheckAccountServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CheckAccountServlet</servlet-name>
+		<url-pattern>/CheckAccountServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ActivateAccount</servlet-name>
+		<servlet-class>com.member.controller.ActivateAccountServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ActivateAccount</servlet-name>
+		<url-pattern>/ActivateAccount</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ActivateCompanyAccount</servlet-name>
+		<servlet-class>com.company.controller.ActivateCompanyAccount</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ActivateCompanyAccount</servlet-name>
+		<url-pattern>/CActivateAccount</url-pattern>
+	</servlet-mapping>
+
+	<!-- Filter設定 -->
+	<!-- <filter> -->
+	<!-- <display-name>LoginMemFilter</display-name> -->
+	<!-- <icon/> -->
+	<!-- <filter-name>LoginMemFilter</filter-name> -->
+	<!-- <filter-class>com.login.filter.LoginMemFilter</filter-class> -->
+	<!-- <init-param> -->
+	<!-- <param-name>mustMemLogin1</param-name> -->
+	<!-- <param-value>/_04_member/*</param-value> -->
+	<!-- </init-param> -->
+	<!-- <init-param> -->
+	<!-- <param-name>mustMemLogin2</param-name> -->
+	<!-- <param-value>/_05_company/company.jsp</param-value> -->
+	<!-- </init-param> -->
+	<!-- </filter> -->
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>LoginMemFilter</filter-name> -->
+	<!-- <url-pattern>/*</url-pattern> -->
+	<!-- </filter-mapping> -->
+
+	<!-- <filter> -->
+	<!-- <display-name>LoginComFilter</display-name> -->
+	<!-- <icon/> -->
+	<!-- <filter-name>LoginComFilter</filter-name> -->
+	<!-- <filter-class>com.login.filter.LoginComFilter</filter-class> -->
+	<!-- <init-param> -->
+	<!-- <param-name>mustComLogin1</param-name> -->
+	<!-- <param-value>/_06_manage/*</param-value> -->
+	<!-- </init-param> -->
+	<!-- <init-param> -->
+	<!-- <param-name>mustComLogin3</param-name> -->
+	<!-- <param-value>/_05_company/orderCom.jsp</param-value> -->
+	<!-- </init-param> -->
+	<!-- </filter> -->
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>LoginComFilter</filter-name> -->
+	<!-- <url-pattern>/*</url-pattern> -->
+	<!-- </filter-mapping> -->
 </web-app>
