@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.products.model.*"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,11 +12,24 @@
 
 </head>
 <script type="text/javascript">
-<%-- 	<% int prod= Integer.parseInt(prodId); %> --%>
-<%-- 	<% session.setAttribute("prodId", prod); %> --%>
+var prodId=0;
 function loadIn(prodId){
 	alert(prodId);
+	this.prodId = prodId;
+	alert(this.prodId);
+
+   	<% 
+   		ProductVO ProductVO = new ProductVO(); 
+   		session.setAttribute("prodId", (int)this.prodId);
+   	%>
 }
+function getLoadIn(){
+	$("#idForSent").val(prodId)
+	alert(document.getElementById("idForSent").getAttribute("value"));
+}
+
+
+
 </script>
 <body>
  <div id="wrapper">
@@ -51,15 +65,16 @@ function loadIn(prodId){
                 </thead>
                 <tbody>
                    <c:forEach var="ProductVO" items="${car}">
-                   	<tr>
+                   	<tr id="prodId" onclick="loadIn(${ProductVO.prodId})">
+                   	<c:set target="${ProductVO}" property=""></c:set>
                     	<td>${ProductVO.prodName}</td>
                     	<td>${ProductVO.prodDisc}</td>
                     	<td>${ProductVO.prodPrice}</td>
                     	<td>${ProductVO.prodPlate}</td>
                     	<td class="text-center">
-                        	<a onclick="loadIn(${ProductVO.prodId})" class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
+                        	<a href="#" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                        		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>
+                         </td>
                     	</tr>
                     </c:forEach>
                 </tbody>
@@ -90,14 +105,14 @@ function loadIn(prodId){
                 </thead>
                 <tbody>
                    <c:forEach var="ProductVO" items="${moto}">
-                    	<tr>
+                    	<tr id="prodId" onclick="loadIn(${ProductVO.prodId})">
                     	<td>${ProductVO.prodName}</td>
                     	<td>${ProductVO.prodDisc}</td>
                     	<td>${ProductVO.prodPrice}</td>
                     	<td>${ProductVO.prodPlate}</td>
                     	<td class="text-center">
-                        	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                        	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
+                   			<a href="#" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
+                       		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                         </td>
                     	</tr>
                     </c:forEach>                  
@@ -129,15 +144,15 @@ function loadIn(prodId){
                 </thead>
                 <tbody>
                     <c:forEach var="ProductVO" items="${bike}">
-                    	<tr>
+                    	<tr id="prodId" onclick="loadIn(${ProductVO.prodId})">
                     	<td>${ProductVO.prodName}</td>
                     	<td>${ProductVO.prodDisc}</td>
                     	<td>${ProductVO.prodPrice}</td>
                     	<td>${ProductVO.prodPlate}</td>
                     	<td class="text-center">
-                        	<a class='btn btn-info' href="#" data-toggle="modal" data-target="#editProduct"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                        	<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                        </td>
+               				<a href="#" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
+                       		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
+                         </td>
                     	</tr>
                     </c:forEach>  
                 </tbody>

@@ -42,8 +42,9 @@ public class ProductServlet extends HttpServlet {
 		request.setAttribute("MsgOK", succesMsgs); // 顯示錯誤訊息
 //		String abc = "abc";
 //		request.setAttribute("abc", abc); // 顯示錯誤訊息
-		System.out.println("ready?");
-		ProductsService ProdSvc = new ProductsService();
+		System.out.println("Ready? servlet begins~");
+		ProductsService productsService = new ProductsService();
+
 		// List<ProductsVO> list = ProdSvc.getAll();
 		// request.setAttribute("list",list);
 		//
@@ -74,18 +75,20 @@ public class ProductServlet extends HttpServlet {
 
 		String prodPlate = "ABC-11";
 		int prodStatus = 1;
-		// System.out.println("where?? am i?");
 		String action = request.getParameter("action");
-		System.out.println(action);
+		//System.out.println(action);
 		
 		if ("prodDelete".equals(action)) {
-			System.out.println("in delete");
-			System.out.println(action);
+			//System.out.println(action);
+			prodId=Integer.parseInt(request.getParameter("prodId"));
+			System.out.println("in delete prodId="+prodId+" =_=");
+			productsService.delProd(prodId);
+			
+			String url2 = "/prod.show";
 			String url = "/_06_manage/product.jsp";
-			RequestDispatcher successView = request.getRequestDispatcher(url);
-
+			RequestDispatcher successView = request.getRequestDispatcher(url2);
+			System.out.println("End servlet delete O_Q");
 			successView.forward(request, response);
-
 		} // end delete
 		
 		else {
@@ -175,8 +178,6 @@ public class ProductServlet extends HttpServlet {
 
 					// ---------------寫入database----------------------
 					if (errorMsgs.isEmpty()) {
-						ProductsService productsService = new ProductsService();
-
 						ProductsVO = productsService
 								.addProd(prodId, _comId, prodName, plateId,
 										prodType, prodPrice, prodDisc, prodPic,

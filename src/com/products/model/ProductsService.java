@@ -48,8 +48,8 @@ public class ProductsService {
 		return ProductVO;
 	} // end addOrder
 
-	public void delProd(Integer ord_id, Integer ord_status) {
-		// TODO Auto-generated method stub
+	public void delProd(Integer prodId) {
+		dao.delete(prodId);
 		
 	}
 	public List<ProductVO> getAll(ProductVO ProductVO) {
