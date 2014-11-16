@@ -20,9 +20,52 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 		this.conn = conn;
 	}
 
-	public void writeInSQL(String prod_id, String srcPicPath) {
+	public void batchWriteInSQL(String srcPicPath, String tableName,
+			String columnName) {// 練習batch用
 		// 因為沒有close connection 所以最外層要記得用finally去close
-		String insertStmt = "UPDATE Product SET prod_subPic1 = ? WHERE prod_id = ?";
+		String insertStmt = "UPDATE " + tableName + " SET " + columnName
+				+ " = ? WHERE prod_id = ?";
+		int countNum = Integer.parseInt(getCountOfProductId("prod_id",
+				"Product"));
+		try {
+			stmt = conn.prepareStatement(insertStmt);// "UPDATE Product SET prod_subPic1 = ? WHERE prod_id = ?"
+			for (int i = 0; i < countNum; i++) {
+				f = new File(srcPicPath); // 標準的檔案開啟流程 準備讀取圖片寫入資料庫
+				FileInputStream fis = new FileInputStream(f); // 這兩行必須放在for迴圈裡面
+				stmt.setBinaryStream(1, fis, (int) f.length()); // 2是第二個參數，fis是該檔fileinputstring,f.length是該圖片大小
+				stmt.setString(2, Integer.toString(i + 1));
+				stmt.addBatch();// 批次處理使用此
+			}
+			stmt.executeBatch();
+			System.out.println("批次寫入所有圖片成功!");
+		} catch (Exception e) {
+			System.out.println("batchWriteInSQL 錯誤");
+			e.printStackTrace();
+		}
+	}
+
+	public void AllWriteInSQL(String srcPicPath, String tableName,
+			String columnName) {// 練習batch用
+		String insertStmt = "UPDATE " + tableName + " SET " + columnName
+				+ " = ?";
+		try {
+			f = new File(srcPicPath); // 標準的檔案開啟流程 準備讀取圖片寫入資料庫
+			FileInputStream fis = new FileInputStream(f);
+			stmt = conn.prepareStatement(insertStmt);// "UPDATE Product SET prod_subPic1 = ? WHERE prod_id = ?"
+			stmt.setBinaryStream(1, fis, (int) f.length()); // 2是第二個參數，fis是該檔fileinputstring,f.length是該圖片大小
+			stmt.executeUpdate();// insert update使用此
+			System.out.println("AllWriteInSQL is successful!");
+		} catch (Exception e) {
+			System.out.println("AllWriteInSQL 錯誤");
+			e.printStackTrace();
+		}
+	}
+
+	public void singleWriteInSQL(String prod_id, String srcPicPath,
+			String tableName, String columnName) {
+		// 因為沒有close connection 所以最外層要記得用finally去close
+		String insertStmt = "UPDATE " + tableName + " SET " + columnName
+				+ " = ? WHERE prod_id = ?";
 		try {
 			f = new File(srcPicPath); // 標準的檔案開啟流程 準備讀取圖片寫入資料庫
 			FileInputStream fis = new FileInputStream(f);
@@ -32,14 +75,15 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			stmt.executeUpdate();// insert update使用此
 			System.out.println("Insert blob is successful!");
 		} catch (Exception e) {
-			System.out.println("writeInSQL 錯誤");
+			System.out.println("singleWriteInSQL 錯誤");
 			e.printStackTrace();
 		}
 	}
 
-	public void clearBlob(String prod_id) {
+	public void clearBlob(String prod_id, String tableName, String columnName) {
 		// 因為沒有close connection 所以最外層要記得用finally去close
-		String clearStmt = "UPDATE Product SET prod_subPic1 = null WHERE prod_id = ?";
+		String clearStmt = "UPDATE " + tableName + " SET " + columnName
+				+ " = null WHERE prod_id = ?";
 		try {
 			stmt = conn.prepareStatement(clearStmt);
 			stmt.setString(1, prod_id);// 檔名
@@ -51,9 +95,24 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 		}
 	}
 
-	public void readBlobfromSQL(String prod_id, String outPicPath) {
+	public void clearAllBlob(String tableName, String columnName) {
+		String clearAllStmt = "UPDATE " + tableName + " SET " + columnName
+				+ " = null";
+		try {
+			stmt = conn.prepareStatement(clearAllStmt);
+			stmt.executeUpdate();// insert update使用此
+			System.out.println("Clear AllPicture is successful!");
+		} catch (Exception e) {
+			System.out.println("clearAllBlob 錯誤");
+			e.printStackTrace();
+		}
+	}
+
+	public void readBlobfromSQL(String prod_id, String outPicPath,
+			String tableName, String columnName) {
 		// 因為沒有close connection 所以最外層要記得用finally去close
-		String qryStmt = "SELECT prod_subPic1 FROM Product WHERE prod_id = ?";
+		String qryStmt = "SELECT " + columnName + " FROM " + tableName
+				+ " WHERE prod_id = ?";
 		try {
 			f = new File(outPicPath); // 要寫出的圖片檔名 :從資料庫讀出寫入圖片
 			stmt = conn.prepareStatement(qryStmt);// "SELECT prod_subPic1 FROM Product WHERE prod_id = ?"
@@ -77,19 +136,21 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 		}
 	}
 
-	public String getCountOfProductId() {
+	public String getCountOfProductId(String countName, String tableName) {
 		String countNum = null;
-		String countQry = "select count(prod_id) as count from Product";
+		String countQry = "select count(" + countName + ") as count from "
+				+ tableName;
 		try {
 			stmt = conn.prepareStatement(countQry);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
-				countNum=rs.getString("count");
+				countNum = rs.getString("count");
 			}
 		} catch (Exception e) {
 			System.out.println("getCountOfProductId 錯誤");
 			e.printStackTrace();
 		}
+		System.out.println("The count of " + countName + " = " + countNum);
 		return countNum;
 	}
 
@@ -105,10 +166,13 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 				return;
 			}
 			BLOBDemo blobdemo = new BLOBDemo(conn);
-			// blobdemo.clearBlob("1");
-			//blobdemo.writeInSQL("1", srcPicPath);
-			//blobdemo.readBlobfromSQL("1", outPicPath);
-			//System.out.println(blobdemo.getCountOfProductId());
+			blobdemo.AllWriteInSQL(srcPicPath,"Product","prod_subPic1");//一次寫入該欄位所有圖片
+			//blobdemo.clearAllBlob("Product","prod_subPic1");//清除該欄位所有圖片
+			// blobdemo.batchWriteInSQL(srcPicPath,"Product","prod_subPic1");//批次寫入該table欄位所有圖片
+			// blobdemo.clearBlob("1","Product","prod_subPic1");//清除單個圖片
+			// blobdemo.singleWriteInSQL("1",srcPicPath,"Product","prod_subPic1")//寫入單張圖片;
+			// blobdemo.readBlobfromSQL("1",outPicPath,"Product","prod_subPic1");//讀出單張圖片
+			// blobdemo.getCountOfProductId("prod_id","Product");//讀出胎table欄位有幾個
 		} catch (Exception e) {
 			System.out.println("readBlobfromSQL 錯誤");
 			e.printStackTrace();
