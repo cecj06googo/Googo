@@ -312,7 +312,7 @@ public class OrdersActionCom extends HttpServlet {
 						List<OrdersVO> ordVO = odrSvc.ordSearch_com(com_id,
 								orderStatus, orderTime);
 						request.setAttribute("ordVO", ordVO);
-						session.setAttribute("orderStatus", ord_status);
+						session.setAttribute("orderStatus", orderStatus);
 						session.setAttribute("orderTime", orderTime);
 						if (ordVO.isEmpty()) {
 							msgOK.put("SearchNull", "沒有資料");
@@ -432,7 +432,7 @@ public class OrdersActionCom extends HttpServlet {
 						List<OrdersVO> ordVO = odrSvc.ordSearch_com(com_id,
 								orderStatus, orderTime);
 						request.setAttribute("ordVO", ordVO);
-						session.setAttribute("orderStatus", ord_status);
+						session.setAttribute("orderStatus", orderStatus);
 						session.setAttribute("orderTime", orderTime);
 						if (ordVO.isEmpty()) {
 							msgOK.put("SearchNull", "沒有資料");

@@ -12,16 +12,16 @@
 
 </head>
 <script type="text/javascript">
-var prodId=0;
-function loadIn(prodId){
-	alert(prodId);
-	this.prodId = prodId;
-	alert(this.prodId);
+// var prodId=0;
+// function loadIn(prodId){
+// 	alert(prodId);
+// 	this.prodId = prodId;
+// 	alert(this.prodId);
 
-   	<% 
-   		ProductVO ProductVO = new ProductVO(); 
-   		session.setAttribute("prodId", (int)this.prodId);
-   	%>
+<%--     	<%   --%>
+//      		ProductVO ProductVO = new ProductVO(); 
+//      		session.setAttribute("prodId", this.prodId);
+<%--     	%>  --%>
 }
 function getLoadIn(){
 	$("#idForSent").val(prodId)
@@ -66,16 +66,19 @@ function getLoadIn(){
                 <tbody>
                    <c:forEach var="ProductVO" items="${car}">
                    	<tr id="prodId" onclick="loadIn(${ProductVO.prodId})">
-                   	<c:set target="${ProductVO}" property=""></c:set>
+<%--                    	<c:set target="${ProductVO}" property=""></c:set> --%>
                     	<td>${ProductVO.prodName}</td>
                     	<td>${ProductVO.prodDisc}</td>
                     	<td>${ProductVO.prodPrice}</td>
                     	<td>${ProductVO.prodPlate}</td>
                     	<td class="text-center">
-                        	<a href="#" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
+                        	<a href="#" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" id="${ProductVO.prodId}"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                        		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                          </td>
                     	</tr>
+                    	<input type="hidden" name="ProductVO${ProductVO.prodId}prodName" value="${ProductVO.prodName}"/>
+                    	<input type="hidden" name="ProductVO${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
+                    	<input type="hidden" name="ProductVO${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
                     </c:forEach>
                 </tbody>
             </table>
@@ -153,7 +156,7 @@ function getLoadIn(){
                				<a href="#" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                        		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                          </td>
-                    	</tr>
+                    	</tr>                 	
                     </c:forEach>  
                 </tbody>
             </table>
@@ -183,7 +186,19 @@ $("td[class!=text-center]").click(function(){
 	$("td[class!=text-center]").attr( "data-toggle", "modal" );
 	$("td[class!=text-center]" ).attr( "data-target", "#prod_detail" );
 })
-
+//新增
+$("a[data-target='#editProduct']").click(function() {
+ 		var btnId = this.id; 
+ 		var prodName = $("input[name='ProductVO"+ btnId +"prodName']").val();
+ 		var prodDisc = $("input[name='ProductVO"+ btnId +"prodDisc']").val();
+ 		var prodPrice = $("input[name='ProductVO"+ btnId +"prodPrice']").val();
+ 		$("input[name='prodName']").val(prodName);
+ 		$("input[name='prodDisc']").val(prodDisc);
+ 		$("input[name='prodPrice']").val(prodPrice);
+// 		$("input[name='prodName']").val('${obj_ProductVO.prodName}');  obj_ProductVO型態不對EL所以取不出來
+// 		ProductVO obj_ProductVO = new ProductVO();  不認得
+});
+//----新增
 </script>
 
 </body>

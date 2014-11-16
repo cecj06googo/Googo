@@ -28,15 +28,15 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 			+ "FROM Orders ord JOIN Ord_status sta  "
 			+ "ON ord.ord_status =  sta.ord_status "
 			+ "WHERE  mem_id = ? "
-			+ "ORDER BY ord.ord_status";
+			+ "ORDER BY ord.ord_status, ord_id";
 	
 	private static final String SELECT_GETALL_Com = 
 			" SELECT ord.ord_id, ord.ord_status, sta.status_char, mem_account , ord_time, ord_getday, ord_reday , ord_lastuptime , item_total "
 			+ "FROM Orders ord JOIN Ord_status sta  "
 			+ "ON ord.ord_status =  sta.ord_status "
 			+ "JOIN Member mem  ON ord.mem_id = mem.mem_id WHERE com_id = ? "
-			+ "ORDER BY ord.ord_status";
-	private static final String CANCEL_ORDER = "UPDATE Orders SET ord_status = ?, ord_cancelTime = ? WHERE ord_id = ?";
+			+ "ORDER BY ord.ord_status,ord_id";
+	private static final String UPDATE_ORDER = "UPDATE Orders SET ord_status = ?, ord_lastuptime = ? WHERE ord_id = ?";
 	
 	//指令碼用""+""時 有可能會發生指令錯誤(原因不明)  
 	  
@@ -263,7 +263,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(CANCEL_ORDER);
+			pstmt = con.prepareStatement(UPDATE_ORDER);
 			pstmt.setInt(1, ord_status);
 			pstmt.setTimestamp(2, cancelTime);
 			pstmt.setInt(3, ord_id);

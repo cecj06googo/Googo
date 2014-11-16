@@ -107,7 +107,7 @@
 					<c:if test="${ordVO.status_char == '未處理'}">
 					<td>
 						<FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/ActionCom.do" >
+							ACTION="<%=request.getContextPath()%>/ActionCom.do" id="AcceptForm${ordVO.ord_id}">
 							<input class="btn btn-success" type="button" value="接受訂單 "title="接受訂單" name="AcceptForm${ordVO.ord_id}" /> 
 							<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
 							<input type="hidden" name="action" value="accept">
