@@ -14,7 +14,7 @@ public class OrdersVO implements java.io.Serializable {
 	private Timestamp ord_time;
 	private Timestamp ord_getday;
 	private Timestamp ord_reday;
-	private Timestamp ord_cancelTime;
+	private Timestamp ord_lastuptime;
 	private Integer item_total;
 	private Integer prod_id;
 	private Integer acc_id;
@@ -70,11 +70,11 @@ public class OrdersVO implements java.io.Serializable {
 	public void setOrd_reday(Timestamp ord_reday) {
 		this.ord_reday = ord_reday;
 	}
-	public Timestamp getOrd_cancelTime() {
-		return ord_cancelTime;
+	public Timestamp getOrd_lastuptime() {
+		return ord_lastuptime;
 	}
-	public void setOrd_cancelTime(Timestamp ord_cancelTime) {
-		this.ord_cancelTime = ord_cancelTime;
+	public void setOrd_lastuptime(Timestamp ord_lastuptime) {
+		this.ord_lastuptime = ord_lastuptime;
 	}
 	public Integer getItem_total() {
 		return item_total;

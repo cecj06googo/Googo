@@ -24,14 +24,14 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 			"INSERT INTO Ord_item (ord_id,prod_id,acc_id,item_name,item_tel,item_phone,item_email,pritem_acc,item_all)"
 			+ " VALUES (?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_GETALL_Mem = 
-			" SELECT ord.ord_id, ord.ord_status, sta.status_char, ord_time, ord_getday, ord_reday , ord_deleteTime , item_total "
+			" SELECT ord.ord_id, ord.ord_status, sta.status_char, ord_time, ord_getday, ord_reday , ord_lastuptime , item_total "
 			+ "FROM Orders ord JOIN Ord_status sta  "
 			+ "ON ord.ord_status =  sta.ord_status "
 			+ "WHERE  mem_id = ? "
 			+ "ORDER BY ord.ord_status";
 	
 	private static final String SELECT_GETALL_Com = 
-			" SELECT ord.ord_id, ord.ord_status, sta.status_char, mem_account , ord_time, ord_getday, ord_reday , ord_cancelTime , item_total "
+			" SELECT ord.ord_id, ord.ord_status, sta.status_char, mem_account , ord_time, ord_getday, ord_reday , ord_lastuptime , item_total "
 			+ "FROM Orders ord JOIN Ord_status sta  "
 			+ "ON ord.ord_status =  sta.ord_status "
 			+ "JOIN Member mem  ON ord.mem_id = mem.mem_id WHERE com_id = ? "
@@ -113,8 +113,8 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 	} // end insert
 
 	@Override
-	public List<OrdersVO> mem_getAll(Integer mem_id, Integer sel_stus,
-			String sel_time) {
+	public List<OrdersVO> mem_getAll(Integer mem_id, Integer orderStatus,
+			String orderTime) {
 		List<OrdersVO> list = new ArrayList<OrdersVO>();
 		OrdersVO ordVO = null;
 		Connection con = null;
@@ -133,7 +133,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 				ordVO = new OrdersVO();
 				ordVO.setOrd_status(rs.getInt("ord_status"));
 				ordVO.setOrd_time(rs.getTimestamp("ord_time"));
-				if (Conditions(ordVO, sel_stus, sel_time) == false) {
+				if (Conditions(ordVO, orderStatus, orderTime) == false) {
 					continue;
 				}
 				ordVO.setOrd_time(rs.getTimestamp("ord_time"));
@@ -141,7 +141,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 				ordVO.setOrd_getday(rs.getTimestamp("ord_getday"));
 				ordVO.setStatus_char(rs.getString("status_char"));
 				ordVO.setOrd_reday(rs.getTimestamp("ord_reday"));
-				ordVO.setOrd_cancelTime(rs.getTimestamp("ord_deleteTime"));
+				ordVO.setOrd_lastuptime(rs.getTimestamp("ord_lastuptime"));
 				ordVO.setItem_total(rs.getInt("item_total"));
 				list.add(ordVO);
 			}
@@ -182,7 +182,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 	} // end mem_getAll
 
 	@Override
-	public List<OrdersVO> com_getAll(Integer com_id,Integer sel_stus,String sel_time){
+	public List<OrdersVO> com_getAll(Integer com_id,Integer orderStatus,String orderTime){
 		List<OrdersVO> list = new ArrayList<OrdersVO>();
 		OrdersVO ordVO = null;
 		Connection con = null;
@@ -201,7 +201,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 				ordVO = new OrdersVO();
 				ordVO.setOrd_status(rs.getInt("ord_status"));
 				ordVO.setOrd_time(rs.getTimestamp("ord_time"));
-				if (Conditions(ordVO, sel_stus, sel_time) == false) {
+				if (Conditions(ordVO, orderStatus, orderTime) == false) {
 					continue;
 				}
 				ordVO.setOrd_time(rs.getTimestamp("ord_time"));
@@ -209,7 +209,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 				ordVO.setOrd_getday(rs.getTimestamp("ord_getday"));
 				ordVO.setStatus_char(rs.getString("status_char"));
 				ordVO.setOrd_reday(rs.getTimestamp("ord_reday"));
-				ordVO.setOrd_cancelTime(rs.getTimestamp("ord_cancelTime"));
+				ordVO.setOrd_lastuptime(rs.getTimestamp("ord_lastuptime"));
 				ordVO.setItem_total(rs.getInt("item_total"));
 				ordVO.setMem_account(accountAddStar(rs.getString("mem_account")));
 				list.add(ordVO);
@@ -268,10 +268,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 			pstmt.setTimestamp(2, cancelTime);
 			pstmt.setInt(3, ord_id);
 			pstmt.executeUpdate();
-			
-			
-			
-			
+
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
@@ -328,30 +325,30 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 	
 	
 	
-	public boolean Conditions(OrdersVO ordVO, Integer sel_stus, String sel_time) {
+	public boolean Conditions(OrdersVO ordVO, Integer orderStatus, String orderTime) {
 		Integer ord_status = ordVO.getOrd_status();
-		if (sel_stus == 0 || sel_stus.equals(ord_status)) {
-			if (con_Time(ordVO, sel_time) == true) {
+		if (orderStatus == 0 || orderStatus.equals(ord_status)) {
+			if (con_Time(ordVO, orderTime) == true) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public Boolean con_Time(OrdersVO ordVO, String sel_time) {
+	public Boolean con_Time(OrdersVO ordVO, String orderTime) {
 		long _user_long = -1;
 
-		if (sel_time.equals("all")) {
+		if (orderTime.equals("all")) {
 			return true;
-		} else if (sel_time.equals("1W")) {
+		} else if (orderTime.equals("1W")) {
 			_user_long = 604800;
-		} else if (sel_time.equals("1M")) {
+		} else if (orderTime.equals("1M")) {
 			_user_long = 2678400; // 31天
-		} else if (sel_time.equals("3M")) {
+		} else if (orderTime.equals("3M")) {
 			_user_long = 8035200; // 93天
 		}
 
-		long _today = new Date().getTime() / 1000;
+		long _today = System.currentTimeMillis() / 1000;
 		long _ord_time = ordVO.getOrd_time().getTime() / 1000;
 		if (_ord_time + _user_long > _today) {
 			return true;
