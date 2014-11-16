@@ -6,12 +6,13 @@ public class TestService {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 		ProductsDAO dao = new ProductsDAO();
 		ProductVO ProductVO = new ProductVO();
 		
-		//測試INSERT
-		ProductVO.setComId(1);
-		ProductVO.setProdName("!AAstessstSesrvice");
+		//測試用
+		ProductVO.setComId(18);
+		ProductVO.setProdName("!Aesrvice");
 		ProductVO.setProdType(1);
 		
 		ProductVO.setProdPrice(1013);
@@ -29,8 +30,8 @@ public class TestService {
 		ProductVO.setProdCarrier(1);
 		ProductVO.setProdControl(1);
 		
-		ProductVO.setProdPlate("ABAs!!sAC-11");
-		ProductVO.setProdStatus(0);
+		ProductVO.setProdPlate("AQSSAWAssEARA-11");
+		ProductVO.setProdStatus(1);
 		 
 //		System.out.println(ProductsVO.getProdDisc());
 //		System.out.println(ProductPlateVO.getPlateId());
