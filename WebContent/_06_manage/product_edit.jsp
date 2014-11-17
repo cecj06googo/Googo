@@ -19,18 +19,19 @@
 	      <form role="form" action="#">
 	        <div class="form-group">
 	          <label > 商品名稱:</label>
-	          <input type="text" class="form-control"  placeholder="NISSAN" >
+	          <input type="text" class="form-control" name="prodName" value="${ProductsVO.prodName}" placeholder="請輸入商品名稱">
 	        </div>
 	        <div class="form-group ">
 	          <label > 價格:</label>
 	          <div class="form-inline">
-	          <input type="text" class="form-control"  placeholder="2500">元
-	          <select class="form-control">
-                               <option>小時</option>  
-                               <option>一天</option>
-                               <option>半天</option>
-                 </select>
-                 </div>
+	          <input type="text" class="form-control" name="prodPrice" value="${ProductsVO.prodPrice}" placeholder="請輸入商品價格">元
+	          </div>
+	        </div>
+	        <div class="form-group ">
+	          <label > 優惠:</label>
+	          <div class="form-inline">
+	          <input type="text" class="form-control" name="prodDisc" value="${ProductsVO.prodDisc}" placeholder="請輸入商品優惠">折
+	          </div>
 	        </div>
 	        <div class="form-group">
 	          <label > 呱呱:</label>

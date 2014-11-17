@@ -63,21 +63,13 @@
 		<url-pattern>/Insert.gg</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>Select</servlet-name>
-		<servlet-class>com.orders.controller.OrdersServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Select</servlet-name>
-		<url-pattern>/Select.gg</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>selectCom</servlet-name>
-		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>selectCom</servlet-name>
-		<url-pattern>/selectCom.gg</url-pattern>
-	</servlet-mapping>
+    <servlet-name>ActionCom</servlet-name>
+    <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActionCom</servlet-name>
+    <url-pattern>/ActionCom.do</url-pattern>
+  </servlet-mapping>
 	<servlet>
 		<servlet-name>fakeDataTest</servlet-name>
 		<servlet-class>com.orders.controller.fakeData</servlet-class>
@@ -94,14 +86,6 @@
 		<servlet-name>cancelCom</servlet-name>
 		<url-pattern>/cancelCom.gg</url-pattern>
 	</servlet-mapping>
-	<!-- <servlet> -->
-	<!-- <servlet-name>s</servlet-name> -->
-	<!-- <servlet-class>com.orders.controller.OrdersServlet</servlet-class> -->
-	<!-- </servlet> -->
-	<!-- <servlet-mapping> -->
-	<!-- <servlet-name>s</servlet-name> -->
-	<!-- <url-pattern>/se.gg</url-pattern> -->
-	<!-- </servlet-mapping> -->
 
 	<servlet>
 		<servlet-name>prod</servlet-name>

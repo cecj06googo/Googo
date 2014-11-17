@@ -75,7 +75,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			stmt.setBinaryStream(1, fis, (int) f.length()); // 2是第二個參數，fis是該檔fileinputstring,f.length是該圖片大小
 			stmt.setString(2, whereValue);// 檔名
 			stmt.executeUpdate();// insert update使用此
-			System.out.println("Insert blob is successful!");
+			System.out.println("Insert blob into "+tableName+" is successful!");
 		} catch (Exception e) {
 			System.out.println("singleWriteInSQL 錯誤");
 			ConnectionUtil.closeConnection(conn);
@@ -105,7 +105,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 		try {
 			stmt = conn.prepareStatement(clearAllStmt);
 			stmt.executeUpdate();// insert update使用此
-			System.out.println("Clear AllPicture is successful!");
+			System.out.println("Clear Table:"+tableName+" AllPicture is successful!");
 		} catch (Exception e) {
 			System.out.println("clearAllBlob 錯誤");
 			ConnectionUtil.closeConnection(conn);
@@ -133,7 +133,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 				bos.write(data, 0, (int) b.length()); // bos是要寫入file的參照，將data的byte陣列，從0(最開頭)，以及該data大小
 				// JAVA 0起頭 資料庫 1 起頭
 				bos.close();
-				System.out.println("File output is successful!");
+				System.out.println("Read Pic from "+tableName+" is successful!");
 			} // end of if (rs.next())
 		} catch (Exception e) {
 			System.out.println("readBlobfromSQL 錯誤");
@@ -163,7 +163,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 
 	public static void main(String args[]) {
 		String srcPicPath = "WebContent/img/Company1.jpg";
-		String outPicPath = "WebContent/img/Copycar1.jpg";
+		String outPicPath = "WebContent/img/CopyCompany1.jpg";
 		Connection conn;
 		ConnectionUtil conutil = new ConnectionUtil();
 		conn = conutil.getConnection();
@@ -174,11 +174,12 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			}
 			BLOBDemo blobdemo = new BLOBDemo(conn);
 			//blobdemo.AllWriteInSQL(srcPicPath,"Product","prod_subPic1");//一次寫入該欄位所有圖片
-			//blobdemo.clearAllBlob("Product","prod_subPic1");//清除該欄位所有圖片
+			//blobdemo.clearAllBlob("Product","prod_subPic1");//清除該ProdTable欄位所有圖片
+			blobdemo.clearAllBlob("Company","com_pic");//清除該CompanyTable欄位所有圖片
 			// blobdemo.batchWriteInSQL(srcPicPath,"Product","prod_subPic1");//批次寫入該table欄位所有圖片
 			// blobdemo.clearBlob("1","Product","prod_subPic1");//清除單個圖片
-			   blobdemo.singleWriteInSQL(srcPicPath,"Company","com_pic","com_id","1");//寫入單張圖片;
-			//blobdemo.singleWriteInSQL(srcPicPath,"Product","prod_subPic1","prod_id","1");//寫入單張圖片;
+			   blobdemo.singleWriteInSQL(srcPicPath,"Company","com_pic","com_id","1");//寫入Company單張圖片;
+			//blobdemo.singleWriteInSQL(srcPicPath,"Product","prod_subPic1","prod_id","1");//寫入Product單張圖片;
 			   blobdemo.readBlobfromSQL(outPicPath,"Company","com_pic","com_id","1");//讀出單張圖片
 			// blobdemo.getCountOfProductId("prod_id","Product");//讀出胎table欄位有幾個
 		} catch (Exception e) {
