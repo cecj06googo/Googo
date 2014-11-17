@@ -162,7 +162,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 	}
 
 	public static void main(String args[]) {
-		String srcPicPath = "WebContent/img/car2.jpg";
+		String srcPicPath = "WebContent/img/Company1.jpg";
 		String outPicPath = "WebContent/img/CopyCompany1.jpg";
 		Connection conn;
 		ConnectionUtil conutil = new ConnectionUtil();
@@ -173,14 +173,14 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 				return;
 			}
 			BLOBDemo blobdemo = new BLOBDemo(conn);
-			blobdemo.AllWriteInSQL(srcPicPath,"Product","prod_subPic1");//一次寫入Product Table該欄位所有圖片
+			//blobdemo.AllWriteInSQL(srcPicPath,"Product","prod_subPic1");//一次寫入該欄位所有圖片
 			//blobdemo.clearAllBlob("Product","prod_subPic1");//清除該ProdTable欄位所有圖片
-			//blobdemo.clearAllBlob("Company","com_pic");//清除該CompanyTable欄位所有圖片
+			blobdemo.clearAllBlob("Company","com_pic");//清除該CompanyTable欄位所有圖片
 			// blobdemo.batchWriteInSQL(srcPicPath,"Product","prod_subPic1");//批次寫入該table欄位所有圖片
 			// blobdemo.clearBlob("1","Product","prod_subPic1");//清除單個圖片
-			 //  blobdemo.singleWriteInSQL(srcPicPath,"Company","com_pic","com_id","1");//寫入Company單張圖片;
+			   blobdemo.singleWriteInSQL(srcPicPath,"Company","com_pic","com_id","1");//寫入Company單張圖片;
 			//blobdemo.singleWriteInSQL(srcPicPath,"Product","prod_subPic1","prod_id","1");//寫入Product單張圖片;
-			 //  blobdemo.readBlobfromSQL(outPicPath,"Company","com_pic","com_id","1");//讀出單張圖片
+			   blobdemo.readBlobfromSQL(outPicPath,"Company","com_pic","com_id","1");//讀出單張圖片
 			// blobdemo.getCountOfProductId("prod_id","Product");//讀出胎table欄位有幾個
 		} catch (Exception e) {
 			System.out.println("readBlobfromSQL 錯誤");

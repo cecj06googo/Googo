@@ -87,7 +87,7 @@ public class ProductsDAO implements ProductsDAO_interface {
 		}
 	} // end insert
 
-	public List<ProductVO> getProdsByComId(int comId) { //根據哪家公司去找到該公司所有產品
+	public List<ProductVO> getProdsByComId(int prodId) { //根據哪家公司去找到該公司所有產品
 		List<ProductVO> list = new ArrayList<ProductVO>();
 		ProductVO ProductVO = null;
 		Connection con = null;
@@ -99,7 +99,7 @@ public class ProductsDAO implements ProductsDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 
 			pstmt = con.prepareStatement(GET_AProductByComId);
-			pstmt.setInt(1, comId);
+			pstmt.setInt(1, prodId);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {

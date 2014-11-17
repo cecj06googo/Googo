@@ -27,8 +27,7 @@
         <div class="row">
         	<!-- 店家圖片 -->
             <div class="col-md-6">
-                <img class="img-responsive" 
-				src='${pageContext.servletContext.contextPath}/image?comID=1' alt="">
+                <img class="img-responsive" src="${pageContext.request.contextPath}/img/13.jpg" alt="">
             </div>
             <!-- /店家圖片 -->
             <div class="col-md-6">
@@ -77,7 +76,7 @@
             <!-- 車車1 -->
             <div class="col-md-4 text-center">
                 <div class="thumbnail"><a href="" data-toggle="modal" data-target="#prod_detail">
-                    <img class="img-responsive" src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=1' alt="">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/19.jpg" alt="">
                     <div class="caption">
                         <h3>Nissan LIVINA</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
@@ -87,7 +86,7 @@
             <!-- 車車2 -->
             <div class="col-md-4 text-center">
                 <div class="thumbnail"><a href="" data-toggle="modal" data-target="#prod_detail">
-                    <img class="img-responsive" src='${pageContext.servletContext.contextPath}/image?comID=1' alt="">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/20.jpg" alt="">
                     <div class="caption">
                         <h3>tobe m'car</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
@@ -97,7 +96,7 @@
             <!-- 車車3 -->
             <div class="col-md-4 text-center">
                 <div class="thumbnail"><a href="" data-toggle="modal" data-target="#prod_detail">
-                    <img class="img-responsive" src='${pageContext.servletContext.contextPath}/image?comID=1' alt="">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/24.jpg" alt="">
                     <div class="caption">
                         <h3>Panda car</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
@@ -107,7 +106,7 @@
             <!-- 車車4 -->
             <div class="col-md-4 text-center">
                 <div class="thumbnail"><a href="" data-toggle="modal" data-target="#prod_detail">
-                    <img class="img-responsive" src='${pageContext.servletContext.contextPath}/image?comID=1' alt="">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/22.jpg" alt="">
                     <div class="caption">
                         <h3>箱型休旅車</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
@@ -117,7 +116,7 @@
             <!-- 車車5 -->
             <div class="col-md-4 text-center">
                 <div class="thumbnail"><a href="" data-toggle="modal" data-target="#prod_detail">
-                    <img class="img-responsive" src='${pageContext.servletContext.contextPath}/image?comID=1' alt="">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/21.jpg" alt="">
                     <div class="caption">
                         <h3>重型機車</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
@@ -127,7 +126,7 @@
             <!-- 車車6 -->
             <div class="col-md-4 text-center">
                 <div class="thumbnail"><a href="" data-toggle="modal" data-target="#prod_detail">
-                    <img class="img-responsive" src='${pageContext.servletContext.contextPath}/image?comID=1' alt="">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/23.jpg" alt="">
                     <div class="caption">
                         <h3>三陽機車</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>

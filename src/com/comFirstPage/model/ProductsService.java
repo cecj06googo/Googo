@@ -9,8 +9,8 @@ public class ProductsService {
 		dao = new ProductsDAO();
 	}
 
-	public List<ProductVO> getProdsByComId(int comId) {
-		return dao.getProdsByComId(comId);
+	public List<ProductVO> getProdsByComId(int prodId) {
+		return dao.getProdsByComId(prodId);
 	}
 
 	public List<ProductVO> getAll() {
