@@ -74,7 +74,7 @@ public class LoginServlet extends HttpServlet {
 //		response.addCookie(cookiePassword);
 //		response.addCookie(cookieRememberMe);
 		
-		// 3. 進行 Business Logic 運算
+		// 3. 進行會員身分驗證與登入確認
 		System.out.println("會員種類: " + userIdentity);
 		
 		Integer	userId = null;    // 要設初值才能傳進方法內
@@ -94,7 +94,7 @@ public class LoginServlet extends HttpServlet {
 				CompanyService comService = new CompanyService();
 				comVO = comService.getOneCom(userId);
 				session.setAttribute("LoginComOK", comVO);
-				System.out.println("session裡面: " + comVO.getComName());    // 測試用訊息
+				System.out.println("session裡面, 商家名稱: " + comVO.getComName());    // 測試用訊息
 			}
 			// 方便比對會員身分
 			session.setAttribute("userIdentity", userIdentity);
@@ -132,7 +132,7 @@ public class LoginServlet extends HttpServlet {
 					return;
 			}
 		}
-		else {
+		else {    // 登入失敗, 返回上一頁
 			System.out.println("檢查referURI = " + referURI);    // 測試用訊息
 			if (referURI == null || referURI.length() == 0) {
 				response.sendRedirect(response.encodeRedirectURL(request.
@@ -140,7 +140,7 @@ public class LoginServlet extends HttpServlet {
 				return;
 			} 
 			else {
-				response.sendRedirect(referURI);    // 導向至登入前原網頁
+				response.sendRedirect(referURI);    // 導向至登入前的原網頁
 				return;
 			}
 		}
