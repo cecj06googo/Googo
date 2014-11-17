@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -16,26 +18,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.company.model.CompanyService;
-import com.company.model.CompanyVO;
+import com.comFirstPage.model.*;
 
 
-public class ShowComFirstPageImage extends HttpServlet {
+public class ShowProdsImage extends HttpServlet {
 	private static final long serialVersionUID = 1L;   
     
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 	    ServletOutputStream sos = null;
 	    
 		int comID = Integer.parseInt(req.getParameter("comID"));
-		CompanyService comService = new CompanyService();
-		CompanyVO comVO = comService.getOneCom(comID);
+		ProductsService prodService = new ProductsService();
+		List<ProductVO> prodVOs = new ArrayList<ProductVO>();
+		prodVOs = prodService.getProdsByComId(comID);
+		ProductVO prodVO = prodVOs.get(0); //第一個元素從0開始 <.size()
 		
 		// 檢查是否已有商家圖片
-		if (comVO.getComPic() != null) {
+		if (prodVO.getProdSubPic1() != null) {
 			res.setContentType("image/jpg");
 			try {
 				sos = res.getOutputStream();
-				sos.write(comVO.getComPic());
+				sos.write(prodVO.getProdSubPic1());
 				sos.flush();
 				sos.close();
 			} catch (Exception e) {
@@ -56,13 +59,6 @@ public class ShowComFirstPageImage extends HttpServlet {
 				sos.flush();
 				sos.close();
 				in.close();
-//				BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
-//				in.read(comPic);
-//				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("C:\\images\\testfile\\pic2.jpg"));
-//				out.write(comPic);
-//				out.flush();
-//				out.close();
-//				in.close();
 			} catch(Exception e) {
 		        e.printStackTrace();
 			}
