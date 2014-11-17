@@ -27,7 +27,7 @@
                       <div class="form-group">
                       <font size="-1" color="#FF0000">${ErrorMsg.errorUser_id}</font>
                            <span style="font-size:20px;">請選擇搜尋條件</span> 
-                           <select class="form-control input-lg"  autofocus name="sel_stus" >
+                           <select class="form-control input-lg"  autofocus name="orderStatus" >
                                 <option selected>訂單狀態</option>
                                 <option value="0">所有</option>
                                 <option value="1">未處理</option>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group">
                        		
-                            <select class="form-control input-lg" name="sel_time" >
+                            <select class="form-control input-lg" name="orderTime" >
                             	<option selected>訂購時間</option>
                                 <option value="all">所有</option>
 								<option value="1W">最近一個禮拜</option>
@@ -55,11 +55,11 @@
                          </div>
                          <br>
                          <div class="form-group input-group">
-                         <c:if test="${not empty ErrorMsg.errorSel_stus}">
-                         <font size="-1" color="#FF0000">${ErrorMsg.errorSel_stus}</font>
+                         <c:if test="${not empty ErrorMsg.ErrOrderStatus}">
+                         <font size="-1" color="#FF0000">${ErrorMsg.ErrOrderStatus}</font>
                          <br>
                          </c:if>
-                    	 <font size="-1" color="#FF0000">${ErrorMsg.errorSel_time}</font>
+                    	 <font size="-1" color="#FF0000">${ErrorMsg.ErrOrderTime}</font>
                     	 </div>
 							<input type="hidden" name="action" value="select">
                     </form> 

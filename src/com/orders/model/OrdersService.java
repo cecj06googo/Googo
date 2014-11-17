@@ -11,29 +11,29 @@ public class OrdersService {
 		dao = new OrdersJDBCDAO();
 	}
 
-	public OrdersVO addOrder(Integer _ord_status, Integer _com_id,
-			Integer _mem_id, Timestamp _ord_time, Timestamp _ord_getday,
-			Timestamp _ord_reday, Integer _item_total, Integer _prod_id,
-			Integer _acc_id, String _item_name, String _item_phone,
-			String _item_tel, String _item_email, String _pritem_acc,
-			String _item_all) {
+	public OrdersVO addOrder(Integer ord_status, Integer com_id,
+			Integer mem_id, Timestamp ord_time, Timestamp ord_getday,
+			Timestamp ord_reday, Integer item_total, Integer prod_id,
+			Integer acc_id, String item_name, String item_phone,
+			String item_tel, String item_email, String pritem_acc,
+			String item_all) {
 
 		OrdersVO ordersVO = new OrdersVO();
-		ordersVO.setOrd_status(_ord_status);
-		ordersVO.setCom_id(_com_id);
-		ordersVO.setMem_id(_mem_id);
-		ordersVO.setOrd_time(_ord_time);
-		ordersVO.setOrd_getday(_ord_getday);
-		ordersVO.setOrd_reday(_ord_reday);
-		ordersVO.setItem_total(_item_total);
-		ordersVO.setProd_id(_prod_id);
-		ordersVO.setAcc_id(_acc_id);
-		ordersVO.setItem_name(_item_name);
-		ordersVO.setItem_phone(_item_phone);
-		ordersVO.setItem_tel(_item_tel);
-		ordersVO.setItem_email(_item_email);
-		ordersVO.setPritem_acc(_pritem_acc);
-		ordersVO.setItem_all(_item_all);
+		ordersVO.setOrd_status(ord_status);
+		ordersVO.setCom_id(com_id);
+		ordersVO.setMem_id(mem_id);
+		ordersVO.setOrd_time(ord_time);
+		ordersVO.setOrd_getday(ord_getday);
+		ordersVO.setOrd_reday(ord_reday);
+		ordersVO.setItem_total(item_total);
+		ordersVO.setProd_id(prod_id);
+		ordersVO.setAcc_id(acc_id);
+		ordersVO.setItem_name(item_name);
+		ordersVO.setItem_phone(item_phone);
+		ordersVO.setItem_tel(item_tel);
+		ordersVO.setItem_email(item_email);
+		ordersVO.setPritem_acc(pritem_acc);
+		ordersVO.setItem_all(item_all);
 
 		dao.insert(ordersVO);
 		// test----------------------------------------------
@@ -60,22 +60,22 @@ public class OrdersService {
 	} // end addOrder
 	
 	
-	public List<OrdersVO> ordSearch_mem(Integer user_id,Integer sel_stus,String sel_time){
-		System.out.println("會員ID:"+user_id);
-		System.out.println("訂單選擇狀態:"+sel_stus);
-		System.out.println("訂單選擇時間:"+sel_time);
-		return dao.mem_getAll(user_id,sel_stus,sel_time);
+	public List<OrdersVO> ordSearch_mem(Integer userId,Integer orderStatus,String orderTime){
+		System.out.println("會員ID:"+userId);
+		System.out.println("訂單選擇狀態:"+orderStatus);
+		System.out.println("訂單選擇時間:"+orderTime);
+		return dao.mem_getAll(userId,orderStatus,orderTime);
 	}// end ordSearch
-	
-	public List<OrdersVO> ordSearch_com(Integer user_id,Integer sel_stus,String sel_time){
-		System.out.println("商家ID:"+user_id);
-		System.out.println("訂單選擇狀態:"+sel_stus);
-		System.out.println("訂單選擇時間:"+sel_time);
-		return dao.com_getAll(user_id,sel_stus,sel_time);
+
+	public List<OrdersVO> ordSearch_com(Integer userId,Integer orderStatus,String orderTime){
+		System.out.println("商家ID:"+userId);
+		System.out.println("訂單選擇狀態:"+orderStatus);
+		System.out.println("訂單選擇時間:"+orderTime);
+		return dao.com_getAll(userId,orderStatus,orderTime);
 	}// end ordSearch
-	public void ordCancel(Integer ord_id, Integer ord_status,Timestamp cancelTime){
+	public void ordCancel(Integer ord_id, Integer orderStatus,Timestamp cancelTime){
 		System.out.println("被刪除的訂單ID:"+ord_id);
-		System.out.println("訂單狀態更改為:"+ord_status);
-		dao.user_cancel(ord_id , ord_status,cancelTime);
+		System.out.println("訂單狀態更改為:"+orderStatus);
+		dao.user_cancel(ord_id , orderStatus,cancelTime);
 	}// end ordSearch
 }

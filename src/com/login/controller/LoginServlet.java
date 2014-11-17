@@ -3,6 +3,7 @@ package com.login.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -10,12 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import com.company.model.CompanyService;
 import com.company.model.CompanyVO;
 import com.login.model.LoginService;
 import com.member.model.MemService;
 import com.member.model.MemVO;
-
+import com.orders.model.LoginOrdersOnLoad;
 public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -29,11 +31,6 @@ public class LoginServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		Map<String, String> errorMsg = new HashMap<String, String>();
-		// Map<String, String> msgOK = new HashMap<String, String>();
-		request.setAttribute("ErrorMsg", errorMsg); // 顯示錯誤訊息
-
-		// request.setAttribute("MsgOK", msgOK); // 顯示成功訊息
 
 		// 1. 讀取使用者資料
 		String userAccount = request.getParameter("userAccount");
@@ -41,18 +38,10 @@ public class LoginServlet extends HttpServlet {
 		String userIdentity = request.getParameter("optionsRadios");
 //		String rm = request.getParameter("rememberMe");
 		String requestURI = (String) session.getAttribute("requestURI");
+		String referURI = (String) session.getAttribute("referURI");      // 登入前原網頁路徑
+		boolean error = false;
 		
-		// 2. 檢查使用者輸入資料 (前端做, 這裡暫不做)
-		// 如果 userId 欄位為空白，放一個錯誤訊息到 errorMsgMap 之內
-//		if (userAccount == null || userAccount.trim().length() == 0) {
-//			errorMsg.put("AccountEmptyError", "帳號欄必須輸入");
-//		}
-//		// 如果 password 欄位為空白，放一個錯誤訊息到 errorMsgMap 之內
-//		if (userPwd == null || userPwd.trim().length() == 0) {
-//			errorMsg.put("PasswordEmptyError", "密碼欄必須輸入");
-//		}
-		
-		// RememberMe  (暫不做)
+		// 2. RememberMe  (暫不做)
 		Cookie cookieUser = null;
 		Cookie cookiePassword = null;
 		Cookie cookieRememberMe = null;
@@ -85,17 +74,10 @@ public class LoginServlet extends HttpServlet {
 //		response.addCookie(cookiePassword);
 //		response.addCookie(cookieRememberMe);
 		
-		// 如果 errorMsgMap 不是空的，表示有錯誤，交棒給login.jsp
-		if (!errorMsg.isEmpty()) {
-			RequestDispatcher rd = request.getRequestDispatcher("/_01_login/login.jsp");
-			rd.forward(request, response);
-			return;
-		}
-		
-		// 3. 進行 Business Logic 運算
+		// 3. 進行會員身分驗證與登入確認
 		System.out.println("會員種類: " + userIdentity);
 		
-		Integer	userId;
+		Integer	userId = null;    // 要設初值才能傳進方法內
 		MemVO memVO = null;
 		CompanyVO comVO = null;
 		try {
@@ -104,7 +86,7 @@ public class LoginServlet extends HttpServlet {
 
 			if ("Mem".equals(userIdentity)) {
 				MemService memService = new MemService();
-				System.out.println("mem會員ID = " + userId);
+				System.out.println("mem會員ID = " + userId);    // 測試用訊息
 				memVO = memService.getOneMem(userId);
 				session.setAttribute("LoginMemOK", memVO);
 			}
@@ -112,45 +94,55 @@ public class LoginServlet extends HttpServlet {
 				CompanyService comService = new CompanyService();
 				comVO = comService.getOneCom(userId);
 				session.setAttribute("LoginComOK", comVO);
-				System.out.println("session裡面: " + comVO.getComName());
+				System.out.println("session裡面, 商家名稱: " + comVO.getComName());    // 測試用訊息
 			}
+			// 方便比對會員身分
+			session.setAttribute("userIdentity", userIdentity);
 		} catch(Exception e) {
 			e.getStackTrace();
-			errorMsg.put("LoginError", "該帳號不存在或密碼錯誤");
+			session.setAttribute("LoginError", "該帳號不存在或密碼錯誤");
+			error = true;
 
 		}
 
-		// 4. 轉交
-		if (errorMsg.isEmpty()) {
+		// 4. 登入成功, 準備導向
+		if (!error) {
+			session.removeAttribute("LoginError");
+			session.removeAttribute("timeOut");
+//			session.removeAttribute("referURI");
 			if (memVO != null) {
 				if (requestURI != null) {
 					requestURI = (requestURI.length() == 0 ? request
 							.getContextPath() : requestURI);
 					response.sendRedirect(response.encodeRedirectURL(requestURI));
 					return;
-				} else {
+				} 
+				else {
 					response.sendRedirect(response.encodeRedirectURL(request
 							.getContextPath()));
 					return;
 				}
 			}
 			else if (comVO != null) {
-				if (requestURI != null) {
-					requestURI = (requestURI.length() == 0 ? request.getContextPath() + "/manage.jsp" : requestURI);
-					response.sendRedirect(response.encodeRedirectURL(requestURI));
-					return;
-				} else {
-					System.out.println("進入商家後端");
+					System.out.println("進入商家後端");    // 測試用訊息
+					// 商家訂單OnLoad
+					LoginOrdersOnLoad OCOL = new LoginOrdersOnLoad();  
+					session = OCOL.ComOnLoad(session,userId);
 					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/manage.jsp"));
 					return;
-				}
 			}
 		}
-		else {
-			// 如果errorMsgMap不是空的，表示有錯誤，交棒給login.jsp
-						RequestDispatcher rd = request.getRequestDispatcher("/_01_login/login.jsp");
-						rd.forward(request, response);
-						return;
+		else {    // 登入失敗, 返回上一頁
+			System.out.println("檢查referURI = " + referURI);    // 測試用訊息
+			if (referURI == null || referURI.length() == 0) {
+				response.sendRedirect(response.encodeRedirectURL(request.
+						getContextPath()));
+				return;
+			} 
+			else {
+				response.sendRedirect(referURI);    // 導向至登入前的原網頁
+				return;
+			}
 		}
 	} // end doPost
 }

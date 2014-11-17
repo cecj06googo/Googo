@@ -55,7 +55,7 @@
 		      <!--/. form-->
  		    </div>
  		  </div>
- 		  <div><Font color='red' size="-1">${ErrorMsg.LoginError}</Font></div>
+ 		  <div id="errorMessage"><Font color='red' size="-1">${LoginError} ${timeOut}</Font></div>
  		   <!--尚未註冊-->
  		  <div class="row" style="margin-top: 20px;">
  		  <div class="well col-md-10 col-md-offset-1">
@@ -89,7 +89,12 @@
 
 <script>
 (function($){
+	
 $(document).ready(function() {
+	if(<%=request.getAttribute("ErrorMsg")%> != null) {
+		$('#errorMessage').innerHTML = "<Font color='red' size='-1'>帳號不存在或密碼錯誤</Font>";
+	}
+	
 	$("#login_form").bootstrapValidator({
 		feedbackIcons: {
 	     	valid: 'glyphicon glyphicon-ok',

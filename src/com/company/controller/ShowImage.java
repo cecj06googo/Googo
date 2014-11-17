@@ -49,7 +49,7 @@ public class ShowImage extends HttpServlet {
 			res.setContentType("image/jpg");
 			// 預設商家圖片
 			File file = new File(getServletContext().getRealPath("/img/ComDefaultPic.jpg"));
-			System.out.println(file.exists());
+			System.out.println("商家預設圖片是否存在: " + file.exists());    // 測試用訊息
 			byte[] comPic = new byte[(int) file.length()];
 			try {
 				BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));

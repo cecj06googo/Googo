@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.company.model.CompanyVO;
 import com.member.model.MemVO;
 import com.orders.model.OrdersService;
 import com.orders.model.OrdersVO;
@@ -36,7 +37,10 @@ public class OrdersServlet extends HttpServlet {
 		Map<String, String> errorMsg = new HashMap<String, String>();
 		Map<String, String> msgOK = new HashMap<String, String>();
 		request.setAttribute("ErrorMsg", errorMsg); // 顯示錯誤訊息
-		request.setAttribute("MsgOK", msgOK); // 顯示錯誤訊息
+		String action = "";
+		String userIdentity = "";
+		
+		//---訂單狀態對照表
 		// 1 ('未處理');
 		// 2 ('已接受');
 		// 3 ('已出車');
@@ -46,13 +50,19 @@ public class OrdersServlet extends HttpServlet {
 		// 7 ('會員逾時');
 		// 8 ('商家逾時');
 		// 9 ('異常未還');
-		String action = request.getParameter("action");
-		String Identity = session.getAttribute("Identity").toString();
+		try{
+		action = request.getParameter("action");
+		userIdentity = session.getAttribute("userIdentity").toString();
+		}catch (Exception e){
+			System.out.println("action || userIdentity  沒有值");
+			e.printStackTrace();
+		}
+		
 		// ------------------新增訂單----------------------
 		if ("insert".equals(action)) {
 			Integer ord_status = 1;
 
-			// String暫時接收屬性
+			// 暫時接收參數
 			Object _com_id = "";
 			Object _mem_id = "";
 			String _ord_time = "";
@@ -61,7 +71,7 @@ public class OrdersServlet extends HttpServlet {
 			String _item_total = "";
 			String _prod_id = "";
 			String _acc_id = "";
-			// 真接收屬性
+			// 真接收參數
 			String item_name = "";
 			String item_phone = "";
 			String item_tel = "";
@@ -254,59 +264,60 @@ public class OrdersServlet extends HttpServlet {
 		} // end insert
 
 		// ------------------搜尋訂單----------------------
-		if ("select".equals(action)) {
-			if ("Mem".equals(Identity)) {
+		if ("selectCom".equals(action)) {
+			if ("Mem".equals(userIdentity)) {
 				try {
 					// ------------------資料接收----------------------
-					// String暫時接收屬性
-					Object _user_id = "";
-					String _sel_stus = "";
-					// 真接收屬性
-					Integer user_id = null;
-					Integer sel_stus = null;
-					String sel_time = "";
-
-					_user_id = session.getAttribute("user_id");
-					_sel_stus = request.getParameter("sel_stus");
-					sel_time = request.getParameter("sel_time");
+					// 暫時接收參數
+					String _orderStatus = "";
+					// 真接收參數
+					MemVO memVO = new MemVO();
+					Integer userId = null;
+					Integer orderStatus = null;
+					String orderTime = "";
+					
+					memVO = (MemVO)session.getAttribute("LoginMemOK");
+					userId = memVO.getMem_id();
+					_orderStatus = request.getParameter("sel_stus");
+					orderTime = request.getParameter("sel_time");
 
 					// ------------------資料驗證+轉型----------------------
 					// 其實也可以直接轉(值都是用選擇器選的)，只怕有其他未知安全漏洞
+//					try {
+//						userId = Integer.parseInt(_userId.toString().trim());
+//					} catch (NumberFormatException e) {
+//						errorMsg.put("errorSelect", "會員ID錯誤!");
+//					} catch (NullPointerException e) {
+//						errorMsg.put("errorUser_id", "請重新登入");
+//					}
 					try {
-						user_id = Integer.parseInt(_user_id.toString().trim());
+						orderStatus = Integer
+								.parseInt(_orderStatus.toString().trim());
 					} catch (NumberFormatException e) {
-						errorMsg.put("errorSelect", "看到鬼，ID應該為整數");
-					} catch (NullPointerException e) {
-						errorMsg.put("errorUser_id", "請重新登入");
-					}
-					try {
-						sel_stus = Integer
-								.parseInt(_sel_stus.toString().trim());
-					} catch (NumberFormatException e) {
-						errorMsg.put("errorSel_stus", "請選擇訂單狀態");
+						errorMsg.put("ErrOrderStatus", "請選擇訂單狀態");
 					} catch (Exception e) {
-						errorMsg.put("errorSel_stus", "請選擇訂單狀態");
+						errorMsg.put("ErrOrderStatus", "請選擇訂單狀態");
 					}
 
-					if (sel_time.trim().length() < 2
-							|| sel_time.trim().length() > 3) {
-						errorMsg.put("errorSel_time", "請選擇訂單時間");
+					if (orderTime.trim().length() < 2
+							|| orderTime.trim().length() > 3) {
+						errorMsg.put("ErrOrderTime", "請選擇訂單時間");
 					}
 
-					// ---------------呼叫database----------------------
+					// ---------------取訂單資料----------------------
 					if (errorMsg.isEmpty()) {
 						OrdersService odrSvc = new OrdersService();
-						List<OrdersVO> ordVO = odrSvc.ordSearch_mem(user_id,
-								sel_stus, sel_time);
+						List<OrdersVO> ordVO = odrSvc.ordSearch_mem(userId,
+								orderStatus, orderTime);
 						request.setAttribute("ordVO", ordVO);
 						if (ordVO.isEmpty()) {
 							msgOK.put("SearchNull", "沒有資料");
 						}
 					}
 
-					/******************** (Send the Success view) ************/
-					session.setAttribute("sel_stus", sel_stus);
-					session.setAttribute("sel_time", sel_time);
+					/******************* (轉向) ********************/
+					session.setAttribute("orderStatus", orderStatus);
+					session.setAttribute("orderTime", orderTime);
 					String url = "/_04_member/orderMem.jsp";
 					RequestDispatcher successView = request
 							.getRequestDispatcher(url);
@@ -317,69 +328,7 @@ public class OrdersServlet extends HttpServlet {
 				}
 			} // end Mem if
 
-			if ("Com".equals(Identity)) {
-				try {
-					// ------------------資料接收----------------------
-					// String暫時接收屬性
-					Object _user_id = "";
-					String _sel_stus = "";
-					// 真接收屬性
-					Integer user_id = null;
-					Integer sel_stus = null;
-					String sel_time = "";
-
-					_user_id = session.getAttribute("user_id");
-					_sel_stus = request.getParameter("sel_stus");
-					sel_time = request.getParameter("sel_time");
-					System.out.println(_sel_stus);
-					System.out.println(sel_time);
-					// ------------------資料驗證+轉型----------------------
-					// 其實也可以直接轉(值都是用選擇器選的)，只怕有其他未知安全漏洞
-					try {
-						user_id = Integer.parseInt(_user_id.toString().trim());
-					} catch (NumberFormatException e) {
-						errorMsg.put("errorSelect", "看到鬼，ID應該為整數");
-					} catch (NullPointerException e) {
-						errorMsg.put("errorUser_id", "請重新登入");
-					}
-					try {
-						sel_stus = Integer
-								.parseInt(_sel_stus.toString().trim());
-					} catch (NumberFormatException e) {
-						errorMsg.put("errorSel_stus", "請選擇訂單狀態");
-					} catch (Exception e) {
-						errorMsg.put("errorSel_stus", "請選擇訂單狀態");
-					}
-
-					if (sel_time.trim().length() < 2
-							|| sel_time.trim().length() > 3) {
-						errorMsg.put("errorSel_time", "請選擇訂單時間");
-					}
-
-					// ---------------呼叫database----------------------
-					if (errorMsg.isEmpty()) {
-						OrdersService odrSvc = new OrdersService();
-						List<OrdersVO> ordVO = odrSvc.ordSearch_com(user_id,
-								sel_stus, sel_time);
-						request.setAttribute("ordVO", ordVO);
-						if (ordVO.isEmpty()) {
-							msgOK.put("SearchNull", "沒有資料");
-						}
-					}
-
-					/******************** (Send the Success view) ************/
-					session.setAttribute("sel_stus", sel_stus);
-					session.setAttribute("sel_time", sel_time);
-					String url = "/_05_company/orderCom.jsp";
-					RequestDispatcher successView = request
-							.getRequestDispatcher(url);
-
-					successView.forward(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} // end Com if
-
+			
 		} // end select
 
 		// ------------------取消訂單----------------------
@@ -387,12 +336,12 @@ public class OrdersServlet extends HttpServlet {
 			// 訂單狀態(5 = 會員取消 )
 			Integer ord_status = 5;
 
-			// String暫時接收屬性
+			// 暫時接收參數
 			Object _user_id = "";
 			String _ord_id = "";
 			Object _sel_stus = "";
 			Object _sel_time = "";
-			// 真接收屬性
+			// 真接收參數
 			Integer user_id = null;
 			Integer ord_id = null;
 			Integer sel_stus = null;
@@ -513,7 +462,7 @@ public class OrdersServlet extends HttpServlet {
 			// 訂單狀態(6 = 商家取消 )
 			Integer ord_status = 6;
 
-			// String暫時接收屬性
+			// 暫時接收參數
 			Object _user_id = "";
 			String _ord_id = "";
 			Object _sel_stus = "";

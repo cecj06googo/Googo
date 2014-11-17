@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/newOrd.gg" name="newOrd">
+							ACTION="<%=request.getContextPath()%>/newOrdCom.gg" name="newOrd">
                             <a href="#" onclick="document.newOrd.submit();">
                                 <div class="panel-footer">
                                     <span class="pull-left">訂單管理</span>
@@ -50,7 +50,7 @@
                                     <div class="clearfix"></div>
                                 </div>
                             </a>
-                            <input type="hidden" name="action" value="newOrd"/>
+                            <input type="hidden" name="action" value="newOrdCom"/>
                            </FORM>
                         </div>
                     </div><!--/.訂單-->
@@ -68,13 +68,17 @@
                                     </div>
                                 </div>
                             </div>                        
-                            <a href="#">
+                            <FORM METHOD="post"
+							ACTION="<%=request.getContextPath()%>/prod.show" name="prodShow">
+                            <a href="#" onclick="document.prodShow.submit();">                        
                                 <div class="panel-footer">
                                     <span class="pull-left">庫存管理</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                     <div class="clearfix"></div>
                                 </div>
                             </a>
+                            <input type="hidden" name="action" value="prodShow"/>
+                            </FORM>
                         </div>
                     </div>
                     <!--/.取車-->
@@ -92,7 +96,7 @@
                                 </div>
                             </div>
                             <FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/noreCar.gg" name="noreCar">
+							ACTION="<%=request.getContextPath()%>/reCarCom.gg" name="noreCar">
                             <a href="#" onclick="document.noreCar.submit();">
                             
                                 <div class="panel-footer">
@@ -101,7 +105,7 @@
                                     <div class="clearfix"></div>
                                 </div>
                             </a>
-                            <input type="hidden" name="action" value="noreCar"/>
+                            <input type="hidden" name="action" value="reCarCom"/>
                             </FORM>
                         </div>
                     </div><!--/.取車-->

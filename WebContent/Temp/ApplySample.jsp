@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8" import="com.template.model.Prototype_OrderTemp_VO"%>
+<% Prototype_OrderTemp_VO tempVo = (Prototype_OrderTemp_VO)request.getAttribute("tempVo"); %>
 <html>
     <head>
         <title>Form Builder</title>
@@ -47,6 +48,7 @@
                         	<fieldset id="content_form_name">
 								<legend>Form Name</legend>
 							</fieldset>
+							${tempVo.content}
 						</form>
 						<div style="display:none;">
 							<textarea id="source"></textarea>
@@ -59,7 +61,12 @@
 							<button type="button" class="btn btn-primary" id="save_form_view">Save Form for View</button>
 						</form>
 						
-						<button type="button" class="btn btn-primary" id="save_form_design">Save Form for Design</button>
+						<form id="form_load" action="<%=request.getContextPath()%>/DesignAccessDB" method="post">
+							This form is used to load previous design result for editing.
+							com_id<input type="text" name="com_id_form_view" id="com_id_form_view" /><br>
+							command<input type="text" id="command" name="command" value="load" readonly /><br>
+						</form>
+						<button type="button" class="btn btn-primary" id="save_form_design">Load Form for Editing</button>
 						
                         <!-- modified: removed tab, keep editor, hide source -->
                         <!--  
@@ -178,11 +185,13 @@
                                     		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 			</div>
                             			</div>
-
+										
+										<!-- 
                             			<div class="form-actions component" data-type="submit">
                                 			<button type="submit" class="btn btn-primary">Save changes</button>
                                 			<button type="button" class="btn btn-default" onclick="javascript:window.history.back();">Cancel</button>
                             			</div>
+                            			 -->
                         			</div>
                         		
                         		</div>
