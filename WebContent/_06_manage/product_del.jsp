@@ -17,7 +17,7 @@
 			   		<input type="hidden" name="action" value="prodDelete"/>
 			   		<input type="hidden" name="prodId" id="idForSent" value="0">
 			   	<h4 style="color:red;font-weight:bold;">確定要刪除此商品?</h4>
-			    <button type="submit" onclick="getLoadIn()" class="btn btn-lg btn-danger pull-right">確認</button>
+			    <button type="submit" class="btn btn-lg btn-danger pull-right">確認</button>
 		        <button type="reset" class="btn btn-lg btn-success pull-right" data-dismiss="modal">取消</button>
 		    	</div>
 		    </form>

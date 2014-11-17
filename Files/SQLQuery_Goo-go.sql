@@ -202,6 +202,9 @@ insert into Product values (16,'Fighter150',2,7000,0.95,0x00,'ss',null,null,null
 insert into Product values (17,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,null,null,null,49,1);
 insert into Product values (17,'保時捷-T1',1,6000,0.89,0x00,'ss',null,null,null,1,null,null,null,50,1);
 insert into Product values (17,'保時捷-T2',1,7000,0.95,0x00,'ss',null,null,null,1,null,null,null,51,1);
+insert into Product values (18,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,1600,8,null,52,1);
+insert into Product values (18,'保時捷-T1',2,6000,0.89,0x00,'ss',null,null,null,1,250,2,null,53,1);
+insert into Product values (18,'保時捷-T2',3,7000,0.95,0x00,'ss',null,null,null,1,10,1,null,54,1);
 
 
 
