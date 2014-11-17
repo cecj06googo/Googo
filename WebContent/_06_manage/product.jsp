@@ -11,26 +11,6 @@
 <title>Goo-go</title>
 
 </head>
-<script type="text/javascript">
-// var prodId=0;
-// function loadIn(prodId){
-// 	alert(prodId);
-// 	this.prodId = prodId;
-// 	alert(this.prodId);
-
-<%--     	<%   --%>
-//      		ProductVO ProductVO = new ProductVO(); 
-//      		session.setAttribute("prodId", this.prodId);
-<%--     	%>  --%>
-}
-function getLoadIn(){
-	$("#idForSent").val(prodId)
-	alert(document.getElementById("idForSent").getAttribute("value"));
-}
-
-
-
-</script>
 <body>
  <div id="wrapper">
 	<!-- top2 -->
@@ -57,6 +37,7 @@ function getLoadIn(){
                 <thead>
                     <tr>
                         <th>商品名稱</th>
+<!--                         這邊的欄位應該要設成固定長度 -->
                         <th>優惠</th>
                         <th>價格</th>
                         <th>車號</th>
@@ -65,20 +46,23 @@ function getLoadIn(){
                 </thead>
                 <tbody>
                    <c:forEach var="ProductVO" items="${car}">
-                   	<tr id="prodId" onclick="loadIn(${ProductVO.prodId})">
-<%--                    	<c:set target="${ProductVO}" property=""></c:set> --%>
+                   	<tr id="prodId">
                     	<td>${ProductVO.prodName}</td>
                     	<td>${ProductVO.prodDisc}</td>
                     	<td>${ProductVO.prodPrice}</td>
                     	<td>${ProductVO.prodPlate}</td>
                     	<td class="text-center">
                         	<a href="#" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" id="${ProductVO.prodId}"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                       		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
+                       		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct" id="${ProductVO.prodId}"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                          </td>
                     	</tr>
-                    	<input type="hidden" name="ProductVO${ProductVO.prodId}prodName" value="${ProductVO.prodName}"/>
-                    	<input type="hidden" name="ProductVO${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
-                    	<input type="hidden" name="ProductVO${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodName" value="${ProductVO.prodName}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/>
+<!--                     	Cc數 是否要顯示小數點 ?-->
+                    	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
                     </c:forEach>
                 </tbody>
             </table>
@@ -108,16 +92,22 @@ function getLoadIn(){
                 </thead>
                 <tbody>
                    <c:forEach var="ProductVO" items="${moto}">
-                    	<tr id="prodId" onclick="loadIn(${ProductVO.prodId})">
+                    	<tr id="prodId">
                     	<td>${ProductVO.prodName}</td>
                     	<td>${ProductVO.prodDisc}</td>
                     	<td>${ProductVO.prodPrice}</td>
                     	<td>${ProductVO.prodPlate}</td>
                     	<td class="text-center">
-                   			<a href="#" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                       		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
+                   			<a href="#" id="${ProductVO.prodId}" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
+                       		<a href="#" id="${ProductVO.prodId}" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                         </td>
                     	</tr>
+                    	<input type="hidden" name="${ProductVO.prodId}prodName" value="${ProductVO.prodName}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
                     </c:forEach>                  
                 </tbody>
             </table>
@@ -147,16 +137,22 @@ function getLoadIn(){
                 </thead>
                 <tbody>
                     <c:forEach var="ProductVO" items="${bike}">
-                    	<tr id="prodId" onclick="loadIn(${ProductVO.prodId})">
+                    	<tr id="prodId">
                     	<td>${ProductVO.prodName}</td>
                     	<td>${ProductVO.prodDisc}</td>
                     	<td>${ProductVO.prodPrice}</td>
                     	<td>${ProductVO.prodPlate}</td>
                     	<td class="text-center">
-               				<a href="#" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
-                       		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
+               				<a href="#" id="${ProductVO.prodId}" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
+                       		<a href="#" id="${ProductVO.prodId}" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                          </td>
-                    	</tr>                 	
+                    	</tr>
+                    	<input type="hidden" name="${ProductVO.prodId}prodName" value="${ProductVO.prodName}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>                 	
                     </c:forEach>  
                 </tbody>
             </table>
@@ -189,17 +185,26 @@ $("td[class!=text-center]").click(function(){
 //新增
 $("a[data-target='#editProduct']").click(function() {
  		var btnId = this.id; 
- 		var prodName = $("input[name='ProductVO"+ btnId +"prodName']").val();
- 		var prodDisc = $("input[name='ProductVO"+ btnId +"prodDisc']").val();
- 		var prodPrice = $("input[name='ProductVO"+ btnId +"prodPrice']").val();
+ 		var prodName = $("input[name='"+ btnId +"prodName']").val();
+ 		var prodDisc = $("input[name='"+ btnId +"prodDisc']").val();
+ 		var prodPrice = $("input[name='"+ btnId +"prodPrice']").val();
  		$("input[name='prodName']").val(prodName);
  		$("input[name='prodDisc']").val(prodDisc);
  		$("input[name='prodPrice']").val(prodPrice);
+ 		$("input[name='prodPlate']").val($("input[name='"+ btnId +"prodPlate']").val());
+ 		$("input[name='prodCarrier']").val($("input[name='"+ btnId +"prodCarrier']").val());
+ 		$("input[name='prodCc']").val($("input[name='"+ btnId +"prodCc']").val());
 // 		$("input[name='prodName']").val('${obj_ProductVO.prodName}');  obj_ProductVO型態不對EL所以取不出來
-// 		ProductVO obj_ProductVO = new ProductVO();  不認得
+// 		ProductVO obj_ProductVO = new ProductVO();  不認得  //你沒有IMPORT 當然不認得
 });
-//----新增
-</script>
 
+//----新增
+$("a[data-target='#delProduct']").click(function() {
+	var btnId = this.id; 
+	$("#idForSent").val(btnId);
+// 	alert(btnId);
+// 	alert(document.getElementById("idForSent").getAttribute("value"));
+});
+</script>
 </body>
 </html>

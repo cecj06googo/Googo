@@ -19,25 +19,82 @@
 	      <form role="form" action="#">
 	        <div class="form-group">
 	          <label > 商品名稱:</label>
-	          <input type="text" class="form-control" name="prodName" value="${ProductsVO.prodName}" placeholder="請輸入商品名稱">
+	          <input type="text" class="form-control" name="prodName" value="${ProductVO.prodName}" placeholder="請輸入商品名稱">
 	        </div>
+	         <div class="form-group ">
+                <label class="control-label">商品車號:</label>
+                <div class="controls" >
+                    <input type="text" class="form-control" name="prodPlate" value="${ProductVO.prodPlate}" placeholder="請輸入商品名稱" >
+                </div>
+                <font size="-1" color="#FF0000">${ErrorMsg.errorProdName}</font>
+                <div id="div1"></div>
+            </div>
 	        <div class="form-group ">
 	          <label > 價格:</label>
 	          <div class="form-inline">
-	          <input type="text" class="form-control" name="prodPrice" value="${ProductsVO.prodPrice}" placeholder="請輸入商品價格">元
+	          <input type="text" class="form-control" name="prodPrice" value="${ProductVO.prodPrice}" placeholder="請輸入商品價格">元
 	          </div>
 	        </div>
 	        <div class="form-group ">
 	          <label > 優惠:</label>
 	          <div class="form-inline">
-	          <input type="text" class="form-control" name="prodDisc" value="${ProductsVO.prodDisc}" placeholder="請輸入商品優惠">折
+	          <input type="text" class="form-control" name="prodDisc" value="${ProductVO.prodDisc}" placeholder="請輸入商品優惠">折
 	          </div>
 	        </div>
-	        <div class="form-group">
-	          <label > 呱呱:</label>
-	          <input type="text" class="form-control"  placeholder="呱呱呱" >
-	        </div>
-	        
+            <div class="form-group ">
+             	<label >車輛類型:</label>
+                <select class="form-control" name="prodKind">
+                    <option value="1">轎車</option>
+					<option value="2">休旅車</option>
+					<option value="3">大型重型機車</option>
+					<option value="4">普通重型機車</option>
+					<option value="5">普通輕型機車</option>
+					<option value="6">越野腳踏車</option>
+					<option value="7">摺疊腳踏車</option>
+					<option value="8">電動腳踏車</option>
+					<option value="9">一般腳踏車</option>
+                </select>
+                <font size="-1" color="#FF0000">${ErrorMsg.errorProdKind}</font>
+            </div>
+             <div class="control-group  form-group">
+                <label >乘載人數:</label>
+                <select class="form-control" name="prodCarrier">
+                    <option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4" selected>4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+                </select>
+                <font size="-1" color="#FF0000">${ErrorMsg.errorProdCarrier}</font>
+            </div>
+            <div class="form-group ">
+                <label>排氣量:</label>
+                <div class="controls ">
+                    <input type="text" class="form-control" name="prodCc" value="${ProductVO.prodCc}" placeholder="請輸入排氣量">
+                </div>
+                <font size="-1" color="#FF0000">${ErrorMsg.errorProdCc}</font>
+            </div>
+			<div class="form-group ">
+                <label>手自排:</label>
+                <div class="controls ">
+                <select name="prodControl">
+					<option value="1" selected>手排</option>
+					<option value="2">自排</option>
+					<option value="3">手自排</option>
+				</select>
+					<font size="-1" color="#FF0000">${ErrorMsg.errorProdControl}</font>
+			</div>
+                <font size="-1" color="#FF0000">${ErrorMsg.errorProdControl}</font>
+            </div>
+            <div class="form-group ">
+                <label>商品說明:</label>
+                <div class="controls ">
+                    <textarea  rows="5" class="form-control" name="prodArticle" >${ProductVO.prodArticle}</textarea>
+                </div>
+                <font size="-1" color="#FF0000">${ErrorMsg.errorProdArticle}</font>
+            </div>
 	        <button type="submit" class="btn btn-lg btn-danger pull-right" data-dismiss="modal">確認</button>
 	        <button type="reset" class="btn btn-lg btn-success pull-right" data-dismiss="modal">取消</button>
 	        
