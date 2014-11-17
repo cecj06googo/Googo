@@ -46,6 +46,15 @@
 		<url-pattern>/image</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<display-name>ShowProdsImage</display-name>
+		<servlet-name>ShowProdsImage</servlet-name>
+		<servlet-class>com.comFirstPage.controller.ShowProdsImage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowProdsImage</servlet-name>
+		<url-pattern>/ComFirstPageImg</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<display-name>SearchServlet</display-name>
 		<servlet-name>SearchServlet</servlet-name>
 		<servlet-class>com.search.controller.SearchServlet</servlet-class>
