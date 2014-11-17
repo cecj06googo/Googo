@@ -13,9 +13,9 @@
 <title>Goo-go</title>
 <!-- Google Map Start-->
 <style>
-html, body, #map-canvas {
+#map-canvas {
 	height: 400px;
-	width: 400px;
+	width: 100%;
 	margin: 10px;
 	padding: 10px;
 }
