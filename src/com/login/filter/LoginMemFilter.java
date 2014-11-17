@@ -47,28 +47,24 @@ public class LoginMemFilter implements Filter {
 			session.setAttribute("referURI", req.getHeader("referer"));    // 將原網頁路徑存入session
 			isRequestedSessionIdValid = req.isRequestedSessionIdValid();
 			
-//			System.out.println(requestURI);
-			
 			if (mustLogin()) {    		  // 需要登入
-				if (checkLogin(req)) {    // 需要登入, 尚未登入   
+				if (checkLogin(req)) {    // 檢查是否已登入   
 					chain.doFilter(request, response);    // 已經登入
-//					session.removeAttribute("mustMemLogin");
 				}
-				else {
+				else {    // 尚未登入
 					session.setAttribute("requestURI", requestURI);
 					if ( ! isRequestedSessionIdValid ) {
-						session.setAttribute("timeOut", "使用逾時，請重新登入");    /* 考慮移除? */
+						session.setAttribute("timeOut", "使用逾時，請重新登入");
 						resp.sendRedirect(contextPath + "/_01_login/login.jsp");
 						return;
 					}
-//					resp.sendRedirect(contextPath + "/_00_fragment/top1.jsp");
 					session.setAttribute("mustMemLogin", "mustMemLogin");
 					System.out.println("mem I'll be back.");
 					resp.sendRedirect(req.getHeader("referer"));
 					return;
 				}
 			} 
-			else {    // 不需要登入
+			else {    	 // 不需要登入
 				chain.doFilter(request, response);
 			}
 		}
@@ -77,8 +73,6 @@ public class LoginMemFilter implements Filter {
 		}
 	}
 
-
-	
 	private boolean checkLogin(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		MemVO loginToken = (MemVO) session.getAttribute("LoginMemOK");
@@ -93,7 +87,6 @@ public class LoginMemFilter implements Filter {
 		boolean login = false;
 		for (String sURL : url) {
 			if (sURL.endsWith("*")) {    // 判斷是否為 * 結尾, 成立回傳true
-				
 //				System.out.println("( " + sURL + " )");
 				sURL = sURL.substring(0, sURL.length() - 1);
 //				System.out.println("[ " + sURL + " ]");
@@ -101,7 +94,8 @@ public class LoginMemFilter implements Filter {
 					login = true;
 					break;
 				}
-			} else {
+			} 
+			else {
 				if (servletPath.equals(sURL)) {
 					login = true;
 					break;

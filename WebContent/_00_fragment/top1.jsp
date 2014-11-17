@@ -86,6 +86,7 @@
 // 	alert("errorMsg = " + errorMsg + ", timeOut = " + timeOut 
 // 			+ ", mustMemLogin = " + mustMemLogin + ", mustComLogin = " + mustComLogin);
 	
+	// 登入的彈出視窗判斷
 	if (mustMemLogin != "null") {
 // 		alert(mustMemLogin);
 		$('#login').modal('show');
@@ -104,7 +105,7 @@
 		<% session.removeAttribute("LoginError"); %>
 	}
 	else {
-// 		alert("安全");
+// 		alert("不用彈出登入");
 	}
 
 
