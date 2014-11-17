@@ -176,7 +176,7 @@
     <url-pattern>/ActivateAccount</url-pattern>
   </servlet-mapping>
   
-<!-- Filter設定 -->
+<!-- Filter設定
   <filter>
     <display-name>LoginMemFilter</display-name>
     <icon/>
@@ -217,5 +217,5 @@
   <filter-mapping>
     <filter-name>LoginComFilter</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
 </web-app>
