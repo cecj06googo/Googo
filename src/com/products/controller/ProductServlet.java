@@ -125,6 +125,7 @@ public class ProductServlet extends HttpServlet {
 								// errorMsgs.put("errorNameEmpty", "商品名稱請勿空白");
 							} else if ("prodType".equals(item.getFieldName())) {
 								prodType = new Integer(fieldvalue.trim());
+								System.out.println("type"+prodType);
 							} // 4
 							else if ("prodPrice".equals(item.getFieldName())) {
 								prodPrice = new Double(fieldvalue.trim());
@@ -141,9 +142,11 @@ public class ProductServlet extends HttpServlet {
 								prodKind = new Integer(fieldvalue.trim());
 							} else if ("prodCc".equals(item.getFieldName())) {
 								prodCc = new Double(fieldvalue.trim());
+								System.out.println("CC"+prodCc);
 							} else if ("prodCarrier"
 									.equals(item.getFieldName())) {
 								prodCarrier = new Integer(fieldvalue.trim());
+								System.out.println("CARRIER"+prodCarrier);
 							} else if ("prodControl"
 									.equals(item.getFieldName())) {
 								prodControl = new Integer(fieldvalue.trim());

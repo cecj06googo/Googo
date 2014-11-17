@@ -12,13 +12,21 @@
 #pic2 {
 	display: none
 }
-
 #pic3 {
 	display: none
 }
-
 #pic4 {
 	display: none
+}
+
+#c1 {
+	display: inline
+}
+#cc1 {
+	display: inline
+}
+#cnl1 {
+	display: inline
 }
 </style>
 <script>
@@ -31,10 +39,17 @@
 		//onclick oninput onsubmit
 		document.getElementById("prodSubPic2").addEventListener("change",
 				clickDiv3, false);
-		<%-- 		var prodType =<%= ( (ProductVO) request.getAttribute("ProductVO")).getProdType()%>; --%>
+	
+		document.getElementById("t1").addEventListener("change", hide1, false)
+		document.getElementById("t2").addEventListener("change", hide2, false)
+		document.getElementById("t3").addEventListener("change", hide3, false)
+		
 		var type = $("#type").val();//安泰要的
-		alert(type);
+		var kind = $("#kind").val();
+		var carrier = $("#carrier").val();
 		$("input[name='prodType'][value='"+type+"']").prop("checked",true);//安泰要的
+		$("option[name='kind'][value='"+kind+"']").prop("selected",true);
+		$("option[name='carrier'][value='"+carrier+"']").prop("selected",true);
 		
 	}
 
@@ -51,6 +66,29 @@
 		alert("show SubPic3");
 	}
 	
+
+	function hide1() {
+		$("#prodKind").empty();
+		$("#prodKind").html('<option name="kind" value="1">轎車</option>	<option name="kind" value="2">休旅車</option>');
+		document.getElementById('c1').style.display = "inline";
+		document.getElementById('cc1').style.display = "inline";
+		document.getElementById('cnl1').style.display = "inline";
+	}
+	function hide2() {
+		$("#prodKind").empty();
+		$("#prodKind").html('<option name="kind" value="3">大型重型機車</option><option name="kind" value="4">普通重型機車</option><option name="kind" value="5">普通輕型機車</option>');
+		document.getElementById('c1').style.display = "none";
+		document.getElementById('cc1').style.display = "inline";
+		document.getElementById('cnl1').style.display = "none";
+	}
+	function hide3() {
+		$("#prodKind").empty();
+		$("#prodKind").html('<option name="kind" value="6">越野腳踏車</option><option name="kind" value="7">摺疊腳踏車</option><option name="kind" value="8">電動腳踏車</option><option name="kind" value="9">一般腳踏車</option>');
+		document.getElementById('c1').style.display = "none";
+		document.getElementById('cc1').style.display = "none";
+		document.getElementById('cnl1').style.display = "none";
+	}
+
 
 	
 </script>
@@ -77,12 +115,12 @@
  <!--上架商品form===============================================-->
          <form name="prodInsert" action="<%=request.getContextPath()%>/prod.in" enctype="multipart/form-data" method="post" >
              <div class="control-group form-group">
-             <label class="control-label">商品種類${ProductVO.prodType}</label>
+             <label class="control-label">商品種類</label>
 <!--              //安泰要的 -->
              	<input type="hidden" id="type" value="${ProductVO.prodType}"/>
-                <label class="control-label"><input type="radio" name="prodType" value="1">汽車</label>
-                <label class="control-label"><input type="radio" name="prodType" value="2">機車</label>
-                <label class="control-label"><input type="radio" name="prodType" value="3">腳踏車</label>
+                <label class="control-label"><input type="radio" id="t1" name="prodType" value="1">汽車</label>
+                <label class="control-label"><input type="radio" id="t2" name="prodType" value="2">機車</label>
+                <label class="control-label"><input type="radio" id="t3" name="prodType" value="3">腳踏車</label>
                 <br> <font size="-1" color="#FF0000">${ErrorMsg.errorProdType}</font>
             </div>
              <div class="control-group form-group ">
@@ -117,40 +155,48 @@
             </div>
             <div class="control-group  form-group">
              	<label >車輛類型:</label>
-                <select class="form-control" name="prodKind">
-                    <option value="1">轎車</option>
-					<option value="2">休旅車</option>
-					<option value="3">大型重型機車</option>
-					<option value="4">普通重型機車</option>
-					<option value="5">普通輕型機車</option>
-					<option value="6">越野腳踏車</option>
-					<option value="7">摺疊腳踏車</option>
-					<option value="8">電動腳踏車</option>
-					<option value="9">一般腳踏車</option>
-                </select>
+             	<input type="hidden" id="kind" value="${ProductVO.prodKind}"/>
+                <select class="form-control" name="prodKind" id="prodKind">
+                 	<c:if test="${ProductVO.prodType} == 1">
+                		<option name="kind" value="1">轎車</option>	
+                		<option name="kind" value="2">休旅車</option>
+                	</c:if>
+                	<c:if test="${ProductVO.prodType} == 2">
+                		<option name="kind" value="3">大型重型機車</option>
+                		<option name="kind" value="4">普通重型機車</option>
+                		<option name="kind" value="5">普通輕型機車</option>
+                	</c:if>
+                	<c:if test="${ProductVO.prodType} == 3">
+                		<option name="kind" value="6">越野腳踏車</option>
+                		<option name="kind" value="7">摺疊腳踏車</option>
+                		<option name="kind" value="8">電動腳踏車</option>
+                		<option name="kind" value="9">一般腳踏車</option>                	
+                	</c:if>
+					</select>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdKind}</font>
             </div>
-             <div class="control-group  form-group">
-                <label >乘載人數:</label>
+             <div class="control-group  form-group" id="c1">
+                <label class="show1">乘載人數:</label>
+             	<input type="hidden" id="carrier" value="${ProductVO.prodCarrier}"/>
                 <select class="form-control" name="prodCarrier">
-                    <option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
+                    <option name="carrier" value="2">2</option>
+					<option name="carrier" value="3">3</option>
+					<option name="carrier" value="4">4</option>
+					<option name="carrier" value="5">5</option>
+					<option name="carrier" value="6">6</option>
+					<option name="carrier" value="7">7</option>
+					<option name="carrier" value="8">8</option>
                 </select>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdCarrier}</font>
             </div>
-            <div class="control-group form-group">
+            <div class="control-group form-group" id="cc1">
                 <label>排氣量:</label>
                 <div class="controls ">
                     <input type="text" class="form-control" name="prodCc" value="${ProductVO.prodCc}" placeholder="請輸入排氣量">
                 </div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdCc}</font>
             </div>
-			<div class="control-group form-group">
+			<div class="control-group form-group" id="cnl1">
                 <label>手自排:</label>
                 <div class="controls ">
                 <select name="prodControl">
