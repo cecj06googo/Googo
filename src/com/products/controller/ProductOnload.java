@@ -32,7 +32,6 @@ public class ProductOnload extends HttpServlet {
 		ProductsService ProdSvc = new ProductsService();
 		ProductVO ProductsVO = new ProductVO();
 		String action = request.getParameter("action");
-		session.setAttribute("click", 0);
 		System.out.println("now is onload~");
 		// 應該要能
 		CompanyVO loginComToken = (CompanyVO) session
@@ -68,13 +67,13 @@ public class ProductOnload extends HttpServlet {
 		String url = "/_06_manage/product.jsp";
 		RequestDispatcher successView = request.getRequestDispatcher(url);
 		successView.forward(request, response);
-
-		if ("prodSelect".equals(action)) {
-			String _prodId = request.getParameter("prodId");
-			int prodId = Integer.parseInt(_prodId);
-			System.out.println(prodId);
-			
-
-		}
+//
+//		if ("prodSelect".equals(action)) {
+//			String _prodId = request.getParameter("prodId");
+//			int prodId = Integer.parseInt(_prodId);
+//			System.out.println(prodId);
+//			
+//
+//		}
 	}// end post
 }

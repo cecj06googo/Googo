@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.company.model.CompanyVO;
 import com.products.model.ProductsService;
 import com.products.model.ProductVO;
 
@@ -52,10 +53,7 @@ public class ProductServlet extends HttpServlet {
 		bs[1] = 1;
 
 		ProductVO ProductVO = new ProductVO();
-		@SuppressWarnings("unused")
-		int memId = 1;
 		int prodId = 1;
-		String plateId = "POP-123";
 		int _comId = 1;
 		String prodName = "1";
 		int prodType = 0;
@@ -109,9 +107,7 @@ public class ProductServlet extends HttpServlet {
 
 							// 表單資料驗證
 							// getFieldName()取得form中input欄位name
-							if ("comId".equals(item.getFieldName())) {
-								_comId = new Integer(fieldvalue.trim());
-							} else if ("prodName".equals(item.getFieldName())) {
+							if ("prodName".equals(item.getFieldName())) {
 								prodName = fieldvalue;
 								// if (prodName == null ||
 								// prodName.trim().length() == 0)
@@ -133,6 +129,7 @@ public class ProductServlet extends HttpServlet {
 							} else if ("prodArticle"
 									.equals(item.getFieldName())) {
 								prodArticle = fieldvalue;
+								System.out.println(prodArticle);
 								if (prodArticle == null
 										|| prodArticle.trim().length() == 0)
 									errorMsgs.put("errorProdArticle",
@@ -182,13 +179,14 @@ public class ProductServlet extends HttpServlet {
 						} // end outer else
 					} // end for loop
 						// 存入商家編號
-						// comId = (int) session.getAttribute("comId");
+					CompanyVO loginComToken = (CompanyVO) session
+							.getAttribute("LoginComOK");
+					_comId = loginComToken.getComID();
 
 					// ---------------寫入database----------------------
 					if (errorMsgs.isEmpty()) {
 						ProductVO = productsService
-								.addProd(prodId, _comId, prodName, plateId,
-										prodType, prodPrice, prodDisc, prodPic,
+								.addProd(prodId, _comId, prodName,prodType, prodPrice, prodDisc, prodPic,
 										prodArticle, prodSubPic1, prodSubPic2,
 										prodSubPic3, prodKind, prodCc,
 										prodCarrier, prodControl, prodPlate,

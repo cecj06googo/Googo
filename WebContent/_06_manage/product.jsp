@@ -19,12 +19,13 @@
         <div id="page-wrapper">
  			<!-- container-fluid -->
             <div class="container-fluid">
-            <!--標頭-->
+            <!--標頭-->  
        		<div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header"><i class="fa fa-fw fa-th-list"></i> 商品管理 <small>product</small> </h2>
             </div></div><!--/.標頭-->
         
+	${MsgOK.InsertOK}     
         <!--汽車-->
         <div class="row">
 		<div class="col-md-10 col-md-offset-1">
@@ -56,13 +57,18 @@
                        		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct" id="${ProductVO.prodId}"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                          </td>
                     	</tr>
+                    	<input type="hidden" name="${ProductVO.prodId}prodId" value="${ProductVO.prodId}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodName" value="${ProductVO.prodName}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodType" value="${ProductVO.prodType}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodKind" value="${ProductVO.prodKind}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/>
 <!--                     	Cc數 是否要顯示小數點 ?-->
+						<input type="hidden" name="${ProductVO.prodId}prodControl" value="${ProductVO.prodControl}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>  
                     </c:forEach>
                 </tbody>
             </table>
@@ -102,12 +108,18 @@
                        		<a href="#" id="${ProductVO.prodId}" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                         </td>
                     	</tr>
+                    	<input type="hidden" name="${ProductVO.prodId}prodId" value="${ProductVO.prodId}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodName" value="${ProductVO.prodName}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodType" value="${ProductVO.prodType}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodKind" value="${ProductVO.prodKind}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
+<!--                     	Cc數 是否要顯示小數點 ?-->
+						<input type="hidden" name="${ProductVO.prodId}prodControl" value="${ProductVO.prodControl}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>   
                     </c:forEach>                  
                 </tbody>
             </table>
@@ -147,12 +159,18 @@
                        		<a href="#" id="${ProductVO.prodId}" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                          </td>
                     	</tr>
+                    	<input type="hidden" name="${ProductVO.prodId}prodId" value="${ProductVO.prodId}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodName" value="${ProductVO.prodName}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/>
+<%--                     	<input type="hidden" name="${ProductVO.prodId}prodType" value="${ProductVO.prodType}"/> --%>
                     	<input type="hidden" name="${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>                 	
+                    	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
+<%--                     	<input type="hidden" name="${ProductVO.prodId}prodKind" value="${ProductVO.prodKind}"/> --%>
+<%--                     	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/> --%>
+<%--                     	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/> --%>
+<!--                     	Cc數 是否要顯示小數點 ?-->
+<%-- 						<input type="hidden" name="${ProductVO.prodId}prodControl" value="${ProductVO.prodControl}"/> --%>
+                    	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>                   	
                     </c:forEach>  
                 </tbody>
             </table>
@@ -194,6 +212,8 @@ $("a[data-target='#editProduct']").click(function() {
  		$("input[name='prodPlate']").val($("input[name='"+ btnId +"prodPlate']").val());
  		$("input[name='prodCarrier']").val($("input[name='"+ btnId +"prodCarrier']").val());
  		$("input[name='prodCc']").val($("input[name='"+ btnId +"prodCc']").val());
+ 		$("textarea[name='prodArticle']").val($("input[name='"+ btnId +"prodArticle']").val());
+ 		$("input[name='prodId']").val($("input[name='"+ btnId +"prodId']").val());
 // 		$("input[name='prodName']").val('${obj_ProductVO.prodName}');  obj_ProductVO型態不對EL所以取不出來
 // 		ProductVO obj_ProductVO = new ProductVO();  不認得  //你沒有IMPORT 當然不認得
 });

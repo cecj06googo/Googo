@@ -15,7 +15,7 @@ public class ProductsDAO implements ProductsDAO_interface {
 	String userid = "sa";
 	String passwd = "sa123456";
 
-	private static final String INSERT_Products = "INSERT INTO Product "
+	private static final String INSERT_Product = "INSERT INTO Product "
 			+ "(com_id, prod_name, prod_type, prod_price, prod_disc,"
 			+ "prod_pic,prod_article,prod_subPic1,prod_kind,"
 			+ "prod_cc,prod_carrier, prod_control, prod_subPic2, prod_subPic3, prod_plate, prod_status) "
@@ -25,22 +25,25 @@ public class ProductsDAO implements ProductsDAO_interface {
 			+ " prod_type, prod_disc, prod_price, prod_pic, prod_article, prod_kind, prod_cc,"
 			+ " prod_carrier, prod_control, prod_plate, prod_status FROM Product WHERE com_id = ? AND prod_status = 1";
 
-	private static final String DELETE_PROD = "UPDATE Product SET prod_status = ? WHERE prod_id = ? ";
+	private static final String DELETE_Product = "UPDATE Product SET prod_status = ? WHERE prod_id = ? ";
 
 	// 無法解決重新上架的問題
-
+	
+	private static final String EDIT_Product = "UPDATE Product "
+			+ "SET prod_name = ?, prod_price = ?, prod_disc = ?, prod_article = ?,"
+			+ "prod_plate = ?, prod_pic = ?, prod_subPic1 = ?, prod_subPic2 = ?,"
+			+ "prod_subPic3 = ?  WHERE prod_id = ?";
+	
 	@Override
 	public void insert(ProductVO ProductVO) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
-		ResultSet rs = null;
 		System.out.println(ProductVO.getComId());
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(INSERT_Products,
+			pstmt = con.prepareStatement(INSERT_Product,
 					Statement.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, ProductVO.getComId());
 			pstmt.setString(2, ProductVO.getProdName());
@@ -61,7 +64,7 @@ public class ProductsDAO implements ProductsDAO_interface {
 			System.out.println("herer");
 			pstmt.executeUpdate();
 
-			rs = pstmt.getGeneratedKeys();
+			
 
 			//
 			// System.out.println(ProductVO.getProd_id());
@@ -90,16 +93,7 @@ public class ProductsDAO implements ProductsDAO_interface {
 				} catch (SQLException se) {
 					se.printStackTrace(System.err);
 				}
-
 			}
-			if (pstmt2 != null) {
-				try {
-					pstmt2.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-
 			if (con != null) {
 				try {
 					con.close();
@@ -190,7 +184,7 @@ public class ProductsDAO implements ProductsDAO_interface {
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(DELETE_PROD);
+			pstmt = con.prepareStatement(DELETE_Product);
 			pstmt.setInt(1, 0);
 			pstmt.setInt(2, prodId);
 			// System.out.println(plateId);
@@ -229,5 +223,59 @@ public class ProductsDAO implements ProductsDAO_interface {
 			}
 		}
 	} // end delete
+
+	@Override
+	public void edit(ProductVO ProductVO) {
+//		SET prod_name = ?, prod_price = ?, prod_disc = ?, prod_article = ?,"
+//				+ "prod_plate = ? , prod_pic = ?, prod_subPic1 = ?, prod_subPic2 = ?, prod_subPic3 = ?,WHERE prod_id = ?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(EDIT_Product,
+					Statement.RETURN_GENERATED_KEYS);
+			pstmt.setString(1, ProductVO.getProdName());
+			pstmt.setDouble(2, ProductVO.getProdPrice());
+			pstmt.setDouble(3, ProductVO.getProdDisc());
+			pstmt.setString(4, ProductVO.getProdArticle());
+			pstmt.setString(5, ProductVO.getProdPlate());
+			pstmt.setBytes(6, ProductVO.getProdPic());
+			pstmt.setBytes(7, ProductVO.getProdSubPic1());
+			pstmt.setBytes(8, ProductVO.getProdSubPic2());
+			pstmt.setBytes(9, ProductVO.getProdSubPic3());
+			pstmt.setInt(10, ProductVO.getProdId());
+			System.out.println("here.");
+			pstmt.executeUpdate();
+			System.out.println("herer");
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
 
 }
