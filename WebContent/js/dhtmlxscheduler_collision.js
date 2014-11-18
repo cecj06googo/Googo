@@ -59,25 +59,31 @@ scheduler.attachEvent("onEventSave",function(id, edited_ev, is_new){
 });
 
 //drag前存好訊息
+
 scheduler.attachEvent("onBeforeDrag",function(id){
 	var ev = scheduler.getEvent(id);
+	ee=scheduler.getEvent(id);
 	beforee = [ev.start_date, ev.end_date];
 	_setTempSection(id); 
 	return true;
 });
 //dnd前  還沒save
 scheduler.attachEvent("onBeforeEventChanged",function(ev,e,is_new){
-
-	var ss=scheduler.getSectionParent(ev.section_id);
-	console.log(ss);
-
-	
-	/*
-	 * 	var ss=scheduler.getEvent(ev.section_id);
-	console.log(ss.parent_id);*/
+	//找爸爸的id
+	var p1=scheduler.getSectionParent(temp_section);
+	var p2=scheduler.getSectionParent(ev.section_id);
+	//爸爸id是否相同
+	if(p1==p2){
+		
 	ev.start_date = beforee[0];
 	ev.end_date = beforee[1];
-	return scheduler.checkCollision(ev);
+	return scheduler.checkCollision(ev);}
+	else{
+		$('#schedulerError').modal('show');
+		return false;
+		
+	}
+		
 	
 });
 
