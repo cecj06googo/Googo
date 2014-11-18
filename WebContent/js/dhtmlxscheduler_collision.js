@@ -67,6 +67,14 @@ scheduler.attachEvent("onBeforeDrag",function(id){
 });
 //dnd前  還沒save
 scheduler.attachEvent("onBeforeEventChanged",function(ev,e,is_new){
+
+	var ss=scheduler.getSectionParent(ev.section_id);
+	console.log(ss);
+
+	
+	/*
+	 * 	var ss=scheduler.getEvent(ev.section_id);
+	console.log(ss.parent_id);*/
 	ev.start_date = beforee[0];
 	ev.end_date = beforee[1];
 	return scheduler.checkCollision(ev);
@@ -79,12 +87,7 @@ scheduler.attachEvent("onEventAdded",function(id,ev) {
 	var result = scheduler.checkCollision(ev);
 	if (!result)
 		scheduler.deleteEvent(id);
-});/*
-scheduler.attachEvent("onEventSave",function(id,ev,is_new){
-	
-	ev.start_date=before[0];;
-	ev.end_date=before[1];
-});*/
+});
 scheduler._check_sections_collision = function(first, second){
 	var map_to = scheduler._get_section_property();
 	if (first[map_to] == second[map_to] && first.id != second.id)

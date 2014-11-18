@@ -82,29 +82,26 @@
 				}
 			});
             
-            
-            
-            
-            
+  
             //車名
             var elements = [ // original hierarhical array to display
-			{key:1, label:"NISSAN LAVINA", open: true, children: [
-				{key:2, label:"1051-EE"},
-				{key:3, label:"1548-AA"},
-				{key:4, label:"5894-BB"},
+			{key:"NISSAN LAVINA", label:"NISSAN LAVINA", open: true, children: [
+				{key:"n1", label:"1051-EE"},
+				{key:"n2", label:"1548-AA"},
+				{key:"n3", label:"5894-BB"},
 			]},
-			{key:5, label:"MAZDA 3", open:true, children: [
-				{key:6, label:"BB-4654"},
-				{key:7, label:"BB-7854"},
-				{key:8, label:"YY-4654"},
-				{key:9, label:"BB-4666"}
+			{key:"MAZDA 3", label:"MAZDA 3", open:true, children: [
+				{key:"m1", label:"BB-4654"},
+				{key:"m2", label:"BB-7854"},
+				{key:"m3", label:"YY-4654"},
+				{key:"m4", label:"BB-4666"}
 			]},
-			{key:10, label:"機車", open:true, children: [
-                {key:11, label:"AAA-513"},
-                {key:12, label:"AAA-514"},
-                {key:13, label:"AAA-515"},
-                {key:14, label:"AAA-516"},
-                {key:15, label:"AAA-517"},
+			{key:"機車", label:"機車", open:true, children: [
+                {key:"機車1", label:"AAA-513"},
+                {key:"機車2", label:"AAA-514"},
+                {key:"機車3", label:"AAA-515"},
+                {key:"機車4", label:"AAA-516"},
+                {key:"機車5", label:"AAA-517"},
             ]},
 			];
             
@@ -128,12 +125,15 @@
                     x_date: "%F %d" // date format which should be used for second scale, "July 01"
                 }
             });
-
             
             //Data loading
-           scheduler.config.lightbox.sections=[	                                               
-			{name:"time", height:36, type:"time", map_to:"auto" ,time_format:["%Y","%m","%d","%H:%i"]},
-			{name:"description", height:36, map_to:"text", type:"textarea"},
+            scheduler.locale.labels.section_time = "訂單時間 &nbsp;";
+            scheduler.locale.labels.section_description = "訂單編號 ";
+            scheduler.locale.labels.section_details = "訂車人資訊 ";
+            scheduler.locale.labels.section_custom = "車牌號碼 ";
+            scheduler.config.lightbox.sections=[	                                               
+			{name:"time", height:36, type:"time",time_format:["%Y","%m","%d","%H:%i"]},
+			{name:"details", height:50, map_to:"details", type:"textarea"},
 			{name:"custom", height:23, type:"timeline", options:null , map_to:"section_id"}, //type should be the same as name of the tab
 			];
 
@@ -141,21 +141,21 @@
 			//開始時間
             scheduler.init('scheduler_car',new Date(2014,5,30),"timeline");
             scheduler.parse([
-                { start_date: "2014-07-01 09:00", end_date: "2014-07-02 12:00", text:"訂單 -12458", section_id:2},
-                { start_date: "2014-06-30 10:00", end_date: "2014-06-30 21:00", text:"訂單-89411", section_id:2},
-                { start_date: "2014-06-30 10:00", end_date: "2014-06-30 14:00", text:"訂單-64168", section_id:3},
-                { start_date: "2014-06-30 16:00", end_date: "2014-07-02 17:00", text:"訂單-46598", section_id:4},
+                { start_date: "2014-07-01 09:00", end_date: "2014-07-02 12:00", text:"訂單-12458", section_id:"n1", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
+                { start_date: "2014-06-30 10:00", end_date: "2014-06-30 21:00", text:"訂單-89411", section_id:"n1", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
+                { start_date: "2014-06-30 10:00", end_date: "2014-06-30 14:00", text:"訂單-64168", section_id:"n2", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
+                { start_date: "2014-06-30 16:00", end_date: "2014-07-02 17:00", text:"訂單-46598", section_id:"n3", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
 
-                { start_date: "2014-06-30 12:00", end_date: "2014-07-02 20:00", text:"訂單-48865", section_id:6},
-                { start_date: "2014-06-30 09:00", end_date: "2014-06-30 18:00", text:"訂單-44864", section_id:7},
-                { start_date: "2014-06-30 16:30", end_date: "2014-07-01 18:00", text:"訂單-46558", section_id:8},
-                { start_date: "2014-06-30 18:30", end_date: "2014-07-01 00:00", text:"訂單-45564", section_id:9},
+                { start_date: "2014-06-30 12:00", end_date: "2014-07-02 20:00", text:"訂單-48865", section_id:"m1", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
+                { start_date: "2014-06-30 09:00", end_date: "2014-06-30 18:00", text:"訂單-44864", section_id:"m2", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
+                { start_date: "2014-06-30 16:30", end_date: "2014-07-01 18:00", text:"訂單-46558", section_id:"m3", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
+                { start_date: "2014-06-30 18:30", end_date: "2014-07-01 00:00", text:"訂單-45564", section_id:"m4", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
              
-                { start_date: "2014-06-30 12:00", end_date: "2014-07-02 20:00", text:"訂單-48865", section_id:11},
-                { start_date: "2014-06-30 14:00", end_date: "2014-07-01 08:00", text:"訂單-44864", section_id:12},
-                { start_date: "2014-06-30 16:30", end_date: "2014-07-01 18:00", text:"訂單-46558", section_id:13},
-                { start_date: "2014-06-30 18:30", end_date: "2014-07-01 00:00", text:"訂單-45564", section_id:14},
-                { start_date: "2014-06-30 15:30", end_date: "2014-07-01 15:00", text:"訂單-45588", section_id:15},
+                { start_date: "2014-06-30 12:00", end_date: "2014-07-02 20:00", text:"訂單-48865", section_id:"機車1", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
+                { start_date: "2014-06-30 14:00", end_date: "2014-07-01 08:00", text:"訂單-44864", section_id:"機車2", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
+                { start_date: "2014-06-30 16:30", end_date: "2014-07-01 18:00", text:"訂單-46558", section_id:"機車3", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
+                { start_date: "2014-06-30 18:30", end_date: "2014-07-01 00:00", text:"訂單-45564", section_id:"機車4", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
+                { start_date: "2014-06-30 15:30", end_date: "2014-07-01 15:00", text:"訂單-45588", section_id:"機車5", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
             ],"json");
         }
         function show_minical(){
