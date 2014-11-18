@@ -232,12 +232,56 @@
 		</div><!--/.scheduler-->
 				
         </div><!--/.row-->
+        
+        <div id="schedulerConfirm" class="modal fade" role="dialog" aria-labelledby="schedulerConfirm" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		    <h3 class="modal-title">車輛調度 <small>scheduler</small></h3>
+		</div>
+	    <div class="modal-body">
+			<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<h4>確定要將調度此訂單之車輛嗎?</h4><br>
+			    <button type="button" class="btn btn-lg btn-danger pull-right">確認</button>
+		        <button type="button" class="btn btn-lg btn-success pull-left" data-dismiss="modal">取消</button>
+		    </div>
+			</div>
+		</div>
+		</div>	
+		</div>
+		</div>
+        
+        <div id="schedulerError" class="modal fade" role="dialog" aria-labelledby="schedulerConfirm" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		    <h3 class="modal-title"><i class="fa fa-ban"></i>禁止不同種之車輛調度 </h3>
+		</div>
+	    <div class="modal-body">
+			<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<h4>如欲更改車輛種類，</h4>
+				<h4>請聯絡租車人並於訂單管理更改!</h4><br>
+				<p><a href="#" class="btn btn-danger center-block" role="button" data-dismiss="modal">確認</a></p>
+		    </div>
+			</div>
+		</div>
+		</div>	
+		</div>
+		</div>
+        
+        
+        
         </div><!-- /.container-fluid -->
     </div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
 <script>
 //top2左方功能列選項
 $("#scheduler").addClass("active");
+
 </script>
 </body>
 </html>
