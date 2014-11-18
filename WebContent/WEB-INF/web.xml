@@ -91,15 +91,6 @@
     <servlet-name>cancelCom</servlet-name>
     <url-pattern>/cancelCom.gg</url-pattern>
   </servlet-mapping>
-<!--   <servlet> -->
-<!--     <servlet-name>s</servlet-name> -->
-<!--     <servlet-class>com.orders.controller.OrdersServlet</servlet-class> -->
-<!--   </servlet> -->
-<!--   <servlet-mapping> -->
-<!--     <servlet-name>s</servlet-name> -->
-<!--     <url-pattern>/se.gg</url-pattern> -->
-<!--   </servlet-mapping> -->
-  
   <servlet>
     <servlet-name>newOrdCom</servlet-name>
     <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
@@ -108,7 +99,6 @@
     <servlet-name>newOrdCom</servlet-name>
     <url-pattern>/newOrdCom.gg</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>reCarCom</servlet-name>
     <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
@@ -117,7 +107,6 @@
     <servlet-name>reCarCom</servlet-name>
     <url-pattern>/reCarCom.gg</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>com.login.controller.LoginServlet</servlet-class>
@@ -126,8 +115,6 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login.gg</url-pattern>
   </servlet-mapping>
-  
-  <!-- Begin: 設計器相關 -->
   <servlet>
     <servlet-name>DesignAccessDB</servlet-name>
     <servlet-class>com.template.controller.Prototype_OrderTemp_Servlet</servlet-class>
@@ -136,7 +123,6 @@
     <servlet-name>DesignAccessDB</servlet-name>
     <url-pattern>/DesignAccessDB</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>GetAccessory</servlet-name>
     <servlet-class>com.template.model.Accessory_Retrieval</servlet-class>
@@ -145,7 +131,6 @@
     <servlet-name>GetAccessory</servlet-name>
     <url-pattern>/GetAccessory</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>LoadDesign</servlet-name>
     <servlet-class>com.template.model.Design_Retrieval</servlet-class>
@@ -154,8 +139,6 @@
     <servlet-name>LoadDesign</servlet-name>
     <url-pattern>/LoadDesign</url-pattern>
   </servlet-mapping>
-  <!-- End: 設計器相關 -->
-  
   <servlet>
     <servlet-name>MemServlet</servlet-name>
     <servlet-class>com.member.controller.MemServlet</servlet-class>
@@ -188,48 +171,4 @@
     <servlet-name>ActivateCompanyAccount</servlet-name>
     <url-pattern>/CActivateAccount</url-pattern>
   </servlet-mapping>
-  
-<!-- Filter設定 -->
-<!--   <filter> -->
-<!--     <display-name>LoginMemFilter</display-name> -->
-<!--     <icon/> -->
-<!--     <filter-name>LoginMemFilter</filter-name> -->
-<!--     <filter-class>com.login.filter.LoginMemFilter</filter-class> -->
-<!--     <init-param> -->
-<!--       <param-name>mustMemLogin1</param-name> -->
-<!--       <param-value>/_03_research/*</param-value> -->
-<!--     </init-param> -->
-<!--     <init-param> -->
-<!--       <param-name>mustMemLogin2</param-name> -->
-<!--       <param-value>/_04_member/*</param-value> -->
-<!--     </init-param> -->
-<!--     <init-param> -->
-<!--       <param-name>mustMemLogin3</param-name> -->
-<!--       <param-value>/_05_company/company.jsp</param-value> -->
-<!--     </init-param> -->
-<!--   </filter> -->
-<!--   <filter-mapping> -->
-<!--     <filter-name>LoginMemFilter</filter-name> -->
-<!--     <url-pattern>/*</url-pattern> -->
-<!--   </filter-mapping> -->
-  
-<!--   <filter> -->
-<!--     <display-name>LoginComFilter</display-name> -->
-<!--     <icon/> -->
-<!--     <filter-name>LoginComFilter</filter-name> -->
-<!--     <filter-class>com.login.filter.LoginComFilter</filter-class> -->
-<!--     <init-param> -->
-<!--       <param-name>mustComLogin1</param-name> -->
-<!--       <param-value>/_06_manage/*</param-value> -->
-<!--     </init-param> -->
-<!--     <init-param> -->
-<!--       <param-name>mustComLogin3</param-name> -->
-<!--       <param-value>/_05_company/orderCom.jsp</param-value> -->
-<!--     </init-param> -->
-<!--   </filter> -->
-<!--   <filter-mapping> -->
-<!--     <filter-name>LoginComFilter</filter-name> -->
-<!--     <url-pattern>/*</url-pattern> -->
-<!--   </filter-mapping> -->
-
 </web-app>
