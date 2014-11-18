@@ -22,7 +22,6 @@ System.out.println(mem.getMem_id());
 <body>
 <jsp:include page="/_00_fragment/top1.jsp" />
 
-<h2>Current Com: ${LoginComOK.comID}</h2>
 <h2>Current Mem: ${LoginMemOK.mem_id}</h2>
 
 <p>訂單</p>
@@ -41,6 +40,7 @@ System.out.println(mem.getMem_id());
 	<p>領車人e-mail: <input type="text" name="item_email" value="gg@ya.123" />${ErrorMsg.errorEmail}</p>
 	<p>商品配備: <input type="text" name="pritem_acc" value="啤酒,威士忌,高粱酒" /></p>
 	<p>優惠: <input type="text" name="item_all" value="優惠方案1:租車送塔位" /></p>
+	<p>服務廠商id: <input type="text" name="vendor_id" value="1" /></p>
 	<input type="hidden" name="action" value="insert"> 
 	<p><input type="submit" value="下訂" />${ErrorMsg.errTitle}</p>
 	<p><input type="reset" value="恢復" /></p>
