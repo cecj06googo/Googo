@@ -64,6 +64,15 @@
 		<url-pattern>/SearchServlet.do</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<display-name>DispComFirstPage</display-name>
+		<servlet-name>DispComFirstPage</servlet-name>
+		<servlet-class>com.comFirstPage.controller.DispComFirstPage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DispComFirstPage</servlet-name>
+		<url-pattern>/DispComFirstPage.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>Insert</servlet-name>
 		<servlet-class>com.orders.controller.OrdersServlet</servlet-class>
 	</servlet>
@@ -72,13 +81,13 @@
 		<url-pattern>/Insert.gg</url-pattern>
 	</servlet-mapping>
 	<servlet>
-    <servlet-name>ActionCom</servlet-name>
-    <servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ActionCom</servlet-name>
-    <url-pattern>/ActionCom.do</url-pattern>
-  </servlet-mapping>
+		<servlet-name>ActionCom</servlet-name>
+		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ActionCom</servlet-name>
+		<url-pattern>/ActionCom.do</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>fakeDataTest</servlet-name>
 		<servlet-class>com.orders.controller.fakeData</servlet-class>

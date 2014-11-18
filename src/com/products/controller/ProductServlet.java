@@ -51,7 +51,7 @@ public class ProductServlet extends HttpServlet {
 		byte[] bs = new byte[4];
 		bs[1] = 1;
 
-		ProductVO ProductsVO = new ProductVO();
+		ProductVO ProductVO = new ProductVO();
 		@SuppressWarnings("unused")
 		int memId = 1;
 		int prodId = 1;
@@ -125,6 +125,7 @@ public class ProductServlet extends HttpServlet {
 								// errorMsgs.put("errorNameEmpty", "商品名稱請勿空白");
 							} else if ("prodType".equals(item.getFieldName())) {
 								prodType = new Integer(fieldvalue.trim());
+								System.out.println("type"+prodType);
 							} // 4
 							else if ("prodPrice".equals(item.getFieldName())) {
 								prodPrice = new Double(fieldvalue.trim());
@@ -141,9 +142,11 @@ public class ProductServlet extends HttpServlet {
 								prodKind = new Integer(fieldvalue.trim());
 							} else if ("prodCc".equals(item.getFieldName())) {
 								prodCc = new Double(fieldvalue.trim());
+								System.out.println("CC"+prodCc);
 							} else if ("prodCarrier"
 									.equals(item.getFieldName())) {
 								prodCarrier = new Integer(fieldvalue.trim());
+								System.out.println("CARRIER"+prodCarrier);
 							} else if ("prodControl"
 									.equals(item.getFieldName())) {
 								prodControl = new Integer(fieldvalue.trim());
@@ -178,7 +181,7 @@ public class ProductServlet extends HttpServlet {
 
 					// ---------------寫入database----------------------
 					if (errorMsgs.isEmpty()) {
-						ProductsVO = productsService
+						ProductVO = productsService
 								.addProd(prodId, _comId, prodName, plateId,
 										prodType, prodPrice, prodDisc, prodPic,
 										prodArticle, prodSubPic1, prodSubPic2,
@@ -186,12 +189,12 @@ public class ProductServlet extends HttpServlet {
 										prodCarrier, prodControl, prodPlate,
 										prodStatus);
 
-						System.out.println(ProductsVO.getProdId());
-						System.out.println(ProductsVO.getComId());
-						System.out.println(ProductsVO.getProdName());
-						System.out.println(ProductsVO.getProdType());
+						System.out.println(ProductVO.getProdId());
+						System.out.println(ProductVO.getComId());
+						System.out.println(ProductVO.getProdName());
+						System.out.println(ProductVO.getProdType());
 
-						request.setAttribute("ProductsVO", ProductsVO);
+						request.setAttribute("ProductVO", ProductVO);
 						succesMsgs.put("InsertOK",
 								"<Font color='red'>商品新增成功</Font><hr>");
 

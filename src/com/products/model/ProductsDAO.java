@@ -20,16 +20,10 @@ public class ProductsDAO implements ProductsDAO_interface {
 			+ "prod_pic,prod_article,prod_subPic1,prod_kind,"
 			+ "prod_cc,prod_carrier, prod_control, prod_subPic2, prod_subPic3, prod_plate, prod_status) "
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";// 16個
-	// private static final String INSERT_Product_PLATE =
-	// "INSERT INTO Prod_plate (plate_id, prod_id, plate_status) VALUES(?, ?, ?)";
-	//
+	// PROD ID  IDENTITY
 	private static final String GET_ALL_Products = "SELECT prod_id, com_id, prod_name,"
-			+ " prod_type, prod_disc, prod_price, prod_pic, prod_kind, prod_cc,"
-			+ " prod_carrier, prod_control, prod_plate, prod_type FROM Product WHERE com_id = ? AND prod_status = 1";
-
-	private static final String SELECT_Products = " SELECT prod.prod_name, prod.prod_disc, prod.prod_price, plate.plate_id"
-			+ "FROM Product prod JOIN Prod_plate plate  "
-			+ "ON prod.prod_id =  plate.prod_id " + "WHERE  plate_id = ? ";
+			+ " prod_type, prod_disc, prod_price, prod_pic, prod_article, prod_kind, prod_cc,"
+			+ " prod_carrier, prod_control, prod_plate, prod_status FROM Product WHERE com_id = ? AND prod_status = 1";
 
 	private static final String DELETE_PROD = "UPDATE Product SET prod_status = ? WHERE prod_id = ? ";
 
@@ -137,12 +131,17 @@ public class ProductsDAO implements ProductsDAO_interface {
 			while (rs.next()) {
 				ProductVO = new ProductVO();
 				ProductVO.setProdId(rs.getInt("prod_id"));
-				ProductVO.setProdName(rs.getString("prod_name"));
-				ProductVO.setProdPrice(rs.getDouble("prod_price"));
-				ProductVO.setProdDisc(rs.getDouble("prod_disc"));
-				ProductVO.setProdPlate(rs.getString("prod_plate"));
-				ProductVO.setProdType(rs.getInt("prod_type"));
 				ProductVO.setComId(rs.getInt("com_id"));
+				ProductVO.setProdName(rs.getString("prod_name"));
+				ProductVO.setProdType(rs.getInt("prod_type"));
+				ProductVO.setProdDisc(rs.getDouble("prod_disc"));
+				ProductVO.setProdPrice(rs.getDouble("prod_price"));
+				ProductVO.setProdArticle(rs.getString("prod_article"));
+				ProductVO.setProdKind(rs.getInt("prod_kind"));
+				ProductVO.setProdCc(rs.getInt("prod_cc"));
+				ProductVO.setProdCarrier(rs.getInt("prod_carrier"));
+				ProductVO.setProdControl(rs.getInt("prod_control"));
+				ProductVO.setProdPlate(rs.getString("prod_plate"));
 				list.add(ProductVO);
 				// System.out.println("in DAO:"+ProductVO.getComId());
 			}

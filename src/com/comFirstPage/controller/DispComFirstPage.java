@@ -1,6 +1,8 @@
 package com.comFirstPage.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,13 @@ public class DispComFirstPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("我有進來DispComfirst.java doGet");
+		String comId=request.getParameter("comId");
+		request.setAttribute("comId", comId);		
+		System.out.println("comId="+comId);
+		RequestDispatcher rd = request.getRequestDispatcher("/_05_company/company.jsp");
+		System.out.println("跳轉company.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -26,6 +35,8 @@ public class DispComFirstPage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("我有進來DispComfirst.java doPost");
+		String comId=request.getParameter("comId");
+		System.out.println("comId="+comId);
 	}
-
 }

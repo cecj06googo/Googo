@@ -4,7 +4,6 @@
 <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 <!--Search bar-->
-
 	<form class="form-inline" role="form" action="SearchServlet.do" method="post" id="research">
 				<div class="form-group control-group">
 				<div class="controls" >
@@ -49,6 +48,14 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
 <script>
+$( document ).ready(function() {
+	var location = "<%=request.getAttribute("location") %>"
+	var prod_type = "<%=request.getAttribute("prod_type") %>"
+    $("option[value='"+location+"']").prop("selected",true);
+    $("option[value='"+prod_type+"']").prop("selected",true);
+    
+});
+
 /* 我先拿掉關鍵字搜索驗證by Antai 
  (function($){
 	   $(document).ready(function() {

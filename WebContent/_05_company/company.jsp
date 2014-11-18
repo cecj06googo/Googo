@@ -18,7 +18,7 @@
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">拉拉  <small>租車小舖</small></h1>
+                <h1 class="page-header">拉拉  <small>租車小舖comid=${comId}測試用</small></h1>
             </div>
         </div>
         <!-- /.row -->
@@ -50,7 +50,7 @@
                         	<img src="${pageContext.request.contextPath}/img/06_1.jpg">
                     </div>
                     <div class="tab-pane fade" id="service-two">
-                        <<ul>
+                        <ul>
                         	<li><h3>地址:台北市復興南路一段390號</h3></li>
                         	<li><h3>Service One</h3></li>
                         	<li><h3>Service One</h3></li>
@@ -77,7 +77,7 @@
             <!-- 車車1 -->
             <div class="col-md-4 text-center">
                 <div class="thumbnail"><a href="" data-toggle="modal" data-target="#prod_detail">
-                    <img class="img-responsive" src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=1' alt="">
+                    <img class="img-responsive" src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}' alt="">
                     <div class="caption">
                         <h3>Nissan LIVINA</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
@@ -87,7 +87,7 @@
             <!-- 車車2 -->
             <div class="col-md-4 text-center">
                 <div class="thumbnail"><a href="" data-toggle="modal" data-target="#prod_detail">
-                    <img class="img-responsive" src='${pageContext.servletContext.contextPath}/image?comID=1' alt="">
+                    <img class="img-responsive" src='${pageContext.servletContext.contextPath}/image?comID=${comId}' alt="">
                     <div class="caption">
                         <h3>tobe m'car</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>

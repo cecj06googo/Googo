@@ -13,9 +13,9 @@
 <title>Goo-go</title>
 <!-- Google Map Start-->
 <style>
-html, body, #map-canvas {
+#map-canvas {
 	height: 400px;
-	width: 400px;
+	width: 100%;
 	margin: 10px;
 	padding: 10px;
 }
@@ -162,12 +162,12 @@ html, body, #map-canvas {
 					begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 					<!-- 第1筆商家 -->
 					<div class="col-md-6 img-portfolio">
-						<a href="<c:url value='/_05_company/company.jsp'/>"> <img
+						<a href="<c:url value='/DispComFirstPage.do?comId=${SearchComVO.com_id}'/>"> <img
 							class="img-responsive img-hover"
 							src="${pageContext.request.contextPath}/img/13.jpg" alt="">
 						</a>
 						<h3>
-							<a href="<c:url value='/_05_company/company.jsp'/>">${SearchComVO.com_name}</a>
+							<a href="<c:url value='/DispComFirstPage.do?comId=${SearchComVO.com_id}'/>">${SearchComVO.com_name}</a>
 						</h3>
 						<p>${SearchComVO.com_name}，地點位於${SearchComVO.com_address}，是一家信賴的商家。
 						</p>
