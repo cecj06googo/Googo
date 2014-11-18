@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.orders.model.*"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
 
 
 <title>我的訂單</title>
@@ -81,6 +85,8 @@
         <center style="font-weight:bold; font-size: 14pt">${MsgOK.SearchNull} </center>
         </c:if>
         <c:if test="${not empty ordVO}">
+        <%@ include file="orderPage.file"%>
+
 		<table class="table table-bordered table-hover table-condensed">
 		<thead>
 			<tr>
@@ -95,10 +101,13 @@
 			</tr>
 		</thead>
 		
-			<c:forEach var="ordVO" items="${ordVO}">			
-				<tr align='center' valign='middle'>
+			<c:forEach var="ordVO" items="${ordVO}" 
+			begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">			
+				<tr align='center' valign='middle'>    
 					<td>${ordVO.ord_id}</td>
-					<td><fmt:formatDate value="${ordVO.ord_time}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+					<td><fmt:formatDate value="${ordVO.ord_time}" pattern="yyyy-MM-dd HH:mm:ss" /><br>  
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne${ordVO.ord_id}">完整明細</a>     
+					</td>
 					<td>汽車</td>
 					<td><a href="#">HONDA-Accord進口新登場</a></td>
 					<td><a href="#">${ordVO.item_total}</a></td>
@@ -217,10 +226,39 @@
 					</FORM>
 					</td>
 					</c:if>
-					
+<!--調訂單明細位置------------------------------- -->
+					<div id="collapseOne${ordVO.ord_id}" class="panel-collapse collapse">
+                        <div class="panel-body">訂單編號: ${ordVO.ord_id} </div>
+                    </div>
 				</tr>
+				
 			</c:forEach>
+			
 		</table>
+		
+		    <!-- 頁數 -->
+			<div class="row text-center">
+				<div class="col-lg-12">
+					<ul class="pagination">
+						<li><a href="#">&laquo;</a></li>
+						<c:forEach var="i" begin="1" end="<%=pageNumber%>">
+							<c:if test="${i == whichPage}">
+								<li class="active"><a
+									href="${pageContext.request.contextPath}/ActionCom.do?whichPage=${i}">${i}</a></li>
+							</c:if>
+							<c:if test="${i != whichPage}">
+								<li><a
+									href="${pageContext.request.contextPath}/ActionCom.do?whichPage=${i}">${i}</a></li>
+							</c:if>
+						</c:forEach>
+						<li><a href="#">&raquo;</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /.頁數-->
+
+		<br>
 	</c:if>
 	
 	
@@ -229,13 +267,15 @@
         <br>
 	</div>
     <!-- /.container -->
+    
+
    <hr>
    <!-- Footer -->
    <jsp:include page="/_00_fragment/footer.jsp" />
     <!-- /.container -->
 </div>
 </div>
-</div>
+<!-- </div> -->
 	<!-- 綜合對話框(改由jQuery控制內容) -->
 	 <div id="ordmodal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
@@ -263,6 +303,12 @@
 </body>
 <script>
 $(document).ready(function(){
+	var ordVO = <%=request.getAttribute("ordVO")%>; //公司地址陣列
+	var rowsPerPage = <%=request.getAttribute("rowsPerPage") %>;
+	var whichPage= <%=request.getAttribute("whichPage")%>;//此頁第幾頁
+	var startIndex=(whichPage-1)*rowsPerPage;//該頁起始筆數
+	var endIndex = (whichPage*rowsPerPage-1); //該頁終止筆數
+
 	//-----訂單狀態預設改成user選擇---------
 	$("select[name^='orderStatus'] option:selected").attr("selected",null);
 	$("select[name^='orderStatus'] option[value='${orderStatus}']").attr("selected","selected");

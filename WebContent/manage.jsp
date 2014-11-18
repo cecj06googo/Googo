@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/newOrdCom.gg" name="newOrd">
+							ACTION="<%=request.getContextPath()%>/ActionCom.do" name="newOrd">
                             <a href="#" onclick="document.newOrd.submit();">
                                 <div class="panel-footer">
                                     <span class="pull-left">訂單管理</span>
@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                             <FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/reCarCom.gg" name="noreCar">
+							ACTION="<%=request.getContextPath()%>/ActionCom.do" name="noreCar">
                             <a href="#" onclick="document.noreCar.submit();">
                             
                                 <div class="panel-footer">

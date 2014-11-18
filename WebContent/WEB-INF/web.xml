@@ -96,14 +96,7 @@
 		<servlet-name>fakeDataTest</servlet-name>
 		<url-pattern>/fakeData.gg</url-pattern>
 	</servlet-mapping>
-	<servlet>
-		<servlet-name>cancelCom</servlet-name>
-		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>cancelCom</servlet-name>
-		<url-pattern>/cancelCom.gg</url-pattern>
-	</servlet-mapping>
+
 
 <!--prod manage-->
 	<servlet>
@@ -137,26 +130,6 @@
 	<servlet-mapping>
 		<servlet-name>prodEdit</servlet-name>
 		<url-pattern>/prod.edit</url-pattern>
-	</servlet-mapping>
-
-
-
-	<servlet>
-		<servlet-name>newOrdCom</servlet-name>
-		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>newOrdCom</servlet-name>
-		<url-pattern>/newOrdCom.gg</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>reCarCom</servlet-name>
-		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>reCarCom</servlet-name>
-		<url-pattern>/reCarCom.gg</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

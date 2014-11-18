@@ -25,12 +25,39 @@ public class OrdersActionCom extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+		page(request,response);
 	}
 
 	public Map<String, String> errorMsg = new HashMap<String, String>();
 	public Map<String, String> msgOK = new HashMap<String, String>();
 
+	protected void page(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException{
+		HttpSession session = request.getSession();
+	//分頁用
+		CompanyVO comVO = new CompanyVO();
+		Integer userId = null;
+		Integer orderStatus = null;
+		String orderTime = "";
+		
+		comVO = (CompanyVO) session.getAttribute("LoginComOK");
+		userId = comVO.getComID();
+		orderStatus = Integer.parseInt(session.getAttribute("orderStatus").toString());
+		orderTime = session.getAttribute("orderTime").toString();
+	
+		OrdersService odrSvc = new OrdersService();
+		List<OrdersVO> ordVO = odrSvc.ordSearch_com(userId,
+				orderStatus, orderTime);
+		request.setAttribute("ordVO", ordVO);
+		if (ordVO.isEmpty()) {
+			msgOK.put("SearchNull", "沒有資料");
+		}
+		String url = "/_05_company/orderCom.jsp";
+		RequestDispatcher successView = request
+				.getRequestDispatcher(url);
+		successView.forward(request, response);
+	}
+	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
