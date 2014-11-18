@@ -235,7 +235,22 @@ scheduler.getSection = function(id){
 		return obj||null;
 	}
 };
-
+//自己加的
+scheduler.getSectionParent = function(id){
+	if(scheduler._isRender("tree")) {
+		var obj;
+		var findElement = function(key, array) {
+			for (var i=0; i<array.length; i++) {
+				if(array[i].key == key) 
+					obj = array[i].key;
+				if(array[i].children) 
+					findElement(key,array[i].children);
+			}
+		};
+		findElement(id, scheduler.matrix[scheduler._mode].y_unit_original);
+		return obj||null;
+	}
+};
 scheduler.deleteSection = function(id){
 	if(scheduler._isRender("tree")) {
 		var result = false;

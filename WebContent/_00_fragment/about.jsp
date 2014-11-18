@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<jsp:include page="/_00_fragment/css.jsp" />
+<%-- <jsp:include page="/_00_fragment/css.jsp" /> --%>
 <title>Goo-go</title>
 
 </head>
