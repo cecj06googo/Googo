@@ -49,7 +49,7 @@ public class DispComFirstPage extends HttpServlet {
 		ProductsService prodService = new ProductsService();
 		// 取得商家id為1的公司其所有產品資訊
 		List<ProductVO> prodsVos = new ArrayList<ProductVO>();
-		prodsVos = prodService.getProdsByComId(comId);
+		prodsVos = prodService.getProdsByComId(comId);		
 		request.setAttribute("prodsVos", prodsVos);
 		printProdsOfACom(prodsVos);// 測試用:vos內值是否正確
 		// ---------丟值顯示到商家首頁-------------

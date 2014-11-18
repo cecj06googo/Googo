@@ -96,7 +96,7 @@
 							alt="">
 							<div class="caption">
 							    prodid = ${ProductVO.prodId} 
-								<h3>Nissan LIVINA</h3>
+								<h3>${ProductVO.prodName}</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 									Iste saepe et quisquam nesciunt maxime.</p>
 							</div></a>

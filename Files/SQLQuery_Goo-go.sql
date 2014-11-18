@@ -155,6 +155,8 @@ insert into Product values (1,'賓士320',1,1000,0.78,0x00,'ss',null,null,null,1
 insert into Product values (1,'福特123',1,2000,0.85,0x00,'ss',null,null,null,1,null,null,null,2,1);
 insert into Product values (1,'汽車1',1,3000,0.85,0x00,'ss',null,null,null,1,null,null,null,3,1);
 insert into Product values (1,'汽車2',1,4000,0.45,0x00,'ss',null,null,null,1,null,null,null,4,1);
+insert into Product values (1,'一樣汽車名稱',1,4000,0.45,0x00,'ss',null,null,null,1,null,null,null,55,1);
+insert into Product values (1,'一樣汽車名稱',1,4000,0.45,0x00,'ss',null,null,null,1,null,null,null,56,1);
 insert into Product values (2,'野狼125',2,3000,0.93,0x00,'ss',null,null,null,1,null,null,null,5,1);
 insert into Product values (2,'競戰150',2,4000,0.77,0x00,'ss',null,null,null,1,null,null,null,6,1);
 insert into Product values (3,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,null,null,null,7,1);
