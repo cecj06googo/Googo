@@ -7,4 +7,5 @@ public interface ProductsDAO_interface {
 	void insert(ProductVO ProductVO);
 	List<ProductVO> getAll();
 	List<ProductVO> getProdsByComId(int prodId);
+	List<ProductVO> getProdsByComIdNoRepeat(int comId);
 }

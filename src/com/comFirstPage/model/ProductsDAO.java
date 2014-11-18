@@ -32,7 +32,14 @@ public class ProductsDAO implements ProductsDAO_interface {
 			+ "prod_subPic2,prod_subPic3,prod_kind, prod_cc," // 4
 			+ " prod_carrier, prod_control, prod_plate, prod_status "// 4
 			+ "FROM Product WHERE com_id=? and prod_status = 1";
-
+	
+	private static final String GET_AProductByComIdNORepeat ="SELECT prod_id, com_id, prod_name," // 2
+			+ " prod_type, prod_price,prod_disc, prod_pic, prod_article, prod_subPic1,"// 6
+			+ "prod_subPic2,prod_subPic3,prod_kind, prod_cc," // 4
+			+ " prod_carrier, prod_control, prod_plate, prod_status "// 4
+			+ "From product where prod_status = 1 and prod_id in (select max(prod_id)"
+			+"from Product where com_id=? group by prod_name)";	 
+	
 	private static final String SELECT_Products = " SELECT prod.prod_name, prod.prod_disc, prod.prod_price, plate.plate_id"
 			+ "FROM Product prod JOIN Prod_plate plate  "
 			+ "ON prod.prod_id =  plate.prod_id " + "WHERE  plate_id = ? ";
@@ -120,7 +127,7 @@ public class ProductsDAO implements ProductsDAO_interface {
 				ProductVO.setProdCarrier(rs.getInt("prod_carrier"));
 				ProductVO.setProdControl(rs.getInt("prod_control"));
 				ProductVO.setProdPlate(rs.getString("prod_plate"));
-				ProductVO.setProdType(rs.getInt("prod_type")); // total=17
+				ProductVO.setProdType(rs.getInt("prod_status")); // total=17
 				list.add(ProductVO);
 				// System.out.println("in DAO:"+ProductVO.getComId());
 			}
@@ -137,7 +144,59 @@ public class ProductsDAO implements ProductsDAO_interface {
 			closeResource(con, pstmt, rs);
 		}
 		return list;
-	}
+	}//public List<ProductVO> getProdsByComId
+	
+	public List<ProductVO> getProdsByComIdNoRepeat(int comId) { //根據哪家公司去找到該公司所有產品
+		List<ProductVO> list = new ArrayList<ProductVO>();
+		ProductVO ProductVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+
+			pstmt = con.prepareStatement(GET_AProductByComIdNORepeat);
+			pstmt.setInt(1, comId);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ProductVO = new ProductVO();
+				ProductVO.setProdId(rs.getInt("prod_id"));
+				ProductVO.setComId(rs.getInt("com_id"));
+				ProductVO.setProdName(rs.getString("prod_name"));
+				ProductVO.setProdType(rs.getInt("prod_type"));
+				ProductVO.setProdPrice(rs.getDouble("prod_price"));
+				ProductVO.setProdDisc(rs.getDouble("prod_disc"));
+				ProductVO.setProdPic(rs.getBytes("prod_pic"));
+				ProductVO.setProdArticle(rs.getString("prod_article"));
+				ProductVO.setProdSubPic1(rs.getBytes("prod_subPic1"));
+				ProductVO.setProdSubPic2(rs.getBytes("prod_subPic2"));
+				ProductVO.setProdSubPic3(rs.getBytes("prod_subPic3"));
+				ProductVO.setProdKind(rs.getInt("prod_kind"));
+				ProductVO.setProdCc(rs.getDouble("prod_cc"));
+				ProductVO.setProdCarrier(rs.getInt("prod_carrier"));
+				ProductVO.setProdControl(rs.getInt("prod_control"));
+				ProductVO.setProdPlate(rs.getString("prod_plate"));
+				ProductVO.setProdType(rs.getInt("prod_status")); // total=17
+				list.add(ProductVO);
+				// System.out.println("in DAO:"+ProductVO.getComId());
+			}
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			closeResource(con, pstmt, rs);
+		}
+		return list;
+	}//public List<ProductVO> getProdsByComId
 
 	@Override
 	public List<ProductVO> getAll() { //取得所有的產品資訊(包括所有公司的產品)
@@ -170,7 +229,7 @@ public class ProductsDAO implements ProductsDAO_interface {
 				ProductVO.setProdCarrier(rs.getInt("prod_carrier"));
 				ProductVO.setProdControl(rs.getInt("prod_control"));
 				ProductVO.setProdPlate(rs.getString("prod_plate"));
-				ProductVO.setProdType(rs.getInt("prod_type")); // total=17
+				ProductVO.setProdType(rs.getInt("prod_status")); // total=17
 				list.add(ProductVO);
 				// System.out.println("in DAO:"+ProductVO.getComId());
 			}

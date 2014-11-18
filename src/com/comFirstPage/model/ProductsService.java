@@ -12,6 +12,10 @@ public class ProductsService {
 	public List<ProductVO> getProdsByComId(int comId) {
 		return dao.getProdsByComId(comId);
 	}
+	
+	public List<ProductVO> getProdsByComIdNoRepeat(int comId) {
+		return dao.getProdsByComIdNoRepeat(comId);
+	}
 
 	public List<ProductVO> getAll() {
 		return dao.getAll();
