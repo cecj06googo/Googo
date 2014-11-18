@@ -40,8 +40,8 @@ public class ProductServlet extends HttpServlet {
 		Map<String, String> errorMsgs = new HashMap<String, String>();
 		request.setAttribute("ErrorMsg", errorMsgs); // 顯示錯誤訊息
 		request.setAttribute("MsgOK", succesMsgs); // 顯示錯誤訊息
-//		String abc = "abc";
-//		request.setAttribute("abc", abc); // 顯示錯誤訊息
+		// String abc = "abc";
+		// request.setAttribute("abc", abc); // 顯示錯誤訊息
 		System.out.println("Ready? servlet begins~");
 		ProductsService productsService = new ProductsService();
 
@@ -76,21 +76,21 @@ public class ProductServlet extends HttpServlet {
 		String prodPlate = "ABC-11";
 		int prodStatus = 1;
 		String action = request.getParameter("action");
-		//System.out.println(action);
-		
+		// System.out.println(action);
+
 		if ("prodDelete".equals(action)) {
-			//System.out.println(action);
-			prodId=Integer.parseInt(request.getParameter("prodId"));
-			System.out.println("in delete prodId="+prodId+" =_=");
+			// System.out.println(action);
+			prodId = Integer.parseInt(request.getParameter("prodId"));
+			System.out.println("in delete prodId=" + prodId + " =_=");
 			productsService.delProd(prodId);
-			
+
 			String url2 = "/prod.show";
 			String url = "/_06_manage/product.jsp";
 			RequestDispatcher successView = request.getRequestDispatcher(url2);
 			System.out.println("End servlet delete O_Q");
 			successView.forward(request, response);
 		} // end delete
-		
+
 		else {
 			System.out.println("in insert");
 			// ------------------表單驗證+資料接收----------------------
@@ -99,7 +99,6 @@ public class ProductServlet extends HttpServlet {
 					// 檔案名稱
 					List<FileItem> multiparts = new ServletFileUpload(
 							new DiskFileItemFactory()).parseRequest(request);
-					System.out.println("where am i?");
 					// 逐筆讀取form表單內容
 					for (FileItem item : multiparts) {
 						if (item.isFormField()) {
@@ -125,7 +124,7 @@ public class ProductServlet extends HttpServlet {
 								// errorMsgs.put("errorNameEmpty", "商品名稱請勿空白");
 							} else if ("prodType".equals(item.getFieldName())) {
 								prodType = new Integer(fieldvalue.trim());
-								System.out.println("type"+prodType);
+								System.out.println("type" + prodType);
 							} // 4
 							else if ("prodPrice".equals(item.getFieldName())) {
 								prodPrice = new Double(fieldvalue.trim());
@@ -140,13 +139,19 @@ public class ProductServlet extends HttpServlet {
 											"商品說明請勿空白");
 							} else if ("prodKind".equals(item.getFieldName())) {
 								prodKind = new Integer(fieldvalue.trim());
+								System.out.println("prodKind" + prodKind);
 							} else if ("prodCc".equals(item.getFieldName())) {
-								prodCc = new Double(fieldvalue.trim());
-								System.out.println("CC"+prodCc);
+								if (prodType == 1 || prodType == 2) {
+									prodCc = new Double(fieldvalue.trim());
+									System.out.println("CC" + prodCc);
+								} else {
+									prodCc = 0;
+									System.out.println("CC" + prodCc);
+								}
 							} else if ("prodCarrier"
 									.equals(item.getFieldName())) {
 								prodCarrier = new Integer(fieldvalue.trim());
-								System.out.println("CARRIER"+prodCarrier);
+								System.out.println("CARRIER" + prodCarrier);
 							} else if ("prodControl"
 									.equals(item.getFieldName())) {
 								prodControl = new Integer(fieldvalue.trim());
@@ -189,10 +194,10 @@ public class ProductServlet extends HttpServlet {
 										prodCarrier, prodControl, prodPlate,
 										prodStatus);
 
-						System.out.println(ProductVO.getProdId());
-						System.out.println(ProductVO.getComId());
-						System.out.println(ProductVO.getProdName());
-						System.out.println(ProductVO.getProdType());
+//						System.out.println(ProductVO.getProdId());
+//						System.out.println(ProductVO.getComId());
+//						System.out.println(ProductVO.getProdName());
+//						System.out.println(ProductVO.getProdType());
 
 						request.setAttribute("ProductVO", ProductVO);
 						succesMsgs.put("InsertOK",
@@ -218,7 +223,6 @@ public class ProductServlet extends HttpServlet {
 
 		}
 
-		
 	}// end post
 
 }
