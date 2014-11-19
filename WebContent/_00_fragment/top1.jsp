@@ -46,7 +46,17 @@
                         <a href="<c:url value='/_00_fragment/about.jsp'/>">關於</a>
                     </li>
                     <li class="dropdown">
-                        <a  class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>會員專區<b class="caret"> </b></a>
+                        <a  class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>
+                        	<c:choose>
+                        		<c:when test="${!empty LoginMemOK}">
+                        		${LoginMemOK.mem_name}
+                        		</c:when>
+                        		<c:otherwise>
+                        		會員專區
+                        		</c:otherwise>
+                        	</c:choose>
+                        <b class="caret"> </b></a>
                         <ul class="dropdown-menu">
                         	<li>
 	                            <a href="<c:url value='/_04_member/favorite.jsp'/>"><i class="fa fa-fw fa-heart"> </i>我的收藏</a>
@@ -83,17 +93,17 @@
 	var timeOut = '<%= session.getAttribute("timeOut") %>';
 	var mustMemLogin = '<%= session.getAttribute("mustMemLogin") %>';
 	var mustComLogin = '<%= session.getAttribute("mustComLogin") %>';
-// 	alert("errorMsg = " + errorMsg + ", timeOut = " + timeOut 
-// 			+ ", mustMemLogin = " + mustMemLogin + ", mustComLogin = " + mustComLogin);
+//  	alert("errorMsg = " + errorMsg + ", timeOut = " + timeOut 
+//  			+ ", mustMemLogin = " + mustMemLogin + ", mustComLogin = " + mustComLogin);
 	
 	// 登入的彈出視窗判斷
 	if (mustMemLogin != "null") {
-// 		alert(mustMemLogin);
+//  		alert(mustMemLogin);
 		$('#login').modal('show');
 		<% session.removeAttribute("mustMemLogin"); %>
 	} 
 	else if (mustComLogin != "null") {
-// 		alert(mustComLogin);
+//  		alert(mustComLogin);
 		$('#login').modal('show');
 	    <% session.removeAttribute("mustComLogin"); %>
 	}
@@ -105,7 +115,7 @@
 		<% session.removeAttribute("LoginError"); %>
 	}
 	else {
-// 		alert("不用彈出登入");
+//  		alert("不用彈出登入");
 	}
 
 

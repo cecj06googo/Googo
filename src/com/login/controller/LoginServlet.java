@@ -113,13 +113,14 @@ public class LoginServlet extends HttpServlet {
 			if (memVO != null) {
 				if (requestURI != null) {
 					requestURI = (requestURI.length() == 0 ? request
-							.getContextPath() : requestURI);
+							.getRequestURI() : requestURI);
+					System.out.println("URI= " + request.getRequestURI());
 					response.sendRedirect(response.encodeRedirectURL(requestURI));
 					return;
 				} 
 				else {
 					response.sendRedirect(response.encodeRedirectURL(request
-							.getContextPath()));
+							.getHeader("referer")));
 					return;
 				}
 			}
