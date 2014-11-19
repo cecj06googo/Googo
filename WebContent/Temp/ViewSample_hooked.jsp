@@ -11,6 +11,7 @@ while (e.hasMoreElements()){
 }
 MemVO mem = (MemVO) request.getSession().getAttribute("LoginMemOK");
 System.out.println(mem.getMem_id());
+System.out.println(request.getRequestURI());
 %>
 
 <!DOCTYPE html>
