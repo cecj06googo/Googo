@@ -1,0 +1,38 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%  int rowsPerPage = 6;  //每頁顯是多少筆資料
+    int rowNumber=0;      //總共的資料筆數
+    int pageNumber=0;     //總共頁數
+    int whichPage=1;      //目前是哪個頁面
+    int pageIndexArray[]=null;//儲存該頁第一筆是第幾筆
+    int pageIndex=0; //根據第幾頁找出該頁第一筆的index
+%>
+
+<%  
+// 	request.setAttribute("rowsPerPage",rowsPerPage); //給Google Map 顯示Markers用
+    List<OrdersVO> ordVO = (List<OrdersVO>) request.getAttribute("ordVO");
+    rowNumber=ordVO.size();//訂單總共筆數
+    System.out.println("總共訂單數:"+rowNumber);
+    if (rowNumber%rowsPerPage !=0)//若不滿一頁
+     pageNumber=rowNumber/rowsPerPage +1;//則為1頁
+    else pageNumber=rowNumber/rowsPerPage; 
+
+    pageIndexArray=new int[pageNumber]; //用來計算儲存每頁的第一筆資料index
+    for (int i=1 ; i<=pageIndexArray.length ; i++)
+    pageIndexArray[i-1]=i*rowsPerPage-rowsPerPage;
+%>
+
+<%  try {
+      whichPage = Integer.parseInt(request.getParameter("whichPage"));
+      pageIndex=pageIndexArray[whichPage-1]; //根據第幾頁找出該頁第一筆的index 因為從1開始所以要-1
+    } catch (NumberFormatException e) { 
+       whichPage=1;
+       pageIndex=0;
+    } catch (ArrayIndexOutOfBoundsException e) { 
+         if (pageNumber>0){
+              whichPage=pageNumber;
+              pageIndex=pageIndexArray[pageNumber-1];
+         }
+    } finally{
+         request.setAttribute("whichPage", whichPage);
+    }
+%>

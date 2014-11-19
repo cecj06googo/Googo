@@ -228,13 +228,7 @@
             </div>
         </div>  <!--/. well -->
 		<br>
-
 <hr>
-<h4>UpdateCompany - 抱歉暫時借我開個洞...</h4>
-	<a href="${pageContext.request.contextPath}/_06_manage/modCom.jsp">修改商家測試</a>
-
-<hr>
-
 		<br>
         <!-- Footer -->
         <jsp:include page="/_00_fragment/footer.jsp" />

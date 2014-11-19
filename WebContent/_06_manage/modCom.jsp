@@ -9,9 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <jsp:include page="/_00_fragment/css2.jsp" />
-<link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>	
 
 <title>Goo-go</title>
 
@@ -174,25 +172,9 @@
 
 
 <!-- jQuery Version 1.11.0 -->
-	<script src="<%=request.getContextPath()%>/js/jquery-1.11.0.js"></script>
-
-	<!-- Morris Charts JavaScript -->
-	<script src="<%=request.getContextPath()%>/js/plugins/morris/raphael.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/plugins/morris/morris.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/plugins/morris/morris-data.js"></script>
-
-	<!-- Flot Charts JavaScript -->
-	<!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
-	<script src="<%=request.getContextPath()%>/js/plugins/flot/jquery.flot.js"></script>
-	<script src="<%=request.getContextPath()%>/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/plugins/flot/jquery.flot.resize.js"></script>
-	<script src="<%=request.getContextPath()%>/js/plugins/flot/jquery.flot.pie.js"></script>
-	<script src="<%=request.getContextPath()%>/js/plugins/flot/flot-data.js"></script>
+<%-- 	<script src="<%=request.getContextPath()%>/js/jquery-1.11.0.js"></script> --%>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
 

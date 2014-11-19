@@ -25,7 +25,7 @@ public class CheckAccountServlet extends HttpServlet{
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
 	String userid = "sa";
-	String passwd = "P@ssw0rd";
+	String passwd = "sa123456";
 	String checkAccount = "select count(*) from Member where mem_account=?";
 	
 	private static final long serialVersionUID = 1L;
