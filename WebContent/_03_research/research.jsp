@@ -20,8 +20,9 @@
 	padding: 10px;
 }
 </style>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&language=zh-TW"></script>
 <script>
+//用此程式需要從後端傳入以下:comAdressArray、comNameArray、rowsPerPage、whichPage、location(可參考reserch.jsp)
 	function initialize() {
 		initMapCenter();
 	}//end function initialize()
@@ -167,7 +168,7 @@
 							src="${pageContext.request.contextPath}/img/13.jpg" alt="">
 						</a>
 						<h3>
-							<a href="<c:url value='/DispComFirstPage.do?comId=${SearchComVO.com_id}'/>">${SearchComVO.com_name}</a>
+							<a href="<c:url value='/DispComFirstPage.do?comId=${SearchComVO.com_id}&location=${location}'/>">${SearchComVO.com_name}</a>
 						</h3>
 						<p>${SearchComVO.com_name}，地點位於${SearchComVO.com_address}，是一家信賴的商家。
 						</p>

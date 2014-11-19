@@ -39,7 +39,7 @@ public class DispComFirstPage extends HttpServlet {
 		}
 		request.setAttribute("comId", comId);
 		System.out.println("comId=" + comId);
-
+		
 		// ---------取得該商家Company VO--------------------
 		CompanyService comService = new CompanyService();
 		CompanyVO comVO = comService.getOneCom(comId);
@@ -54,6 +54,18 @@ public class DispComFirstPage extends HttpServlet {
 		
 		request.setAttribute("prodsVos", prodsVos);
 		printProdsOfACom(prodsVos);// 測試用:vos內值是否正確
+		//----------丟給Google Map使用--------------
+		List<String> comAdressArray = new ArrayList<String>();
+		List<String> comNameArray = new ArrayList<String>();
+		comNameArray.add("\""+comVO.getComName()+"\"");
+		comAdressArray.add("\""+comVO.getComAddr()+"\""); //把每一家地址存入
+		request.setAttribute("comNameArray", comNameArray);//為了給Google Map使用
+		request.setAttribute("comAdressArray", comAdressArray);//為了給Google Map使用
+		String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
+		System.out.println("location="+location);
+		request.setAttribute("location", location);//為了給Google Map使用
+		request.setAttribute("rowsPerPage", 1);//每頁只有1個商家
+		request.setAttribute("whichPage", 1);//目前在第一頁
 		// ---------丟值顯示到商家首頁-------------
 		RequestDispatcher rd = request
 				.getRequestDispatcher("/_05_company/company.jsp");
