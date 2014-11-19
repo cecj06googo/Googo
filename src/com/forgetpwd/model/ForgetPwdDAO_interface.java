@@ -1,7 +1,7 @@
 package com.forgetpwd.model;
 
 public interface ForgetPwdDAO_interface {
-	public void update(String userEmail, String userIdentity);
-	public ForgetPwdVO findByUseremail(String userEmail, String userIdentity);
-
+	public void update(String user_newPwd,String user_account, String user_identity);
+	public ForgetPwdVO findByUserAccount(String user_account, String user_identity);
+	
 }

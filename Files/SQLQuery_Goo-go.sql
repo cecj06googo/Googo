@@ -140,6 +140,8 @@ Create Table Product(
 			prod_cc         int,
 			prod_carrier    int,
 			prod_control    int,
+			prod_plate		varchar(32) UNIQUE NOT NULL,
+			prod_status    int NOT NULL,
 			
 			CONSTRAINT Product_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 			CONSTRAINT Product_com_type_fk FOREIGN KEY (prod_type) REFERENCES Product_Type (prodtype_id),
@@ -149,74 +151,58 @@ Create Table Product(
 
 
                         
-insert into Product values (1,'賓士320',1,1000,0.78,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (1,'福特123',1,2000,0.85,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (1,'汽車1',1,3000,0.85,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (1,'汽車2',1,4000,0.45,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (2,'野狼125',2,3000,0.93,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (2,'競戰150',2,4000,0.77,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (3,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (3,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (3,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (4,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (4,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (4,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (5,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (5,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (5,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (6,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (6,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (6,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (7,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (7,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (7,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (8,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (8,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (8,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (9,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (9,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (9,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (10,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (10,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (10,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (11,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (11,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (11,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (12,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (12,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (12,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (13,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (13,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (13,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (14,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (14,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (14,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (15,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (15,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (15,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (16,'Fighter148',2,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (16,'Fighter149',2,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (16,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (17,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (17,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null);
-insert into Product values (17,'保時捷-T2',1,7000,0.95,'101010','ss',null,null,null,1,null,null,null);
+insert into Product values (1,'賓士320',1,1000,0.78,'101010','ss',null,null,null,1,null,null,null,1,1);
+insert into Product values (1,'福特123',1,2000,0.85,'101010','ss',null,null,null,1,null,null,null,2,1);
+insert into Product values (1,'汽車1',1,3000,0.85,'101010','ss',null,null,null,1,null,null,null,3,1);
+insert into Product values (1,'汽車2',1,4000,0.45,'101010','ss',null,null,null,1,null,null,null,4,1);
+insert into Product values (2,'野狼125',2,3000,0.93,'101010','ss',null,null,null,1,null,null,null,5,1);
+insert into Product values (2,'競戰150',2,4000,0.77,'101010','ss',null,null,null,1,null,null,null,6,1);
+insert into Product values (3,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,7,1);
+insert into Product values (3,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,8,1);
+insert into Product values (3,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,9,1);
+insert into Product values (4,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,10,1);
+insert into Product values (4,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,11,1);
+insert into Product values (4,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,12,1);
+insert into Product values (5,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,13,1);
+insert into Product values (5,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,14,1);
+insert into Product values (5,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,15,1);
+insert into Product values (6,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,16,1);
+insert into Product values (6,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,17,1);
+insert into Product values (6,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,18,1);
+insert into Product values (7,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,19,1);
+insert into Product values (7,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,20,1);
+insert into Product values (7,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,21,1);
+insert into Product values (8,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,22,1);
+insert into Product values (8,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,23,1);
+insert into Product values (8,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,24,1);
+insert into Product values (9,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,25,1);
+insert into Product values (9,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,26,1);
+insert into Product values (9,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,27,1);
+insert into Product values (10,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,28,1);
+insert into Product values (10,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,29,1);
+insert into Product values (10,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,30,1);
+insert into Product values (11,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,31,1);
+insert into Product values (11,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,32,1);
+insert into Product values (11,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,33,1);
+insert into Product values (12,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,34,1);
+insert into Product values (12,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,35,1);
+insert into Product values (12,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,36,1);
+insert into Product values (13,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,37,1);
+insert into Product values (13,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,38,1);
+insert into Product values (13,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,39,1);
+insert into Product values (14,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,40,1);
+insert into Product values (14,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,41,1);
+insert into Product values (14,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,42,1);
+insert into Product values (15,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,43,1);
+insert into Product values (15,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,44,1);
+insert into Product values (15,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,45,1);
+insert into Product values (16,'Fighter148',2,5000,0.67,'101010','ss',null,null,null,1,null,null,null,46,1);
+insert into Product values (16,'Fighter149',2,6000,0.89,'101010','ss',null,null,null,1,null,null,null,47,1);
+insert into Product values (16,'Fighter150',2,7000,0.95,'101010','ss',null,null,null,1,null,null,null,48,1);
+insert into Product values (17,'法拉利211',1,5000,0.67,'101010','ss',null,null,null,1,null,null,null,49,1);
+insert into Product values (17,'保時捷-T1',1,6000,0.89,'101010','ss',null,null,null,1,null,null,null,50,1);
+insert into Product values (17,'保時捷-T2',1,7000,0.95,'101010','ss',null,null,null,1,null,null,null,51,1);
 
-Create Table Prod_plate(
-		    plate_id		varchar(32) NOT NULL Primary Key,
-			prod_id			int NOT NULL,
-			plate_status    int NOT NULL,
-
-			CONSTRAINT Prod_plate_prod_id_fk FOREIGN KEY (prod_id) REFERENCES Product (prod_id),
-			
-);
-
-insert into Prod_plate values ('111', 1, 1);
-insert into Prod_plate values ('222', 1, 0);
-insert into Prod_plate values ('333', 1, 1);
-insert into Prod_plate values ('444', 1, 1);
-insert into Prod_plate values ('555', 1, 1);
-insert into Prod_plate values ('666', 1, 1);
-insert into Prod_plate values ('777', 1, 1);
 
 
 Create Table Accessory(

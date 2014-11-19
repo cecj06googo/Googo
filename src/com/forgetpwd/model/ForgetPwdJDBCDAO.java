@@ -22,28 +22,55 @@ public class ForgetPwdJDBCDAO implements ForgetPwdDAO_interface {
 			"SELECT com_account, com_pwd FROM dbo.Company where com_account=? ";
 
 	@Override
-	public void update(String userEmail, String userIdentity) {
+	public void update(String user_newPwd,String user_account, String user_identity) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try{
 			Class.forName("driver");
 			con = DriverManager.getConnection(url, userid, passwd);
-			if("Mem".equals(userIdentity)){
+			if("Mem".equals(user_identity)){
 				pstmt = con.prepareStatement(MEM_PWD_UPDATE);
-			}else if("Com".equals(userIdentity)){
+			}else if("Com".equals(user_identity)){
 				pstmt = con.prepareStatement(COM_PWD_UPDATE);
 			}
 			
-			pstmt.setString(1, x);
+			pstmt.setString(1, user_newPwd);
+			pstmt.setString(2, user_account);
 			
+			pstmt.executeUpdate();
+			
+		}catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
 		}
+
 		
 
 	}
 
 	@Override
-	public ForgetPwdVO findByUseremail(String userEmail, String userIdentity) {
+	public ForgetPwdVO findByUserAccount(String user_account, String user_identity) {
 		ForgetPwdVO forgetPwdVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -52,20 +79,20 @@ public class ForgetPwdJDBCDAO implements ForgetPwdDAO_interface {
 		try{
 			Class.forName("driver");
 			con = DriverManager.getConnection(url, userid, passwd);
-			if("Mem".equals(userIdentity)){
+			if("Mem".equals(user_identity)){
 				pstmt = con.prepareStatement(GET_MEM_ACCOUNT);
-			}else if("Com".equals(userIdentity)){
+			}else if("Com".equals(user_identity)){
 				pstmt = con.prepareStatement(GET_COM_ACCOUNT);
 			}
-			pstmt.setString(1, userEmail);
+			pstmt.setString(1, user_account);
 			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				if("Mem".equals(userIdentity)){
+				if("Mem".equals(user_identity)){
 					forgetPwdVO = new ForgetPwdVO();
 					forgetPwdVO.setMem_account(rs.getString("mem_account"));
-				}else if("Com".equals(userIdentity)){
+				}else if("Com".equals(user_identity)){
 					forgetPwdVO = new ForgetPwdVO();
 					forgetPwdVO.setCom_account(rs.getString("com_account"));
 				}
