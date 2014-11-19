@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,14 +40,18 @@ public class OrderSimulationInsert extends HttpServlet {
 		Map<String, String> msgOK = new HashMap<String, String>();
 		request.setAttribute("ErrorMsg", errorMsg);
 		
+		String vendor = request.getParameter("vendor_id");
 		int vendorID = 0;
-		if(request.getParameter("vendor_id") != null){
-			vendorID = Integer.parseInt(request.getParameter("vendor_id"));
+		if(vendor != null && vendor.trim().length() > 0){
+			vendorID = Integer.parseInt(vendor.trim());
 		}
 		
+		Object mem = session.getAttribute("LoginMemOK");
 		int memID = 0;
-		if(session.getAttribute("LoginMemOK") != null){
-			memID = ((MemVO) session.getAttribute("LoginMemOK")).getMem_id();
+		if(mem != null && mem instanceof MemVO){
+			if(((MemVO)mem).getMem_id() != null){
+				memID = ((MemVO)mem).getMem_id();
+			}
 		}
 		
 		Map<String, String[]> formDataBundle = request.getParameterMap();
@@ -57,15 +62,17 @@ public class OrderSimulationInsert extends HttpServlet {
 		OrderSimulationVO orderVO = new OrderSimulationVO();
 		OrderItemSimulationVO orderItemVO = new OrderItemSimulationVO();
 		
+		//entering VO process
 		if(bundleIterator != null && vendorID != 0 && memID != 0){
 			
+			//orderVO and orderItemVO data preparation
 			while(bundleIterator.hasNext()){
 				
 				Map.Entry<String, String[]> entry = bundleIterator.next();
 				entryName = entry.getKey();
 				String[] valueArray = entry.getValue();
 				if(valueArray.length > 0){
-					entryValue += valueArray[0];
+					entryValue = valueArray[0];
 					for(int i = 1; i < valueArray.length; i++){
 						entryValue += ("," + valueArray[i]);
 					}
@@ -75,6 +82,7 @@ public class OrderSimulationInsert extends HttpServlet {
 				orderVO.setCom_id(vendorID);
 				orderVO.setMem_id(memID);
 				
+				//orderVO validation and setter methods 
 				if("ord_time".equalsIgnoreCase(entryName)){
 					try{
 						orderVO.setOrd_time(Timestamp.valueOf(entryValue.trim()));
@@ -109,6 +117,7 @@ public class OrderSimulationInsert extends HttpServlet {
 					}
 				}// end orderVO validation and setter methods 
 				
+				// orderItemVO validation and setter methods
 				if("prod_id".equalsIgnoreCase(entryName)){
 					try{
 						orderItemVO.setProd_id(Integer.parseInt(entryValue.trim()));
@@ -155,17 +164,41 @@ public class OrderSimulationInsert extends HttpServlet {
 					} // does not validate accessory, skip item_all
 				}// end orderItemVO validation and setter methods
 				
-				if(!errorMsg.isEmpty()){
-					request.getRequestDispatcher("/Temp/ViewSample_hooked.jsp");
-					System.out.println("check error message, abort insert");
-					return;
-				}else {
-					OrderSimulationDAO dao = new OrderSimulationDAO();
-					dao.insertOrder(orderVO, orderItemVO);
-				}
-				
-			}// end while
+			}// end while; end both orderVO and orderItemVO data preparation
 			
-		}// end if
+			// Dispatching
+			if(!errorMsg.isEmpty()){
+				// error dispatcher, forwards error message via request to view layer
+				RequestDispatcher failDispatcher = request.getRequestDispatcher("/Temp/ViewSample_hooked.jsp");
+				failDispatcher.forward(request, response);
+				System.out.println("check error message, abort insert");
+				return;
+			}else {
+				// without any error, add an order
+				OrderSimulationDAO dao = new OrderSimulationDAO();
+				int resultCheck = dao.addAnOrder(orderVO, orderItemVO);
+				System.out.println(resultCheck + " :Result check, should be 2 if everything is ok");
+				// make sure sql server has 2 entry inserted, in order and order item tables
+				if(resultCheck == 2){
+					msgOK.put("OrderSuccess", "Order Success");
+					RequestDispatcher successDispatcher = request.getRequestDispatcher("/Temp/ViewSample_hooked.jsp");
+					successDispatcher.forward(request, response);
+				}else {
+					System.out.println("Something wrong in sql insert. Check both order and order item tables.");
+					return;
+				}
+			}// end if; end dispatching
+		
+		// check possible reasons for not entering VO process	
+		}else {
+			if(bundleIterator == null){
+				System.out.println("check java code for bundleIterator");
+			}else if(vendorID == 0){
+				System.out.println("check if vendor is provided");
+			}else if(memID == 0){
+				System.out.println("check if member is provided");
+			}
+			return;
+		}// end if-else of VO process
 	}// end doPost
 }

@@ -31,7 +31,7 @@ public class OrderSimulationDAO {
 			System.out.println("Error in driver loading.");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("Error in SQL manipulation.");
+			System.out.println("Error in SQL operation.");
 			e.printStackTrace();
 		}
 		
@@ -62,16 +62,18 @@ public class OrderSimulationDAO {
 		}// end if
 	}// end closePstmt
 	
-	public void insertOrder (OrderSimulationVO orderVO, OrderItemSimulationVO orderItemVO) {
+	public int addAnOrder (OrderSimulationVO orderVO, OrderItemSimulationVO orderItemVO) {
 		
 		PreparedStatement pstmtOrder = null;
 		PreparedStatement pstmtOrderItem = null;
 		int generatedKey = 0;
+		int insertResult1 = 0;
+		int insertResult2 = 0;
 		
 		Connection conn = this.createConnection();
 		try {
 			
-			pstmtOrder = conn.prepareStatement(INSERT_ORDER);
+			pstmtOrder = conn.prepareStatement(INSERT_ORDER, pstmtOrder.RETURN_GENERATED_KEYS);
 			pstmtOrder.setInt(1, orderVO.getOrd_status());
 			pstmtOrder.setInt(2, orderVO.getCom_id());
 			pstmtOrder.setInt(3, orderVO.getMem_id());
@@ -79,7 +81,7 @@ public class OrderSimulationDAO {
 			pstmtOrder.setTimestamp(5, orderVO.getOrd_getday());
 			pstmtOrder.setTimestamp(6, orderVO.getOrd_reday());
 			pstmtOrder.setInt(7, orderVO.getItem_total());
-			pstmtOrder.executeUpdate();
+			insertResult1 = pstmtOrder.executeUpdate();
 			
 			ResultSet rs = pstmtOrder.getGeneratedKeys();
 			if (rs.next()) {
@@ -97,12 +99,13 @@ public class OrderSimulationDAO {
 			pstmtOrderItem.setString(7, orderItemVO.getItem_email());
 			pstmtOrderItem.setString(8, orderItemVO.getPritem_acc());
 			pstmtOrderItem.setString(9, orderItemVO.getItem_all());
-			pstmtOrderItem.executeUpdate();
+			insertResult2 = pstmtOrderItem.executeUpdate();
 			
 		} catch (SQLException e) {
-			System.out.println("Error in sql insert.");
+			System.out.println("Error in sql insert operation.");
 			e.printStackTrace();
 		}// end catch
+		return insertResult1 + insertResult2; // returns 2 if everything is ok
 	}// end insertOrder
 	
 	public void queryOrder () {

@@ -171,4 +171,16 @@
     <servlet-name>ActivateCompanyAccount</servlet-name>
     <url-pattern>/CActivateAccount</url-pattern>
   </servlet-mapping>
+  
+  <!-- Begin: For Design Process Testing -->
+  <servlet>
+    <servlet-name>SimAddOrder</servlet-name>
+    <servlet-class>com.template.controller.OrderSimulationInsert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SimAddOrder</servlet-name>
+    <url-pattern>/SimAddOrder</url-pattern>
+  </servlet-mapping>
+  <!-- End: For Design Process Testing -->
+  
 </web-app>

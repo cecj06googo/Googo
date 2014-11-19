@@ -25,11 +25,11 @@ System.out.println(mem.getMem_id());
 <h2>Current Mem: ${LoginMemOK.mem_id}</h2>
 
 <p>訂單</p>
-<form action="<%=request.getContextPath()%>/Insert.gg" method="post">
+<form action="<%=request.getContextPath()%>/SimAddOrder" method="post">
 	<p>訂購時間: <input type="text" name="ord_time" value="2014-10-20 07:06:32" />${ErrorMsg.errorOrd_time}</p>
 	<p>取車日期: <input type="text" name="ord_getday"	value="2014-01-01 14:15:00" />${ErrorMsg.errorOrd_getday}</p>
 	<p>還車日期: <input type="text" name="ord_reday" value="2014-03-01 14:35:00" />${ErrorMsg.errorOrd_reday}</p>
-	<p>訂單總額: <input type="text" name="item_total" value="3000.0" />${ErrorMsg.errorItem_total}</p>
+	<p>訂單總額: <input type="text" name="item_total" value="3000" />${ErrorMsg.errorItem_total}</p>
 	<p>------------------- 訂單明細-------------------</p>
 	<p>商品編號: <input type="text" name="prod_id" value="1" />${ErrorMsg.errorProd_id}</p>
 	<p>配備編號: <input type="text" name="acc_id" value="1" />${ErrorMsg.errorAcc_id}</p>
