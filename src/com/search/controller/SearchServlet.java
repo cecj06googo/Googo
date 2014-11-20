@@ -88,17 +88,20 @@ public class SearchServlet extends HttpServlet{
 					    prod_type = Integer.parseInt(prod_type_str);			   
 				}
 				SearchService searchSvc = new SearchService();
+				List<String> comIdArray = new ArrayList<String>();
 				List<String> comAdressArray = new ArrayList<String>();
 				List<String> comNameArray = new ArrayList<String>();
 				List<SearchComVO> comList= searchSvc.getCompanysByCondition(location, prod_type,keySearch);
 				for (SearchComVO acomVO : comList) {
 					System.out.print(acomVO.getCom_id() + ",");
+					comIdArray.add(Integer.toString(acomVO.getCom_id()));
 					System.out.print(acomVO.getCom_name() + ",");
 					comNameArray.add("\""+acomVO.getCom_name()+"\"");
 					System.out.print(acomVO.getCom_address());
 					comAdressArray.add("\""+acomVO.getCom_address()+"\""); //把每一家地址存入
 					System.out.println();
 				}
+				request.setAttribute("comIdArray", comIdArray);//為了給research.jsp的javaScript使用
 				request.setAttribute("comAdressArray", comAdressArray);//為了給research.jsp的javaScript使用
 				request.setAttribute("comNameArray", comNameArray);//為了給research.jsp的javaScript使用
 				request.setAttribute("comList", comList);//為了給research.jsp計算總商店筆數
