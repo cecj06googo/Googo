@@ -143,6 +143,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
+<!-- 				在此comVO是用振瑋的VO -->
 					${comVO.comName} <small>租車小舖</small>
 				</h1>
 			</div>

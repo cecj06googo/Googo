@@ -29,12 +29,26 @@
 		      <form role="form" id="login_form" action="<%=request.getContextPath()%>/Login.gg" method="post">
 		        <div class="form-group">
 		          <label > E-mail:</label><font size="-1" color="#FF0000">${ErrorMsg.errorLogin}</font>
-		          <input type="text" class="form-control" id="inputEmail" name="userAccount" value="${sessionScope.user}">
+		          <c:choose>
+		           	<c:when test="${not empty errorAccount}">
+		           		<input type="text" class="form-control" id="inputEmail" name="userAccount" value="${errorAccount}">
+		           	</c:when>
+		           	<c:otherwise>
+		           		<input type="text" class="form-control" id="inputEmail" name="userAccount" value="${sessionScope.user}">
+		           	</c:otherwise>
+		           </c:choose>
 		        </div>
 		        <div class="form-group">
 		          <a class="pull-right" href="#" data-toggle="modal" data-target="#forgetpwd" id="forget" data-dismiss="modal">忘記密碼?</a>
 		          <label>密碼:</label>
-		          <input type="password" class="form-control" id="inputPassword" name="userPwd" value="${sessionScope.password}">
+		           <c:choose>
+		           	<c:when test="${not empty errorPassword}">
+		           		<input type="password" class="form-control" id="inputPassword" name="userPwd" value="${errorPassword}">
+		           	</c:when>
+		           	<c:otherwise>
+		           		<input type="password" class="form-control" id="inputPassword" name="userPwd" value="${sessionScope.password}">
+		           	</c:otherwise>
+		           </c:choose>
 		        </div>
 		        <div class="form-group">
                         <label><input type="radio" name="optionsRadios" id="member" value="Mem" checked >一般會員</label>

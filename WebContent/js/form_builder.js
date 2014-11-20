@@ -133,6 +133,7 @@ $(function() {
             this.updateSource();
             // modified: test
             console.log($("#content").html());
+            form_builder.counter++;
         },
 
         // load element options
@@ -243,8 +244,8 @@ $(function() {
                 //label.text($(this.prefix + 'label').val()).attr('for', name);
 
                 //input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
-                form_builder.counter++;
-                input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', 'custField_' + form_builder.counter);
+                
+                input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', 'custField_' + form_builder.counter + '_text');
                 input.attr('name', input.attr('id'));
                 label.text($(this.prefix + 'label').val()).attr('for', input.attr('id'));
             }
@@ -274,8 +275,8 @@ $(function() {
 //                label.text($(this.prefix + 'label').val());
 //                textarea.attr('placeholder', $(this.prefix + 'placeholder').val());
                 
-                form_builder.counter++;
-                textarea.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', 'custField_' + form_builder.counter);
+                
+                textarea.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', 'custField_' + form_builder.counter + '_textarea');
                 textarea.attr('name', textarea.attr('id'));
                 label.text($(this.prefix + 'label').val()).attr('for', textarea.attr('id'));
             }
@@ -324,7 +325,7 @@ $(function() {
                 	select.append(option);
                 });
                 
-                form_builder.counter++;
+                
                 select.attr('id', 'custPreField_' + form_builder.counter);
                 select.attr('name', select.attr('id'));
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
@@ -393,8 +394,8 @@ $(function() {
                     }
                 });
 
-                form_builder.counter++;
-                select.attr('id', 'custField_' + form_builder.counter);
+                
+                select.attr('id', 'custField_' + form_builder.counter + '_selectbasic');
                 select.attr('name', select.attr('id'));
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
                 select.html(list_options);
@@ -459,8 +460,8 @@ $(function() {
                     }
                 });
                 	
-                form_builder.counter++;
-                select.attr('id', 'custField_' + form_builder.counter);
+                
+                select.attr('id', 'custField_' + form_builder.counter + '_selectmultiple');
                 //select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()) + '[]');
                 select.attr('name', select.attr('id'));
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));;
@@ -497,7 +498,7 @@ $(function() {
             // set checkbox options
             set: function() {
             	//prepare index for group name: custField_box_
-            	form_builder.counter++;
+            	
             	var el = form_builder.getElement(),
                     label = el.find('label:first'),
                     split = form_builder.delimeter,
@@ -510,7 +511,7 @@ $(function() {
 
                     // element name
                     //name = form_builder.cleanName($(this.prefix + 'name').val()),
-                    name = 'custField_box_' + form_builder.counter,
+                    name = 'custField_' + form_builder.counter + '_box',
 
                     // options buffer
                     list_options = "\n";
@@ -575,7 +576,7 @@ $(function() {
             // set radio button options
             set: function() {
             	//prepare index for group name: custField_box_
-            	form_builder.counter++;
+            	
             	var el = form_builder.getElement(),
                     label = el.find('label:first'),
                     split = form_builder.delimeter,
@@ -587,7 +588,7 @@ $(function() {
                     radio_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
                     // element name
-                    name = 'custField_radio_' + form_builder.counter,
+                    name = 'custField_' + form_builder.counter + '_radio',
 
                     // options buffer
                     list_options = "\n";

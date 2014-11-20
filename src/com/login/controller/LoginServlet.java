@@ -111,6 +111,8 @@ public class LoginServlet extends HttpServlet {
 		} catch(Exception e) {
 			e.getStackTrace();
 			session.setAttribute("LoginError", "該帳號不存在或密碼錯誤");
+			session.setAttribute("errorAccount", userAccount);
+			session.setAttribute("errorPassword", userPwd);
 			error = true;
 
 		}

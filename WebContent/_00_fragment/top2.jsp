@@ -121,7 +121,7 @@
                         <a href="<c:url value='/_05_company/orderCom.jsp'/>"><i class="fa fa-fw fa-book"></i> 訂單管理</a>
                     </li>
                     <li id="scheduler">
-                        <a href="<c:url value='/_06_manage/scheduler.jsp'/>"><i class="fa fa-calendar"></i> 車輛調度</a>
+                        <a href="<c:url value='/scheduler'/>"><i class="fa fa-calendar"></i> 車輛調度</a>
                     </li>
                     <li id="Survey">
                         <a href="#"><i class="fa fa-fw fa-file-text-o"></i> 問券分析</a>
