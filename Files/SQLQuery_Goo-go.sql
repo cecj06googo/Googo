@@ -218,7 +218,7 @@ Create Table Accessory(
 
 			CONSTRAINT Accessory_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 );
-
+insert into Accessory values (3,'高粱酒',1000);
 insert into Accessory values (1,'g',1000);
 insert into Accessory values (1,'g',1000);
 insert into Accessory values (1,'g',1000);
