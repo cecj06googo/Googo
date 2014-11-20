@@ -31,14 +31,11 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 			+ "ORDER BY ord.ord_status, ord_id";
 	
 	private static final String SELECT_GETALL_Com = 
-			"SELECT ord.ord_id, ord.ord_status, sta.status_char, mem_account ,ord_time, ord_getday, ord_reday , ord_lastuptime , item_total , item_name,item_tel,item_phone,item_email,pritem_acc,item_all, prod_name,prod_plate,prod_price,prod_disc,acc_price,acc_detail FROM Orders ord JOIN Ord_status sta  ON ord.ord_status =  sta.ord_status JOIN Member mem  ON ord.mem_id = mem.mem_id JOIN Ord_item item  ON ord.ord_id = item.ord_id JOIN Product prod  ON item.prod_id = prod.prod_id JOIN Accessory acc  ON item.acc_id = acc.acc_id WHERE ord.com_id = ? ORDER BY ord.ord_status,ord_id" ;
-		//串接會出錯，趕時間選擇一條流
-	
-
-	
-	
-	
-	
+			" SELECT ord.ord_id, ord.ord_status, sta.status_char, mem_account , ord_time, ord_getday, ord_reday , ord_lastuptime , item_total "
+			+ "FROM Orders ord JOIN Ord_status sta  "
+			+ "ON ord.ord_status =  sta.ord_status "
+			+ "JOIN Member mem  ON ord.mem_id = mem.mem_id WHERE com_id = ? "
+			+ "ORDER BY ord.ord_status,ord_id";
 	private static final String UPDATE_ORDER = "UPDATE Orders SET ord_status = ?, ord_lastuptime = ? WHERE ord_id = ?";
 	
 	//指令碼用""+""時 有可能會發生指令錯誤(原因不明)  
@@ -214,23 +211,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 				ordVO.setOrd_reday(rs.getTimestamp("ord_reday"));
 				ordVO.setOrd_lastuptime(rs.getTimestamp("ord_lastuptime"));
 				ordVO.setItem_total(rs.getInt("item_total"));
-				ordVO.setMem_account(rs.getString("mem_account"));
-				ordVO.setItem_name(rs.getString("item_name"));
-				ordVO.setItem_tel(rs.getString("item_tel"));
-				ordVO.setItem_phone(rs.getString("item_phone"));
-				ordVO.setItem_email(rs.getString("item_email"));;
-				ordVO.setPritem_acc(rs.getString("pritem_acc"));
-				ordVO.setItem_all(rs.getString("item_all"));
-				ordVO.setProd_name(rs.getString("prod_name"));
-				ordVO.setProd_plate(rs.getString("prod_plate"));
-				ordVO.setProd_price(rs.getDouble("prod_price"));
-				ordVO.setProd_disc(rs.getDouble("prod_disc"));
-				ordVO.setAcc_price(rs.getDouble("acc_price"));
-				ordVO.setAcc_detail(rs.getString("acc_detail"));
-
-					
-					
-				
+				ordVO.setMem_account(accountAddStar(rs.getString("mem_account")));
 				list.add(ordVO);
 			}
 
@@ -273,7 +254,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 	
 	
 	@Override
-	public void user_action(Integer ord_id , Integer ord_status,Timestamp cancelTime) {
+	public void user_cancel(Integer ord_id , Integer ord_status,Timestamp cancelTime) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -326,21 +307,21 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 	
 	
 	// 非資料庫存取的方法(看是要放在controller或DAO這裡)
-//	public String accountAddStar(String _mem_account){
-//		
-//		StringBuilder mem_account = new StringBuilder().append(_mem_account);
-//		int index= mem_account.indexOf("@");
-//		StringBuilder acc_ago = new StringBuilder().append(mem_account.substring(0,index));
-//		StringBuilder acc_first = new StringBuilder().append(mem_account.substring(0,1));
-//		StringBuilder acc_last = new StringBuilder().append(mem_account.substring(index-1));
-//		StringBuilder newAccount = new StringBuilder().append(acc_first);
-//		int length = acc_ago.length()-2;
-//		for(int i = 0; i < length; i++){
-//			newAccount.append("*");
-//		}
-//		newAccount.append(acc_last);
-//		return newAccount.toString();
-//	}  11/19 林經理建議不要
+	public String accountAddStar(String _mem_account){
+		
+		StringBuilder mem_account = new StringBuilder().append(_mem_account);
+		int index= mem_account.indexOf("@");
+		StringBuilder acc_ago = new StringBuilder().append(mem_account.substring(0,index));
+		StringBuilder acc_first = new StringBuilder().append(mem_account.substring(0,1));
+		StringBuilder acc_last = new StringBuilder().append(mem_account.substring(index-1));
+		StringBuilder newAccount = new StringBuilder().append(acc_first);
+		int length = acc_ago.length()-2;
+		for(int i = 0; i < length; i++){
+			newAccount.append("*");
+		}
+		newAccount.append(acc_last);
+		return newAccount.toString();
+	}
 	
 	
 	

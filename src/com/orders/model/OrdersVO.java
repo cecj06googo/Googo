@@ -19,67 +19,21 @@ public class OrdersVO implements java.io.Serializable {
 	private Integer prod_id;
 	private Integer acc_id;
 	private Integer ord_status;
-
-	//Ord_status table欄位
-	private String status_char;
-	
-	//Ord_item table欄位
 	private String item_name;
-	private String item_tel;
 	private String item_phone;
+	private String item_tel;
 	private String item_email;
 	private String pritem_acc;
 	private String item_all;
+	
+	//Ord_status table欄位(暫時先留在這裡，看未來程式怎樣改再作決定)
+	private String status_char;
 
 	//Member table欄位
 	private String mem_account;
 	
-	//Product table欄位
-	private String prod_name;  //商品名稱
-	private String prod_plate; //車牌
-	private Double prod_price; //商品價格
-	private Double prod_disc;  //商品折扣
 	
-	//Accessory(配件) table欄位  
-	private Double acc_price;  //配件價格
-	private String acc_detail; //配件明細(名稱?)
 	
-	public String getProd_name() {
-		return prod_name;
-	}
-	public void setProd_name(String prod_name) {
-		this.prod_name = prod_name;
-	}
-	public String getProd_plate() {
-		return prod_plate;
-	}
-	public void setProd_plate(String prod_plate) {
-		this.prod_plate = prod_plate;
-	}
-	public Double getProd_price() {
-		return prod_price;
-	}
-	public void setProd_price(Double prod_price) {
-		this.prod_price = prod_price;
-	}
-	public Double getProd_disc() {
-		return prod_disc;
-	}
-	public void setProd_disc(Double prod_disc) {
-		this.prod_disc = prod_disc;
-	}
-	public Double getAcc_price() {
-		return acc_price;
-	}
-	public void setAcc_price(Double acc_price) {
-		this.acc_price = acc_price;
-	}
-	public String getAcc_detail() {
-		return acc_detail;
-	}
-	public void setAcc_detail(String acc_detail) {
-		this.acc_detail = acc_detail;
-	}
 	public Integer getOrd_id() {
 		return ord_id;
 	}

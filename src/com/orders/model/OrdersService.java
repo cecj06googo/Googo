@@ -76,6 +76,6 @@ public class OrdersService {
 	public void ordCancel(Integer ord_id, Integer orderStatus,Timestamp cancelTime){
 		System.out.println("被刪除的訂單ID:"+ord_id);
 		System.out.println("訂單狀態更改為:"+orderStatus);
-		dao.user_action(ord_id , orderStatus,cancelTime);
+		dao.user_cancel(ord_id , orderStatus,cancelTime);
 	}// end ordSearch
 }
