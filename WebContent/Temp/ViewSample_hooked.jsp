@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <% Prototype_OrderTemp_VO tempVo = (Prototype_OrderTemp_VO)request.getAttribute("tempVo"); %>
 
+<jsp:include page="/_00_fragment/inspectSession.jsp" />
+
 <!-- 此為測試用程式碼，在後端 console 檢查 session 內容物 -->
 <%
 Enumeration e = request.getSession().getAttributeNames();
@@ -60,8 +62,63 @@ System.out.println(request.getRequestURI());
 	<input type="submit" /><br>
 </form>
 
+<hr>
+<input type="button" id="inspectCust" value="inspect cust fields" />
+
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+
+<script>
+$(document).ready(function(){
+	var custFieldArray = $('[id^="custField"]');
+	$("#inspectCust").on("click", function(){
+		for(i = 0; i < custFieldArray.length; i++){
+			
+			var field = $(custFieldArray[i]);
+			var fieldType = (field.prop("id")).split("_").slice(2,3);
+			var fieldLabel = '';
+			var fieldValue = '';
+			var fieldValueDescription = '';
+			var fieldChecked = '';
+			
+			if(fieldType == "text"){
+				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
+				fieldValue = field.val();
+			}else if(fieldType == "textarea"){
+				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
+				fieldValue = field.val();
+			}else if(fieldType == "SelectBasic"){
+				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
+				fieldValue = field.val();
+			}else if(fieldType == "SelectMultiple"){
+				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
+				fieldValue = field.val();
+			}else if(fieldType == "checkbox"){
+				if(!field.prop("checked")){
+					continue;
+				}
+				fieldChecked = field.prop("checked");
+				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label.control-label").text();
+				fieldValue = field.val();
+			}else if(fieldType == "radio"){
+				if(!field.prop("checked")){
+					continue;
+				}
+				fieldChecked = field.prop("checked");
+				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label.control-label").text();
+				fieldValue = field.val();
+			}
+			
+			
+			console.log("ID: " + field.prop("id"));
+			console.log("Field Type: " + fieldType);
+			console.log("Field Label: " + fieldLabel);
+			console.log("Field Value: " + fieldValue);
+			console.log("Field Checked: " + fieldChecked + "\n");
+		};	
+	});// end of event handler
+});// end of document ready
+</script>
 
 </body>
 </html>
