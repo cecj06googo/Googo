@@ -114,7 +114,8 @@ public class LoginServlet extends HttpServlet {
 				if (requestURI != null) {
 					requestURI = (requestURI.length() == 0 ? request
 							.getRequestURI() : requestURI);
-					System.out.println("URI= " + request.getRequestURI());
+					System.out.println("request.getRequestURI= " +
+							request.getRequestURI());    // 測試用訊息
 					response.sendRedirect(response.encodeRedirectURL(requestURI));
 					return;
 				} 
@@ -129,7 +130,8 @@ public class LoginServlet extends HttpServlet {
 					// 商家訂單OnLoad
 					LoginOrdersOnLoad OCOL = new LoginOrdersOnLoad();  
 					session = OCOL.ComOnLoad(session,userId);
-					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/manage.jsp"));
+					response.sendRedirect(response.encodeRedirectURL(
+							request.getContextPath() + "/manage.jsp"));
 					return;
 			}
 		}
