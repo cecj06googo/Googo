@@ -18,7 +18,7 @@ public class SchedulerDAO {
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
 	String userid = "sa";
-	String passwd = "P@ssw0rd";
+	String passwd = "sa123456";
 
 	private static final String UPDATE_PROD_ID = 
 		"UPDATE Ord_item set prod_id=? where item_id = ?";
