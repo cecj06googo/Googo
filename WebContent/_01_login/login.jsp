@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.Enumeration"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
@@ -29,12 +29,12 @@
 		      <form role="form" id="login_form" action="<%=request.getContextPath()%>/Login.gg" method="post">
 		        <div class="form-group">
 		          <label > E-mail:</label><font size="-1" color="#FF0000">${ErrorMsg.errorLogin}</font>
-		          <input type="text" class="form-control" id="inputEmail" name="userAccount" value="eee@abc.com.tw">
+		          <input type="text" class="form-control" id="inputEmail" name="userAccount" value="${sessionScope.user}">
 		        </div>
 		        <div class="form-group">
 		          <a class="pull-right" href="#" data-toggle="modal" data-target="#forgetpwd" id="forget" data-dismiss="modal">忘記密碼?</a>
 		          <label>密碼:</label>
-		          <input type="password" class="form-control" id="inputPassword" name="userPwd" value="aaa123">
+		          <input type="password" class="form-control" id="inputPassword" name="userPwd" value="${sessionScope.password}">
 		        </div>
 		        <div class="form-group">
                         <label><input type="radio" name="optionsRadios" id="member" value="Mem" checked >一般會員</label>
@@ -45,9 +45,9 @@
 			    <span class="span-or"></span>
 			 	</div>
 		        <div class="form-group pull-left">
-		          <label><input type="checkbox" name="rememberMe">
-<%-- 		          <c:if test='${sessionScope.remeberMe==true}'>checked='checked'</c:if> --%>
-<!-- 		          value="true"> -->
+		          <label><input type="checkbox" name="rememberMe"
+		          <c:if test='${sessionScope.rememberMe==true}'>checked='checked'</c:if>
+		          value="true">
 					自動登入 </label>
 		        </div>
 		        <button type="submit" class="btn btn-lg btn-primary pull-right">登入</button>
@@ -89,6 +89,10 @@
 
 <script>
 (function($){
+	var radios = '<%=session.getAttribute("userIdentity")%>';
+	if (radios != null) {
+		$('input:radio[name=optionsRadios]').filter('[value="' + radios +'"]').prop('checked',true);
+	}
 	
 $(document).ready(function() {
 	if(<%=request.getAttribute("ErrorMsg")%> != null) {
