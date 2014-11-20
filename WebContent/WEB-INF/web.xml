@@ -211,6 +211,14 @@
 		<servlet-name>ActivateCompanyAccount</servlet-name>
 		<url-pattern>/CActivateAccount</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Scheduler</servlet-name>
+		<servlet-class>com.scheduler.controller.DisplayServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Scheduler</servlet-name>
+		<url-pattern>/scheduler</url-pattern>
+	</servlet-mapping>
 
 	<!-- Filter設定 -->
 	<filter>
