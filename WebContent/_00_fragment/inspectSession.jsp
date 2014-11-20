@@ -4,8 +4,16 @@
 
 <!-- 此為測試用程式碼，在後端 console 檢查 session 內容物 -->
 <%
+System.out.println("\n--------");
+
+System.out.println("Current page: " + request.getRequestURI());
+
+String elements = "Objects in session: ";
 Enumeration e = request.getSession().getAttributeNames();
 while (e.hasMoreElements()){
-	System.out.println(e.nextElement());
+	Object currentObj = e.nextElement();
+	elements += ("\n  Name - " + currentObj.toString() + ", Class - " + request.getSession().getAttribute(currentObj.toString()));
 }
+System.out.println(elements);
+System.out.println("--------");
 %>

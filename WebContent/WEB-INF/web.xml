@@ -168,6 +168,15 @@
 		<servlet-name>LoadDesign</servlet-name>
 		<url-pattern>/LoadDesign</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SimAddOrder</servlet-name>
+		<servlet-class>com.template.controller.OrderSimulationInsert</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SimAddOrder</servlet-name>
+		<url-pattern>/SimAddOrder</url-pattern>
+	</servlet-mapping>
 	<!-- End: 設計器相關 -->
 
 	<servlet>
