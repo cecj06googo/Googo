@@ -14,7 +14,7 @@ public class Prototype_OrderTemp_DAO {
 	String pw = "sa123456";
 	
 	private static final String pstmt_Insert = "insert into Ord_temp (ordt_content, com_id) values(?, ?)";
-	private static final String pstmt_Retrieve = "select ordt_content from Ord_temp where ordt_id = ? AND com_id = ?";
+	private static final String pstmt_Retrieve = "select ordt_content from Ord_temp where com_id = ? AND ordt_id = (SELECT MAX(ordt_id) FROM Ord_temp WHERE com_id = ?)";
 	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -50,7 +50,7 @@ public class Prototype_OrderTemp_DAO {
 		}//end finally
 	}//end insert
 	
-	public Prototype_OrderTemp_VO retrieve(int ordt_id, int com_id){
+	public Prototype_OrderTemp_VO retrieve(int com_id){
 		
 		ResultSet rs = null;
 		Prototype_OrderTemp_VO tempVo = new Prototype_OrderTemp_VO();
@@ -60,7 +60,7 @@ public class Prototype_OrderTemp_DAO {
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, user, pw);
 			pstmt = conn.prepareStatement(pstmt_Retrieve);
-			pstmt.setInt(1, ordt_id);
+			pstmt.setInt(1, com_id);
 			pstmt.setInt(2, com_id);
 			rs = pstmt.executeQuery();
 			

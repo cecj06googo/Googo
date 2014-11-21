@@ -32,15 +32,10 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 		 
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getParameter("command");
-		String view = "/Temp/ViewSample.jsp";
-		int id = 0;
-		if (request.getParameter("id_form_view") != null) {
-			id = Integer.parseInt(request.getParameter("id_form_view"));
-		}
+		String view = "/Temp/ViewSample_hooked.jsp";
 		int com_id = Integer.parseInt(request.getParameter("com_id_form_view"));
 		String content = request.getParameter("content_form_view");
 		System.out.println("command: " + command);
-		System.out.println("id: " + id);
 		System.out.println("com id: " + com_id);
 		
 		if ("insert".equals(command)) {
@@ -57,7 +52,7 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 		
 		if ("retrieve".equals(command)) {
 			Prototype_OrderTemp_DAO dao = new Prototype_OrderTemp_DAO();
-			Prototype_OrderTemp_VO tempVo = dao.retrieve(id, com_id);
+			Prototype_OrderTemp_VO tempVo = dao.retrieve(com_id);
 			
 			System.out.println("load content: \n" + tempVo.getContent());
 			
