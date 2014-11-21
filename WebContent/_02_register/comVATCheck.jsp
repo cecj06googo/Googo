@@ -14,10 +14,10 @@
 		CompanyService comService = new CompanyService();
 		Map m1 = new HashMap();
 		boolean valid = comService.verifyVAT(comVAT);
-		System.out.println("統編驗證的結果: " + valid);
+//		System.out.println("統編驗證的結果: " + valid);   // 測試用訊息
 		m1.put("valid", valid);
 		String jsonString = JSONValue.toJSONString(m1); 
-		System.out.println(jsonString);
+//		System.out.println(jsonString);    // 測試用訊息
 		out.println(jsonString);
 		
 			
