@@ -11,6 +11,7 @@ String elements = (String)request.getAttribute("elements");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dhtmlxscheduler.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler.js"></script>	
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_timeline.js"></script>
@@ -19,6 +20,7 @@ String elements = (String)request.getAttribute("elements");
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_collision.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_readonly.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_tooltip.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 <jsp:include page="/_00_fragment/css2.jsp" />
 
 <title>Goo-go</title>
@@ -203,19 +205,20 @@ String elements = (String)request.getAttribute("elements");
          <!--條件搜尋-->
          <div class="col-md-10 text-center">
 	     <div class="row" >
-           	<form class="form-inline" role="form">
+           	<form class="form-inline" role="form" name="searchCar" id="searchCar" action="<%=request.getContextPath()%>/schedulerSearchCar" method="post">
               <div class="form-group">
-                    <select class="form-control input-lg"  autofocus="" >
-                        <option>種類</option>  <!--純顯示 不能給user選-->
-                        <option>汽車</option>
-                        <option>機車</option>
-                        <option>腳踏車</option>
+                    <select class="form-control input-lg"  name="prod_type" >
+                        <option>交通工具</option>  <!--純顯示 不能給user選-->
+                        <option value="1">汽車</option>
+                        <option value="2">機車</option>
+                        <option value="3">腳踏車</option>
                     </select>
                 </div>
                  <div class="form-group">
-                      <input type="text" class="form-control input-lg" placeholder="請輸入車種名稱">
+                      <input type="text" class="form-control input-lg" name="keySearch" placeholder="請輸入車輛名稱">
                  </div>
 			<button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button>
+			<div><Font color="red">${ErrMsg}</Font></div>
             </form><br>
         </div> 
         </div><!--/.條件搜尋-->
@@ -291,7 +294,32 @@ String elements = (String)request.getAttribute("elements");
 <script>
 //top2左方功能列選項
 $("#scheduler").addClass("active");
-
+(function($){
+	   $(document).ready(function() {
+		    $('#searchCar').bootstrapValidator({
+		    	container: 'tooltip',
+		        feedbackIcons: {
+		            valid: 'glyphicon glyphicon-ok',
+	                invalid: 'glyphicon glyphicon-remove',
+	                validating: 'glyphicon glyphicon-refresh'
+		            
+		        },
+	        	
+		        fields: {
+		        	keySearch: {
+		        		trigger: 'keyup blur',
+		                validators: {
+		                	regexp: {
+		                        regexp: /[^;\"\'=/\\,]/,
+		                        message: '不可含有特殊字元:( " ; \' = , \\ \/)'
+		                    },		                    
+		                }
+		            },
+		            
+		       },
+		    })	    
+		});
+	 })(jQuery)
 </script>
 </body>
 </html>
