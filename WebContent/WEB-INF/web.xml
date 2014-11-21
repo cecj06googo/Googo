@@ -219,8 +219,16 @@
 		<servlet-name>Scheduler</servlet-name>
 		<url-pattern>/scheduler</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>schedulerSearchCar</servlet-name>
+		<servlet-class>com.scheduler.controller.SearchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>schedulerSearchCar</servlet-name>
+		<url-pattern>/schedulerSearchCar</url-pattern>
+	</servlet-mapping>
 
-	<!-- Filter設定 -->
+	<!-- Filter設定-->
 	<filter>
 	<display-name>LoginMemFilter</display-name>
 	<icon/>
@@ -261,5 +269,5 @@
 	<filter-mapping>
 	<filter-name>LoginComFilter</filter-name>
 	<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> 
 </web-app>

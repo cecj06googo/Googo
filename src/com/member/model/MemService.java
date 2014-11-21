@@ -76,8 +76,8 @@ public class MemService {
 		return dao.getAll(map);
 	}
 	
-	public void openMem(String mem_qq) {
-		dao.open(mem_qq);
+	public MemVO openMem(String mem_qq) {
+		return dao.open(mem_qq);
 	}
 	
 	
