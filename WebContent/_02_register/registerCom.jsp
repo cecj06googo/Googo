@@ -88,11 +88,8 @@
                </div>
               
               <br> 
-              <button type="submit" class="btn btn-success" 
-               data-toggle="modal" data-target="#register_success" >送出</button>
-               <input type="reset" class="btn" value="重填"/>
-              <input type="button" class="btn btn-danger" value="取消" 
-               onclick="self.location.href='<%=request.getContextPath()%>/index.jsp'" />
+             <button type="reset" class="btn btn-primary" >取消 </button>
+             <button type="submit" class="btn btn-danger" form="registerComForm">送出 </button>
           </form>
           
           <div id="yourimg"></div>

@@ -4,10 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% 
 String jsonString = (String)request.getAttribute("jsonString");
-String elements = (String)request.getAttribute("elements");
 %>
-<c:set value="<%= elements %>" var="elements" />
 <c:set value="<%= jsonString %>" var="jsonString" />
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,7 +32,7 @@ String elements = (String)request.getAttribute("elements");
             scheduler.config.drag_create=false;
             scheduler.config.dblclick_create=false;
             scheduler.config.readonly_form = true;
-         
+           
             //===============
 			// Tooltip related code
 			//===============
@@ -87,48 +86,49 @@ String elements = (String)request.getAttribute("elements");
 					}
 				}
 			});
-            
-  
+			 var jsonString=<%= jsonString %>;
+				console.log(jsonString);
+			var jsonObj = JSON.parse(jsonString);
+				console.log(jsonObj);
             //車名
-            var elements = <%= elements %>;
-       /*     var elements = [ // original hierarhical array to display
-			{key:"Fighter150", label:"Fighter150", open: true, children: [
-				{key:"5684-XX", label:"5684-XX"},
-				{key:"1369-AA", label:"1369-AA"},
-				{key:"2989-BB", label:"2989-BB"},
-				{key:"9856-AA", label:"9856-AA"},
-				{key:"8795-FF", label:"8795-FF"},
-				{key:"CC-8856", label:"CC-8856"},
-			]},
-			{key:"法拉利211", label:"法拉利211", open:true, children: [
-				{key:"FF-2344", label:"FF-2344"},
-				{key:"EE-7898", label:"EE-7898"},
-				{key:"AA-1568", label:"AA-1568"},
-				{key:"8562-BB", label:"8562-BB"}
-			]},
-			{key:"保時捷-T1", label:"保時捷-T1", open:true, children: [
-                {key:"7759-BB", label:"7759-BB"},
-                {key:"5659-AA", label:"5659-AA"},
-                {key:"8526-QQ", label:"8526-QQ"},
-                {key:"YY-2162", label:"YY-2162"},
-                {key:"CC-0619", label:"CC-0619"},
-                {key:"HH-3213", label:"HH-3213"},
-            ]},
-            {key:"野狼125", label:"野狼125", open:true, children: [
-                 {key:"7989-BB", label:"7989-BB"},
-            ]},
-             {key:"賓士320", label:"賓士320", open:true, children: [
-                 {key:"7761-EE", label:"7761-EE"},
-                 {key:"1591-EE", label:"1591-EE"},
-                 {key:"2068-EE", label:"2068-EE"},
-                 {key:"YY-2162", label:"YY-2162"},
-                 {key:"CC-0619", label:"CC-0619"},
-                 {key:"HH-3213", label:"HH-3213"},
-            ]},
-            {key:"競戰150", label:"競戰150", open:true, children: [
-                 {key:"7569-BB", label:"7569-BB"},
-            ]},
-			];*/
+            var elements = [ // original hierarhical array to display
+                             {key:"Fighter150", label:"Fighter150", open: true, children: [
+                         				{key:"5684-XX", label:"5684-XX"},
+                         				{key:"1369-AA", label:"1369-AA"},
+                         				{key:"2989-BB", label:"2989-BB"},
+                         				{key:"9856-AA", label:"9856-AA"},
+                         				{key:"8795-FF", label:"8795-FF"},
+                         				{key:"CC-8856", label:"CC-8856"},
+                         			]},
+                         			{key:"法拉利211", label:"法拉利211", open:true, children: [
+                         				{key:"FF-2344", label:"FF-2344"},
+                         				{key:"EE-7898", label:"EE-7898"},
+                         				{key:"AA-1568", label:"AA-1568"},
+                         				{key:"8562-BB", label:"8562-BB"}
+                         			]},
+                         			{key:"保時捷-T1", label:"保時捷-T1", open:true, children: [
+                                         {key:"7759-BB", label:"7759-BB"},
+                                         {key:"5659-AA", label:"5659-AA"},
+                                         {key:"8526-QQ", label:"8526-QQ"},
+                                         {key:"YY-2162", label:"YY-2162"},
+                                         {key:"CC-0619", label:"CC-0619"},
+                                         {key:"HH-3213", label:"HH-3213"},
+                                     ]},
+                                     {key:"野狼125", label:"野狼125", open:true, children: [
+                                          {key:"7989-BB", label:"7989-BB"},
+                                     ]},
+                                      {key:"賓士320", label:"賓士320", open:true, children: [
+                                          {key:"7761-EE", label:"7761-EE"},
+                                          {key:"1591-EE", label:"1591-EE"},
+                                          {key:"2068-EE", label:"2068-EE"},
+                                          {key:"YY-2162", label:"YY-2162"},
+                                          {key:"CC-0619", label:"CC-0619"},
+                                          {key:"HH-3213", label:"HH-3213"},
+                                     ]},
+                                     {key:"競戰150", label:"競戰150", open:true, children: [
+                                          {key:"7569-BB", label:"7569-BB"},
+                                     ]},
+			];
             
             scheduler.createTimelineView({
             	section_autoheight: false,
@@ -164,9 +164,17 @@ String elements = (String)request.getAttribute("elements");
 
             
 			//開始時間
-            scheduler.init('scheduler_car',new Date(),"timeline");
-			var jsonString= <%= jsonString %>;
-            scheduler.parse(jsonString,"json");
+            scheduler.init('scheduler_car',new Date(2014,1,1),"timeline");
+            scheduler.parse([
+                             {"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-1","section_id":"5684-XX","details":"租車人:租車苦主1<br>連絡電話:0234567890"},
+                             {"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-11","section_id":"1369-AA","details":"租車人:租車苦主1<br>連絡電話:0234567890"},
+                             {"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-15","section_id":"2989-BB","details":"租車人:租車苦主5<br>連絡電話:0234567890"},
+                             {"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-16","section_id":"9856-AA","details":"租車人:租車苦主1<br>連絡電話:0234567890"},
+                             {"start_date":"2014-01-06 13:20:00.0","end_date":"2014-01-08 14:20:00.0","text":"訂單-18","section_id":"9856-AA","details":"租車人:租車苦主3<br>連絡電話:0234567890"},
+                             {"start_date":"2014-01-06 13:20:00.0","end_date":"2014-01-07 14:20:00.0","text":"訂單-22","section_id":"2989-BB","details":"租車人:租車苦主2<br>連絡電話:0234567890"},
+                             {"start_date":"2014-01-03 13:20:00.0","end_date":"2014-01-08 15:20:00.0","text":"訂單-31","section_id":"8795-FF","details":"租車人:租車苦主1<br>連絡電話:0234567890"},
+                             {"start_date":"2014-01-06 13:20:00.0","end_date":"2014-01-10 17:20:00.0","text":"訂單-33","section_id":"CC-8856","details":"租車人:租車苦主3<br>連絡電話:0234567890"},
+                             {"start_date":"2014-01-22 13:20:00.0","end_date":"2014-01-23 18:20:00.0","text":"訂單-34","section_id":"FF-2344","details":"租車人:租車苦主4<br>連絡電話:0234567890"},{"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-10","section_id":"EE-7898","details":"租車人:租車苦主5<br>連絡電話:0234567890"},{"start_date":"2014-01-06 13:20:00.0","end_date":"2014-01-10 17:20:00.0","text":"訂單-28","section_id":"AA-1568","details":"租車人:租車苦主3<br>連絡電話:0234567890"},{"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-13","section_id":"8562-BB","details":"租車人:租車苦主3<br>連絡電話:0234567890"},{"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-14","section_id":"7759-BB","details":"租車人:租車苦主4<br>連絡電話:0234567890"},{"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-17","section_id":"5659-AA","details":"租車人:租車苦主2<br>連絡電話:0234567890"},{"start_date":"2014-01-06 13:20:00.0","end_date":"2014-01-07 14:20:00.0","text":"訂單-9","section_id":"5659-AA","details":"租車人:租車苦主4<br>連絡電話:0234567890"},{"start_date":"2014-01-07 13:20:00.0","end_date":"2014-01-09 14:20:00.0","text":"訂單-20","section_id":"7759-BB","details":"租車人:租車苦主5<br>連絡電話:0234567890"},{"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-21","section_id":"8526-QQ","details":"租車人:租車苦主1<br>連絡電話:0234567890"},{"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-30","section_id":"YY-2162","details":"租車人:租車苦主5<br>連絡電話:0234567890"},{"start_date":"2014-01-11 13:20:00.0","end_date":"2014-01-22 16:20:00.0","text":"訂單-32","section_id":"CC-0619","details":"租車人:租車苦主2<br>連絡電話:0234567890"},{"start_date":"2014-01-22 13:20:00.0","end_date":"2014-01-23 18:20:00.0","text":"訂單-35","section_id":"HH-3213","details":"租車人:租車苦主5<br>連絡電話:0234567890"},{"start_date":"2014-01-22 13:20:00.0","end_date":"2014-01-23 18:20:00.0","text":"訂單-29","section_id":"7989-BB","details":"租車人:租車苦主4<br>連絡電話:0234567890"},{"start_date":"2014-01-05 13:20:00.0","end_date":"2014-01-06 14:20:00.0","text":"訂單-23","section_id":"7989-BB","details":"租車人:租車苦主3<br>連絡電話:0234567890"},{"start_date":"2014-01-03 13:20:00.0","end_date":"2014-01-04 14:20:00.0","text":"訂單-8","section_id":"7989-BB","details":"租車人:租車苦主3<br>連絡電話:0234567890"},{"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-02 14:20:00.0","text":"訂單-5","section_id":"7989-BB","details":"租車人:租車苦主5<br>連絡電話:0234567890"},{"start_date":"2014-01-03 13:20:00.0","end_date":"2014-01-04 14:20:00.0","text":"訂單-7","section_id":"7761-EE","details":"租車人:租車苦主2<br>連絡電話:0234567890"},{"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-02 14:20:00.0","text":"訂單-2","section_id":"1591-EE","details":"租車人:租車苦主2<br>連絡電話:0234567890"},{"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-3","section_id":"2068-EE","details":"租車人:租車苦主3<br>連絡電話:0234567890"},{"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-02 14:20:00.0","text":"訂單-4","section_id":"7761-EE","details":"租車人:租車苦主4<br>連絡電話:0234567890"},{"start_date":"2014-01-03 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-19","section_id":"1591-EE","details":"租車人:租車苦主4<br>連絡電話:0234567890"},{"start_date":"2014-01-22 13:20:00.0","end_date":"2014-01-23 14:20:00.0","text":"訂單-24","section_id":"1591-EE","details":"租車人:租車苦主4<br>連絡電話:0234567890"},{"start_date":"2014-01-10 13:20:00.0","end_date":"2014-01-11 14:20:00.0","text":"訂單-25","section_id":"2068-EE","details":"租車人:租車苦主5<br>連絡電話:0234567890"},{"start_date":"2014-01-06 13:20:00.0","end_date":"2014-01-08 15:20:00.0","text":"訂單-26","section_id":"7761-EE","details":"租車人:租車苦主1<br>連絡電話:0234567890"},{"start_date":"2014-01-11 13:20:00.0","end_date":"2014-01-22 16:20:00.0","text":"訂單-27","section_id":"7569-BB","details":"租車人:租車苦主2<br>連絡電話:0234567890"},{"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-03 14:20:00.0","text":"訂單-12","section_id":"7569-BB","details":"租車人:租車苦主2<br>連絡電話:0234567890"}] ,"json");
         }
         function show_minical(){
             if (scheduler.isCalendarVisible()){
@@ -213,7 +221,7 @@ String elements = (String)request.getAttribute("elements");
                     </select>
                 </div>
                  <div class="form-group">
-                      <input type="text" class="form-control input-lg" placeholder="請輸入車種名稱">
+                      <input type="text" class="form-control input-lg" placeholder="請輸入關鍵字">
                  </div>
 			<button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button>
             </form><br>

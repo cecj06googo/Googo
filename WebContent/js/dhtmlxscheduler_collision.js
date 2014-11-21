@@ -70,6 +70,7 @@ scheduler.attachEvent("onBeforeDrag",function(id){
 //dnd前  還沒save
 scheduler.attachEvent("onBeforeEventChanged",function(ev,e,is_new){
 	//找爸爸的id
+	
 	var p1=scheduler.getSectionParent(temp_section);
 	var p2=scheduler.getSectionParent(ev.section_id);
 	//爸爸id是否相同

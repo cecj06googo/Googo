@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.member.model.MemService;
 import com.member.model.MemVO;
@@ -229,7 +230,7 @@ public class MemServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("memVO", memVO); // 存入req
+					req.setAttribute("LoginMemOK", memVO); // 存入req
 					RequestDispatcher failureView = req.getRequestDispatcher("/_04_member/modMem.jsp");
 					failureView.forward(req, res);
 					return;
@@ -242,8 +243,10 @@ public class MemServlet extends HttpServlet {
 				memVO = memSvc.updateMem(mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address,mem_id);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/	
 				System.out.println("修改完成");
-				String url = "/_04_member/modMem.jsp";
-				req.getSession().setAttribute("memVO", memVO); 
+				HttpSession session = req.getSession();
+				session.removeAttribute("LoginMemOK");
+				session.setAttribute("LoginMemOK", memVO);
+				String url = "/_04_member/modMem.jsp"; 
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);	
 
