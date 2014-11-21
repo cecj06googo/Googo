@@ -24,8 +24,8 @@
 		          <input type="text" class="form-control" id="inputEmail" name="inputEmail">
 		        </div>
 		        <div class="form-group">
-                        <label><input type="radio" name="optionsRadios" id="member" value="1">一般會員</label>
-                        <label><input type="radio" name="optionsRadios" id="company" value="0">商家會員</label>
+                        <label><input type="radio" name="optionsRadios" id="member" value="Mem">一般會員</label>
+                        <label><input type="radio" name="optionsRadios" id="company" value="Com">商家會員</label>
                 </div>
                 <input type="hidden" name="action" value="update">
 		        <button type="submit" class="btn btn-lg btn-primary pull-right">寄新密碼</button>

@@ -285,9 +285,9 @@ $(function() {
         /*====================== Begin: Predefined Components ====================*/
         
      // predefined select box options
-        pre_select_basic: {
+        PreSelectBasic: {
             // options class prefix
-            prefix: '.options_pre_select_basic_',
+            prefix: '.options_PreSelectBasic_',
 
             // initialize modal content
             get: function() {
@@ -326,7 +326,7 @@ $(function() {
                 });
                 
                 
-                select.attr('id', 'custPreField_' + form_builder.counter);
+                select.attr('id', 'custField_' + form_builder.counter + 'PreSelectBasic');
                 select.attr('name', select.attr('id'));
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
                 
@@ -337,9 +337,9 @@ $(function() {
         /*====================== End: Predefined Components ====================*/
         
         // basic select box options
-        select_basic: {
+        SelectBasic: {
             // options class prefix
-            prefix: '.options_select_basic_',
+            prefix: '.options_SelectBasic_',
 
             // get basic select options
             get: function() {
@@ -395,7 +395,7 @@ $(function() {
                 });
 
                 
-                select.attr('id', 'custField_' + form_builder.counter + '_selectbasic');
+                select.attr('id', 'custField_' + form_builder.counter + '_SelectBasic');
                 select.attr('name', select.attr('id'));
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
                 select.html(list_options);
@@ -403,9 +403,9 @@ $(function() {
         },
 
         // multi select box options
-        select_multiple: {
+        SelectMultiple: {
             // options class prefix
-            prefix: '.options_select_multiple_',
+            prefix: '.options_SelectMultiple_',
 
             // get multiple select options
             get: function() {
@@ -461,7 +461,7 @@ $(function() {
                 });
                 	
                 
-                select.attr('id', 'custField_' + form_builder.counter + '_selectmultiple');
+                select.attr('id', 'custField_' + form_builder.counter + '_SelectMultiple');
                 //select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()) + '[]');
                 select.attr('name', select.attr('id'));
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));;
@@ -511,7 +511,7 @@ $(function() {
 
                     // element name
                     //name = form_builder.cleanName($(this.prefix + 'name').val()),
-                    name = 'custField_' + form_builder.counter + '_box',
+                    name = 'custField_' + form_builder.counter + '_checkbox',
 
                     // options buffer
                     list_options = "\n";

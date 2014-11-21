@@ -148,10 +148,10 @@ $("#selectManage").addClass("active");
                                 			</div>
                             			</div>
 
-                            			<div class="component form-group" data-type="select_basic">
-                                			<label class="control-label col-sm-4" for="select_basic">Select - Basic</label>
+                            			<div class="component form-group" data-type="SelectBasic">
+                                			<label class="control-label col-sm-4" for="SelectBasic">Select - Basic</label>
                                 			<div class="controls col-sm-8">
-                                    		<select class="form-control" name="" id="select_basic">
+                                    		<select class="form-control" name="" id="SelectBasic">
                                         	<option value="1">Option 1</option>
                                         	<option value="2">Option 2</option>
                                         	<option value="3">Option 3</option>
@@ -159,10 +159,10 @@ $("#selectManage").addClass("active");
                                 			</div>
                             			</div>
 
-                            			<div class="component form-group" data-type="select_multiple">
-                                			<label class="control-label col-sm-4" for="select_multiple">Select - Multiple</label>
+                            			<div class="component form-group" data-type="SelectMultiple">
+                                			<label class="control-label col-sm-4" for="SelectMultiple">Select - Multiple</label>
                                 			<div class="controls col-sm-8">
-                                    		<select name="" class="form-control" id="select_multiple" multiple="multiple" size="3">
+                                    		<select name="" class="form-control" id="SelectMultiple" multiple="multiple" size="3">
                                         	<option value="1">Option 1</option>
                                         	<option value="2">Option 2</option>
                                         	<option value="3">Option 3</option>
@@ -225,10 +225,10 @@ $("#selectManage").addClass("active");
                         		<div class="tab-pane" id="predefined-tab">
                         			<hr>
                         			<div id="components-container" class="form-horizontal">
-                        				<div class="component form-group" data-type="pre_select_basic">
-                                			<label class="control-label col-sm-4" for="pre_select_basic">Predefined - Select - Basic</label>
+                        				<div class="component form-group" data-type="PreSelectBasic">
+                                			<label class="control-label col-sm-4" for="PreSelectBasic">Predefined - Select - Basic</label>
                                 			<div class="controls col-sm-8">
-                                    		<select class="form-control" name="" id="pre_select_basic">
+                                    		<select class="form-control" name="" id="PreSelectBasic">
                                         	<option value="0">Dynamic options from DB</option>
                                     		</select>
                                 			</div>

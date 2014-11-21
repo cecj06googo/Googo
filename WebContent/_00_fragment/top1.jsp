@@ -113,6 +113,8 @@
 	else if (errorMsg != 'null') {
 		$('#login').modal('show');
 		<% session.removeAttribute("LoginError"); %>
+		<% session.removeAttribute("errorAccount"); %>
+		<% session.removeAttribute("errorPassword"); %>
 	}
 	else {
 //  		alert("不用彈出登入");
