@@ -33,82 +33,91 @@ public class SearchServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-	    String prod_type_str = req.getParameter("prod_type");
-		String keySearch = req.getParameter("keySearch");
-		//驗證資料
-		Integer prod_type=null;
-		String nonProdType= "交通工具";
-		if(prod_type_str.equals(nonProdType)||prod_type_str.isEmpty()){
-			prod_type_str=null;
-		}
-		if(prod_type_str != null && !prod_type_str.isEmpty()){//不等於Null且長度不為0
-			    prod_type = Integer.parseInt(prod_type_str);
-		}		
-		if(keySearch.isEmpty()){
-			keySearch = null;
-		}
-		//防止keySearch的特殊符號
-		CharSequence illegal1 = "'" , illegal2 = "\"" , illegal3 = ";" ,illegal4 = "=", illegal5 = "," ;
 		try{
-			if(keySearch != null){ //關鍵字搜尋不等於空的
-				if (keySearch.contains(illegal1) || keySearch.contains(illegal2)|| keySearch.contains(illegal3) || keySearch.contains(illegal4)|| keySearch.contains(illegal5)) {
-					List l1 =new  LinkedList();
-					String jsonString=JSONValue.toJSONString(l1);
-					String elements=jsonString;
-					req.setAttribute("ErrMsg", "不可含有以下字元:   ' \" ; = ,");
-					req.setAttribute("jsonString", jsonString);
-					req.setAttribute("elements", elements);
-					RequestDispatcher rd = req.getRequestDispatcher("/_06_manage/scheduler.jsp");//這裡要改成記錄上一個頁面!!!!!!!!!
-					rd.forward(req, res);
-					return;
-				}
+		    String prod_type_str = req.getParameter("prod_type");
+			String keySearch = req.getParameter("keySearch");
+			//驗證資料
+			Integer prod_type=null;
+			String nonProdType= "交通工具";
+			if(prod_type_str.equals(nonProdType)||prod_type_str.isEmpty()){
+				prod_type_str=null;
 			}
-		}catch(Exception e){
-			System.out.println("錯誤:關鍵字檢查違法字元發生錯誤");
-		}//.防止keySearch的特殊符號
-							   
-		//呼叫DAO
-		HttpSession session = req.getSession();
-		CompanyVO comVO=(CompanyVO)session.getAttribute("LoginComOK");
-		int com_id = comVO.getComID();
-		SchedulerDAO schedulerDAO=new SchedulerDAO();
-		List<SchedulerVO> list=schedulerDAO.searchGetAll(com_id,prod_type,keySearch);
-		//1.將訂單明細轉json
-		String jsonString="";
-		try{
-		//創陣列	
-		List l1 =new  LinkedList();
-		//for迴圈 塞map(有key值)資料
-		for(int i=0;i<list.size();i++){
-			Map m1 =new LinkedHashMap();
-			m1.put("start_date", list.get(i).getOrd_getday().toString());
-			m1.put("end_date", list.get(i).getOrd_reday().toString());
-			m1.put("text",  "訂單-"+list.get(i).getOrd_id());
-			m1.put("section_id",list.get(i).getProd_plate());
-			m1.put("details", "租車人:"+list.get(i).getItem_name()+"<br>連絡電話:"+list.get(i).getItem_phone());
-			l1.add(m1);
-		}
-		//將資料轉成json字串
-		jsonString=JSONValue.toJSONString(l1);
-		//2.用getElements(Integer com_id)方法抓該公司所有車牌，回傳是以轉好的json字串
-		String elements=getElements(com_id,prod_type,keySearch);
-		//將資料塞進request
-		req.setAttribute("jsonString", jsonString);
-		req.setAttribute("elements", elements);
-		//傳送~~~
-		String url = "/_06_manage/scheduler.jsp";
-		RequestDispatcher successView = req.getRequestDispatcher(url); 
-		successView.forward(req, res);
-		}catch(Exception e){
-			//目前遇到沒有訂單資料則會發index out of bounds的Exception
-			System.out.println( "抓訂單之Exception");
-			//創一空陣列傳給前端
-			List ll =new LinkedList();
-			jsonString=JSONValue.toJSONString(ll);
+			if(prod_type_str != null && !prod_type_str.isEmpty()){//不等於Null且長度不為0
+				    prod_type = Integer.parseInt(prod_type_str);
+			}		
+			if(keySearch.isEmpty()){
+				keySearch = null;
+			}
+			//防止keySearch的特殊符號
+			CharSequence illegal1 = "'" , illegal2 = "\"" , illegal3 = ";" ,illegal4 = "=", illegal5 = "," ;
+			try{
+				if(keySearch != null){ //關鍵字搜尋不等於空的
+					if (keySearch.contains(illegal1) || keySearch.contains(illegal2)|| keySearch.contains(illegal3) || keySearch.contains(illegal4)|| keySearch.contains(illegal5)) {
+						List l1 =new  LinkedList();
+						String jsonString=JSONValue.toJSONString(l1);
+						String elements=jsonString;
+						req.setAttribute("ErrMsg", "不可含有以下字元:   ' \" ; = ,");
+						req.setAttribute("jsonString", jsonString);
+						req.setAttribute("elements", elements);
+						RequestDispatcher rd = req.getRequestDispatcher("/_06_manage/scheduler.jsp");//這裡要改成記錄上一個頁面!!!!!!!!!
+						rd.forward(req, res);
+						return;
+					}
+				}
+			}catch(Exception e){
+				System.out.println("錯誤:關鍵字檢查違法字元發生錯誤");
+			}//.防止keySearch的特殊符號
+								   
+			//呼叫DAO
+			HttpSession session = req.getSession();
+			CompanyVO comVO=(CompanyVO)session.getAttribute("LoginComOK");
+			int com_id = comVO.getComID();
+			SchedulerDAO schedulerDAO=new SchedulerDAO();
+			List<SchedulerVO> list=schedulerDAO.searchGetAll(com_id,prod_type,keySearch);
+			//1.將訂單明細轉json
+			String jsonString="";
+			try{
+			//創陣列	
+			List l1 =new  LinkedList();
+			//for迴圈 塞map(有key值)資料
+			for(int i=0;i<list.size();i++){
+				Map m1 =new LinkedHashMap();
+				m1.put("start_date", list.get(i).getOrd_getday().toString());
+				m1.put("end_date", list.get(i).getOrd_reday().toString());
+				m1.put("text",  "訂單-"+list.get(i).getOrd_id());
+				m1.put("section_id",list.get(i).getProd_plate());
+				m1.put("details", "租車人:"+list.get(i).getItem_name()+"<br>連絡電話:"+list.get(i).getItem_phone());
+				l1.add(m1);
+			}
+			//將資料轉成json字串
+			jsonString=JSONValue.toJSONString(l1);
+			//2.用getElements(Integer com_id)方法抓該公司所有車牌，回傳是以轉好的json字串
 			String elements=getElements(com_id,prod_type,keySearch);
+			//將資料塞進request
 			req.setAttribute("jsonString", jsonString);
 			req.setAttribute("elements", elements);
+			//傳送~~~
 			String url = "/_06_manage/scheduler.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); 
+			successView.forward(req, res);
+			}catch(Exception e){
+				//目前遇到沒有訂單資料則會發index out of bounds的Exception
+				System.out.println( "抓訂單之Exception");
+				//創一空陣列傳給前端
+				List ll =new LinkedList();
+				jsonString=JSONValue.toJSONString(ll);
+				String elements=getElements(com_id,prod_type,keySearch);
+				req.setAttribute("jsonString", jsonString);
+				req.setAttribute("elements", elements);
+				String url = "/_06_manage/scheduler.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); 
+				successView.forward(req, res);
+			}
+		}catch(Exception ne){
+			//目前遇到沒有車輛資料則會發index out of bounds的Exception
+			System.out.println( "display doget的 Exception");
+			ne.printStackTrace();
+			String url = "/index.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); 
 			successView.forward(req, res);
 		}
