@@ -41,7 +41,7 @@ System.out.println(request.getRequestURI());
 	<p>${ErrorMsg.errorPT}</p>
 	<p>領車人市內電話: <input type="text" name="item_tel" value="" />${ErrorMsg.errorTel}</p>
 	<p>領車人e-mail: <input type="text" name="item_email" value="gg@ya.123" />${ErrorMsg.errorEmail}</p>
-	<p>商品配備: <input type="text" name="pritem_acc" value="啤酒,威士忌,高粱酒" /></p>
+	<p>商品配備: <textarea name="pritem_acc">stand by for input</textarea></p>
 	<p>優惠: <input type="text" name="item_all" value="優惠方案1:租車送塔位" /></p>
 	<p>服務廠商id: <input type="text" name="vendor_id" value="1" /></p>
 	<input type="hidden" name="action" value="insert"> 
@@ -72,50 +72,84 @@ System.out.println(request.getRequestURI());
 $(document).ready(function(){
 	var custFieldArray = $('[id^="custField"]');
 	$("#inspectCust").on("click", function(){
-		for(i = 0; i < custFieldArray.length; i++){
+		
+		if(custFieldArray.length > 0){
 			
-			var field = $(custFieldArray[i]);
-			var fieldType = (field.prop("id")).split("_").slice(2,3);
-			var fieldLabel = '';
-			var fieldValue = '';
-			var fieldValueDescription = '';
-			var fieldChecked = '';
+			var custFieldsBundle = {custFields:[]};
 			
-			if(fieldType == "text"){
-				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
-				fieldValue = field.val();
-			}else if(fieldType == "textarea"){
-				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
-				fieldValue = field.val();
-			}else if(fieldType == "SelectBasic"){
-				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
-				fieldValue = field.val();
-			}else if(fieldType == "SelectMultiple"){
-				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
-				fieldValue = field.val();
-			}else if(fieldType == "checkbox"){
-				if(!field.prop("checked")){
-					continue;
+			for(i = 0; i < custFieldArray.length; i++){
+				
+				var fieldObj = {};
+				
+				var field = $(custFieldArray[i]);
+				var fieldType = (field.prop("id")).split("_").slice(2,3)[0];
+				var fieldLabel = '';
+				var fieldValue = '';
+				var fieldValueDescriptionArray = '';
+				var fieldValueDescription = '';
+				var fieldChecked = '';
+				
+				if(fieldType == "text"){
+					fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
+					fieldValue = field.val();
+				}else if(fieldType == "textarea"){
+					fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
+					fieldValue = field.val();
+				}else if(fieldType == "SelectBasic"){
+					fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
+					fieldValue = field.val();
+					fieldValueDescription = field.find("option:selected").text();
+				}else if(fieldType == "SelectMultiple"){
+					fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label").text();
+					fieldValue = field.val();
+					fieldValueDescriptionArray = field.find("option:selected");
+					fieldValueDescription = [];
+					if(fieldValueDescriptionArray.length > 0){
+						for(j = 0; j < fieldValueDescriptionArray.length; j++){
+							fieldValueDescription.push(fieldValueDescriptionArray[j].textContent);
+						}
+					}
+				}else if(fieldType == "checkbox"){
+					if(!field.prop("checked")){
+						continue;
+					}
+					fieldChecked = field.prop("checked");
+					fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label.control-label").text();
+					fieldValue = field.val();
+					fieldValueDescription = field.parent().text().trim();
+				}else if(fieldType == "radio"){
+					if(!field.prop("checked")){
+						continue;
+					}
+					fieldChecked = field.prop("checked");
+					fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label.control-label").text();
+					fieldValue = field.val();
+					fieldValueDescription = field.parent().text().trim();
 				}
-				fieldChecked = field.prop("checked");
-				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label.control-label").text();
-				fieldValue = field.val();
-			}else if(fieldType == "radio"){
-				if(!field.prop("checked")){
-					continue;
-				}
-				fieldChecked = field.prop("checked");
-				fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label.control-label").text();
-				fieldValue = field.val();
-			}
-			
-			
-			console.log("ID: " + field.prop("id"));
-			console.log("Field Type: " + fieldType);
-			console.log("Field Label: " + fieldLabel);
-			console.log("Field Value: " + fieldValue);
-			console.log("Field Checked: " + fieldChecked + "\n");
-		};	
+				
+				fieldObj.id = field.prop("id");
+				fieldObj.type = fieldType;
+				fieldObj.label = fieldLabel;
+				fieldObj.value = fieldValue;
+				fieldObj.valueDescription = fieldValueDescription;
+				
+				console.log("ID: " + field.prop("id"));
+				console.log("Field Type: " + fieldType);
+				console.log("Field Label: " + fieldLabel);
+				console.log("Field Value: " + fieldValue);
+				console.log("Field Value Description: " + fieldValueDescription);
+				console.log("Field Checked: " + fieldChecked);
+				console.log("corresponding obj: " + JSON.stringify(fieldObj) + "\n");
+				
+				custFieldsBundle.custFields.push(fieldObj);
+			};// end object conversion process
+		}else {
+			console.log("No customized field detected.");
+		}// end if
+		
+		console.log(JSON.stringify(custFieldsBundle));
+		$('textarea[name="pritem_acc"]').text(JSON.stringify(custFieldsBundle));
+		
 	});// end of event handler
 });// end of document ready
 </script>
