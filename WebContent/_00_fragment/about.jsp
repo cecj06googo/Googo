@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<jsp:include page="/_00_fragment/css.jsp" />
+<%-- <jsp:include page="/_00_fragment/css.jsp" /> --%>
 <title>Goo-go</title>
 
 </head>
@@ -450,9 +450,9 @@
     <!-- /.container -->
     
 <!-- jQuery Version 1.11.0 -->
-<%-- <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script> --%>
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>     --%>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>    
 </body>
 </html>

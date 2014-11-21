@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.member.model.*"%>
 
-<%
-	MemVO memVO = (MemVO) request.getAttribute("memVO");
-%>    
+ 
     
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -72,6 +70,7 @@
 	                <font color="red" size="-1">${errorMsgs.errorName}</font>
 	            </div>
 	            <div class="control-group form-group">
+	            	<input type="hidden"  id="mem_gender1" value="${LoginMemOK.mem_gender}">
 	                <label class="control-label"><input type="radio" name="mem_gender" id="mem_gender" value="1">先生</label>
 	                <label class="control-label"><input type="radio" name="mem_gender" id="mem_gender" value="0">小姐</label>
 	                <br><font color="red" size="-1">${errorMsgs.errorGender}</font>
@@ -174,6 +173,9 @@
 	   $("#mem_bdate").css('background-color','white');
 	  
 	   $(document).ready(function() {
+		   var gender =  $('#mem_gender1').val();
+		   $("input[name='mem_gender'][value='"+gender+"']").prop("checked",true);
+		  
 		    $('#mod_member').bootstrapValidator({
 		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
 		        feedbackIcons: {

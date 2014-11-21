@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%-- <jsp:include page="/_00_fragment/css.jsp" /> --%>
+<jsp:include page="/_00_fragment/css.jsp" />
 <title>Goo-go</title>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -228,13 +228,7 @@
             </div>
         </div>  <!--/. well -->
 		<br>
-
 <hr>
-<h4>UpdateCompany - 抱歉暫時借我開個洞...</h4>
-	<a href="${pageContext.request.contextPath}/_06_manage/modCom.jsp">修改商家測試</a>
-
-<hr>
-
 		<br>
         <!-- Footer -->
         <jsp:include page="/_00_fragment/footer.jsp" />

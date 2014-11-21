@@ -104,11 +104,11 @@
 	      
 	   $("#mem_bdate").css('cursor','default');
 	   $("#mem_bdate").css('background-color','white');
-
+		
 	    
 	   $(document).ready(function() {
-		   /*var gender =  $('#mem_gender1').val();
-		   $('#mem_gender[value="1"]').attr("checked");*/
+		   var gender =  $('#mem_gender1').val();
+		   $("input[name='mem_gender'][value='"+gender+"']").prop("checked",true);
 		  
 		    $('#register_member').bootstrapValidator({
 		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later

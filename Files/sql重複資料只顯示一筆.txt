@@ -1,0 +1,24 @@
+原始
+SELECT prod_id, com_id, prod_name,prod_type, prod_price,prod_disc, prod_pic, prod_article, prod_subPic1,prod_subPic2,prod_subPic3,prod_kind, prod_cc,prod_carrier, prod_control, prod_plate, prod_status 
+FROM Product WHERE com_id=1 and prod_status = 1
+
+終極版第一的原始樣貌
+Select prod_id, com_id, prod_name,prod_type, prod_price,prod_disc, prod_pic, prod_article, prod_subPic1,prod_subPic2,prod_subPic3,prod_kind, prod_cc,prod_carrier, prod_control, prod_plate, prod_status From (
+Select prod_id, com_id, prod_name,prod_type, prod_price,prod_disc, prod_pic, prod_article, prod_subPic1,prod_subPic2,prod_subPic3,prod_kind, prod_cc,prod_carrier, prod_control, prod_plate, prod_status,
+ROW_NUMBER() Over (Partition By prod_name Order By prod_id Desc) As Sort From Product) TMP_S
+Where TMP_S.Sort=1 and com_id=1
+
+終極版第一
+Select * 
+From (Select *,ROW_NUMBER() Over (Partition By prod_name Order By prod_id ) As Sort 
+      From Product) TMP_P
+Where TMP_P.Sort=1 and com_id=1
+
+終極版第二
+Select * 
+From product 
+where prod_status = 1 and prod_id in (select max(prod_id) 
+		                      from Product 
+		                      where com_id=1
+		                      group by prod_name
+		                      )

@@ -83,7 +83,17 @@
              <!-- /.提醒 -->
              <!-- 商家專區 -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-briefcase"></i> 商家專區 <b class="caret"></b></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-briefcase"></i> 
+                    	<c:choose>
+                        	<c:when test="${!empty LoginComOK}">
+                        		${LoginComOK.comName}
+                        	</c:when>
+                        	<c:otherwise>
+                        		商家專區
+                        	</c:otherwise>
+                        	</c:choose> 
+                    <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="<c:url value='/_06_manage/modCom.jsp'/>"><i class="fa fa-fw fa-pencil"></i> 修改商家資訊</a>
