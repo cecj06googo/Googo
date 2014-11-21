@@ -26,13 +26,17 @@ public class ShowProdsImage extends HttpServlet {
     
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 	    ServletOutputStream sos = null;
-	    
+	    ProductVO prodVO= null;
 		int comID = Integer.parseInt(req.getParameter("comID"));
+		int prodId = Integer.parseInt(req.getParameter("prodId"));
 		ProductsService prodService = new ProductsService();
 		List<ProductVO> prodVOs = new ArrayList<ProductVO>();
 		prodVOs = prodService.getProdsByComId(comID);
-		ProductVO prodVO = prodVOs.get(0); //第一個元素從0開始 <.size()
-		
+		for(ProductVO prodVo : prodVOs){
+			if(prodId == prodVo.getProdId()){
+				prodVO = prodVo;
+			}
+		}
 		// 檢查是否已有商家圖片
 		if (prodVO.getProdSubPic1() != null) {
 			res.setContentType("image/jpg");

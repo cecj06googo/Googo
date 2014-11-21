@@ -1,12 +1,10 @@
-package com.comFirstPage.model;
+package com.util.insertFakeImage;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.*;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import com.util.*;
 
 public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，再從資料庫讀出後存成另外一張圖片
@@ -158,6 +156,51 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			e.printStackTrace();			
 		}
 		System.out.println("The count of " + countName + " = " + countNum);
+		return countNum;
+	}
+	
+	//根據車種來讀出該車種的所有prodid List<String>
+	public List<String> getProdidsbyCarType(String tableName, String whereName,
+			String whereValue){
+		
+		String getProdidsQuery = "select prod_id as num  from " + tableName
+				+ "" + " where " + whereName + "=?";		
+		List<String> prodids = new ArrayList<String>();
+		try {			
+			stmt = conn.prepareStatement(getProdidsQuery);
+			stmt.setString(1, whereValue);
+			rs = stmt.executeQuery();		
+			while (rs.next()) {	
+				prodids.add(rs.getString("num"));
+			}
+			System.out.println("getProdidsbyCarType成功總共"+prodids.size()+"筆prodid");
+		} catch (Exception e) {
+			System.out.println("getProdidsbyCarType 錯誤");
+			ConnectionUtil.closeConnection(conn);
+			e.printStackTrace();
+		}		
+		return prodids;
+	}
+	
+	public String selectCount(String tableName, String whereName,
+			String whereValue) {
+		String selectCountwQuery = "select  count(*) as num  from " + tableName
+				+ "" + " where " + whereName + "=?";
+		System.out.println("selectCountwQuery=" + selectCountwQuery);
+		String countNum = null;
+		try {
+			stmt = conn.prepareStatement(selectCountwQuery);
+			stmt.setString(1, whereValue);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				countNum = rs.getString("num");
+			}
+			System.out.println("selectCount is successful!");
+		} catch (Exception e) {
+			System.out.println("selectCount 錯誤");
+			ConnectionUtil.closeConnection(conn);
+			e.printStackTrace();
+		}
 		return countNum;
 	}
 
