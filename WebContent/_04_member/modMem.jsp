@@ -52,14 +52,14 @@
                 <div class="control-group form-group">
                 <label  class="control-label">密碼:</label>
                 <div class="controls ">
-                    <input type="password" class="form-control" name="mem_pwd0" value="${LoginMemOK.mem_pwd}">
+                    <input type="password" class="form-control" name="mem_pwd0" value="">
                 </div>
                  <font color="red" size="-1">${errorMsgs.errorPwd}</font>
 	            </div>
 	            <div class="control-group form-group">
 	                <label  class="control-label">密碼確認:</label>
 	                <div class="controls ">
-	                    <input type="password" class="form-control" name="mem_pwd" value="${LoginMemOK.mem_pwd}">
+	                    <input type="password" class="form-control" name="mem_pwd" value="">
 	                </div>
 	            </div>
 	            <div class="control-group form-group">
