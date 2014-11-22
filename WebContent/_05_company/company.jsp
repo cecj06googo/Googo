@@ -213,12 +213,18 @@
 			<!-- 標籤 -->
 			<div class="col-lg-12">
 				<ul id="prodsTab" class="nav nav-tabs nav-justified">
-					<li class="active"><a href="#car-content" data-toggle="tab"><i
-							class="fa fa-car"></i> 汽車</a></li>
-					<li class=""><a href="#mortor-content" data-toggle="tab"><i
-							class="fa fa-phone"></i> 機車</a></li>
-					<li class=""><a href="#bike-content" data-toggle="tab"><i
-							class="fa fa-bicycle"></i> 腳踏車</a></li>
+					<c:if test="${hasCar == 1}">
+						<li class="active"><a href="#car-content" data-toggle="tab"><i
+								class="fa fa-car"></i> 汽車</a></li>
+					</c:if>
+					<c:if test="${hasMotor == 1}">
+						<li class=""><a href="#mortor-content" data-toggle="tab"><i
+								class="fa fa-phone"></i> 機車</a></li>
+					</c:if>
+					<c:if test="${hasBike == 1}">
+						<li class=""><a href="#bike-content" data-toggle="tab"><i
+								class="fa fa-bicycle"></i> 腳踏車</a></li>
+					</c:if>
 				</ul>
 			</div>
 			<!-- /標籤 -->
@@ -237,8 +243,7 @@
 										src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
 										alt="">
 										<div class="caption">
-											prodid = ${ProductVO.prodId}
-											prodType = ${ProductVO.prodType}
+											prodid = ${ProductVO.prodId} prodType = ${ProductVO.prodType}
 											<h3>${ProductVO.prodName}</h3>
 											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
 												elit. Iste saepe et quisquam nesciunt maxime.</p>
@@ -250,7 +255,7 @@
 					</c:forEach>
 				</div>
 				<!-- car content -->
-				<div class="tab-pane fade" id="mortor-content">
+				<div class="tab-pane fade " id="mortor-content">
 					<c:forEach var="ProductVO" items="${prodsVos}" begin="0"
 						end="${prodsVos.size()-1}">
 						<c:if test="${ProductVO.prodType == 2}">

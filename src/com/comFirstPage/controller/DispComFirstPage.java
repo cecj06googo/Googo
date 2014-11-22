@@ -47,11 +47,11 @@ public class DispComFirstPage extends HttpServlet {
 		printDataOfACom(comVO);
 		// ---------取得該商家所有商品資訊-------------------
 		ProductsService prodService = new ProductsService();
-		// 取得商家id為1的公司其所有產品資訊
 		List<ProductVO> prodsVos = new ArrayList<ProductVO>();
 		prodsVos = prodService.getProdsByComIdNoRepeat(comId);
 		//prodsVos = prodService.getProdsByComId(comId);		
 		request.setAttribute("prodsVos", prodsVos);
+		checkHasTheTypeProduct(prodsVos,request);//檢查哪種車種是空的並傳到前端
 		printProdsOfACom(prodsVos);// 測試用:vos內值是否正確
 		//----------丟給Google Map使用--------------
 		List<String> comAdressArray = new ArrayList<String>();
@@ -114,4 +114,39 @@ public class DispComFirstPage extends HttpServlet {
 		System.out.println("ComName="+comVO.getComName());
 		System.out.println("------------ComDataEnd--------------");
 	}
-}
+	
+	protected void checkHasTheTypeProduct(List<ProductVO> prodsVos,HttpServletRequest request) {
+		boolean hasCar = false;
+		boolean hasMotor = false;
+		boolean hasBike = false;
+		for(ProductVO prodVo : prodsVos){//若全部檢查完非true代表沒有該種商品
+			if(prodVo.getProdType()==1){
+				hasCar = true;
+			}
+			if(prodVo.getProdType()==2){
+				hasMotor = true;
+			}
+			if(prodVo.getProdType()==3){
+				hasBike = true;
+			}
+		}//end for(ProductVO prodVo : prodsVos)
+		if(hasCar){
+			request.setAttribute("hasCar", 1);
+		}else{
+			request.setAttribute("hasCar", 0);
+		}
+		if(hasMotor){
+			request.setAttribute("hasMotor", 1);
+		}else{
+			request.setAttribute("hasMotor", 0);
+		}
+		if(hasBike){
+			request.setAttribute("hasBike", 1);
+		}else{
+			request.setAttribute("hasBike", 0);
+		}
+		System.out.println("hasCar="+hasCar);
+		System.out.println("hasMotor="+hasMotor);
+		System.out.println("hasBike="+hasBike);
+	}//end protected void checkHasTheTypeProduct
+}//end public class DispComFirstPage extends HttpServlet
