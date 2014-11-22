@@ -67,57 +67,40 @@ $("#selectManage").addClass("active");
             <div class="col-lg-offset-1 col-sm-10 col-md-10">
                 <div class="row">
                     <div class="col-sm-6 col-md-6">
-                        <!-- <h1>Form Builder</h1> -->
-                        <!-- <hr> -->
                         
-                        <!-- modified: keep editor, need to solve source update problem -->
-                        <form id="content" class="form-horizontal">
-                        	<fieldset id="content_form_name">
-								<legend>Form Name</legend>
-							</fieldset>
-							${tempVo.content}
-						</form>
-						<div style="display:none;">
-							<textarea id="source"></textarea>
-						</div>
-						<!-- modified: button - save form -->
-						<form id="form_view" action="<%=request.getContextPath()%>/DesignAccessDB" method="post">
+                        <div class="tabbable">
+                        	<ul class="nav nav-tabs">
+                        		<li class="active"><a href="#editor-tab" data-toggle="tab">編輯區</a></li>
+                        	</ul>
+                        	<div class="tab-content">
+                        		<div class="tab-pane active" id="editor-tab">
+									<br>
+									<form id="content" class="form-horizontal">
+                        				<fieldset>
+                        					<legend><p style="text-align:center">請拖拉右側設計元件至此</p></legend>
+                        				</fieldset>
+										${tempVo.content}
+									</form>
+									<div style="display:none;">
+										<textarea id="source"></textarea>
+									</div>
+                        		</div>
+                        	</div>
+                        </div>
+
+						<form id="form_view" action="<%=request.getContextPath()%>/DesignAccessDB" method="post" style="display:none">
 							com_id<input type="text" name="com_id_form_view" id="com_id_form_view" value="${currentCom}" /><br>
 							command<input type="text" id="command" name="command" value="insert" readonly /><br>
 							content<textarea name="content_form_view" id="content_form_view"></textarea><br>
-							<button type="button" class="btn btn-primary" id="save_form_view">Save Form for View</button>
 						</form>
+						<button type="button" class="btn btn-primary" id="save_form_view">儲存設計</button>
 						
-						<form id="form_load" action="<%=request.getContextPath()%>/DesignAccessDB" method="post">
+						<form id="form_load" action="<%=request.getContextPath()%>/DesignAccessDB" method="post" style="display:none">
 							This form is used to load previous design result for editing.
 							com_id<input type="text" name="com_id_form_view" id="com_id_form_view" value="${currentCom}" /><br>
 							command<input type="text" id="command" name="command" value="load" readonly /><br>
 						</form>
-						<button type="button" class="btn btn-primary" id="save_form_design">Load Form for Editing</button>
-						
-                        <!-- modified: removed tab, keep editor, hide source -->
-                        <!--  
-                        <div class="tabbable">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#editor-tab" data-toggle="tab">Editor</a></li>
-                                <li><a href="#source-tab" data-toggle="tab">Source</a></li>
-                            </ul>
-
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="editor-tab">
-                                    <form id="content" class="form-horizontal">
-                                        <fieldset id="content_form_name">
-                                            <legend>Form Name</legend>
-                                        </fieldset>
-                                    </form>
-                                </div>
-
-                                <div class="tab-pane" id="source-tab">
-                                    <textarea id="source"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        -->
+						<button type="button" class="btn btn-primary" id="save_form_design">載入設計</button>
                         
                     </div>
 
