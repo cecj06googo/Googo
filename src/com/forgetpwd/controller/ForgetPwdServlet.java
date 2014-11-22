@@ -76,6 +76,8 @@ public class ForgetPwdServlet {
 				session.setAttribute("memVO", memVO);
 				
 			}
+		} catch(Exception e) {    // 亂設的Exception, 暫時不讓Eclipse報錯 (待修改)
+			
 		}
 		
 	}
