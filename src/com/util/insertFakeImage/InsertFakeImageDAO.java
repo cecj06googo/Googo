@@ -48,13 +48,15 @@ public class InsertFakeImageDAO {
 				FileInputStream fis = new FileInputStream(files[i%totalPics]); //若有重複則從第一張圖開始只有Files裡面放		
 				stmt.setBinaryStream(1, fis, (int) files[i%totalPics].length()); //若有重複則從第一張圖開始只有Files裡面放
 				stmt.setString(2,comids.get(i));// 檔名
-				System.out.println("prodids.get(i)="+comids.get(i));
-				System.out.println("i%totalPics="+(i%totalPics));
-				System.out.println("files[i%totalPics]="+files[i%totalPics]);
+				//System.out.println("prodids.get(i)="+comids.get(i));
+				//System.out.println("i%totalPics="+(i%totalPics));
+				//System.out.println("files[i%totalPics]="+files[i%totalPics]);
 				stmt.addBatch();// 批次處理使用此
 			}
 			stmt.executeBatch();
+			System.out.println("========================================================");
 			System.out.println("insertComImg is successful!");
+			System.out.println("========================================================");
 		} catch (Exception e) {
 			System.out.println("insertComImg 錯誤");
 			ConnectionUtil.closeConnection(conn);
@@ -76,7 +78,10 @@ public class InsertFakeImageDAO {
 			System.out.println("警告!!prods總數大於圖片");//只是提示用
 		}
 		if (!listdir.checkIlegal()) { //檢查是否寫入的照片格式是否正確，若錯誤則中止
+			System.out.println("========================================================");
+			System.out.println("insertProdImgByCarType="+prod_type_value+" is Failed!");
 			System.out.println("錯誤:照片資料檢查錯誤!!");
+			System.out.println("========================================================");
 			return;
 		}
 		files = listdir.getFiles();//取得所有照片的Files
@@ -87,13 +92,15 @@ public class InsertFakeImageDAO {
 				FileInputStream fis = new FileInputStream(files[i%totalPics]); //若有重複則從第一張圖開始只有Files裡面放		
 				stmt.setBinaryStream(1, fis, (int) files[i%totalPics].length()); //若有重複則從第一張圖開始只有Files裡面放
 				stmt.setString(2,prodids.get(i));// 檔名
-				System.out.println("prodids.get(i)="+prodids.get(i));
-				System.out.println("i%totalPics="+(i%totalPics));
-				System.out.println("files[i%totalPics]="+files[i%totalPics]);
+				//System.out.println("prodids.get(i)="+prodids.get(i));
+				//System.out.println("i%totalPics="+(i%totalPics));
+				//System.out.println("files[i%totalPics]="+files[i%totalPics]);
 				stmt.addBatch();// 批次處理使用此
 			}
 			stmt.executeBatch();
-			System.out.println("insertImgByCarType is successful!");
+			System.out.println("========================================================");
+			System.out.println("insertImgByCarType= "+prod_type_value +" is successful!");
+			System.out.println("========================================================");
 		} catch (Exception e) {
 			System.out.println("insertImgByCarType 錯誤");
 			ConnectionUtil.closeConnection(conn);
@@ -120,6 +127,7 @@ public class InsertFakeImageDAO {
 			insertFakeImg.insertProdImgByCarType("2", motorSrcPath);//機車
 			insertFakeImg.insertProdImgByCarType("3", bikeSrcPath);//腳踏車
 			insertFakeImg.insertComImg(comSrcPath); //公司大頭貼
+			System.out.println("圖片寫入結束，執行結果請看上方!");
 		} catch (Exception e) {
 			System.out.println("InsertFakeImageDAO 錯誤");
 			e.printStackTrace();

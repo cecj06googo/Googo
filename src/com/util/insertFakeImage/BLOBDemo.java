@@ -193,7 +193,7 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			while (rs.next()) {	
 				comids.add(rs.getString("num"));
 			}
-			System.out.println("getProdidsbyCarType成功總共"+comids.size()+"筆prodid");
+			System.out.println("getProdidsbyCarType成功總共"+comids.size()+"筆comid");
 		} catch (Exception e) {
 			System.out.println("getProdidsbyCarType 錯誤");
 			ConnectionUtil.closeConnection(conn);
