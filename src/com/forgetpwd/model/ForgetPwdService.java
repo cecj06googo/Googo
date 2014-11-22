@@ -13,5 +13,9 @@ public class ForgetPwdService {
 	public void updateUser(String user_newPwd,String user_account, String user_identity){
 		dao.update(user_newPwd, user_account, user_identity);
 	}
+	
+	public Integer findId(String user_account, String user_identity){
+		return dao.findUserId(user_account, user_identity);
+	}
 
 }

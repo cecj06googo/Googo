@@ -43,6 +43,8 @@ String elements = (String)request.getAttribute("elements");
 			var scheduler_container_divs = scheduler_container.getElementsByTagName("div");
 			var dhx_cal_data = scheduler_container_divs[scheduler_container_divs.length-1];
 
+			var contextPath = "<%=request.getContextPath()%>";
+
 			// while target has parent node and we haven't reached dhx_cal_data
 			// we can keep checking if it is timeline section
 			scheduler.dhtmlXTooltip.isTooltipTarget = function(target) {
@@ -203,19 +205,20 @@ String elements = (String)request.getAttribute("elements");
          <!--條件搜尋-->
          <div class="col-md-10 text-center">
 	     <div class="row" >
-           	<form class="form-inline" role="form">
+           	<form class="form-inline" role="form" name="searchCar" id="searchCar" action="<%=request.getContextPath()%>/schedulerSearchCar" method="post">
               <div class="form-group">
-                    <select class="form-control input-lg"  autofocus="" >
-                        <option>種類</option>  <!--純顯示 不能給user選-->
-                        <option>汽車</option>
-                        <option>機車</option>
-                        <option>腳踏車</option>
+                    <select class="form-control input-lg"  name="prod_type" >
+                        <option>交通工具</option>  <!--純顯示 不能給user選-->
+                        <option value="1">汽車</option>
+                        <option value="2">機車</option>
+                        <option value="3">腳踏車</option>
                     </select>
                 </div>
                  <div class="form-group">
-                      <input type="text" class="form-control input-lg" placeholder="請輸入車種名稱">
+                      <input type="text" class="form-control input-lg" name="keySearch" placeholder="請輸入車輛名稱">
                  </div>
 			<button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button>
+			<div><Font color="red">${ErrMsg}</Font></div>
             </form><br>
         </div> 
         </div><!--/.條件搜尋-->

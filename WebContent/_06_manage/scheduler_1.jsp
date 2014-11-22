@@ -1,3 +1,4 @@
+<!-- 此檔案為測試用 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -164,7 +165,7 @@ String jsonString = (String)request.getAttribute("jsonString");
 
             
 			//開始時間
-            scheduler.init('scheduler_car',new Date(2014,1,1),"timeline");
+            scheduler.init('scheduler_car',new Date(2014,12,1),"timeline");
             scheduler.parse([
                              {"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-1","section_id":"5684-XX","details":"租車人:租車苦主1<br>連絡電話:0234567890"},
                              {"start_date":"2014-01-01 13:20:00.0","end_date":"2014-01-05 14:20:00.0","text":"訂單-11","section_id":"1369-AA","details":"租車人:租車苦主1<br>連絡電話:0234567890"},
@@ -221,7 +222,26 @@ String jsonString = (String)request.getAttribute("jsonString");
                     </select>
                 </div>
                  <div class="form-group">
-                      <input type="text" class="form-control input-lg" placeholder="請輸入關鍵字">
+                     <div class="input-group">
+                     <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#contains">Contains</a></li>
+                      <li><a href="#its_equal">It's equal</a></li>
+                      <li><a href="#greather_than">Greather than ></a></li>
+                      <li><a href="#less_than">Less than < </a></li>
+                      <li class="divider"></li>
+                      <li><a href="#all">Anything</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
                  </div>
 			<button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button>
             </form><br>
