@@ -9,11 +9,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import com.products.model.ProductVO;
-
-
-
-
-
+//測試用
 public class Test {
 
 	public static void main(String[] args) {
