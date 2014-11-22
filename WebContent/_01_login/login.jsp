@@ -85,7 +85,7 @@
 		          <label><input type="checkbox" name="rememberMe"
 		          <c:if test='${sessionScope.rememberMe==true}'>checked='checked'</c:if>
 		          value="true">
-					自動登入 </label>
+					記住密碼 </label>
 		        </div>
 		        <button type="submit" class="btn btn-lg btn-primary pull-right">登入</button>
 		      </form>
