@@ -10,6 +10,7 @@ This software is covered by GPL license. You also can obtain Commercial or Enter
 var temp_section;
 var before;
 var beforee;
+var contextPath = "<%=request.getContextPath()%>";
 scheduler.config.collision_limit = 1;	
 
 function _setTempSection(event_id) { // for custom views (matrix, timeline, units)
@@ -70,24 +71,39 @@ scheduler.attachEvent("onBeforeDrag",function(id){
 //dnd前  還沒save
 scheduler.attachEvent("onBeforeEventChanged",function(ev,e,is_new){
 	//找爸爸的id
-	
-	var p1=scheduler.getSectionParent(temp_section);
-	var p2=scheduler.getSectionParent(ev.section_id);
+	var pre_id=scheduler.getSectionParent(temp_section);
+	var new_id=scheduler.getSectionParent(ev.section_id);
+	var prod_plate=ev.section_id;
+	var item_id =ev.text;
 	//爸爸id是否相同
-	if(p1==p2){
-		
-	ev.start_date = beforee[0];
-	ev.end_date = beforee[1];
-	return scheduler.checkCollision(ev);}
-	else{
+	if(pre_id==new_id){
+		ev.start_date = beforee[0];
+		ev.end_date = beforee[1];
+		//檢查日期是否相撞
+		if(scheduler.checkCollision(ev)){
+			ajaxCar(item_id,prod_plate);
+			return true;
+		}else
+			return false;
+	}else{
 		$('#schedulerError').modal('show');
-		return false;
-		
+		return false;	
 	}
-		
-	
 });
 
+//ajax修改訂單之車牌
+function ajaxCar(item_id,prod_plate) { 
+	//console.log(item_id,prod_plate);
+	var xmlHttp = new XMLHttpRequest();
+	if(xmlHttp != null){
+		var url ="schedulerServlet"; 
+		xmlHttp.open("post",url,true); //"get" or "post" ///true為非同步 false為同步運作 
+		xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlHttp.send("item_id="+item_id+"&prod_plate="+prod_plate); //傳送資料到伺服器
+	}else{
+		console.log = "失敗!!!你的瀏覽器不支援AJAX";
+	}
+}
 //adds a new event
 scheduler.attachEvent("onEventAdded",function(id,ev) {
 	

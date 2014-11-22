@@ -14,8 +14,10 @@ public class SendResetPwdEmail {
 	}
 	
 	public static String generateResetPwdLink(){
+		// 亂設的變數, 暫時不讓Eclipse報錯
+		String link = null;
 		
-		
+		return link;
 	}
 
 }

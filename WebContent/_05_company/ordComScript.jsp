@@ -2,10 +2,13 @@
     pageEncoding="UTF-8"%>
 <script>
 $(document).ready(function(){
-	$("a[title='收縮']").click(function() {
-	$("div[id^='collapseOne'").collapse('hide' );
-		
-   
+	
+	
+	$("span[id='aa']").click(function() {
+		$("div[id^='collapseOne']").collapse({
+			toggle:false
+		})
+		$("div[id^='collapseOne'").collapse('hide');
 	});
   
 	

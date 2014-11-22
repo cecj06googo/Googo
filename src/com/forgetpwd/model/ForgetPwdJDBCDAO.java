@@ -20,6 +20,10 @@ public class ForgetPwdJDBCDAO implements ForgetPwdDAO_interface {
 			"SELECT mem_account, mem_pwd FROM dbo.Member where mem_account=? ";
 	private static final String GET_COM_ACCOUNT =
 			"SELECT com_account, com_pwd FROM dbo.Company where com_account=? ";
+	private static final String GET_MEM_ID =
+			"SELECT mem_id FROM Member where mem_account=?";
+	private static final String GET_COM_ID =
+			"SELECT com_id FROM Company where com_account=?";
 
 	@Override
 	public void update(String user_newPwd,String user_account, String user_identity) {
@@ -127,6 +131,64 @@ public class ForgetPwdJDBCDAO implements ForgetPwdDAO_interface {
 			}
 		
 		return forgetPwdVO;
+	}
+	
+	public Integer findUserId(String user_account, String user_identity){
+		Integer userId = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName(driver);
+
+			con = DriverManager.getConnection(url, userid, passwd);
+			if ("Mem".equals(user_identity)) {
+				pstmt = con.prepareStatement(GET_MEM_ID);
+
+			} else if ("Com".equals(user_identity)) {
+				pstmt = con.prepareStatement(GET_COM_ID);
+			}
+
+			pstmt.setString(1, user_account);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				if ("Mem".equals(user_identity)) {
+					userId = rs.getInt("mem_id");
+				} else if ("Com".equals(user_identity)) {
+					userId = rs.getInt("com_id");
+				}
+			}
+				return userId;
+		
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+
+		} // end finally
 	}
 
 }
