@@ -11,7 +11,6 @@ String elements = (String)request.getAttribute("elements");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dhtmlxscheduler.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler.js"></script>	
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_timeline.js"></script>
@@ -20,7 +19,6 @@ String elements = (String)request.getAttribute("elements");
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_collision.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_readonly.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhtmlxscheduler_tooltip.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 <jsp:include page="/_00_fragment/css2.jsp" />
 
 <title>Goo-go</title>
@@ -44,6 +42,8 @@ String elements = (String)request.getAttribute("elements");
 			var scheduler_container = document.getElementById("scheduler_car");
 			var scheduler_container_divs = scheduler_container.getElementsByTagName("div");
 			var dhx_cal_data = scheduler_container_divs[scheduler_container_divs.length-1];
+
+			var contextPath = "<%=request.getContextPath()%>";
 
 			// while target has parent node and we haven't reached dhx_cal_data
 			// we can keep checking if it is timeline section
@@ -294,32 +294,7 @@ String elements = (String)request.getAttribute("elements");
 <script>
 //top2左方功能列選項
 $("#scheduler").addClass("active");
-(function($){
-	   $(document).ready(function() {
-		    $('#searchCar').bootstrapValidator({
-		    	container: 'tooltip',
-		        feedbackIcons: {
-		            valid: 'glyphicon glyphicon-ok',
-	                invalid: 'glyphicon glyphicon-remove',
-	                validating: 'glyphicon glyphicon-refresh'
-		            
-		        },
-	        	
-		        fields: {
-		        	keySearch: {
-		        		trigger: 'keyup blur',
-		                validators: {
-		                	regexp: {
-		                        regexp: /[^;\"\'=/\\,]/,
-		                        message: '不可含有特殊字元:( " ; \' = , \\ \/)'
-		                    },		                    
-		                }
-		            },
-		            
-		       },
-		    })	    
-		});
-	 })(jQuery)
+
 </script>
 </body>
 </html>

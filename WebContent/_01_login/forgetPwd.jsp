@@ -28,7 +28,7 @@
                         <label><input type="radio" name="optionsRadios" id="company" value="Com">商家會員</label>
                 </div>
                 <input type="hidden" name="action" value="update">
-		        <button type="submit" class="btn btn-lg btn-primary pull-right">寄新密碼</button>
+		        <button type="submit" class="btn btn-lg btn-primary pull-right">重新設定</button>
 		      </form><!-- /.form-->
  			</div>
  		    </div>
@@ -41,6 +41,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 <script>
  (function($){
+	   var radios = '<%=session.getAttribute("userIdentity")%>';
+		if (radios != null) {
+			$('input:radio[name=optionsRadios]').filter('[value="' + radios +'"]').prop('checked',true);
+		}
 	  
 	  
 	   $(document).ready(function() {
@@ -77,7 +81,7 @@
 		                validators: {
 		                	trigger: '',
 		                    notEmpty: {
-		                        message: '請選擇性別'
+		                        message: '請選擇'
 		                    }
 		                }
 		            },

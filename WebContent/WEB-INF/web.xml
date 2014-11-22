@@ -256,6 +256,8 @@
 		<servlet-name>ActivateCompanyAccount</servlet-name>
 		<url-pattern>/CActivateAccount</url-pattern>
 	</servlet-mapping>
+<!-- End: 會員註冊修改相關 -->
+	<!-- Begin: 車輛調度相關 -->
 	<servlet>
 		<servlet-name>Scheduler</servlet-name>
 		<servlet-class>com.scheduler.controller.DisplayServlet</servlet-class>
@@ -272,7 +274,15 @@
 		<servlet-name>schedulerSearchCar</servlet-name>
 		<url-pattern>/schedulerSearchCar</url-pattern>
 	</servlet-mapping>
-<!-- End: 會員註冊修改相關 -->
+	<servlet>
+		<servlet-name>schedulerServlet</servlet-name>
+		<servlet-class>com.scheduler.controller.SchedulerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>schedulerServlet</servlet-name>
+		<url-pattern>/schedulerServlet</url-pattern>
+	</servlet-mapping>
+<!-- End: 車輛調度相關 -->
 	
 	<!-- Begin: Filter設定 -->
 	<filter>

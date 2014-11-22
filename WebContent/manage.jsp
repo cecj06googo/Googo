@@ -11,7 +11,7 @@
 </head>
 <body>
  <div id="wrapper">
-	<!-- top1 -->
+	<!-- top2 -->
 	<jsp:include page="/_00_fragment/top2.jsp" />
 
         <div id="page-wrapper">
@@ -33,7 +33,7 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-book fa-5x"></i>
+                                        <i class="fa fa-envelope-o fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">${newOrd}</div>

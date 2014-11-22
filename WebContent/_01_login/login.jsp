@@ -2,7 +2,23 @@
     pageEncoding="UTF-8" import="java.util.Enumeration"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link href="${pageContext.request.contextPath}/css/bootstrap-datetimepicker.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath}/css/loginStyle.css" rel="stylesheet"> --%>
+
+<style>
+.right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;    
+}
+.right-inner-addon i {
+	color:#a94442;
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+</style>
 
 	<div class="modal fade"  id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-sm">
@@ -27,23 +43,29 @@
 			<div class="col-md-10 col-md-offset-1">
 			<!-- form-->	
 		      <form role="form" id="login_form" action="<%=request.getContextPath()%>/Login.gg" method="post">
-		        <div class="form-group">
+		        <div id="inputEmailDiv" class="form-group">
 		          <label > E-mail:</label><font size="-1" color="#FF0000">${ErrorMsg.errorLogin}</font>
 		          <c:choose>
 		           	<c:when test="${not empty errorAccount}">
-		           		<input type="text" class="form-control" id="inputEmail" name="userAccount" value="${errorAccount}">
+		           		<div class="right-inner-addon">
+		           			<input type="text" class="form-control" id="inputEmail" name="userAccount" value="${errorAccount}">
+		           			<i class="glyphicon glyphicon-remove"></i>
+		           		</div>
 		           	</c:when>
 		           	<c:otherwise>
 		           		<input type="text" class="form-control" id="inputEmail" name="userAccount" value="${sessionScope.user}">
 		           	</c:otherwise>
 		           </c:choose>
 		        </div>
-		        <div class="form-group">
+		        <div id="inputPasswordDiv" class="form-group">
 		          <a class="pull-right" href="#" data-toggle="modal" data-target="#forgetpwd" id="forget" data-dismiss="modal">忘記密碼?</a>
 		          <label>密碼:</label>
 		           <c:choose>
 		           	<c:when test="${not empty errorPassword}">
-		           		<input type="password" class="form-control" id="inputPassword" name="userPwd" value="${errorPassword}">
+		           		<div class="right-inner-addon">
+		           			<input type="password" class="form-control" id="inputPassword" name="userPwd" value="${errorPassword}">
+		           			<i class="glyphicon glyphicon-remove"></i>
+		           		</div>
 		           	</c:when>
 		           	<c:otherwise>
 		           		<input type="password" class="form-control" id="inputPassword" name="userPwd" value="${sessionScope.password}">
@@ -55,6 +77,7 @@
                         <label><input type="radio" name="optionsRadios" id="company" value="Com">商家會員</label>
                 </div>
 		        <div class="login-or">
+		        <div id="errorMessage"><Font style="color:red; font-size:16px">${LoginError} ${timeOut}</Font></div>
 			    <hr class="hr-or">
 			    <span class="span-or"></span>
 			 	</div>
@@ -62,14 +85,13 @@
 		          <label><input type="checkbox" name="rememberMe"
 		          <c:if test='${sessionScope.rememberMe==true}'>checked='checked'</c:if>
 		          value="true">
-					自動登入 </label>
+					記住密碼 </label>
 		        </div>
 		        <button type="submit" class="btn btn-lg btn-primary pull-right">登入</button>
 		      </form>
 		      <!--/. form-->
  		    </div>
  		  </div>
- 		  <div id="errorMessage"><Font color='red' size="-1">${LoginError} ${timeOut}</Font></div>
  		   <!--尚未註冊-->
  		  <div class="row" style="margin-top: 20px;">
  		  <div class="well col-md-10 col-md-offset-1">
@@ -108,49 +130,15 @@
 		$('input:radio[name=optionsRadios]').filter('[value="' + radios +'"]').prop('checked',true);
 	}
 	
-$(document).ready(function() {
-	if(<%=request.getAttribute("ErrorMsg")%> != null) {
-		$('#errorMessage').innerHTML = "<Font color='red' size='-1'>帳號不存在或密碼錯誤</Font>";
+	var loginerror = '<%=session.getAttribute("LoginError")%>';
+	if (loginerror != 'null') {
+		$('#inputEmailDiv').addClass('has-error');
+		$('#inputPasswordDiv').addClass('has-error');
+	}
+	else {
+		$('#inputEmailDiv').removeClass('has-error');
+		$('#inputPasswordDiv').removeClass('has-error');
 	}
 	
-	$("#login_form").bootstrapValidator({
-		feedbackIcons: {
-	     	valid: 'glyphicon glyphicon-ok',
-	        invalid: 'glyphicon glyphicon-remove',
-	        validating: 'glyphicon glyphicon-refresh'
-	    },
-	    fields: {
-	    	userAccount: {
-	    		trigger: 'keyup blur',
-	            message: '此E-mail無效',
-	            validators: {
-	    			notEmpty: {
-                    	message: '帳號不可空白，請填入E-mail'
-                	},
-                	emailAddress: {
-                    	message: '此E-mail無效,請輸入正確格式'
-                	},
-	    		},
-	    	},
-	    	userPwd: {
-	    		trigger: 'keyup blur',
-	    		validators: {
-	    			notEmpty: {
-	    				message: '密碼不可空白'
-	    			},
-	    			stringLength: {
-                    	min: 6,
-                    	max: 12,
-                    	message: '密碼長度限6~12字數'
-            		},
-            		regexp: {
-                    	regexp: /^(?=.*\d)(?=.*[a-z]).{6,12}$/,
-                    	message: '需包含英文及數字'
-                	},
-	    		},
-	    	}
-	    }
-	});
-	});
 })(jQuery)
 </script>

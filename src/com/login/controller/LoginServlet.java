@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 		String referURI = (String) session.getAttribute("referURI");      // 登入前原網頁路徑
 		boolean error = false;
 		
-		// 2. RememberMe  (暫不做)
+		// 2. RememberMe
 		Cookie cookieUser = null;
 		Cookie cookiePassword = null;
 		Cookie cookieRememberMe = null;

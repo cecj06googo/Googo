@@ -69,11 +69,9 @@
                     	 </div>
 							<input type="hidden" name="action" value="selectCom">
                     </form> 
-                    <c:if test="${not empty ordVO}">
                 </div>
-                <a  title="收縮" ><span id="aa" >一鍵收縮<i class="glyphicon glyphicon-resize-small"></i></span></a>
-            </div>
-            </c:if>
+                <a  title="收縮" ><span>一鍵收縮<i class="glyphicon glyphicon-resize-small"></i></span></a>
+            </div> 
         </div>
         <!-- /.Search bar -->
         
@@ -93,7 +91,7 @@
 			<tr>
 				<th style="text-align: center;">訂單編號</th>
 				<th style="text-align: center;">租訂時間</th>
-<!-- 				<th style="text-align: center;">車種</th> -->
+				<th style="text-align: center;">車種</th>
 				<th style="text-align: center;">商品名稱</th>
 				<th style="text-align: center;">金額</th>
 				<th style="text-align: center;">處理狀態</th>
@@ -107,10 +105,10 @@
 				<tr align='center' valign='middle'>    
 					<td>${ordVO.ord_id}</td>
 					<td><fmt:formatDate value="${ordVO.ord_time}" pattern="yyyy-MM-dd HH:mm:ss" /><br>  
-                    <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseOne${ordVO.ord_id}" data-parent="#accordion"  id="${ordVO.ord_id}">完整明細</a>     
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne${ordVO.ord_id}" id="${ordVO.ord_id}">完整明細</a>     
 					</td>
-<!-- 					<td>汽車</td> -->
-					<td><a href="#">${ordVO.prod_name}</a></td>
+					<td>汽車</td>
+					<td><a href="#">HONDA-Accord進口新登場</a></td>
 					<td><a href="#">${ordVO.item_total}</a></td>
 					<c:if test="${ordVO.status_char == '異常未還'}">
 						<td style="color:red">${ordVO.status_char}</td>
@@ -232,7 +230,7 @@
 				</tr>
 <!--訂單明細位置------------------------------- -->
 				<tr>
-				<td style="padding:0" colspan="7">
+				<td style="padding:0" colspan="8">
 				<div id="collapseOne${ordVO.ord_id}" class="panel-collapse collapse">
                         <div class="panel-body">
                         	<span>訂單編號: ${ordVO.ord_id}</span><br>
@@ -246,7 +244,7 @@
                         	<span>連絡人市話: ${ordVO.item_tel 			== null ? "無": ordVO.item_tel }</span><br>
                         	<span>連絡人行動: ${ordVO.item_phone 		== null ? "無": ordVO.item_phone }</span><br>
                         	<span>連絡人信箱: ${ordVO.item_email  		== null ? "無": ordVO.item_email }</span><br>
-                        	<span>配件名稱: ${ordVO.pritem_acc  		== null ? "無": ordVO.pritem_acc }</span><br>
+                        	<span>配件名稱: <span class="pritem_acc">${ordVO.pritem_acc  		== null ? "無": ordVO.pritem_acc }</span></span><br>
                         	<span>商家自訂欄位(目前無): ${ordVO.item_all  == null ? "無": ordVO.item_all }</span><br>
                         	<span>會員帳號: ${ordVO.mem_account}</span><br>
                         	<span>商品名稱: ${ordVO.prod_name}</span><br>
@@ -330,6 +328,66 @@
  <!-- 位置放錯會掛掉(一定要在body內) -->
 <jsp:include page="/_05_company/ordComScript.jsp" />
  <!-- /.位置放錯會掛掉 -->
+
+<script>
+$(document).ready(function(){
+	
+	console.log("enter retrieval block");
+	
+	var displayFields = $(".pritem_acc");
+	
+	for(i = 0; i < displayFields.length; i++){
+		
+		var displayResult = "<br/>";
+		var displayField = displayFields[i];
+		var entryData = '';
+		var type = '';
+		var label = '';
+		var value = '';
+		var valueDescription = '';
+		
+		if(displayField.textContent.trim().length > 2){
+			
+			var jsonBundle = $.parseJSON($(displayField).text());
+			console.log(jsonBundle);
+			
+			for(j = 0; j < jsonBundle.custFields.length; j++){
+				
+				label = jsonBundle.custFields[j]['label'];
+				value = jsonBundle.custFields[j]['value'];
+				
+				if("text" == jsonBundle.custFields[j]['type']){
+					entryData = (label + ", " + value + "\n");
+				}else if("textarea" == jsonBundle.custFields[j]['type']){
+					entryData = (label + ", " + value + "\n");
+				}else if("SelectBasic" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + ", " + value + ", " + valueDescription + "\n");
+				}else if("SelectMultiple" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + ", " + value + ", " + valueDescription + "\n");
+				}else if("checkbox" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + ", " + value + ", " + valueDescription + "\n");
+				}else if("radio" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + ", " + value + ", " + valueDescription + "\n");
+				}
+				
+				console.log(entryData);	
+				
+				displayResult += (entryData + "<br/>");
+			}// end for: process each customized field data
+		}// end if: inspect if there is any customized field
+		
+		$(displayField).empty();
+		$(displayField).html(displayResult);
+		
+	}// end for: process each order
+	
+});
+</script>
+
 </body>
 
 </html>
