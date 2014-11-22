@@ -50,8 +50,7 @@ public class DispComFirstPage extends HttpServlet {
 		// 取得商家id為1的公司其所有產品資訊
 		List<ProductVO> prodsVos = new ArrayList<ProductVO>();
 		prodsVos = prodService.getProdsByComIdNoRepeat(comId);
-		//prodsVos = prodService.getProdsByComId(comId);
-		
+		//prodsVos = prodService.getProdsByComId(comId);		
 		request.setAttribute("prodsVos", prodsVos);
 		printProdsOfACom(prodsVos);// 測試用:vos內值是否正確
 		//----------丟給Google Map使用--------------

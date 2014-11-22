@@ -15,7 +15,7 @@ public class SendResetPwdEmail {
 	
 	public static String generateResetPwdLink(){
 		
-		
+		return "暫時先把錯誤關掉";
 	}
 
 }

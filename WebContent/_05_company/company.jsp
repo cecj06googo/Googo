@@ -157,7 +157,7 @@
 			<!-- 店家圖片 -->
 			<div class="col-md-6">
 				<img class="img-responsive"
-					src='${pageContext.servletContext.contextPath}/image?comID=1'
+					src='${pageContext.servletContext.contextPath}/image?comID=${comId}'
 					alt="">
 			</div>
 			<!-- /店家圖片 -->
@@ -228,30 +228,74 @@
 					<!-- 			foreach也還是遵照Java index從0開始，因為Java物件從後端丟到這裡 -->
 					<c:forEach var="ProductVO" items="${prodsVos}" begin="0"
 						end="${prodsVos.size()-1}">
-						<!-- 車車1 -->
-						<div class="col-md-4 text-center">
-							<div class="thumbnail">
-								<a href="" data-toggle="modal" data-target="#prod_detail"> <img
-									class="img-responsive"
-									src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
-									alt="">
-									<div class="caption">
-										prodid = ${ProductVO.prodId}
-										<h3>${ProductVO.prodName}</h3>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit. Iste saepe et quisquam nesciunt maxime.</p>
-									</div></a>
+						<c:if test="${ProductVO.prodType == 1}">
+							<!-- 車車1 -->
+							<div class="col-md-4 text-center">
+								<div class="thumbnail">
+									<a href="" data-toggle="modal" data-target="#prod_detail">
+										<img class="img-responsive"
+										src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
+										alt="">
+										<div class="caption">
+											prodid = ${ProductVO.prodId}
+											prodType = ${ProductVO.prodType}
+											<h3>${ProductVO.prodName}</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+												elit. Iste saepe et quisquam nesciunt maxime.</p>
+										</div>
+									</a>
+								</div>
 							</div>
-						</div>
+						</c:if>
 					</c:forEach>
 				</div>
 				<!-- car content -->
 				<div class="tab-pane fade" id="mortor-content">
-					<h5>機車content</h5>
+					<c:forEach var="ProductVO" items="${prodsVos}" begin="0"
+						end="${prodsVos.size()-1}">
+						<c:if test="${ProductVO.prodType == 2}">
+							<!-- 機車2 -->
+							<div class="col-md-4 text-center">
+								<div class="thumbnail">
+									<a href="" data-toggle="modal" data-target="#prod_detail">
+										<img class="img-responsive"
+										src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
+										alt="">
+										<div class="caption">
+											prodid = ${ProductVO.prodId}
+											<h3>${ProductVO.prodName}</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+												elit. Iste saepe et quisquam nesciunt maxime.</p>
+										</div>
+									</a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
 				</div>
 				<!-- motor content -->
 				<div class="tab-pane fade" id="bike-content">
-					<h5>腳踏車content</h5>
+					<c:forEach var="ProductVO" items="${prodsVos}" begin="0"
+						end="${prodsVos.size()-1}">
+						<c:if test="${ProductVO.prodType == 3}">
+							<!-- 腳踏車3 -->
+							<div class="col-md-4 text-center">
+								<div class="thumbnail">
+									<a href="" data-toggle="modal" data-target="#prod_detail">
+										<img class="img-responsive"
+										src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
+										alt="">
+										<div class="caption">
+											prodid = ${ProductVO.prodId}
+											<h3>${ProductVO.prodName}</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+												elit. Iste saepe et quisquam nesciunt maxime.</p>
+										</div>
+									</a>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
 				</div>
 				<!-- motor content -->
 			</div>
