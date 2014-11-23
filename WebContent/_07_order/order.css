@@ -42,5 +42,80 @@
   padding: 6px 0;
   font-size: 12px;
   line-height: 1.428571429;
-  border-radius: 444px;
+  border-radius: 15px;
 }
+
+/* ---自訂--- */
+
+
+/* .div-btn{ */
+/* margin-top:100px; */
+/* } */
+
+
+.div-height{
+height: 500pt;
+}
+.div-back {
+	padding-top:20px;
+  	border-radius: 15px;
+    background-color:#efefef;
+    border: 1px solid #e7e7e7;
+}
+
+
+
+.x-center {
+text-align:center;
+}
+.x-right {
+
+margin-left: 50pt;
+padding-left: 1pt;
+}
+.harder-font {
+	border: 1px solid #c0c0c0;
+font-weight: lighter;
+font-size: 24px;
+}
+
+.p-right{
+	color:red;
+    text-align: right;
+}
+.span-red{
+	color:red;
+}
+.span-space{
+	margin:3pt;
+}
+.span-accept{
+	font-size: 16px;
+}
+.form-input {
+/*   display: block; block 此元素将显示为块级元素，此元素前后会带有换行符。 */
+  width: 70%;
+/*   height: 34px; */
+/*   padding: 6px 12px; */
+/*   font-size: 14px; */
+/*   line-height: 1.42857143; */
+/*   color: #555; */
+/*   background-color: #fff; */
+/*   background-image: none; */
+/*   border: 1px solid #ccc; */
+/*   border-radius: 4px; */
+/*   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); */
+/*           box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); */
+/*   -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s; */
+/*        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; */
+/*           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; */
+}
+
+
+/* ---抓範圍--- */
+.x-border{
+    border: 1px solid #c0c0c0;
+}
+/* ---/.抓範圍--- */
+
+/* /.---自訂--- */
