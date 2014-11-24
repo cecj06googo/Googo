@@ -120,21 +120,31 @@ $(function() {
 
         // add component to form
         addComponent: function(component) {
-            component
+            // transform the added component to an element
+        	var componentResult = component
             .clone()
             .removeClass('component')
             .addClass('element')
-            .removeAttr('id')
-            .prepend('<div class="close">&times;</div>')
+            .removeAttr('id');
+            
+        	// attach the transformed element to editing area
+        	componentResult
+            .prepend('<div class="close">&times;</div><br>')
             .appendTo("#content");
 
             $("#options_modal").modal('hide');
             $("#content").find("fieldset").hide();
 
             this.updateSource();
-            // modified: test
-            console.log($("#content").html());
+            // counter ticks for a new element
             form_builder.counter++;
+            
+            // set id and name of the new element
+            var $el = $(componentResult);
+            var type= $(componentResult).data('type');
+            form_builder.setElement($el);
+            form_builder[type].setIdentification();
+            console.log($("#content").html());
         },
 
         // load element options
@@ -246,9 +256,16 @@ $(function() {
 
                 //input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
                 
-                input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', 'custField_' + form_builder.counter + '_text');
-                input.attr('name', input.attr('id'));
+                input.attr('placeholder', $(this.prefix + 'placeholder').val());
                 label.text($(this.prefix + 'label').val()).attr('for', input.attr('id'));
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+                input = el.find('input[type=text]');
+            	
+            	input.attr('id', 'custField_' + form_builder.counter + '_text')
+            		 .attr('name', input.attr('id'));
             }
         },
 
@@ -277,9 +294,16 @@ $(function() {
 //                textarea.attr('placeholder', $(this.prefix + 'placeholder').val());
                 
                 
-                textarea.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', 'custField_' + form_builder.counter + '_textarea');
-                textarea.attr('name', textarea.attr('id'));
+                textarea.attr('placeholder', $(this.prefix + 'placeholder').val());
                 label.text($(this.prefix + 'label').val()).attr('for', textarea.attr('id'));
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+                textarea = el.find('textarea');
+            	
+            	textarea.attr('id', 'custField_' + form_builder.counter + '_textarea')
+            		 .attr('name', textarea.attr('id'));
             }
         },
 
@@ -299,7 +323,8 @@ $(function() {
                 
                 $.ajax({
                 	url: contextPath + "/GetAccessory",
-            		dataType: "json",
+            		data: {com_id: currentCom},
+                	dataType: "json",
             	})
             	.done(function(data){
             		console.log(data);
@@ -333,6 +358,40 @@ $(function() {
                 
                 //select.append(list_options);
             }
+        },
+        
+        PreDriverData: {
+        	
+        	prefix: '.options_PreDriverData_',
+        	
+        	get: function(){
+        		var el = form_builder.getElement();
+        		
+        		console.log($(el).find("input[id$='PreDriverDataName']").val());
+        		
+        		$(this.prefix + 'NamePlaceholder').val($(el).find("input[id$='PreDriverDataName']").val());
+        		$(this.prefix + 'PhonePlaceholder').val($(el).find("input[id$='PreDriverDataPhone']").val());
+        		$(this.prefix + 'MailPlaceholder').val($(el).find("input[id$='PreDriverDataMail']").val());
+        		$(this.prefix + 'LicensePlaceholder').val($(el).find("input[id$='PreDriverDataLicense']").val());
+        	},
+        	
+        	set: function(){
+        		var el = form_builder.getElement();
+        		
+        		console.log($(this.prefix + 'NamePlaceholder').val());
+        		
+        		el.find('input[id$="PreDriverDataName"]').attr("value", $(this.prefix + 'NamePlaceholder').val());
+        		el.find('input[id$="PreDriverDataPhone"]').attr("value", $(this.prefix + 'PhonePlaceholder').val());
+        		el.find('input[id$="PreDriverDataMail"]').attr("value", $(this.prefix + 'MailPlaceholder').val());
+        		el.find('input[id$="PreDriverDataLicense"]').attr("value", $(this.prefix + 'LicensePlaceholder').val());
+        		
+        		el.find('input[id$="PreDriverDataName"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataName');
+        		el.find('input[id$="PreDriverDataPhone"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataPhone');
+        		el.find('input[id$="PreDriverDataMail"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataMail');
+        		el.find('input[id$="PreDriverDataLicense"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataLicense');
+        		
+        	},
+        	
         },
         
         /*====================== End: Predefined Components ====================*/

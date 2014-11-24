@@ -138,25 +138,25 @@ public class OrderSimulationInsert extends HttpServlet {
 					if(entryValue != null && entryValue.trim().length() > 0){
 						orderItemVO.setItem_name(entryValue.trim());
 					}else {
-						errorMsg.put("errorItem_name", "item_name needs the name of driver");
+						//errorMsg.put("errorItem_name", "item_name needs the name of driver");
 					}
 				}else if("item_tel".equalsIgnoreCase(entryName)){
 					if(entryValue != null && entryValue.trim().length() > 0){
 						orderItemVO.setItem_tel(entryValue.trim());
 					}else {
-						errorMsg.put("errorTel", "item_tel needs a number");
+						//errorMsg.put("errorTel", "item_tel needs a number");
 					}
 				}else if("item_phone".equalsIgnoreCase(entryName)){
 					if(entryValue != null && entryValue.trim().length() > 0){
 						orderItemVO.setItem_phone(entryValue.trim());
 					}else {
-						errorMsg.put("errorPhone", "item_phone needs a number");
+						//errorMsg.put("errorPhone", "item_phone needs a number");
 					}
 				}else if("item_email".equalsIgnoreCase(entryName)){
 					if(entryValue != null && entryValue.trim().length() > 0){
 						orderItemVO.setItem_email(entryValue.trim());
 					}else {
-						errorMsg.put("errorEmail", "item_email needs a mail");
+						//errorMsg.put("errorEmail", "item_email needs a mail");
 					}
 				}else if("pritem_acc".equalsIgnoreCase(entryName)){
 					if(entryValue != null && entryValue.trim().length() > 0){

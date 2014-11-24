@@ -224,6 +224,17 @@ insert into Accessory values (1,'g',1000);
 insert into Accessory values (1,'g',1000);
 insert into Accessory values (1,'g',1000);
 insert into Accessory values (1,'g',1000);
+insert into Accessory values (2,'安全座椅',2000);
+insert into Accessory values (2,'Garmin導航機',700);
+insert into Accessory values (2,'野炊卡式爐',350);
+insert into Accessory values (2,'冰桶 - 6L',100);
+insert into Accessory values (2,'冰桶 - 15L',200);
+insert into Accessory values (2,'營帳 - 2P',800);
+insert into Accessory values (2,'營帳 - 4P',1200);
+insert into Accessory values (3,'對講機全罩安全帽2頂',300);
+insert into Accessory values (3,'清靜農場哞哞午餐卷2張',400);
+insert into Accessory values (3,'小人國遊樂園入場卷2張',600);
+insert into Accessory values (3,'尾掛置物箱',500);
 
 
 Create Table Ord_status(
@@ -310,10 +321,10 @@ Create Table Ord_item(
 			ord_id          int,
 			prod_id      	int,
 			acc_id          int,
-			item_name       varchar(20) NOT NULL ,
+			item_name       varchar(20) NULL ,
 			item_tel        varchar(20) NULL ,
 			item_phone      varchar(20) NULL ,
-			item_email      varchar(50) NOT NULL,
+			item_email      varchar(50) NULL,
 			pritem_acc      varchar(max) NULL,
 			item_all        varchar(max) NULL,
 

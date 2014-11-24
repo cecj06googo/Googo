@@ -208,6 +208,7 @@ $("#selectManage").addClass("active");
                         		<div class="tab-pane" id="predefined-tab">
                         			<hr>
                         			<div id="components-container" class="form-horizontal">
+                        				
                         				<div class="component form-group" data-type="PreSelectBasic">
                                 			<label class="control-label col-sm-4" for="PreSelectBasic">Predefined - Select - Basic</label>
                                 			<div class="controls col-sm-8">
@@ -216,6 +217,26 @@ $("#selectManage").addClass("active");
                                     		</select>
                                 			</div>
                             			</div>
+                            			
+                            			<div class="component form-group" data-type="PreDriverData">
+                                			<label class="control-label col-sm-4" for="PreDriverDataName">駕駛姓名</label>
+                                			<div class="controls col-sm-8">
+                                    			<input type="text" class="form-control" name="" id="PreDriverDataName" style="margin-bottom:5px" value="預設被保險人，請按照身份證或駕照姓名填寫">
+                                    		</div>
+                                    		<label class="control-label col-sm-4" for="PreDriverDataPhone">駕駛手機</label>
+                                			<div class="controls col-sm-8">
+                                    			<input type="text" class="form-control" name="" id="PreDriverDataPhone" style="margin-bottom:5px" value="格式：0900-000-000">
+                                    		</div>
+                                    		<label class="control-label col-sm-4" for="PreDriverDataMail">聯絡郵件</label>
+                                			<div class="controls col-sm-8">
+                                    			<input type="text" class="form-control" name="" id="PreDriverDataMail" style="margin-bottom:5px" value="任何臨時車輛異動將即時以電子郵件通知您">
+                                    		</div>
+                                    		<label class="control-label col-sm-4" for="PreDriverDataLicense">駕照號碼</label>
+                                			<div class="controls col-sm-8">
+                                    			<input type="text" class="form-control" name="" id="PreDriverDataLicense" style="margin-bottom:5px" value="主管機關備查用，請務必填寫正確">
+                                    		</div>
+                            			</div>
+                            			
                         			</div>
                         		</div>
                         	</div>
