@@ -188,14 +188,7 @@
 						</div>
 						<div class="tab-pane fade" id="service-three">
 							<h4>Service</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Quae repudiandae fugiat illo cupiditate excepturi esse officiis
-								consectetur, laudantium qui voluptatem. Ad necessitatibus velit,
-								accusantium expedita debitis impedit rerum totam id. Lorem ipsum
-								dolor sit amet, consectetur adipisicing elit. Natus quibusdam
-								recusandae illum, nesciunt, architecto, saepe facere, voluptas
-								eum incidunt dolores magni itaque autem neque velit in. At quia
-								quaerat asperiores.</p>
+							<p>目前尚無優惠方案的欄位，是商家上架還是配件上架??</p>
 							<a href="#accessoriesRoW">配件配件配件</a>
 						</div>
 					</div>
