@@ -82,14 +82,6 @@
 	
 	<!-- Begin: 訂單相關 -->
 	<servlet>
-		<servlet-name>Insert</servlet-name>
-		<servlet-class>com.orders.controller.OrdersServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Insert</servlet-name>
-		<url-pattern>/Insert.gg</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>ActionCom</servlet-name>
 		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
 	</servlet>
@@ -97,46 +89,23 @@
 		<servlet-name>ActionCom</servlet-name>
 		<url-pattern>/ActionCom.do</url-pattern>
 	</servlet-mapping>
-		<servlet>
-		<servlet-name>fakeDataTest</servlet-name>
+	<servlet>
+		<servlet-name>ActionMem</servlet-name>
+		<servlet-class>com.orders.controller.OrdersActionMem</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ActionMem</servlet-name>
+		<url-pattern>/ActionMem.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>FakeDataTest</servlet-name>
 		<servlet-class>com.orders.controller.fakeData</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>fakeDataTest</servlet-name>
-		<url-pattern>/fakeData.gg</url-pattern>
+		<servlet-name>FakeDataTest</servlet-name>
+		<url-pattern>/FakeSession</url-pattern>
 	</servlet-mapping>
-	<servlet>
-		<servlet-name>cancelCom</servlet-name>
-		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>cancelCom</servlet-name>
-		<url-pattern>/cancelCom.gg</url-pattern>
-	</servlet-mapping>
-<!--   <servlet> -->
-<!--     <servlet-name>s</servlet-name> -->
-<!--     <servlet-class>com.orders.controller.OrdersServlet</servlet-class> -->
-<!--   </servlet> -->
-<!--   <servlet-mapping> -->
-<!--     <servlet-name>s</servlet-name> -->
-<!--     <url-pattern>/se.gg</url-pattern> -->
-<!--   </servlet-mapping> -->
-	<servlet>
-		<servlet-name>newOrdCom</servlet-name>
-		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>newOrdCom</servlet-name>
-		<url-pattern>/newOrdCom.gg</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>reCarCom</servlet-name>
-		<servlet-class>com.orders.controller.OrdersActionCom</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>reCarCom</servlet-name>
-		<url-pattern>/reCarCom.gg</url-pattern>
-	</servlet-mapping>
+
 <!-- End: 訂單相關 -->
 	
 	<!--prod manage-->
