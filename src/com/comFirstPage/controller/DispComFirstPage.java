@@ -65,7 +65,8 @@ public class DispComFirstPage extends HttpServlet {
 		comAdressArray.add("\""+comVO.getComAddr()+"\""); //把每一家地址存入
 		request.setAttribute("comNameArray", comNameArray);//為了給Google Map使用
 		request.setAttribute("comAdressArray", comAdressArray);//為了給Google Map使用
-		String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
+		//String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
+		String location = "目前這行用不到";
 		System.out.println("location="+location);
 		request.setAttribute("location", location);//為了給Google Map使用
 		request.setAttribute("rowsPerPage", 1);//每頁只有1個商家

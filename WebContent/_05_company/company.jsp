@@ -197,10 +197,6 @@
 			</div>
 		</div>
 		<!-- /.row -->
-
-
-
-
 		<!-- Team Members -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -212,11 +208,12 @@
 					<form class="form-inline" role="form" name="searchMoney"
 						id="searchMoney" action="" method="post">
 						<div class="form-group">
-							<select class="form-control input-lg" name="prod_type">
-								<option value="1">汽車</option>
-								<option value="2">機車</option>
-								<option value="3">腳踏車</option>
-							</select>
+<!-- 							<select class="form-control input-lg" name="prod_type"> -->
+<!-- 								<option value="1">汽車</option> -->
+<!-- 								<option value="2">機車</option> -->
+<!-- 								<option value="3">腳踏車</option> -->
+<!-- 							</select>     -->
+                                <input type="hidden" class="form-control input-lg" name="prod_type" value="1">						     
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control input-lg"
@@ -243,9 +240,9 @@
 			<div class="col-lg-12">
 				<ul id="prodsTab" class="nav nav-tabs nav-justified">
 					<li class="active" id="car-li"><a href="#car-content"
-						data-toggle="tab" id=car-a><i class="fa fa-car"></i>汽車(${numOfCar})</a></li>
+						data-toggle="tab" id=car-a><i class="fa fa-carx"></i>汽車(${numOfCar})</a></li>
 					<li class="" id="motor-li"><a href="#mortor-content"
-						data-toggle="tab" id=motor-a><i class="fa fa-phone"></i>
+						data-toggle="tab" id=motor-a><i class="fa fa-motorcycle"></i>
 							機車(${numOfMotor})</a></li>
 					<li class="" id="bike-li"><a href="#bike-content"
 						data-toggle="tab" id=bike-a><i class="fa fa-bicycle"></i>
@@ -432,15 +429,9 @@
 	<!-- 	Antai Test jQuery Test-->
 	<script>
 		//-------變數區------------
-		var numOfCar =
-	<%=request.getAttribute("numOfCar")%>
-		;
-		var numOfMotor =
-	<%=request.getAttribute("numOfMotor")%>
-		;
-		var numOfBike =
-	<%=request.getAttribute("numOfBike")%>
-		;
+		var numOfCar =<%=request.getAttribute("numOfCar")%>;
+		var numOfMotor =<%=request.getAttribute("numOfMotor")%>;
+		var numOfBike =<%=request.getAttribute("numOfBike")%>;
 		//---------函數區--------------
 		function hideTab() { //如果是空的就把Tab隱藏起來
 			if (numOfCar == 0) {
@@ -470,8 +461,17 @@
 			}
 		}
 		function SearchMoneyRange() {
+			$("#car-li").click(function(){
+				 $("input[name='prod_type']").val(1);
+			});
+			$("#motor-li").click(function(){
+				 $("input[name='prod_type']").val(2);
+			});
+			$("#bike-li").click(function(){
+				 $("input[name='prod_type']").val(3);
+			});
 			$("#SearchButton").click(function() {
-				var prod_type = $("select[name='prod_type']").val();
+				var prod_type = $("input[name='prod_type']").val();
 				var SearchMoneyLow = $("input[name='SearchMoneyLow']").val();
 				var SearchMoneyHigh = $("input[name='SearchMoneyHigh']").val();
 				var jsonString= <%=request.getAttribute("jsonString")%>;
@@ -479,17 +479,6 @@
 					alert("價格搜尋上下限不可空白");
 					return;
 				}
-				//--------當切到該車種按下搜尋，顯示商品也應該要切換到該商品種類-----
-				if(prod_type == 1){//汽車
-					$("#car-li").attr("class", "active");
-					$("#car-content").attr("class", "tab-pane fade active in");
-				}else if(prod_type == 2){//機車
-					$("#motor-li").attr("class", "active");
-					$("#motor-content").attr("class", "tab-pane fade active in");
-				}else if(prod_type == 3){//腳踏車
-					$("#bike-li").attr("class", "active");
-					$("#bike-content").attr("class", "tab-pane fade active in");
-				}				
 				//--------根據不同車種及價格範圍決定需要顯示的車子--------
 				numOfCar=0;
 				numOfMotor=0;
@@ -531,16 +520,36 @@
 								alert("價格搜尋prod_type超出範圍");
 								break;
 							}//end switch(prod_type)
-						}//end else		
-					}//end 	if(jsonString[i]["prod_type"] == prod_type){ //只有當要過濾的車種與該商品車種符合才要進行動作										
+						}//end else	不符合搜尋範圍
+					}//end 	if(jsonString[i]["prod_type"] == prod_type){ //只有當要過濾的車種與該商品車種符合才要進行動作		
+					else{ //沒有選到的車種則恢復
+						//alert(jsonString[i]["prod_type"]);
+						switch(jsonString[i]["prod_type"]){
+						case 1: //汽車
+							$("#car-"+jsonString[i]["prod_id"]).show();
+							numOfCar++;
+							break;
+						case 2://機車
+							$("#motor-"+jsonString[i]["prod_id"]).show();
+							numOfMotor++;
+							break;
+						case 3://腳踏車
+							$("#bike-"+jsonString[i]["prod_id"]).show();
+							numOfBike++;
+							break;
+						default:
+							alert("價格搜尋prod_type超出範圍");
+							break;
+						}
+					}
 				}//end for(var i=0; i<jsonString.length;i++)
-				if(prod_type == 1){//汽車
-					$("#car-a").html("<i class='fa fa-car'></i>汽車變動("+numOfCar+")");	
-				}else if(prod_type == 2){//機車
-					$("#motor-a").html("<i class='fa fa-car'></i>機車變動("+numOfMotor+")");	
-				}else if(prod_type == 3){//腳踏車
-					$("#bike-a").html("<i class='fa fa-car'></i>腳踏車變動("+numOfBike+")");
-				}
+				//if(prod_type == 1){//汽車
+					$("#car-a").html("<i class='fa fa-carx'></i>汽車("+numOfCar+")");	
+				//}else if(prod_type == 2){//機車
+					$("#motor-a").html("<i class='fa fa-motorcycle'></i>機車("+numOfMotor+")");	
+				//}else if(prod_type == 3){//腳踏車
+					$("#bike-a").html("<i class='fa fa-bicycle'></i>腳踏車("+numOfBike+")");
+				//}
 			});//end $("#SearchButton").click(function() 
 		}//end function SearchMoneyRange()
 		//------執行區--------
