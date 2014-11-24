@@ -198,20 +198,58 @@
 		</div>
 		<!-- /.row -->
 
+
+
+
 		<!-- Team Members -->
 		<div class="row">
 			<div class="col-lg-12">
 				<h2 class="page-header">商品</h2>
 			</div>
+			<!-- 價格搜尋bar -->
+			<div class="col-md-12 text-center">
+				<div class="row">
+					<form class="form-inline" role="form" name="searchMoney"
+						id="searchMoney" action="" method="post">
+						<div class="form-group">
+							<select class="form-control input-lg" name="prod_type">
+								<option value="1">汽車</option>
+								<option value="2">機車</option>
+								<option value="3">腳踏車</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control input-lg"
+								name="SearchMoneyLow" placeholder="金額下限(低)">
+						</div>
+						~
+						<div class="form-group">
+							<input type="text" class="form-control input-lg"
+								name="SearchMoneyHigh" placeholder="金額上限(高)">
+						</div>
+						<button class="btn btn-default btn-lg" type="button"
+							id="SearchButton">
+							<i class="fa fa-search"></i>
+						</button>
+						<div>
+							<Font color="red">${ErrMsg}</Font>
+						</div>
+					</form>
+					<br>
+				</div>
+			</div>
+			<!-- 價格搜尋bar End -->
 			<!-- 標籤 -->
 			<div class="col-lg-12">
 				<ul id="prodsTab" class="nav nav-tabs nav-justified">
-						<li class="active" id = "car-li"><a href="#car-content" data-toggle="tab"><i
-								class="fa fa-car" ></i> 汽車(${numOfCar})</a></li>
-						<li class="" id = "motor-li"><a href="#mortor-content" data-toggle="tab"><i
-								class="fa fa-phone"></i> 機車(${numOfMotor})</a></li>
-						<li class="" id = "bike-li"><a href="#bike-content" data-toggle="tab"><i
-								class="fa fa-bicycle"></i> 腳踏車(${numOfBike})</a></li>
+					<li class="active" id="car-li"><a href="#car-content"
+						data-toggle="tab" id=car-a><i class="fa fa-car"></i>汽車(${numOfCar})</a></li>
+					<li class="" id="motor-li"><a href="#mortor-content"
+						data-toggle="tab" id=motor-a><i class="fa fa-phone"></i>
+							機車(${numOfMotor})</a></li>
+					<li class="" id="bike-li"><a href="#bike-content"
+						data-toggle="tab" id=bike-a><i class="fa fa-bicycle"></i>
+							腳踏車(${numOfBike})</a></li>
 				</ul>
 			</div>
 			<!-- /標籤 -->
@@ -223,7 +261,7 @@
 						end="${prodsVos.size()-1}">
 						<c:if test="${ProductVO.prodType == 1}">
 							<!-- 車車1 -->
-							<div class="col-md-4 text-center">
+							<div class="col-md-4 text-center" id="car-${ProductVO.prodId}">
 								<div class="thumbnail">
 									<a href="" data-toggle="modal" data-target="#prod_detail">
 										<img class="img-responsive"
@@ -231,6 +269,7 @@
 										alt="">
 										<div class="caption">
 											<h3>${ProductVO.prodName}</h3>
+											<p>價錢:${ProductVO.prodPrice}台幣/日</p>
 											<p>${ProductVO.prodArticle}</p>
 										</div>
 									</a>
@@ -245,7 +284,7 @@
 						end="${prodsVos.size()-1}">
 						<c:if test="${ProductVO.prodType == 2}">
 							<!-- 機車2 -->
-							<div class="col-md-4 text-center">
+							<div class="col-md-4 text-center" id="motor-${ProductVO.prodId}">
 								<div class="thumbnail">
 									<a href="" data-toggle="modal" data-target="#prod_detail">
 										<img class="img-responsive"
@@ -253,6 +292,7 @@
 										alt="">
 										<div class="caption">
 											<h3>${ProductVO.prodName}</h3>
+											<p>價錢:${ProductVO.prodPrice}台幣/日</p>
 											<p>${ProductVO.prodArticle}</p>
 										</div>
 									</a>
@@ -267,7 +307,7 @@
 						end="${prodsVos.size()-1}">
 						<c:if test="${ProductVO.prodType == 3}">
 							<!-- 腳踏車3 -->
-							<div class="col-md-4 text-center">
+							<div class="col-md-4 text-center" id="bike-${ProductVO.prodId}">
 								<div class="thumbnail">
 									<a href="" data-toggle="modal" data-target="#prod_detail">
 										<img class="img-responsive"
@@ -275,6 +315,7 @@
 										alt="">
 										<div class="caption">
 											<h3>${ProductVO.prodName}</h3>
+											<p>價錢:${ProductVO.prodPrice}台幣/小時</p>
 											<p>${ProductVO.prodArticle}</p>
 										</div>
 									</a>
@@ -387,42 +428,125 @@
 
 	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	
-<!-- 	Antai Test jQuery Test-->
+
+	<!-- 	Antai Test jQuery Test-->
 	<script>
-	//-------變數區------------
-	var numOfCar = <%= request.getAttribute("numOfCar")%>;
-	var numOfMotor = <%= request.getAttribute("numOfMotor")%>;
-	var numOfBike = <%= request.getAttribute("numOfBike")%>;
-	//---------函數區--------------
-	function hideTab(){ //如果是空的就把Tab隱藏起來
-		if(numOfCar == 0){
-			$("#car-li").hide();
+		//-------變數區------------
+		var numOfCar =
+	<%=request.getAttribute("numOfCar")%>
+		;
+		var numOfMotor =
+	<%=request.getAttribute("numOfMotor")%>
+		;
+		var numOfBike =
+	<%=request.getAttribute("numOfBike")%>
+		;
+		//---------函數區--------------
+		function hideTab() { //如果是空的就把Tab隱藏起來
+			if (numOfCar == 0) {
+				$("#car-li").hide();
+			}
+			if (numOfMotor == 0) {
+				$("#motor-li").hide();
+			}
+			if (numOfBike == 0) {
+				$("#bike-li").hide();
+			}
 		}
-		if(numOfMotor == 0){
-			$("#motor-li").hide();
+		function showActive() {
+			//car 已經預設是active，按照順序如果不是空的就設為Active
+			if (numOfCar > 0) {
+				return;
+			}
+			if (numOfMotor > 0) {
+				$("#motor-li").attr("class", "active");
+				$("#mortor-content").attr("class", "tab-pane fade active in");
+				return;
+			}
+			if (numOfBike > 0) {
+				$("#bike-li").attr("class", "active");
+				$("#bike-content").attr("class", "tab-pane fade active in");
+				return;
+			}
 		}
-		if(numOfBike == 0){
-			$("#bike-li").hide();
-		}
-	}
-	function showActive(){
-		//car 已經預設是active，按照順序如果不是空的就設為Active
-		if(numOfCar > 0){return;}
-		if(numOfMotor > 0){
-			$("#motor-li").attr("class","active");
-			$("#mortor-content").attr("class","tab-pane fade active in");
-			return;
-		}
-		if(numOfBike > 0){
-			$("#bike-li").attr("class","active");
-			$("#bike-content").attr("class","tab-pane fade active in");
-			return;
-		}
-	}
-	//------執行區--------
-	hideTab();
-	showActive();
+		function SearchMoneyRange() {
+			$("#SearchButton").click(function() {
+				var prod_type = $("select[name='prod_type']").val();
+				var SearchMoneyLow = $("input[name='SearchMoneyLow']").val();
+				var SearchMoneyHigh = $("input[name='SearchMoneyHigh']").val();
+				var jsonString= <%=request.getAttribute("jsonString")%>;
+				if(SearchMoneyLow=="" || SearchMoneyHigh==""){
+					alert("價格搜尋上下限不可空白");
+					return;
+				}
+				//--------當切到該車種按下搜尋，顯示商品也應該要切換到該商品種類-----
+				if(prod_type == 1){//汽車
+					$("#car-li").attr("class", "active");
+					$("#car-content").attr("class", "tab-pane fade active in");
+				}else if(prod_type == 2){//機車
+					$("#motor-li").attr("class", "active");
+					$("#motor-content").attr("class", "tab-pane fade active in");
+				}else if(prod_type == 3){//腳踏車
+					$("#bike-li").attr("class", "active");
+					$("#bike-content").attr("class", "tab-pane fade active in");
+				}				
+				//--------根據不同車種及價格範圍決定需要顯示的車子--------
+				numOfCar=0;
+				numOfMotor=0;
+				numOfBike=0;
+				for(var i=0; i<jsonString.length;i++){ 
+					if(jsonString[i]["prod_type"] == prod_type){ //只有當要過濾的車種與該商品車種符合才要進行動作
+						if( (jsonString[i]["prod_price"] >= SearchMoneyLow) && (jsonString[i]["prod_price"] <= SearchMoneyHigh) ){
+							//符合搜尋價格範圍
+							switch(prod_type){
+							case "1": //汽車
+								$("#car-"+jsonString[i]["prod_id"]).show();
+								numOfCar++;
+								break;
+							case "2"://機車
+								$("#motor-"+jsonString[i]["prod_id"]).show();
+								numOfMotor++;
+								break;
+							case "3"://腳踏車
+								$("#bike-"+jsonString[i]["prod_id"]).show();
+								numOfBike++;
+								break;
+							default:
+								alert("價格搜尋prod_type超出範圍");
+								break;
+							}
+						}else{
+							//不符合搜尋範圍
+							switch(prod_type){
+							case "1": //汽車
+								$("#car-"+jsonString[i]["prod_id"]).hide();
+								break;
+							case "2"://機車
+								$("#motor-"+jsonString[i]["prod_id"]).hide();
+								break;
+							case "3"://腳踏車
+								$("#bike-"+jsonString[i]["prod_id"]).hide();
+								break;
+							default:
+								alert("價格搜尋prod_type超出範圍");
+								break;
+							}//end switch(prod_type)
+						}//end else		
+					}//end 	if(jsonString[i]["prod_type"] == prod_type){ //只有當要過濾的車種與該商品車種符合才要進行動作										
+				}//end for(var i=0; i<jsonString.length;i++)
+				if(prod_type == 1){//汽車
+					$("#car-a").html("<i class='fa fa-car'></i>汽車變動("+numOfCar+")");	
+				}else if(prod_type == 2){//機車
+					$("#motor-a").html("<i class='fa fa-car'></i>機車變動("+numOfMotor+")");	
+				}else if(prod_type == 3){//腳踏車
+					$("#bike-a").html("<i class='fa fa-car'></i>腳踏車變動("+numOfBike+")");
+				}
+			});//end $("#SearchButton").click(function() 
+		}//end function SearchMoneyRange()
+		//------執行區--------
+		hideTab();
+		showActive();
+		SearchMoneyRange();
 	</script>
 </body>
 </html>
