@@ -51,7 +51,7 @@ public class DispComFirstPage extends HttpServlet {
 		prodsVos = prodService.getProdsByComIdNoRepeat(comId);
 		//prodsVos = prodService.getProdsByComId(comId);		
 		request.setAttribute("prodsVos", prodsVos);
-		checkHasTheTypeProduct(prodsVos,request);//檢查哪種車種是空的並傳到前端
+		countsTheTypeProduct(prodsVos,request);//統計車種數量並傳到前端
 		printProdsOfACom(prodsVos);// 測試用:vos內值是否正確
 		//----------丟給Google Map使用--------------
 		List<String> comAdressArray = new ArrayList<String>();
@@ -115,38 +115,26 @@ public class DispComFirstPage extends HttpServlet {
 		System.out.println("------------ComDataEnd--------------");
 	}
 	
-	protected void checkHasTheTypeProduct(List<ProductVO> prodsVos,HttpServletRequest request) {
-		boolean hasCar = false;
-		boolean hasMotor = false;
-		boolean hasBike = false;
+	protected void countsTheTypeProduct(List<ProductVO> prodsVos,HttpServletRequest request) {
+		int numOfCar = 0;
+		int numOfMotor = 0;
+		int numOfBike = 0;
 		for(ProductVO prodVo : prodsVos){//若全部檢查完非true代表沒有該種商品
 			if(prodVo.getProdType()==1){
-				hasCar = true;
+				numOfCar++;
 			}
 			if(prodVo.getProdType()==2){
-				hasMotor = true;
+				numOfMotor++;
 			}
 			if(prodVo.getProdType()==3){
-				hasBike = true;
+				numOfBike++;
 			}
 		}//end for(ProductVO prodVo : prodsVos)
-		if(hasCar){
-			request.setAttribute("hasCar", 1);
-		}else{
-			request.setAttribute("hasCar", 0);
-		}
-		if(hasMotor){
-			request.setAttribute("hasMotor", 1);
-		}else{
-			request.setAttribute("hasMotor", 0);
-		}
-		if(hasBike){
-			request.setAttribute("hasBike", 1);
-		}else{
-			request.setAttribute("hasBike", 0);
-		}
-		System.out.println("hasCar="+hasCar);
-		System.out.println("hasMotor="+hasMotor);
-		System.out.println("hasBike="+hasBike);
+			request.setAttribute("numOfCar", numOfCar);
+			request.setAttribute("numOfMotor", numOfMotor);
+			request.setAttribute("numOfBike", numOfBike);
+		System.out.println("numOfCar="+numOfCar);
+		System.out.println("numOfMotor="+numOfMotor);
+		System.out.println("numOfBike="+numOfBike);
 	}//end protected void checkHasTheTypeProduct
 }//end public class DispComFirstPage extends HttpServlet

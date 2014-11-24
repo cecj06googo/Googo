@@ -213,18 +213,12 @@
 			<!-- 標籤 -->
 			<div class="col-lg-12">
 				<ul id="prodsTab" class="nav nav-tabs nav-justified">
-					<c:if test="${hasCar == 1}">
-						<li class="active"><a href="#car-content" data-toggle="tab"><i
-								class="fa fa-car"></i> 汽車</a></li>
-					</c:if>
-					<c:if test="${hasMotor == 1}">
-						<li class=""><a href="#mortor-content" data-toggle="tab"><i
-								class="fa fa-phone"></i> 機車</a></li>
-					</c:if>
-					<c:if test="${hasBike == 1}">
-						<li class=""><a href="#bike-content" data-toggle="tab"><i
-								class="fa fa-bicycle"></i> 腳踏車</a></li>
-					</c:if>
+						<li class="active" id = "car-li"><a href="#car-content" data-toggle="tab"><i
+								class="fa fa-car" ></i> 汽車(${numOfCar})</a></li>
+						<li class="" id = "motor-li"><a href="#mortor-content" data-toggle="tab"><i
+								class="fa fa-phone"></i> 機車(${numOfMotor})</a></li>
+						<li class="" id = "bike-li"><a href="#bike-content" data-toggle="tab"><i
+								class="fa fa-bicycle"></i> 腳踏車(${numOfBike})</a></li>
 				</ul>
 			</div>
 			<!-- /標籤 -->
@@ -406,6 +400,42 @@
 
 	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
+	
+<!-- 	Antai Test jQuery Test-->
+	<script>
+	//-------變數區------------
+	var numOfCar = <%= request.getAttribute("numOfCar")%>;
+	var numOfMotor = <%= request.getAttribute("numOfMotor")%>;
+	var numOfBike = <%= request.getAttribute("numOfBike")%>;
+	//---------函數區--------------
+	function hideTab(){ //如果是空的就把Tab隱藏起來
+		if(numOfCar == 0){
+			$("#car-li").hide();
+		}
+		if(numOfMotor == 0){
+			$("#motor-li").hide();
+		}
+		if(numOfBike == 0){
+			$("#bike-li").hide();
+		}
+	}
+	function showActive(){
+		//car 已經預設是active，按照順序如果不是空的就設為Active
+		if(numOfCar > 0){return;}
+		if(numOfMotor > 0){
+			$("#motor-li").attr("class","active");
+			$("#mortor-content").attr("class","tab-pane fade active in");
+			return;
+		}
+		if(numOfBike > 0){
+			$("#bike-li").attr("class","active");
+			$("#bike-content").attr("class","tab-pane fade active in");
+			return;
+		}
+	}
+	//------執行區--------
+	hideTab();
+	showActive();
+	</script>
 </body>
 </html>
