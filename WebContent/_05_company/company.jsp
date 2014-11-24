@@ -237,10 +237,8 @@
 										src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
 										alt="">
 										<div class="caption">
-											prodid = ${ProductVO.prodId} prodType = ${ProductVO.prodType}
 											<h3>${ProductVO.prodName}</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Iste saepe et quisquam nesciunt maxime.</p>
+											<p>${ProductVO.prodArticle}</p>
 										</div>
 									</a>
 								</div>
@@ -261,10 +259,8 @@
 										src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
 										alt="">
 										<div class="caption">
-											prodid = ${ProductVO.prodId}
 											<h3>${ProductVO.prodName}</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Iste saepe et quisquam nesciunt maxime.</p>
+											<p>${ProductVO.prodArticle}</p>
 										</div>
 									</a>
 								</div>
@@ -285,10 +281,8 @@
 										src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
 										alt="">
 										<div class="caption">
-											prodid = ${ProductVO.prodId}
 											<h3>${ProductVO.prodName}</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Iste saepe et quisquam nesciunt maxime.</p>
+											<p>${ProductVO.prodArticle}</p>
 										</div>
 									</a>
 								</div>
