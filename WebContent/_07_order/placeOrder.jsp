@@ -57,7 +57,8 @@
 </div>
 <!-------------- /.流程顯示 ---------------->
 
-<form role="form">
+<form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
+<input type="hidden" name="action" value="insert" />
 <!-------------- 訂單第一頁 ----------------->
     <div class="row setup-content" id="step-1">
         <div class="col-xs-12 div-back div-height">
@@ -73,11 +74,13 @@
       			<div class="form-group">
                    <label><span class="span-red">*</span>取車日期</label>
 <%--                    <input type="image" id="icon-calendar" src="${pageContext.request.contextPath}/img/order/calendar.png"> --%>
-				   <input id="showGet"  maxlength="100" type="text" required="required" class="form-control" placeholder="請選擇取車日期" />
+				   <input id="showGet"  maxlength="100" type="text" required="required" class="form-control"  placeholder="請選擇取車日期" />
+                   <input type="hidden" name="ord_getday" value="" />
                 </div>
                 <div class="form-group">
                    <label><span class="span-red">*</span>還車日期</label>
-                   <input id="showReturn"  maxlength="100" type="text" required="required" class="form-control" placeholder="請選擇還車日期" />
+                   <input id="showReturn"  maxlength="100" type="text" required="required" class="form-control"  placeholder="請選擇還車日期" />
+	               <input type="hidden" name="ord_reday" value="" />
 	            </div>
 	            <div class="form-group">
                    <label><span class="span-red">*</span>車型</label>
@@ -109,7 +112,7 @@
 		   <span class="span-accept x-border"><input type="checkbox" />駕駛人年齡在25-70歲之間？</span>
 		    </div>
 		    <div class=" col-xs-12 x-border ">
-		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >下一步</button>
+		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="nextOne">下一步</button>
 		    </div>
 	    </div>
 	</div>
@@ -123,11 +126,11 @@
 	            <span class="span-accept x-right x-border"><input type="checkbox" />同會員本人</span>
                 <div class="form-group x-border">
                     <label class="control-label "><span class="span-red">*</span>姓名</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="範例:王小明" />
+                    <input maxlength="200" type="text" required="required" class="form-control" name="item_name" placeholder="範例:王小明" />
                 </div>
                 <div class="form-group">
                     <label class="control-label"><span class="span-red">*</span>電子郵箱</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="請輸入e-mail"  />
+                    <input maxlength="200" type="text" required="required" class="form-control" name="item_email" placeholder="請輸入e-mail"  />
                 </div>
                 <div class="form-group">
                     <label class="control-label"><span class="span-red">*</span>確認郵箱</label>
@@ -135,8 +138,8 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label"><span class="span-space"></span>連絡電話</label><br>
-                    <span class="span-red">*</span>手機<input maxlength="200" type="text" required="required"  placeholder="請輸入手機"  />
-                    	市話<input maxlength="200" type="text" required="required"  placeholder="請輸入市話"  />
+                    <span class="span-red">*</span>手機<input maxlength="200" type="text" required="required" name="item_phone" placeholder="請輸入手機"  />
+                    	市話<input maxlength="200" type="text" required="required" name="item_tel" placeholder="請輸入市話"  />
                 </div>          
             </div>
                   	        <div class="col-xs-6 x-border div-css ">
@@ -174,13 +177,14 @@
 <script>
 $(document).ready(function () {
 // 	http://www.jqueryrain.com/?lnsG0UbP
+	var timeChar,oneChar,twoChar,thrChar,fourChar,getTime,reTime;
 	$('#showGet').datetimepicker({
 		  lang:'zh-TW',
-		  format:"Y年m月d日    H:i",
+		  format:"Y年m月d日 H:i",
 		  minDate:0,
 // 		  minTime:0,
 		  startDate:0,
-		  defaultTime:0,
+		  defaultTime:'11:30',
 		  step: 30, //(時距)
 		  allowTimes:[
 		              '00:00','00:30','01:00','01:30','02:00','02:30','03:00',
@@ -190,15 +194,22 @@ $(document).ready(function () {
 		              '14:00','14:30','15:00','15:30','16:00','16:30','17:00',
 		              '17:30','18:00','18:30','19:00','19:30','20:00','20:30',
 		              '21:00','21:30','22:00','22:30','23:00','23:30'
-		             ]
+		             ],
+		  onSelectTime:function(GS,$i){
+		 	 timeChar = $i.val();
+   			 oneChar = timeChar.substring(0,4); // yyyy
+   			 twoChar = timeChar.substring(5,7); // mm
+   			 thrChar = timeChar.substring(8,10);// dd
+   			 fourChar = timeChar.substring(12);  // hh:ss 	
+   			 getTime = oneChar + "-" + twoChar + "-" + thrChar + " " + fourChar  + ":00";
+		  }
 	});
-	
 	$('#showReturn').datetimepicker({
 		  lang:'zh-TW',
-		  format:"Y年m月d日   H:i",
+		  format:"Y年m月d日 H:i",
 		  minDate:0,
 // 		  minTime:0,
-		  defaultTime:0,
+		  defaultTime:'16:30',
 		  step: 30, //(時距)
 		  allowTimes:[
 		              '00:00','00:30','01:00','01:30','02:00','02:30','03:00',
@@ -208,8 +219,23 @@ $(document).ready(function () {
 		              '14:00','14:30','15:00','15:30','16:00','16:30','17:00',
 		              '17:30','18:00','18:30','19:00','19:30','20:00','20:30',
 		              '21:00','21:30','22:00','22:30','23:00','23:30'
-		             ]
+		             ],
+   		  onSelectTime:function(GS,$i){
+   			 timeChar = $i.val();
+   			 oneChar = timeChar.substring(0,4); // yyyy
+   			 twoChar = timeChar.substring(5,7); // mm
+   			 thrChar = timeChar.substring(8,10);// dd
+   			fourChar = timeChar.substring(12);  // hh:ss 	
+   			reTime = oneChar + "-" + twoChar + "-" + thrChar + " " + fourChar  + ":00";
+   			
+		  } 
 	});
+	
+		$("#nextOne").click(function() {
+			$("input[name='ord_getday']").val(getTime);
+			$("input[name='ord_reday']").val(reTime);
+		});
+		
 	
 //-----------------------------------	
 	

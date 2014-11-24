@@ -8,33 +8,34 @@
 <title>訂單頁面</title>
 <jsp:include page="/_00_fragment/top1.jsp" />
 <jsp:include page="/_00_fragment/css.jsp" />
-<link href="${pageContext.request.contextPath}/_07_order/jquery.datetimepicker.css" rel="stylesheet" type="text/css">
-<script src="${pageContext.request.contextPath}/_07_order/jquery.datetimepicker.js"></script>
 
-<script>
-$(document).ready(function () {
 
-	$('#show').datetimepicker({
-		  lang:'zh-TW'
-		  
-	});
-});
-</script>
 </head>
 	
 <body>
-<%-- <jsp:include page="/_00_fragment/top1.jsp" /> --%>
-   	<!-- 登入 -->
-		
-		<!-- 忘記密碼 -->
-<%-- 		<jsp:include page="/_01_login/forgetPwd.jsp" /> --%>
+session內的值:<br>
+com_id： ${com_id == null ? '無':com_id} <br>
+mem_id：${ mem_id == null ? '無':mem_id}<br>
+item_total：${ item_total  == null ? '無':item_total}<br>
+prod_id：${ prod_id == null ? '無':prod_id}<br>
+acc_id：${ acc_id  == null ? '無':acc_id}<br>
 
 
 
-<label><span class="span-red">*</span>取車日期</label>
-<%--                    <input type="image" id="icon-calendar" src="${pageContext.request.contextPath}/img/order/calendar.png"> --%>
-				   <input id="show"  maxlength="100" type="text" required="required" class="form-control" placeholder="請選擇日期" />
-<input   maxlength="100" type="text" required="required" class="form-control"  />
+<hr>
+<form  role="form" action="<%=request.getContextPath()%>/FakeSession" method="post">
+<label>訂單頁面要的session值</label><br>
+com_id:(商家VO)<input maxlength="100" type="text" required="required"  value="3" name="com_id"/><br>
+mem_id:(會員登入VO)<input maxlength="100" type="text" required="required"  value="3" name="mem_id"/><br>
+item_total:(商品VO的價格+配件的價格)<input maxlength="100" type="text" required="required"  value="6666" name="item_total"/><br>
+prod_id:(商品VO的id)<input maxlength="100" type="text" required="required"  value="1" name="prod_id"/><br>
+acc_id:(配件的id  VO?)<input maxlength="100" type="text" required="required"  value="1" name="acc_id"/><br>
+<input type="hidden"    name="action" value="fake_ord"/>
+<button type="submit">存值</button>
+
+</form>
+<br>
+<h1><a href="<%=request.getContextPath()%>/_07_order/placeOrder.jsp">下訂單</a></h1>
 
 </body>
 </html>
