@@ -180,10 +180,10 @@
 						</div>
 						<div class="tab-pane fade" id="service-two">
 							<ul>
-								<li><h3>地址:${comVO.comAddr}</h3></li>
-								<li><h3>Service One</h3></li>
-								<li><h3>Service One</h3></li>
-								<li><h3>Service One</h3></li>
+								<li><h3>商店名稱:&nbsp${comVO.comName}</h3></li>
+								<li><h3>地址:&nbsp${comVO.comAddr}</h3></li>
+								<li><h3>聯絡電話:&nbsp${comVO.comTel}</h3></li>
+								<li><h3>聯絡人:&nbsp${comVO.comOwner}</h3></li>
 							</ul>
 						</div>
 						<div class="tab-pane fade" id="service-three">
