@@ -64,20 +64,20 @@
                      <span><font color="red" size="-1">${errorMsgs.errorAccount}</font></span>
                  </div>
                  <div class="control-group form-group">
-                     <label class="control-label">密碼:</label>
+                     <label class="control-label">修改新密碼:</label>
                      <div class="controls ">
                          <input type="password" class="form-control" name="comPwd" id="com_pwd" 
-                          placeholder="" value="${LoginComOK.comPwd}"
+                          placeholder="請輸入新密碼"
                           data-toggle="tooltip" data-placement="top" title="<h5>請輸入6-12個字元，英文數字至少各一。<h5>"  >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorPwd}</font></span>
                  </div>
                  <div class="control-group form-group">
-                     <label class="control-label">密碼確認:</label>
+                     <label class="control-label">確認新密碼:</label>
                      <div class="controls ">
                          <input type="password" class="form-control" name="comPwdConfirm" id="com_pwd"
-                          placeholder="請再次輸入密碼" value="${LoginComOK.comPwd}"
-                          data-toggle="tooltip" data-placement="top" title="<h5>請再次輸入密碼<h5>" >
+                          placeholder="請再次輸入新密碼"
+                          data-toggle="tooltip" data-placement="top" title="<h5>請再次輸入新密碼<h5>" >
                      </div>
                  </div>
                  <div class="control-group form-group">
@@ -199,9 +199,6 @@ $("[data-toggle='tooltip']").tooltip({html : true });
 	    		comPwd: {
 					trigger: 'keyup blur',
 					validators: {
-						notEmpty: {
-							message: '密碼欄請勿空白'
-						},
 						stringLength: {
 							min: 6,
 							max: 12,
@@ -221,9 +218,6 @@ $("[data-toggle='tooltip']").tooltip({html : true });
 				comPwdConfirm: {
 					trigger: 'keyup blur',
 					validators: {
-						notEmpty: {
-							message: '密碼確認不可空白'
-						},
 						identical: {
 							field: 'comPwd',
 							message:'與密碼不相符, 再試一次?'

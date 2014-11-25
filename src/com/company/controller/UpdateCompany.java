@@ -26,6 +26,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.company.model.CompanyService;
 import com.company.model.CompanyVO;
+import com.util.HashService;
 
 
 @MultipartConfig
@@ -75,12 +76,17 @@ public class UpdateCompany extends HttpServlet {
 						} 
 						else if ("comPwd".equals(item.getFieldName())) {
 							comPwd = fieldvalue.trim();
-							if (comPwd == null || comPwd.trim().length() == 0)
-								errorMsgs.put("errorPwd", "密碼欄請勿空白");
-							
-							String comPwdReg = "^[\\w]{6,12}$";
-							if (!comPwd.trim().matches(comPwdReg))
-								errorMsgs.put("errorPwd",	"密碼格式有誤(英數各一,長度限6~12字數");
+							if (comPwd == null || comPwd.trim().length() == 0)    // 未修改密碼
+								continue;
+							else {
+								String comPwdReg = "^[\\w]{6,12}$";
+								if (!comPwd.trim().matches(comPwdReg))
+									errorMsgs.put("errorPwd", "密碼格式有誤(英數各一,長度限6~12字數");
+								else {    // 格式正確, 將密碼加密
+									String encrypedString = HashService.encryptString(comPwd);
+									comPwd = HashService.getMD5Endocing(encrypedString);
+								}
+							}
 						} 
 						else if ("comName".equals(item.getFieldName())) {
 							comName = fieldvalue;
@@ -182,16 +188,17 @@ public class UpdateCompany extends HttpServlet {
 				if (comPic == null) {
 					comPic = comService.getOneCom(comID).getComPic();    // 取出原商家圖片
 				}
+				if (comPwd == null || comPwd.trim().length() == 0) {
+					comPwd = comService.getOneCom(comID).getComPwd();    // 未修改密碼, 取出原密碼
+				}
 				companyVO = comService.updateCompany(comID, comAccount, comPwd,
 						comName, comOwner, comAddr, comTel, comFax, comVAT,
 						comPic, comStatus);
 				
-				// 3.新增完成,準備轉交(Send the Success view)				
+				// 3.新增完成,準備轉交(Send the Success view)
 				session.setAttribute("LoginComOK", companyVO);
 				successMsgs.put("seccessUpdate", "修改完成");
 				String url = req.getContextPath() + "/_06_manage/modCom.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url);
-//				successView.forward(req, res);
 				res.sendRedirect(res.encodeRedirectURL(url));
 
 			// 其他可能的錯誤處理				

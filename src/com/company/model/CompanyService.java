@@ -64,8 +64,7 @@ public class CompanyService {
 		CompanyVO comVO = new CompanyVO();
 		comVO.setComID(comID);
 		comVO.setComAccount(comAccount);
-		String encrypedString = HashService.encryptString(comPwd);
-		comVO.setComPwd(HashService.getMD5Endocing(encrypedString));
+		comVO.setComPwd(comPwd);
 		comVO.setComName(comName);
 		comVO.setComOwner(comOwner);
 		comVO.setComAddr(comAddr);
