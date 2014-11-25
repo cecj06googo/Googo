@@ -189,7 +189,7 @@ $("#selectManage").addClass("active");
                                 			</div>
                             			</div>
 
-                            			<div class="component form-group" data-type="static_text">
+                            			<div class="component form-group" data-type="StaticText">
                                 			<label class="control-label col-sm-4">Static Text</label>
                                 			<div class="controls col-sm-8">
                                     		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

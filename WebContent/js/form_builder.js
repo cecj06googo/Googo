@@ -350,14 +350,18 @@ $(function() {
                 	option.text(pre_databean[index].description);
                 	select.append(option);
                 });
-                
-                
-                select.attr('id', 'custField_' + form_builder.counter + 'PreSelectBasic');
-                select.attr('name', select.attr('id'));
+
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
                 
-                //select.append(list_options);
-            }
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+            	select = el.find('select');
+            	
+            	select.attr('id', 'custField_' + form_builder.counter + '_PreSelectBasic');
+                select.attr('name', select.attr('id'));
+            },
         },
         
         PreDriverData: {
@@ -366,8 +370,6 @@ $(function() {
         	
         	get: function(){
         		var el = form_builder.getElement();
-        		
-        		console.log($(el).find("input[id$='PreDriverDataName']").val());
         		
         		$(this.prefix + 'NamePlaceholder').val($(el).find("input[id$='PreDriverDataName']").val());
         		$(this.prefix + 'PhonePlaceholder').val($(el).find("input[id$='PreDriverDataPhone']").val());
@@ -378,20 +380,25 @@ $(function() {
         	set: function(){
         		var el = form_builder.getElement();
         		
-        		console.log($(this.prefix + 'NamePlaceholder').val());
-        		
         		el.find('input[id$="PreDriverDataName"]').attr("value", $(this.prefix + 'NamePlaceholder').val());
         		el.find('input[id$="PreDriverDataPhone"]').attr("value", $(this.prefix + 'PhonePlaceholder').val());
         		el.find('input[id$="PreDriverDataMail"]').attr("value", $(this.prefix + 'MailPlaceholder').val());
         		el.find('input[id$="PreDriverDataLicense"]').attr("value", $(this.prefix + 'LicensePlaceholder').val());
-        		
-        		el.find('input[id$="PreDriverDataName"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataName');
-        		el.find('input[id$="PreDriverDataPhone"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataPhone');
-        		el.find('input[id$="PreDriverDataMail"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataMail');
-        		el.find('input[id$="PreDriverDataLicense"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataLicense');
-        		
+	
         	},
         	
+        	setIdentification: function(){
+            	var el = form_builder.getElement();
+            	
+            	el.find('input[id$="PreDriverDataName"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataName')
+            											 .attr("name", 'custField_' + form_builder.counter + '_PreDriverData');
+        		el.find('input[id$="PreDriverDataPhone"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataPhone')
+        												  .attr("name", 'custField_' + form_builder.counter + '_PreDriverData');
+        		el.find('input[id$="PreDriverDataMail"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataMail')
+        												 .attr("name", 'custField_' + form_builder.counter + '_PreDriverData');
+        		el.find('input[id$="PreDriverDataLicense"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataLicense')
+        													.attr("name", 'custField_' + form_builder.counter + '_PreDriverData');
+            },
         },
         
         /*====================== End: Predefined Components ====================*/
@@ -454,12 +461,17 @@ $(function() {
                     }
                 });
 
-                
-                select.attr('id', 'custField_' + form_builder.counter + '_SelectBasic');
-                select.attr('name', select.attr('id'));
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
                 select.html(list_options);
-            }
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+            	select = el.find('select');
+            	
+            	select.attr('id', 'custField_' + form_builder.counter + '_SelectBasic');
+                select.attr('name', select.attr('id'));
+            },
         },
 
         // multi select box options
@@ -519,14 +531,18 @@ $(function() {
                         }
                     }
                 });
-                	
-                
-                select.attr('id', 'custField_' + form_builder.counter + '_SelectMultiple');
-                //select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()) + '[]');
-                select.attr('name', select.attr('id'));
+
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));;
                 select.html(list_options);
-            }
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+            	select = el.find('select');
+            	
+            	select.attr('id', 'custField_' + form_builder.counter + '_SelectMultiple');
+                select.attr('name', select.attr('id'));
+            },
         },
 
         // checkbox options
@@ -571,14 +587,14 @@ $(function() {
 
                     // element name
                     //name = form_builder.cleanName($(this.prefix + 'name').val()),
-                    name = 'custField_' + form_builder.counter + '_checkbox',
 
                     // options buffer
                     list_options = "\n";
 
                 // loop through each option
                 $.each(checkbox_options, function(key, val) {
-                    var id = name + '_' + key;
+                    var name = $(el).data("name");
+                	var id = name + '_' + key;
 
                     if (val.length > 0) {
                         // if delimiter found, split val into array value -> display
@@ -604,7 +620,12 @@ $(function() {
 
                 label.text($(this.prefix + 'label').val());
                 el.find('.controls').html(list_options);
-            }
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement();
+            	$(el).data("name", 'custField_' + form_builder.counter + '_checkbox');
+            },
         },
 
         // radio buttons options
@@ -648,14 +669,14 @@ $(function() {
                     radio_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
                     // element name
-                    name = 'custField_' + form_builder.counter + '_radio',
 
                     // options buffer
                     list_options = "\n";
 
                 // loop through each option
                 $.each(radio_options, function(key, val) {
-                    var id = name+'_'+key;
+                    var name = $(el).data("name");
+                	var id = name+'_'+key;
 
                     if (val.length > 0) {
                         // if delimiter found, split val into array value -> display
@@ -681,12 +702,17 @@ $(function() {
 
                 label.text($(this.prefix + 'label').val());
                 el.find('.controls').html(list_options);
-            }
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement();
+            	$(el).data("name", 'custField_' + form_builder.counter + '_radio');
+            },
         },
 
         // static text options
-        static_text: {
-            prefix: '.options_static_text_',
+        StaticText: {
+            prefix: '.options_StaticText_',
 
             get: function() {
                 var el = form_builder.getElement();
@@ -700,6 +726,14 @@ $(function() {
 
                 el.find('label').text($(this.prefix + 'label').val());
                 el.find('.controls').html($(this.prefix + 'text').val());
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+                input = $(el).children("div[class!='close']");
+            	
+            	input.attr('id', 'custField_' + form_builder.counter + '_StaticText')
+            		 .attr('name', input.attr('id'));
             }
         },
 
