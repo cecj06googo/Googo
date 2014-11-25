@@ -46,7 +46,7 @@ public class ForgetPwdServlet extends HttpServlet{
 		// 3. 檢查使用者輸入資料
 		//如果userEmail欄位為空白，放一個錯誤訊息到errorMsgMap之內
 		if(userAccount == null || userAccount.trim().length() == 0){
-			errorMsgs.put("errorEmptyAccount","E-mail欄必須輸入");
+			errorMsgs.put("errorAccount","E-mail欄必須輸入");
 		}else if(userAccount != null && !userAccount.matches("[0-9a-zA-Z_-]+@[0-9a-zA-Z_-]+\\.[0-9a-zA-Z_-]+(\\.[0-9a-zA-Z_-])*")){
 			errorMsgs.put("errorAccount","E-mail格式不正確");
 		}
@@ -80,14 +80,14 @@ public class ForgetPwdServlet extends HttpServlet{
 			memVO = memSvc.getOneMem(userId);
 			session.setAttribute("memVO", memVO);
 			if(memVO == null){
-				errorMsgs.put("MemAccountNotFound", "查無此帳號");
+				errorMsgs.put("errorAccount", "查無此mem帳號");
 			}
 			}else if("Com".equals(userIdentity)){
 				CompanyService comSvc = new CompanyService();
 				comVO = comSvc.getOneCom(userId);
 				session.setAttribute("comVO", comVO);
 				if(comVO == null){
-					errorMsgs.put("ComAccountNotFound","查無此帳號");
+					errorMsgs.put("errorAccount","查無此com帳號");
 				}
 			}
 		if(!errorMsgs.isEmpty()){
@@ -98,7 +98,7 @@ public class ForgetPwdServlet extends HttpServlet{
 		/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 		SendResetPwdEmail.sendResetEmail(userAccount, req.getServerName(), req.getLocalPort(), req.getContextPath());
 		System.out.println("已寄出ResetMail");
-		String url = "sendMailSuccess.jsp";
+		String url = "/_01_login/sendMailSuccess.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url);
 		successView.forward(req, res);
 		
