@@ -20,6 +20,7 @@ import com.login.model.LoginService;
 import com.member.model.MemService;
 import com.member.model.MemVO;
 import com.orders.model.LoginOrdersOnLoad;
+import com.util.HashService;
 public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -53,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 			cookieUser = new Cookie("user", userAccount);
 			cookieUser.setMaxAge(12*60*60);
 			cookieUser.setPath(request.getContextPath());
-			String encodePassword = Base64.encodeBase64String(userPwd.getBytes());
+			String encodePassword = HashService.encryptString(userPwd);    // AES + Base64 加密
 			cookiePassword = new Cookie("password", encodePassword);
 			cookiePassword.setMaxAge(12*60*60);
 			cookiePassword.setPath(request.getContextPath());
