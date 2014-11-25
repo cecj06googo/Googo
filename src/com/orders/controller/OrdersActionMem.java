@@ -250,7 +250,19 @@ public class OrdersActionMem extends HttpServlet {
 		} // end insert
 		
 		
-		
+		if ("placeOrder".equals(action)) {
+			System.out.println("gg");
+			Integer com_id = Integer.parseInt(request.getParameter("com_id"));
+			
+			Integer prod_id = Integer.parseInt(request.getParameter("prod_id"));
+			System.out.println(com_id);
+			System.out.println(prod_id);
+			String url = "/_07_order/placeOrder.jsp";
+			RequestDispatcher successView = request
+					.getRequestDispatcher(url);
+			successView.forward(request, response);
+			
+		}
 		
 		
 		

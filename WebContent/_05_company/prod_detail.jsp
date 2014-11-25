@@ -134,7 +134,12 @@
                      
                     </tbody>
                   </table>
-                  <p><a href="#" class="btn btn-danger center-block" role="button">我要租</a></p>
+                  <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
+                  <p><button type="submit" class="btn btn-danger center-block" role="button">我要租</button></p>
+ 		    	  <input type="hidden" name="com_id" value="${comVO.comID}" />
+ 		    	  <input type="hidden" name="prod_id" value="${prodsVos.prodId}" />
+ 		    	  <input type="hidden" name="action" value="placeOrder" />
+ 		    	  </form>
  		    </div>
  		    </div>
  		    </div><!-- /.body-->
