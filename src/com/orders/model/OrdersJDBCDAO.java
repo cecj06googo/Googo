@@ -18,8 +18,8 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 	String passwd = "sa123456";
 
 	private static final String INSERT_Orders = 
-			"INSERT INTO Orders (ord_status,com_id,mem_id,ord_time,ord_getday,ord_reday,item_total)"
-			+ " VALUES (?, ?, ?, ?, ?, ?,?)";
+			"INSERT INTO Orders (ord_status,com_id,mem_id,ord_time,ord_getday,ord_reday,ord_lastuptime,item_total)"
+			+ " VALUES (?, ?, ?, ?, ?, ?,null,?)";
 	private static final String INSERT_OrderItem = 
 			"INSERT INTO Ord_item (ord_id,prod_id,acc_id,item_name,item_tel,item_phone,item_email,pritem_acc,item_all)"
 			+ " VALUES (?,?,?,?,?,?,?,?,?)";

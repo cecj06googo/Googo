@@ -18,6 +18,7 @@ public class SendResetPwdEmail {
 		String link = null;
 		
 		return link;
+
 	}
 
 }

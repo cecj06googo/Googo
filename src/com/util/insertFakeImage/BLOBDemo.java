@@ -182,6 +182,26 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 		return prodids;
 	}
 	
+	//讀出所有comid List<String>
+	public List<String> getComid(String tableName){
+		
+		String getProdidsQuery = "select com_id as num  from " + tableName;		
+		List<String> comids = new ArrayList<String>();
+		try {			
+			stmt = conn.prepareStatement(getProdidsQuery);
+			rs = stmt.executeQuery();		
+			while (rs.next()) {	
+				comids.add(rs.getString("num"));
+			}
+			System.out.println("getProdidsbyCarType成功總共"+comids.size()+"筆comid");
+		} catch (Exception e) {
+			System.out.println("getProdidsbyCarType 錯誤");
+			ConnectionUtil.closeConnection(conn);
+			e.printStackTrace();
+		}		
+		return comids;
+	}
+	
 	public String selectCount(String tableName, String whereName,
 			String whereValue) {
 		String selectCountwQuery = "select  count(*) as num  from " + tableName
