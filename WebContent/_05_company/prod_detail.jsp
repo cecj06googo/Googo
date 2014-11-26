@@ -121,11 +121,11 @@
                       </tr>              
                     </tbody>
                   </table>
-                  <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
+                  <form role="form"  action="<%=request.getContextPath()%>/PlaceOrder.do" method="post">
                   <p><button type="submit" class="btn btn-danger center-block" role="button">我要租</button></p>
  		    	  <input type="hidden" name="detail_com_id" value="${comVO.comID}" />
  		    	  <input type="hidden" name="detail_prod_id" value="" />
- 		    	  <input type="hidden" name="detail_action" value="placeOrder" />
+ 		    	  <input type="hidden" name="action" value="placeOrder" />
  		    	  </form>
  		    </div>
  		    </div>

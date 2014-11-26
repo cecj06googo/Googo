@@ -43,9 +43,7 @@ public class OrdersActionMem extends HttpServlet {
 		// 7 ('會員逾時');
 		// 8 ('商家逾時');
 		// 9 ('異常未還');
-		
-		
-		
+				
 		if ("insert".equals(action)) {
 			//logic給值
 			Integer ord_status = 1;
@@ -134,12 +132,12 @@ public class OrdersActionMem extends HttpServlet {
 					} // end while
 					
 					//接值 (com在商品VO, mem在session內的MemVO)
-					_com_id = session.getAttribute("com_id");
+					_com_id = request.getParameter("com_id");
 					_mem_id = session.getAttribute("mem_id");
 					_ord_getday = request.getParameter("ord_getday");
 					_ord_reday = request.getParameter("ord_reday");
 					_item_total = session.getAttribute("item_total");
-					_prod_id = session.getAttribute("prod_id");
+					_prod_id = request.getParameter("prod_id");
 					_acc_id = session.getAttribute("acc_id");
 					// ------------------資料驗證+轉型----------------------
 					// 日期轉型限定日期選擇器選擇的值，使用者自行輸入的話很有可能會轉不了
@@ -231,11 +229,11 @@ public class OrdersActionMem extends HttpServlet {
 						RequestDispatcher successView = request
 								.getRequestDispatcher(url);
 						successView.forward(request, response);
-						/******************** (Send the Success view) ************/
+						/******************** (轉向)*******************/
 					} else {
 
 						// 有errorMsg轉回原頁面
-						String url = "/_04_member/productsDetails.jsp";
+						String url = "/_07_order/placeOrder.jsp";
 						RequestDispatcher successView = request
 								.getRequestDispatcher(url);
 						successView.forward(request, response);
@@ -251,12 +249,14 @@ public class OrdersActionMem extends HttpServlet {
 		
 		
 		if ("placeOrder".equals(action)) {
-			System.out.println("gg");
-			Integer com_id = Integer.parseInt(request.getParameter("com_id"));
-			
-			Integer prod_id = Integer.parseInt(request.getParameter("prod_id"));
-			System.out.println(com_id);
-			System.out.println(prod_id);
+			//把商品和商家id存入request供訂單頁面寫入資料庫
+			Integer com_id = Integer.parseInt(request.getParameter("detail_com_id"));
+			Integer prod_id = Integer.parseInt(request.getParameter("detail_prod_id"));
+//			System.out.println(com_id);
+//			System.out.println(prod_id);
+			request.setAttribute("detail_com_id", com_id);
+			request.setAttribute("detail_prod_id", prod_id);
+			/******************** (轉向)*******************/
 			String url = "/_07_order/placeOrder.jsp";
 			RequestDispatcher successView = request
 					.getRequestDispatcher(url);
