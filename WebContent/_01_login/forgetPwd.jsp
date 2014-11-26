@@ -28,7 +28,6 @@
                         <label><input type="radio" name="optionsRadios" id="member" value="Mem">一般會員</label>
                         <label><input type="radio" name="optionsRadios" id="company" value="Com">商家會員</label>
                 </div>
-                <input type="hidden" name="action" value="update">
 		        <button type="submit" class="btn btn-lg btn-primary pull-right">重新設定</button>
 		      </form><!-- /.form-->
  			</div>
@@ -68,12 +67,12 @@
 		                    emailAddress: {
 		                        message: '此E-mail無效,請輸入正確格式'
 		                    },
-		                    /*remote: {
-                                url: 'memAccountCheck.jsp',
+		                    remote: {
+                                url: 'userAccountCheck.jsp',
                                 type: "post",
                                 async: false,
                                 message: '帳號重複，請重新輸入',
-                            },*/
+                            },
 		                    
 		                }
 		            },
@@ -89,7 +88,7 @@
 		           
 		        }}
 		    ).on('success.form.bv', function() {
-	            $('#forgetpwd').modal('show');
+	            $('#sendMailSuccess').modal('show');
 	        });
 
 		});

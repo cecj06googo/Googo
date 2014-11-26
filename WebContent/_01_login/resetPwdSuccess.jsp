@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div id="resetPwdSuccess">密碼更改完成</div>
 密碼更改完成
 
 </body>
