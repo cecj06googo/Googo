@@ -258,7 +258,7 @@
 						end="${prodsVos.size()-1}">
 						<c:if test="${ProductVO.prodType == 1}">
 							<!-- 車車1 -->
-							<div class="col-md-4 text-center" id="car-${ProductVO.prodId}">
+							<div class="col-md-4 text-center" id="car-${ProductVO.prodId}" name = "content-prod">
 								<div class="thumbnail">
 									<a href="" data-toggle="modal" data-target="#prod_detail">
 										<img class="img-responsive"
@@ -281,7 +281,7 @@
 						end="${prodsVos.size()-1}">
 						<c:if test="${ProductVO.prodType == 2}">
 							<!-- 機車2 -->
-							<div class="col-md-4 text-center" id="motor-${ProductVO.prodId}">
+							<div class="col-md-4 text-center" id="motor-${ProductVO.prodId}" name = "content-prod">
 								<div class="thumbnail">
 									<a href="" data-toggle="modal" data-target="#prod_detail">
 										<img class="img-responsive"
@@ -304,7 +304,7 @@
 						end="${prodsVos.size()-1}">
 						<c:if test="${ProductVO.prodType == 3}">
 							<!-- 腳踏車3 -->
-							<div class="col-md-4 text-center" id="bike-${ProductVO.prodId}">
+							<div class="col-md-4 text-center" id="bike-${ProductVO.prodId}" name = "content-prod">
 								<div class="thumbnail">
 									<a href="" data-toggle="modal" data-target="#prod_detail">
 										<img class="img-responsive"
@@ -552,10 +552,19 @@
 				//}
 			});//end $("#SearchButton").click(function() 
 		}//end function SearchMoneyRange()
+		function rentCar(){
+			$("div[name='content-prod']").click(function(){
+				var prodIdStr= this.id;
+				var prodId = prodIdStr.split("-")[1];	
+				//寫入价林需要的prod_id 在05的prod_detail
+				$("input[name='detail_prod_id']").val(prodId);
+			});
+		}
 		//------執行區--------
 		hideTab();
 		showActive();
 		SearchMoneyRange();
+		rentCar();
 	</script>
 </body>
 </html>
