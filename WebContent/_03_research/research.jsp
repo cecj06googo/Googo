@@ -49,7 +49,7 @@
 		var beach = locations;
 		var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
 		//location =1 傳過去沒有用
-		var urlPath= "<%=request.getContextPath()%>/DispComFirstPage.do?comId="+comIdValue+"&location=1";
+		var urlPath= "<%=request.getContextPath()%>/DispComFirstPage.do?comId="+comIdValue;
 		var marker = new google.maps.Marker({
 			position : myLatLng,
 			map : map,

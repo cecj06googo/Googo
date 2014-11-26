@@ -72,6 +72,7 @@ public class DispComFirstPage extends HttpServlet {
 		request.setAttribute("rowsPerPage", 1);//每頁只有1個商家
 		request.setAttribute("whichPage", 1);//目前在第一頁
 		//-----利用json傳資料給前端使用-----------
+		try{
 		List jsonList =new  LinkedList();
 		for(int i=0;i<prodsVos.size();i++){
 			Map jsonMap =new LinkedHashMap();
@@ -83,6 +84,10 @@ public class DispComFirstPage extends HttpServlet {
 		String jsonString=JSONValue.toJSONString(jsonList);
 		System.out.println("jsonString="+jsonString);
 		request.setAttribute("jsonString",jsonString);	
+		}catch(Exception e){
+			System.out.println("利用json傳資料給前端使用區塊錯誤");
+			e.printStackTrace();
+		}
 		// ---------丟值顯示到商家首頁-------------
 		RequestDispatcher rd = request
 				.getRequestDispatcher("/_05_company/company.jsp");
