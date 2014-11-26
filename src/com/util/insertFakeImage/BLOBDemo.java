@@ -236,8 +236,8 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 				return;
 			}
 			BLOBDemo blobdemo = new BLOBDemo(conn);
-			blobdemo.AllWriteInSQL(srcPicPath,"Product","prod_subPic1");//一次寫入Product Table該欄位所有圖片
-			//blobdemo.clearAllBlob("Product","prod_subPic1");//清除該ProdTable欄位所有圖片
+			//blobdemo.AllWriteInSQL(srcPicPath,"Product","prod_subPic1");//一次寫入Product Table該欄位所有圖片
+			blobdemo.clearAllBlob("Product","prod_subPic1");//清除該ProdTable欄位所有圖片
 			//blobdemo.clearAllBlob("Company","com_pic");//清除該CompanyTable欄位所有圖片
 			// blobdemo.batchWriteInSQL(srcPicPath,"Product","prod_subPic1");//批次寫入該table欄位所有圖片
 			// blobdemo.clearBlob("1","Product","prod_subPic1");//清除單個圖片
