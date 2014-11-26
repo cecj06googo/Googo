@@ -18,10 +18,11 @@
 			<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 			<!-- form-->
-		      <form role="form" id="test">
+		      <form role="form" id="forgeetPwd" action="<%=request.getContextPath() %>/forgetpwd.gg" method="post" >
 		        <div class="form-group">
 		          <label > E-mail:</label>
-		          <input type="text" class="form-control" id="inputEmail" name="inputEmail">
+		          <input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="請輸入E-mail">
+		          <font color="red" size="-1">${errorMsgs.errorAccount}</font>
 		        </div>
 		        <div class="form-group">
                         <label><input type="radio" name="optionsRadios" id="member" value="Mem">一般會員</label>

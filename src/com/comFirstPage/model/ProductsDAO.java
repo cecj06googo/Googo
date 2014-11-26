@@ -179,7 +179,8 @@ public class ProductsDAO implements ProductsDAO_interface {
 				ProductVO.setProdCarrier(rs.getInt("prod_carrier"));
 				ProductVO.setProdControl(rs.getInt("prod_control"));
 				ProductVO.setProdPlate(rs.getString("prod_plate"));
-				ProductVO.setProdType(rs.getInt("prod_status")); // total=17
+				ProductVO.setProdStatus(rs.getInt("prod_status")); // total=17
+				
 				list.add(ProductVO);
 				// System.out.println("in DAO:"+ProductVO.getComId());
 			}

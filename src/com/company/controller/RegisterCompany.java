@@ -156,8 +156,8 @@ public class RegisterCompany extends HttpServlet {
 			
 			// 3.新增完成,準備轉交(寄送認證信)
 //			SendActivateAccount.sendAccount(companyVO,req.getServerName(),req.getLocalPort(),req.getContextPath());
-			RequestDispatcher successView = req.getRequestDispatcher("/index.jsp");
-			successView.forward(req, res);
+			String url = req.getContextPath() + "/index.jsp";
+			res.sendRedirect(res.encodeRedirectURL(url));
 		// 其他可能的錯誤處理
 		} catch (Exception e) {
 			errorMsgs.put("errorException", e.getMessage());

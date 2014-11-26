@@ -2,7 +2,10 @@ package com.comFirstPage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.comFirstPage.model.ProductVO;
 import com.comFirstPage.model.ProductsService;
 import com.company.model.*;
+
+import org.json.simple.JSONValue;//玩玩看
 
 /**
  * Servlet implementation class DispComFirstPage
@@ -44,16 +49,15 @@ public class DispComFirstPage extends HttpServlet {
 		CompanyService comService = new CompanyService();
 		CompanyVO comVO = comService.getOneCom(comId);
 		request.setAttribute("comVO", comVO);
-		printDataOfACom(comVO);
+		//printDataOfACom(comVO);
 		// ---------取得該商家所有商品資訊-------------------
 		ProductsService prodService = new ProductsService();
-		// 取得商家id為1的公司其所有產品資訊
 		List<ProductVO> prodsVos = new ArrayList<ProductVO>();
 		prodsVos = prodService.getProdsByComIdNoRepeat(comId);
-		//prodsVos = prodService.getProdsByComId(comId);
-		
+		//prodsVos = prodService.getProdsByComId(comId);		
 		request.setAttribute("prodsVos", prodsVos);
-		printProdsOfACom(prodsVos);// 測試用:vos內值是否正確
+		countsTheTypeProduct(prodsVos,request);//統計車種數量並傳到前端
+		//printProdsOfACom(prodsVos);// 測試用:vos內值是否正確
 		//----------丟給Google Map使用--------------
 		List<String> comAdressArray = new ArrayList<String>();
 		List<String> comNameArray = new ArrayList<String>();
@@ -61,11 +65,24 @@ public class DispComFirstPage extends HttpServlet {
 		comAdressArray.add("\""+comVO.getComAddr()+"\""); //把每一家地址存入
 		request.setAttribute("comNameArray", comNameArray);//為了給Google Map使用
 		request.setAttribute("comAdressArray", comAdressArray);//為了給Google Map使用
-		String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
+		//String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
+		String location = "目前這行用不到";
 		System.out.println("location="+location);
 		request.setAttribute("location", location);//為了給Google Map使用
 		request.setAttribute("rowsPerPage", 1);//每頁只有1個商家
 		request.setAttribute("whichPage", 1);//目前在第一頁
+		//-----利用json傳資料給前端使用-----------
+		List jsonList =new  LinkedList();
+		for(int i=0;i<prodsVos.size();i++){
+			Map jsonMap =new LinkedHashMap();
+			jsonMap.put("prod_id", prodsVos.get(i).getProdId());
+			jsonMap.put("prod_type", prodsVos.get(i).getProdType());
+			jsonMap.put("prod_price", prodsVos.get(i).getProdPrice());
+			jsonList.add(jsonMap);
+		}
+		String jsonString=JSONValue.toJSONString(jsonList);
+		System.out.println("jsonString="+jsonString);
+		request.setAttribute("jsonString",jsonString);	
 		// ---------丟值顯示到商家首頁-------------
 		RequestDispatcher rd = request
 				.getRequestDispatcher("/_05_company/company.jsp");
@@ -115,4 +132,27 @@ public class DispComFirstPage extends HttpServlet {
 		System.out.println("ComName="+comVO.getComName());
 		System.out.println("------------ComDataEnd--------------");
 	}
-}
+	
+	protected void countsTheTypeProduct(List<ProductVO> prodsVos,HttpServletRequest request) {
+		int numOfCar = 0;
+		int numOfMotor = 0;
+		int numOfBike = 0;
+		for(ProductVO prodVo : prodsVos){//若全部檢查完非true代表沒有該種商品
+			if(prodVo.getProdType()==1){
+				numOfCar++;
+			}
+			if(prodVo.getProdType()==2){
+				numOfMotor++;
+			}
+			if(prodVo.getProdType()==3){
+				numOfBike++;
+			}
+		}//end for(ProductVO prodVo : prodsVos)
+			request.setAttribute("numOfCar", numOfCar);
+			request.setAttribute("numOfMotor", numOfMotor);
+			request.setAttribute("numOfBike", numOfBike);
+		System.out.println("numOfCar="+numOfCar);
+		System.out.println("numOfMotor="+numOfMotor);
+		System.out.println("numOfBike="+numOfBike);
+	}//end protected void checkHasTheTypeProduct
+}//end public class DispComFirstPage extends HttpServlet

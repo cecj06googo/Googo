@@ -75,50 +75,7 @@ public class OrdersActionCom extends HttpServlet {
 		// 7 ('會員逾時');
 		// 8 ('商家逾時');
 		// 9 ('異常未還');
-		/********************* 找時間刪掉 **********************/
-		if ("fakeLogin_mem".equals(action)) {
-			try {
-				Integer user_id = null;
-				String Identity = "Mem";
-
-				try {
-					user_id = Integer.parseInt(session.getAttribute("user_id")
-							.toString().trim());
-				} catch (Exception e) {
-					errorMsg.put("errorlogin", "真的不要這樣..");
-				}
-
-				/******************* (存取資料+轉向) *********************/
-				if (errorMsg.isEmpty()) {
-					Integer sel_stus = 1;
-					String sel_time = "all";
-					OrdersService odrSvc = new OrdersService();
-					List<OrdersVO> ordVO = odrSvc.ordSearch_mem(user_id,
-							sel_stus, sel_time);
-
-					request.setAttribute("ordVO", ordVO);
-					session.setAttribute("sel_stus", sel_stus);
-					session.setAttribute("sel_time", sel_time);
-					session.setAttribute("Identity", Identity);
-					String url = "/_04_member/orderMem.jsp";
-					RequestDispatcher successView = request
-							.getRequestDispatcher(url);
-
-					successView.forward(request, response);
-				} else {
-					String url = "/index.jsp";
-					RequestDispatcher successView = request
-							.getRequestDispatcher(url);
-
-					successView.forward(request, response);
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}// end fakeLogin_mem if
-		/*******************************************/
-
+		
 		if ("selectCom".equals(action)) {
 			try {
 				errorMsg.clear();

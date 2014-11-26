@@ -171,9 +171,9 @@
 					begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 					<!-- 第1筆商家 -->
 					<div class="col-md-6 img-portfolio">
-						<a href="<c:url value='/DispComFirstPage.do?comId=${SearchComVO.com_id}'/>"> <img
+						<a href="<c:url value='/DispComFirstPage.do?comId=${SearchComVO.com_id}&location=${location}'/>"> <img
 							class="img-responsive img-hover"
-							src="${pageContext.request.contextPath}/img/13.jpg" alt="">
+							src="${pageContext.servletContext.contextPath}/image?comID=${SearchComVO.com_id}">
 						</a>
 						<h3>
 							<a href="<c:url value='/DispComFirstPage.do?comId=${SearchComVO.com_id}&location=${location}'/>">${SearchComVO.com_name}</a>

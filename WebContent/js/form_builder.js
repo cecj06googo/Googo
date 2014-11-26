@@ -129,6 +129,7 @@ $(function() {
             .appendTo("#content");
 
             $("#options_modal").modal('hide');
+            $("#content").find("fieldset").hide();
 
             this.updateSource();
             // modified: test
@@ -720,6 +721,14 @@ $(function() {
         $(this).parent().remove();
         form_builder.updateSource();
         console.log($("#content").html());
+        
+        if($("#content").find("div").length == 0){
+        	if($("#content").find("fieldset").length == 0){
+        		$("#content").append($("<fieldset><legend><p style='text-align:center'>請拖拉右側設計元件至此</p></legend></fieldset>"));
+        	}
+        	$("#content").find("fieldset").show();
+        }
+        console.log($("#content").find("div").length);
     });
 
     // elements are components that have been added to the form

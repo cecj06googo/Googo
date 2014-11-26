@@ -1,7 +1,46 @@
 // Morris.js Charts sample data for SB Admin template
 
 $(function() {
-
+	 // Bar Chart
+    Morris.Bar({
+        element: 'morris-bar-chart',
+        data: [{
+            device: 'iPhone',
+            geekbench: 136
+        }, {
+            device: 'iPhone 3G',
+            geekbench: 137
+        }, {
+            device: 'iPhone 3GS',
+            geekbench: 275
+        }, {
+            device: 'iPhone 4',
+            geekbench: 380
+        }, {
+            device: 'iPhone 4S',
+            geekbench: 655
+        }, {
+            device: 'iPhone 5555',
+            geekbench: 1571
+        }],
+        xkey: 'device',
+        ykeys: ['geekbench'],
+        labels: ['Geekbench'],
+        barRatio: 0.4,
+        xLabelAngle: 35,
+        hideHover: 'auto',
+        //barColors: ['#ff0000', '#dc143c', '#ffff00', '#008000', '#7BB661', '#7BB661'],
+        barColors: function (row, series, type) {
+            if (type === 'bar') {
+              var red = Math.ceil(255 * row.y / this.ymax);
+              return 'rgb(' + red + ',0,0)';
+            }
+            else {
+              return '#000';
+            }
+          },
+        resize: true
+    });
     // Area Chart
     Morris.Area({
         element: 'morris-area-chart',
@@ -77,7 +116,8 @@ $(function() {
             label: "Mail-Order Sales",
             value: 20
         }],
-        resize: true
+        resize: true,
+        
     });
 
     // Line Chart
@@ -192,36 +232,7 @@ $(function() {
         resize: true
     });
 
-    // Bar Chart
-    Morris.Bar({
-        element: 'morris-bar-chart',
-        data: [{
-            device: 'iPhone',
-            geekbench: 136
-        }, {
-            device: 'iPhone 3G',
-            geekbench: 137
-        }, {
-            device: 'iPhone 3GS',
-            geekbench: 275
-        }, {
-            device: 'iPhone 4',
-            geekbench: 380
-        }, {
-            device: 'iPhone 4S',
-            geekbench: 655
-        }, {
-            device: 'iPhone 5',
-            geekbench: 1571
-        }],
-        xkey: 'device',
-        ykeys: ['geekbench'],
-        labels: ['Geekbench'],
-        barRatio: 0.4,
-        xLabelAngle: 35,
-        hideHover: 'auto',
-        resize: true
-    });
+   
 
 
 });
