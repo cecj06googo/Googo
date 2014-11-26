@@ -119,7 +119,12 @@
 	else {
 //  		alert("不用彈出登入");
 	}
-
+    
+	var errMsgs = '<%= session.getAttribute("errAccount") %>';
+	if(errMsgs !='null'){
+		$('#forgetpwd').modal('show');
+		<% session.removeAttribute("errAccount"); %>
+	}
 
 })(jQuery)
 

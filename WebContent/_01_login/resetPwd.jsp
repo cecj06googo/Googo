@@ -17,7 +17,7 @@
 			<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 			<!-- form-->
-		      <form role="form" id="test">
+		      <form role="form" id="reset_form" action="<%=request.getContextPath()%>/member.do" method="post">
 		        <div class="form-group">
 		          <label > E-mail:</label>
 		          <input type="text" class="form-control" id="resetPwdMail" name="resetPwdMail">
