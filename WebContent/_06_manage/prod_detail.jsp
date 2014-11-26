@@ -71,33 +71,35 @@ margin-bottom: 8px;
 			<div class="carousel-inner cont-slider">
 			
 			<div class="item active">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/19.jpg">
+			  <img alt="" title="" id="picDe" >
+			${LoginComOK.comID}.
+			
 			</div>
 			<div class="item">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/39.jpg">
+			  <img alt="" title="" id="subPicDe1" src="${pageContext.request.contextPath}/img/39.jpg">
 			</div>
 			<div class="item">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/36.jpg">
+			  <img alt="" title="" id="subPicDe2" src="${pageContext.request.contextPath}/img/36.jpg">
 			</div>
 			<div class="item">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/37.jpg">
+			  <img alt="" title="" id="subPicDe3" src="${pageContext.request.contextPath}/img/37.jpg">
 			</div>
 			</div><!-- /.Wrapper for slides -->
 			  <!-- Indicators -->
 			  <ol class="carousel-indicators">
 				<li class="active" data-slide-to="0" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/19.jpg">
+				  <img alt="" src="">
 				</li>
 				<li class="" data-slide-to="1" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/39.jpg">
+				  <img alt="" src="">
 				</li>
 				<li class="" data-slide-to="2" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/36.jpg">
+				  <img alt="" src="">
 				</li>
 				<li class="" data-slide-to="3" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/37.jpg">
+				  <img alt="" src="">
 				</li>
-			  </ol><!--/ndicators -->
+			  </ol>
 			</div>
  			</div>
  			</div><!--/.row-->
