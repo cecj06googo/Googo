@@ -552,20 +552,11 @@
 				//}
 			});//end $("#SearchButton").click(function() 
 		}//end function SearchMoneyRange()
-		function rentCar(){
-			$("div[name='content-prod']").click(function(){
-				var prodIdStr= this.id;
-				var prodId = prodIdStr.split("-")[1];	
-				//寫入价林需要的prod_id 在05的prod_detail
-				$("input[name='detail_prod_id']").val(prodId);
-				alert("prodId="+prodId);
-			});
-		}
+
 		//------執行區--------
 		hideTab();
 		showActive();
 		SearchMoneyRange();
-		rentCar();
 	</script>
 </body>
 </html>
