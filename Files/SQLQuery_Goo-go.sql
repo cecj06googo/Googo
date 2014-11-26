@@ -212,18 +212,20 @@ insert into Product values (18,'保時捷-T2',3,7000,0.95,0x00,'ss',null,null,nu
 
 Create Table Accessory(
             acc_id          int NOT NULL IDENTITY(1,1) Primary Key ,
+			acc_name        varchar(32) NOT NULL,
 			com_id          int NOT NULL ,
 			acc_detail      varchar(max) NOT NULL,
+			acc_pic         varbinary(max)  NOT NULL,
 			acc_price       decimal NOT NULL,
+			acc_status      int NOT NULL,
 
 			CONSTRAINT Accessory_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 );
-insert into Accessory values (3,'高粱酒',1000);
-insert into Accessory values (1,'g',1000);
-insert into Accessory values (1,'g',1000);
-insert into Accessory values (1,'g',1000);
-insert into Accessory values (1,'g',1000);
-insert into Accessory values (1,'g',1000);
+insert into Accessory values ('高粱酒',18,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒',18,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒',18,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒',18,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒',18,'wine', 0x00, 1000, 1);
 
 
 Create Table Ord_status(
