@@ -121,7 +121,7 @@
                       </tr>              
                     </tbody>
                   </table>
-                  <form role="form"  action="<%=request.getContextPath()%>/PlaceOrder.do" method="post">
+                  <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
                   <p><button type="submit" class="btn btn-danger center-block" role="button">我要租</button></p>
  		    	  <input type="hidden" name="detail_com_id" value="${comVO.comID}" />
  		    	  <input type="hidden" name="detail_prod_id" value="" />
@@ -169,6 +169,7 @@ function showCarDetail(){
 			$("#detail-prodName").text(jsonString[i]["prod_name"]);
 			$("#detail-disc").text(jsonString[i]["prod_disc"]*100+"折");
 			$("#detail-price").text(jsonString[i]["prod_price"]+"元");
+			$("input[name='detail_prod_price']").val(jsonString[i]["prod_price"]);
 			//$("#detail-control").text(jsonString[i]["prod_control"]);先留著
 			$("#detail-carrier").text(jsonString[i]["prod_carrier"]+"人");
 			$("#detail-cc").text(jsonString[i]["prod_cc"]+" c.c.");
