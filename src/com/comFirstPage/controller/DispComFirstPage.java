@@ -77,8 +77,14 @@ public class DispComFirstPage extends HttpServlet {
 		for(int i=0;i<prodsVos.size();i++){
 			Map jsonMap =new LinkedHashMap();
 			jsonMap.put("prod_id", prodsVos.get(i).getProdId());
+			jsonMap.put("prod_name", prodsVos.get(i).getProdName());
 			jsonMap.put("prod_type", prodsVos.get(i).getProdType());
 			jsonMap.put("prod_price", prodsVos.get(i).getProdPrice());
+			jsonMap.put("prod_disc", prodsVos.get(i).getProdDisc());
+			jsonMap.put("prod_cc", prodsVos.get(i).getProdCc());
+			jsonMap.put("prod_carrier", prodsVos.get(i).getProdCarrier());
+			jsonMap.put("prod_control", prodsVos.get(i).getProdControl());
+				
 			jsonList.add(jsonMap);
 		}
 		String jsonString=JSONValue.toJSONString(jsonList);
@@ -87,7 +93,7 @@ public class DispComFirstPage extends HttpServlet {
 		}catch(Exception e){
 			System.out.println("利用json傳資料給前端使用區塊錯誤");
 			e.printStackTrace();
-		}
+		}		
 		// ---------丟值顯示到商家首頁-------------
 		RequestDispatcher rd = request
 				.getRequestDispatcher("/_05_company/company.jsp");
