@@ -159,7 +159,8 @@ public class InsertFakeImageDAO {
 		String motorSrcPath = "WebContent/img/motors";
 		String bikeSrcPath = "WebContent/img/bikes";
 		String comSrcPath = "WebContent/img/company";
-        String insertColumn ="prod_pic"; //圖片要寫入哪個欄位
+        //String insertColumn ="prod_pic"; //圖片要寫入哪個欄位
+		String insertColumn ="prod_subPic1"; //圖片要寫入哪個欄位
 		try {
 			if (conn == null) {
 				System.out.println("conn 獲取失敗");

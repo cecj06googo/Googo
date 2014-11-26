@@ -68,28 +68,28 @@
 			  <img id="detail-MainPic" alt="" title="" src="${pageContext.request.contextPath}/img/19.jpg">
 			</div>
 			<div class="item">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/39.jpg">
+			  <img id="detail-SubPic1" alt="" title="" src="${pageContext.request.contextPath}/img/39.jpg">
 			</div>
 			<div class="item">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/36.jpg">
+			  <img id="detail-SubPic2" alt="" title="" src="${pageContext.request.contextPath}/img/36.jpg">
 			</div>
 			<div class="item">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/37.jpg">
+			  <img id="detail-SubPic3" alt="" title="" src="${pageContext.request.contextPath}/img/37.jpg">
 			</div>
 			</div><!-- /.Wrapper for slides -->
 			  <!-- Indicators -->
 			  <ol class="carousel-indicators">
 				<li class="active" data-slide-to="0" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/19.jpg">
+				  <img id="detail-smallMainPic"  alt="" src="${pageContext.request.contextPath}/img/19.jpg">
 				</li>
 				<li class="" data-slide-to="1" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/39.jpg">
+				  <img id="detail-smallSubPic1" alt="" src="${pageContext.request.contextPath}/img/39.jpg">
 				</li>
 				<li class="" data-slide-to="2" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/36.jpg">
+				  <img id="detail-smallSubPic2" alt="" src="${pageContext.request.contextPath}/img/36.jpg">
 				</li>
 				<li class="" data-slide-to="3" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/37.jpg">
+				  <img id="detail-smallSubPic3" alt="" src="${pageContext.request.contextPath}/img/37.jpg">
 				</li>
 			  </ol><!--/ndicators -->
 			</div>
@@ -161,15 +161,27 @@ function showRentCar(){
 function showCarDetail(){
 	var jsonString= <%=request.getAttribute("jsonString")%>;
 	var clickProdId = $("input[name='detail_prod_id']").val();
+	var comId = $("input[name='detail_com_id']").val();
 	//alert("在prod_detail裡clickProdId="+clickProdId);
 	for(var i=0; i<jsonString.length;i++){
 		if(jsonString[i]["prod_id"] == clickProdId){//找出click的商品資料
+			//----以下是商品明細資料------
 			$("#detail-prodName").text(jsonString[i]["prod_name"]);
 			$("#detail-disc").text(jsonString[i]["prod_disc"]*100+"折");
 			$("#detail-price").text(jsonString[i]["prod_price"]+"元");
 			//$("#detail-control").text(jsonString[i]["prod_control"]);先留著
 			$("#detail-carrier").text(jsonString[i]["prod_carrier"]+"人");
 			$("#detail-cc").text(jsonString[i]["prod_cc"]+" c.c.");
+			//-----以下是圖片部分------
+			$("#detail-MainPic").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);
+			$("#detail-smallMainPic").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);		
+			$("#detail-SubPic1").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);
+			$("#detail-smallSubPic1").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);		
+			$("#detail-SubPic2").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);
+			$("#detail-smallSubPic2").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);		
+			$("#detail-SubPic3").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);
+			$("#detail-smallSubPic3").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);
+					
 		}//end if
 	}//end for
 }//end showCarDetail()

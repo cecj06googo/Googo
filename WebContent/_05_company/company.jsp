@@ -268,11 +268,6 @@
 											<h3>${ProductVO.prodName}</h3>
 											<p>價錢:${ProductVO.prodPrice}台幣/日</p>
 											<p>${ProductVO.prodArticle}</p>
-											<input type="hidden" name="" value="${ProductVO.prod_disc}"/>
-											<input type="hidden" name="" value="${ProductVO.prod_price}"/>
-											<input type="hidden" name="" value="${ProductVO.prodArticle}"/>
-											<input type="hidden" name="" value="${ProductVO.prodArticle}"/>
-											<input type="hidden" name="" value="${ProductVO.prodArticle}"/>
 										</div>
 									</a>
 								</div>
