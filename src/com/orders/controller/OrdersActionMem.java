@@ -257,7 +257,7 @@ public class OrdersActionMem extends HttpServlet {
 			
 //			System.out.println(com_id);
 //			System.out.println(prod_id);
-			request.setAttribute("comVO", comVO);
+			session.setAttribute("comVO", comVO);
 			request.setAttribute("prod_id", prod_id);
 			
 			/******************** (轉向)*******************/

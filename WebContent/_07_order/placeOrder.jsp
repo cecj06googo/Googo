@@ -33,7 +33,7 @@
 			<div class="col-lg-12">
 				<h1 class="page-header">
 <!-- 				在此comVO是用振瑋的VO -->
-					台灣大哥大租車 <small>租車小舖</small>
+					${comVO.comName} <small>租車小舖</small>
 				</h1>
 			</div>
 		</div>
@@ -53,13 +53,17 @@
             <a href="#step-3" type="button" class="btn btn-default" id="circle" disabled="disabled">3</a>
             <p>其他資訊</p>
         </div>
+        <div class="stepwizard-step">
+            <a href="#step-4" type="button" class="btn btn-default" id="circle" disabled="disabled">4</a>
+            <p>完成</p>
+        </div>
     </div>
 </div>
 <!-------------- /.流程顯示 ---------------->
 
 <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
 <input type="hidden" name="action" value="insert" />
-<input type="hidden" name="com_id" value="${com_id}" />
+<input type="hidden" name="com_id" value="${comVO.comID}" />
 <input type="hidden" name="prod_id" value="${prod_id}" />
 <input type="hidden" name="prod_price" value="${prod_price}" />
 <!-------------- 訂單第一頁 ----------------->
@@ -162,7 +166,18 @@
     </div>
 <!-------------- /.訂單第三頁 ---------------->
 </form>	
-		
+<!-------------- 訂單第四頁 ------------------>
+<!-- submit後回來顯示第四頁  (最簡單的方法是連到另一支樣式一模一樣的jsp) -->
+<!-- c:if (訂單新增ok(Map物件) != null    -->
+    <div class="row setup-content div-border" id="step-4">
+        <div class="col-xs-12">
+            <div class="col-xs-12">
+                <h3>其他資訊</h3>
+                <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
+            </div>
+        </div>
+    </div>
+<!-------------- /.訂單第四頁 ---------------->		
 		<hr>
 		<!-- Footer -->
 		<jsp:include page="/_00_fragment/footer.jsp" />
@@ -234,8 +249,9 @@ $(document).ready(function () {
 		});
 		
 	
-//-----------------------------------	
-	
+//------------------------------------------------
+
+//-------------------流程控制原始碼--------------------
     var navListItems = $('div.setup-panel div a'),
             allWells = $('.setup-content'),
             allNextBtn = $('.nextBtn');
