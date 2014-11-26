@@ -13,20 +13,20 @@ public class ForgetPwdJDBCDAO implements ForgetPwdDAO_interface {
 	String passwd = "P@ssw0rd";
 	
 	private static final String MEM_PWD_UPDATE = 
-			"UPDATE dbo.Member set mem_pwd=? where mem_account=? ";
+			"UPDATE Member set mem_pwd=? where mem_account=? ";
 	private static final String COM_PWD_UPDATE = 
-			"UPDATE dbo.Company set com_pwd=? where com_account=? ";
+			"UPDATE Company set com_pwd=? where com_account=? ";
 	private static final String GET_MEM_ACCOUNT =
-			"SELECT mem_account, mem_pwd FROM dbo.Member where mem_account=? ";
+			"SELECT mem_account, mem_pwd FROM Member where mem_account=? ";
 	private static final String GET_COM_ACCOUNT =
-			"SELECT com_account, com_pwd FROM dbo.Company where com_account=? ";
+			"SELECT com_account, com_pwd FROM Company where com_account=? ";
 	private static final String GET_MEM_ID =
 			"SELECT mem_id FROM Member where mem_account=?";
 	private static final String GET_COM_ID =
 			"SELECT com_id FROM Company where com_account=?";
 
 	@Override
-	public void update(String user_newPwd,String user_account, String user_identity) {
+	public void update(String user_identity,String user_account,String user_newPwd) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
