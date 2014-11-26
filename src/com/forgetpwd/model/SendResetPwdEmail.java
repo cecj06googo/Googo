@@ -14,7 +14,7 @@ public class SendResetPwdEmail {
 	}
 	
 	public static String generateResetPwdLink(){
-		
+		return "string";
 		
 	}
 

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.company.model.CompanyService;
 import com.company.model.CompanyVO;
 import com.forgetpwd.model.ForgetPwdService;
 import com.forgetpwd.model.ForgetPwdVO;
@@ -75,7 +76,15 @@ public class ForgetPwdServlet {
 				memVO = memSvc.getOneMem(userId);
 				session.setAttribute("memVO", memVO);
 				
+			}else if("Com".equals(userIdentity)){
+				CompanyService comSvc = new CompanyService();
+				comVO = comSvc.getOneCom(userId);
+				session.setAttribute("comVO", comVO);
+				
 			}
+		}catch(Exception e){
+			e.getStackTrace();
+			errorMsgs.put("noAccount","E-mail格式不正確");
 		}
 		
 	}
