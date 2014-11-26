@@ -68,9 +68,9 @@ public class InsertFakeImageDAO {
 		}
 	}
 
-	public void insertProdImgByCarType(String prod_type_value, String srcPath) {
+	public void insertProdImgByCarType(String prod_type_value, String srcPath, String setColumn) {
 		// 目的:根據不同的車種讀取該車種的數量，再根據數量來寫入該車種的圖片
-		String insertStmt = "UPDATE Product  SET prod_subPic1 = ? WHERE prod_id = ?";
+		String insertStmt = "UPDATE Product  SET "+setColumn+" = ? WHERE prod_id = ?";
 		File[] files;
 		// 根據車種取得該車種的所有id
 		List<String> prodids = blobDemo.getProdidsbyCarType("Product",
@@ -159,15 +159,15 @@ public class InsertFakeImageDAO {
 		String motorSrcPath = "WebContent/img/motors";
 		String bikeSrcPath = "WebContent/img/bikes";
 		String comSrcPath = "WebContent/img/company";
-
+        String insertColumn ="prod_pic"; //圖片要寫入哪個欄位
 		try {
 			if (conn == null) {
 				System.out.println("conn 獲取失敗");
 				return;
 			}
-			insertFakeImg.insertProdImgByCarType("1", carSrcPath);// 汽車
-			insertFakeImg.insertProdImgByCarType("2", motorSrcPath);// 機車
-			insertFakeImg.insertProdImgByCarType("3", bikeSrcPath);// 腳踏車
+			insertFakeImg.insertProdImgByCarType("1", carSrcPath,insertColumn);// 汽車
+			insertFakeImg.insertProdImgByCarType("2", motorSrcPath,insertColumn);// 機車
+			insertFakeImg.insertProdImgByCarType("3", bikeSrcPath,insertColumn);// 腳踏車
 			insertFakeImg.insertComImg(comSrcPath); // 公司大頭貼
 			System.out.println("圖片寫入結束，執行結果請看上方!");
 			insertFakeImg.insertProdsIntoduction(); //寫入商品介紹

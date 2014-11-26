@@ -53,7 +53,7 @@
 	  	<!-- header-->
 	  	<div class="modal-header">
    			 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    		 <h3 class="modal-title" id="myModalLabel">商品名稱<small id="detail-prodName">productName</small></h3>
+    		 <h3 class="modal-title" id="myModalLabel"><big id="detail-prodName">productName</big></h3>
   		</div><!-- /.header-->
   		<!-- body-->
   		<div class="modal-body ">

@@ -38,11 +38,11 @@ public class ShowProdsImage extends HttpServlet {
 			}
 		}
 		// 檢查是否已有商家圖片
-		if (prodVO.getProdSubPic1() != null) {
+		if (prodVO.getProdPic() != null) {
 			res.setContentType("image/jpg");
 			try {
 				sos = res.getOutputStream();
-				sos.write(prodVO.getProdSubPic1());
+				sos.write(prodVO.getProdPic());
 				sos.flush();
 				sos.close();
 			} catch (Exception e) {
