@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="${pageContext.request.contextPath}/css/plugins/morris.css" rel="stylesheet">
+
 <jsp:include page="/_00_fragment/css2.jsp" />
 <title>Goo-go</title>
 
@@ -134,6 +136,7 @@
                     </div> <!--/.問券-->
                 </div>
                <!-- /.重點 --> 
+     
 				<!-- 曲線圖 --> 
                 <div class="row">
                     <div class="col-lg-12">
@@ -150,6 +153,20 @@
                 <!-- /.曲線圖  -->
  				<!-- 三大圖  -->
                 <div class="row">
+                <!-- Bar圖  -->
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Bar Graph</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-bar-chart"></div>
+                                <div class="text-right">
+                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 	<!-- 甜甜圈圖  -->
                     <div class="col-lg-4">
                         <div class="panel panel-default">
@@ -164,22 +181,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 圓餅圖  -->
-                    <div class="col-lg-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Pie Chart </h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flot-pie-chart"></div>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                    </div>
-                    </div>
+                    
                     <!--錢錢-->
                     <div class="col-lg-4">
                         <div class="panel panel-default">
@@ -267,21 +269,13 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- Morris Charts JavaScript -->
-    <script src="${pageContext.request.contextPath}/js/plugins/morris/raphael.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/plugins/morris/morris.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/plugins/morris/morris-data.js"></script>
-
-    <!-- Flot Charts JavaScript -->
-    <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
- <!--  <script src="${pageContext.request.contextPath}/js/plugins/flot/jquery.flot.js"></script> -->  
-    <script src="${pageContext.request.contextPath}/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="${pageContext.request.contextPath}/js/plugins/flot/jquery.flot.pie.js"></script>
-    <script src="${pageContext.request.contextPath}/js/plugins/flot/flot-data.js"></script>
 
 </body>
-
+   <!-- Morris Charts JavaScript -->
+    <script src="${pageContext.request.contextPath}/js/plugins/morris/morris.js"></script>
+    <script src="${pageContext.request.contextPath}/js/plugins/morris/morris-data.js"></script>
+    <script src="${pageContext.request.contextPath}/js/plugins/morris/raphael.min.js"></script>
+    
 <script>
 // top2左方功能列選項
 $("#selectManage").addClass("active");
