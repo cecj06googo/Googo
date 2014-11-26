@@ -107,14 +107,23 @@ $(function() {
     Morris.Donut({
         element: 'morris-donut-chart',
         data: [{
-            label: "Download Sales",
-            value: 12
+            label: "未處理",
+            value: 2
         }, {
-            label: "In-Store Sales",
-            value: 30
+            label: "已接受",
+            value: 10
         }, {
-            label: "Mail-Order Sales",
+            label: "已出車",
             value: 20
+        }, {
+            label: "結單",
+            value: 20
+        }, {
+            label: "會員取消",
+            value: 1
+        }, {
+            label: "商家取消",
+            value: 1
         }],
         resize: true,
         

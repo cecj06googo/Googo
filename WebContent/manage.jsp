@@ -142,7 +142,7 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>近一個月的銷售額</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-area-chart"></div>
@@ -157,7 +157,7 @@
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Bar Graph</h3>
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>近一個月商品租借次數</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-bar-chart"></div>
@@ -171,7 +171,7 @@
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>近一個月訂單狀態</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-donut-chart"></div>
