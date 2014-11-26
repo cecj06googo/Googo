@@ -121,7 +121,7 @@
                       </tr>              
                     </tbody>
                   </table>
-                  <form role="form"  action="<%=request.getContextPath()%>/PlaceOrder.do" method="post">
+                  <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
                   <p><button type="submit" class="btn btn-danger center-block" role="button">我要租</button></p>
  		    	  <input type="hidden" name="detail_com_id" value="${comVO.comID}" />
  		    	  <input type="hidden" name="detail_prod_id" value="" />
@@ -154,7 +154,7 @@ function showRentCar(){
 		var prodId = prodIdStr.split("-")[1];	
 		//寫入价林需要的prod_id 在05的prod_detail
 		$("input[name='detail_prod_id']").val(prodId);
-		alert("prodId="+prodId);
+// 		alert("prodId="+prodId);
 		showCarDetail();
 	});
 }//end showRentCar()
@@ -163,10 +163,11 @@ function showCarDetail(){
 	var clickProdId = $("input[name='detail_prod_id']").val();
 	//alert("在prod_detail裡clickProdId="+clickProdId);
 	for(var i=0; i<jsonString.length;i++){
-		if(jsonString[i]["prod_id"] == clickProdId){//找出click的商品資料
+		if(jsonString[i]["prod_id"] == clickProdId){ //找出click的商品資料
 			$("#detail-prodName").text(jsonString[i]["prod_name"]);
 			$("#detail-disc").text(jsonString[i]["prod_disc"]);
 			$("#detail-price").text(jsonString[i]["prod_price"]);
+			$("input[name='detail_prod_price']").val(jsonString[i]["prod_price"]);
 			//$("#detail-control").text(jsonString[i]["prod_control"]);先留著
 			$("#detail-carrier").text(jsonString[i]["prod_carrier"]);
 			$("#detail-cc").text(jsonString[i]["prod_cc"]);
