@@ -53,7 +53,7 @@
 	  	<!-- header-->
 	  	<div class="modal-header">
    			 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    		 <h3 class="modal-title" id="myModalLabel">商品名稱<small>productName</small></h3>
+    		 <h3 class="modal-title" id="myModalLabel">商品名稱<small id="detail-prodName">productName</small></h3>
   		</div><!-- /.header-->
   		<!-- body-->
   		<div class="modal-body ">
@@ -101,23 +101,23 @@
                     <tbody>
                       <tr>
                         <td>折扣</td>
-                        <td>75折</td>
+                        <td id="detail-disc">75折</td>
                       </tr>
                       <tr>
                         <td>租金</td>
-                        <td>2500元 /天</td>
+                        <td id="detail-price">2500元 /天</td>
                       </tr>
                       <tr>
                         <td>手/自排:</td>
-                        <td>自排</td>
+                        <td id="detail-control">自排</td>
                       </tr>
                       <tr>
                         <td>乘載人數:</td>
-                        <td>4</td>
+                        <td id="detail-carrier">4</td>
                       </tr>
                       <tr>
                         <td>排氣量(c.c.):</td>
-                        <td>1,598</td>
+                        <td  id="detail-cc">1,598</td>
                       </tr>              
                     </tbody>
                   </table>
@@ -147,9 +147,33 @@
 $('.carousel').carousel({
   interval: false
 });
-function detailRentCar(){
-	
-}
-detailRentCar();
+//-----函數區--------------------
+function showRentCar(){
+	$("div[name='content-prod']").click(function(){
+		var prodIdStr= this.id;
+		var prodId = prodIdStr.split("-")[1];	
+		//寫入价林需要的prod_id 在05的prod_detail
+		$("input[name='detail_prod_id']").val(prodId);
+		alert("prodId="+prodId);
+		showCarDetail();
+	});
+}//end showRentCar()
+function showCarDetail(){
+	var jsonString= <%=request.getAttribute("jsonString")%>;
+	var clickProdId = $("input[name='detail_prod_id']").val();
+	//alert("在prod_detail裡clickProdId="+clickProdId);
+	for(var i=0; i<jsonString.length;i++){
+		if(jsonString[i]["prod_id"] == clickProdId){//找出click的商品資料
+			$("#detail-prodName").text(jsonString[i]["prod_name"]);
+			$("#detail-disc").text(jsonString[i]["prod_disc"]);
+			$("#detail-price").text(jsonString[i]["prod_price"]);
+			//$("#detail-control").text(jsonString[i]["prod_control"]);先留著
+			$("#detail-carrier").text(jsonString[i]["prod_carrier"]);
+			$("#detail-cc").text(jsonString[i]["prod_cc"]);
+		}//end if
+	}//end for
+}//end showCarDetail()
+//----執行區-----
+showRentCar();
 </script>
 
