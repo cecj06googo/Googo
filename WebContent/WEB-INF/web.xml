@@ -274,6 +274,14 @@
     	<servlet-name>ForgetPwd</servlet-name>
     	<url-pattern>/forgetpwd.gg</url-pattern>
     </servlet-mapping>
+    <servlet>
+    	<servlet-name>ResetPwd</servlet-name>
+    	<servlet-class>com.forgetpwd.controller.ResetPwdServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>ResetPwd</servlet-name>
+    	<url-pattern>/resetpwd.gg</url-pattern>
+    </servlet-mapping>
     <!-- End: 忘記密碼相關 -->
 	
 	<!-- Begin: Filter設定 -->
