@@ -65,7 +65,7 @@
 			<div class="carousel-inner cont-slider">
 			
 			<div class="item active">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/19.jpg">
+			  <img id="detail-MainPic" alt="" title="" src="${pageContext.request.contextPath}/img/19.jpg">
 			</div>
 			<div class="item">
 			  <img alt="" title="" src="${pageContext.request.contextPath}/img/39.jpg">
@@ -165,11 +165,11 @@ function showCarDetail(){
 	for(var i=0; i<jsonString.length;i++){
 		if(jsonString[i]["prod_id"] == clickProdId){//找出click的商品資料
 			$("#detail-prodName").text(jsonString[i]["prod_name"]);
-			$("#detail-disc").text(jsonString[i]["prod_disc"]);
-			$("#detail-price").text(jsonString[i]["prod_price"]);
+			$("#detail-disc").text(jsonString[i]["prod_disc"]*100+"折");
+			$("#detail-price").text(jsonString[i]["prod_price"]+"元");
 			//$("#detail-control").text(jsonString[i]["prod_control"]);先留著
-			$("#detail-carrier").text(jsonString[i]["prod_carrier"]);
-			$("#detail-cc").text(jsonString[i]["prod_cc"]);
+			$("#detail-carrier").text(jsonString[i]["prod_carrier"]+"人");
+			$("#detail-cc").text(jsonString[i]["prod_cc"]+" c.c.");
 		}//end if
 	}//end for
 }//end showCarDetail()
