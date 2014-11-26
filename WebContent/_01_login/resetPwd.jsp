@@ -20,7 +20,7 @@
 		      <form role="form" id="test">
 		        <div class="form-group">
 		          <label > E-mail:</label>
-		          <input type="text" class="form-control" id="resetpwdinputEmail" name="resetpwdinputEmail">
+		          <input type="text" class="form-control" id="resetPwdMail" name="resetPwdMail">
 		        </div>
 		        <div class="form-group">
                         <label><input type="radio" name="optionsRadios" id="member" value="Mem">一般會員</label>
@@ -29,14 +29,14 @@
                 <div class="control-group form-group">
                 <label  class="control-label">密碼:</label>
                 <div class="controls ">
-                    <input type="password" class="form-control" name="mem_pwd0" value="${memVO.mem_pwd}" placeholder="請輸入6~12，包含英文與數字" >
+                    <input type="password" class="form-control" name="newpwd" placeholder="請輸入6~12，包含英文與數字" >
                 </div>
                  <font color="red" size="-1">${errorMsgs.errorPwd}</font>
             </div>
             <div class="control-group form-group">
                 <label  class="control-label">密碼確認:</label>
                 <div class="controls ">
-                    <input type="password" class="form-control" name="mem_pwd" value="${memVO.mem_pwd}" placeholder="請再次輸入密碼" >
+                    <input type="password" class="form-control" name="newpwdcheck" placeholder="請再次輸入密碼" >
                 </div>
             </div>
                 <input type="hidden" name="action" value="resetpwd">

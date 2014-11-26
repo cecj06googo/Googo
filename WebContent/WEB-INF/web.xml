@@ -252,6 +252,16 @@
 		<url-pattern>/schedulerServlet</url-pattern>
 	</servlet-mapping>
 <!-- End: 車輛調度相關 -->
+    <!-- Begin: 忘記密碼相關 -->
+    <servlet>
+    	<servlet-name>ForgetPwd</servlet-name>
+    	<servlet-class>com.forgetpwd.controller.ForgetPwdServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    	<servlet-name>ForgetPwd</servlet-name>
+    	<url-pattern>/forgetpwd.gg</url-pattern>
+    </servlet-mapping>
+    <!-- End: 忘記密碼相關 -->
 	
 	<!-- Begin: Filter設定 -->
 	<filter>
