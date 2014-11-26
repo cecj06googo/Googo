@@ -141,7 +141,20 @@
 		<servlet-name>prodEdit</servlet-name>
 		<url-pattern>/prod.edit</url-pattern>
 	</servlet-mapping>
-<!-- end: prod manage -->
+<!-- end: prod manage -->	
+
+
+	<!-- Begin: ACC相關 -->
+	<servlet>
+		<servlet-name>acc</servlet-name>
+		<servlet-class>com.products.controller.AccInsert</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>acc</servlet-name>
+		<url-pattern>/acc.in</url-pattern>
+	</servlet-mapping>
+	
+<!-- end: ACC manage -->	
 
 	<!-- Begin: 登入相關 -->
 	<servlet>
