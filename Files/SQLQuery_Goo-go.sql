@@ -221,11 +221,17 @@ Create Table Accessory(
 
 			CONSTRAINT Accessory_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 );
-insert into Accessory values ('高粱酒',18,'wine', 0x00, 1000, 1);
-insert into Accessory values ('高粱酒',18,'wine', 0x00, 1000, 1);
-insert into Accessory values ('高粱酒',18,'wine', 0x00, 1000, 1);
-insert into Accessory values ('高粱酒',18,'wine', 0x00, 1000, 1);
-insert into Accessory values ('高粱酒',18,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒1',1,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒2',1,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒3',1,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒4',1,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒5',1,'wine', 0x00, 1000, 1);
+insert into Accessory values ('啤酒1',2,'wine', 0x00, 1000, 1);
+insert into Accessory values ('啤酒2',2,'wine', 0x00, 1000, 1);
+insert into Accessory values ('啤酒3',2,'wine', 0x00, 1000, 1);
+insert into Accessory values ('啤酒4',2,'wine', 0x00, 1000, 1);
+insert into Accessory values ('啤酒5',2,'wine', 0x00, 1000, 1);
+
 
 
 Create Table Ord_status(

@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.comFirstPage.model.ProductVO;
-import com.comFirstPage.model.ProductsService;
+import com.comFirstPage.model.*;
 import com.company.model.*;
 
 import org.json.simple.JSONValue;//玩玩看
@@ -58,6 +57,13 @@ public class DispComFirstPage extends HttpServlet {
 		request.setAttribute("prodsVos", prodsVos);
 		countsTheTypeProduct(prodsVos,request);//統計車種數量並傳到前端
 		//printProdsOfACom(prodsVos);// 測試用:vos內值是否正確
+		//----------取得該商家所有配件資訊----------------
+		AccService accservice = new  AccService();
+		List<AccessoryVO> accsVos = new ArrayList<AccessoryVO>();
+		accsVos = accservice.getAccVosByComId(comId);
+		printAccsOfACom(accsVos);
+		request.setAttribute("accsVos", accsVos);
+		
 		//----------丟給Google Map使用--------------
 		List<String> comAdressArray = new ArrayList<String>();
 		List<String> comNameArray = new ArrayList<String>();
@@ -137,6 +143,18 @@ public class DispComFirstPage extends HttpServlet {
 		}
 	}//end protected void printProdsOfACom
 	
+	protected void printAccsOfACom(List<AccessoryVO> accVOs) {
+		for(AccessoryVO accVO : accVOs){
+			System.out.println("------------AccData--------------");
+			System.out.println("AccID="+accVO.getAccId());
+			System.out.println("AccName="+accVO.getAccName());
+			System.out.println("ComId="+accVO.getComId());
+			System.out.println("AccDetail="+accVO.getAccDetail());
+			System.out.println("AccPrice="+accVO.getAccPrice());
+			System.out.println("AccStatus="+accVO.getAccStatus());
+			System.out.println("------------AccDataEnd--------------");
+	    }
+	}
 	protected void printDataOfACom(CompanyVO comVO) {
 		System.out.println("------------ComData--------------");
 		System.out.println("ComID="+comVO.getComID());

@@ -154,7 +154,7 @@ function showRentCar(){
 		var prodId = prodIdStr.split("-")[1];	
 		//寫入价林需要的prod_id 在05的prod_detail
 		$("input[name='detail_prod_id']").val(prodId);
-		alert("prodId="+prodId);
+		//alert("prodId="+prodId);
 		showCarDetail();
 	});
 }//end showRentCar()
