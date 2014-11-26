@@ -47,6 +47,7 @@
                 </thead>
                 <tbody>
                    <c:forEach var="ProductVO" items="${car}">
+<%--                    <c:set var="prod'${ProductVO.prodId}'" value="${ProductVO}" scope="session"/> --%>
                    	<tr id="prodId">
                     	<td>${ProductVO.prodName}</td>
                     	<td>${ProductVO.prodDisc}</td>
@@ -149,11 +150,11 @@
                 </thead>
                 <tbody>
                     <c:forEach var="ProductVO" items="${bike}">
-                    	<tr id="prodId">
-                    	<td>${ProductVO.prodName}</td>
-                    	<td>${ProductVO.prodDisc}</td>
-                    	<td>${ProductVO.prodPrice}</td>
-                    	<td>${ProductVO.prodPlate}</td>
+                    	<tr id="${ProductVO.prodId}">
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodName}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodDisc}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodPrice}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodPlate}</td>
                     	<td class="text-center">
                				<a href="#" id="${ProductVO.prodId}" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                        		<a href="#" id="${ProductVO.prodId}" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
@@ -164,13 +165,18 @@
 <%--                     	<input type="hidden" name="${ProductVO.prodId}prodType" value="${ProductVO.prodType}"/> --%>
                     	<input type="hidden" name="${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
-<%--                     	<input type="hidden" name="${ProductVO.prodId}prodKind" value="${ProductVO.prodKind}"/> --%>
+                    	<input type="hidden" name="${ProductVO.prodId}prodKind" value="${ProductVO.prodKind}"/>
 <%--                     	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/> --%>
 <%--                     	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/> --%>
 <!--                     	Cc數 是否要顯示小數點 ?-->
 <%-- 						<input type="hidden" name="${ProductVO.prodId}prodControl" value="${ProductVO.prodControl}"/> --%>
                     	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>                   	
+                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>
+                    	<img  name="${ProductVO.prodId}prodPic" class="img-responsive"
+							src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${LoginComOK.comID}&prodId=${ProductVO.prodId}'
+							alt=""/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>
+                    	 ${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${LoginComOK.comID}&prodId=${ProductVO.prodId}        	
                     </c:forEach>  
                 </tbody>
             </table>
@@ -195,10 +201,32 @@
 
 
 <script>
-
+// function fileShow() {
+// 	document.getElementById('img1').style.display = "inline";
+// 	var reader = new FileReader();
+// 	reader.onload = function(e) {
+// 		var fileContent = e.target.result;
+// 		var show = document.getElementById("img1");
+// 		show.setAttribute("src", fileContent)
+// 		alert("5");
+// 	}
+// 	file = document.getElementById("prodPic").files[0];
+// 	alert(file);
+	
+// 	reader.readAsDataURL(file);
+// 	alert("6");
+// }
 $("td[class!=text-center]").click(function(){
+	
+// 	alert(this.id);
+// 	$("#picDe").attr("src","${pageContext.servletContext.contextPath}/ShowProdImage?comID=${LoginComOK.comID}&prodId="+this.id+"&pic=pic")
+// 	$("#picDe").attr("src","${pageContext.servletContext.contextPath}/ShowProdImage?comID=${LoginComOK.comID}&prodId="+this.id+"&pic=subPicDe1")
+	
+// 	alert("${pageContext.servletContext.contextPath}/ShowProdImage?comID=${LoginComOK.comID}&prodId="+this.id+"&pic=pic");
 	$("td[class!=text-center]").attr( "data-toggle", "modal" );
 	$("td[class!=text-center]" ).attr( "data-target", "#prod_detail" );
+	// 	src="${pageContext.servletContext.contextPath}/ShowProdImage?comID=${loginComToken.comID}&prodId=${ProductVO.prodId}&pic=pic"
+	
 })
 //新增
 $("a[data-target='#editProduct']").click(function() {

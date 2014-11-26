@@ -10,7 +10,7 @@ public class ForgetPwdJDBCDAO implements ForgetPwdDAO_interface {
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
 	String userid = "sa";
-	String passwd = "P@ssw0rd";
+	String passwd = "sa123456";
 	
 	private static final String MEM_PWD_UPDATE = 
 			"UPDATE Member set mem_pwd=? where mem_account=? ";

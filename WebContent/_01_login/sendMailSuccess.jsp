@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-您的申請已提交成功，請查看您的E-mail信箱
+<div id="sendMailSuccess">您的申請已提交成功，請查看您的E-mail信箱</div>
 </body>
 </html>
