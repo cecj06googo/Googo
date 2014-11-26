@@ -16,6 +16,7 @@ public class SendResetPwdEmail {
 		
 	}
 	
+
 	public static String generateResetPwdLink(String ServerName, int LocalPort, String ContextPath){
 		return "http://"+ServerName+":"+LocalPort+ContextPath+"/_01_login/resetPwd.jsp";
 		

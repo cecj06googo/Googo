@@ -72,7 +72,6 @@ public class ForgetPwdServlet extends HttpServlet{
 		MemVO memVO = null;
 		CompanyVO comVO = null;
 		
-		
 	    ForgetPwdService forgetPwdSvc = new ForgetPwdService();
 		userId = forgetPwdSvc.findId(userAccount, userIdentity);
 		if("Mem".equals(userIdentity)){
@@ -94,6 +93,7 @@ public class ForgetPwdServlet extends HttpServlet{
 			RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/forgetPwd.jsp");
 			failureView.forward(req, res);
 			return;//程式中斷
+
 		}
 		/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 		SendResetPwdEmail.sendResetEmail(userAccount, req.getServerName(), req.getLocalPort(), req.getContextPath());
@@ -101,8 +101,7 @@ public class ForgetPwdServlet extends HttpServlet{
 		String url = "/_01_login/sendMailSuccess.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url);
 		successView.forward(req, res);
-		
+	}	
 		
 	}//end of class
 
-}
