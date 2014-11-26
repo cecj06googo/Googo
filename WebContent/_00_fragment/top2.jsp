@@ -133,10 +133,10 @@
                                 <a href="<c:url value='/_06_manage/productInsert.jsp'/>">新品上架</a>
                             </li>
                             <li>
-                                <a href="<c:url value='/_06_manage/product.jsp'/>">車輛管理</a>
+                                <a href="<c:url value='/_06_manage/product.jsp'/>">商品管理</a>
                             </li>
                             <li>
-                                <a href="#">配件管理</a>
+                                <a href="#">配件</a>
                             </li>
                         </ul>
                     </li>
