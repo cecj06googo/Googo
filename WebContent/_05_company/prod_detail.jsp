@@ -100,38 +100,25 @@
  		    	<table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td>型式:</td>
-                        <td>五人座五門休旅車</td>
+                        <td>折扣</td>
+                        <td>75折</td>
+                      </tr>
+                      <tr>
+                        <td>租金</td>
+                        <td>2500元 /天</td>
+                      </tr>
+                      <tr>
+                        <td>手/自排:</td>
+                        <td>自排</td>
+                      </tr>
+                      <tr>
+                        <td>乘載人數:</td>
+                        <td>4</td>
                       </tr>
                       <tr>
                         <td>排氣量(c.c.):</td>
                         <td>1,598</td>
-                      </tr>
-                      <tr>
-                        <td>最大馬力(ps/rpm):</td>
-                        <td>115/5,600</td>
-                      </tr>
-                   	 <tr>
-                        <td>顏色</td>
-                        <td>紅色、墨綠色</td>
-                      </tr>
-                      <tr>
-                        <td>多功能一體式娛樂系統</td>
-                        <td>附USB插槽、車充</td>
-                      </tr>
-                      <tr>
-                        <td>內裝</td>
-                        <td>兒童安全鎖、雙前座遮陽板</td>
-                      </tr>
-                      <tr>
-                        <td>可搭配備</td>
-                        <td>兒童安全座椅<br>野餐用具<br>帳篷<br></td>
-                      </tr>
-                       <tr>
-                        <td>租金</td>
-                        <td>2500元 /天</td>
-                      </tr>
-                     
+                      </tr>              
                     </tbody>
                   </table>
                   <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
@@ -160,6 +147,9 @@
 $('.carousel').carousel({
   interval: false
 });
-
+function detailRentCar(){
+	
+}
+detailRentCar();
 </script>
 
