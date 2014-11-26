@@ -59,6 +59,8 @@
 
 <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
 <input type="hidden" name="action" value="insert" />
+<input type="hidden" name="com_id" value="${detail_com_id}" />
+<input type="hidden" name="prod_id" value="${detail_prod_id}" />
 <!-------------- 訂單第一頁 ----------------->
     <div class="row setup-content" id="step-1">
         <div class="col-xs-12 div-back div-height">

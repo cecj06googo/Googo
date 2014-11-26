@@ -98,6 +98,14 @@
 		<url-pattern>/ActionMem.do</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>PlaceOrder</servlet-name>
+		<servlet-class>com.orders.controller.OrdersActionMem</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PlaceOrder</servlet-name>
+		<url-pattern>/PlaceOrder.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>FakeDataTest</servlet-name>
 		<servlet-class>com.orders.controller.fakeData</servlet-class>
 	</servlet>
@@ -298,11 +306,26 @@
       <param-name>mustMemLogin2</param-name>
       <param-value>/_05_company/company.jsp</param-value>
     </init-param>
+        <init-param>
+      <param-name>mustMemLogin3</param-name>
+      <param-value>/_07_order/*</param-value>
+    </init-param>
   </filter>
   <filter-mapping>
     <filter-name>LoginMemFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/*</url-pattern>  
   </filter-mapping>
+
+  <filter>
+    <display-name>PlaceOrderFilter</display-name>
+    <filter-name>PlaceOrderFilter</filter-name>
+    <filter-class>com.login.filter.LoginMemFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>PlaceOrderFilter</filter-name>
+    <url-pattern>/PlaceOrder.do</url-pattern>
+  </filter-mapping>
+
   <filter>
     <display-name>LoginComFilter</display-name>
     <icon/>

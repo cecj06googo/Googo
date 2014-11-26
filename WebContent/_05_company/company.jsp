@@ -268,6 +268,11 @@
 											<h3>${ProductVO.prodName}</h3>
 											<p>價錢:${ProductVO.prodPrice}台幣/日</p>
 											<p>${ProductVO.prodArticle}</p>
+											<input type="hidden" name="" value="${ProductVO.prod_disc}"/>
+											<input type="hidden" name="" value="${ProductVO.prod_price}"/>
+											<input type="hidden" name="" value="${ProductVO.prodArticle}"/>
+											<input type="hidden" name="" value="${ProductVO.prodArticle}"/>
+											<input type="hidden" name="" value="${ProductVO.prodArticle}"/>
 										</div>
 									</a>
 								</div>
@@ -552,6 +557,16 @@
 				//}
 			});//end $("#SearchButton").click(function() 
 		}//end function SearchMoneyRange()
+
+
+			$("div[name='content-prod']").click(function(){
+				var prodIdStr= this.id;
+				var prodId = prodIdStr.split("-")[1];	
+				//寫入价林需要的prod_id 在05的prod_detail
+				$("input[name='detail_prod_id']").val(prodId);
+// 				alert("prodId="+prodId);
+			});
+
 
 		//------執行區--------
 		hideTab();
