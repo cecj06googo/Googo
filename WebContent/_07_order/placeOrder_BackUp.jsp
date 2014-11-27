@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.template.model.Prototype_OrderTemp_VO, com.member.model.MemVO"%>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<% Prototype_OrderTemp_VO tempVo = (Prototype_OrderTemp_VO)request.getAttribute("tempVo"); %>    
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +10,6 @@
 <jsp:include page="/_00_fragment/top1.jsp" />
 <jsp:include page="/_00_fragment/css.jsp" />
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/PlaceOrderTemplateJsonify.js"></script>
 <!-- 順序不可動 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="${pageContext.request.contextPath}/_07_order/order.css" rel="stylesheet">
@@ -161,20 +159,13 @@
         <div class="col-xs-12">
             <div class="col-xs-12">
                 <h3>其他資訊</h3>
-                <!-- Begin: Modified by ranian -->
-                <textarea id="pritem_acc" name="pritem_acc">stand by for json bundle</textarea>
-                <input type="button" id="inspectCust" value="Inspect Customized Fields" />
-                <div class="col-xs-6 div-css">
-                	<div id="DesignResultTarget"></div>
-                </div>
-                <!-- End: Modified by ranian -->
                 <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
             </div>
         </div>
     </div>
 <!-------------- /.訂單第三頁 ---------------->
 </form>	
-
+		
 		<hr>
 		<!-- Footer -->
 		<jsp:include page="/_00_fragment/footer.jsp" />
@@ -186,22 +177,6 @@
 <script>
 $(document).ready(function () {
 // 	http://www.jqueryrain.com/?lnsG0UbP
-	
-	// Begin: Modified by ranian
-	// retrieve designed form template and attach to div #DesignResultTarget
-	$.ajax({
-		url: "<%=request.getContextPath()%>/DesignAccessDB",
-		type: "post",
-		data: {
-			com_id_form_view: <%=session.getAttribute("com_id") %>,
-			command: "retrieve"	
-		},
-		dataType: "html",
-	}).done(function(result){
-		$("#DesignResultTarget").html(result);
-	});
-	// End: Modified by ranian
-		
 	var timeChar,oneChar,twoChar,thrChar,fourChar,getTime,reTime;
 	$('#showGet').datetimepicker({
 		  lang:'zh-TW',

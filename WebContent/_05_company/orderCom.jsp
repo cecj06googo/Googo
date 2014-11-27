@@ -70,7 +70,7 @@
 							<input type="hidden" name="action" value="selectCom">
                     </form> 
                 </div>
-                <a  title="收縮" ><span>一鍵收縮<i class="glyphicon glyphicon-resize-small"></i></span></a>
+                <a  title="收縮" ><span id="aa">一鍵收縮<i class="glyphicon glyphicon-resize-small"></i></span></a>
             </div> 
         </div>
         <!-- /.Search bar -->

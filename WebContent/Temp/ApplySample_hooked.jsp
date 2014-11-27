@@ -218,22 +218,31 @@ $("#selectManage").addClass("active");
                                 			</div>
                             			</div>
                             			
-                            			<div class="component form-group" data-type="PreDriverData">
-                                			<label class="control-label col-sm-4" for="PreDriverDataName">駕駛姓名</label>
+                            			<div class="component form-group" data-type="PreBox">
+                                			<label class="control-label col-sm-4" for="PreSelectBasic">Predefined - Box</label>
                                 			<div class="controls col-sm-8">
-                                    			<input type="text" class="form-control" name="" id="PreDriverDataName" style="margin-bottom:5px" value="預設被保險人，請按照身份證或駕照姓名填寫">
+                                    		<select class="form-control" name="" id="PreBox">
+                                        	<option value="0">Dynamic options from DB</option>
+                                    		</select>
+                                			</div>
+                            			</div>
+                            			
+                            			<div class="component form-group" data-type="AdditionalInsurance">
+                                			<label class="control-label col-sm-4" for="AdditionalInsuranceName">加保人姓名</label>
+                                			<div class="controls col-sm-8">
+                                    			<input type="text" class="form-control" name="" id="AdditionalInsuranceName" style="margin-bottom:5px" value="預設被保險人，請按照身份證或駕照姓名填寫">
                                     		</div>
-                                    		<label class="control-label col-sm-4" for="PreDriverDataPhone">駕駛手機</label>
+                                    		<label class="control-label col-sm-4" for="AdditionalInsurancePhone">加保人手機</label>
                                 			<div class="controls col-sm-8">
-                                    			<input type="text" class="form-control" name="" id="PreDriverDataPhone" style="margin-bottom:5px" value="格式：0900-000-000">
+                                    			<input type="text" class="form-control" name="" id="AdditionalInsurancePhone" style="margin-bottom:5px" value="格式：0900-000-000">
                                     		</div>
-                                    		<label class="control-label col-sm-4" for="PreDriverDataMail">聯絡郵件</label>
+                                    		<label class="control-label col-sm-4" for="AdditionalInsuranceMail">聯絡郵件</label>
                                 			<div class="controls col-sm-8">
-                                    			<input type="text" class="form-control" name="" id="PreDriverDataMail" style="margin-bottom:5px" value="任何臨時車輛異動將即時以電子郵件通知您">
+                                    			<input type="text" class="form-control" name="" id="AdditionalInsuranceMail" style="margin-bottom:5px" value="任何臨時車輛異動將即時以電子郵件通知您">
                                     		</div>
-                                    		<label class="control-label col-sm-4" for="PreDriverDataLicense">駕照號碼</label>
+                                    		<label class="control-label col-sm-4" for="AdditionalInsuranceID">身份證字號</label>
                                 			<div class="controls col-sm-8">
-                                    			<input type="text" class="form-control" name="" id="PreDriverDataLicense" style="margin-bottom:5px" value="主管機關備查用，請務必填寫正確">
+                                    			<input type="text" class="form-control" name="" id="AdditionalInsuranceID" style="margin-bottom:5px" value="主管機關備查用，請務必填寫正確">
                                     		</div>
                             			</div>
                             			

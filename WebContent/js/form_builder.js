@@ -364,40 +364,164 @@ $(function() {
             },
         },
         
-        PreDriverData: {
+        PreBox: {
         	
-        	prefix: '.options_PreDriverData_',
+        	prefix: '.options_PreBox_',
+        	
+        	get: function(){
+        		var el = form_builder.getElement(),
+        			elementSelect = el.find("[id$='PreBox']"),
+        			elementOptions = elementSelect.find("option");
+        			displayPool = '',
+        			displayPoolOptions = '',
+        			availablePool = '',
+        			label = el.find('label');
+        		
+        		/********************** Begin Initialization ************************/
+        		$.ajax({
+                	url: contextPath + "/GetAccessory",
+            		data: {com_id: currentCom},
+                	dataType: "json",
+            	})
+            	.done(function(data){
+            		console.log(data);
+            		pre_databean = data;
+            		
+            		// initialize displayPool, check if current element has options
+            		if(elementOptions.length > 0){
+            			
+            			// check if DB available accessories match options in current element, show matched options
+            			$(pre_databean).each(function(index){
+            				for(i = 0; i < elementOptions.length; i++){
+            					if($(elementOptions[i]).attr("data-id") == pre_databean[index]["acc_id"]){
+            						$(elementOptions[i]).clone().appendTo("#displayPool");
+            					}
+            				}
+                		});
+            			
+            			// check if options in current element match DB available accessories, mark unmatched options
+            			for(j = 0; j < elementOptions.length; j++){
+            				var matchOK = 0;
+            				$(pre_databean).each(function(index){
+            					if(pre_databean[index]["acc_id"] == $(elementOptions[j]).attr("data-id")){
+            						matchOK = 1;
+            						return false; // break .each()
+            					}
+            				});
+            				if(matchOK == 0){
+            					$(elementOptions[j]).attr("class", "mkrm"); // Mark Remove
+            				}
+            			}
+            			
+            			// remove marked options in element
+            			if(elementOptions.find(".mkrm").length > 0){
+            				$("elementOptions .mkrm").remove();
+            			}
+
+        			}// end if: displayPool initialization
+            		
+            		// initialize availablePool, load available accessories which are not in displayPool
+            		displayPool = $("#displayPool");
+            		availablePool = $("#availablePool");
+            		displayPoolOptions = displayPool.find("option");
+            		
+            		$(pre_databean).each(function(index){
+            			var appendOK = 1;
+            			for(k = 0; k < displayPool.find("option").length; k++){
+            				if(pre_databean[index]["acc_id"] == $(displayPoolOptions[k]).attr("data-id")){
+            					appendOK = 0;
+            					break;
+            				}
+            			}
+            			if(appendOK == 1){
+            				$("<option></option>").attr("data-id", pre_databean[index]["acc_id"])
+            									  .val(pre_databean[index]["price"])
+            									  .text(pre_databean[index]["description"])
+            									  .appendTo(availablePool);
+            			}
+            		});// end .each(): vailablePool initialization
+            	});// end ajax handler .done()
+        		
+        		$(this.prefix + 'label').val(el.find('label').text());
+        		/********************** End Initialization ************************/
+        		
+        		$("#addToDisplay").on("click", function(){
+        			$(availablePool).find(":selected").appendTo(displayPool);
+        		});
+        		
+        		$("#removeFromDisplay").on("click", function(){
+        			$(displayPool).find(":selected").appendTo(availablePool);
+        		});
+        		
+        	},// end get()
+        	
+        	set: function(){
+        		var el = form_builder.getElement(),
+    				elementSelect = el.find("[id$='PreBox']"),
+    				elementOptions = elementSelect.find("option");
+    				displayPool = $("#displayPool"),
+    				displayPoolOptions = displayPool.find("option"),
+    				availablePool = $("#availablePool"),
+    				label = el.find('label');
+        		
+    			$(elementOptions).remove();
+        		$(displayPoolOptions).clone().appendTo(elementSelect);
+        		
+        		label.text($(this.prefix + 'label').val());
+        	},
+        	
+        	setIdentification: function(){
+        		var el = form_builder.getElement(),
+        		elementSelect = el.find("[id$='PreBox']"),
+        		label = el.find('label');
+
+        		elementSelect.attr("id", 'custField_' + form_builder.counter + '_PreBox');
+        		elementSelect.attr("name", elementSelect.attr("id"));
+        		label.attr('for', elementSelect.attr('id'));
+        	},
+        	
+        },
+        
+        AdditionalInsurance: {
+        	
+        	prefix: '.options_AdditionalInsurance_',
         	
         	get: function(){
         		var el = form_builder.getElement();
         		
-        		$(this.prefix + 'NamePlaceholder').val($(el).find("input[id$='PreDriverDataName']").val());
-        		$(this.prefix + 'PhonePlaceholder').val($(el).find("input[id$='PreDriverDataPhone']").val());
-        		$(this.prefix + 'MailPlaceholder').val($(el).find("input[id$='PreDriverDataMail']").val());
-        		$(this.prefix + 'LicensePlaceholder').val($(el).find("input[id$='PreDriverDataLicense']").val());
+        		$(this.prefix + 'NamePlaceholder').val($(el).find("input[id$='AdditionalInsuranceName']").val());
+        		$(this.prefix + 'PhonePlaceholder').val($(el).find("input[id$='AdditionalInsurancePhone']").val());
+        		$(this.prefix + 'MailPlaceholder').val($(el).find("input[id$='AdditionalInsuranceMail']").val());
+        		$(this.prefix + 'IDPlaceholder').val($(el).find("input[id$='AdditionalInsuranceID']").val());
         	},
         	
         	set: function(){
         		var el = form_builder.getElement();
         		
-        		el.find('input[id$="PreDriverDataName"]').attr("value", $(this.prefix + 'NamePlaceholder').val());
-        		el.find('input[id$="PreDriverDataPhone"]').attr("value", $(this.prefix + 'PhonePlaceholder').val());
-        		el.find('input[id$="PreDriverDataMail"]').attr("value", $(this.prefix + 'MailPlaceholder').val());
-        		el.find('input[id$="PreDriverDataLicense"]').attr("value", $(this.prefix + 'LicensePlaceholder').val());
+        		el.find('input[id$="AdditionalInsuranceName"]').attr("value", $(this.prefix + 'NamePlaceholder').val());
+        		el.find('input[id$="AdditionalInsurancePhone"]').attr("value", $(this.prefix + 'PhonePlaceholder').val());
+        		el.find('input[id$="AdditionalInsuranceMail"]').attr("value", $(this.prefix + 'MailPlaceholder').val());
+        		el.find('input[id$="AdditionalInsuranceID"]').attr("value", $(this.prefix + 'IDPlaceholder').val());
 	
         	},
         	
         	setIdentification: function(){
             	var el = form_builder.getElement();
             	
-            	el.find('input[id$="PreDriverDataName"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataName')
-            											 .attr("name", 'custField_' + form_builder.counter + '_PreDriverData');
-        		el.find('input[id$="PreDriverDataPhone"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataPhone')
-        												  .attr("name", 'custField_' + form_builder.counter + '_PreDriverData');
-        		el.find('input[id$="PreDriverDataMail"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataMail')
-        												 .attr("name", 'custField_' + form_builder.counter + '_PreDriverData');
-        		el.find('input[id$="PreDriverDataLicense"]').attr("id", 'custField_' + form_builder.counter + '_PreDriverDataLicense')
-        													.attr("name", 'custField_' + form_builder.counter + '_PreDriverData');
+            	el.find('input[id$="AdditionalInsuranceName"]').attr("id", 'custField_' + form_builder.counter + '_AdditionalInsuranceName')
+            											 .attr("name", 'custField_' + form_builder.counter + '_AdditionalInsurance');
+        		el.find('input[id$="AdditionalInsurancePhone"]').attr("id", 'custField_' + form_builder.counter + '_AdditionalInsurancePhone')
+        												  .attr("name", 'custField_' + form_builder.counter + '_AdditionalInsurance');
+        		el.find('input[id$="AdditionalInsuranceMail"]').attr("id", 'custField_' + form_builder.counter + '_AdditionalInsuranceMail')
+        												 .attr("name", 'custField_' + form_builder.counter + '_AdditionalInsurance');
+        		el.find('input[id$="AdditionalInsuranceID"]').attr("id", 'custField_' + form_builder.counter + '_AdditionalInsuranceID')
+        													.attr("name", 'custField_' + form_builder.counter + '_AdditionalInsurance');
+        		var labels = el.find('label');
+
+        		$(labels[0]).attr("for", 'custField_' + form_builder.counter + '_AdditionalInsuranceName');
+        		$(labels[1]).attr("for", 'custField_' + form_builder.counter + '_AdditionalInsurancePhone');
+        		$(labels[2]).attr("for", 'custField_' + form_builder.counter + '_AdditionalInsuranceMail');
+        		$(labels[3]).attr("for", 'custField_' + form_builder.counter + '_AdditionalInsuranceID');
             },
         },
         
