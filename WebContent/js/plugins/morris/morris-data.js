@@ -28,57 +28,60 @@ $(function() {
     Morris.Area({
         element: 'morris-area-chart',
         data: [{
-            period: '2014-11-01',
+            day: '2014-11-01',
             car: 2666,
-            moto: null,
-            bike: 2647
+            
+        },{
+        	day: '2014-11-01',
+            moto: 3500,
+            
         }, {
-            period: '2014-11-05',
+        	day: '2014-11-05',
             car: 2778,
             moto: 2294,
             bike: 2441
         }, {
-            period: '2014-11-10',
+        	day: '2014-11-10',
             car: 4912,
             moto: 1969,
             bike: 2501
         }, {
-            period: '2014-11-15',
+        	day: '2014-11-15',
             car: 3767,
             moto: 3597,
             bike: 5689
         }, {
-            period: '2014-11-20',
+        	day: '2014-11-20',
             car: 6810,
             moto: 1914,
             bike: 2293
         }, {
-            period: '2014-11-25',
+        	day: '2014-11-25',
             car: 5670,
             moto: 4293,
             bike: 1881
         }, {
-            period: '2014-12-1',
+        	day: '2014-12-1',
             car: 4820,
             moto: 3795,
             bike: 1588
         }, {
-            period: '2014-12-3',
+        	day: '2014-12-3',
             car: 4820,
             moto: 3795,
             bike: 1588
         }, {
-            period: '2014-12-4',
+        	day: '2014-12-4',
             car: 4820,
             moto: 3795,
             bike: 1588
         }, {
-            period: '2014-12-6',
+        	day: '2014-12-6',
             car: 4820,
             moto: 3795,
             bike: 1588
         }],
-        xkey: 'period',
+        xkey: 'day',
         ykeys: ['car', 'moto', 'bike'],
         labels: ['汽車', '機車', '腳踏車'],
         pointSize: 2,

@@ -118,10 +118,17 @@ public class DataDAO {
 			pstmt.setInt(1,com_id);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
-			
+//			//第一筆空資料
+//			ordVO = new DordersVO();
+//			ordVO.setOrd_getday("lala");
+//			ordVO.setProd_type(0);			
+//			ordVO.setCountt(0);
+//			list.add(ordVO);
+			//資料庫資料
 			while (rs.next()) {
 				ordVO = new DordersVO();
-				ordVO.setOrd_getday(rs.getTimestamp("ord_getday"));
+				
+				ordVO.setOrd_getday(rs.getTimestamp("ord_getday").toString().substring(0, 10));
 				ordVO.setProd_type(rs.getInt("prod_type"));			
 				ordVO.setCountt(rs.getInt("Countt"));
 				list.add(ordVO);
