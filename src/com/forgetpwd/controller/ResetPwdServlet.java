@@ -56,6 +56,9 @@ public class ResetPwdServlet extends HttpServlet {
 			if(!newPwd.equals(newPwdCheck)){
 				errMsgs.put("errorPwdCheck", "兩次輸入的密碼不一致");
 			}
+			System.out.println("user_account = "+userAccount);
+			System.out.println("userIdentity = "+userIdentity);
+			System.out.println("newpwd = "+ newPwd);
 			// Send the use back to the form, if there were errors
 /*			if(!errMsgs.isEmpty()){
 				RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/resetPwd.jsp");

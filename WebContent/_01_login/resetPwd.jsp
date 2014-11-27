@@ -4,7 +4,7 @@
 <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
-	<form name="resetpwd_form" id="resetpwd_form" <%=request.getContextPath()%>/resetpwd.gg" method="post" >
+	<form name="resetpwd_form" id="resetpwd_form" action="<%=request.getContextPath()%>/resetpwd.gg" method="post" >
              <div class="control-group form-group ">
                 <label class="control-label">帳號:</label>
                 <div class="controls" >
@@ -124,115 +124,9 @@
 
 		        }}
 		    ).on('success.form.bv', function() {
-	            $('#register_success').modal('show');
+	            $('#resetpwd_success').modal('show');
 	        });
 
 		});
    
 	 })(jQuery)
-</script>
-<!-- jQuery Version 1.11.0 -->
-<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
-
-
-<script>
- (function($){
-	  
-	   $(document).ready(function() {
-		  $('#resetpwd_form').bootstrapValidator({
-		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-		        feedbackIcons: {
-		            valid: 'glyphicon glyphicon-ok',
-		            invalid: 'glyphicon glyphicon-remove',
-		            validating: 'glyphicon glyphicon-refresh'
-		        },
-	        	
-		        fields: {
-		        	user_account: {
-		        		trigger: 'keyup blur',
-		                message: '此E-mail無效',
-		                validators: {
-		                    notEmpty: {
-		                        message: '帳號不可空白，請填入E-mail'
-		                    },
-		                    emailAddress: {
-		                        message: '此E-mail無效,請輸入正確格式'
-		                    },
-		                   /* remote: {
-                                url: 'userAccountCheck.jsp',
-                                type: "post",
-                                async: false,
-                                message: '帳號重複，請重新輸入',
-                            },*/
-		                    
-		                }
-		            },
-		            newpwd: {
-		            	trigger:'keyup blur',
-		                validators: {
-		                	notEmpty: {
-		                        message: '密碼不可空白'
-		                    },
-		                	stringLength: {
-			                        min: 6,
-			                        max: 12,
-			                        message: '密碼長度限6~12字數'
-		                    },
-		                    regexp: {
-		                        regexp: /^(?=.*\d)(?=.*[a-z]).{6,12}$/,
-		                        message: '需包含英文及數字'
-		                    },
-		                    identical: {
-		                        field: 'newpwdcheck',
-		                        message: '與確認密碼不相同'
-		                    },
-		                    
-		                }
-		            },
-		            newpwdcheck: {
-		            	trigger: 'keyup blur',
-		                validators: {
-		                	notEmpty: {
-		                        message: '密碼確認不可空白'
-		                    },
-		                    identical: {
-		                        field: 'newpwd',
-		                        message: '與密碼不相同'
-		                    },
-		                    stringLength: {
-		                        min: 6,
-		                        max: 12,
-		                        message: '密碼長度限6~12字數'
-		                    },
-		                    regexp: {
-		                        regexp: /^(?=.*\d)(?=.*[a-z]).{6,12}$/,
-		                        message: '需包含英文及數字'
-		                    }
-		                }
-		            },
-		            optionsRadios: {
-		                validators: {
-		                	trigger: '',
-		                    notEmpty: {
-		                        message: '請選擇會員身分'
-		                    }
-		                }
-		            },
-		            
-		            
-		       
-		          
-		        }}
-		    ).on('success.form.bv', function() {
-	            $('#resetPwdSuccess').modal('show');
-	        });
-
-		});
-   
-	 })(jQuery)
-</script>
