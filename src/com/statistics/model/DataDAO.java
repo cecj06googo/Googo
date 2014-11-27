@@ -24,7 +24,7 @@ public class DataDAO {
 	private String DONUT = 
 			"select ord.Ord_status,sta.status_char, count(ord.Ord_status)as countt  from orders ord join ord_status sta on ord.ord_status =sta.ord_status  where com_id=? ";
 	private String AREA = 
-			"Select ord_getday,prod_type, Sum (item_total) As countt from orders ord join ord_item item on ord.ord_id =item.ord_id join Product prod on item.prod_id =prod.prod_id where ord.com_id=? ";
+			"Select cast(ord_getday as date)as ord_getday,prod_type, Sum (item_total) As countt from orders ord join ord_item item on ord.ord_id =item.ord_id join Product prod on item.prod_id =prod.prod_id where ord.com_id=? ";
 	private String BAR = 
 			"Select top 5 prod_name, count(prod_name) As countt from orders ord join ord_item item on ord.ord_id =item.ord_id join Product prod on item.prod_id =prod.prod_id where ord.com_id=? ";
 	private static final String NEWORDER = 
@@ -108,7 +108,7 @@ public class DataDAO {
 		java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy-MM-dd");  
 		String today =(format.format(Calendar.getInstance().getTime())).toString();  
 		String lastMDay=(format.format(cal.getTime())).toString();
-		AREA +="and ord_getday between '"+lastMDay+"' and '"+today+"' Group By prod_type,ord_getday";
+		AREA +="and ord_getday between '"+lastMDay+"' and '"+today+"' Group By prod_type,cast(ord_getday as date)";
 		System.out.println(AREA);
 		try {
 
