@@ -7,7 +7,9 @@ public class DordersVO  implements java.io.Serializable {
 	//Orders table欄位
 	private Integer ord_id;
 	private Integer ord_status;
-	private Timestamp ord_time;
+	private String ord_time;
+	private String ord_time_day;
+	private String ord_time_time;
 	private Timestamp ord_getday;
 	private Integer item_total;
 	private Integer countt;
@@ -16,6 +18,18 @@ public class DordersVO  implements java.io.Serializable {
 	private String prod_name;
 	
 	
+	public String getOrd_time_day() {
+		return ord_time_day;
+	}
+	public void setOrd_time_day(String ord_time_day) {
+		this.ord_time_day = ord_time_day;
+	}
+	public String getOrd_time_time() {
+		return ord_time_time;
+	}
+	public void setOrd_time_time(String ord_time_time) {
+		this.ord_time_time = ord_time_time;
+	}
 	public String getProd_name() {
 		return prod_name;
 	}
@@ -52,10 +66,10 @@ public class DordersVO  implements java.io.Serializable {
 	public void setOrd_status(Integer ord_status) {
 		this.ord_status = ord_status;
 	}
-	public Timestamp getOrd_time() {
+	public String getOrd_time() {
 		return ord_time;
 	}
-	public void setOrd_time(Timestamp ord_time) {
+	public void setOrd_time(String ord_time) {
 		this.ord_time = ord_time;
 	}
 	public Timestamp getOrd_getday() {

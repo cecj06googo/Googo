@@ -241,8 +241,12 @@ public class DataDAO {
 			
 			while (rs.next()) {
 				ordVO = new DordersVO();
-				ordVO.setOrd_id(rs.getInt("ord_id"));		
-				ordVO.setOrd_time(rs.getTimestamp("ord_time"));
+				ordVO.setOrd_id(rs.getInt("ord_id"));	
+				String ord_time=rs.getTimestamp("ord_time").toString();
+				String ord_time_day=ord_time.substring(0, 10);
+				String ord_time_time=ord_time.substring(11,16);
+				ordVO.setOrd_time_day(ord_time_day);
+				ordVO.setOrd_time_time(ord_time_time);
 				ordVO.setItem_total(rs.getInt("item_total"));
 				list.add(ordVO);
 			}

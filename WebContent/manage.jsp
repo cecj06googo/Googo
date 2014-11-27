@@ -76,7 +76,7 @@ String barString = (String)request.getAttribute("barString");
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">16</div>
-                                        <div>已取車輛</div>
+                                        <div>車輛數目</div>
                                     </div>
                                 </div>
                             </div>                        
@@ -107,18 +107,13 @@ String barString = (String)request.getAttribute("barString");
                                     </div>
                                 </div>
                             </div>
-                            <FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/ActionCom.do" name="noreCar">
-                            <a href="#" onclick="document.noreCar.submit();">
-                            
+                            <a href="<c:url value='/scheduler'/>" >
                                 <div class="panel-footer">
-                                    <span class="pull-left">查看訂單</span>
+                                    <span class="pull-left">車輛調度</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                     <div class="clearfix"></div>
                                 </div>
                             </a>
-                            <input type="hidden" name="action" value="reCarCom"/>
-                            </FORM>
                         </div>
                     </div><!--/.取車-->
                     <!--問券-->
@@ -204,54 +199,14 @@ String barString = (String)request.getAttribute("barString");
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <c:forEach var="DordersVO" items="${orderList}">
                                             <tr>
-                                                <td>3326</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:29 PM</td>
-                                                <td>$321.33</td>
+                                                <td># ${DordersVO.ord_id}</td>
+                                                <td>${DordersVO.ord_time_day}</td>
+                                                <td>${DordersVO.ord_time_time}</td>
+                                                <td>$ ${DordersVO.item_total}</td>
                                             </tr>
-                                            <tr>
-                                                <td>3325</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:20 PM</td>
-                                                <td>$234.34</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3324</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:03 PM</td>
-                                                <td>$724.17</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3323</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:00 PM</td>
-                                                <td>$23.71</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3322</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:49 PM</td>
-                                                <td>$8345.23</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3321</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:23 PM</td>
-                                                <td>$245.12</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3320</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:15 PM</td>
-                                                <td>$5663.54</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3319</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:13 PM</td>
-                                                <td>$943.45</td>
-                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>

@@ -86,7 +86,6 @@ $(function() {
         lineColors: ['#1e90ff','#ffa500','#7fff00'],
         resize: true
     });
-    console.log(donutString);
     // Donut Chart
     Morris.Donut({
         element: 'morris-donut-chart',
