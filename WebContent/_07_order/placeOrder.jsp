@@ -39,32 +39,34 @@
 		</div>
 		<!-- /.row -->
 <!-------------- 流程顯示 ------------------>
-<div class="stepwizard">
+
+<div class="stepwizard div-mar-left">
     <div class="stepwizard-row setup-panel">
         <div class="stepwizard-step">
             <a href="#step-1" type="button" class="btn btn-primary" id="circle">1</a>
-            <p>訂車資訊</p>
+            <p class="p-width">&nbsp訂車資訊&nbsp</p>
         </div>
         <div class="stepwizard-step">
             <a href="#step-2" type="button" class="btn btn-default" id="circle" disabled="disabled">2</a>
-            <p>駕駛人資訊</p>
+            <p class="p-width">駕駛人資訊</p>
         </div>
         <div class="stepwizard-step">
             <a href="#step-3" type="button" class="btn btn-default" id="circle" disabled="disabled">3</a>
-            <p>其他資訊</p>
+            <p class="p-width">&nbsp&nbsp其他資訊&nbsp&nbsp</p>
         </div>
         <div class="stepwizard-step">
             <a href="#step-4" type="button" class="btn btn-default" id="circle" disabled="disabled">4</a>
-            <p>完成</p>
+            <p class="p-width">&nbsp&nbsp&nbsp&nbsp完成&nbsp&nbsp&nbsp&nbsp</p>
         </div>
     </div>
 </div>
+
 <!-------------- /.流程顯示 ---------------->
 
 <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
 <input type="hidden" name="action" value="insert" />
-<input type="hidden" name="com_id" value="${comVO.comID}" />
-<input type="hidden" name="prod_id" value="${prod_id}" />
+<%-- <input type="hidden" name="com_id" value="${ord_comVO.comID}" /> --%>
+<%-- <input type="hidden" name="prod_id" value="${ord_prod_id}" /> --%>
 <input type="hidden" name="prod_price" value="${prod_price}" />
 <!-------------- 訂單第一頁 ----------------->
     <div class="row setup-content" id="step-1">
@@ -75,7 +77,7 @@
                 
             	<div class="form-group">
                    <label><span class="span-space"></span>商家地址(取車地點)</label>
-                   <input maxlength="100" type="text" required="required" class="form-control" placeholder="${comVO.comAddr}" disabled="disabled"/>
+                   <input maxlength="100" type="text" required="required" class="form-control" placeholder="${ord_comVO.comAddr}" disabled="disabled"/>
                 </div>
                 
       			<div class="form-group">
@@ -99,19 +101,18 @@
 	        </div>  
 	        <div class="col-xs-6 x-border div-css ">
 	        <p class="p-right">* 必填選項</p>
-
-		    <label>車輛預覽</label>
-		    <!-- 店家圖片 -->
-<!-- 			<div class="col-md-6"> -->
-				<img class="img-responsive"
-					src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comVO.comID}&prodId=${prod_id}'
+		    <p  class="x-border"><label class="x-border">車輛預覽</label></p>
+		    </div>
+		    <div class="col-xs-6 x-border div-css div-height-carView">
+		    <!-- 商品圖片 -->
+				<img class="img-responsive input-carView "
+					src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${ord_comVO.comID}&prodId=${ord_prod_id}'
 					alt="">
-<!-- 			</div> -->
-			<!-- /店家圖片 -->		
+			<!-- /商品圖片 -->		
 		    </div>
-		    <div class="col-xs-12 x-border x-center">
-		   <span class="span-accept x-border"><input type="checkbox" />駕駛人年齡在25-70歲之間？</span>
-		    </div>
+<!-- 		    <div class="col-xs-12 x-border x-center"> -->
+<!-- 		   <span class="span-accept x-border"><input type="checkbox" />駕駛人年齡在25-70歲之間？</span> -->
+<!-- 		    </div> -->
 		    <div class=" col-xs-12 x-border ">
 		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="nextOne">下一步</button>
 		    </div>
