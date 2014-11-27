@@ -158,6 +158,15 @@
 		<servlet-name>prodEdit</servlet-name>
 		<url-pattern>/prod.edit</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<display-name>ShowProdsImage</display-name>
+		<servlet-name>ShowProdsImage</servlet-name>
+		<servlet-class>com.comFirstPage.controller.ShowProdsImageForCom</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowProdsImage</servlet-name>
+		<url-pattern>/ProdImg</url-pattern>
+	</servlet-mapping>
 	<!-- end: prod manage -->
 
 

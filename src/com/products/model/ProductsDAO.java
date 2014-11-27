@@ -36,7 +36,7 @@ public class ProductsDAO implements ProductsDAO_interface {
 	
 	@Override
 	public void insert(ProductVO ProductVO) {
-
+		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		System.out.println(ProductVO.getComId());
@@ -45,6 +45,7 @@ public class ProductsDAO implements ProductsDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_Product,
 					Statement.RETURN_GENERATED_KEYS);
+			System.out.println(Statement.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, ProductVO.getComId());
 			pstmt.setString(2, ProductVO.getProdName());
 			pstmt.setInt(3, ProductVO.getProdType());
@@ -63,10 +64,14 @@ public class ProductsDAO implements ProductsDAO_interface {
 			pstmt.setInt(16, ProductVO.getProdStatus());
 			System.out.println("herer");
 			pstmt.executeUpdate();
-
 			
-
-			//
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if (rs.next()) {
+				int generatedKey = rs.getInt(1);
+				ProductVO.setProdId(generatedKey);
+				System.out.println(ProductVO.getProdId());
+			}
+			
 			// System.out.println(ProductVO.getProd_id());
 			// System.out.println(ProductVO.getCom_id());
 			// System.out.println(ProductVO.getProd_name());

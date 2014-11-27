@@ -33,7 +33,19 @@
 	display: inline
 }
 
-#img1 {
+/* #img1 { */
+/* 	display: none */
+/* } */
+
+#img2 {
+	display: none
+}
+
+#img3 {
+	display: none
+}
+
+#img4 {
 	display: none
 }
 </style>
@@ -109,18 +121,66 @@
 	function fileShow() {
 		document.getElementById('img1').style.display = "inline";
 		var reader = new FileReader();
-		alert("here" + reader);
+		// 		alert("here" + reader);
 		reader.onload = function(e) {
 			var fileContent = e.target.result;
 			var show = document.getElementById("img1");
 			show.setAttribute("src", fileContent)
-			alert("5");
+			// 			alert("5");
 		}
 		file = document.getElementById("prodPic").files[0];
-		alert(file);
-		
+		// 		alert(file);
+
 		reader.readAsDataURL(file);
-		alert("6");
+		// 		alert("6");
+	}
+	function fileShow2() {
+		document.getElementById('img2').style.display = "inline";
+		var reader = new FileReader();
+		// 		alert("here" + reader);
+		reader.onload = function(e) {
+			var fileContent = e.target.result;
+			var show = document.getElementById("img2");
+			show.setAttribute("src", fileContent)
+			// 			alert("5");
+		}
+		file = document.getElementById("prodSubPic1").files[0];
+		// 		alert(file);
+
+		reader.readAsDataURL(file);
+		// 		alert("6");
+	}
+	function fileShow3() {
+		document.getElementById('img3').style.display = "inline";
+		var reader = new FileReader();
+		// 		alert("here" + reader);
+		reader.onload = function(e) {
+			var fileContent = e.target.result;
+			var show = document.getElementById("img3");
+			show.setAttribute("src", fileContent)
+			// 			alert("5");
+		}
+		file = document.getElementById("prodSubPic2").files[0];
+		// 		alert(file);
+
+		reader.readAsDataURL(file);
+		// 		alert("6");
+	}
+	function fileShow4() {
+		document.getElementById('img4').style.display = "inline";
+		var reader = new FileReader();
+		// 		alert("here" + reader);
+		reader.onload = function(e) {
+			var fileContent = e.target.result;
+			var show = document.getElementById("img4");
+			show.setAttribute("src", fileContent)
+			// 			alert("5");
+		}
+		file = document.getElementById("prodSubPic3").files[0];
+		// 		alert(file);
+
+		reader.readAsDataURL(file);
+		// 		alert("6");
 	}
 </script>
 </head>
@@ -265,24 +325,41 @@
 							<div class="control-group form-group" id="pic1">
 								<label>商品封面圖片:</label>
 								<div>
-									<img class="img-responsive" id="img1">
+									<img class="img-responsive" id="img1"
+										src="${pageContext.servletContext.contextPath}/ProdImg?comID=${LoginComOK.comID}&prodId=${ProductVO.prodId}&pic=1">
 								</div>
 								<input type="file" name="prodPic" id="prodPic"
-									multiple="multiple" onchange="fileShow();" accept="image/*                                                                                      "> <font
-									size="-1" color="#FF0000">${ErrorMsg.errorProdPic}</font>
+									multiple="multiple" onchange="fileShow();" accept="image/*">
+								<font size="-1" color="#FF0000">${ErrorMsg.errorProdPic}</font>
 							</div>
 							<div class="control-group form-group" id="pic2">
-								<label>商品圖片:</label> <input type="file" name="prodSubPic1"
-									id="prodSubPic1"> <font size="-1" color="#FF0000">${ErrorMsg.errorProdSsubpic1}</font><br>
+								<label>商品圖片:</label>
+								<div>
+									<img class="img-responsive" id="img2">
+								</div>
+								<input type="file" name="prodSubPic1" id="prodSubPic1"
+									multiple="multiple" onchange="fileShow2();" accept="image/*">
+								<font size="-1" color="#FF0000">${ErrorMsg.errorProdPic}</font><br>
 							</div>
 							<div class="control-group form-group" id="pic3">
-								<label>商品圖片:</label> <input type="file" name="prodSubPic2"
-									id="prodSubPic2"> <font size="-1" color="#FF0000">${ErrorMsg.errorProdSsubpic2}</font><br>
+								<label>商品圖片:</label>
+								<div>
+									<img class="img-responsive" id="img3">
+								</div>
+								<input type="file" name="prodSubPic2" id="prodSubPic2"
+									multiple="multiple" onchange="fileShow3();"
+									accept="image/*                                                                                      ">
+								<font size="-1" color="#FF0000">${ErrorMsg.errorProdPic}</font><br>
 							</div>
 							<div class="control-group form-group" id="pic4">
-								<label>商品圖片:</label> <input type="file" name="prodSubPic3"
-									id="prodSubPic3"><br> <font size="-1"
-									color="#FF0000">${ErrorMsg.errorProdSsubpic3}</font>
+								<label>商品圖片:</label>
+								<div>
+									<img class="img-responsive" id="img4">
+								</div>
+								<input type="file" name="prodSubPic3" id="prodSubPic3"
+									multiple="multiple" onchange="fileShow4();"
+									accept="image/*                                                                                      ">
+								<font size="-1" color="#FF0000">${ErrorMsg.errorProdPic}</font><br>
 							</div>
 							<br>
 							<button type="reset" class="btn btn-primary">取消</button>
