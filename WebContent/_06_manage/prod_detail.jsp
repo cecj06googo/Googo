@@ -46,6 +46,8 @@
 	min-width: 120px;
 	margin-bottom: 8px;
 }
+
+
 </style>
 
 
@@ -62,7 +64,7 @@
 					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 				</button>
 				<h3 class="modal-title" id="myModalLabel">
-					商品名稱<small>productName</small>
+					<small></small>
 				</h3>
 			</div>
 			<!-- /.header-->
@@ -77,8 +79,7 @@
 							<div class="carousel-inner cont-slider">
 
 								<div class="item active">
-									<img alt="" title="" id="picDe"> ${LoginComOK.comID}.
-
+									<img alt="" title="" id="picDe">
 								</div>
 								<div class="item">
 									<img alt="" title="" id="subPicDe1"
@@ -118,46 +119,33 @@
 						<table class="table table-user-information">
 							<tbody>
 								<tr>
-									<td>型式:</td>
-									<td>五人座五門休旅車</td>
-								</tr>
-								<tr>
-									<td>排氣量(c.c.):</td>
-									<td>1,598</td>
-								</tr>
-								<tr>
-									<td>最大馬力(ps/rpm):</td>
-									<td>115/5,600</td>
-								</tr>
-								<tr>
-									<td>顏色</td>
-									<td>紅色、墨綠色</td>
-								</tr>
-								<tr>
-									<td>多功能一體式娛樂系統</td>
-									<td>附USB插槽、車充</td>
-								</tr>
-								<tr>
-									<td>內裝</td>
-									<td>兒童安全鎖、雙前座遮陽板</td>
-								</tr>
-								<tr>
-									<td>可搭配備</td>
-									<td>兒童安全座椅<br>野餐用具<br>帳篷<br></td>
-								</tr>
+									<td>折扣</td>
+									<td name="prodDiscD"></td>
+								</tr> 
 								<tr>
 									<td>租金</td>
-									<td>2500元 /天</td>
+									<td name="prodPriceD"></td>
+								</tr> 
+								<tr id="ControlD" name="3">
+									<td>手/自排:</td>
+									<td name="prodControlD"></td>
 								</tr>
-
+								<tr id="CarrierD" name="3">
+									<td>乘載人數:</td>
+									<td name="prodCarrierD"></td>
+								</tr>
+								<tr id="CcD" name="3">
+									<td>排氣量</td>
+									<td name="prodCcD"></td>
+								</tr>
 							</tbody>
 						</table>
 						<p>
 							<a class='btn btn-info btn-cons' href="#" data-toggle="modal"
-								data-target="#editProduct" data-dismiss="modal"><span
+								data-target="#editProduct" data-dismiss="modal" name="editD"><span
 								class="glyphicon glyphicon-edit"></span> 修改</a> <a href="#"
 								class="btn btn-danger btn-cons " data-toggle="modal"
-								data-target="#delProduct" data-dismiss="modal"><span
+								data-target="#delProduct" data-dismiss="modal" name="delD"><span
 								class="glyphicon glyphicon-remove"></span> 刪除</a>
 						</p>
 					</div>

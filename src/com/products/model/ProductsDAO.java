@@ -31,8 +31,9 @@ public class ProductsDAO implements ProductsDAO_interface {
 	
 	private static final String EDIT_Product = "UPDATE Product "
 			+ "SET prod_name = ?, prod_price = ?, prod_disc = ?, prod_article = ?,"
-			+ "prod_plate = ?, prod_pic = ?, prod_subPic1 = ?, prod_subPic2 = ?,"
-			+ "prod_subPic3 = ?  WHERE prod_id = ?";
+			+ "prod_plate = ? "
+//			+ ",prod_pic = ?, prod_subPic1 = ?, prod_subPic2 = ?, prod_subPic3 = ? "
+			+ " WHERE prod_id = ?";
 	
 	@Override
 	public void insert(ProductVO ProductVO) {
@@ -245,11 +246,11 @@ public class ProductsDAO implements ProductsDAO_interface {
 			pstmt.setDouble(3, ProductVO.getProdDisc());
 			pstmt.setString(4, ProductVO.getProdArticle());
 			pstmt.setString(5, ProductVO.getProdPlate());
-			pstmt.setBytes(6, ProductVO.getProdPic());
-			pstmt.setBytes(7, ProductVO.getProdSubPic1());
-			pstmt.setBytes(8, ProductVO.getProdSubPic2());
-			pstmt.setBytes(9, ProductVO.getProdSubPic3());
-			pstmt.setInt(10, ProductVO.getProdId());
+//			pstmt.setBytes(6, ProductVO.getProdPic());
+//			pstmt.setBytes(7, ProductVO.getProdSubPic1());
+//			pstmt.setBytes(8, ProductVO.getProdSubPic2());
+//			pstmt.setBytes(9, ProductVO.getProdSubPic3());
+			pstmt.setInt(6, ProductVO.getProdId());
 			System.out.println("here.");
 			pstmt.executeUpdate();
 			System.out.println("herer");
