@@ -142,7 +142,7 @@ $(document).ready(function(){
 				console.log("corresponding obj: " + JSON.stringify(fieldObj) + "\n");
 				
 				custFieldsBundle.custFields.push(fieldObj);
-			};// end object conversion process
+			};// end fields-to-object conversion process
 		}else {
 			console.log("No customized field detected.");
 		}// end if

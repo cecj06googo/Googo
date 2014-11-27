@@ -209,8 +209,8 @@ $("td[class!=text-center]").click(function() {
 	$("td[class!=text-center]").attr("data-target","#prod_detail");
 	var btnId = this.id;
 	var comId = <%= session.getAttribute("comId")%>
-	alert("comId"+comId);
-	alert(btnId);
+// 	alert("comId"+comId);
+// 	alert(btnId);
 	$("#picDe").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=1");
 	$("#subPicDe1").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=2");
 	$("#subPicDe2").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=3");

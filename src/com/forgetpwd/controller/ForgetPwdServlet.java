@@ -42,6 +42,8 @@ public class ForgetPwdServlet extends HttpServlet{
 		//1.讀取使用者輸入資料
 		String userAccount = req.getParameter("inputEmail");
 		String userIdentity = req.getParameter("optionsRadios");
+		String requestURI = req.getHeader("referer");
+		System.out.println("requestURI is: "+requestURI);
 		boolean error = false;
 		// 2. 進行必要的資料轉換
 		// 無
@@ -102,9 +104,9 @@ public class ForgetPwdServlet extends HttpServlet{
 			session.setAttribute("checkAccountError", "該帳號不存在");
 			session.setAttribute("noExistAccount", userAccount);
 			error = true;
-	/*		RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
 			failureView.forward(req, res);
-	*/		
+			
 		}//end of catch
 		
 		/***************************3.查詢完成,準備轉交(Send the Success view)*************/

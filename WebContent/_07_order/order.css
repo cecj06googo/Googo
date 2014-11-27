@@ -48,13 +48,25 @@
 /* ---自訂--- */
 
 
-/* .div-btn{ */
-/* margin-top:100px; */
+/* .div-mar-left{ */
+/* margin-left:0; */
 /* } */
+.div-height-carView{
+height: 276px;
+}
 
+.input-carView{
+margin:43px auto 0 auto;
+/* margin-top: 20px; */
+/* margin-left: auto; */
+/* margin-right:auto; */
+height:200px;
+width:270px;
+border: 2px solid black;
+}
 
 .div-height{
-height: 500pt;
+height: 500px;
 }
 .div-back {
 	padding-top:20px;
@@ -78,7 +90,9 @@ padding-left: 1pt;
 font-weight: lighter;
 font-size: 24px;
 }
-
+/* .p-width{ */
+/* 	width:292.5px; */
+/* } */
 .p-right{
 	color:red;
     text-align: right;

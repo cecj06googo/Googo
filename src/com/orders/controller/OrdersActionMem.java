@@ -46,7 +46,9 @@ public class OrdersActionMem extends HttpServlet {
 		// 7 ('會員逾時');
 		// 8 ('商家逾時');
 		// 9 ('異常未還');
-				
+		System.out.println("進入OrdersActionMem");
+		System.out.println("action = " + action);
+		
 		if ("insert".equals(action)) {
 			//logic給值
 			Integer ord_status = 1;
@@ -72,6 +74,7 @@ public class OrdersActionMem extends HttpServlet {
 			Integer item_total = null;
 			Integer prod_id = null;
 			Integer acc_id = 0; //用不到了
+			CompanyVO comVO = new CompanyVO();
 			//給值
 			ord_time = new Timestamp(System.currentTimeMillis());
 
@@ -80,8 +83,7 @@ public class OrdersActionMem extends HttpServlet {
 				Map<String, String[]> dataMap = request.getParameterMap();
 				Iterator<Map.Entry<String, String[]>> entries = dataMap
 						.entrySet().iterator();
-				if (entries != null && session.getAttribute("com_id") != null
-						&& session.getAttribute("mem_id") != null) { // 如果這是一個上傳資料的表單
+				if (entries != null ) { // 如果這是一個上傳資料的表單
 					// 讀取使用者輸入資料
 					String name = "";
 					String value = "";
@@ -132,12 +134,11 @@ public class OrdersActionMem extends HttpServlet {
 					} // end while
 					
 					//接值 (com在商品VO, mem在session內的MemVO)
-					_com_id = request.getParameter("com_id");
-					
+					comVO = (CompanyVO) session.getAttribute("ord_comVO");
 					_ord_getday = request.getParameter("ord_getday");
 					_ord_reday = request.getParameter("ord_reday");
 					
-					_prod_id = request.getParameter("prod_id");
+					_prod_id = session.getAttribute("ord_prod_id");
 //					_mem_id = session.getAttribute("mem_id");
 					_item_total = request.getParameter("prod_price");
 					
@@ -145,12 +146,11 @@ public class OrdersActionMem extends HttpServlet {
 					// 日期轉型限定日期選擇器選擇的值，使用者自行輸入的話很有可能會轉不了
 					// 檢查使用者輸入資料
 					try {
-						com_id = Integer.parseInt(_com_id.toString().trim());
-					} catch (NumberFormatException e) {
-						errorMsg.put("errorCom_id", "看到鬼，商家ID應該為整數");
-					} catch (NullPointerException e) {
-						errorMsg.put("errorCom_id", "看到鬼，商家ID應該為整數不應為空值");
-					}
+						com_id = comVO.getComID();
+//								Integer.parseInt(_com_id.toString().trim());
+					} catch (Exception e) {
+						System.out.println("com_id出錯");
+					} 
 					try {
 						mem_id = 1;
 //								Integer.parseInt(_mem_id.toString().trim());
@@ -252,13 +252,10 @@ public class OrdersActionMem extends HttpServlet {
 			CompanyService cs = new CompanyService();
 			CompanyVO comVO = cs.getOneCom(com_id);
 			
-			
-			
-			
 //			System.out.println(com_id);
 //			System.out.println(prod_id);
-			session.setAttribute("comVO", comVO);
-			request.setAttribute("prod_id", prod_id);
+			session.setAttribute("ord_comVO", comVO);
+			session.setAttribute("ord_prod_id", prod_id);
 			
 			/******************** (轉向)*******************/
 			String url = "/_07_order/placeOrder.jsp";

@@ -221,6 +221,17 @@ Create Table Accessory(
 
 			CONSTRAINT Accessory_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 );
+insert into Accessory values ('安全座椅',2,'適用一般4歲以下孩童',0x00,2000,1);
+insert into Accessory values ('Garmin導航機',2,'適用一般4歲以下孩童',0x00,700,1);
+insert into Accessory values ('野炊卡式爐',2,'適用一般4歲以下孩童',0x00,350,1);
+insert into Accessory values ('冰桶 - 6L',2,'適用一般4歲以下孩童',0x00,100,1);
+insert into Accessory values ('冰桶 - 15L',2,'適用一般4歲以下孩童',0x00,200,1);
+insert into Accessory values ('營帳 - 2P',2,'適用一般4歲以下孩童',0x00,800,1);
+insert into Accessory values ('營帳 - 4P',2,'適用一般4歲以下孩童',0x00,1200,1);
+insert into Accessory values ('對講機全罩安全帽2頂',3,'適用一般4歲以下孩童',0x00,300,1);
+insert into Accessory values ('清靜農場哞哞午餐卷2張',3,'適用一般4歲以下孩童',0x00,400,1);
+insert into Accessory values ('小人國遊樂園入場卷2張',3,'適用一般4歲以下孩童',0x00,600,1);
+insert into Accessory values ('尾掛置物箱',3,'適用一般4歲以下孩童',0x00,500,1);
 insert into Accessory values ('高粱酒1',1,'wine', 0x00, 1000, 1);
 insert into Accessory values ('高粱酒2',1,'wine', 0x00, 1000, 1);
 insert into Accessory values ('高粱酒3',1,'wine', 0x00, 1000, 1);
@@ -318,10 +329,10 @@ Create Table Ord_item(
 			ord_id          int,
 			prod_id      	int,
 			acc_id          int,
-			item_name       varchar(20) NOT NULL ,
+			item_name       varchar(20) NULL ,
 			item_tel        varchar(20) NULL ,
 			item_phone      varchar(20) NULL ,
-			item_email      varchar(50) NOT NULL,
+			item_email      varchar(50) NULL,
 			pritem_acc      varchar(max) NULL,
 			item_all        varchar(max) NULL,
 

@@ -1,6 +1,8 @@
 package com.template.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,9 +34,15 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 		 
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getParameter("command");
-		String view = "/Temp/ViewSample_hooked.jsp";
+		String view = "/_07_order/placeOrder.jsp";
 		int com_id = Integer.parseInt(request.getParameter("com_id_form_view"));
 		String content = request.getParameter("content_form_view");
+		
+		String designResult = "";
+		//StringWriter out = new StringWriter();
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter httpout = response.getWriter();
+		
 		System.out.println("command: " + command);
 		System.out.println("com id: " + com_id);
 		
@@ -53,12 +61,15 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 		if ("retrieve".equals(command)) {
 			Prototype_OrderTemp_DAO dao = new Prototype_OrderTemp_DAO();
 			Prototype_OrderTemp_VO tempVo = dao.retrieve(com_id);
+			designResult = tempVo.getContent();
 			
-			System.out.println("load content: \n" + tempVo.getContent());
+			System.out.println("load content: \n" + designResult);
 			
-			request.setAttribute("tempVo", tempVo);
-			RequestDispatcher viewJsp = request.getRequestDispatcher(view);
-			viewJsp.forward(request, response);
+			httpout.print(designResult); // modified for ajax retrieval 
+			
+//			request.setAttribute("tempVo", tempVo);
+//			RequestDispatcher viewJsp = request.getRequestDispatcher(view);
+//			viewJsp.forward(request, response);
 		}
 	}
 

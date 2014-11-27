@@ -37,7 +37,7 @@ public class Design_Retrieval extends HttpServlet {
 		ResultSet rs = null;
 		int com_id = 1;
 		String designResult = "";
-		StringWriter out = new StringWriter();
+		//StringWriter out = new StringWriter();
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter httpout = response.getWriter();
 		
@@ -66,9 +66,9 @@ public class Design_Retrieval extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (out != null) {
+			if (httpout != null) {
 				try {
-					out.close();
+					httpout.close();
 				} catch (Exception se) {
 					se.printStackTrace(System.err);
 				}
