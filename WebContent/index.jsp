@@ -84,7 +84,7 @@
             </div>
         	<!-- 圖一 1200*1000 -->
             <div class="col-md-4 col-sm-6 ">
-                <a href="<c:url value='/_03_research/site.jsp'/>" class="portfolio-link" >
+                <a href="<c:url value='/PlaceRecommend.do'/>" class="portfolio-link" >
                 	<div class="caption">
                             <div class="caption-content">
                                <h1>宜蘭衝浪</h1>

@@ -87,6 +87,15 @@
 		<servlet-name>ShowAccsImage</servlet-name>
 		<url-pattern>/ShowAccsPicturs.do</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<display-name>IndexPlaceRecommend</display-name>
+		<servlet-name>IndexPlaceRecommend</servlet-name>
+		<servlet-class>com.search.controller.IndexPlaceRecommend</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IndexPlaceRecommend</servlet-name>
+		<url-pattern>/PlaceRecommend.do</url-pattern>
+	</servlet-mapping>
 	<!-- End: 搜尋相關 -->
 
 	<!-- Begin: 訂單相關 -->

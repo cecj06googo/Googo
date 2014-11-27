@@ -118,12 +118,12 @@ public class DataDAO {
 			pstmt.setInt(1,com_id);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
-//			//第一筆空資料
-//			ordVO = new DordersVO();
-//			ordVO.setOrd_getday("lala");
-//			ordVO.setProd_type(0);			
-//			ordVO.setCountt(0);
-//			list.add(ordVO);
+			//第一筆空資料
+			ordVO = new DordersVO();
+			ordVO.setOrd_getday("lala");
+			ordVO.setProd_type(0);			
+			ordVO.setCountt(0);
+			list.add(ordVO);
 			//資料庫資料
 			while (rs.next()) {
 				ordVO = new DordersVO();
