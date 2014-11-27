@@ -144,7 +144,7 @@ public class LoginServlet extends HttpServlet {
 					LoginOrdersOnLoad OCOL = new LoginOrdersOnLoad();  
 					session = OCOL.ComOnLoad(session,userId);
 					response.sendRedirect(response.encodeRedirectURL(
-							request.getContextPath() + "/manage.jsp"));
+							request.getContextPath() + "/manage"));
 					return;
 			}
 		}
