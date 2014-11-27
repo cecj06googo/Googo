@@ -211,9 +211,16 @@ public class InsertFakeImageDAO {
 				System.out.println("conn 獲取失敗");
 				return;
 			}
-			insertFakeImg.insertProdImgByCarType("1", carSrcPath,insertColumn);// 汽車
-			insertFakeImg.insertProdImgByCarType("2", motorSrcPath,insertColumn);// 機車
-			insertFakeImg.insertProdImgByCarType("3", bikeSrcPath,insertColumn);// 腳踏車
+			for(int i=1;i<=4;i++){
+				if(i==1){insertColumn ="prod_pic";}//商品主圖片 
+				if(i==2){insertColumn ="prod_subPic1"; }//商品副圖片1 
+				if(i==3){insertColumn ="prod_subPic2"; }//商品副圖片2
+				if(i==4){insertColumn ="prod_subPic3"; }//商品副圖片3 				
+				insertFakeImg.insertProdImgByCarType("1", carSrcPath,insertColumn);// 汽車
+				insertFakeImg.insertProdImgByCarType("2", motorSrcPath,insertColumn);// 機車
+				insertFakeImg.insertProdImgByCarType("3", bikeSrcPath,insertColumn);// 腳踏車
+				
+			}			
 			insertFakeImg.insertComImg(comSrcPath); // 公司大頭貼
 			insertFakeImg.insertProdsIntoduction(); //寫入商品介紹
 			insertFakeImg.insertAccImg(accSrcPath);//寫入配件圖片
