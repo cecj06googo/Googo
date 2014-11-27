@@ -38,14 +38,16 @@
 		</div>
 		</div>
 		<!-- /.忘記密碼-->
+<!-- jQuery Version 1.11.0 -->
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
 
+<!-- Bootstrap Core JavaScript -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 <script>
  (function($){
-	   var radios = '<%=session.getAttribute("userIdentity")%>';
-		if (radios != null) {
-			$('input:radio[name=optionsRadios]').filter('[value="' + radios +'"]').prop('checked',true);
-		}
+	  
 		
 	  
 	  
