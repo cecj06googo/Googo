@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONValue;
 
 import com.company.model.CompanyVO;
+import com.orders.model.LoginOrdersOnLoad;
 import com.statistics.model.DataDAO;
 import com.statistics.model.DordersVO;
 
@@ -38,7 +39,9 @@ public class DataServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			CompanyVO comVO=(CompanyVO)session.getAttribute("LoginComOK");
 			int com_id = comVO.getComID();
-	
+			//0.訂單資料
+			LoginOrdersOnLoad OCOL = new LoginOrdersOnLoad();  
+			session = OCOL.ComOnLoad(session,com_id);
 			//1.抓資料
 			String donutString=getDonut(com_id);
 			String barString=getBar(com_id);
