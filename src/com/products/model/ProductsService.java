@@ -37,13 +37,6 @@ public class ProductsService {
 
 		dao.insert(ProductVO);
 
-		// test----------------------------------------------
-		// System.out.println(ProductVO.getProdId());
-		// System.out.println(ProductVO.getComId());
-		// System.out.println(ProductVO.getProdName());
-		// System.out.println(ProductVO.getProdType());
-		// System.out.println("-------------------------------------");
-		// --------------------------------------------------
 		return ProductVO;
 	} // end addOrder
 

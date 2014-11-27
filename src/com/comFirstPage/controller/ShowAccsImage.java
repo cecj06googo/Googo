@@ -21,28 +21,29 @@ import javax.servlet.http.HttpServletResponse;
 import com.comFirstPage.model.*;
 
 
-public class ShowProdsImage extends HttpServlet {
+public class ShowAccsImage extends HttpServlet {
 	private static final long serialVersionUID = 1L;   
     
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.println("我有進ShowAccsImage的doGet!");
 	    ServletOutputStream sos = null;
-	    ProductVO prodVO= null;
+	    AccessoryVO accsVO= null;
 		int comID = Integer.parseInt(req.getParameter("comID"));
-		int prodId = Integer.parseInt(req.getParameter("prodId"));
-		ProductsService prodService = new ProductsService();
-		List<ProductVO> prodVOs = new ArrayList<ProductVO>();
-		prodVOs = prodService.getProdsByComId(comID);
-		for(ProductVO prodVo : prodVOs){
-			if(prodId == prodVo.getProdId()){
-				prodVO = prodVo;
+		int accId = Integer.parseInt(req.getParameter("accID"));
+		AccService accService = new AccService();
+		 List<AccessoryVO> accsVOs = new ArrayList<AccessoryVO>();
+		 accsVOs = accService.getAccVosByComId(comID);
+		for(AccessoryVO accsVo : accsVOs){
+			if(accId == accsVo.getAccId()){
+				accsVO = accsVo;
 			}
 		}
 		// 檢查是否已有商家圖片
-		if (prodVO.getProdPic() != null) {
+		if (accsVO.getAccPic() != null) {
 			res.setContentType("image/jpg");
 			try {
 				sos = res.getOutputStream();
-				sos.write(prodVO.getProdPic());
+				sos.write(accsVO.getAccPic());
 				sos.flush();
 				sos.close();
 			} catch (Exception e) {

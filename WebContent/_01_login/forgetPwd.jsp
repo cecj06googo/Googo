@@ -18,17 +18,16 @@
 			<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 			<!-- form-->
-		      <form role="form" id="forgeetPwd" action="<%=request.getContextPath() %>/forgetpwd.gg" method="post" >
+		      <form role="form" id="forget_form" action="<%=request.getContextPath() %>/forgetpwd.gg" method="post" >
 		        <div class="form-group">
 		          <label > E-mail:</label>
 		          <input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="請輸入E-mail">
-		          <font color="red" size="-1">${errorMsgs.errorAccount}</font>
+		          <font color="red" size="-1">${errMsgs.errAccount}</font>
 		        </div>
 		        <div class="form-group">
                         <label><input type="radio" name="optionsRadios" id="member" value="Mem">一般會員</label>
                         <label><input type="radio" name="optionsRadios" id="company" value="Com">商家會員</label>
                 </div>
-                <input type="hidden" name="action" value="update">
 		        <button type="submit" class="btn btn-lg btn-primary pull-right">重新設定</button>
 		      </form><!-- /.form-->
  			</div>
@@ -49,7 +48,7 @@
 	  
 	  
 	   $(document).ready(function() {
-		    $('#test').bootstrapValidator({
+		    $('#forgetpwd').bootstrapValidator({
 		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
 		        feedbackIcons: {
 		            valid: 'glyphicon glyphicon-ok',
@@ -68,12 +67,12 @@
 		                    emailAddress: {
 		                        message: '此E-mail無效,請輸入正確格式'
 		                    },
-		                    /*remote: {
-                                url: 'memAccountCheck.jsp',
+		                    remote: {
+                                url: 'userAccountCheck.jsp',
                                 type: "post",
                                 async: false,
                                 message: '帳號重複，請重新輸入',
-                            },*/
+                            },
 		                    
 		                }
 		            },
@@ -89,10 +88,17 @@
 		           
 		        }}
 		    ).on('success.form.bv', function() {
-	            $('#test').modal('show');
+	            $('#sendMailSuccess').modal('show');
 	        });
 
 		});
+	   
+	   var errMsgs = '<%= session.getAttribute("errMsgs") %>';
+		if(errMsgs !='null'){
+			$('#forgetpwd').modal('show');
+			<% session.removeAttribute("errAccount"); %>
+		}
+	
    
 	 })(jQuery)
 </script>

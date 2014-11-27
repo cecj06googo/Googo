@@ -35,9 +35,10 @@ public class ForgetPwdServlet extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		//準備存放錯誤訊息的物件
 		HttpSession session = req.getSession();
-		Map<String, String> errorMsgs = new HashMap<String, String>();
+		Map<String, String> errMsgs = new HashMap<String, String>();
 		//errorMsgs放入request物件內，識別字串為 "ErrorMsgs"
-		req.setAttribute("errorMsgs", errorMsgs);
+		req.setAttribute("errMsgs", errMsgs);
+		try{
 		//1.讀取使用者輸入資料
 		String userAccount = req.getParameter("inputEmail");
 		String userIdentity = req.getParameter("optionsRadios");
@@ -46,16 +47,16 @@ public class ForgetPwdServlet extends HttpServlet{
 		// 3. 檢查使用者輸入資料
 		//如果userEmail欄位為空白，放一個錯誤訊息到errorMsgMap之內
 		if(userAccount == null || userAccount.trim().length() == 0){
-			errorMsgs.put("errorAccount","E-mail欄必須輸入");
+			errMsgs.put("errAccount","E-mail欄必須輸入");
 		}else if(userAccount != null && !userAccount.matches("[0-9a-zA-Z_-]+@[0-9a-zA-Z_-]+\\.[0-9a-zA-Z_-]+(\\.[0-9a-zA-Z_-])*")){
-			errorMsgs.put("errorAccount","E-mail格式不正確");
+			errMsgs.put("errAccount","E-mail格式不正確");
 		}
-		if(!errorMsgs.isEmpty()){
+/*		if(!errMsgs.isEmpty()){
 			RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/forgetPwd.jsp");
 			failureView.forward(req, res);
 			return;//程式中斷
 		}
-		
+*/		
 		/***************************2.開始查詢資料*****************************************/
 /*		ForgetPwdService fpSvc = new ForgetPwdService();
 		ForgetPwdVO forgetPwdVO = fpSvc.getOneUser(userAccount, userIdentity);
@@ -72,7 +73,6 @@ public class ForgetPwdServlet extends HttpServlet{
 		MemVO memVO = null;
 		CompanyVO comVO = null;
 		
-		
 	    ForgetPwdService forgetPwdSvc = new ForgetPwdService();
 		userId = forgetPwdSvc.findId(userAccount, userIdentity);
 		if("Mem".equals(userIdentity)){
@@ -80,20 +80,21 @@ public class ForgetPwdServlet extends HttpServlet{
 			memVO = memSvc.getOneMem(userId);
 			session.setAttribute("memVO", memVO);
 			if(memVO == null){
-				errorMsgs.put("errorAccount", "查無此mem帳號");
+				errMsgs.put("errAccount", "查無此mem帳號");
 			}
 			}else if("Com".equals(userIdentity)){
 				CompanyService comSvc = new CompanyService();
 				comVO = comSvc.getOneCom(userId);
 				session.setAttribute("comVO", comVO);
 				if(comVO == null){
-					errorMsgs.put("errorAccount","查無此com帳號");
+					errMsgs.put("errAccount","查無此com帳號");
 				}
 			}
-		if(!errorMsgs.isEmpty()){
+		if(!errMsgs.isEmpty()){
 			RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/forgetPwd.jsp");
 			failureView.forward(req, res);
 			return;//程式中斷
+
 		}
 		/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 		SendResetPwdEmail.sendResetEmail(userAccount, req.getServerName(), req.getLocalPort(), req.getContextPath());
@@ -102,7 +103,12 @@ public class ForgetPwdServlet extends HttpServlet{
 		RequestDispatcher successView = req.getRequestDispatcher(url);
 		successView.forward(req, res);
 		
+	}catch(Exception e){
+		errMsgs.put("errAccount", e.getMessage());
+		RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
+		failureView.forward(req, res);
 		
+	}//end of catch
+	}//end of doPost	
 	}//end of class
 
-}

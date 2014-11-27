@@ -53,7 +53,7 @@
 	  	<!-- header-->
 	  	<div class="modal-header">
    			 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    		 <h3 class="modal-title" id="myModalLabel">商品名稱<small>productName</small></h3>
+    		 <h3 class="modal-title" id="myModalLabel"><big id="detail-prodName">productName</big></h3>
   		</div><!-- /.header-->
   		<!-- body-->
   		<div class="modal-body ">
@@ -65,31 +65,31 @@
 			<div class="carousel-inner cont-slider">
 			
 			<div class="item active">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/19.jpg">
+			  <img id="detail-MainPic" alt="" title="" src="${pageContext.request.contextPath}/img/19.jpg">
 			</div>
 			<div class="item">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/39.jpg">
+			  <img id="detail-SubPic1" alt="" title="" src="${pageContext.request.contextPath}/img/39.jpg">
 			</div>
 			<div class="item">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/36.jpg">
+			  <img id="detail-SubPic2" alt="" title="" src="${pageContext.request.contextPath}/img/36.jpg">
 			</div>
 			<div class="item">
-			  <img alt="" title="" src="${pageContext.request.contextPath}/img/37.jpg">
+			  <img id="detail-SubPic3" alt="" title="" src="${pageContext.request.contextPath}/img/37.jpg">
 			</div>
 			</div><!-- /.Wrapper for slides -->
 			  <!-- Indicators -->
 			  <ol class="carousel-indicators">
 				<li class="active" data-slide-to="0" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/19.jpg">
+				  <img id="detail-smallMainPic"  alt="" src="${pageContext.request.contextPath}/img/19.jpg">
 				</li>
 				<li class="" data-slide-to="1" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/39.jpg">
+				  <img id="detail-smallSubPic1" alt="" src="${pageContext.request.contextPath}/img/39.jpg">
 				</li>
 				<li class="" data-slide-to="2" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/36.jpg">
+				  <img id="detail-smallSubPic2" alt="" src="${pageContext.request.contextPath}/img/36.jpg">
 				</li>
 				<li class="" data-slide-to="3" data-target="#article-photo-carousel">
-				  <img alt="" src="${pageContext.request.contextPath}/img/37.jpg">
+				  <img id="detail-smallSubPic3" alt="" src="${pageContext.request.contextPath}/img/37.jpg">
 				</li>
 			  </ol><!--/ndicators -->
 			</div>
@@ -100,44 +100,31 @@
  		    	<table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td>型式:</td>
-                        <td>五人座五門休旅車</td>
+                        <td>折扣</td>
+                        <td id="detail-disc">75折</td>
+                      </tr>
+                      <tr>
+                        <td>租金</td>
+                        <td id="detail-price">2500元 /天</td>
+                      </tr>
+                      <tr>
+                        <td>手/自排:</td>
+                        <td id="detail-control">自排</td>
+                      </tr>
+                      <tr>
+                        <td>乘載人數:</td>
+                        <td id="detail-carrier">4</td>
                       </tr>
                       <tr>
                         <td>排氣量(c.c.):</td>
-                        <td>1,598</td>
-                      </tr>
-                      <tr>
-                        <td>最大馬力(ps/rpm):</td>
-                        <td>115/5,600</td>
-                      </tr>
-                   	 <tr>
-                        <td>顏色</td>
-                        <td>紅色、墨綠色</td>
-                      </tr>
-                      <tr>
-                        <td>多功能一體式娛樂系統</td>
-                        <td>附USB插槽、車充</td>
-                      </tr>
-                      <tr>
-                        <td>內裝</td>
-                        <td>兒童安全鎖、雙前座遮陽板</td>
-                      </tr>
-                      <tr>
-                        <td>可搭配備</td>
-                        <td>兒童安全座椅<br>野餐用具<br>帳篷<br></td>
-                      </tr>
-                       <tr>
-                        <td>租金</td>
-                        <td>2500元 /天</td>
-                      </tr>
-                     
+                        <td  id="detail-cc">1,598</td>
+                      </tr>              
                     </tbody>
                   </table>
                   <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
                   <p><button type="submit" class="btn btn-danger center-block" role="button">我要租</button></p>
- 		    	  <input type="hidden" name="com_id" value="${comVO.comID}" />
- 		    	  <input type="hidden" name="prod_id" value="${prodsVos.prodId}" />
+ 		    	  <input type="hidden" name="detail_com_id" value="${comVO.comID}" />
+ 		    	  <input type="hidden" name="detail_prod_id" value="" />
  		    	  <input type="hidden" name="action" value="placeOrder" />
  		    	  </form>
  		    </div>
@@ -160,6 +147,45 @@
 $('.carousel').carousel({
   interval: false
 });
-
+//-----函數區--------------------
+function showRentCar(){
+	$("div[name='content-prod']").click(function(){
+		var prodIdStr= this.id;
+		var prodId = prodIdStr.split("-")[1];	
+		//寫入价林需要的prod_id 在05的prod_detail
+		$("input[name='detail_prod_id']").val(prodId);
+		//alert("prodId="+prodId);
+		showCarDetail();
+	});
+}//end showRentCar()
+function showCarDetail(){
+	var jsonString= <%=request.getAttribute("jsonString")%>;
+	var clickProdId = $("input[name='detail_prod_id']").val();
+	var comId = $("input[name='detail_com_id']").val();
+	//alert("在prod_detail裡clickProdId="+clickProdId);
+	for(var i=0; i<jsonString.length;i++){
+		if(jsonString[i]["prod_id"] == clickProdId){//找出click的商品資料
+			//----以下是商品明細資料------
+			$("#detail-prodName").text(jsonString[i]["prod_name"]);
+			$("#detail-disc").text(jsonString[i]["prod_disc"]*100+"折");
+			$("#detail-price").text(jsonString[i]["prod_price"]+"元");
+			$("input[name='detail_prod_price']").val(jsonString[i]["prod_price"]);
+			//$("#detail-control").text(jsonString[i]["prod_control"]);先留著
+			$("#detail-carrier").text(jsonString[i]["prod_carrier"]+"人");
+			$("#detail-cc").text(jsonString[i]["prod_cc"]+" c.c.");
+			//-----以下是圖片部分------
+			$("#detail-MainPic").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=1");
+			$("#detail-smallMainPic").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=1");		
+			$("#detail-SubPic1").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId+"&pic=2");
+			$("#detail-smallSubPic1").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=2");		
+			$("#detail-SubPic2").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId+"&pic=3");
+			$("#detail-smallSubPic2").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=3");		
+			$("#detail-SubPic3").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId+"&pic=4");
+			$("#detail-smallSubPic3").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=4");				
+		}//end if
+	}//end for
+}//end showCarDetail()
+//----執行區-----
+showRentCar();
 </script>
 

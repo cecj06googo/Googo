@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="sendMailSuccess">您的申請已提交成功，請查看您的E-mail信箱</div>
+<div id="resetPwdSuccess">密碼更改完成</div>
+密碼更改完成
+
 </body>
 </html>

@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.comFirstPage.model.ProductVO;
-import com.comFirstPage.model.ProductsService;
+import com.comFirstPage.model.*;
 import com.company.model.*;
 
 import org.json.simple.JSONValue;//玩玩看
@@ -58,6 +57,13 @@ public class DispComFirstPage extends HttpServlet {
 		request.setAttribute("prodsVos", prodsVos);
 		countsTheTypeProduct(prodsVos,request);//統計車種數量並傳到前端
 		//printProdsOfACom(prodsVos);// 測試用:vos內值是否正確
+		//----------取得該商家所有配件資訊----------------
+		AccService accservice = new  AccService();
+		List<AccessoryVO> accsVos = new ArrayList<AccessoryVO>();
+		accsVos = accservice.getAccVosByComId(comId);
+		printAccsOfACom(accsVos);
+		request.setAttribute("accsVos", accsVos);
+		
 		//----------丟給Google Map使用--------------
 		List<String> comAdressArray = new ArrayList<String>();
 		List<String> comNameArray = new ArrayList<String>();
@@ -72,17 +78,28 @@ public class DispComFirstPage extends HttpServlet {
 		request.setAttribute("rowsPerPage", 1);//每頁只有1個商家
 		request.setAttribute("whichPage", 1);//目前在第一頁
 		//-----利用json傳資料給前端使用-----------
+		try{
 		List jsonList =new  LinkedList();
 		for(int i=0;i<prodsVos.size();i++){
 			Map jsonMap =new LinkedHashMap();
 			jsonMap.put("prod_id", prodsVos.get(i).getProdId());
+			jsonMap.put("prod_name", prodsVos.get(i).getProdName());
 			jsonMap.put("prod_type", prodsVos.get(i).getProdType());
 			jsonMap.put("prod_price", prodsVos.get(i).getProdPrice());
+			jsonMap.put("prod_disc", prodsVos.get(i).getProdDisc());
+			jsonMap.put("prod_cc", prodsVos.get(i).getProdCc());
+			jsonMap.put("prod_carrier", prodsVos.get(i).getProdCarrier());
+			jsonMap.put("prod_control", prodsVos.get(i).getProdControl());
+				
 			jsonList.add(jsonMap);
 		}
 		String jsonString=JSONValue.toJSONString(jsonList);
 		System.out.println("jsonString="+jsonString);
 		request.setAttribute("jsonString",jsonString);	
+		}catch(Exception e){
+			System.out.println("利用json傳資料給前端使用區塊錯誤");
+			e.printStackTrace();
+		}		
 		// ---------丟值顯示到商家首頁-------------
 		RequestDispatcher rd = request
 				.getRequestDispatcher("/_05_company/company.jsp");
@@ -126,6 +143,18 @@ public class DispComFirstPage extends HttpServlet {
 		}
 	}//end protected void printProdsOfACom
 	
+	protected void printAccsOfACom(List<AccessoryVO> accVOs) {
+		for(AccessoryVO accVO : accVOs){
+			System.out.println("------------AccData--------------");
+			System.out.println("AccID="+accVO.getAccId());
+			System.out.println("AccName="+accVO.getAccName());
+			System.out.println("ComId="+accVO.getComId());
+			System.out.println("AccDetail="+accVO.getAccDetail());
+			System.out.println("AccPrice="+accVO.getAccPrice());
+			System.out.println("AccStatus="+accVO.getAccStatus());
+			System.out.println("------------AccDataEnd--------------");
+	    }
+	}
 	protected void printDataOfACom(CompanyVO comVO) {
 		System.out.println("------------ComData--------------");
 		System.out.println("ComID="+comVO.getComID());

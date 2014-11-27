@@ -33,7 +33,7 @@
 			<div class="col-lg-12">
 				<h1 class="page-header">
 <!-- 				在此comVO是用振瑋的VO -->
-					台灣大哥大租車 <small>租車小舖</small>
+					${comVO.comName} <small>租車小舖</small>
 				</h1>
 			</div>
 		</div>
@@ -53,12 +53,19 @@
             <a href="#step-3" type="button" class="btn btn-default" id="circle" disabled="disabled">3</a>
             <p>其他資訊</p>
         </div>
+        <div class="stepwizard-step">
+            <a href="#step-4" type="button" class="btn btn-default" id="circle" disabled="disabled">4</a>
+            <p>完成</p>
+        </div>
     </div>
 </div>
 <!-------------- /.流程顯示 ---------------->
 
 <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
 <input type="hidden" name="action" value="insert" />
+<input type="hidden" name="com_id" value="${comVO.comID}" />
+<input type="hidden" name="prod_id" value="${prod_id}" />
+<input type="hidden" name="prod_price" value="${prod_price}" />
 <!-------------- 訂單第一頁 ----------------->
     <div class="row setup-content" id="step-1">
         <div class="col-xs-12 div-back div-height">
@@ -68,7 +75,7 @@
                 
             	<div class="form-group">
                    <label><span class="span-space"></span>商家地址(取車地點)</label>
-                   <input maxlength="100" type="text" required="required" class="form-control" placeholder="顯示商家地址" disabled="disabled"/>
+                   <input maxlength="100" type="text" required="required" class="form-control" placeholder="${comVO.comAddr}" disabled="disabled"/>
                 </div>
                 
       			<div class="form-group">
@@ -89,24 +96,18 @@
                    		<option value="0">aaa</option>
                    </select>
 	            </div>
-<!-- 	            <div class="form-group"> -->
-<!--                    <label><span class="span-red">*</span>還車日期</label> -->
-<!--                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" /> -->
-<!-- 	            </div> -->
-<!-- 	            <div class="form-group"> -->
-<!--                    <label><span class="span-red">*</span>還車日期</label> -->
-<!--                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" /> -->
-<!-- 	            </div> -->
-<!-- 	            <div class="form-group"> -->
-<!--                    <label><span class="span-red">*</span>還車日期</label> -->
-<!--                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" /> -->
-<!-- 	            </div> -->
-
 	        </div>  
 	        <div class="col-xs-6 x-border div-css ">
 	        <p class="p-right">* 必填選項</p>
-<!-- 	        放車子圖片 -->
-		            	<label>車輛預覽</label><br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>		
+
+		    <label>車輛預覽</label>
+		    <!-- 店家圖片 -->
+<!-- 			<div class="col-md-6"> -->
+				<img class="img-responsive"
+					src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comVO.comID}&prodId=${prod_id}'
+					alt="">
+<!-- 			</div> -->
+			<!-- /店家圖片 -->		
 		    </div>
 		    <div class="col-xs-12 x-border x-center">
 		   <span class="span-accept x-border"><input type="checkbox" />駕駛人年齡在25-70歲之間？</span>
@@ -165,7 +166,18 @@
     </div>
 <!-------------- /.訂單第三頁 ---------------->
 </form>	
-		
+<!-------------- 訂單第四頁 ------------------>
+<!-- submit後回來顯示第四頁  (最簡單的方法是連到另一支樣式一模一樣的jsp) -->
+<!-- c:if (訂單新增ok(Map物件) != null    -->
+    <div class="row setup-content div-border" id="step-4">
+        <div class="col-xs-12">
+            <div class="col-xs-12">
+                <h3>其他資訊</h3>
+                <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
+            </div>
+        </div>
+    </div>
+<!-------------- /.訂單第四頁 ---------------->		
 		<hr>
 		<!-- Footer -->
 		<jsp:include page="/_00_fragment/footer.jsp" />
@@ -237,8 +249,9 @@ $(document).ready(function () {
 		});
 		
 	
-//-----------------------------------	
-	
+//------------------------------------------------
+
+//-------------------流程控制原始碼--------------------
     var navListItems = $('div.setup-panel div a'),
             allWells = $('.setup-content'),
             allNextBtn = $('.nextBtn');
