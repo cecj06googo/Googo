@@ -87,7 +87,7 @@
 		<!-- 忘記密碼 -->
 		<jsp:include page="/_01_login/forgetPwd.jsp" />
 		<!-- 重設密碼 -->
-		<jsp:include page="/_01_login/resetPwd.jsp"></jsp:include>
+		<jsp:include page="/_01_login/resetPwd.jsp"/>
 	
 <script>
 (function($) {

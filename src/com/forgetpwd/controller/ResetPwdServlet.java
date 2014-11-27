@@ -35,7 +35,7 @@ public class ResetPwdServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		
 			/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-			String userAccount = req.getParameter("resetPwdMail");
+			String userAccount = req.getParameter("user_account");
 			if(userAccount == null || userAccount.trim().length() == 0){
 				errMsgs.put("errorAccount", "帳號欄請勿空白");
 			}
@@ -93,8 +93,8 @@ public class ResetPwdServlet extends HttpServlet {
 			session.setAttribute("checkAccountError", "該帳號不存在");
 			session.setAttribute("noExistAccount", userAccount);
 			error = true;
-//			RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/resetPwd.jsp");
-//			failureView.forward(req, res);
+			RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/reset.jsp");
+			failureView.forward(req, res);
 			
 		}//end of catch
 			
@@ -102,7 +102,7 @@ public class ResetPwdServlet extends HttpServlet {
 			if(!error){
 				session.removeAttribute("checkAccountError");
 				session.removeAttribute("noExistAccount");
-				String url = "/index.jsp";
+				String url = "/_01_login/reset.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				}//end of if(!error)
