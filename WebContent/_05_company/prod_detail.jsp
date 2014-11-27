@@ -174,15 +174,14 @@ function showCarDetail(){
 			$("#detail-carrier").text(jsonString[i]["prod_carrier"]+"人");
 			$("#detail-cc").text(jsonString[i]["prod_cc"]+" c.c.");
 			//-----以下是圖片部分------
-			$("#detail-MainPic").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);
-			$("#detail-smallMainPic").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);		
-			$("#detail-SubPic1").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);
-			$("#detail-smallSubPic1").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);		
-			$("#detail-SubPic2").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);
-			$("#detail-smallSubPic2").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);		
-			$("#detail-SubPic3").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);
-			$("#detail-smallSubPic3").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId);
-					
+			$("#detail-MainPic").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=1");
+			$("#detail-smallMainPic").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=1");		
+			$("#detail-SubPic1").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId+"&pic=2");
+			$("#detail-smallSubPic1").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=2");		
+			$("#detail-SubPic2").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId+"&pic=3");
+			$("#detail-smallSubPic2").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=3");		
+			$("#detail-SubPic3").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId+"&pic=4");
+			$("#detail-smallSubPic3").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=4");				
 		}//end if
 	}//end for
 }//end showCarDetail()
