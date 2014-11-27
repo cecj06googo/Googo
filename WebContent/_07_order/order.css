@@ -1,3 +1,4 @@
+/* 流程原始碼 */
 .stepwizard-step p {
     margin-top: 10px;
 }
@@ -44,10 +45,9 @@
   line-height: 1.428571429;
   border-radius: 15px;
 }
+/* /.流程原始碼 */
 
 /* ---自訂--- */
-
-
 /* .div-mar-left{ */
 /* margin-left:0; */
 /* } */
@@ -56,7 +56,7 @@ height: 276px;
 }
 
 .input-carView{
-margin:43px auto 0 auto;
+margin:0 auto 0 auto;
 /* margin-top: 20px; */
 /* margin-left: auto; */
 /* margin-right:auto; */
@@ -76,7 +76,11 @@ height: 500px;
 }
 
 
-
+/* ---抓範圍--- */
+.x-border{
+    border: 1px solid #c0c0c0;
+}
+/* ---/.抓範圍--- */
 .x-center {
 text-align:center;
 }
@@ -86,7 +90,7 @@ margin-left: 50pt;
 padding-left: 1pt;
 }
 .harder-font {
-	border: 1px solid #c0c0c0;
+
 font-weight: lighter;
 font-size: 24px;
 }
@@ -96,6 +100,10 @@ font-size: 24px;
 .p-right{
 	color:red;
     text-align: right;
+}
+.label-center{
+ text-align: center;
+ margin-top: 30px;
 }
 .span-red{
 	color:red;
@@ -124,12 +132,4 @@ font-size: 24px;
 /*        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; */
 /*           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; */
 }
-
-
-/* ---抓範圍--- */
-.x-border{
-    border: 1px solid #c0c0c0;
-}
-/* ---/.抓範圍--- */
-
 /* /.---自訂--- */

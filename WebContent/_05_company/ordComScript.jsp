@@ -32,7 +32,7 @@ $(document).ready(function(){
 		}
 		if($("button[name='check']").hasClass("hide")){
 			$("button[name='check']").removeClass("hide");
-			$("button[name='close']").addClass("btn-success").removeClass("btn-default").removeAttr("style").text("取消");
+			$("button[name='close']").addClass("btn-success").removeClass("btn-default").removeAttr("style").text("返回");
 		}
 		if($("button[name='close']").hasClass("hide")){
 			$("button[name='close']").removeClass("hide");
