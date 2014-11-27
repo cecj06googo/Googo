@@ -75,7 +75,7 @@ String barString = (String)request.getAttribute("barString");
                                         <i class="fa fa-car fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">16</div>
+                                        <div class="huge">${prodCount}</div>
                                         <div>車輛數目</div>
                                     </div>
                                 </div>

@@ -17,6 +17,8 @@ import org.json.simple.JSONValue;
 
 import com.company.model.CompanyVO;
 import com.orders.model.LoginOrdersOnLoad;
+import com.products.model.ProductVO;
+import com.products.model.ProductsService;
 import com.statistics.model.DataDAO;
 import com.statistics.model.DordersVO;
 
@@ -50,6 +52,14 @@ public class DataServlet extends HttpServlet {
 			req.setAttribute("donutString", donutString);
 			req.setAttribute("barString", barString);
 			req.setAttribute("orderList", orderList);
+			
+			//抓商品資料
+			ProductsService ProdSvc = new ProductsService();
+			ProductVO ProductsVO= new ProductVO();
+			ProductsVO.setComId(com_id);
+			List<ProductVO> list = ProdSvc.getAll(ProductsVO);
+			System.out.println("product count:"+list.size());
+			req.setAttribute("prodCount", list.size());
 			
 			//3.傳送資料
 			String url = "/manage.jsp";
