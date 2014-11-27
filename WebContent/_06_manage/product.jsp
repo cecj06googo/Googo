@@ -47,11 +47,12 @@
                 </thead>
                 <tbody>
                    <c:forEach var="ProductVO" items="${car}">
-                   	<tr id="prodId">
-                    	<td>${ProductVO.prodName}</td>
-                    	<td>${ProductVO.prodDisc}</td>
-                    	<td>${ProductVO.prodPrice}</td>
-                    	<td>${ProductVO.prodPlate}</td>
+<%--                    <c:set var="prod'${ProductVO.prodId}'" value="${ProductVO}" scope="session"/> --%>
+                   	<tr id="${ProductVO.prodId}">
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodName}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodDisc}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodPrice}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodPlate}</td>
                     	<td class="text-center">
                         	<a href="#" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" id="${ProductVO.prodId}"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                        		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct" id="${ProductVO.prodId}"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
@@ -59,16 +60,16 @@
                     	</tr>
                     	<input type="hidden" name="${ProductVO.prodId}prodId" value="${ProductVO.prodId}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodName" value="${ProductVO.prodName}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodType" value="${ProductVO.prodType}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodKind" value="${ProductVO.prodKind}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/> 	
                     	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/>
-<!--                     	Cc數 是否要顯示小數點 ?-->
 						<input type="hidden" name="${ProductVO.prodId}prodControl" value="${ProductVO.prodControl}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>  
+                    	<input type="hidden" name="${ProductVO.prodId}prodType" value="${ProductVO.prodType}"/>
                     </c:forEach>
                 </tbody>
             </table>
@@ -98,11 +99,11 @@
                 </thead>
                 <tbody>
                    <c:forEach var="ProductVO" items="${moto}">
-                    	<tr id="prodId">
-                    	<td>${ProductVO.prodName}</td>
-                    	<td>${ProductVO.prodDisc}</td>
-                    	<td>${ProductVO.prodPrice}</td>
-                    	<td>${ProductVO.prodPlate}</td>
+                    	<tr id="${ProductVO.prodId}">
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodName}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodDisc}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodPrice}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodPlate}</td>
                     	<td class="text-center">
                    			<a href="#" id="${ProductVO.prodId}" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                        		<a href="#" id="${ProductVO.prodId}" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
@@ -110,16 +111,16 @@
                     	</tr>
                     	<input type="hidden" name="${ProductVO.prodId}prodId" value="${ProductVO.prodId}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodName" value="${ProductVO.prodName}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodType" value="${ProductVO.prodType}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodKind" value="${ProductVO.prodKind}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/> 	
                     	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/>
-<!--                     	Cc數 是否要顯示小數點 ?-->
 						<input type="hidden" name="${ProductVO.prodId}prodControl" value="${ProductVO.prodControl}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>   
+						<input type="hidden" name="${ProductVO.prodId}prodType" value="${ProductVO.prodType}"/>
                     </c:forEach>                  
                 </tbody>
             </table>
@@ -149,11 +150,11 @@
                 </thead>
                 <tbody>
                     <c:forEach var="ProductVO" items="${bike}">
-                    	<tr id="prodId">
-                    	<td>${ProductVO.prodName}</td>
-                    	<td>${ProductVO.prodDisc}</td>
-                    	<td>${ProductVO.prodPrice}</td>
-                    	<td>${ProductVO.prodPlate}</td>
+                    	<tr id="${ProductVO.prodId}">
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodName}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodDisc}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodPrice}</td>
+                    	<td id="${ProductVO.prodId}">${ProductVO.prodPlate}</td>
                     	<td class="text-center">
                				<a href="#" id="${ProductVO.prodId}" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                        		<a href="#" id="${ProductVO.prodId}" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
@@ -161,16 +162,21 @@
                     	</tr>
                     	<input type="hidden" name="${ProductVO.prodId}prodId" value="${ProductVO.prodId}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodName" value="${ProductVO.prodName}"/>
-<%--                     	<input type="hidden" name="${ProductVO.prodId}prodType" value="${ProductVO.prodType}"/> --%>
                     	<input type="hidden" name="${ProductVO.prodId}prodDisc" value="${ProductVO.prodDisc}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodPrice" value="${ProductVO.prodPrice}"/>
-<%--                     	<input type="hidden" name="${ProductVO.prodId}prodKind" value="${ProductVO.prodKind}"/> --%>
-<%--                     	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/> --%>
-<%--                     	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/> --%>
-<!--                     	Cc數 是否要顯示小數點 ?-->
-<%-- 						<input type="hidden" name="${ProductVO.prodId}prodControl" value="${ProductVO.prodControl}"/> --%>
+                    	<input type="hidden" name="${ProductVO.prodId}prodKind" value="${ProductVO.prodKind}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>                   	
+                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/> 	
+                    	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/>
+                    	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/>
+						<input type="hidden" name="${ProductVO.prodId}prodControl" value="${ProductVO.prodControl}"/>
+						<input type="hidden" name="${ProductVO.prodId}prodType" value="${ProductVO.prodType}"/>
+<!--                     	Cc數 是否要顯示小數點 ?-->
+<%--                     	<input type="hidden" name="${ProductVO.prodId}prodType" value="${ProductVO.prodType}"/> --%>
+<%--                     	<img  name="${ProductVO.prodId}prodPic" class="img-responsive" --%>
+<%-- 							src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${LoginComOK.comID}&prodId=${ProductVO.prodId}&pic=1' --%>
+<!-- 							alt=""/> -->
                     </c:forEach>  
                 </tbody>
             </table>
@@ -195,14 +201,58 @@
 
 
 <script>
+$("td[class!=text-center]").click(function() {
+	$("#ControlD").html('<td>手/自排:</td><td name="prodControlD"></td>');
+	$("#CarrierD").html('<td>乘載人數:</td><td name="prodCarrierD"></td>');
+	$("#CcD").html('<td>排氣量</td><td name="prodCcD"></td>');
+	$("td[class!=text-center]").attr("data-toggle", "modal");
+	$("td[class!=text-center]").attr("data-target","#prod_detail");
+	var btnId = this.id;
+	var comId = <%= session.getAttribute("comId")%>
+// 	alert("comId"+comId);
+// 	alert(btnId);
+	$("#picDe").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=1");
+	$("#subPicDe1").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=2");
+	$("#subPicDe2").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=3");
+	$("#subPicDe3").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=3");
+	$("#picDeS").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=1");
+	$("#subPicDe1S").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=2");
+	$("#subPicDe2S").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=3");
+	$("#subPicDe3S").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=3");
 
-$("td[class!=text-center]").click(function(){
-	$("td[class!=text-center]").attr( "data-toggle", "modal" );
-	$("td[class!=text-center]" ).attr( "data-target", "#prod_detail" );
+		var prodName = $("input[name='"+ btnId +"prodName']").val();
+		var prodDisc = $("input[name='"+ btnId +"prodDisc']").val();
+		var prodPrice = $("input[name='"+ btnId +"prodPrice']").val();
+		$("input[name='prodName']").val(prodName);
+		$("input[name='prodDisc']").val(prodDisc);
+		$("input[name='prodPrice']").val(prodPrice);
+		$("input[name='prodPlate']").val($("input[name='"+ btnId +"prodPlate']").val());
+		$("input[name='prodCarrier']").val($("input[name='"+ btnId +"prodCarrier']").val());
+		$("input[name='prodCc']").val($("input[name='"+ btnId +"prodCc']").val());
+		$("textarea[name='prodArticle']").val($("input[name='"+ btnId +"prodArticle']").val());
+		$("input[name='prodControl']").val($("input[name='"+ btnId +"prodControl']").val());
+		
+		$("td[name='prodDiscD']").text($("input[name='"+ btnId +"prodDisc']").val());
+		$("td[name='prodPriceD']").text($("input[name='"+ btnId +"prodPrice']").val());
+		$("td[name='prodControlD']").text("自排");
+		$("td[name='prodCarrierD']").text($("input[name='"+ btnId +"prodCarrier']").val());
+		$("td[name='prodCcD']").text($("input[name='"+ btnId +"prodCc']").val());
+		
+		//for edit btn and delete btn 'id
+		$("a[name='editD']").attr("id",btnId);
+		$("a[name='delD']").attr("id",btnId);
+		
+		//control CC CARRIER 
+		var type = $("input[name='"+ btnId +"prodType']").val();
+		$("tr[name='"+type+"']").empty();
 })
-//新增
+		// Stop carousel
+		$('.carousel').carousel({
+			interval : false
+		});
 $("a[data-target='#editProduct']").click(function() {
  		var btnId = this.id; 
+//  		alert(btnId);
  		var prodName = $("input[name='"+ btnId +"prodName']").val();
  		var prodDisc = $("input[name='"+ btnId +"prodDisc']").val();
  		var prodPrice = $("input[name='"+ btnId +"prodPrice']").val();
@@ -214,16 +264,12 @@ $("a[data-target='#editProduct']").click(function() {
  		$("input[name='prodCc']").val($("input[name='"+ btnId +"prodCc']").val());
  		$("textarea[name='prodArticle']").val($("input[name='"+ btnId +"prodArticle']").val());
  		$("input[name='prodId']").val($("input[name='"+ btnId +"prodId']").val());
-// 		$("input[name='prodName']").val('${obj_ProductVO.prodName}');  obj_ProductVO型態不對EL所以取不出來
-// 		ProductVO obj_ProductVO = new ProductVO();  不認得  //你沒有IMPORT 當然不認得
 });
 
-//----新增
 $("a[data-target='#delProduct']").click(function() {
 	var btnId = this.id; 
-	$("#idForSent").val(btnId);
 // 	alert(btnId);
-// 	alert(document.getElementById("idForSent").getAttribute("value"));
+	$("#idForSent").val(btnId);
 });
 </script>
 </body>

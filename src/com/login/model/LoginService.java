@@ -1,5 +1,7 @@
 package com.login.model;
 
+import com.util.HashService;;
+
 
 
 
@@ -16,6 +18,8 @@ public class LoginService {
 	} // end 
 
 	public Integer loginCheckId(String userAccount, String userPwd, String userIdentity) {
+		String encrypedString = HashService.encryptString(userPwd);
+		userPwd = HashService.getMD5Endocing(encrypedString);
 		return dao.loginId(userAccount, userPwd, userIdentity);
 	}
 }

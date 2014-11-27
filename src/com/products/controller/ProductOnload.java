@@ -39,7 +39,9 @@ public class ProductOnload extends HttpServlet {
 		ProductsVO.setComId(loginComToken.getComID());
 		System.out
 				.println("this is com_ID in onload. " + ProductsVO.getComId());
+		session.setAttribute("comId", loginComToken.getComID());
 		List<ProductVO> list = ProdSvc.getAll(ProductsVO);
+		System.out.println(list.size());
 
 		List<ProductVO> car = new ArrayList<ProductVO>();
 		List<ProductVO> moto = new ArrayList<ProductVO>();

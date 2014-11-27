@@ -64,7 +64,6 @@ public class ProductEdit extends HttpServlet {
 		String prodPlate = "ABC-11";
 		int prodStatus = 1;
 		
-		System.out.println("begin EDIT: in other controller");
 		if (ServletFileUpload.isMultipartContent(request)) {
 			try {
 				// 檔案名稱
@@ -78,7 +77,7 @@ public class ProductEdit extends HttpServlet {
 						String fieldvalue = item.getString("UTF-8");
 						// fieldvalue = new String(
 						// fieldvalue.getBytes("iso-8859-1"), "UTF-8");
-						System.out.println("begin EDIT: in other controller");
+						
 						// 表單資料驗證
 						// getFieldName()取得form中input欄位name
 						if ("prodId".equals(item.getFieldName())){

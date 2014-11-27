@@ -258,7 +258,7 @@
 						end="${prodsVos.size()-1}">
 						<c:if test="${ProductVO.prodType == 1}">
 							<!-- 車車1 -->
-							<div class="col-md-4 text-center" id="car-${ProductVO.prodId}">
+							<div class="col-md-4 text-center" id="car-${ProductVO.prodId}" name = "content-prod">
 								<div class="thumbnail">
 									<a href="" data-toggle="modal" data-target="#prod_detail">
 										<img class="img-responsive"
@@ -281,7 +281,7 @@
 						end="${prodsVos.size()-1}">
 						<c:if test="${ProductVO.prodType == 2}">
 							<!-- 機車2 -->
-							<div class="col-md-4 text-center" id="motor-${ProductVO.prodId}">
+							<div class="col-md-4 text-center" id="motor-${ProductVO.prodId}" name = "content-prod">
 								<div class="thumbnail">
 									<a href="" data-toggle="modal" data-target="#prod_detail">
 										<img class="img-responsive"
@@ -304,7 +304,7 @@
 						end="${prodsVos.size()-1}">
 						<c:if test="${ProductVO.prodType == 3}">
 							<!-- 腳踏車3 -->
-							<div class="col-md-4 text-center" id="bike-${ProductVO.prodId}">
+							<div class="col-md-4 text-center" id="bike-${ProductVO.prodId}" name = "content-prod">
 								<div class="thumbnail">
 									<a href="" data-toggle="modal" data-target="#prod_detail">
 										<img class="img-responsive"
@@ -328,91 +328,26 @@
 		<!-- /.row -->
 
 		<!-- 配件 -->
-		<div class="row" id="accessoriesRoW">
-			<div class="col-lg-12">
-				<h2 class="page-header">配件</h2>
+        <!--有配件才會顯示配件否則隱形 -->
+		<c:if test="${accsVos.size() > 0}">
+			<div class="row" id="accessoriesRoW">
+				<div class="col-lg-12">
+					<h2 class="page-header">配件</h2>
+				</div>			
+				<c:forEach var="AccessoryVO" items="${accsVos}" begin="0" end="${accsVos.size()-1}">
+						<!-- 配件1 500*400-->
+						<div class="col-md-3 col-sm-6">
+							<div class="thumbnail">
+								<img class="img-responsive"
+									src='${pageContext.servletContext.contextPath}/ShowAccsPicturs.do?comID=${comId}&accID=${AccessoryVO.accId}' alt="">
+								<div class="caption">
+									<h4>${AccessoryVO.accName}</h4>
+								</div>
+							</div>
+						</div>
+			    </c:forEach>
 			</div>
-			<!-- 配件1 500*400-->
-			<div class="col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img class="img-responsive"
-						src="${pageContext.request.contextPath}/img/25.jpg" alt="">
-					<div class="caption">
-						<h4>安全帽</h4>
-					</div>
-				</div>
-			</div>
-			<!-- 配件2 -->
-			<div class="col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img class="img-responsive"
-						src="${pageContext.request.contextPath}/img/32.jpg" alt="">
-					<div class="caption">
-						<h4>兒童安全座椅</h4>
-					</div>
-				</div>
-			</div>
-			<!-- 配件3 -->
-			<div class="col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img class="img-responsive"
-						src="${pageContext.request.contextPath}/img/26.jpg" alt="">
-					<div class="caption">
-						<h4>衝浪板</h4>
-					</div>
-				</div>
-			</div>
-			<!-- 配件4 -->
-			<div class="col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img class="img-responsive"
-						src="${pageContext.request.contextPath}/img/27.jpg" alt="">
-					<div class="caption">
-						<h4>野餐用具</h4>
-					</div>
-				</div>
-			</div>
-			<!-- 配件5 -->
-			<div class="col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img class="img-responsive"
-						src="${pageContext.request.contextPath}/img/28.jpg" alt="">
-					<div class="caption">
-						<h4>帳篷</h4>
-					</div>
-				</div>
-			</div>
-			<!-- 配件6 -->
-			<div class="col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img class="img-responsive"
-						src="${pageContext.request.contextPath}/img/29.jpg" alt="">
-					<div class="caption">
-						<h4>游泳圈</h4>
-					</div>
-				</div>
-			</div>
-			<!-- 配件7 -->
-			<div class="col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img class="img-responsive"
-						src="${pageContext.request.contextPath}/img/30.jpg" alt="">
-					<div class="caption">
-						<h4>滑板</h4>
-					</div>
-				</div>
-			</div>
-			<!-- 配件8 -->
-			<div class="col-md-3 col-sm-6">
-				<div class="thumbnail">
-					<img class="img-responsive"
-						src="${pageContext.request.contextPath}/img/31.jpg" alt="">
-					<div class="caption">
-						<h4>遊樂園門票</h4>
-					</div>
-				</div>
-			</div>
-		</div>
+		</c:if>
 		<!-- /.配件 -->
 		<!-- 商品明細 -->
 		<jsp:include page="/_05_company/prod_detail.jsp" />
@@ -552,6 +487,17 @@
 				//}
 			});//end $("#SearchButton").click(function() 
 		}//end function SearchMoneyRange()
+
+
+			$("div[name='content-prod']").click(function(){
+				var prodIdStr= this.id;
+				var prodId = prodIdStr.split("-")[1];	
+				//寫入价林需要的prod_id 在05的prod_detail
+				$("input[name='detail_prod_id']").val(prodId);
+// 				alert("prodId="+prodId);
+			});
+
+
 		//------執行區--------
 		hideTab();
 		showActive();

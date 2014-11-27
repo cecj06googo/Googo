@@ -37,13 +37,13 @@
          <div class="col-lg-12">
 		<!--內容-->
         <div id="myTabContent" class="tab-content">
- 	   <!--標籤2內容-->
+ 	   	<!--標籤2內容-->
         <div class="tab-pane fade active in" id="register-two">
                      <br>
 <!--      		<div class="col-lg-5 col-lg-offset-1"> -->
 <!--          			<br> -->
         
-        <div class="col-lg-12 col-lg-offset-1">
+        <div class="col-sm-12 col-sm-offset-1">
 			<img class="img-responsive" 
 				src='${pageContext.servletContext.contextPath}/image?comID=${LoginComOK.comID}' alt=""> <!-- http://placehold.it/750x450  -->
 				
@@ -64,20 +64,20 @@
                      <span><font color="red" size="-1">${errorMsgs.errorAccount}</font></span>
                  </div>
                  <div class="control-group form-group">
-                     <label class="control-label">密碼:</label>
+                     <label class="control-label">修改新密碼:</label>
                      <div class="controls ">
                          <input type="password" class="form-control" name="comPwd" id="com_pwd" 
-                          placeholder="" value="${LoginComOK.comPwd}"
+                          placeholder="修改請輸入新密碼" value=""
                           data-toggle="tooltip" data-placement="top" title="<h5>請輸入6-12個字元，英文數字至少各一。<h5>"  >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorPwd}</font></span>
                  </div>
                  <div class="control-group form-group">
-                     <label class="control-label">密碼確認:</label>
+                     <label class="control-label">確認新密碼:</label>
                      <div class="controls ">
                          <input type="password" class="form-control" name="comPwdConfirm" id="com_pwd"
-                          placeholder="請再次輸入密碼" value="${LoginComOK.comPwd}"
-                          data-toggle="tooltip" data-placement="top" title="<h5>請再次輸入密碼<h5>" >
+                          placeholder="請再次輸入新密碼" value=""
+                          data-toggle="tooltip" data-placement="top" title="<h5>請再次輸入新密碼<h5>" >
                      </div>
                  </div>
                  <div class="control-group form-group">
@@ -136,19 +136,35 @@
 				 <span></span>
                 </div> <!-- 分列 --> 
                  
-           <div class="col-lg-12"> 
-           		<br>  
-                <input type="hidden" name="action" value="update"> 
-				<input type="hidden" name="comID" value="${LoginComOK.comID}"> 
-				<input type="hidden" name="comAccount" value="${LoginComOK.comAccount}">
-				<input type="hidden" name="comVAT" value="${LoginComOK.comVAT}">
-				<input type="hidden" name="comStatus" value="${LoginComOK.comStatus}">
-                <button type="submit" data-loading-text="Loading..." class="btn btn-danger">儲存</button>
-           </div>
-            </form>
-           </div>  
-           
-		   
+           	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" 
+           				aria-labelledby="ComfirmModalLabel" aria-hidden="true">
+  				<div class="modal-dialog modal-sm">
+    				<div class="modal-content"> 
+    					<div class="modal-header">
+    						<h4 class="modal-title" id="ComfirmModalLabel">確認修改?</h4>
+    					</div>
+    					<div class="modal-footer">
+                			<input type="hidden" name="action" value="update"> 
+							<input type="hidden" name="comID" value="${LoginComOK.comID}"> 
+							<input type="hidden" name="comAccount" value="${LoginComOK.comAccount}">
+							<input type="hidden" name="comVAT" value="${LoginComOK.comVAT}">
+							<input type="hidden" name="comStatus" value="${LoginComOK.comStatus}">
+							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                			<button type="submit" data-loading-text="Loading..." class="btn btn-danger">確認</button>
+               			</div>
+           			</div>
+           		</div>
+           	</div>
+		</form> <!--  商家修改資料Form -->
+            
+            
+        <!-- 確認修改彈出視窗 -->
+        <div class="col-lg-12">
+        		<br>
+			<button type="button" class="btn btn-primary" data-toggle="modal" 
+				data-target=".bs-example-modal-sm">儲存</button>
+		</div>
+             
 <!-- 				選取檔案 -->
 <!-- 				<form name="imageupload" enctype="multipart/form-data" action="image" method="POST"> -->
 <!-- 					<div class="control-group form-group"> -->
@@ -169,10 +185,6 @@
         </div><!-- /.container-fluid -->
     </div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
-
-
-<!-- jQuery Version 1.11.0 -->
-<%-- 	<script src="<%=request.getContextPath()%>/js/jquery-1.11.0.js"></script> --%>
 
 <!-- Bootstrap Core JavaScript -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
@@ -199,9 +211,6 @@ $("[data-toggle='tooltip']").tooltip({html : true });
 	    		comPwd: {
 					trigger: 'keyup blur',
 					validators: {
-						notEmpty: {
-							message: '密碼欄請勿空白'
-						},
 						stringLength: {
 							min: 6,
 							max: 12,
@@ -221,9 +230,6 @@ $("[data-toggle='tooltip']").tooltip({html : true });
 				comPwdConfirm: {
 					trigger: 'keyup blur',
 					validators: {
-						notEmpty: {
-							message: '密碼確認不可空白'
-						},
 						identical: {
 							field: 'comPwd',
 							message:'與密碼不相符, 再試一次?'
@@ -325,9 +331,6 @@ $("[data-toggle='tooltip']").tooltip({html : true });
 					} // end validators
 				}, // end comFax
 	    	} // end fields
-	    }).on('success.form.bv', function() {
-	    	$("#successInfo").html('<font color="red" size="3">修改成功</font>');
-	    	
 	    }); // end bootstrapValidator
 	}); // end ready 
 

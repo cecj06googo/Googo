@@ -181,7 +181,25 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 		}		
 		return prodids;
 	}
-	
+	//讀出所有accid List<String>
+		public List<String> getAccid(String tableName){
+			
+			String getProdidsQuery = "select acc_id as num  from " + tableName;		
+			List<String> accids = new ArrayList<String>();
+			try {			
+				stmt = conn.prepareStatement(getProdidsQuery);
+				rs = stmt.executeQuery();		
+				while (rs.next()) {	
+					accids.add(rs.getString("num"));
+				}
+				System.out.println("getAccid成功總共"+accids.size()+"筆accid");
+			} catch (Exception e) {
+				System.out.println("getAccid 錯誤");
+				ConnectionUtil.closeConnection(conn);
+				e.printStackTrace();
+			}		
+			return accids;
+		}
 	//讀出所有comid List<String>
 	public List<String> getComid(String tableName){
 		
@@ -193,9 +211,9 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 			while (rs.next()) {	
 				comids.add(rs.getString("num"));
 			}
-			System.out.println("getProdidsbyCarType成功總共"+comids.size()+"筆comid");
+			System.out.println("getComid成功總共"+comids.size()+"筆comid");
 		} catch (Exception e) {
-			System.out.println("getProdidsbyCarType 錯誤");
+			System.out.println("getComid 錯誤");
 			ConnectionUtil.closeConnection(conn);
 			e.printStackTrace();
 		}		
@@ -236,8 +254,8 @@ public class BLOBDemo { // 該主要流程是把一張圖片存進資料庫，�
 				return;
 			}
 			BLOBDemo blobdemo = new BLOBDemo(conn);
-			blobdemo.AllWriteInSQL(srcPicPath,"Product","prod_subPic1");//一次寫入Product Table該欄位所有圖片
-			//blobdemo.clearAllBlob("Product","prod_subPic1");//清除該ProdTable欄位所有圖片
+			//blobdemo.AllWriteInSQL(srcPicPath,"Product","prod_subPic1");//一次寫入Product Table該欄位所有圖片
+			blobdemo.clearAllBlob("Product","prod_subPic1");//清除該ProdTable欄位所有圖片
 			//blobdemo.clearAllBlob("Company","com_pic");//清除該CompanyTable欄位所有圖片
 			// blobdemo.batchWriteInSQL(srcPicPath,"Product","prod_subPic1");//批次寫入該table欄位所有圖片
 			// blobdemo.clearBlob("1","Product","prod_subPic1");//清除單個圖片

@@ -3,24 +3,26 @@
 <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
-<!-- 重設密碼 -->
-        <div class="modal fade"  id="resetpwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+<!-- 重設密碼-->
+		<div class="modal fade"  id="forgetpwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-sm">
 		  	<div class="modal-content ">
 		  	<!-- header-->
 		  	<div class="modal-header">
        			 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        		 <h3 class="modal-title" id="myModalLabel">Goo-go 重設密碼 <small>reset password</small></h3>
+        		 <h3 class="modal-title" id="myModalLabel">Goo-go 重設密碼 <small>Reset password</small></h3>
       		</div><!-- /.header-->
       		<!-- body-->
       		<div class="modal-body">
 			<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 			<!-- form-->
-		      <form role="form" id="test">
+		      <form role="form" name="resetpwd" id="resetpwd" action="<%=request.getContextPath()%>/resetpwd.gg" method="post" >
 		        <div class="form-group">
 		          <label > E-mail:</label>
-		          <input type="text" class="form-control" id="resetpwdinputEmail" name="resetpwdinputEmail">
+		          <input type="text" class="form-control" id="user_account" name="user_account" placeholder="請輸入e-mail">
+		          <font color="red" size="-1">${errMsgs.errAccount}${checkAccountError}</font>
 		        </div>
 		        <div class="form-group">
                         <label><input type="radio" name="optionsRadios" id="member" value="Mem">一般會員</label>
@@ -29,18 +31,20 @@
                 <div class="control-group form-group">
                 <label  class="control-label">密碼:</label>
                 <div class="controls ">
-                    <input type="password" class="form-control" name="mem_pwd0" value="${memVO.mem_pwd}" placeholder="請輸入6~12，包含英文與數字" >
+                    <input type="password" class="form-control" name="newpwd" placeholder="請輸入6~12，包含英文與數字" >
                 </div>
-                 <font color="red" size="-1">${errorMsgs.errorPwd}</font>
+                 <font color="red" size="-1">${errMsgs.errorPwd}</font>
             </div>
             <div class="control-group form-group">
                 <label  class="control-label">密碼確認:</label>
                 <div class="controls ">
-                    <input type="password" class="form-control" name="mem_pwd" value="${memVO.mem_pwd}" placeholder="請再次輸入密碼" >
+                    <input type="password" class="form-control" name="newpwdcheck" placeholder="請再次輸入密碼" >
                 </div>
             </div>
-                <input type="hidden" name="action" value="resetpwd">
-		        <button type="submit" class="btn btn-lg btn-primary pull-right">確認修改</button>
+                
+		        <br>
+          	  <button type="reset" class="btn btn-primary" >取消 </button>
+              <button type="submit" class="btn btn-danger" form="register_member">送出 </button>
 		      </form><!-- /.form-->
  			</div>
  		    </div>
@@ -50,13 +54,20 @@
 		</div>
 		<!-- /.忘記密碼-->
 
+<!-- jQuery Version 1.11.0 -->
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
+
+
 <script>
  (function($){
 	  
-	  
 	   $(document).ready(function() {
-		    $('#test').bootstrapValidator({
+		  $('#resetpwd').bootstrapValidator({
 		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
 		        feedbackIcons: {
 		            valid: 'glyphicon glyphicon-ok',
@@ -65,7 +76,7 @@
 		        },
 	        	
 		        fields: {
-		        	resetpwdinputEmail: {
+		        	user_account: {
 		        		trigger: 'keyup blur',
 		                message: '此E-mail無效',
 		                validators: {
@@ -75,8 +86,8 @@
 		                    emailAddress: {
 		                        message: '此E-mail無效,請輸入正確格式'
 		                    },
-		                    /*remote: {
-                                url: 'memAccountCheck.jsp',
+		                   /* remote: {
+                                url: 'userAccountCheck.jsp',
                                 type: "post",
                                 async: false,
                                 message: '帳號重複，請重新輸入',
@@ -84,7 +95,7 @@
 		                    
 		                }
 		            },
-		            mem_pwd0: {
+		            newpwd: {
 		            	trigger:'keyup blur',
 		                validators: {
 		                	notEmpty: {
@@ -100,20 +111,20 @@
 		                        message: '需包含英文及數字'
 		                    },
 		                    identical: {
-		                        field: 'mem_pwd',
+		                        field: 'newpwdcheck',
 		                        message: '與確認密碼不相同'
 		                    },
 		                    
 		                }
 		            },
-		            mem_pwd: {
+		            newpwdcheck: {
 		            	trigger: 'keyup blur',
 		                validators: {
 		                	notEmpty: {
 		                        message: '密碼確認不可空白'
 		                    },
 		                    identical: {
-		                        field: 'mem_pwd0',
+		                        field: 'newpwd',
 		                        message: '與密碼不相同'
 		                    },
 		                    stringLength: {
@@ -127,7 +138,6 @@
 		                    }
 		                }
 		            },
-		            
 		            optionsRadios: {
 		                validators: {
 		                	trigger: '',
@@ -136,10 +146,13 @@
 		                    }
 		                }
 		            },
-		           
+		            
+		            
+		       
+		          
 		        }}
 		    ).on('success.form.bv', function() {
-	            $('#test').modal('show');
+	            $('#resetPwdSuccess').modal('show');
 	        });
 
 		});

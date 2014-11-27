@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 
+import com.util.HashService;
+
 
 
 
@@ -36,7 +38,7 @@ public class FindUserPassword implements Filter {
 //		System.out.println("找餅乾!");    // 測試用訊息
 		String cookieName = "";
 		String user = "";
-		String password = "";
+		String decrypPassword = "";
 		String rememberMe = "false";
 		String userIdentity = "";
 		
@@ -51,11 +53,8 @@ public class FindUserPassword implements Filter {
 				}
 				else if (cookieName.equals("password")) {
 					String tmp = cookies[i].getValue();
-					if (tmp != null) {
-						byte[] ba = Base64.decodeBase64(tmp);
-						if (ba != null) {
-							password = new String(ba);
-						}
+					if (tmp != null) {    // AES + Base64 解密
+						decrypPassword = HashService.decryptString(HashService.KEY, tmp);
 					}
 				}
 				else if (cookieName.equals("rm")) {
@@ -70,7 +69,7 @@ public class FindUserPassword implements Filter {
 			System.out.println("找不到餅乾!!!!!");    // 測試用訊息
 		} // end outer if..else
 		session.setAttribute("user", user);
-		session.setAttribute("password", password);
+		session.setAttribute("password", decrypPassword);
 		session.setAttribute("rememberMe", rememberMe);
 		session.setAttribute("userIdentity", userIdentity);
 		}

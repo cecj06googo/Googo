@@ -31,6 +31,7 @@ public class CheckAccountServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
+		System.out.println("進入check servlet");
 		doGet(req, res);
 	}
 	public void doGet(HttpServletRequest req, HttpServletResponse res)

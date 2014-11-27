@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.company.model.CompanyService;
+import com.company.model.CompanyVO;
 import com.orders.model.OrdersService;
 import com.orders.model.OrdersVO;
 
@@ -43,9 +46,7 @@ public class OrdersActionMem extends HttpServlet {
 		// 7 ('會員逾時');
 		// 8 ('商家逾時');
 		// 9 ('異常未還');
-		
-		
-		
+				
 		if ("insert".equals(action)) {
 			//logic給值
 			Integer ord_status = 1;
@@ -56,7 +57,6 @@ public class OrdersActionMem extends HttpServlet {
 			String _ord_reday = "";
 			Object _item_total = "";
 			Object _prod_id = "";
-			Object _acc_id = "";
 			// 真接收參數
 			String item_name = "";
 			String item_phone = "";
@@ -71,7 +71,7 @@ public class OrdersActionMem extends HttpServlet {
 			Timestamp ord_reday = null;
 			Integer item_total = null;
 			Integer prod_id = null;
-			Integer acc_id = null;
+			Integer acc_id = 0; //用不到了
 			//給值
 			ord_time = new Timestamp(System.currentTimeMillis());
 
@@ -114,8 +114,6 @@ public class OrdersActionMem extends HttpServlet {
 							_item_total = value;
 						} else if (name.equalsIgnoreCase("prod_id")) {
 							_prod_id = value;
-						} else if (name.equalsIgnoreCase("acc_id")) {
-							_acc_id = value;
 						} else if (name.equalsIgnoreCase("item_name")) {
 							item_name = value;
 						} else if (name.equalsIgnoreCase("item_phone")) {
@@ -134,13 +132,15 @@ public class OrdersActionMem extends HttpServlet {
 					} // end while
 					
 					//接值 (com在商品VO, mem在session內的MemVO)
-					_com_id = session.getAttribute("com_id");
-					_mem_id = session.getAttribute("mem_id");
+					_com_id = request.getParameter("com_id");
+					
 					_ord_getday = request.getParameter("ord_getday");
 					_ord_reday = request.getParameter("ord_reday");
-					_item_total = session.getAttribute("item_total");
-					_prod_id = session.getAttribute("prod_id");
-					_acc_id = session.getAttribute("acc_id");
+					
+					_prod_id = request.getParameter("prod_id");
+//					_mem_id = session.getAttribute("mem_id");
+					_item_total = request.getParameter("prod_price");
+					
 					// ------------------資料驗證+轉型----------------------
 					// 日期轉型限定日期選擇器選擇的值，使用者自行輸入的話很有可能會轉不了
 					// 檢查使用者輸入資料
@@ -152,7 +152,8 @@ public class OrdersActionMem extends HttpServlet {
 						errorMsg.put("errorCom_id", "看到鬼，商家ID應該為整數不應為空值");
 					}
 					try {
-						mem_id = Integer.parseInt(_mem_id.toString().trim());
+						mem_id = 1;
+//								Integer.parseInt(_mem_id.toString().trim());
 					} catch (NumberFormatException e) {
 						errorMsg.put("errorMem_id", "看到鬼，會員ID應該為整數");
 					} catch (NullPointerException e) {
@@ -180,12 +181,6 @@ public class OrdersActionMem extends HttpServlet {
 					} catch (NumberFormatException e) {
 						errorMsg.put("errorProd_id", "看到鬼，商品編號應該為整數");
 					}
-					try {
-						acc_id = Integer.parseInt(_acc_id.toString());
-					} catch (NumberFormatException e) {
-						errorMsg.put("errorAcc_id", "看到鬼，配備ID應該為整數");
-					}
-
 					if (item_name == null || item_name.trim().length() == 0) {
 						errorMsg.put("errorItem_name", "領車人姓名欄必須輸入");
 					}
@@ -231,11 +226,11 @@ public class OrdersActionMem extends HttpServlet {
 						RequestDispatcher successView = request
 								.getRequestDispatcher(url);
 						successView.forward(request, response);
-						/******************** (Send the Success view) ************/
+						/******************** (轉向)*******************/
 					} else {
-
+						System.out.println("新增失敗");
 						// 有errorMsg轉回原頁面
-						String url = "/_04_member/productsDetails.jsp";
+						String url = "/_07_order/placeOrder.jsp";
 						RequestDispatcher successView = request
 								.getRequestDispatcher(url);
 						successView.forward(request, response);
@@ -250,7 +245,28 @@ public class OrdersActionMem extends HttpServlet {
 		} // end insert
 		
 		
-		
+		if ("placeOrder".equals(action)) {
+			//把商品和商家id存入request供訂單頁面寫入資料庫
+			Integer com_id = Integer.parseInt(request.getParameter("detail_com_id"));
+			Integer prod_id = Integer.parseInt(request.getParameter("detail_prod_id"));
+			CompanyService cs = new CompanyService();
+			CompanyVO comVO = cs.getOneCom(com_id);
+			
+			
+			
+			
+//			System.out.println(com_id);
+//			System.out.println(prod_id);
+			session.setAttribute("comVO", comVO);
+			request.setAttribute("prod_id", prod_id);
+			
+			/******************** (轉向)*******************/
+			String url = "/_07_order/placeOrder.jsp";
+			RequestDispatcher successView = request
+					.getRequestDispatcher(url);
+			successView.forward(request, response);
+			
+		}
 		
 		
 		

@@ -6,7 +6,7 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/plugins/morris.css" rel="stylesheet">
+
 <!-- js -->
 <%-- <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script> --%>
 <%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
@@ -21,7 +21,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="<c:url value='/manage.jsp'/>" id="logo">
+                <a class="navbar-brand page-scroll" href="<c:url value='/manage'/>" id="logo">
                     <i class="fa fa-car"></i><span class="light"> 租車網</span> Goo-go
                 </a>
             </div>
@@ -133,10 +133,10 @@
                                 <a href="<c:url value='/_06_manage/productInsert.jsp'/>">新品上架</a>
                             </li>
                             <li>
-                                <a href="<c:url value='/_06_manage/product.jsp'/>">車輛管理</a>
+                                <a href="<c:url value='/prod.show'/>">商品管理</a>
                             </li>
                             <li>
-                                <a href="#">配件管理</a>
+                                <a href="<c:url value='/_06_manage/AccInsert.jsp'/>">配件</a>
                             </li>
                         </ul>
                     </li>

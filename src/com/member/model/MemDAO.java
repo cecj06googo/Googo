@@ -7,6 +7,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import org.json.simple.JSONValue;
 //JNDI
 public class MemDAO implements MemDAO_interface {
 	
@@ -30,7 +32,8 @@ public class MemDAO implements MemDAO_interface {
 		"UPDATE Member set mem_status=1 where mem_qq=?";
 	private static final String OPEN_ACCOUNT_GETID= 
 		"SELECT mem_id, mem_account,mem_pwd,mem_name,mem_gender,mem_bdate,mem_idnumber,mem_tel,mem_phone,mem_address,mem_status FROM Member where mem_qq=?";
-	
+	private static final String CHECK_ACCOUNT= 
+			"select count(*) from Member where mem_account=?";
 	
 	@Override
 	public void insert(MemVO memVO)  {
@@ -299,6 +302,7 @@ public class MemDAO implements MemDAO_interface {
 		}
 		return memVO;
 	}
+	
 	public MemVO findByqq(String mem_qq) {
 			
 			MemVO memVO = null;
@@ -357,5 +361,68 @@ public class MemDAO implements MemDAO_interface {
 			}
 			return memVO;
 		}
+	//失敗
+	public String cheekAccount(String mem_account) {
 
+		MemVO memVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Map m1=null;
+		String jsonString=null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(CHECK_ACCOUNT);
+			
+			pstmt.setString(1,mem_account);
+
+			rs = pstmt.executeQuery();
+			m1 = new HashMap();
+			
+			 rs.next();
+			 if(rs.getInt(1) >= 1){
+				 m1.put("valid",false);
+			 }else{
+				 m1.put("valid",true);
+			 }		 
+			 
+			 jsonString = JSONValue.toJSONString(m1);  
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return jsonString;
+	}
 }

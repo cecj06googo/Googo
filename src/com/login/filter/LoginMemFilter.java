@@ -87,9 +87,9 @@ public class LoginMemFilter implements Filter {
 		boolean login = false;
 		for (String sURL : url) {
 			if (sURL.endsWith("*")) {    // 判斷是否為 * 結尾, 成立回傳true
-//				System.out.println("( " + sURL + " )");
+				System.out.println("( " + sURL + " )");
 				sURL = sURL.substring(0, sURL.length() - 1);
-//				System.out.println("[ " + sURL + " ]");
+				System.out.println("[ " + sURL + " ]");
 				if (servletPath.startsWith(sURL)) {
 					login = true;
 					break;
