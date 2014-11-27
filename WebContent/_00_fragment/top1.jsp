@@ -86,6 +86,8 @@
 		<jsp:include page="/_01_login/login.jsp" />
 		<!-- 忘記密碼 -->
 		<jsp:include page="/_01_login/forgetPwd.jsp" />
+		<!-- 重設密碼 -->
+		<jsp:include page="/_01_login/resetPwd.jsp"></jsp:include>
 	
 <script>
 (function($) {
@@ -93,6 +95,7 @@
 	var timeOut = '<%= session.getAttribute("timeOut") %>';
 	var mustMemLogin = '<%= session.getAttribute("mustMemLogin") %>';
 	var mustComLogin = '<%= session.getAttribute("mustComLogin") %>';
+	
 //  	alert("errorMsg = " + errorMsg + ", timeOut = " + timeOut 
 //  			+ ", mustMemLogin = " + mustMemLogin + ", mustComLogin = " + mustComLogin);
 	
@@ -119,13 +122,16 @@
 	else {
 //  		alert("不用彈出登入");
 	}
-    
-	var errMsgs = '<%= session.getAttribute("errAccount") %>';
-	if(errMsgs !='null'){
+	
+	var errMsgs = '<%= session.getAttribute("checkAccountError") %>';
+	if(errMsgs != 'null'){
+		alert("請重填");
 		$('#forgetpwd').modal('show');
-		<% session.removeAttribute("errAccount"); %>
+		<% session.removeAttribute("checkAccountError"); %>
+		<% session.removeAttribute("noExistAccount"); %>
 	}
 
+    
 })(jQuery)
 
 

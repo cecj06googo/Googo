@@ -141,10 +141,10 @@ public class LoginServlet extends HttpServlet {
 			else if (comVO != null) {
 					System.out.println("進入商家後端");    // 測試用訊息
 					// 商家訂單OnLoad
-					LoginOrdersOnLoad OCOL = new LoginOrdersOnLoad();  
-					session = OCOL.ComOnLoad(session,userId);
+//					LoginOrdersOnLoad OCOL = new LoginOrdersOnLoad();  
+//					session = OCOL.ComOnLoad(session,userId);
 					response.sendRedirect(response.encodeRedirectURL(
-							request.getContextPath() + "/manage.jsp"));
+							request.getContextPath() + "/manage"));
 					return;
 			}
 		}

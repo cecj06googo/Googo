@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% 
+String donutString = (String)request.getAttribute("donutString");
+String barString = (String)request.getAttribute("barString");
+%>
+<c:set value="<%= donutString %>" var="donutString" />
+<c:set value="<%= barString %>" var="barString" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,6 +15,10 @@
 
 <jsp:include page="/_00_fragment/css2.jsp" />
 <title>Goo-go</title>
+<script type="text/javascript" charset="utf-8">
+       	var donutString =<%= donutString %>;
+    	var barString =<%= barString %>;
+</script>
 
 </head>
 <body>
@@ -66,7 +76,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">16</div>
-                                        <div>已取車輛</div>
+                                        <div>車輛數目</div>
                                     </div>
                                 </div>
                             </div>                        
@@ -97,18 +107,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/ActionCom.do" name="noreCar">
-                            <a href="#" onclick="document.noreCar.submit();">
-                            
+                            <a href="<c:url value='/scheduler'/>" >
                                 <div class="panel-footer">
-                                    <span class="pull-left">查看訂單</span>
+                                    <span class="pull-left">車輛調度</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                     <div class="clearfix"></div>
                                 </div>
                             </a>
-                            <input type="hidden" name="action" value="reCarCom"/>
-                            </FORM>
                         </div>
                     </div><!--/.取車-->
                     <!--問券-->
@@ -140,7 +145,7 @@
 				<!-- 曲線圖 --> 
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="panel panel-default">
+                        <div class="panel  panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>近一個月的銷售額</h3>
                             </div>
@@ -155,104 +160,55 @@
                 <div class="row">
                 <!-- Bar圖  -->
                     <div class="col-lg-4">
-                        <div class="panel panel-default">
+                        <div class="panel panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>近一個月商品租借次數</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-bar-chart"></div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
                             </div>
                         </div>
                     </div>
                 	<!-- 甜甜圈圖  -->
                     <div class="col-lg-4">
-                        <div class="panel panel-default">
+                        <div class="panel panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>近一個月訂單狀態</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-donut-chart"></div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <!--錢錢-->
                     <div class="col-lg-4">
-                        <div class="panel panel-default">
+                        <div class="panel panel-info">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Transactions Panel</h3>
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>最新訂單列表</h3>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Order #</th>
-                                                <th>Order Date</th>
-                                                <th>Order Time</th>
-                                                <th>Amount (USD)</th>
+                                                <th>訂單#</th>
+                                                <th>下訂日期</th>
+                                                <th>下訂時間</th>
+                                                <th>金額</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <c:forEach var="DordersVO" items="${orderList}">
                                             <tr>
-                                                <td>3326</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:29 PM</td>
-                                                <td>$321.33</td>
+                                                <td># ${DordersVO.ord_id}</td>
+                                                <td>${DordersVO.ord_time_day}</td>
+                                                <td>${DordersVO.ord_time_time}</td>
+                                                <td>$ ${DordersVO.item_total}</td>
                                             </tr>
-                                            <tr>
-                                                <td>3325</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:20 PM</td>
-                                                <td>$234.34</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3324</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:03 PM</td>
-                                                <td>$724.17</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3323</td>
-                                                <td>10/21/2013</td>
-                                                <td>3:00 PM</td>
-                                                <td>$23.71</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3322</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:49 PM</td>
-                                                <td>$8345.23</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3321</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:23 PM</td>
-                                                <td>$245.12</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3320</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:15 PM</td>
-                                                <td>$5663.54</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3319</td>
-                                                <td>10/21/2013</td>
-                                                <td>2:13 PM</td>
-                                                <td>$943.45</td>
-                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -271,14 +227,15 @@
 
 
 </body>
+<script>
+// top2左方功能列選項
+$("#selectManage").addClass("active");
+</script>
    <!-- Morris Charts JavaScript -->
     <script src="${pageContext.request.contextPath}/js/plugins/morris/morris.js"></script>
     <script src="${pageContext.request.contextPath}/js/plugins/morris/morris-data.js"></script>
     <script src="${pageContext.request.contextPath}/js/plugins/morris/raphael.min.js"></script>
     
-<script>
-// top2左方功能列選項
-$("#selectManage").addClass("active");
-</script>
+
 
 </html>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.company.model.CompanyService;
 import com.company.model.CompanyVO;
 import com.forgetpwd.model.ForgetPwdService;
+import com.forgetpwd.model.SendResetPwdEmail;
 import com.member.model.MemService;
 import com.member.model.MemVO;
 
@@ -30,8 +31,9 @@ public class ResetPwdServlet extends HttpServlet {
 		
 		Map<String, String> errMsgs = new HashMap<String, String>();
 		req.setAttribute("errMsgs", errMsgs);
+		boolean error = false;
 		HttpSession session = req.getSession();
-		try{
+		
 			/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 			String userAccount = req.getParameter("resetPwdMail");
 			if(userAccount == null || userAccount.trim().length() == 0){
@@ -55,31 +57,57 @@ public class ResetPwdServlet extends HttpServlet {
 				errMsgs.put("errorPwdCheck", "兩次輸入的密碼不一致");
 			}
 			// Send the use back to the form, if there were errors
-			if(!errMsgs.isEmpty()){
+/*			if(!errMsgs.isEmpty()){
 				RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/resetPwd.jsp");
 				failureView.forward(req, res);
 			}
+*/
 			/***************************2.開始查詢資料*****************************************/
-			ForgetPwdService forgetPwdSvc = new ForgetPwdService();
-			if("Mem".equals(userIdentity)){
-				forgetPwdSvc.updateUser(userIdentity,userAccount,newPwd);
-
-				}else if("Com".equals(userIdentity)){
-					forgetPwdSvc.updateUser(userIdentity,userAccount,newPwd);
-				}
-			/***************************3.修改完成,準備轉交(Send the Success view)*************/
-			String url = "/_01_login/resetPwdSuccess.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
-			successView.forward(req, res);
+			try{
+			Integer userId = null;
+			MemVO memVO = null;
+			CompanyVO comVO = null;
 			
+		    ForgetPwdService forgetPwdSvc = new ForgetPwdService();
+			userId = forgetPwdSvc.findId(userAccount, userIdentity);
+			System.out.println("userId: " + userId);
+			if("Mem".equals(userIdentity)){
+				MemService memSvc = new MemService();
+				memVO = memSvc.getOneMem(userId);
+				session.setAttribute("checkMemOK", memVO);
+				System.out.println("session內的mem_account: "+memVO.getMem_account());
+				forgetPwdSvc.updateUser(userIdentity,userAccount,newPwd);
+				System.out.println("修改mem_pwd完成!");
+				}else if("Com".equals(userIdentity)){
+					CompanyService comSvc = new CompanyService();
+					comVO = comSvc.getOneCom(userId);
+					session.setAttribute("checkComOK", comVO);
+					System.out.println("session內的com_account: "+comVO.getComAccount());
+					forgetPwdSvc.updateUser(userIdentity,userAccount,newPwd);
+					System.out.println("修改com_pwd完成!");
+				}
 			
 		}catch(Exception e){
+			System.out.println("出現exception!");
 			errMsgs.put("errorException", e.getMessage());
+			session.setAttribute("checkAccountError", "該帳號不存在");
+			session.setAttribute("noExistAccount", userAccount);
+			error = true;
 //			RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/resetPwd.jsp");
 //			failureView.forward(req, res);
 			
 		}//end of catch
-		
-	}//end of doPost
+			
+			/***************************3.修改完成,準備轉交(Send the Success view)*************/
+			if(!error){
+				session.removeAttribute("checkAccountError");
+				session.removeAttribute("noExistAccount");
+				String url = "/index.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+				}//end of if(!error)
+			
+			
+		}//end of doPost
 
 }//end of class

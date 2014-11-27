@@ -309,7 +309,16 @@
 		<url-pattern>/resetpwd.gg</url-pattern>
 	</servlet-mapping>
 	<!-- End: 忘記密碼相關 -->
-
+	<!-- Begin: 報表分析相關 -->
+	<servlet>
+		<servlet-name>manage</servlet-name>
+		<servlet-class>com.statistics.controller.DataServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>manage</servlet-name>
+		<url-pattern>/manage</url-pattern>
+	</servlet-mapping>
+	<!-- End: 報表分析相關 -->
 	<!-- Begin: Filter設定 -->
 	<filter>
 		<display-name>LoginMemFilter</display-name>

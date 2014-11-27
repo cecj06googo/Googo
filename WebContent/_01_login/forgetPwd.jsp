@@ -28,6 +28,7 @@
                         <label><input type="radio" name="optionsRadios" id="member" value="Mem">一般會員</label>
                         <label><input type="radio" name="optionsRadios" id="company" value="Com">商家會員</label>
                 </div>
+                <div id="errorMessage"><font color="red" size="-1">${checkAccountError}</font></div>
 		        <button type="submit" class="btn btn-lg btn-primary pull-right">重新設定</button>
 		      </form><!-- /.form-->
  			</div>
@@ -45,6 +46,7 @@
 		if (radios != null) {
 			$('input:radio[name=optionsRadios]').filter('[value="' + radios +'"]').prop('checked',true);
 		}
+		
 	  
 	  
 	   $(document).ready(function() {
@@ -67,12 +69,12 @@
 		                    emailAddress: {
 		                        message: '此E-mail無效,請輸入正確格式'
 		                    },
-		                    remote: {
+		                   /* remote: {
                                 url: 'userAccountCheck.jsp',
                                 type: "post",
                                 async: false,
                                 message: '帳號重複，請重新輸入',
-                            },
+                            },*/
 		                    
 		                }
 		            },
@@ -93,11 +95,8 @@
 
 		});
 	   
-	   var errMsgs = '<%= session.getAttribute("errMsgs") %>';
-		if(errMsgs !='null'){
-			$('#forgetpwd').modal('show');
-			<% session.removeAttribute("errAccount"); %>
-		}
+	   
+		
 	
    
 	 })(jQuery)
