@@ -34,8 +34,9 @@ public class Accessory_Retrieval extends HttpServlet {
 		String url = "jdbc:sqlserver://localhost:1433; databaseName=GGDB";
 		String user = "sa";
 		String pw = "sa123456";
+		int com_id = Integer.parseInt(request.getParameter("com_id"));
 		
-		String pstmt_Retrieve = "select acc_detail, acc_price from Accessory where com_id = ?";
+		String pstmt_Retrieve = "select acc_id, acc_detail, acc_price from Accessory where com_id = ?";
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -49,18 +50,19 @@ public class Accessory_Retrieval extends HttpServlet {
 			conn = DriverManager.getConnection(url, user, pw);
 			pstmt = conn.prepareStatement(pstmt_Retrieve);
 			
-			//lock in for testing, company number 2
-			pstmt.setInt(1, 2);
+			pstmt.setInt(1, com_id);
 			
 			rs = pstmt.executeQuery();
-			ArrayList list = new ArrayList();
+			ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
 			
 			//this writing sucks...too many map object created...need to find some better way
 			while (rs.next()) {
 				Map<String, String> accessory = new LinkedHashMap<String, String>();
+				accessory.put("acc_id", rs.getString("acc_id"));
 				accessory.put("description", rs.getString("acc_detail"));
 				accessory.put("price", rs.getString("acc_price"));
 				list.add(accessory);
+				System.out.println(rs.getString("acc_id"));
 				System.out.println(rs.getString("acc_detail"));
 				System.out.println(rs.getString("acc_price"));
 			}

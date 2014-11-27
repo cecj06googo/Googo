@@ -208,49 +208,11 @@ $("#selectManage").addClass("active");
                         		<div class="tab-pane" id="predefined-tab">
                         			<hr>
                         			<div id="components-container" class="form-horizontal">
-                        				
-                        				<div class="component form-group" data-type="PreSelectBasic">
-                                			<label class="control-label col-sm-4" for="PreSelectBasic">Predefined - Select - Basic</label>
-                                			<div class="controls col-sm-8">
-                                    		<select class="form-control" name="" id="PreSelectBasic">
-                                        	<option value="0">Dynamic options from DB</option>
-                                    		</select>
-                                			</div>
-                            			</div>
-                            			
-                            			<div class="component form-group" data-type="PreBox">
-                                			<label class="control-label col-sm-4" for="PreSelectBasic">Predefined - Box</label>
-                                			<div class="controls col-sm-8">
-                                    		<select class="form-control" name="" id="PreBox">
-                                        	<option value="0">Dynamic options from DB</option>
-                                    		</select>
-                                			</div>
-                            			</div>
-                            			
-                            			<div class="component form-group" data-type="AdditionalInsurance">
-                                			<label class="control-label col-sm-4" for="AdditionalInsuranceName">加保人姓名</label>
-                                			<div class="controls col-sm-8">
-                                    			<input type="text" class="form-control" name="" id="AdditionalInsuranceName" style="margin-bottom:5px" value="預設被保險人，請按照身份證或駕照姓名填寫">
-                                    		</div>
-                                    		<label class="control-label col-sm-4" for="AdditionalInsurancePhone">加保人手機</label>
-                                			<div class="controls col-sm-8">
-                                    			<input type="text" class="form-control" name="" id="AdditionalInsurancePhone" style="margin-bottom:5px" value="格式：0900-000-000">
-                                    		</div>
-                                    		<label class="control-label col-sm-4" for="AdditionalInsuranceMail">聯絡郵件</label>
-                                			<div class="controls col-sm-8">
-                                    			<input type="text" class="form-control" name="" id="AdditionalInsuranceMail" style="margin-bottom:5px" value="任何臨時車輛異動將即時以電子郵件通知您">
-                                    		</div>
-                                    		<label class="control-label col-sm-4" for="AdditionalInsuranceID">身份證字號</label>
-                                			<div class="controls col-sm-8">
-                                    			<input type="text" class="form-control" name="" id="AdditionalInsuranceID" style="margin-bottom:5px" value="主管機關備查用，請務必填寫正確">
-                                    		</div>
-                            			</div>
-                            			
+                            			待新增預製元件
                         			</div>
                         		</div>
                         	</div>
                         </div>
-                        
                         
                     </div>
                 </div>
@@ -265,7 +227,7 @@ $("#selectManage").addClass("active");
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/form_builder.js"></script>
+<script src="<%=request.getContextPath()%>/js/Questionnaire_builder.js"></script>
 <script src="<%=request.getContextPath()%>/js/codemirror.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/formatting.js"></script>
 

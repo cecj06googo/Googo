@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.template.model.Prototype_OrderTemp_VO, com.member.model.MemVO"%>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<% Prototype_OrderTemp_VO tempVo = (Prototype_OrderTemp_VO)request.getAttribute("tempVo"); %>    
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +10,6 @@
 <jsp:include page="/_00_fragment/top1.jsp" />
 <jsp:include page="/_00_fragment/css.jsp" />
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/PlaceOrderTemplateJsonify.js"></script>
 <!-- 順序不可動 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="${pageContext.request.contextPath}/_07_order/order.css" rel="stylesheet">
@@ -35,41 +33,32 @@
 			<div class="col-lg-12">
 				<h1 class="page-header">
 <!-- 				在此comVO是用振瑋的VO -->
-					${comVO.comName} <small>租車小舖</small>
+					台灣大哥大租車 <small>租車小舖</small>
 				</h1>
 			</div>
 		</div>
 		<!-- /.row -->
 <!-------------- 流程顯示 ------------------>
-
-<div class="stepwizard div-mar-left">
+<div class="stepwizard">
     <div class="stepwizard-row setup-panel">
         <div class="stepwizard-step">
             <a href="#step-1" type="button" class="btn btn-primary" id="circle">1</a>
-            <p class="p-width">&nbsp訂車資訊&nbsp</p>
+            <p>訂車資訊</p>
         </div>
         <div class="stepwizard-step">
             <a href="#step-2" type="button" class="btn btn-default" id="circle" disabled="disabled">2</a>
-            <p class="p-width">駕駛人資訊</p>
+            <p>駕駛人資訊</p>
         </div>
         <div class="stepwizard-step">
             <a href="#step-3" type="button" class="btn btn-default" id="circle" disabled="disabled">3</a>
-            <p class="p-width">&nbsp&nbsp其他資訊&nbsp&nbsp</p>
-        </div>
-        <div class="stepwizard-step">
-            <a href="#step-4" type="button" class="btn btn-default" id="circle" disabled="disabled">4</a>
-            <p class="p-width">&nbsp&nbsp&nbsp&nbsp完成&nbsp&nbsp&nbsp&nbsp</p>
+            <p>其他資訊</p>
         </div>
     </div>
 </div>
-
 <!-------------- /.流程顯示 ---------------->
 
 <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
 <input type="hidden" name="action" value="insert" />
-<%-- <input type="hidden" name="com_id" value="${ord_comVO.comID}" /> --%>
-<%-- <input type="hidden" name="prod_id" value="${ord_prod_id}" /> --%>
-<input type="hidden" name="prod_price" value="${prod_price}" />
 <!-------------- 訂單第一頁 ----------------->
     <div class="row setup-content" id="step-1">
         <div class="col-xs-12 div-back div-height">
@@ -79,7 +68,7 @@
                 
             	<div class="form-group">
                    <label><span class="span-space"></span>商家地址(取車地點)</label>
-                   <input maxlength="100" type="text" required="required" class="form-control" placeholder="${ord_comVO.comAddr}" disabled="disabled"/>
+                   <input maxlength="100" type="text" required="required" class="form-control" placeholder="顯示商家地址" disabled="disabled"/>
                 </div>
                 
       			<div class="form-group">
@@ -100,21 +89,28 @@
                    		<option value="0">aaa</option>
                    </select>
 	            </div>
+<!-- 	            <div class="form-group"> -->
+<!--                    <label><span class="span-red">*</span>還車日期</label> -->
+<!--                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" /> -->
+<!-- 	            </div> -->
+<!-- 	            <div class="form-group"> -->
+<!--                    <label><span class="span-red">*</span>還車日期</label> -->
+<!--                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" /> -->
+<!-- 	            </div> -->
+<!-- 	            <div class="form-group"> -->
+<!--                    <label><span class="span-red">*</span>還車日期</label> -->
+<!--                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" /> -->
+<!-- 	            </div> -->
+
 	        </div>  
 	        <div class="col-xs-6 x-border div-css ">
 	        <p class="p-right">* 必填選項</p>
-		    <p  class="x-border"><label class="x-border">車輛預覽</label></p>
+<!-- 	        放車子圖片 -->
+		            	<label>車輛預覽</label><br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>		
 		    </div>
-		    <div class="col-xs-6 x-border div-css div-height-carView">
-		    <!-- 商品圖片 -->
-				<img class="img-responsive input-carView "
-					src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${ord_comVO.comID}&prodId=${ord_prod_id}'
-					alt="">
-			<!-- /商品圖片 -->		
+		    <div class="col-xs-12 x-border x-center">
+		   <span class="span-accept x-border"><input type="checkbox" />駕駛人年齡在25-70歲之間？</span>
 		    </div>
-<!-- 		    <div class="col-xs-12 x-border x-center"> -->
-<!-- 		   <span class="span-accept x-border"><input type="checkbox" />駕駛人年齡在25-70歲之間？</span> -->
-<!-- 		    </div> -->
 		    <div class=" col-xs-12 x-border ">
 		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="nextOne">下一步</button>
 		    </div>
@@ -163,33 +159,13 @@
         <div class="col-xs-12">
             <div class="col-xs-12">
                 <h3>其他資訊</h3>
-                <!-- Begin: Modified by ranian -->
-                <textarea id="pritem_acc" name="pritem_acc">stand by for json bundle</textarea>
-                <input type="button" id="inspectCust" value="Inspect Customized Fields" />
-                <div class="col-xs-6 div-css">
-                	<div id="DesignResultTarget"></div>
-                </div>
-                <!-- End: Modified by ranian -->
                 <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
             </div>
         </div>
     </div>
 <!-------------- /.訂單第三頁 ---------------->
 </form>	
-
-<!-------------- 訂單第四頁 ------------------>
-<!-- submit後回來顯示第四頁  (最簡單的方法是連到另一支樣式一模一樣的jsp) -->
-<!-- c:if (訂單新增ok(Map物件) != null    -->
-    <div class="row setup-content div-border" id="step-4">
-        <div class="col-xs-12">
-            <div class="col-xs-12">
-                <h3>其他資訊</h3>
-                <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
-            </div>
-        </div>
-    </div>
-<!-------------- /.訂單第四頁 ---------------->		
-
+		
 		<hr>
 		<!-- Footer -->
 		<jsp:include page="/_00_fragment/footer.jsp" />
@@ -201,22 +177,6 @@
 <script>
 $(document).ready(function () {
 // 	http://www.jqueryrain.com/?lnsG0UbP
-	
-	// Begin: Modified by ranian
-	// retrieve designed form template and attach to div #DesignResultTarget
-	$.ajax({
-		url: "<%=request.getContextPath()%>/DesignAccessDB",
-		type: "post",
-		data: {
-			com_id_form_view: <%=session.getAttribute("com_id") %>,
-			command: "retrieve"	
-		},
-		dataType: "html",
-	}).done(function(result){
-		$("#DesignResultTarget").html(result);
-	});
-	// End: Modified by ranian
-		
 	var timeChar,oneChar,twoChar,thrChar,fourChar,getTime,reTime;
 	$('#showGet').datetimepicker({
 		  lang:'zh-TW',
@@ -277,9 +237,8 @@ $(document).ready(function () {
 		});
 		
 	
-//------------------------------------------------
-
-//-------------------流程控制原始碼--------------------
+//-----------------------------------	
+	
     var navListItems = $('div.setup-panel div a'),
             allWells = $('.setup-content'),
             allNextBtn = $('.nextBtn');

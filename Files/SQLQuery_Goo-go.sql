@@ -75,8 +75,6 @@ Create Table Company(
 			com_pic        varbinary(max) NULL,
 			com_status      int NOT NULL DEFAULT((0)),
 			com_hashURL    varchar(32),
-			
-
 );
 
 -- 新增資料 ( 目前10筆假資料 )
@@ -99,6 +97,10 @@ INSERT INTO Company VALUES ('antai128@pchome.com', '7b3aed8c6365e6d78ba146bc1de5
 INSERT INTO Company VALUES ('antai129@pchome.com', 'b000355537f24698975682ce870a53fd', '只有汽車租車', '李小泰6', '臺北市內湖區新湖二路202號1樓', '0200422946', '02004229346', 12144171,NULL, 0, NULL);
 INSERT INTO Company VALUES ('eee@abc.com.tw', '77ee51fc4289f81e57fb6c0524179318', '馬小九只有機車', '馬小九', '臺北市內湖區新湖二路202號1樓', '0233657777', '0910222333', 12144172,NULL, 0, NULL);
 
+INSERT INTO Company VALUES ('antai130@pchome.com', '7b3aed8c6365e6d78ba146bc1de59cb8', '宜蘭商家1', '李小泰7', '宜蘭縣羅東鎮中正路166號1樓', '0200422947', '02004229347', 12144173,NULL, 0, NULL);
+INSERT INTO Company VALUES ('antai131@pchome.com', 'b000355537f24698975682ce870a53fd', '宜蘭商家2', '李小泰8', '宜蘭縣羅東鎮忠義巷58號1樓', '0200422948', '02004229348', 12144174,NULL, 0, NULL);
+INSERT INTO Company VALUES ('antai132@pchome.com', '77ee51fc4289f81e57fb6c0524179318', '宜蘭商家3', '李小泰9', '宜蘭縣羅東鎮勝利街20號1樓', '0233657749', '0910222349', 12144175,NULL, 0, NULL);
+INSERT INTO Company VALUES ('antai133@pchome.com', '77ee51fc4289f81e57fb6c0524179318', '宜蘭商家4', '李小泰10', '宜蘭縣冬山鄉光明路50巷4弄4號1樓', '0233657750', '0910222350', 12144176,NULL, 0, NULL);
 Create Table Product_Type(
             prodtype_id int   NOT NULL Primary Key,
 			prodtype_name varchar(32) NOT NULL,
@@ -147,8 +149,6 @@ Create Table Product(
 			CONSTRAINT Product_com_type_fk FOREIGN KEY (prod_type) REFERENCES Product_Type (prodtype_id),
 			CONSTRAINT Product_prod_kind_fk FOREIGN KEY (prod_kind) REFERENCES Product_Kind (prodkind_id),
 );
-
-
 
                         
 insert into Product values (1,'賓士320',1,1000,0.78,0x00,'ss',null,null,null,1,null,null,null,1,1);
@@ -221,6 +221,17 @@ Create Table Accessory(
 
 			CONSTRAINT Accessory_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 );
+insert into Accessory values ('安全座椅',2,'適用一般4歲以下孩童',0x00,2000,1);
+insert into Accessory values ('Garmin導航機',2,'適用一般4歲以下孩童',0x00,700,1);
+insert into Accessory values ('野炊卡式爐',2,'適用一般4歲以下孩童',0x00,350,1);
+insert into Accessory values ('冰桶 - 6L',2,'適用一般4歲以下孩童',0x00,100,1);
+insert into Accessory values ('冰桶 - 15L',2,'適用一般4歲以下孩童',0x00,200,1);
+insert into Accessory values ('營帳 - 2P',2,'適用一般4歲以下孩童',0x00,800,1);
+insert into Accessory values ('營帳 - 4P',2,'適用一般4歲以下孩童',0x00,1200,1);
+insert into Accessory values ('對講機全罩安全帽2頂',3,'適用一般4歲以下孩童',0x00,300,1);
+insert into Accessory values ('清靜農場哞哞午餐卷2張',3,'適用一般4歲以下孩童',0x00,400,1);
+insert into Accessory values ('小人國遊樂園入場卷2張',3,'適用一般4歲以下孩童',0x00,600,1);
+insert into Accessory values ('尾掛置物箱',3,'適用一般4歲以下孩童',0x00,500,1);
 insert into Accessory values ('高粱酒1',1,'wine', 0x00, 1000, 1);
 insert into Accessory values ('高粱酒2',1,'wine', 0x00, 1000, 1);
 insert into Accessory values ('高粱酒3',1,'wine', 0x00, 1000, 1);
@@ -318,10 +329,10 @@ Create Table Ord_item(
 			ord_id          int,
 			prod_id      	int,
 			acc_id          int,
-			item_name       varchar(20) NOT NULL ,
+			item_name       varchar(20) NULL ,
 			item_tel        varchar(20) NULL ,
 			item_phone      varchar(20) NULL ,
-			item_email      varchar(50) NOT NULL,
+			item_email      varchar(50) NULL,
 			pritem_acc      varchar(max) NULL,
 			item_all        varchar(max) NULL,
 
