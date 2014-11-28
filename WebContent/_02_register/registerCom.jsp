@@ -88,8 +88,8 @@
                </div>
               
               <br> 
-             <button type="reset" class="btn btn-primary" >取消 </button>
-             <button type="submit" class="btn btn-danger" form="registerComForm">送出 </button>
+             <button type="reset" class="btn btn-danger" >取消 </button>
+             <button type="submit" class="btn btn-success" form="registerComForm">送出 </button>
           </form>
           
           <div id="yourimg"></div>

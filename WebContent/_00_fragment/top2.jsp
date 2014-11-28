@@ -124,7 +124,7 @@
                         <a href="<c:url value='/scheduler'/>"><i class="fa fa-calendar"></i> 車輛調度</a>
                     </li>
                     <li id="Survey">
-                        <a href="#"><i class="fa fa-fw fa-file-text-o"></i> 問券分析</a>
+                        <a href="#"><i class="fa fa-fw fa-file-text-o"></i> 新功能</a>
                     </li>
                     <li id="selectStock">
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-th-list"></i> 庫存管理 <i class="fa fa-fw fa-caret-down"></i></a>
@@ -143,12 +143,12 @@
                     <li id="selectDesignOrder">
                         <a href="<c:url value='/Temp/ApplySample_hooked.jsp' />"><i class="fa fa-fw fa-clipboard"></i> 設計訂單</a>
                     </li>
-                    <li id="selectDesignStock">
-                        <a href="#"><i class="fa fa-fw fa-edit"></i> 設計問券</a>
-                    </li >
                     <li id="selectModCom" >
                         <a href="<c:url value='/_06_manage/modCom.jsp'/>"><i class="fa fa-fw fa-pencil"></i> 修改商家資訊</a>
                     </li>
+                    <li id="selectDesignStock">
+                        <a href="#"><i class="fa fa-fw fa-shopping-cart"></i> Goo-go商城</a>
+                    </li > 
                      <li id="selectHelp">
                         <a href="<c:url value='/_06_manage/help.jsp'/>"><i class="fa fa-fw fa-info"></i> 幫助</a>
                     </li>

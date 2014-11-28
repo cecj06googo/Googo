@@ -162,9 +162,9 @@ insert into Product values (1,'一樣汽車名稱',1,4000,0.45,0x00,'ss',null,nu
 insert into Product values (1,'一樣汽車名稱',1,4000,0.45,0x00,'ss',null,null,null,1,null,null,null,56,1);
 insert into Product values (2,'野狼125',2,3000,0.93,0x00,'ss',null,null,null,1,null,null,null,5,1);
 insert into Product values (2,'競戰150',2,4000,0.77,0x00,'ss',null,null,null,1,null,null,null,6,1);
-insert into Product values (3,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,null,null,null,7,1);
-insert into Product values (3,'保時捷-T1',1,6000,0.89,0x00,'ss',null,null,null,1,null,null,null,8,1);
-insert into Product values (3,'Fighter150',2,7000,0.95,0x00,'ss',null,null,null,1,null,null,null,9,1);
+insert into Product values (4,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,null,null,null,7,1);
+insert into Product values (4,'保時捷-T1',1,6000,0.89,0x00,'ss',null,null,null,1,null,null,null,8,1);
+insert into Product values (4,'Fighter150',2,7000,0.95,0x00,'ss',null,null,null,1,null,null,null,9,1);
 insert into Product values (4,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,null,null,null,10,1);
 insert into Product values (4,'保時捷-T1',1,6000,0.89,0x00,'ss',null,null,null,1,null,null,null,11,1);
 insert into Product values (4,'Fighter150',2,7000,0.95,0x00,'ss',null,null,null,1,null,null,null,12,1);
@@ -352,25 +352,25 @@ insert into Orders values (1,3,3,'2014-11-12 10:00:00','2014-11-28 09:20:00','20
 insert into Orders values (2,3,3,'2014-11-12 10:00:00','2014-12-10 13:20:00','2014-12-11 14:20:00','2014-08-01 00:00:01',5600);
 insert into Orders values (3,3,3,'2014-11-12 10:00:00','2014-12-09 08:20:00','2014-12-09 20:20:00','2014-09-12 00:00:01',6600);
 insert into Orders values (4,3,3,'2014-11-12 10:00:00','2014-12-08 10:20:00','2014-12-09 15:20:00','2014-10-06 00:00:01',6800);
-insert into Orders values (1,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2015-12-10 14:20:00',null,6000);
+insert into Orders values (1,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2014-12-10 14:20:00',null,6000);
 --miniCooper
 insert into Orders values (1,3,3,'2014-11-12 10:00:00','2014-11-28 09:20:00','2014-11-29 21:20:00',null,7000);
 insert into Orders values (3,3,3,'2014-11-12 10:00:00','2014-11-27 10:20:00','2014-11-28 1:20:00','2014-08-01 00:00:01',5600);
 insert into Orders values (3,3,3,'2014-11-12 10:00:00','2014-12-09 08:20:00','2014-12-09 20:20:00','2014-09-12 00:00:01',6600);
 insert into Orders values (2,3,3,'2014-11-12 10:00:00','2014-12-08 10:20:00','2014-12-09 15:20:00','2014-10-06 00:00:01',6800);
-insert into Orders values (5,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2015-12-10 14:20:00',null,6000);
+insert into Orders values (5,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2014-12-10 14:20:00',null,6000);
 --野狼125
 insert into Orders values (2,3,3,'2014-11-12 10:00:00','2014-11-28 09:20:00','2014-11-29 21:20:00',null,7000);
 insert into Orders values (6,3,3,'2014-11-12 10:00:00','2014-12-10 13:20:00','2014-12-11 14:20:00','2014-08-01 00:00:01',5600);
 insert into Orders values (7,3,3,'2014-11-12 10:00:00','2014-12-09 08:20:00','2014-12-09 20:20:00','2014-09-12 00:00:01',6600);
 insert into Orders values (2,3,3,'2014-11-12 10:00:00','2014-12-08 10:20:00','2014-12-09 15:20:00','2014-10-06 00:00:01',6800);
-insert into Orders values (8,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2015-12-10 14:20:00',null,6000);
+insert into Orders values (8,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2014-12-10 14:20:00',null,6000);
 --捷安特
 insert into Orders values (3,3,3,'2014-11-12 10:00:00','2014-11-28 09:20:00','2014-11-29 21:20:00',null,7000);
 insert into Orders values (4,3,3,'2014-11-12 10:00:00','2014-11-27 10:20:00','2014-11-28 1:20:00','2014-08-01 00:00:01',5600);
 insert into Orders values (3,3,3,'2014-11-12 10:00:00','2014-12-09 08:20:00','2014-12-09 20:20:00','2014-09-12 00:00:01',6600);
 insert into Orders values (2,3,3,'2014-11-12 10:00:00','2014-12-08 10:20:00','2014-12-09 15:20:00','2014-10-06 00:00:01',6800);
-insert into Orders values (9,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2015-12-10 14:20:00',null,6000);
+insert into Orders values (9,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2014-12-10 14:20:00',null,6000);
 GO
 
 

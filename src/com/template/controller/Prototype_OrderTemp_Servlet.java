@@ -37,7 +37,8 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 //		String view = "/_07_order/placeOrder.jsp";
 		String successView = "/Temp/ApplySample_hooked.jsp";
 		int com_id = Integer.parseInt(request.getParameter("com_id_form_view"));
-		String content = request.getParameter("content_form_view");
+//		String content = request.getParameter("content_form_view");
+		String content = new String(request.getParameter("content_form_view").getBytes("ISO-8859-1"),"UTF-8");
 		
 		String designResult = "";
 		//StringWriter out = new StringWriter();
@@ -58,9 +59,7 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 			Prototype_OrderTemp_DAO dao = new Prototype_OrderTemp_DAO();
 			dao.insert(tempVo);
 			
-			request.setAttribute("DesignerMsg", "insertOK");
-			RequestDispatcher successJsp = request.getRequestDispatcher(successView);
-			successJsp.forward(request, response);
+			httpout.print("insertOK");
 		}
 		
 		if ("retrieve".equals(command)) {

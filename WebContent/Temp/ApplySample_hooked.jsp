@@ -63,7 +63,7 @@ $("#selectManage").addClass("active");
             
             <!-- modified: document heading  -->
             <div class="col-lg-offset-1 col-md-10">
-            	<div class="alert alert-success" role="alert" style="visibility:hidden">儲存成功！</div>
+            	<div class="alert alert-success" role="alert" style="visibility:hidden"></div>
             </div>
             
             <div class="col-lg-offset-1 col-sm-10 col-md-10">
@@ -110,8 +110,8 @@ $("#selectManage").addClass("active");
                         
                         <div class="tabbable">
                         	<ul class="nav nav-tabs">
-                        		<li class="active"><a href="#components-tab" data-toggle="tab">Components</a></li>
-                        		<li><a href="#predefined-tab" data-toggle="tab">Predefined</a></li>
+                        		<li class="active"><a href="#components-tab" data-toggle="tab">一般設計元件</a></li>
+                        		<li><a href="#predefined-tab" data-toggle="tab">套裝設計元件</a></li>
                         	</ul>
                         	<div class="tab-content">
                         		<div class="tab-pane active" id="components-tab">
@@ -120,21 +120,21 @@ $("#selectManage").addClass("active");
                         			<hr>
                         			<div id="components-container" class="form-horizontal">
                             			<div class="component form-group" data-type="text">
-                                			<label class="control-label col-sm-4" for="text_input">Text Input</label>
+                                			<label class="control-label col-sm-4" for="text_input">文字輸入框</label>
                                 			<div class="controls col-sm-8">
                                     		<input type="text" name="" id="text_input" placeholder="placeholder" class="form-control">
                                 			</div>
                             			</div>
 
                             			<div class="component form-group" data-type="textarea">
-                                			<label class="control-label col-sm-4" for="textarea">Textarea</label>
+                                			<label class="control-label col-sm-4" for="textarea">段落輸入框</label>
                                 			<div class="controls col-sm-8">
                                     		<textarea name="" class="form-control" id="textarea" placeholder="placeholder"></textarea>
                                 			</div>
                             			</div>
 
                             			<div class="component form-group" data-type="SelectBasic">
-                                			<label class="control-label col-sm-4" for="SelectBasic">Select - Basic</label>
+                                			<label class="control-label col-sm-4" for="SelectBasic">下拉單選</label>
                                 			<div class="controls col-sm-8">
                                     		<select class="form-control" name="" id="SelectBasic">
                                         	<option value="1">Option 1</option>
@@ -145,7 +145,7 @@ $("#selectManage").addClass("active");
                             			</div>
 
                             			<div class="component form-group" data-type="SelectMultiple">
-                                			<label class="control-label col-sm-4" for="SelectMultiple">Select - Multiple</label>
+                                			<label class="control-label col-sm-4" for="SelectMultiple">下拉多選</label>
                                 			<div class="controls col-sm-8">
                                     		<select name="" class="form-control" id="SelectMultiple" multiple="multiple" size="3">
                                         	<option value="1">Option 1</option>
@@ -156,7 +156,7 @@ $("#selectManage").addClass("active");
                             			</div>
 
                             			<div class="component form-group" data-type="checkbox">
-                                			<label class="control-label col-sm-4">Checkboxes</label>
+                                			<label class="control-label col-sm-4">複選框</label>
                                 			<div class="controls col-sm-8">
                                     		<div class="checkbox"><label class="" for="checkbox_1">
                                         	<input type="checkbox" name="checkbox" id="checkbox_1">
@@ -174,7 +174,7 @@ $("#selectManage").addClass("active");
                             			</div>
 
                             			<div class="component form-group" data-type="radio">
-                                			<label class="control-label col-sm-4">Radio Buttons</label>
+                                			<label class="control-label col-sm-4">單選圈</label>
                                 			<div class="controls col-sm-8">
                                     		<div class="radio"><label class="" for="radio_1">
                                         	<input type="radio" name="radio" id="radio_1">
@@ -192,7 +192,7 @@ $("#selectManage").addClass("active");
                             			</div>
 
                             			<div class="component form-group" data-type="StaticText">
-                                			<label class="control-label col-sm-4">Static Text</label>
+                                			<label class="control-label col-sm-4">文字說明</label>
                                 			<div class="controls col-sm-8">
                                     		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 			</div>
@@ -212,7 +212,7 @@ $("#selectManage").addClass("active");
                         			<div id="components-container" class="form-horizontal">
                         				
                         				<div class="component form-group" data-type="PreSelectBasic">
-                                			<label class="control-label col-sm-4" for="PreSelectBasic">Predefined - Select - Basic</label>
+                                			<label class="control-label col-sm-4" for="PreSelectBasic">配備單選下拉</label>
                                 			<div class="controls col-sm-8">
                                     		<select class="form-control" name="" id="PreSelectBasic">
                                         	<option value="0">Dynamic options from DB</option>
@@ -221,7 +221,7 @@ $("#selectManage").addClass("active");
                             			</div>
                             			
                             			<div class="component form-group" data-type="PreBox">
-                                			<label class="control-label col-sm-4" for="PreSelectBasic">Predefined - Box</label>
+                                			<label class="control-label col-sm-4" for="PreSelectBasic">配備自訂下拉</label>
                                 			<div class="controls col-sm-8">
                                     		<select class="form-control" name="" id="PreBox">
                                         	<option value="0">Dynamic options from DB</option>
@@ -270,14 +270,6 @@ $("#selectManage").addClass("active");
 <script src="<%=request.getContextPath()%>/js/form_builder.js"></script>
 <script src="<%=request.getContextPath()%>/js/codemirror.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/formatting.js"></script>
-
-<script>
-$(document).ready(function(){
-	if(DesignerMsg == "insertOK"){
-		$(".alert-success").css("visibility", "visible").delay(2000).css("visibility", "hidden");	
-	}
-});
-</script>
 
 </body>
 </html>
