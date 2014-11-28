@@ -56,6 +56,9 @@ public class ResetPwdServlet extends HttpServlet {
 			if(!newPwd.equals(newPwdCheck)){
 				errMsgs.put("errorPwdCheck", "兩次輸入的密碼不一致");
 			}
+			System.out.println("user_account = "+userAccount);
+			System.out.println("userIdentity = "+userIdentity);
+			System.out.println("newpwd = "+ newPwd);
 			// Send the use back to the form, if there were errors
 /*			if(!errMsgs.isEmpty()){
 				RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/resetPwd.jsp");
@@ -93,7 +96,7 @@ public class ResetPwdServlet extends HttpServlet {
 			session.setAttribute("checkAccountError", "該帳號不存在");
 			session.setAttribute("noExistAccount", userAccount);
 			error = true;
-			RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/reset.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/resetPwd.jsp");
 			failureView.forward(req, res);
 			
 		}//end of catch
@@ -102,7 +105,7 @@ public class ResetPwdServlet extends HttpServlet {
 			if(!error){
 				session.removeAttribute("checkAccountError");
 				session.removeAttribute("noExistAccount");
-				String url = "/_01_login/reset.jsp";
+				String url = "/_01_login/resetPwdSuccess.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				}//end of if(!error)

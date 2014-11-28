@@ -10,7 +10,7 @@ public class DordersVO  implements java.io.Serializable {
 	private String ord_time;
 	private String ord_time_day;
 	private String ord_time_time;
-	private Timestamp ord_getday;
+	private String ord_getday;
 	private Integer item_total;
 	private Integer countt;
 	private String status_char;
@@ -72,10 +72,10 @@ public class DordersVO  implements java.io.Serializable {
 	public void setOrd_time(String ord_time) {
 		this.ord_time = ord_time;
 	}
-	public Timestamp getOrd_getday() {
+	public String getOrd_getday() {
 		return ord_getday;
 	}
-	public void setOrd_getday(Timestamp ord_getday) {
+	public void setOrd_getday(String ord_getday) {
 		this.ord_getday = ord_getday;
 	}
 	public Integer getItem_total() {

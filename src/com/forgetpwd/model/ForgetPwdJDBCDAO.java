@@ -35,14 +35,18 @@ public class ForgetPwdJDBCDAO implements ForgetPwdDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			if("Mem".equals(user_identity)){
 				pstmt = con.prepareStatement(MEM_PWD_UPDATE);
+				pstmt.setString(1, user_newPwd);
+				pstmt.setString(2, user_account);
+				pstmt.executeUpdate();
 			}else if("Com".equals(user_identity)){
 				pstmt = con.prepareStatement(COM_PWD_UPDATE);
+				pstmt.setString(1, user_newPwd);
+				pstmt.setString(2, user_account);
+				pstmt.executeUpdate();
 			}
 			
-			pstmt.setString(1, user_newPwd);
-			pstmt.setString(2, user_account);
 			
-			pstmt.executeUpdate();
+			
 			
 		}catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. "
