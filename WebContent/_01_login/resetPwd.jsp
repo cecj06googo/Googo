@@ -4,18 +4,15 @@
 <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
-	<form name="resetpwd_form" id="resetpwd_form" action="<%=request.getContextPath()%>/resetpwd.gg" method="post" >
-             <div class="control-group form-group ">
-                <label class="control-label">帳號:</label>
-                <div class="controls" >
-                    <input type="text" class="form-control " id="user_account" name="user_account" placeholder="請輸入e-mail" >
-                </div>
-                <font color="red" size="-1">${errMsgs.errAccount}${checkAccountError}</font>
-            </div>
-            <div class="control-group form-group">
-                <label class="control-label"><input type="radio" name="optionsRadios" id="member" value="Mem" >一般會員</label>
-                <label class="control-label"><input type="radio" name="optionsRadios" id="company" value="Com">商家會員</label>
-            </div>
+	<form name="resetpwd_form" id="resetpwd_form" action="<%=request.getContextPath()%>/link" method="post" >
+             
+            <div class="control-group form-group ">
+                    <label>帳號:</label>
+                    <div class="controls input-group">
+                        <input type="text" class="form-control" id="mem_account" name="mem_account" value="${memVO.mem_account}" disabled>
+                   		<span class="input-group-addon"><i class="fa fa-ban"></i></span>
+                    </div>
+             </div>
             <div class="control-group form-group">
                 <label  class="control-label">密碼:</label>
                 <div class="controls ">
@@ -30,6 +27,7 @@
                 </div>
                 <font color="red" size="-1">${errMsgs.errorPwdCheck}</font>
             </div>
+              <input type="hidden" name="mem_qq" value="${memVO.mem_qq}">
           	  <button type="reset" class="btn btn-danger" >取消 </button>
               <button type="submit" class="btn btn-success" form="resetpwd_form">送出 </button>
 
