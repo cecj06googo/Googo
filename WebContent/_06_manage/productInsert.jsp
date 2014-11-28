@@ -10,7 +10,6 @@
 		<!-- top2 -->
 		<jsp:include page="/_00_fragment/top2.jsp" />
 <jsp:include page="/_00_fragment/css2.jsp" />
-<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
 
 <link
 	href="${pageContext.request.contextPath}/css/bootstrapValidator.css"
@@ -300,7 +299,11 @@
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
+<<<<<<< HEAD
  -->
+=======
+
+>>>>>>> 20aceeb6ee3543725eb2a37dabefffc1d14a057e
 	<script>
 		$("[data-toggle='tooltip']").tooltip({
 			html : true
@@ -434,7 +437,6 @@
 		})(jQuery)
 
 	// 	動態顯示第一、二、三張圖片的欄位
-
 	function clickDiv1() {
 		document.getElementById('pic2').style.display = "inline";
 		// 		alert("show SubPic1");
