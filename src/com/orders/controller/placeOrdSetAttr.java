@@ -35,9 +35,9 @@ public class placeOrdSetAttr extends HttpServlet{
 		Integer prod_id = Integer.parseInt(session.getAttribute("detail_prod_id").toString());
 		System.out.println("prod_id:"+prod_id);
 		//暫時把會員VO存進session(登入會有，但目前未整合完畢)
-		Integer mem_id = 3;
-		MemService ms = new MemService();
-		MemVO memVO = ms.getOneMem(mem_id);
+//		Integer mem_id = 3;
+//		MemService ms = new MemService();
+//		MemVO memVO = ms.getOneMem(mem_id);
 		 
 		
 		//把CompanyVO和List<ProductVO>存入session
@@ -49,7 +49,7 @@ public class placeOrdSetAttr extends HttpServlet{
 		List<ProductVO> ord_prodVoList  = pdao.getAll(prodVO);
 		
 		
-		session.setAttribute("ord_memVO", memVO);
+//		session.setAttribute("ord_memVO", memVO);
 		session.setAttribute("ord_comVO", comVO); //key修改會影響彥靖
 		session.setAttribute("ord_prod_id", prod_id);
 		session.setAttribute("ord_prodVoList", ord_prodVoList);
