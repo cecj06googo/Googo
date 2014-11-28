@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.template.model.Prototype_OrderTemp_VO, com.member.model.MemVO"%>
+	pageEncoding="UTF-8" import="com.template.model.Prototype_OrderTemp_VO, com.member.model.MemVO, com.company.model.CompanyVO"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <% Prototype_OrderTemp_VO tempVo = (Prototype_OrderTemp_VO)request.getAttribute("tempVo"); %>    
 <!DOCTYPE html>
@@ -207,7 +207,7 @@ $(document).ready(function () {
 		url: "<%=request.getContextPath()%>/DesignAccessDB",
 		type: "post",
 		data: {
-			com_id_form_view: <%=session.getAttribute("com_id") %>,
+			com_id_form_view: <%=((CompanyVO)(session.getAttribute("comVO"))).getComID() %>,
 			command: "retrieve"	
 		},
 		dataType: "html",

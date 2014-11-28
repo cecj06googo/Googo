@@ -48,6 +48,9 @@ public class Design_Retrieval extends HttpServlet {
 			
 			if(request.getParameter("com_id_form_view") != null){
 				com_id = Integer.parseInt((String)request.getParameter("com_id_form_view"));	
+			}else{
+				System.out.print("Design Retrieval Message: Missing com_id, abort retrieval.");
+				return;
 			}
 			System.out.println("Load design of: " + com_id);
 			pstmt.setInt(1, com_id);
