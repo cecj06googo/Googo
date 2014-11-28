@@ -34,6 +34,7 @@ public class ResetPwdServlet extends HttpServlet {
 //		req.setAttribute("errMsgs", errMsgs);
 		MemVO memVO=null;
 		boolean error = false;
+		String mem_qq = null;
 		HttpSession session = req.getSession();
 		
 			/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
@@ -47,7 +48,7 @@ public class ResetPwdServlet extends HttpServlet {
 			}
 */			
 		    try{
-		    	String mem_qq = req.getParameter("mem_qq");
+		    	mem_qq = req.getParameter("mem_qq");
 		    	if (mem_qq == null || mem_qq.trim().length() == 0) {
 		    		errMsgs.put("errorQQ","無此帳號");
 				}
@@ -65,7 +66,7 @@ public class ResetPwdServlet extends HttpServlet {
 					errMsgs.put("errorPwdCheck", "兩次輸入的密碼不一致");
 				}
 		        if (!errMsgs.isEmpty()) {
-		        	RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/resetPwd.jsp");
+		        	RequestDispatcher failureView = req.getRequestDispatcher("/resetpwd.gg?qq=" + mem_qq);
 					failureView.forward(req, res);
 					return;	
 				}
@@ -89,7 +90,7 @@ public class ResetPwdServlet extends HttpServlet {
 					System.out.println("出現Exception");
 					errMsgs.put("errorException",e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/_01_login/reset.jsp");
+							.getRequestDispatcher("/resetpwd.gg?qq=" + mem_qq);
 					failureView.forward(req, res);
 				}//end of catch
 			// Send the use back to the form, if there were errors
