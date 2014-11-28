@@ -202,6 +202,12 @@ $(function() {
         					.prepend('<div class="close">×</div>')
         					.appendTo("#content");
         	});
+        	
+        	$(".alert-success").text("載入設計結果");
+        	$(".alert-success").css("visibility", "visible");
+        	var onloadMsgTimeout = window.setTimeout(function(){
+        		$(".alert-success").css("visibility", "hidden");
+        	}, 1000);
         },
 
         // form title options
@@ -1037,11 +1043,32 @@ $(function() {
 //						.trim();
 		$("#content_form_view").text(design_result);
 		console.log(design_result);
-		$("#form_view").submit();
+		
+		var content_of_design = $("#content_form_view").text();
+		$.ajax({
+			url: contextPath + "/DesignAccessDB",
+    		data: {
+    				com_id_form_view: currentCom,
+    				command: "insert",
+    				content_form_view: content_of_design,
+    				},
+        	dataType: "html"
+		})
+		.done(function(returnData){
+			if(returnData.trim() == "insertOK"){
+				$(".alert-success").text("儲存成功");
+				$(".alert-success").css("visibility", "visible");
+				var saveMsgTimeout = window.setTimeout(function(){
+					$(".alert-success").css("visibility", "hidden");
+				}, 1000)
+			}
+		});
 	});
 	
 	//modified: load form for editing
 	$("#save_form_design").on("click", function(){
 		form_builder.loadDesign();
 	});
+	
+	form_builder.loadDesign();
 });
