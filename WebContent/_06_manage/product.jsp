@@ -214,11 +214,11 @@ $("td[class!=text-center]").click(function() {
 	$("#picDe").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=1");
 	$("#subPicDe1").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=2");
 	$("#subPicDe2").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=3");
-	$("#subPicDe3").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=3");
+	$("#subPicDe3").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=4");
 	$("#picDeS").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=1");
 	$("#subPicDe1S").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=2");
 	$("#subPicDe2S").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=3");
-	$("#subPicDe3S").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=3");
+	$("#subPicDe3S").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+ btnId + "&pic=4");
 
 		var prodName = $("input[name='"+ btnId +"prodName']").val();
 		var prodDisc = $("input[name='"+ btnId +"prodDisc']").val();

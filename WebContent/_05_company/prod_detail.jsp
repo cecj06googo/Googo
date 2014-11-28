@@ -176,11 +176,11 @@ function showCarDetail(){
 			//-----以下是圖片部分------
 			$("#detail-MainPic").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=1");
 			$("#detail-smallMainPic").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=1");		
-			$("#detail-SubPic1").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId+"&pic=2");
+			$("#detail-SubPic1").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=2");
 			$("#detail-smallSubPic1").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=2");		
-			$("#detail-SubPic2").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId+"&pic=3");
+			$("#detail-SubPic2").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=3");
 			$("#detail-smallSubPic2").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=3");		
-			$("#detail-SubPic3").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID="+comId+"&prodId="+clickProdId+"&pic=4");
+			$("#detail-SubPic3").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=4");
 			$("#detail-smallSubPic3").attr("src","${pageContext.servletContext.contextPath}/ProdImg?comID="+comId+"&prodId="+clickProdId+"&pic=4");				
 		}//end if
 	}//end for

@@ -108,7 +108,29 @@ public class InsertFakeImageDAO {
 			e.printStackTrace();
 		}
 	}
+	public void InsertImagesByProdName(String prodName,String srcMainProdPic,String srcSub1Pic,String srcSub2Pic,String srcSub3Pic){
+	    //根據Product 的商品名稱 把該商品的圖片塞進去
+		//prodName:商品名稱  srcMainProdPic:主要圖片的路徑....依此類推
+		String insertStmt = "UPDATE Product  SET prod_pic = ? ,prod_subPic1 = ?,prod_subPic2 = ?,prod_subPic3 = ?  WHERE prod_name = ?";
+		String[] srcArray = {srcMainProdPic,srcSub1Pic,srcSub2Pic,srcSub3Pic};
+		try{	
+			stmt = conn.prepareStatement(insertStmt);
+			for(int i=0;i<srcArray.length;i++){
+				f = new File(srcArray[i]); // 標準的檔案開啟流程 準備讀取圖片寫入資料庫
+				FileInputStream fis = new FileInputStream(f);
+				stmt.setBinaryStream(i+1, fis, (int) f.length()); //i+1=1~4	
+			}//end for	
+			stmt.setString(5, prodName);
+			stmt.executeUpdate();// insert update使用此
+			System.out.println("InsertImagesByProdName執行完畢");
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("InsertImagesByProdName發生錯誤");
+			ConnectionUtil.closeConnection(conn);			
+		}
+	}//end public void InsertImageByProdName
 
+	    
 	
 	public void insertProdImgByCarType(String prod_type_value, String srcPath, String setColumn) {
 		// 目的:根據不同的車種讀取該車種的數量，再根據數量來寫入該車種的圖片
@@ -211,7 +233,7 @@ public class InsertFakeImageDAO {
 				System.out.println("conn 獲取失敗");
 				return;
 			}
-			for(int i=1;i<=4;i++){
+			for(int i=1;i<=4;i++){ //寫入圖片
 				if(i==1){insertColumn ="prod_pic";}//商品主圖片 
 				if(i==2){insertColumn ="prod_subPic1"; }//商品副圖片1 
 				if(i==3){insertColumn ="prod_subPic2"; }//商品副圖片2
@@ -222,7 +244,7 @@ public class InsertFakeImageDAO {
 				
 			}			
 			insertFakeImg.insertComImg(comSrcPath); // 公司大頭貼
-			insertFakeImg.insertProdsIntoduction(); //寫入商品介紹
+			//insertFakeImg.insertProdsIntoduction(); //寫入商品介紹
 			insertFakeImg.insertAccImg(accSrcPath);//寫入配件圖片
 			System.out.println("圖片寫入結束，執行結果請看上方!");
 		} catch (Exception e) {
