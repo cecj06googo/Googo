@@ -17,7 +17,7 @@ public class IndexPlaceRecommend extends HttpServlet{
 		//int comID=0;
 		//System.out.println("我有進來IndexPlaceRecommend.java doGet");
 		List<CompanyVO> comvos = new ArrayList<CompanyVO>();
-		int [] comids = {3,20,21,22};
+		int [] comids = {19,20,21,22};
 		try{
 			for(int comID : comids){
 				CompanyDAO comdao = new CompanyDAO();
@@ -34,6 +34,8 @@ public class IndexPlaceRecommend extends HttpServlet{
 		RequestDispatcher rd = request.getRequestDispatcher("/_03_research/site.jsp");
 		//System.out.println("IndexPlaceRecommend執行完畢轉跳site.jsp");
 		rd.forward(request, response);
+		
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//System.out.println("我有進來IndexPlaceRecommend.java doPost");
