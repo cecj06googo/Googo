@@ -38,9 +38,17 @@
                        	</c:if>
                     </li>
                     <li>
-                    	<c:if test="${empty LoginMemOK && empty LoginComOK}">
-	                        <a href="#myModal"  data-toggle="modal" data-target="#login" >登入</a>
-	                    </c:if>
+                    	<c:choose>
+                    		<c:when test="${!empty LoginMemOK}">
+                    			<a href="${pageContext.request.contextPath}/_01_login/logout.jsp"><i class="fa fa-fw fa-power-off"> </i>登出</a>
+                    		</c:when>
+                    		<c:otherwise>
+                    			<a href="#myModal"  data-toggle="modal" data-target="#login" >登入</a>
+                    		</c:otherwise>
+                    	</c:choose>
+<%--                     	<c:if test="${empty LoginMemOK && empty LoginComOK}"> --%>
+<!-- 	                        <a href="#myModal"  data-toggle="modal" data-target="#login" >登入</a> -->
+<%-- 	                    </c:if> --%>
                     </li>
                     <li>
                         <a href="<c:url value='/_00_fragment/about.jsp'/>">關於</a>

@@ -23,6 +23,8 @@ int currentCom = (int)comVO.getComID();
 <link href="<%=request.getContextPath()%>/css/form_builder.css" rel="stylesheet">
 
 <script>
+// 取得新增成功訊息
+var DesignerMsg = <%= request.getAttribute("DesignerMsg") %>
 // 取得當前登入商家 id 供設計器使用
 var currentCom = <%= currentCom %>;
 // 提供 form_builder.js 使用的路徑
@@ -61,7 +63,7 @@ $("#selectManage").addClass("active");
             
             <!-- modified: document heading  -->
             <div class="col-lg-offset-1 col-md-10">
-            	<div class="alert alert-danger" role="alert">This is modified version for various tests. Current company id: ${currentCom} </div>
+            	<div class="alert alert-success" role="alert" style="visibility:hidden">儲存成功！</div>
             </div>
             
             <div class="col-lg-offset-1 col-sm-10 col-md-10">
@@ -268,6 +270,14 @@ $("#selectManage").addClass("active");
 <script src="<%=request.getContextPath()%>/js/form_builder.js"></script>
 <script src="<%=request.getContextPath()%>/js/codemirror.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/formatting.js"></script>
+
+<script>
+$(document).ready(function(){
+	if(DesignerMsg == "insertOK"){
+		$(".alert-success").css("visibility", "visible").delay(2000).css("visibility", "hidden");	
+	}
+});
+</script>
 
 </body>
 </html>

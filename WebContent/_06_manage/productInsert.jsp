@@ -7,6 +7,8 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- top2 -->
+		<jsp:include page="/_00_fragment/top2.jsp" />
 <jsp:include page="/_00_fragment/css2.jsp" />
 
 <link
@@ -58,8 +60,6 @@
 </head>
 <body>
 	<div id="wrapper">
-		<!-- top2 -->
-		<jsp:include page="/_00_fragment/top2.jsp" />
 		<!-- page-wrapper -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
@@ -293,13 +293,17 @@
 		<!-- /#page-wrapper -->
 	</div>
 	<!-- /#wrapper -->
-	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
+<!-- 	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
 
 	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
+<<<<<<< HEAD
+ -->
+=======
 
+>>>>>>> 20aceeb6ee3543725eb2a37dabefffc1d14a057e
 	<script>
 		$("[data-toggle='tooltip']").tooltip({
 			html : true
@@ -355,16 +359,16 @@
 									trigger: 'keyup blur',
 									validators: {
 										notEmpty: {
-											message:'地址請勿空白'
+											message:'請勿空白'
 										},
 										stringLength: {
-											min: 5,
-											max: 64,
-											message: '地址限5~64字數'
+											min: 2,
+											max: 8,
+											message: '2~8數字'
 										},
 										regexp : {
-											regexp: /^[(\u4e00-\u9fa5)\-(a-zA-Z0-9_)]+$/,
-											message: '只能是中、英文字母、數字和-'
+											regexp: /^[(\.0-9)]{2,8}$/,
+											message: '格式錯誤, 只能是數字'
 										},
 									} // end validators
 								}, // end comAddr
@@ -374,8 +378,13 @@
 										notEmpty: {
 					                        message: '優惠請勿空白'
 					                    },
+					                    stringLength: {
+											min: 2,
+											max: 6,
+											message: '2~6數字'
+										},
 					                    regexp: {
-					                        regexp:  /^[(0-9)-]{8,15}$/,
+					                        regexp:  /^[(\.0-9)]{2,6}$/,
 					                        message: '格式錯誤, 只能是數字'
 					                    },
 									} // end validators
@@ -392,7 +401,7 @@
 											message: '最多四位數'
 										},
 					                    regexp: {
-					                        regexp:  /^[(0-9)-]{8,15}$/,
+					                        regexp:  /^[(0-9)-]{0,4}$/,
 					                        message: '格式錯誤, 只能是數字'
 					                    },
 									} // end validators
@@ -401,34 +410,33 @@
 					    	} // end fields
 					    }); // end bootstrapValidator
 
-// 			document.getElementById("prodPic").addEventListener("change",
-// 					clickDiv1, false);
-// 			document.getElementById("prodSubPic1").addEventListener("change",
-// 					clickDiv2, false);
-// 			//onclick oninput onsubmit
-// 			document.getElementById("prodSubPic2").addEventListener("change",
-// 					clickDiv3, false);
+			document.getElementById("prodPic").addEventListener("change",
+					clickDiv1, false);
+			document.getElementById("prodSubPic1").addEventListener("change",
+					clickDiv2, false);
+			//onclick oninput onsubmit
+			document.getElementById("prodSubPic2").addEventListener("change",
+					clickDiv3, false);
 
-// 			document.getElementById("t1").addEventListener("change", hide1, false)
-// 			document.getElementById("t2").addEventListener("change", hide2, false)
-// 			document.getElementById("t3").addEventListener("change", hide3, false)
+			document.getElementById("t1").addEventListener("change", hide1, false)
+			document.getElementById("t2").addEventListener("change", hide2, false)
+			document.getElementById("t3").addEventListener("change", hide3, false)
 
-// 			var type = $("#type").val();//安泰要的
-// 			var kind = $("#kind").val();
-// 			var carrier = $("#carrier").val();
-// 			var control = $("#control").val();
-// 			$("input[name='prodType'][value='" + type + "']").prop("checked", true);//安泰要的
-// 			$("option[class='pKind'][value='" + kind + "']").prop("selected", true);
-// 			$("option[class='carrier'][value='" + carrier + "']").prop("selected",
-// 					true);
-// 			$("option[class='control'][value='" + control + "']").prop("selected",
-// 					true);
+			var type = $("#type").val();//安泰要的
+			var kind = $("#kind").val();
+			var carrier = $("#carrier").val();
+			var control = $("#control").val();
+			$("input[name='prodType'][value='" + type + "']").prop("checked", true);//安泰要的
+			$("option[class='pKind'][value='" + kind + "']").prop("selected", true);
+			$("option[class='carrier'][value='" + carrier + "']").prop("selected",
+					true);
+			$("option[class='control'][value='" + control + "']").prop("selected",
+					true);
 			
 			})
 		})(jQuery)
 
 	// 	動態顯示第一、二、三張圖片的欄位
-
 	function clickDiv1() {
 		document.getElementById('pic2').style.display = "inline";
 		// 		alert("show SubPic1");

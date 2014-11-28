@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script> --%>
 
     
 <!-- 忘記密碼-->
@@ -39,12 +39,12 @@
 		</div>
 		<!-- /.忘記密碼-->
 <!-- jQuery Version 1.11.0 -->
-<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script> --%>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script> --%>
 <script>
  (function($){
 	  

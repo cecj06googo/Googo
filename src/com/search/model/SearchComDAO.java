@@ -20,7 +20,7 @@ public class SearchComDAO implements SearchComDAO_interface {
 
 	private static final String GET_ONE_STMT = "select com_id,com_name,com_address from Company where com_id = ?";
 	private String Search_Com_STMT = "select distinct com.com_id,com.com_name,com.com_address"
-			+ " FROM   Company   com   JOIN  Product   prod "
+			+ " FROM   Company   com LEFT OUTER  JOIN  Product   prod "
 			+ "ON     com.com_id  =  prod.com_id " + "where 1=1";
 
 	public List<SearchComVO> SearchByCondition(String location, //根據搜尋條件查詢該商家的資料

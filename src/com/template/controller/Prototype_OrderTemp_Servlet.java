@@ -34,7 +34,8 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 		 
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getParameter("command");
-		String view = "/_07_order/placeOrder.jsp";
+//		String view = "/_07_order/placeOrder.jsp";
+		String successView = "/Temp/ApplySample_hooked.jsp";
 		int com_id = Integer.parseInt(request.getParameter("com_id_form_view"));
 		String content = request.getParameter("content_form_view");
 		
@@ -56,6 +57,10 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 			tempVo.setContent(content);
 			Prototype_OrderTemp_DAO dao = new Prototype_OrderTemp_DAO();
 			dao.insert(tempVo);
+			
+			request.setAttribute("DesignerMsg", "insertOK");
+			RequestDispatcher successJsp = request.getRequestDispatcher(successView);
+			successJsp.forward(request, response);
 		}
 		
 		if ("retrieve".equals(command)) {
