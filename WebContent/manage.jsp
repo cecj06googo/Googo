@@ -125,17 +125,17 @@ String areaString = (String)request.getAttribute("areaString");
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-file-text-o fa-5x"></i>
+                                        <i class="fa fa-shopping-cart fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
-                                        <div>收到新問卷!</div>
+                                        <div class="huge"> &nbsp; </div>
+                                        <div>付費功能</div>
                                     </div>
                                 </div>
                             </div>
                             <a href="#">
                                 <div class="panel-footer">
-                                    <span class="pull-left">問券分析</span>
+                                    <span class="pull-left">前往商城</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                     <div class="clearfix"></div>
                                 </div>
