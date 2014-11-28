@@ -115,7 +115,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li id="selectManage">
-                        <a href="<c:url value='/manage.jsp'/>"><i class="fa fa-fw fa-bar-chart-o"></i> 報表分析</a>
+                        <a href="<c:url value='/manage'/>"><i class="fa fa-fw fa-bar-chart-o"></i> 報表分析</a>
                     </li>
                     <li id="selectOrder">
                         <a href="<c:url value='/_05_company/orderCom.jsp'/>"><i class="fa fa-fw fa-book"></i> 訂單管理</a>
@@ -151,6 +151,11 @@
                     </li>
                      <li id="selectHelp">
                         <a href="<c:url value='/_06_manage/help.jsp'/>"><i class="fa fa-fw fa-info"></i> 幫助</a>
+                    </li>
+                    <li>
+                    	<c:if test="${not empty LoginComOK}">
+	                    	<a href="${pageContext.request.contextPath}/_01_login/logout.jsp"><i class="fa fa-fw fa-power-off"> </i>登出</a>
+	                    </c:if>
                     </li>
                 </ul>
             </div>

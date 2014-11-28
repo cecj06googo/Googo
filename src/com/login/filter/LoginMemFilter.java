@@ -58,6 +58,13 @@ public class LoginMemFilter implements Filter {
 						resp.sendRedirect(contextPath + "/_01_login/login.jsp");
 						return;
 					}
+					//
+					System.out.println("detail_prod_id:" + req.getParameter("detail_prod_id"));
+					if(req.getParameter("detail_prod_id") != null){
+						session.setAttribute("detail_prod_id", req.getParameter("detail_prod_id"));
+						System.out.println("detail_prod_id222:" + session.getAttribute("detail_prod_id"));
+					}
+					//
 					session.setAttribute("mustMemLogin", "mustMemLogin");
 					System.out.println("mem I'll be back.");
 					resp.sendRedirect(req.getHeader("referer"));

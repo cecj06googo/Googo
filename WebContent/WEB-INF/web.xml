@@ -340,7 +340,7 @@
 	</init-param>-->
 		<init-param>
 			<param-name>mustMemLogin2</param-name>
-			<param-value>/_05_company/company.jsp</param-value>
+			<param-value>/PlaceOrder.do</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
