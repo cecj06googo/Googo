@@ -76,8 +76,8 @@
               </div>
               <br>
                <input type="hidden" name="action" value="insertMem">
-          	  <button type="reset" class="btn btn-primary" >取消 </button>
-              <button type="submit" class="btn btn-danger" form="register_member">送出 </button>
+          	  <button type="reset" class="btn btn-danger" >取消 </button>
+              <button type="submit" class="btn btn-success" form="register_member">送出 </button>
 
            	
           </form>

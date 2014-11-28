@@ -35,21 +35,22 @@
             <div class="item active">
                 <div class="fill" style="background-image:url('${pageContext.request.contextPath}/img/01.jpg');"></div>
                 <div class="carousel-caption">
-                    <h1>One more for good measure.</h1>
-              		<p>123</p>
-          		    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                    <h2>一家人歡樂旅行</h2>
+                    <p>老爸~老爸~我們去哪裡呀~</p>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('${pageContext.request.contextPath}/img/2.jpg');"></div>
                 <div class="carousel-caption">
-                    <h2>Caption 2</h2>
+                    <h2>騎車奔馳在山間</h2>
+                    <p>催樓去~~~~~~</p>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('${pageContext.request.contextPath}/img/4.JPG');"></div>
                 <div class="carousel-caption">
-                    <h2>Caption 3</h2>
+                    <h2>綠色隧道騎腳踏車</h2>
+                    <p>繞來繞去騎　阮的腳踏車</p>
                 </div>
             </div>
         </div>
@@ -79,9 +80,6 @@
 
         <!-- Portfolio Section -->
         <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">ad</h2>
-            </div>
         	<!-- 圖一 1200*1000 -->
             <div class="col-md-4 col-sm-6 ">
                 <a href="<c:url value='/PlaceRecommend.do'/>" class="portfolio-link" >
