@@ -15,6 +15,7 @@ import com.company.model.*;
 public class IndexPlaceRecommend extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//int comID=0;
+		//testttttt
 		//System.out.println("我有進來IndexPlaceRecommend.java doGet");
 		List<CompanyVO> comvos = new ArrayList<CompanyVO>();
 		int [] comids = {19,20,21,22};
