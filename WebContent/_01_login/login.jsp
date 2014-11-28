@@ -25,20 +25,18 @@
 		  	<div class="modal-content ">
 		  	<!-- header-->
 		  	<div class="modal-header">
+		  	 
        			 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         		 <h3 class="modal-title" id="myModalLabel">Goo-go登入 <small>login</small></h3>
+      		
       		</div><!--/. header-->
       		<!-- body-->
       		<div class="modal-body">
      		<div class="row">
-       			 <div class="col-md-10 col-md-offset-1">
-         		 <a href="#" class="btn btn-lg btn-primary btn-block"><i class="fa fa-facebook-square"></i>  Facebook</a>
-       		 	</div>
-      		</div>
-			  <div class="login-or">
-			    <hr class="hr-or">
-			    <span class="span-or">or</span>
-			  </div>
+     		<div class="col-md-10 col-md-offset-1">
+			    <img class="img-responsive" src="${pageContext.request.contextPath}/img/bar.jpg" alt="">
+			  </div></div>
+			 
 			<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 			<!-- form-->	
@@ -105,7 +103,10 @@
             </div>
           </div> 
  		  </div><!--/.尚未註冊-->
- 		  	
+		  
+		  <div class="row"><div class="col-md-10 col-md-offset-1">
+		    <img class="img-responsive" src="${pageContext.request.contextPath}/img/bar2.jpg" alt="">
+		  </div></div>
  		</div><!-- body-->
  		</div>
 		</div>

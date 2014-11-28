@@ -81,7 +81,7 @@ public class DisplayServlet extends HttpServlet {
 		}catch(Exception ne){
 			//目前遇到沒有車輛資料則會發index out of bounds的Exception
 			System.out.println( "display doget的 Exception");
-			ne.printStackTrace();
+			//ne.printStackTrace();
 			String url = "/index.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); 
 			successView.forward(req, res);
