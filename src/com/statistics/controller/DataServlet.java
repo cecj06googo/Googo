@@ -86,6 +86,15 @@ public class DataServlet extends HttpServlet {
 		try{
 		//創陣列	
 		List l1 =new  LinkedList();
+		if(list.size()==0){
+			List ll =new LinkedList();
+			Map m1 =new LinkedHashMap();
+			m1.put("label", "無訂單");
+			m1.put("value", 0);
+			ll.add(m1);
+			donutString=JSONValue.toJSONString(ll);
+			return donutString;
+		}
 		//for迴圈 塞map(有key值)資料
 		for(int i=0;i<list.size();i++){
 			Map m1 =new LinkedHashMap();
@@ -120,6 +129,15 @@ public class DataServlet extends HttpServlet {
 		try{
 		//創陣列	
 		List l1 =new  LinkedList();
+		if(list.size()==0){
+			List ll =new LinkedList();
+			Map m1 =new LinkedHashMap();
+			m1.put("device", "無資料");
+			m1.put("geekbench", 0);
+			ll.add(m1);
+			barString=JSONValue.toJSONString(ll);
+			return barString;
+		}
 		//for迴圈 塞map(有key值)資料
 		for(int i=0;i<list.size();i++){
 			Map m1 =new LinkedHashMap();
@@ -158,6 +176,15 @@ public class DataServlet extends HttpServlet {
 		try{
 		//創陣列	
 		List l1 =new  LinkedList();
+		if(list.size()==1){
+			List ll =new LinkedList();
+			Map m1 =new LinkedHashMap();
+			m1.put("day", "0");
+
+			ll.add(m1);
+			areaString=JSONValue.toJSONString(ll);
+			return areaString;
+		}
 		for(int i=1;i<list.size();i++){
 			//如果日期與上一個不一樣    1跟0不一樣
 			if(!list.get(i).getOrd_getday().equals(list.get(i-1).getOrd_getday())){
