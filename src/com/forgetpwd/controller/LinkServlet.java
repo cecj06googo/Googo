@@ -11,27 +11,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.company.model.CompanyService;
-import com.company.model.CompanyVO;
 import com.forgetpwd.model.ForgetPwdService;
-import com.forgetpwd.model.SendResetPwdEmail;
-import com.member.model.MemDAO;
 import com.member.model.MemService;
 import com.member.model.MemVO;
 
-public class ResetPwdServlet extends HttpServlet {
-	
-	public void doGet(HttpServletRequest req, HttpServletResponse res)
-	              throws ServletException,IOException{
-		doPost(req, res);
-	}
+public class LinkServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
+	              throws ServletException,IOException{
+		doGet(req, res);
+	}
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse res)
 	              throws ServletException, IOException{
 		req.setCharacterEncoding("UTF-8");
 		
 		Map<String, String> errMsgs = new HashMap<String, String>();
-//		req.setAttribute("errMsgs", errMsgs);
+		req.setAttribute("errMsgs", errMsgs);
 		MemVO memVO=null;
 		boolean error = false;
 		HttpSession session = req.getSession();
@@ -47,23 +43,12 @@ public class ResetPwdServlet extends HttpServlet {
 			}
 */			
 		    try{
-		    	String mem_qq = req.getParameter("mem_qq");
+		    	String mem_qq = req.getParameter("qq");
 		    	if (mem_qq == null || mem_qq.trim().length() == 0) {
 		    		errMsgs.put("errorQQ","無此帳號");
 				}
 		    	
-				String newPwd = req.getParameter("newpwd");
-				if(newPwd == null || newPwd.trim().length() == 0){
-					errMsgs.put("errorPwd", "密碼欄請勿空白");
-				}
-				String pwdReg ="^[\\w]{6,12}$";
-				if(!newPwd.trim().matches(pwdReg)){
-					errMsgs.put("errorPwd", "密碼格式有誤(英數各一,長度限6~12字數");
-				}
-				String newPwdCheck = req.getParameter("newpwdcheck");
-				if(!newPwd.equals(newPwdCheck)){
-					errMsgs.put("errorPwdCheck", "兩次輸入的密碼不一致");
-				}
+				
 		        if (!errMsgs.isEmpty()) {
 		        	RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/resetPwd.jsp");
 					failureView.forward(req, res);
@@ -73,14 +58,9 @@ public class ResetPwdServlet extends HttpServlet {
 		        
 		        ForgetPwdService fgtService = new ForgetPwdService();
 		        memVO = fgtService.findMemByQQ(mem_qq);
-		        String encrypedString = MemService.encryptString(newPwd);
-				memVO.setMem_pwd(MemService.getMD5Endocing(encrypedString));
-				System.out.println("新密碼: " + newPwd+ "編碼完成");
-				System.out.println("開始修改資料");
-				fgtService.updateMemPwd(memVO);
-				System.out.println("修改完成");
-				session.setAttribute("LoginMemOK", memVO);
-				String url = "/index.jsp"; 
+		        req.setAttribute("memVO", memVO);
+		       
+				String url = "/_01_login/reset.jsp"; 
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);
 		        
@@ -89,7 +69,7 @@ public class ResetPwdServlet extends HttpServlet {
 					System.out.println("出現Exception");
 					errMsgs.put("errorException",e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/_01_login/reset.jsp");
+							.getRequestDispatcher("/index.jsp");
 					failureView.forward(req, res);
 				}//end of catch
 			// Send the use back to the form, if there were errors
@@ -147,4 +127,6 @@ public class ResetPwdServlet extends HttpServlet {
 */			
 		}//end of doPost
 
-}//end of class
+}//end of class{
+
+
