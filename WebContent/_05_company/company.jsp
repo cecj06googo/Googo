@@ -208,12 +208,13 @@
 					<form class="form-inline" role="form" name="searchMoney"
 						id="searchMoney" action="" method="post">
 						<div class="form-group">
-<!-- 							<select class="form-control input-lg" name="prod_type"> -->
-<!-- 								<option value="1">汽車</option> -->
-<!-- 								<option value="2">機車</option> -->
-<!-- 								<option value="3">腳踏車</option> -->
-<!-- 							</select>     -->
-                                <input type="hidden" class="form-control input-lg" name="prod_type" value="1">						     
+							<!-- 							<select class="form-control input-lg" name="prod_type"> -->
+							<!-- 								<option value="1">汽車</option> -->
+							<!-- 								<option value="2">機車</option> -->
+							<!-- 								<option value="3">腳踏車</option> -->
+							<!-- 							</select>     -->
+							<input type="hidden" class="form-control input-lg"
+								name="prod_type" value="1">
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control input-lg"
@@ -251,75 +252,87 @@
 			</div>
 			<!-- /標籤 -->
 			<!-- 標籤內容 -->
+			<c:if test="${prodsVos.size()==0}">
+			<h1>本商店無任何商品</h1>
+			</c:if>
 			<div id="prodsTabContent" class="tab-content">
 				<div class="tab-pane fade active in" id="car-content">
 					<!-- 			foreach也還是遵照Java index從0開始，因為Java物件從後端丟到這裡 -->
-					<c:forEach var="ProductVO" items="${prodsVos}" begin="0"
-						end="${prodsVos.size()-1}">
-						<c:if test="${ProductVO.prodType == 1}">
-							<!-- 車車1 -->
-							<div class="col-md-4 text-center" id="car-${ProductVO.prodId}" name = "content-prod">
-								<div class="thumbnail">
-									<a href="" data-toggle="modal" data-target="#prod_detail">
-										<img class="img-responsive"
-										src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
-										alt="">
-										<div class="caption">
-											<h3>${ProductVO.prodName}</h3>
-											<p>價錢:${ProductVO.prodPrice}台幣/日</p>
-											<p>${ProductVO.prodArticle}</p>
-										</div>
-									</a>
+					<c:if test="${prodsVos.size()>0}">
+						<c:forEach var="ProductVO" items="${prodsVos}" begin="0"
+							end="${prodsVos.size()-1}">
+							<c:if test="${ProductVO.prodType == 1}">
+								<!-- 車車1 -->
+								<div class="col-md-4 text-center" id="car-${ProductVO.prodId}"
+									name="content-prod">
+									<div class="thumbnail">
+										<a href="" data-toggle="modal" data-target="#prod_detail">
+											<img class="img-responsive"
+											src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
+											alt="">
+											<div class="caption">
+												<h3>${ProductVO.prodName}</h3>
+												<p>價錢:${ProductVO.prodPrice}台幣/日</p>
+												<p>${ProductVO.prodArticle}</p>
+											</div>
+										</a>
+									</div>
 								</div>
-							</div>
-						</c:if>
-					</c:forEach>
+							</c:if>
+						</c:forEach>
+					</c:if>
 				</div>
 				<!-- car content -->
 				<div class="tab-pane fade " id="mortor-content">
-					<c:forEach var="ProductVO" items="${prodsVos}" begin="0"
-						end="${prodsVos.size()-1}">
-						<c:if test="${ProductVO.prodType == 2}">
-							<!-- 機車2 -->
-							<div class="col-md-4 text-center" id="motor-${ProductVO.prodId}" name = "content-prod">
-								<div class="thumbnail">
-									<a href="" data-toggle="modal" data-target="#prod_detail">
-										<img class="img-responsive"
-										src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
-										alt="">
-										<div class="caption">
-											<h3>${ProductVO.prodName}</h3>
-											<p>價錢:${ProductVO.prodPrice}台幣/日</p>
-											<p>${ProductVO.prodArticle}</p>
-										</div>
-									</a>
+					<c:if test="${prodsVos.size()>0}">
+						<c:forEach var="ProductVO" items="${prodsVos}" begin="0"
+							end="${prodsVos.size()-1}">
+							<c:if test="${ProductVO.prodType == 2}">
+								<!-- 機車2 -->
+								<div class="col-md-4 text-center" id="motor-${ProductVO.prodId}"
+									name="content-prod">
+									<div class="thumbnail">
+										<a href="" data-toggle="modal" data-target="#prod_detail">
+											<img class="img-responsive"
+											src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
+											alt="">
+											<div class="caption">
+												<h3>${ProductVO.prodName}</h3>
+												<p>價錢:${ProductVO.prodPrice}台幣/日</p>
+												<p>${ProductVO.prodArticle}</p>
+											</div>
+										</a>
+									</div>
 								</div>
-							</div>
-						</c:if>
-					</c:forEach>
+							</c:if>
+						</c:forEach>
+					</c:if>
 				</div>
 				<!-- motor content -->
 				<div class="tab-pane fade" id="bike-content">
-					<c:forEach var="ProductVO" items="${prodsVos}" begin="0"
-						end="${prodsVos.size()-1}">
-						<c:if test="${ProductVO.prodType == 3}">
-							<!-- 腳踏車3 -->
-							<div class="col-md-4 text-center" id="bike-${ProductVO.prodId}" name = "content-prod">
-								<div class="thumbnail">
-									<a href="" data-toggle="modal" data-target="#prod_detail">
-										<img class="img-responsive"
-										src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
-										alt="">
-										<div class="caption">
-											<h3>${ProductVO.prodName}</h3>
-											<p>價錢:${ProductVO.prodPrice}台幣/小時</p>
-											<p>${ProductVO.prodArticle}</p>
-										</div>
-									</a>
+					<c:if test="${prodsVos.size()>0}">
+						<c:forEach var="ProductVO" items="${prodsVos}" begin="0"
+							end="${prodsVos.size()-1}">
+							<c:if test="${ProductVO.prodType == 3}">
+								<!-- 腳踏車3 -->
+								<div class="col-md-4 text-center" id="bike-${ProductVO.prodId}"
+									name="content-prod">
+									<div class="thumbnail">
+										<a href="" data-toggle="modal" data-target="#prod_detail">
+											<img class="img-responsive"
+											src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${comId}&prodId=${ProductVO.prodId}'
+											alt="">
+											<div class="caption">
+												<h3>${ProductVO.prodName}</h3>
+												<p>價錢:${ProductVO.prodPrice}台幣/小時</p>
+												<p>${ProductVO.prodArticle}</p>
+											</div>
+										</a>
+									</div>
 								</div>
-							</div>
-						</c:if>
-					</c:forEach>
+							</c:if>
+						</c:forEach>
+					</c:if>
 				</div>
 				<!-- motor content -->
 			</div>
@@ -328,24 +341,26 @@
 		<!-- /.row -->
 
 		<!-- 配件 -->
-        <!--有配件才會顯示配件否則隱形 -->
+		<!--有配件才會顯示配件否則隱形 -->
 		<c:if test="${accsVos.size() > 0}">
 			<div class="row" id="accessoriesRoW">
 				<div class="col-lg-12">
 					<h2 class="page-header">配件</h2>
-				</div>			
-				<c:forEach var="AccessoryVO" items="${accsVos}" begin="0" end="${accsVos.size()-1}">
-						<!-- 配件1 500*400-->
-						<div class="col-md-3 col-sm-6">
-							<div class="thumbnail">
-								<img class="img-responsive"
-									src='${pageContext.servletContext.contextPath}/ShowAccsPicturs.do?comID=${comId}&accID=${AccessoryVO.accId}' alt="">
-								<div class="caption">
-									<h4>${AccessoryVO.accName}</h4>
-								</div>
+				</div>
+				<c:forEach var="AccessoryVO" items="${accsVos}" begin="0"
+					end="${accsVos.size()-1}">
+					<!-- 配件1 500*400-->
+					<div class="col-md-3 col-sm-6">
+						<div class="thumbnail">
+							<img class="img-responsive"
+								src='${pageContext.servletContext.contextPath}/ShowAccsPicturs.do?comID=${comId}&accID=${AccessoryVO.accId}'
+								alt="">
+							<div class="caption">
+								<h4>${AccessoryVO.accName}</h4>
 							</div>
 						</div>
-			    </c:forEach>
+					</div>
+				</c:forEach>
 			</div>
 		</c:if>
 		<!-- /.配件 -->
@@ -364,9 +379,15 @@
 	<!-- 	Antai Test jQuery Test-->
 	<script>
 		//-------變數區------------
-		var numOfCar =<%=request.getAttribute("numOfCar")%>;
-		var numOfMotor =<%=request.getAttribute("numOfMotor")%>;
-		var numOfBike =<%=request.getAttribute("numOfBike")%>;
+		var numOfCar =
+	<%=request.getAttribute("numOfCar")%>
+		;
+		var numOfMotor =
+	<%=request.getAttribute("numOfMotor")%>
+		;
+		var numOfBike =
+	<%=request.getAttribute("numOfBike")%>
+		;
 		//---------函數區--------------
 		function hideTab() { //如果是空的就把Tab隱藏起來
 			if (numOfCar == 0) {
@@ -396,107 +417,147 @@
 			}
 		}
 		function SearchMoneyRange() {
-			$("#car-li").click(function(){
-				 $("input[name='prod_type']").val(1);
+			$("#car-li").click(function() {
+				$("input[name='prod_type']").val(1);
 			});
-			$("#motor-li").click(function(){
-				 $("input[name='prod_type']").val(2);
+			$("#motor-li").click(function() {
+				$("input[name='prod_type']").val(2);
 			});
-			$("#bike-li").click(function(){
-				 $("input[name='prod_type']").val(3);
+			$("#bike-li").click(function() {
+				$("input[name='prod_type']").val(3);
 			});
-			$("#SearchButton").click(function() {
-				var prod_type = $("input[name='prod_type']").val();
-				var SearchMoneyLow = $("input[name='SearchMoneyLow']").val();
-				var SearchMoneyHigh = $("input[name='SearchMoneyHigh']").val();
-				var jsonString= <%=request.getAttribute("jsonString")%>;
-				if(SearchMoneyLow=="" || SearchMoneyHigh==""){
-					alert("價格搜尋上下限不可空白");
-					return;
-				}
-				//--------根據不同車種及價格範圍決定需要顯示的車子--------
-				numOfCar=0;
-				numOfMotor=0;
-				numOfBike=0;
-				for(var i=0; i<jsonString.length;i++){ 
-					if(jsonString[i]["prod_type"] == prod_type){ //只有當要過濾的車種與該商品車種符合才要進行動作
-						if( (jsonString[i]["prod_price"] >= SearchMoneyLow) && (jsonString[i]["prod_price"] <= SearchMoneyHigh) ){
-							//符合搜尋價格範圍
-							switch(prod_type){
-							case "1": //汽車
-								$("#car-"+jsonString[i]["prod_id"]).show();
-								numOfCar++;
-								break;
-							case "2"://機車
-								$("#motor-"+jsonString[i]["prod_id"]).show();
-								numOfMotor++;
-								break;
-							case "3"://腳踏車
-								$("#bike-"+jsonString[i]["prod_id"]).show();
-								numOfBike++;
-								break;
-							default:
-								alert("價格搜尋prod_type超出範圍");
-								break;
-							}
-						}else{
-							//不符合搜尋範圍
-							switch(prod_type){
-							case "1": //汽車
-								$("#car-"+jsonString[i]["prod_id"]).hide();
-								break;
-							case "2"://機車
-								$("#motor-"+jsonString[i]["prod_id"]).hide();
-								break;
-							case "3"://腳踏車
-								$("#bike-"+jsonString[i]["prod_id"]).hide();
-								break;
-							default:
-								alert("價格搜尋prod_type超出範圍");
-								break;
-							}//end switch(prod_type)
-						}//end else	不符合搜尋範圍
-					}//end 	if(jsonString[i]["prod_type"] == prod_type){ //只有當要過濾的車種與該商品車種符合才要進行動作		
-					else{ //沒有選到的車種則恢復
-						//alert(jsonString[i]["prod_type"]);
-						switch(jsonString[i]["prod_type"]){
-						case 1: //汽車
-							$("#car-"+jsonString[i]["prod_id"]).show();
-							numOfCar++;
-							break;
-						case 2://機車
-							$("#motor-"+jsonString[i]["prod_id"]).show();
-							numOfMotor++;
-							break;
-						case 3://腳踏車
-							$("#bike-"+jsonString[i]["prod_id"]).show();
-							numOfBike++;
-							break;
-						default:
-							alert("價格搜尋prod_type超出範圍");
-							break;
-						}
-					}
-				}//end for(var i=0; i<jsonString.length;i++)
-				//if(prod_type == 1){//汽車
-					$("#car-a").html("<i class='fa fa-carx'></i>汽車("+numOfCar+")");	
-				//}else if(prod_type == 2){//機車
-					$("#motor-a").html("<i class='fa fa-motorcycle'></i>機車("+numOfMotor+")");	
-				//}else if(prod_type == 3){//腳踏車
-					$("#bike-a").html("<i class='fa fa-bicycle'></i>腳踏車("+numOfBike+")");
-				//}
-			});//end $("#SearchButton").click(function() 
+			$("#SearchButton")
+					.click(
+							function() {
+								var prod_type = $("input[name='prod_type']")
+										.val();
+								var SearchMoneyLow = $(
+										"input[name='SearchMoneyLow']").val();
+								var SearchMoneyHigh = $(
+										"input[name='SearchMoneyHigh']").val();
+								var jsonString =
+	<%=request.getAttribute("jsonString")%>
+		;
+								if (SearchMoneyLow == ""
+										|| SearchMoneyHigh == "") {
+									alert("價格搜尋上下限不可空白");
+									return;
+								}
+								//--------根據不同車種及價格範圍決定需要顯示的車子--------
+								numOfCar = 0;
+								numOfMotor = 0;
+								numOfBike = 0;
+								for (var i = 0; i < jsonString.length; i++) {
+									if (jsonString[i]["prod_type"] == prod_type) { //只有當要過濾的車種與該商品車種符合才要進行動作
+										if ((jsonString[i]["prod_price"] >= SearchMoneyLow)
+												&& (jsonString[i]["prod_price"] <= SearchMoneyHigh)) {
+											//符合搜尋價格範圍
+											switch (prod_type) {
+											case "1": //汽車
+												$(
+														"#car-"
+																+ jsonString[i]["prod_id"])
+														.show();
+												numOfCar++;
+												break;
+											case "2"://機車
+												$(
+														"#motor-"
+																+ jsonString[i]["prod_id"])
+														.show();
+												numOfMotor++;
+												break;
+											case "3"://腳踏車
+												$(
+														"#bike-"
+																+ jsonString[i]["prod_id"])
+														.show();
+												numOfBike++;
+												break;
+											default:
+												alert("價格搜尋prod_type超出範圍");
+												break;
+											}
+										} else {
+											//不符合搜尋範圍
+											switch (prod_type) {
+											case "1": //汽車
+												$(
+														"#car-"
+																+ jsonString[i]["prod_id"])
+														.hide();
+												break;
+											case "2"://機車
+												$(
+														"#motor-"
+																+ jsonString[i]["prod_id"])
+														.hide();
+												break;
+											case "3"://腳踏車
+												$(
+														"#bike-"
+																+ jsonString[i]["prod_id"])
+														.hide();
+												break;
+											default:
+												alert("價格搜尋prod_type超出範圍");
+												break;
+											}//end switch(prod_type)
+										}//end else	不符合搜尋範圍
+									}//end 	if(jsonString[i]["prod_type"] == prod_type){ //只有當要過濾的車種與該商品車種符合才要進行動作		
+									else { //沒有選到的車種則恢復
+										//alert(jsonString[i]["prod_type"]);
+										switch (jsonString[i]["prod_type"]) {
+										case 1: //汽車
+											$(
+													"#car-"
+															+ jsonString[i]["prod_id"])
+													.show();
+											numOfCar++;
+											break;
+										case 2://機車
+											$(
+													"#motor-"
+															+ jsonString[i]["prod_id"])
+													.show();
+											numOfMotor++;
+											break;
+										case 3://腳踏車
+											$(
+													"#bike-"
+															+ jsonString[i]["prod_id"])
+													.show();
+											numOfBike++;
+											break;
+										default:
+											alert("價格搜尋prod_type超出範圍");
+											break;
+										}
+									}
+								}//end for(var i=0; i<jsonString.length;i++)
+								//if(prod_type == 1){//汽車
+								$("#car-a").html(
+										"<i class='fa fa-carx'></i>汽車("
+												+ numOfCar + ")");
+								//}else if(prod_type == 2){//機車
+								$("#motor-a").html(
+										"<i class='fa fa-motorcycle'></i>機車("
+												+ numOfMotor + ")");
+								//}else if(prod_type == 3){//腳踏車
+								$("#bike-a").html(
+										"<i class='fa fa-bicycle'></i>腳踏車("
+												+ numOfBike + ")");
+								//}
+							});//end $("#SearchButton").click(function() 
 		}//end function SearchMoneyRange()
 
-
-			$("div[name='content-prod']").click(function(){
-				var prodIdStr= this.id;
-				var prodId = prodIdStr.split("-")[1];	
-				//寫入价林需要的prod_id 在05的prod_detail
-				$("input[name='detail_prod_id']").val(prodId);
-// 				alert("prodId="+prodId);
-			});
-
+		$("div[name='content-prod']").click(function() {
+			var prodIdStr = this.id;
+			var prodId = prodIdStr.split("-")[1];
+			//寫入价林需要的prod_id 在05的prod_detail
+			$("input[name='detail_prod_id']").val(prodId);
+			// 				alert("prodId="+prodId);
+		});
 
 		//------執行區--------
 		hideTab();

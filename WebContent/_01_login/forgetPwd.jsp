@@ -29,7 +29,7 @@
                         <label><input type="radio" name="optionsRadios" id="company" value="Com">商家會員</label>
                 </div>
                 <div id="errorMessage"><font color="red" size="-1">${checkAccountError}</font></div>
-		        <button type="submit" class="btn btn-lg btn-primary pull-right">重新設定</button>
+		        <button type="submit" class="btn btn-lg btn-primary pull-right" form="forget_form">重新設定</button>
 		      </form><!-- /.form-->
  			</div>
  		    </div>
@@ -52,7 +52,7 @@
 	  
 	  
 	   $(document).ready(function() {
-		    $('#forgetpwd').bootstrapValidator({
+		    $('#forget_form').bootstrapValidator({
 		        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
 		        feedbackIcons: {
 		            valid: 'glyphicon glyphicon-ok',

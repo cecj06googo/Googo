@@ -5,9 +5,11 @@
 <% 
 String donutString = (String)request.getAttribute("donutString");
 String barString = (String)request.getAttribute("barString");
+String areaString = (String)request.getAttribute("areaString");
 %>
 <c:set value="<%= donutString %>" var="donutString" />
 <c:set value="<%= barString %>" var="barString" />
+<c:set value="<%= areaString %>" var="areaString" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,6 +20,7 @@ String barString = (String)request.getAttribute("barString");
 <script type="text/javascript" charset="utf-8">
        	var donutString =<%= donutString %>;
     	var barString =<%= barString %>;
+    	var areaString =<%= areaString %>;
 </script>
 
 </head>

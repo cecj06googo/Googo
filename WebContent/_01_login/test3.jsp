@@ -4,7 +4,7 @@
 <link href="${pageContext.request.contextPath}/css/bootstrapValidator.css" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
-	<form name="resetpwd_form" id="resetpwd_form" action="<%=request.getContextPath()%>/resetpwd.gg" method="post" >
+	<form name="resetpwd_form" id="resetpwd_form" <%=request.getContextPath()%>/resetpwd.gg" method="post" >
              <div class="control-group form-group ">
                 <label class="control-label">帳號:</label>
                 <div class="controls" >
@@ -28,10 +28,9 @@
                 <div class="controls ">
                     <input type="password" class="form-control" name="newpwdcheck" placeholder="請再次輸入密碼" >
                 </div>
-                <font color="red" size="-1">${errMsgs.errorPwdCheck}</font>
             </div>
-          	  <button type="reset" class="btn btn-danger" >取消 </button>
-              <button type="submit" class="btn btn-success" form="resetpwd_form">送出 </button>
+          	  <button type="reset" class="btn btn-primary" >取消 </button>
+              <button type="submit" class="btn btn-danger" form="resetpwd_form">送出 </button>
 
            	
           </form>
@@ -124,9 +123,10 @@
 
 		        }}
 		    ).on('success.form.bv', function() {
-	            $('#resetpwd_success').modal('show');
+	            $('#register_success').modal('show');
 	        });
 
 		});
    
 	 })(jQuery)
+</script>
