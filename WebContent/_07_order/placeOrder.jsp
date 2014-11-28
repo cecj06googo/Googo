@@ -221,7 +221,7 @@ $(document).ready(function () {
 		url: "<%=request.getContextPath()%>/DesignAccessDB",
 		type: "post",
 		data: {
-			com_id_form_view: <%=((CompanyVO)(session.getAttribute("comVO"))).getComID() %>,
+			com_id_form_view: <%=((CompanyVO)(session.getAttribute("ord_comVO"))).getComID() %>,
 			command: "retrieve"	
 		},
 		dataType: "html",
