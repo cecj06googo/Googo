@@ -7,14 +7,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- top2 -->
+	<jsp:include page="/_00_fragment/top2.jsp" />
 <jsp:include page="/_00_fragment/css2.jsp" />
+<%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
 <title>Goo-go</title>
 
 </head>
 <body>
  <div id="wrapper">
-	<!-- top2 -->
-	<jsp:include page="/_00_fragment/top2.jsp" />
 	<!-- page-wrapper -->
         <div id="page-wrapper">
  			<!-- container-fluid -->

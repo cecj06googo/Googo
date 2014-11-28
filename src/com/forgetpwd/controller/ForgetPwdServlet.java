@@ -34,8 +34,11 @@ public class ForgetPwdServlet extends HttpServlet{
 		//文字資料轉內碼
 		req.setCharacterEncoding("UTF-8");
 		//準備存放錯誤訊息的物件
-		HttpSession session = req.getSession();
+//		HttpSession session = req.getSession();
 		Map<String, String> errMsgs = new HashMap<String, String>();
+		Integer userId = null;
+		MemVO memVO = null;
+		CompanyVO comVO = null;
 		//errorMsgs放入request物件內，識別字串為 "ErrorMsgs"
 		req.setAttribute("errMsgs", errMsgs);
 		
@@ -73,9 +76,7 @@ public class ForgetPwdServlet extends HttpServlet{
 		}
 */
 		try{
-		Integer userId = null;
-		MemVO memVO = null;
-		CompanyVO comVO = null;
+		
 		
 	    ForgetPwdService forgetPwdSvc = new ForgetPwdService();
 		userId = forgetPwdSvc.findId(userAccount, userIdentity);
@@ -83,12 +84,16 @@ public class ForgetPwdServlet extends HttpServlet{
 		if("Mem".equals(userIdentity)){
 			MemService memSvc = new MemService();
 			memVO = memSvc.getOneMem(userId);
-			session.setAttribute("checkMemOK", memVO);
-			System.out.println("session內的mem_account: "+memVO.getMem_account());
+			String encrypedString1 = MemService.encryptString(memVO.getMem_account());
+			String mem_qq =MemService.getMD5Endocing(encrypedString1);
+			memVO.setMem_qq(mem_qq);
+//			session.setAttribute("checkMemOK", memVO);
+			System.out.println("VO內的mem_account: "+memVO.getMem_account());
 			}else if("Com".equals(userIdentity)){
 				CompanyService comSvc = new CompanyService();
 				comVO = comSvc.getOneCom(userId);
-				session.setAttribute("checkComOK", comVO);
+//				session.setAttribute("checkComOK", comVO);
+				System.out.println();
 				System.out.println("session內的com_account: "+comVO.getComAccount());
 			}
 /*		if(!errMsgs.isEmpty()){
@@ -101,19 +106,25 @@ public class ForgetPwdServlet extends HttpServlet{
 		}catch(Exception e){
 			System.out.println("出現exception!");
 			errMsgs.put("errException", e.getMessage());
-			session.setAttribute("checkAccountError", "該帳號不存在");
-			session.setAttribute("noExistAccount", userAccount);
+//			session.setAttribute("checkAccountError", "該帳號不存在");
+//			session.setAttribute("noExistAccount", userAccount);
 			error = true;
-			RequestDispatcher failureView = req.getRequestDispatcher("/index.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/sendMailSuccess.jsp");
 			failureView.forward(req, res);
 			
 		}//end of catch
 		
 		/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 		if(!error){
-		session.removeAttribute("checkAccountError");
-		session.removeAttribute("noExistAccount");
-		SendResetPwdEmail.sendResetEmail(userAccount, req.getServerName(), req.getLocalPort(), req.getContextPath());
+//		session.removeAttribute("checkAccountError");
+//		session.removeAttribute("noExistAccount");
+		if("Mem".equals(userIdentity)){
+			SendResetPwdEmail.sendMemResetEmail(memVO, req.getServerName(), req.getLocalPort(), req.getContextPath());
+			
+		}else if("Com".equals(userIdentity)){
+			return;
+		}
+		
 		System.out.println("已寄出ResetMail");
 		String url = "/_01_login/sendMailSuccess.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url);

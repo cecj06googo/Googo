@@ -50,7 +50,7 @@ public class placeOrdSetAttr extends HttpServlet{
 		
 		
 		session.setAttribute("ord_memVO", memVO);
-		session.setAttribute("ord_comVO", comVO);
+		session.setAttribute("ord_comVO", comVO); //key修改會影響彥靖
 		session.setAttribute("ord_prod_id", prod_id);
 		session.setAttribute("ord_prodVoList", ord_prodVoList);
 		/******************** (轉向)*******************/
