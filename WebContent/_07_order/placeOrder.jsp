@@ -102,7 +102,7 @@
 	               <input type="hidden" name="ord_reday" value="" />
 	            </div>
 	            <div class="form-group">
-                   <label><span class="span-red">*</span>車型</label>
+                   <label><span class="span-space"></span>車型</label>
                    <select  type="" required="required" class="form-control" >
                    <c:forEach var="ord_prodVO" items="${ord_prodVoList}">
                   		<option value="${ord_prodVO.prodId}">{ord_prodVO.prodName}</option>
@@ -127,7 +127,7 @@
 <!-- 		   <span class="span-accept x-border"><input type="checkbox" />駕駛人年齡在25-70歲之間？</span> -->
 <!-- 		    </div> -->
 		    <div class=" col-xs-12 ">
-		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="nextOne">下一步</button>
+		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="nextOne">下一頁</button>
 		    </div>
 	    </div>
 	</div>
@@ -138,7 +138,7 @@
         <div class="col-xs-12 div-back">
             <div class="col-xs-6 div-css" >
 	            <span class="harder-font">駕駛人資訊</span>
-	            <span class="span-accept x-right"><input type="checkbox" id="memBox"/>同會員本人</span>
+	            <br><br>
                 <fieldset id="data_disabled">
                 <div class="form-group">
                     <label class="control-label "><span class="span-red">*</span>姓名</label>
@@ -162,7 +162,28 @@
                   	        <div class="col-xs-6 div-css ">
 	        <p class="p-right">* 必填選項</p>
 <!-- 	        放車子圖片 -->
-		            	<label>會員資料預覽</label><br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>		
+		            	<p class="x-center"><label>會員資料預覽</label></p>
+		            	<table class="table">
+		            		<thead>
+		            			<tr>
+			            			<th>會員姓名：</th>
+			            			<th>${LoginMemOK.mem_name}</th>
+		            			</tr>
+		            			<tr>
+			            			<th>會員e-mail：</th>
+			            			<th>${LoginMemOK.mem_account}</th>
+		            			</tr>
+		            			<tr>
+		            				<th>行動電話：</th>
+		            				<th>${LoginMemOK.mem_phone}</th>
+		            			</tr>
+		            			<tr>
+		            				<th>市內電話：</th>
+		            				<th>${LoginMemOK.mem_tel}</th>
+		            			</tr>
+		            		</thead>
+		            	</table>    	
+		            	<p class="x-center span-accept x-right"><input type="checkbox" id="memBox"/>同會員資料</p>
 		    </div>
                  <div class=" col-xs-12 ">
 		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >下一步</button>
@@ -221,7 +242,7 @@ $(document).ready(function () {
 		url: "<%=request.getContextPath()%>/DesignAccessDB",
 		type: "post",
 		data: {
-			com_id_form_view: <%=((CompanyVO)(session.getAttribute("comVO"))).getComID() %>,
+			com_id_form_view: <%=((CompanyVO)(session.getAttribute("ord_comVO"))).getComID() %>,
 			command: "retrieve"	
 		},
 		dataType: "html",

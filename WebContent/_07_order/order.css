@@ -86,8 +86,8 @@ text-align:center;
 }
 .x-right {
 
-margin-left: 50pt;
-padding-left: 1pt;
+/* margin-left: 50pt; */
+margin-right: auto;
 }
 .harder-font {
 
