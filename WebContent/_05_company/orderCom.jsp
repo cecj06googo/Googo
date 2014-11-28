@@ -70,7 +70,9 @@
 							<input type="hidden" name="action" value="selectCom">
                     </form> 
                 </div>
+                 <c:if test="${not empty ordVO}">
                 <a  title="收縮" ><span id="aa">一鍵收縮<i class="glyphicon glyphicon-resize-small"></i></span></a>
+            </c:if>
             </div> 
         </div>
         <!-- /.Search bar -->
@@ -91,7 +93,7 @@
 			<tr>
 				<th style="text-align: center;">訂單編號</th>
 				<th style="text-align: center;">租訂時間</th>
-				<th style="text-align: center;">車種</th>
+<!-- 				<th style="text-align: center;">車種</th> -->
 				<th style="text-align: center;">商品名稱</th>
 				<th style="text-align: center;">金額</th>
 				<th style="text-align: center;">處理狀態</th>
@@ -107,8 +109,8 @@
 					<td><fmt:formatDate value="${ordVO.ord_time}" pattern="yyyy-MM-dd HH:mm:ss" /><br>  
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne${ordVO.ord_id}" id="${ordVO.ord_id}">完整明細</a>     
 					</td>
-					<td>汽車</td>
-					<td><a href="#">HONDA-Accord進口新登場</a></td>
+<!-- 					<td>汽車</td> -->
+					<td><a href="#">${ordVO.prod_name}</a></td>
 					<td><a href="#">${ordVO.item_total}</a></td>
 					<c:if test="${ordVO.status_char == '異常未還'}">
 						<td style="color:red">${ordVO.status_char}</td>
@@ -318,7 +320,7 @@
 		    <a href="http://web110.ntpd.gov.tw/#" target="_blank" title="開啟新視窗前往報案台" class="hide"><span><i class="glyphicon glyphicon-earphone"></i>110網路報案</span></a>
 		  </div>
 		  <div class="modal-footer">
-		  	<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" name="close">取消</button>
+		  	<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" name="close">返回</button>
   				<button class="btn btn-danger"  data-dismiss="modal" name="check">確認</button>
 		  </div></div></div></div>
 	<!-- /.綜合對話框(改由jQuery控制內容) -->

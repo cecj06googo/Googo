@@ -66,19 +66,27 @@
 <!-------------- /.流程顯示 ---------------->
 
 <form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
+<!--------------- 黑箱作業 ----------------->
 <input type="hidden" name="action" value="insert" />
-<%-- <input type="hidden" name="com_id" value="${ord_comVO.comID}" /> --%>
-<%-- <input type="hidden" name="prod_id" value="${ord_prod_id}" /> --%>
-<input type="hidden" name="prod_price" value="${prod_price}" />
+<input type="hidden" name="mem_name" value="${ord_memVO.mem_name}" />
+<input type="hidden" name="mem_account" value="${ord_memVO.mem_account}" />
+<input type="hidden" name="mem_phone" value="${ord_memVO.mem_phone}" />  
+<input type="hidden" name="mem_tel" value="${ord_memVO.mem_tel}" />
+<!--member table phone和tel欄位設計  not null  -->
+<%-- <input type="hidden" name="com_id" value="${ord_comVO.comID}" />  session ord_comVO內 --%>
+<%-- <input type="hidden" name="prod_id" value="${ord_prod_id}" /> session ord_prod_id內 --%>
+<%-- <input type="hidden" name="prod_price" value="${prod_price}" /> session ord_prodVoList內 --%>
+<!-------------- /.黑箱作業  ----------------->
+
 <!-------------- 訂單第一頁 ----------------->
     <div class="row setup-content" id="step-1">
         <div class="col-xs-12 div-back div-height">
-            <div class="col-xs-6 div-css x-border">
+            <div class="col-xs-6 div-css">
             
             <span class="harder-font">訂車資訊</span>
-                
+                <br><br>
             	<div class="form-group">
-                   <label><span class="span-space"></span>商家地址(取車地點)</label>
+                   <label><span class="span-space"></span>取車地點</label>
                    <input maxlength="100" type="text" required="required" class="form-control" placeholder="${ord_comVO.comAddr}" disabled="disabled"/>
                 </div>
                 
@@ -96,26 +104,29 @@
 	            <div class="form-group">
                    <label><span class="span-red">*</span>車型</label>
                    <select  type="" required="required" class="form-control" >
-                  		<option value="0" selected>讀取VO</option>
-                   		<option value="0">aaa</option>
+                   <c:forEach var="ord_prodVO" items="${ord_prodVoList}">
+                  		<option value="${ord_prodVO.prodId}">{ord_prodVO.prodName}</option>
+                   </c:forEach>
                    </select>
 	            </div>
 	        </div>  
-	        <div class="col-xs-6 x-border div-css ">
+	        <div class="col-xs-6 div-css ">
 	        <p class="p-right">* 必填選項</p>
-		    <p  class="x-border"><label class="x-border">車輛預覽</label></p>
 		    </div>
-		    <div class="col-xs-6 x-border div-css div-height-carView">
+		    <div class="col-xs-6  div-css div-height-carView">
 		    <!-- 商品圖片 -->
+		    <figure>
+		    <figcaption  class="label-center"><label>車輛預覽</label></figcaption>
 				<img class="img-responsive input-carView "
 					src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${ord_comVO.comID}&prodId=${ord_prod_id}'
 					alt="">
+					</figure>
 			<!-- /商品圖片 -->		
 		    </div>
 <!-- 		    <div class="col-xs-12 x-border x-center"> -->
 <!-- 		   <span class="span-accept x-border"><input type="checkbox" />駕駛人年齡在25-70歲之間？</span> -->
 <!-- 		    </div> -->
-		    <div class=" col-xs-12 x-border ">
+		    <div class=" col-xs-12 ">
 		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="nextOne">下一步</button>
 		    </div>
 	    </div>
@@ -125,12 +136,13 @@
 <!-------------- 訂單第二頁 ------------------>
     <div class="row setup-content div-border" id="step-2">
         <div class="col-xs-12 div-back">
-            <div class="col-xs-6 div-css">
+            <div class="col-xs-6 div-css" >
 	            <span class="harder-font">駕駛人資訊</span>
-	            <span class="span-accept x-right x-border"><input type="checkbox" />同會員本人</span>
-                <div class="form-group x-border">
+	            <span class="span-accept x-right"><input type="checkbox" id="memBox"/>同會員本人</span>
+                <fieldset id="data_disabled">
+                <div class="form-group">
                     <label class="control-label "><span class="span-red">*</span>姓名</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" name="item_name" placeholder="範例:王小明" />
+                    <input maxlength="200" type="text" required="required" class="form-control" name="item_name" placeholder="ex:王小明" />
                 </div>
                 <div class="form-group">
                     <label class="control-label"><span class="span-red">*</span>電子郵箱</label>
@@ -138,20 +150,21 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label"><span class="span-red">*</span>確認郵箱</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" placeholder="請再次輸入e-mail"  />
+                    <input maxlength="200" type="text" required="required" class="form-control" name="item_email2" placeholder="請再次輸入e-mail"  />
                 </div>
                 <div class="form-group">
                     <label class="control-label"><span class="span-space"></span>連絡電話</label><br>
                     <span class="span-red">*</span>手機<input maxlength="200" type="text" required="required" name="item_phone" placeholder="請輸入手機"  />
                     	市話<input maxlength="200" type="text" required="required" name="item_tel" placeholder="請輸入市話"  />
-                </div>          
+                </div> 
+                </fieldset>         
             </div>
-                  	        <div class="col-xs-6 x-border div-css ">
+                  	        <div class="col-xs-6 div-css ">
 	        <p class="p-right">* 必填選項</p>
 <!-- 	        放車子圖片 -->
 		            	<label>會員資料預覽</label><br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>		
 		    </div>
-                 <div class=" col-xs-12 x-border ">
+                 <div class=" col-xs-12 ">
 		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >下一步</button>
 		    </div>
         </div>
@@ -216,7 +229,28 @@ $(document).ready(function () {
 		$("#DesignResultTarget").html(result);
 	});
 	// End: Modified by ranian
-		
+	
+	// checkbox
+	$("#memBox").click(function() {
+		if ($("#memBox").prop('checked')) { 
+			$("input[name='item_name']").val($("input[name='mem_name']").val());
+			$("input[name='item_email']").val($("input[name='mem_account']").val());
+			$("input[name='item_email2']").val($("input[name='mem_account']").val());
+			$("input[name='item_phone']").val($("input[name='mem_phone']").val());
+			$("input[name='item_tel']").val($("input[name='mem_tel']").val());
+			$("#data_disabled").attr("disabled",true);
+		} else {
+			$("input[name='item_name']").val(null);
+			$("input[name='item_email']").val(null);
+			$("input[name='item_email2']").val(null);
+			$("input[name='item_phone']").val(null);
+			$("input[name='item_tel']").val(null);
+			$("#data_disabled").attr("disabled",false);
+		}
+	});
+	// End checkbox
+	
+	// datetimepicker	
 	var timeChar,oneChar,twoChar,thrChar,fourChar,getTime,reTime;
 	$('#showGet').datetimepicker({
 		  lang:'zh-TW',
@@ -275,7 +309,7 @@ $(document).ready(function () {
 			$("input[name='ord_getday']").val(getTime);
 			$("input[name='ord_reday']").val(reTime);
 		});
-		
+		// End datetimepicker		
 	
 //------------------------------------------------
 
@@ -304,8 +338,8 @@ $(document).ready(function () {
         var curStep = $(this).closest(".setup-content"),
              curStepBtn = curStep.attr("id"),
              nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-             curInputs = curStep.find("input[type='text'],input[type='url']"),
-            isValid = true;
+             curInputs = curStep.find("input[type='aa'],input[type='bb']"),
+            isValid = true;         //("input[type='text'],input[type='url']")
 
         $(".form-group").removeClass("has-error");
         for(var i=0; i<curInputs.length; i++){
@@ -321,5 +355,6 @@ $(document).ready(function () {
 
     $('div.setup-panel div a.btn-primary').trigger('click');
 });
+//----------------End流程控制原始碼--------------------
 </script>
 </html>

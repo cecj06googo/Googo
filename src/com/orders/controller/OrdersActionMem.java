@@ -18,6 +18,8 @@ import com.company.model.CompanyService;
 import com.company.model.CompanyVO;
 import com.orders.model.OrdersService;
 import com.orders.model.OrdersVO;
+import com.products.model.ProductVO;
+import com.products.model.ProductsDAO;
 
 public class OrdersActionMem extends HttpServlet {
 
@@ -243,39 +245,5 @@ public class OrdersActionMem extends HttpServlet {
 				e.printStackTrace();
 			}
 		} // end insert
-		
-		
-		if ("placeOrder".equals(action)) {
-			//把商品和商家id存入request供訂單頁面寫入資料庫
-			Integer com_id = Integer.parseInt(request.getParameter("detail_com_id"));
-			Integer prod_id = Integer.parseInt(request.getParameter("detail_prod_id"));
-			CompanyService cs = new CompanyService();
-			CompanyVO comVO = cs.getOneCom(com_id);
-			
-//			System.out.println(com_id);
-//			System.out.println(prod_id);
-			session.setAttribute("ord_comVO", comVO);
-			session.setAttribute("ord_prod_id", prod_id);
-			
-			/******************** (轉向)*******************/
-			String url = "/_07_order/placeOrder.jsp";
-			RequestDispatcher successView = request
-					.getRequestDispatcher(url);
-			successView.forward(request, response);
-			
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	} // end doPost
 } // end class
