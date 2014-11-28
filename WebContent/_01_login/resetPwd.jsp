@@ -30,8 +30,8 @@
                 </div>
                 <font color="red" size="-1">${errMsgs.errorPwdCheck}</font>
             </div>
-          	  <button type="reset" class="btn btn-primary" >取消 </button>
-              <button type="submit" class="btn btn-danger" form="resetpwd_form">送出 </button>
+          	  <button type="reset" class="btn btn-danger" >取消 </button>
+              <button type="submit" class="btn btn-success" form="resetpwd_form">送出 </button>
 
            	
           </form>
