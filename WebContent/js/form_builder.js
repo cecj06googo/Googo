@@ -196,11 +196,13 @@ $(function() {
         	.done(function(data){
         		//console.log(data);
         		//add element shell
-        		$("#content").empty();
-        		designResult = $(data);
-        		designResult.addClass("ui-draggable element")
-        					.prepend('<div class="close">×</div>')
-        					.appendTo("#content");
+        		if(data != null && data.length > 3){
+        			$("#content").empty();
+            		designResult = $(data);
+            		designResult.addClass("ui-draggable element")
+            					.prepend('<div class="close">×</div>')
+            					.appendTo("#content");
+        		}
         	});
         	
         	$(".alert-success").text("載入設計結果");

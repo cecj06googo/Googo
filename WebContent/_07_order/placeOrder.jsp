@@ -65,7 +65,7 @@
 
 <!-------------- /.流程顯示 ---------------->
 
-<form role="form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
+<form role="form" name="ord_for" novalidate action="<%=request.getContextPath()%>/ActionMem.do" method="post">
 <!--------------- 黑箱作業 ----------------->
 <input type="hidden" name="action" value="insert" />
 <input type="hidden" name="mem_name" value="${ord_memVO.mem_name}" />

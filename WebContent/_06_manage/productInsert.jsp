@@ -299,11 +299,8 @@
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
-<<<<<<< HEAD
- -->
-=======
 
->>>>>>> 20aceeb6ee3543725eb2a37dabefffc1d14a057e
+ -->
 	<script>
 		$("[data-toggle='tooltip']").tooltip({
 			html : true
