@@ -93,19 +93,27 @@
 			<div class="col-lg-12">
 				<h3 class="page-header">附近的租車行</h3>
 			</div>
-			<c:forEach var="ComVO" items="${comvos}" begin="0" end="${comvos.size()}"> 
-				<div class="col-sm-3 col-xs-6">
-					<a href="<c:url value='/DispComFirstPage.do?comId=${ComVO.comID}'/>"> <img
-						class="img-responsive img-hover"
-						src="${pageContext.servletContext.contextPath}/image?comID=${ComVO.comID}"
-						alt="">
-					</a>
-					<h3>
-						<a href="<c:url value='/DispComFirstPage.do?comId=${ComVO.comID}'/>">${ComVO.comName}</a>
-					</h3>
-					<p>${ComVO.comName}，地點位於${ComVO.comAddr}，是一家信賴的商家comid=${ComVO.comID}。</p>
-				</div>
-			</c:forEach>
+			<c:if test="${comvos.size()>0}">
+				<c:forEach var="ComVO" items="${comvos}" begin="0"
+					end="${comvos.size()-1}">
+					<div class="col-sm-3 col-xs-6">
+						<a
+							href="<c:url value='/DispComFirstPage.do?comId=${ComVO.comID}'/>">
+							<img class="img-responsive img-hover"
+							src="${pageContext.servletContext.contextPath}/image?comID=${ComVO.comID}"
+							alt="">
+						</a>
+						<h3>
+							<a
+								href="<c:url value='/DispComFirstPage.do?comId=${ComVO.comID}'/>">${ComVO.comName}</a>
+						</h3>
+						<p>${ComVO.comName}，地點位於${ComVO.comAddr}，是一家信賴的商家。</p>
+					</div>
+				</c:forEach>
+			</c:if>
+			<c:if test="${comvos.size()==0}">
+				<h1>沒有任何商家</h1>
+			</c:if>
 		</div>
 		<!-- /.row -->
 
