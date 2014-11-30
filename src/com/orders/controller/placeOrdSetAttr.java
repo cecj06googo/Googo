@@ -1,6 +1,12 @@
 package com.orders.controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +20,8 @@ import com.company.model.CompanyService;
 import com.company.model.CompanyVO;
 import com.member.model.MemService;
 import com.member.model.MemVO;
+import com.orders.model.LoginOrdProdOnLoadDAO;
+import com.orders.model.OrdersVO;
 import com.products.model.ProductVO;
 import com.products.model.ProductsDAO;
 
@@ -30,10 +38,18 @@ public class placeOrdSetAttr extends HttpServlet{
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		//從session取出商品id和商家id
-		Integer com_id = Integer.parseInt(session.getAttribute("detail_com_id").toString());
+		Integer com_id = 3;   //以防萬一
+		Integer prod_id = 71; //捷安特
+		
+		try{
+		com_id = Integer.parseInt(session.getAttribute("detail_com_id").toString());
 		System.out.println("com_id:"+com_id);
-		Integer prod_id = Integer.parseInt(session.getAttribute("detail_prod_id").toString());
+		prod_id = Integer.parseInt(session.getAttribute("detail_prod_id").toString());
 		System.out.println("prod_id:"+prod_id);
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("placeOrdSetAttr  沒接到com_id或prod_id !!");
+		}
 		//暫時把會員VO存進session(登入會有，但目前未整合完畢)
 //		Integer mem_id = 3;
 //		MemService ms = new MemService();
@@ -43,11 +59,20 @@ public class placeOrdSetAttr extends HttpServlet{
 		//把CompanyVO和List<ProductVO>存入session
 		CompanyService cs = new CompanyService();
 		CompanyVO comVO = cs.getOneCom(com_id);
-		ProductsDAO pdao = new ProductsDAO();
+		LoginOrdProdOnLoadDAO LOPOLD = new LoginOrdProdOnLoadDAO();
 		ProductVO prodVO = new ProductVO();
-		prodVO.setProdId(prod_id);
-		List<ProductVO> ord_prodVoList  = pdao.getAll(prodVO);
+		prodVO.setComId(com_id);
+		List<ProductVO> ord_prodVoList  = LOPOLD.getAll(prodVO);
 		
+//		System.out.println("prodVoList.size:"+ord_prodVoList.size());
+//		for (int i = 0,max = ord_prodVoList.size() ; i < max; i++) {
+//			ProductVO obj = ord_prodVoList.get(i);
+//			
+//			boolean a = ord_prodVoList.contains(obj.getProdName());
+//			System.out.println(a);
+//			System.out.println("prodId:"+obj.getProdId());
+//			System.out.println("prodName:"+obj.getProdName());
+//		}
 		
 //		session.setAttribute("ord_memVO", memVO);
 		session.setAttribute("ord_comVO", comVO); //key修改會影響彥靖
@@ -62,3 +87,5 @@ public class placeOrdSetAttr extends HttpServlet{
 	
 	} // end doPost	
 } // end placeOrdSetAttr
+
+

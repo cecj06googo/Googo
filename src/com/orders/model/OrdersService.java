@@ -68,9 +68,10 @@ public class OrdersService {
 	}// end ordSearch
 
 	public List<OrdersVO> ordSearch_com(Integer userId,Integer orderStatus,String orderTime){
-		System.out.println("商家ID:"+userId);
-		System.out.println("訂單選擇狀態:"+orderStatus);
-		System.out.println("訂單選擇時間:"+orderTime);
+//      加了ajax定時更新會console會被洗
+//		System.out.println("商家ID:"+userId);
+//		System.out.println("訂單選擇狀態:"+orderStatus);
+//		System.out.println("訂單選擇時間:"+orderTime);
 		return dao.com_getAll(userId,orderStatus,orderTime);
 	}// end ordSearch
 	public void ordCancel(Integer ord_id, Integer orderStatus,Timestamp cancelTime){

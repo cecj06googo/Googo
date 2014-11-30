@@ -123,14 +123,14 @@
 	<servlet-name>PlaceOrder</servlet-name>
 	<url-pattern>/PlaceOrder.do</url-pattern>
 	</servlet-mapping>
-	<servlet>
-		<servlet-name>FakeDataTest</servlet-name>
-		<servlet-class>com.orders.controller.fakeData</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>FakeDataTest</servlet-name>
-		<url-pattern>/FakeSession</url-pattern>
-	</servlet-mapping>
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>FakeDataTest</servlet-name> -->
+<!-- 		<servlet-class>com.orders.controller.fakeData</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>FakeDataTest</servlet-name> -->
+<!-- 		<url-pattern>/FakeSession</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 
 	<!-- End: 訂單相關 -->
 
@@ -350,21 +350,15 @@
 			<param-name>mustMemLogin2</param-name>
 			<param-value>/PlaceOrder.do</param-value>
 		</init-param>
+		<init-param>
+			<param-name>mustMemLogin3</param-name>
+			<param-value>/_04_member/orderMem.jsp</param-value>
+		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>LoginMemFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-<!-- 	<filter> -->
-<!-- 		<display-name>PlaceOrderFilter</display-name> -->
-<!-- 		<icon /> -->
-<!-- 		<filter-name>PlaceOrderFilter</filter-name> -->
-<!-- 		<filter-class>com.login.filter.LoginMemFilter</filter-class> -->
-<!-- 	</filter> -->
-<!-- 	<filter-mapping> -->
-<!-- 		<filter-name>PlaceOrderFilter</filter-name> -->
-<!-- 		<url-pattern>/PlaceOrder.do</url-pattern> -->
-<!-- 	</filter-mapping> -->
 	<filter>
 		<display-name>LoginComFilter</display-name>
 		<icon />

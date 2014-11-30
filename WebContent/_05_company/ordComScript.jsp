@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.company.model.CompanyVO"%>
 <script>
 $(document).ready(function(){
+	
+	
+	
+	
 	
 	
 	$("span[id='aa']").click(function() {
@@ -12,18 +17,18 @@ $(document).ready(function(){
 	});
   
 	
-	var ordVO = <%=request.getAttribute("ordVO")%>; //公司地址陣列
-	var rowsPerPage = <%=request.getAttribute("rowsPerPage") %>;
-	var whichPage= <%=request.getAttribute("whichPage")%>;//此頁第幾頁
-	var startIndex=(whichPage-1)*rowsPerPage;//該頁起始筆數
-	var endIndex = (whichPage*rowsPerPage-1); //該頁終止筆數
+<%-- 	var ordVO = <%=request.getAttribute("ordVO")%>; //公司地址陣列 --%>
+<%-- 	var rowsPerPage = <%=request.getAttribute("rowsPerPage") %>; --%>
+<%-- 	var whichPage= <%=request.getAttribute("whichPage")%>;//此頁第幾頁 --%>
+// 	var startIndex=(whichPage-1)*rowsPerPage;//該頁起始筆數
+// 	var endIndex = (whichPage*rowsPerPage-1); //該頁終止筆數
 
 	//-----訂單狀態預設改成user選擇---------
 	$("select[name^='orderStatus'] option:selected").attr("selected",null);
-	$("select[name^='orderStatus'] option[value='${orderStatus}']").attr("selected","selected");
+	$("select[name^='orderStatus'] option[value='${orderStatusCom}']").attr("selected","selected");
 	//-----訂單時間預設改成user選擇---------
 	$("select[name^='orderTime'] option:selected").attr("selected",null);
-	$("select[name^='orderTime'] option[value='${orderTime}']").attr("selected","selected");
+	$("select[name^='orderTime'] option[value='${orderTimeCom}']").attr("selected","selected");
 	//-----對話框初始化---------
 	$("input[name*='Btn']").click(function() {
 		//恢復被逾時未取更改的按鈕
@@ -32,7 +37,7 @@ $(document).ready(function(){
 		}
 		if($("button[name='check']").hasClass("hide")){
 			$("button[name='check']").removeClass("hide");
-			$("button[name='close']").addClass("btn-success").removeClass("btn-default").removeAttr("style").text("返回");
+			$("button[name='close']").removeAttr("style").css("background-color","#c0c0c0").text("返回");
 		}
 		if($("button[name='close']").hasClass("hide")){
 			$("button[name='close']").removeClass("hide");
@@ -151,21 +156,21 @@ $(document).ready(function(){
 		}
 		$('#ordmodal').modal('toggle');
 	});
-	//-----逾時未還---------
+	//-----異常未還(逾時未還)---------
 	$("input[name^='MNRBtn']").click(function() {
 		formId = this.name;
 		ordId = this.name.substring(6);
 		ord_reday = $("input[name='ord_reday"+ ordId +"']").val();
-		$("h3[id='hard3']").html("逾時未還詳情");
+		$("h3[id='hard3']").html("異常未還詳情");
  		$("p[id='modalp1']").css({"font-weight":"bold","font-size":"14pt"}).html("還車日期："+ord_reday.substring(0,19));
  		ord_redayLong = Date.parse(ord_reday);
  		nowTime = new Date().getTime();
 		if(ord_redayLong > nowTime){
-			$("p[id='modalp2']").css({"font-weight":"bold","font-size":"14pt","color":"red"}).html("不符合逾時未還條件(還車時間<現在)");
+			$("p[id='modalp2']").css({"font-weight":"bold","font-size":"14pt","color":"red"}).html("不符合異常未還條件(還車時間<現在)");
 	  		$("button[name='check']").addClass("hide");
 	  		$("button[name='close']").removeClass("btn-success").addClass("btn-default").css("background-color","#c0c0c0").text("關閉");
 		}else{
-			$("p[id='modalp2']").css({"font-weight":"bold","font-size":"14pt","color":"green"}).html("已符合逾時未還條件(取車時間<現在)");
+			$("p[id='modalp2']").css({"font-weight":"bold","font-size":"14pt","color":"green"}).html("已符合異常未還條件(取車時間<現在)");
 			$("p[id='modalp3']").css({"font-weight":"bold","font-size":"14pt"}).html("請按<span style='color:red'>確認</span>鍵繼續");
 			$("button[name='close']").addClass("hide");
 		}
