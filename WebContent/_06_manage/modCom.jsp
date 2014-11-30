@@ -51,10 +51,10 @@
 		   </div>
          				
      	<!--修改商家form-->
-     	<form name="Update_company" enctype="multipart/form-data" id="updateComForm" action="<%=request.getContextPath()%>/Company.Update" 
-     	      method="POST" novalidate>
+     	<form name="Update_company" id="updateComForm" action="<%=request.getContextPath()%>/Company.Update" 
+     	      method="POST" enctype="multipart/form-data">
      	      <div class="col-lg-4">
-                 <div class="control-group form-group ">
+                 <div class="control-group form-group">
                      <label class="control-label">帳號:</label>
                      <div class="controls">
                          <input type="text" class="form-control" name="comAccount" id="com_account" 
@@ -65,7 +65,7 @@
                  </div>
                  <div class="control-group form-group">
                      <label class="control-label">修改新密碼:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="password" class="form-control" name="comPwd" id="com_pwd" 
                           placeholder="修改請輸入新密碼" value=""
                           data-toggle="tooltip" data-placement="top" title="<h5>請輸入6-12個字元，英文數字至少各一。<h5>"  >
@@ -74,7 +74,7 @@
                  </div>
                  <div class="control-group form-group">
                      <label class="control-label">確認新密碼:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="password" class="form-control" name="comPwdConfirm" id="com_pwd"
                           placeholder="請再次輸入新密碼" value=""
                           data-toggle="tooltip" data-placement="top" title="<h5>請再次輸入新密碼<h5>" >
@@ -82,7 +82,7 @@
                  </div>
                  <div class="control-group form-group">
                      <label>商家名稱:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="text" class="form-control" name="comName" id="com_name"
                           placeholder="" value="${LoginComOK.comName}" >
                      </div>
@@ -90,7 +90,7 @@
                  </div>
                  <div class="control-group form-group">
                      <label>負責人:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="text" class="form-control" name="comOwner" id="com_owner"
                           placeholder="" value="${LoginComOK.comOwner}">
                      </div>
@@ -100,7 +100,7 @@
              <div class="col-lg-5 col-lg-offset-1">
             	<div class="control-group form-group">
                      <label>營業統編:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="text" class="form-control" name="comVAT" id="com_vat" 
                          placeholder="" value="${LoginComOK.comVAT}" disabled>
                      </div>
@@ -108,7 +108,7 @@
                  </div>
 				<div class="control-group form-group">
                      <label>地址:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="text" class="form-control" name="comAddr" id="com_address" 
                          placeholder="" value="${LoginComOK.comAddr}">
                      </div>
@@ -116,7 +116,7 @@
                  </div>
                  <div class="control-group form-group">
                      <label>電話:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="tel" class="form-control" name="comTel" id="com_tel"
                           placeholder="" value="${LoginComOK.comTel}">
                      </div>
@@ -124,7 +124,7 @@
                  </div>
                  <div class="control-group form-group">
                      <label>fax:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="tel" class="form-control" name="comFax" id="com_fax"
                           placeholder="" value="${LoginComOK.comFax}">
                      </div>
