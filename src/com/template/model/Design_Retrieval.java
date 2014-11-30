@@ -62,8 +62,13 @@ public class Design_Retrieval extends HttpServlet {
 				System.out.println(designResult);
 			}
 			
-			httpout.print(designResult);
-			
+			// response designResult only if there is saved template for this company
+			if(designResult != null && designResult.trim().length() > 3){
+				httpout.print(designResult);
+			}else{
+				System.out.println("No designed template for current company.");
+			}
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

@@ -55,7 +55,7 @@
                     	<td id="${ProductVO.prodId}">${ProductVO.prodPrice}</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodPlate}</td>
                     	<td class="text-center">
-                        	<a href="#" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" id="${ProductVO.prodId}"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
+                        	<a href="#" class='btn btn-success'  data-toggle="modal" data-target="#editProduct" id="${ProductVO.prodId}"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                        		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct" id="${ProductVO.prodId}"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                          </td>
                     	</tr>
@@ -106,7 +106,7 @@
                     	<td id="${ProductVO.prodId}">${ProductVO.prodPrice}</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodPlate}</td>
                     	<td class="text-center">
-                   			<a href="#" id="${ProductVO.prodId}" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
+                   			<a href="#" id="${ProductVO.prodId}" class='btn btn-success'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                        		<a href="#" id="${ProductVO.prodId}" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                         </td>
                     	</tr>
@@ -157,7 +157,7 @@
                     	<td id="${ProductVO.prodId}">${ProductVO.prodPrice}</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodPlate}</td>
                     	<td class="text-center">
-               				<a href="#" id="${ProductVO.prodId}" class='btn btn-info'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
+               				<a href="#" id="${ProductVO.prodId}" class='btn btn-success'  data-toggle="modal" data-target="#editProduct" ><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                        		<a href="#" id="${ProductVO.prodId}" class="btn btn-danger " data-toggle="modal" data-target="#delProduct"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
                          </td>
                     	</tr>

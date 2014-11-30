@@ -245,9 +245,9 @@
 								<font size="-1" color="#FF0000">${ErrorMsg.errorProdPic}</font><br>
 							</div>
 							<br>
-							<button type="reset" class="btn btn-primary">取消</button>
+							<button type="submit" class="btn btn-success">新增</button>
+							<button type="reset" class="btn btn-danger">取消</button>
 							<font size="-1" color="#FF0000">${ErrorMsg.errTitle}</font>
-							<button type="submit" class="btn btn-danger">新增</button>
 						</div>
 					</div>
 				</form>
@@ -299,11 +299,8 @@
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
-<<<<<<< HEAD
- -->
-=======
 
->>>>>>> 20aceeb6ee3543725eb2a37dabefffc1d14a057e
+ -->
 	<script>
 		$("[data-toggle='tooltip']").tooltip({
 			html : true

@@ -78,6 +78,10 @@ $(document).ready(function(){
 					fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label.control-label").text();
 					fieldValue = field.val();
 					fieldValueDescription = field.find("option:selected").text();
+				}else if(fieldType == "PreBox"){
+					fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label.control-label").text();
+					fieldValue = field.val();
+					fieldValueDescription = field.find("option:selected").text();
 				}
 				
 				fieldObj.id = field.prop("id");
