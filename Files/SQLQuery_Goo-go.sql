@@ -12,18 +12,20 @@ use GGDB
 go
 
 --drop table 決定此程式設計順序
---IF EXISTS (SELECT name FROM GGDB.sys.tables WHERE name = N'Question_temp')
+--IF EXISTS (SELECT name FROM GGDB.sys.tables WHERE name = N'Ord_item')
 --BEGIN
+--drop table Ord_item;
+--drop table Product;
+--drop table Product_Type;
+--drop table Product_Kind;
+--drop table Question_temp;
+--drop table Accessory;
+--drop table Ord_temp;
+--drop table Answer;
+--drop table Orders;
+--drop table Ord_status;
 --drop table Member;
 --drop table Company;
---drop table Product;
---drop table Accessory;
---drop table Ord_status;
---drop table Orders;
---drop table Ord_item;
---drop table Question_temp;
---drop table Answer;
---drop table Ord_temp;
 --END
 
 --注意! 
