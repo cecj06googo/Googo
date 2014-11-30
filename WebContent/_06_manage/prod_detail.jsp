@@ -141,7 +141,7 @@
 							</tbody>
 						</table>
 						<p>
-							<a class='btn btn-info btn-cons' href="#" data-toggle="modal"
+							<a class='btn btn-success btn-cons' href="#" data-toggle="modal"
 								data-target="#editProduct" data-dismiss="modal" name="editD"><span
 								class="glyphicon glyphicon-edit"></span> 修改</a> <a href="#"
 								class="btn btn-danger btn-cons " data-toggle="modal"

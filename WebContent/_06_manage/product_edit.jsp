@@ -99,9 +99,9 @@
                 </div>
                 <font size="-1" color="#FF0000">${ErrorMsg.errorProdArticle}</font>
             </div>
-	        <button type="submit" class="btn btn-lg btn-danger pull-right">確認</button>
-	        <button type="reset" class="btn btn-lg btn-success pull-right" data-dismiss="modal">取消</button>
-	        
+	        <button type="reset" class="btn btn-lg btn-danger pull-right" data-dismiss="modal">取消</button>
+	        <button type="submit" class="btn btn-lg btn-success pull-right">確認</button>
+	         
 	      </form><!-- /.form-->
 		</div>
 	    </div>

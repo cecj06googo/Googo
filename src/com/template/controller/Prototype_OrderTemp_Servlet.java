@@ -34,14 +34,16 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 		 
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getParameter("command");
-//		String view = "/_07_order/placeOrder.jsp";
-		String successView = "/Temp/ApplySample_hooked.jsp";
 		int com_id = Integer.parseInt(request.getParameter("com_id_form_view"));
-//		String content = request.getParameter("content_form_view");
-		String content = new String(request.getParameter("content_form_view").getBytes("ISO-8859-1"),"UTF-8");
+		String content = "";
+		if(request.getParameter("content_form_view") != null){
+			content = new String(request.getParameter("content_form_view").getBytes("ISO-8859-1"),"UTF-8");	
+		}else{
+			System.out.println("no design content detected.");
+			return;
+		}
 		
 		String designResult = "";
-		//StringWriter out = new StringWriter();
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter httpout = response.getWriter();
 		
@@ -66,6 +68,10 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 			Prototype_OrderTemp_DAO dao = new Prototype_OrderTemp_DAO();
 			Prototype_OrderTemp_VO tempVo = dao.retrieve(com_id);
 			designResult = tempVo.getContent();
+			
+			if(designResult == null || designResult.trim().length() < 1){
+				designResult = "";
+			}// if there is no designed template for current company, show empty string instead of null 
 			
 			System.out.println("load content: \n" + designResult);
 			
