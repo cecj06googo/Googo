@@ -36,12 +36,6 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 		String command = request.getParameter("command");
 		int com_id = Integer.parseInt(request.getParameter("com_id_form_view"));
 		String content = "";
-		if(request.getParameter("content_form_view") != null){
-			content = new String(request.getParameter("content_form_view").getBytes("ISO-8859-1"),"UTF-8");	
-		}else{
-			System.out.println("no design content detected.");
-			return;
-		}
 		
 		String designResult = "";
 		response.setCharacterEncoding("UTF-8");
@@ -51,6 +45,13 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 		System.out.println("com id: " + com_id);
 		
 		if ("insert".equals(command)) {
+			
+			if(request.getParameter("content_form_view") != null){
+				content = new String(request.getParameter("content_form_view").getBytes("ISO-8859-1"),"UTF-8");	
+			}else{
+				System.out.println("no design content detected.");
+				return;
+			}
 			
 			System.out.println("insert content: \n" + content);
 			
