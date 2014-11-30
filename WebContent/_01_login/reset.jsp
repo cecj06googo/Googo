@@ -16,13 +16,13 @@
         <!--註冊 -->
         <div class="row">
         	<!--標頭-->
-            <div class="col-lg-12">
+            <div class="col-lg-5 col-lg-offset-2">
                 <h2 class="page-header"> 重設密碼 </h2>
             </div>
             </div><!--/.標頭-->
            <!--會員註冊內容-->
        		<div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-5 col-lg-offset-2">
 				
             	<jsp:include page="/_01_login/resetPwd.jsp" />
                 </div><!--/.col-lg-5-->

@@ -65,13 +65,17 @@
 
 <!-------------- /.流程顯示 ---------------->
 
-<form role="form" name="ord_for" novalidate action="<%=request.getContextPath()%>/ActionMem.do" method="post">
+<form role="form" name="ord_form" novalidate action="<%=request.getContextPath()%>/ActionMem.do" method="post">
 <!--------------- 黑箱作業 ----------------->
 <input type="hidden" name="action" value="insert" />
-<input type="hidden" name="mem_name" value="${ord_memVO.mem_name}" />
-<input type="hidden" name="mem_account" value="${ord_memVO.mem_account}" />
-<input type="hidden" name="mem_phone" value="${ord_memVO.mem_phone}" />  
-<input type="hidden" name="mem_tel" value="${ord_memVO.mem_tel}" />
+<input type="hidden" name="mem_name" value="${LoginMemOK.mem_name}" />
+<input type="hidden" name="mem_account" value="${LoginMemOK.mem_account}" />
+<input type="hidden" name="mem_phone" value="${LoginMemOK.mem_phone}" />  
+<input type="hidden" name="mem_tel" value="${LoginMemOK.mem_tel}" />
+<input type="hidden" name="item_name"  />
+<input type="hidden" name="item_email"  />
+<input type="hidden" name="item_phone"  />  
+<input type="hidden" name="item_tel"  />
 <!--member table phone和tel欄位設計  not null  -->
 <%-- <input type="hidden" name="com_id" value="${ord_comVO.comID}" />  session ord_comVO內 --%>
 <%-- <input type="hidden" name="prod_id" value="${ord_prod_id}" /> session ord_prod_id內 --%>
@@ -80,8 +84,8 @@
 
 <!-------------- 訂單第一頁 ----------------->
     <div class="row setup-content" id="step-1">
-        <div class="col-xs-12 div-back div-height">
-            <div class="col-xs-6 div-css">
+        <div class="col-xs-12 div-back div-height x-border">
+            <div class="col-xs-6">
             
             <span class="harder-font">訂車資訊</span>
                 <br><br>
@@ -110,10 +114,10 @@
                    </select>
 	            </div>
 	        </div>  
-	        <div class="col-xs-6 div-css ">
+	        <div class="col-xs-6 ">
 	        <p class="p-right">* 必填選項</p>
 		    </div>
-		    <div class="col-xs-6  div-css div-height-carView">
+		    <div class="col-xs-6 div-height-carView">
 		    <!-- 商品圖片 -->
 		    <figure>
 		    <figcaption  class="label-center"><label>車輛預覽</label></figcaption>
@@ -136,30 +140,30 @@
 <!-------------- 訂單第二頁 ------------------>
     <div class="row setup-content div-border" id="step-2">
         <div class="col-xs-12 div-back">
-            <div class="col-xs-6 div-css" >
+            <div class="col-xs-6" >
 	            <span class="harder-font">駕駛人資訊</span>
 	            <br><br>
                 <fieldset id="data_disabled">
                 <div class="form-group">
                     <label class="control-label "><span class="span-red">*</span>姓名</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" name="item_name" placeholder="ex:王小明" />
+                    <input maxlength="200" type="text" required="required" class="form-control" name="driver_name" placeholder="ex:王小明" />
                 </div>
                 <div class="form-group">
                     <label class="control-label"><span class="span-red">*</span>電子郵箱</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" name="item_email" placeholder="請輸入e-mail"  />
+                    <input maxlength="200" type="text" required="required" class="form-control" name="driver_email" placeholder="請輸入e-mail"  />
                 </div>
                 <div class="form-group">
                     <label class="control-label"><span class="span-red">*</span>確認郵箱</label>
-                    <input maxlength="200" type="text" required="required" class="form-control" name="item_email2" placeholder="請再次輸入e-mail"  />
+                    <input maxlength="200" type="text" required="required" class="form-control" name="driver_email2" placeholder="請再次輸入e-mail"  />
                 </div>
                 <div class="form-group">
                     <label class="control-label"><span class="span-space"></span>連絡電話</label><br>
-                    <span class="span-red">*</span>手機<input maxlength="200" type="text" required="required" name="item_phone" placeholder="請輸入手機"  />
-                    	市話<input maxlength="200" type="text" required="required" name="item_tel" placeholder="請輸入市話"  />
+                    <span class="span-red">*</span>手機<input maxlength="200" type="text" required="required" name="driver_phone" placeholder="請輸入手機"  />
+                    	市話<input maxlength="200" type="text" required="required" name="driver_tel" placeholder="請輸入市話"  />
                 </div> 
                 </fieldset>         
             </div>
-                  	        <div class="col-xs-6 div-css ">
+                  	        <div class="col-xs-6">
 	        <p class="p-right">* 必填選項</p>
 <!-- 	        放車子圖片 -->
 		            	<p class="x-center"><label>會員資料預覽</label></p>
@@ -186,7 +190,7 @@
 		            	<p class="x-center span-accept x-right"><input type="checkbox" id="memBox"/>同會員資料</p>
 		    </div>
                  <div class=" col-xs-12 ">
-		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >下一步</button>
+		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="two_next">下一頁</button>
 		    </div>
         </div>
     </div>
@@ -200,11 +204,11 @@
                 <!-- Begin: Modified by ranian -->
                 <textarea id="pritem_acc" name="pritem_acc">stand by for json bundle</textarea>
                 <input type="button" id="inspectCust" value="Inspect Customized Fields" />
-                <div class="col-xs-6 div-css">
+                <div class="col-xs-6">
                 	<div id="DesignResultTarget"></div>
                 </div>
                 <!-- End: Modified by ranian -->
-                <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
+                <button class="btn btn-success btn-lg pull-right" type="submit">送出</button>
             </div>
         </div>
     </div>
@@ -212,16 +216,7 @@
 </form>	
 
 <!-------------- 訂單第四頁 ------------------>
-<!-- submit後回來顯示第四頁  (最簡單的方法是連到另一支樣式一模一樣的jsp) -->
-<!-- c:if (訂單新增ok(Map物件) != null    -->
-    <div class="row setup-content div-border" id="step-4">
-        <div class="col-xs-12">
-            <div class="col-xs-12">
-                <h3>其他資訊</h3>
-                <button class="btn btn-success btn-lg pull-right" type="submit">Finish!</button>
-            </div>
-        </div>
-    </div>
+<!-- 跳轉/_07_order/ThanksForOrdering.jsp -->
 <!-------------- /.訂單第四頁 ---------------->		
 
 		<hr>
@@ -251,21 +246,39 @@ $(document).ready(function () {
 	});
 	// End: Modified by ranian
 	
-	// checkbox
-	$("#memBox").click(function() {
+	
+	
+	//訂單第二頁nextBtn
+	$("#two_next").click(function() {
 		if ($("#memBox").prop('checked')) { 
 			$("input[name='item_name']").val($("input[name='mem_name']").val());
 			$("input[name='item_email']").val($("input[name='mem_account']").val());
-			$("input[name='item_email2']").val($("input[name='mem_account']").val());
 			$("input[name='item_phone']").val($("input[name='mem_phone']").val());
 			$("input[name='item_tel']").val($("input[name='mem_tel']").val());
+		} else if(!($("#memBox").prop('checked'))){
+			$("input[name='item_name']").val($("input[name='driver_name']").val());
+			$("input[name='item_email']").val($("input[name='driver_email']").val());
+			$("input[name='item_phone']").val($("input[name='driver_phone']").val());
+			$("input[name='item_tel']").val($("input[name='driver_tel']").val());
+		}
+	});
+	// End checkbox
+	
+	// checkbox
+	$("#memBox").click(function() {
+		if ($("#memBox").prop('checked')) { 
+			$("input[name='driver_name']").val($("input[name='mem_name']").val());
+			$("input[name='driver_email']").val($("input[name='mem_account']").val());
+			$("input[name='driver_email2']").val($("input[name='mem_account']").val());
+			$("input[name='driver_phone']").val($("input[name='mem_phone']").val());
+			$("input[name='driver_tel']").val($("input[name='mem_tel']").val());
 			$("#data_disabled").attr("disabled",true);
 		} else {
-			$("input[name='item_name']").val(null);
-			$("input[name='item_email']").val(null);
-			$("input[name='item_email2']").val(null);
-			$("input[name='item_phone']").val(null);
-			$("input[name='item_tel']").val(null);
+			$("input[name='driver_name']").val(null);
+			$("input[name='driver_email']").val(null);
+			$("input[name='driver_email2']").val(null);
+			$("input[name='driver_phone']").val(null);
+			$("input[name='driver_tel']").val(null);
 			$("#data_disabled").attr("disabled",false);
 		}
 	});
@@ -359,7 +372,7 @@ $(document).ready(function () {
         var curStep = $(this).closest(".setup-content"),
              curStepBtn = curStep.attr("id"),
              nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-             curInputs = curStep.find("input[type='aa'],input[type='bb']"),
+             curInputs = curStep.find("input[type='text'],input[type='url']"),
             isValid = true;         //("input[type='text'],input[type='url']")
 
         $(".form-group").removeClass("has-error");

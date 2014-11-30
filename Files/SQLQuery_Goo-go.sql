@@ -12,18 +12,20 @@ use GGDB
 go
 
 --drop table 決定此程式設計順序
---IF EXISTS (SELECT name FROM GGDB.sys.tables WHERE name = N'Question_temp')
+--IF EXISTS (SELECT name FROM GGDB.sys.tables WHERE name = N'Ord_item')
 --BEGIN
+--drop table Ord_item;
+--drop table Product;
+--drop table Product_Type;
+--drop table Product_Kind;
+--drop table Question_temp;
+--drop table Accessory;
+--drop table Ord_temp;
+--drop table Answer;
+--drop table Orders;
+--drop table Ord_status;
 --drop table Member;
 --drop table Company;
---drop table Product;
---drop table Accessory;
---drop table Ord_status;
---drop table Orders;
---drop table Ord_item;
---drop table Question_temp;
---drop table Answer;
---drop table Ord_temp;
 --END
 
 --注意! 
@@ -162,9 +164,9 @@ insert into Product values (1,'一樣汽車名稱',1,4000,0.45,0x00,'ss',null,nu
 insert into Product values (1,'一樣汽車名稱',1,4000,0.45,0x00,'ss',null,null,null,1,null,null,null,56,1);
 insert into Product values (2,'野狼125',2,3000,0.93,0x00,'ss',null,null,null,1,null,null,null,5,1);
 insert into Product values (2,'競戰150',2,4000,0.77,0x00,'ss',null,null,null,1,null,null,null,6,1);
-insert into Product values (3,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,null,null,null,7,1);
-insert into Product values (3,'保時捷-T1',1,6000,0.89,0x00,'ss',null,null,null,1,null,null,null,8,1);
-insert into Product values (3,'Fighter150',2,7000,0.95,0x00,'ss',null,null,null,1,null,null,null,9,1);
+insert into Product values (4,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,null,null,null,7,1);
+insert into Product values (4,'保時捷-T1',1,6000,0.89,0x00,'ss',null,null,null,1,null,null,null,8,1);
+insert into Product values (4,'Fighter150',2,7000,0.95,0x00,'ss',null,null,null,1,null,null,null,9,1);
 insert into Product values (4,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,null,null,null,10,1);
 insert into Product values (4,'保時捷-T1',1,6000,0.89,0x00,'ss',null,null,null,1,null,null,null,11,1);
 insert into Product values (4,'Fighter150',2,7000,0.95,0x00,'ss',null,null,null,1,null,null,null,12,1);

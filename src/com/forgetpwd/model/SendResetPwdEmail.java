@@ -1,5 +1,7 @@
 package com.forgetpwd.model;
 
+import java.util.Date;
+
 import com.member.model.MemVO;
 import com.util.SendMail;
 
@@ -17,6 +19,7 @@ public class SendResetPwdEmail {
 		
 	}
 */	
+	
 	public static void sendMemResetEmail(MemVO memVO,String ServerName,int LocalPort,String ContextPath){
 		SendMail sendmail = new SendMail();
 		String receiverAddress = memVO.getMem_account();

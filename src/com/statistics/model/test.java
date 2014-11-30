@@ -20,12 +20,23 @@ public class test {
 
 	public static void main(String[] args) {
 		DataDAO dataDAO=new DataDAO();
-		List<DordersVO> list=dataDAO.Area(3);
+		List<DordersVO> list=dataDAO.Area(6);
 		System.out.println(list);
 		//1.將訂單明細轉json
 		String areaString="";
 		try{
 		//創陣列	
+
+		if(list.size()==1){
+			List ll =new LinkedList();
+			Map m1 =new LinkedHashMap();
+			m1.put("day", "0");
+
+			ll.add(m1);
+			areaString=JSONValue.toJSONString(ll);
+			System.out.println(areaString);
+		}
+		
 		List l1 =new  LinkedList();
 		for(int i=1;i<list.size();i++){
 			//如果日期與上一個不一樣    1跟0不一樣

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import com.company.model.CompanyService;
 import com.company.model.CompanyVO;
+import com.member.model.MemVO;
 import com.orders.model.OrdersService;
 import com.orders.model.OrdersVO;
 import com.products.model.ProductVO;
@@ -55,8 +56,8 @@ public class OrdersActionMem extends HttpServlet {
 			//logic給值
 			Integer ord_status = 1;
 			// 暫時接收參數
-			Object _com_id = "";
-			Object _mem_id = "";
+//			Object _com_id = "";
+//			Object _mem_id = "";
 			String _ord_getday = "";
 			String _ord_reday = "";
 			Object _item_total = "";
@@ -77,6 +78,7 @@ public class OrdersActionMem extends HttpServlet {
 			Integer prod_id = null;
 			Integer acc_id = 0; //用不到了
 			CompanyVO comVO = new CompanyVO();
+			MemVO memVO = new MemVO();
 			//給值
 			ord_time = new Timestamp(System.currentTimeMillis());
 
@@ -116,8 +118,6 @@ public class OrdersActionMem extends HttpServlet {
 							_ord_reday = value;
 						} else if (name.equalsIgnoreCase("item_total")) {
 							_item_total = value;
-						} else if (name.equalsIgnoreCase("prod_id")) {
-							_prod_id = value;
 						} else if (name.equalsIgnoreCase("item_name")) {
 							item_name = value;
 						} else if (name.equalsIgnoreCase("item_phone")) {
@@ -129,7 +129,7 @@ public class OrdersActionMem extends HttpServlet {
 						} else if (name.equalsIgnoreCase("pritem_acc")) {
 							pritem_acc = value;
 						} else if (name.equalsIgnoreCase("item_all")) {
-							item_all = value;
+							item_all = value; //目前沒用到
 						} else {
 							continue;
 						}
@@ -137,13 +137,13 @@ public class OrdersActionMem extends HttpServlet {
 					
 					//接值 (com在商品VO, mem在session內的MemVO)
 					comVO = (CompanyVO) session.getAttribute("ord_comVO");
-					_ord_getday = request.getParameter("ord_getday");
-					_ord_reday = request.getParameter("ord_reday");
-					
+					memVO = (MemVO) session.getAttribute("LoginMemOK");
+//					_ord_getday = request.getParameter("ord_getday");
+//					_ord_reday = request.getParameter("ord_reday");
 					_prod_id = session.getAttribute("ord_prod_id");
-//					_mem_id = session.getAttribute("mem_id");
-					_item_total = request.getParameter("prod_price");
 					
+//					_item_total = request.getParameter("prod_price");
+					_item_total = 3000;
 					// ------------------資料驗證+轉型----------------------
 					// 日期轉型限定日期選擇器選擇的值，使用者自行輸入的話很有可能會轉不了
 					// 檢查使用者輸入資料
@@ -154,7 +154,7 @@ public class OrdersActionMem extends HttpServlet {
 						System.out.println("com_id出錯");
 					} 
 					try {
-						mem_id = 1;
+						mem_id = memVO.getMem_id();
 //								Integer.parseInt(_mem_id.toString().trim());
 					} catch (NumberFormatException e) {
 						errorMsg.put("errorMem_id", "看到鬼，會員ID應該為整數");
@@ -186,6 +186,8 @@ public class OrdersActionMem extends HttpServlet {
 					if (item_name == null || item_name.trim().length() == 0) {
 						errorMsg.put("errorItem_name", "領車人姓名欄必須輸入");
 					}
+					
+					
 					if (item_phone.trim().length() != 0
 							|| item_tel.trim().length() != 0) { // 其中一項有輸入，繼續比對
 						if (item_phone.trim().length() != 0) {// 手機有輸入
@@ -209,19 +211,22 @@ public class OrdersActionMem extends HttpServlet {
 					if (item_email == null || item_email.trim().length() == 0) {
 						errorMsg.put("errorEmail", "Email必須輸入");
 					}
-
+					System.out.println("item_total:"+item_total);
+					System.out.println("item_phone:"+item_phone);
+					System.out.println("item_tel:"+item_tel);
+					System.out.println("item_email:"+item_email);
 					// pritem_acc , item_all 可不輸入;
 
 					// ---------------寫入database----------------------
 					if (errorMsg.isEmpty()) {
 						OrdersService odrSvc = new OrdersService();
-						OrdersVO ordersVO = odrSvc.addOrder(ord_status, com_id,
+						odrSvc.addOrder(ord_status, com_id,
 								mem_id, ord_time, ord_getday, ord_reday,
 								item_total, prod_id, acc_id, item_name,
 								item_phone, item_tel, item_email, pritem_acc,
 								item_all);
 
-						request.setAttribute("ordersVO", ordersVO);
+//						request.setAttribute("ordersVO", ordersVO);
 						msgOK.put("InsertOK",
 								"<Font color='red'>訂單新增成功</Font><hr>");
 						String url = "/_07_order/ThanksForOrdering.jsp";

@@ -152,20 +152,25 @@
         <!-- Features Section -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">簡介Goo-go</h2>
+                <h2 class="page-header">Goo-go簡介</h2>
             </div>
             <div class="col-md-6">
-                <p>The Modern Business template by Start Bootstrap includes:</p>
+                <p>Goo-go提供給您的便捷服務:</p>
                 <ul>
-                    <li><strong>Bootstrap v3.2.0</strong>
+                    <li><strong>簡約大方的使用介面，讓您能快速上手</strong>
                     </li>
-                    <li>jQuery v1.11.0</li>
-                    <li>Font Awesome v4.1.0</li>
-                    <li>Working PHP contact form with validation</li>
-                    <li>Unstyled page elements for easy customization</li>
-                    <li>17 HTML pages</li>
+                    <li><strong>根據地區及車種，快速找到符合您需求的交通工具</strong>
+                    </li>
+                    <li><strong>景點推薦，讓您不需煩惱假日去處，並幫您搜尋附近的商店。</strong>
+                    </li>
+                    <li><strong>利用Google地圖，幫您快速找到離您最近的商家。</strong>
+                    </li>
+                    <li><strong>貼心的價格搜尋與多視角商品圖片，讓您找到最適合的車輛。</strong>
+                    </li>
+                    <li><strong>簡便的租車流程，省略繁複的租車步驟，節省您的時間與心力。</strong>
+                    </li>
                 </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+                <p>Goo-go的中心主旨是為了帶給使用者透明化的價格，讓租車市場更符合供需原則以達價格公平與公正。在此平台的商家，經過條件的篩選，提升平台商家的素質，讓使用者能更安心租車。</p>
             </div>
             <div class="col-md-6">
                 <img class="img-responsive" src="${pageContext.request.contextPath}/img/40.jpg" alt="">

@@ -57,25 +57,7 @@
 		        },
 	        	
 		        fields: {
-		        	user_account: {
-		        		trigger: 'keyup blur',
-		                message: '此E-mail無效',
-		                validators: {
-		                    notEmpty: {
-		                        message: '帳號不可空白，請填入E-mail'
-		                    },
-		                    emailAddress: {
-		                        message: '此E-mail無效,請輸入正確格式'
-		                    },
-		                    remote: {
-                                url: 'memAccountCheck.jsp',
-                                type: "post",
-                                async: false,
-                                message: '帳號重複，請重新輸入',
-                            },
-		                    
-		                }
-		            },
+		        	
 		            newpwd: {
 		            	trigger:'keyup blur',
 		                validators: {
@@ -128,3 +110,4 @@
 		});
    
 	 })(jQuery)
+</script>
