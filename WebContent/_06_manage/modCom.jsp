@@ -44,7 +44,7 @@
 <!--          			<br> -->
         
         <div class="col-sm-12 col-sm-offset-1">
-			<img class="img-responsive" 
+			<img class="img-responsive" id="comImg"
 				src='${pageContext.servletContext.contextPath}/image?comID=${LoginComOK.comID}' alt=""> <!-- http://placehold.it/750x450  -->
 				
 				<br><br>
@@ -131,7 +131,8 @@
                      <span><font color="red" size="-1">${errorMsgs.errorFax}</font></span>
                  </div>
                  <div class="control-group form-group">
-					 <label>商家封面圖片:</label> <input type="file" name="comPic">
+					 <label>商家封面圖片:</label> 
+					 <input type="file" name="comLogo" id="comPic" onchange="fileShow();" accept="image/*">
 				 </div>
 				 <span></span>
                 </div> <!-- 分列 --> 
@@ -197,6 +198,21 @@ $("#selectModCom").addClass("active");
 
 <script>
 $("[data-toggle='tooltip']").tooltip({html : true });
+
+
+// 即時顯示圖片
+function fileShow() {
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		var fileContent = e.target.result;
+		var show = document.getElementById("comImg");
+		show.setAttribute("src", fileContent);
+	}
+	file = document.getElementById("comPic").files[0];
+	reader.readAsDataURL(file);
+}
+
+
 
 (function($){
 	$(document).ready(function() {
