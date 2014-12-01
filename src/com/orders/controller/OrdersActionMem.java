@@ -14,23 +14,63 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.company.model.CompanyService;
+
+
+
+
 import com.company.model.CompanyVO;
 import com.member.model.MemVO;
 import com.orders.model.OrdersService;
 import com.orders.model.OrdersVO;
-import com.products.model.ProductVO;
-import com.products.model.ProductsDAO;
+
 
 public class OrdersActionMem extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	public Map<String, String> errorMsg = new HashMap<String, String>();
+	public Map<String, String> msgOK = new HashMap<String, String>();
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+//		System.out.println("orderStatus:"+request.getParameter("orderStatus"));
+//		System.out.println("orderTime:"+request.getParameter("orderTime"));
+		page(request,response);
+		
 	}
 
+	protected void page(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException{
+		HttpSession session = request.getSession();
+		request.setAttribute("MsgOK", msgOK); // 顯示成功訊息
+	//分頁用
+		errorMsg.clear();
+		msgOK.clear();
+		MemVO memVO = new MemVO();
+		Integer userId = null;
+		Integer orderStatus = null;
+		String orderTime = "";
+		
+		memVO = (MemVO) session.getAttribute("LoginMemOK");
+		userId = memVO.getMem_id();
+		orderStatus = Integer.parseInt(request.getParameter("orderStatus").toString());
+		orderTime = request.getParameter("orderTime").toString();
+	
+		OrdersService odrSvc = new OrdersService();
+		List<OrdersVO> ordVO = odrSvc.ordSearch_com(userId,
+				orderStatus, orderTime);
+		request.setAttribute("ordVO", ordVO);
+		request.setAttribute("orderStatusMem", orderStatus);
+		request.setAttribute("orderTimeMem", orderTime);
+		if (ordVO.isEmpty()) {
+			msgOK.put("SearchNull", "沒有資料");
+		}
+		String url = "/_04_member/orderMem.jsp";
+		RequestDispatcher successView = request
+				.getRequestDispatcher(url);
+		successView.forward(request, response);
+	}
+	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -38,6 +78,7 @@ public class OrdersActionMem extends HttpServlet {
 		Map<String, String> errorMsg = new HashMap<String, String>();
 		Map<String, String> msgOK = new HashMap<String, String>();
 		request.setAttribute("ErrorMsg", errorMsg); // 顯示錯誤訊息
+		request.setAttribute("MsgOK", msgOK); // 顯示成功訊息
 		String action = request.getParameter("action");
 		//---訂單狀態對照表
 		// 1 ('未處理');
@@ -53,6 +94,8 @@ public class OrdersActionMem extends HttpServlet {
 		System.out.println("action = " + action);
 		
 		if ("insert".equals(action)) {
+			errorMsg.clear();
+			msgOK.clear();
 			//logic給值
 			Integer ord_status = 1;
 			// 暫時接收參數
@@ -68,7 +111,7 @@ public class OrdersActionMem extends HttpServlet {
 			String item_tel = "";
 			String item_email = "";
 			String pritem_acc = "";
-			String item_all = "";
+			String item_all = "abc";
 			Integer com_id = null;
 			Integer mem_id = null;
 			Timestamp ord_time = null;
@@ -130,7 +173,9 @@ public class OrdersActionMem extends HttpServlet {
 							pritem_acc = value;
 						} else if (name.equalsIgnoreCase("item_all")) {
 							item_all = value; //目前沒用到
-						} else {
+						} else if (name.equalsIgnoreCase("prod_id")) {
+							_prod_id = value;
+						}else{
 							continue;
 						}
 					} // end while
@@ -138,9 +183,8 @@ public class OrdersActionMem extends HttpServlet {
 					//接值 (com在商品VO, mem在session內的MemVO)
 					comVO = (CompanyVO) session.getAttribute("ord_comVO");
 					memVO = (MemVO) session.getAttribute("LoginMemOK");
-//					_ord_getday = request.getParameter("ord_getday");
-//					_ord_reday = request.getParameter("ord_reday");
-					_prod_id = session.getAttribute("ord_prod_id");
+
+//					_prod_id = session.getAttribute("prod_id");
 					
 //					_item_total = request.getParameter("prod_price");
 					_item_total = 3000;
@@ -250,5 +294,143 @@ public class OrdersActionMem extends HttpServlet {
 				e.printStackTrace();
 			}
 		} // end insert
+		
+		if ("selectMem".equals(action)) {
+			errorMsg.clear();
+			msgOK.clear();
+			try {
+				// ------------------資料接收----------------------
+				// String暫時接收屬性
+				String _orderStatus = "";
+				// 真接收屬性
+				MemVO memVO = new MemVO();
+				Integer mem_id = null;
+				Integer orderStatus = null;
+				String orderTime = "";
+				try {
+					memVO = (MemVO) session.getAttribute("LoginMemOK");
+					mem_id = memVO.getMem_id();
+					_orderStatus = request.getParameter("orderStatus");
+					orderTime = request.getParameter("orderTime");
+				} catch (Exception e) {
+					System.out.println("selectMem 資料接收出錯");
+					e.printStackTrace();
+				}
+				// ------------------資料驗證+轉型----------------------
+				// 其實也可以直接轉(值都是用選擇器選的)，只怕有其他未知安全漏洞
+				try {
+					orderStatus = Integer.parseInt(_orderStatus.toString()
+							.trim());
+				} catch (NumberFormatException e) {
+					errorMsg.put("ErrOrderStatus", "請選擇訂單狀態");
+				} catch (Exception e) {
+					errorMsg.put("ErrOrderStatus", "請選擇訂單狀態");
+				}
+
+				if (orderTime.trim().length() < 2
+						|| orderTime.trim().length() > 3) {
+					errorMsg.put("ErrOrderTime", "請選擇訂單時間");
+				}
+
+				/******************* (存取資料) *********************/
+				if (errorMsg.isEmpty()) {
+					OrdersService odrSvc = new OrdersService();
+					List<OrdersVO> ordVO = odrSvc.ordSearch_mem(mem_id,
+							orderStatus, orderTime);
+					request.setAttribute("ordVO", ordVO);
+					if (ordVO.isEmpty()) {
+						msgOK.put("SearchNull", "沒有資料");
+					}
+				}
+
+				/******************* (轉向) *********************/
+				request.setAttribute("orderStatusMem", orderStatus);
+				request.setAttribute("orderTimeMem", orderTime);
+				String url = "/_04_member/orderMem.jsp";
+				RequestDispatcher successView = request
+						.getRequestDispatcher(url);
+				successView.forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} // end selectMem
+		
+		if ("cancelMem".equals(action)) {
+			// 訂單狀態(5 = 會員取消 )
+			Integer ord_status = 5;
+			errorMsg.clear();
+			msgOK.clear();
+			
+			MemVO memVO = new MemVO();
+			Integer mem_id = null;
+			Integer ord_id = null;
+			Integer orderStatus = null;
+			String orderTime = "";
+			// 現在時間
+			Timestamp updateTime = null;
+			// ------------------給值----------------------
+			try {
+				updateTime = new Timestamp(System.currentTimeMillis());
+				memVO = (MemVO) session.getAttribute("LoginMemOK");
+				mem_id = memVO.getMem_id();
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("session內的'memVO'物件接收出錯");
+			}
+			// ------------------接值----------------------
+			ord_id = Integer.parseInt(request.getParameter("ord_id"));
+			orderStatus = Integer.parseInt(request.getParameter("orderStatus"));
+			orderTime = request.getParameter("orderTime");
+			/******************* (存取資料) *********************/
+				OrdersService odrSvc = new OrdersService();
+				odrSvc.ordCancel(ord_id, ord_status, updateTime);
+				List<OrdersVO> ordVO = odrSvc.ordSearch_mem(mem_id,
+						orderStatus, orderTime);
+				request.setAttribute("ordVO", ordVO);
+				request.setAttribute("orderStatusMem", orderStatus);
+				request.setAttribute("orderTimeMem", orderTime);
+				if (ordVO.isEmpty()) {
+					msgOK.put("SearchNull", "沒有資料");
+				}
+			
+			/******************* (轉向) *********************/
+			String url = "/_04_member/orderMem.jsp";
+			RequestDispatcher successView = request
+					.getRequestDispatcher(url);
+			successView.forward(request, response);
+			/***********************************************/
+		} // end cancelMem
+				
+		
+		
+		if ("mem_ord".equals(action)) {
+			// 訂單新增成功頁面，會員點頁面上"訂單管理"btn會跑這onload
+			// 訂單狀態(1 = 未處理 )
+			errorMsg.clear();
+			msgOK.clear();
+			Integer ord_status = 1;
+			String orderTime = "1W";
+			Integer mem_id = null;
+			try {
+				MemVO memVO = new MemVO();
+				memVO = (MemVO) session.getAttribute("LoginMemOK");
+				mem_id = memVO.getMem_id();
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("session內的'memVO'物件接收出錯");
+			}
+			/******************* (存取資料+轉向) *********************/
+			OrdersService odrSvc = new OrdersService();
+			List<OrdersVO> ordVO = odrSvc.ordSearch_mem(mem_id, ord_status,
+					orderTime);
+			System.out.println("(條件)未處理訂單數量:" + ordVO.size());
+			request.setAttribute("ordVO", ordVO);
+			request.setAttribute("orderStatusMem", ord_status);
+			request.setAttribute("orderTimeMem", orderTime);
+			String url = "/_04_member/orderMem.jsp";
+			RequestDispatcher successView = request.getRequestDispatcher(url);
+			successView.forward(request, response);
+			/******************* (以上不做驗證) *********************/
+		} // end mem_ord
 	} // end doPost
 } // end class

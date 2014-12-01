@@ -34,6 +34,10 @@ public class OrdersVO implements java.io.Serializable {
 	//Member table欄位
 	private String mem_account;
 	
+	//Company table欄位
+	private String com_account;
+	private String com_name;
+	
 	//Product table欄位
 	private String prod_name;  //商品名稱
 	private String prod_plate; //車牌
@@ -44,6 +48,20 @@ public class OrdersVO implements java.io.Serializable {
 	private Double acc_price;  //配件價格
 	private String acc_detail; //配件明細(名稱?)
 	
+	
+	
+	public String getCom_name() {
+		return com_name;
+	}
+	public void setCom_name(String com_name) {
+		this.com_name = com_name;
+	}
+	public String getCom_account() {
+		return com_account;
+	}
+	public void setCom_account(String com_account) {
+		this.com_account = com_account;
+	}
 	public String getProd_name() {
 		return prod_name;
 	}

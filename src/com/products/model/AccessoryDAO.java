@@ -19,7 +19,7 @@ public class AccessoryDAO implements AccessoryDAO_interface {
 			+ "(acc_name, com_id, acc_detail, acc_pic, acc_price, acc_status) "
 			+ "VALUES (?, ?, ?, ?, ?, ?)";//6個
 	// ACC ID  IDENTITY
-	private static final String GET_ALL_ACCESSORYS = "SELECT * FROM Accessory WHERE com_id = ? AND acc_status = 1";
+	private static final String GET_ALL_ACCESSORYS = "SELECT * FROM Accessory WHERE com_id = ? AND acc_status = 1 order by acc_name";
 
 	private static final String DELETE_ACCESSORY = "UPDATE Accessory SET acc_status = 0 WHERE prod_id = ? ";
 
@@ -101,7 +101,6 @@ public class AccessoryDAO implements AccessoryDAO_interface {
 				accVO.setAccName(rs.getString("acc_name"));
 				accVO.setAccPrice(rs.getDouble("acc_price"));
 				accVO.setAccDetail(rs.getString("acc_detail"));
-				accVO.setAccPic(rs.getBytes("acc_pic"));
 				list.add(accVO);
 				// System.out.println("in VO:"+accVO.getComId());
 			}

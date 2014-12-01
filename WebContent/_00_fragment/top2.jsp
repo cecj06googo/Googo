@@ -136,7 +136,10 @@
                                 <a href="<c:url value='/prod.show'/>">商品管理</a>
                             </li>
                             <li>
-                                <a href="<c:url value='/_06_manage/AccInsert.jsp'/>">配件</a>
+                                <a href="<c:url value='/_06_manage/AccInsert.jsp'/>">配件上架</a>
+                            </li>
+                            <li>
+                                <a href="<c:url value='/acc.show'/>">配件管理</a>
                             </li>
                         </ul>
                     </li>

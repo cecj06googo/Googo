@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.orders.model.*"%>
+<%@ page import="com.orders.model.OrdersVO"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>我的訂單</title>
+<title>訂單管理</title>
 </head>
 <body>
 	<!-- top1 -->
@@ -126,6 +126,8 @@
 							<input class="btn btn-success" type="button" value="接受訂單 "title="接受訂單" name="AcceptBtn${ordVO.ord_id}" /> 
 							<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
 							<input type="hidden" name="action" value="accept">
+							<input type="hidden" name="orderStatus" value="${orderStatusCom}"/>			
+							<input type="hidden" name="orderTime" value="${orderTimeCom}"/>
 						</FORM>
 					</td>
 					</c:if>
@@ -137,6 +139,8 @@
 							<input class="btn btn-primary" type="button" value="取車確認 "title="取車確認" name="minusCarBtn${ordVO.ord_id}" /> 
 							<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
 							<input type="hidden" name="action" value="minusCar">
+							<input type="hidden" name="orderStatus" value="${orderStatusCom}"/>			
+							<input type="hidden" name="orderTime" value="${orderTimeCom}"/>
 						</FORM>
 					</td>
 					</c:if>
@@ -148,18 +152,17 @@
 							<input class="btn btn-warning" type="button" value="還車確認 "title="還車確認" name="plusCarBtn${ordVO.ord_id}" /> 
 							<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
 							<input type="hidden" name="action" value="plusCar">
+							<input type="hidden" name="orderStatus" value="${orderStatusCom}"/>			
+							<input type="hidden" name="orderTime" value="${orderTimeCom}"/>
 						</FORM>
 					</td>
 					</c:if>
 					
 					<c:if test="${ordVO.status_char == '已完成'}">
 					<td  colspan="2" >
-						<FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/ActionCom.do" >
 							<input class="btn btn-info" type="button" value="訂單詳情 "title="訂單詳情" name="CompleteBtn${ordVO.ord_id}" /> 
 							<input type="hidden" name="ord_id" value="${ordVO.ord_id}">
 							<input type="hidden" name="lastuptime${ordVO.ord_id}" value="${ordVO.ord_lastuptime}">
-						</FORM>
 					</td>
 					</c:if>
 <!--td 7+8 訂單異常流程動作按鈕樣式 -->
@@ -200,6 +203,8 @@
 							<input type="hidden" name="action" value="cancelCom" id="action${ordVO.ord_id}"/>
 							<input type="hidden" name="ord_getday${ordVO.ord_id}" value="${ordVO.ord_getday}"/>			
 							<input type="hidden" name="ord_time${ordVO.ord_id}" value="${ordVO.ord_time}"/>
+							<input type="hidden" name="orderStatus" value="${orderStatusCom}"/>			
+							<input type="hidden" name="orderTime" value="${orderTimeCom}"/>
 						</FORM>
 					</td>
 					</c:if>
@@ -212,6 +217,8 @@
 						<input type="hidden" name="ord_id" value="${ordVO.ord_id}"/>
 						<input type="hidden" name="ord_getday${ordVO.ord_id}" value="${ordVO.ord_getday}"/>
 						<input type="hidden" name="action" value="MemTimeOut"/>	
+						<input type="hidden" name="orderStatus" value="${orderStatusCom}"/>			
+						<input type="hidden" name="orderTime" value="${orderTimeCom}"/>
 					</FORM>
 					</td>
 					</c:if>
@@ -220,10 +227,12 @@
 					<td>
 					<FORM METHOD="post"
 							ACTION="<%=request.getContextPath()%>/ActionCom.do" id="MNRBtn${ordVO.ord_id}">
-						<input class="btn btn-danger" type="button" value="逾時未還" title="逾時未還" name="MNRBtn${ordVO.ord_id}">
+						<input class="btn btn-danger" type="button" value="異常未還" title="異常未還" name="MNRBtn${ordVO.ord_id}">
 						<input type="hidden" name="ord_id" value="${ordVO.ord_id}"/>
 						<input type="hidden" name="ord_reday${ordVO.ord_id}" value="${ordVO.ord_reday}"/>
-						<input type="hidden" name="action" value="MemNotReturn"/>	
+						<input type="hidden" name="action" value="MemNotReturn"/>
+						<input type="hidden" name="orderStatus" value="${orderStatusCom}"/>			
+						<input type="hidden" name="orderTime" value="${orderTimeCom}"/>	
 					</FORM>
 					</td>
 					</c:if>
@@ -236,7 +245,6 @@
 				<div id="collapseOne${ordVO.ord_id}" class="panel-collapse collapse">
                         <div class="panel-body">
                         	<span>訂單編號: ${ordVO.ord_id}</span><br>
-                        	
                         	<span>訂購時間: ${ordVO.ord_time}</span><br>
                         	<span>取車日期: ${ordVO.ord_getday}</span><br>
                         	<span>還車日期: ${ordVO.ord_reday}</span><br>
@@ -248,7 +256,7 @@
                         	<span>連絡人信箱: ${ordVO.item_email  		== null ? "無": ordVO.item_email }</span><br>
                         	<span>配件名稱: <span class="pritem_acc">${ordVO.pritem_acc  		== null ? "無": ordVO.pritem_acc }</span></span><br>
                         	<span>商家自訂欄位(目前無): ${ordVO.item_all  == null ? "無": ordVO.item_all }</span><br>
-                        	<span>會員帳號: ${ordVO.mem_account}</span><br>
+                        	<span>會員e-mail: ${ordVO.mem_account}</span><br>
                         	<span>商品名稱: ${ordVO.prod_name}</span><br>
                         	<span>車牌: ${ordVO.prod_plate}</span><br>
                         	<span>商品價格: ${ordVO.prod_price}</span><br>
@@ -272,11 +280,13 @@
 						<c:forEach var="i" begin="1" end="<%=pageNumber%>">
 							<c:if test="${i == whichPage}">
 								<li class="active"><a
-									href="${pageContext.request.contextPath}/ActionCom.do?whichPage=${i}">${i}</a></li>
+									href="${pageContext.request.contextPath}/ActionCom.do?whichPage=${i}
+									&orderStatus=${orderStatusCom}&orderTime=${orderTimeCom}">${i}</a></li>
 							</c:if>
 							<c:if test="${i != whichPage}">
 								<li><a
-									href="${pageContext.request.contextPath}/ActionCom.do?whichPage=${i}">${i}</a></li>
+									href="${pageContext.request.contextPath}/ActionCom.do?whichPage=${i}
+									&orderStatus=${orderStatusCom}&orderTime=${orderTimeCom}">${i}</a></li>
 							</c:if>
 						</c:forEach>
 						<li><a href="#">&raquo;</a></li>
@@ -320,7 +330,7 @@
 		    <a href="http://web110.ntpd.gov.tw/#" target="_blank" title="開啟新視窗前往報案台" class="hide"><span><i class="glyphicon glyphicon-earphone"></i>110網路報案</span></a>
 		  </div>
 		  <div class="modal-footer">
-		  	<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" name="close">返回</button>
+		  	<button class="btn btn-default" style="background-color:#c0c0c0" data-dismiss="modal" aria-hidden="true" name="close">返回</button>
   				<button class="btn btn-danger"  data-dismiss="modal" name="check">確認</button>
 		  </div></div></div></div>
 	<!-- /.綜合對話框(改由jQuery控制內容) -->

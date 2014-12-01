@@ -52,12 +52,14 @@ public class UpdateCompany extends HttpServlet {
 		String comAccount = null, comPwd = null, comName = null, comOwner = null, 
 			   comAddr = null, comTel = null, comFax = null, comVAT = null;
 
+		System.out.println("外面試試看 -->" + req.getParameter("comAddr"));
 		if (ServletFileUpload.isMultipartContent(req)) {
 			try {
 				// 檔案名稱
 				List<FileItem> multiparts = new ServletFileUpload(
 						new DiskFileItemFactory()).parseRequest(req);
 				
+				System.out.println("試試看 -->" + req.getParameter("comAddr"));
 				// 逐筆讀取form表單內容
 				for (FileItem item : multiparts) {
 					if (item.isFormField()) {

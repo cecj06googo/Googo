@@ -72,6 +72,7 @@
 <input type="hidden" name="mem_account" value="${LoginMemOK.mem_account}" />
 <input type="hidden" name="mem_phone" value="${LoginMemOK.mem_phone}" />  
 <input type="hidden" name="mem_tel" value="${LoginMemOK.mem_tel}" />
+<input type="hidden" name="prod_id"  />
 <input type="hidden" name="item_name"  />
 <input type="hidden" name="item_email"  />
 <input type="hidden" name="item_phone"  />  
@@ -107,9 +108,9 @@
 	            </div>
 	            <div class="form-group">
                    <label><span class="span-space"></span>車型</label>
-                   <select  type="" required="required" class="form-control" >
+                   <select  required="required" class="form-control" id="carType">
                    <c:forEach var="ord_prodVO" items="${ord_prodVoList}">
-                  		<option value="${ord_prodVO.prodId}">{ord_prodVO.prodName}</option>
+                  		<option value="${ord_prodVO.prodId}">${ord_prodVO.prodName}</option>
                    </c:forEach>
                    </select>
 	            </div>
@@ -122,6 +123,7 @@
 		    <figure>
 		    <figcaption  class="label-center"><label>車輛預覽</label></figcaption>
 				<img class="img-responsive input-carView "
+					id = "carView"
 					src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${ord_comVO.comID}&prodId=${ord_prod_id}'
 					alt="">
 					</figure>
@@ -233,19 +235,37 @@ $(document).ready(function () {
 	
 	// Begin: Modified by ranian
 	// retrieve designed form template and attach to div #DesignResultTarget
-	$.ajax({
-		url: "<%=request.getContextPath()%>/DesignAccessDB",
-		type: "post",
-		data: {
-			com_id_form_view: <%=((CompanyVO)(session.getAttribute("ord_comVO"))).getComID() %>,
-			command: "retrieve"	
-		},
-		dataType: "html",
-	}).done(function(result){
-		$("#DesignResultTarget").html(result);
-	});
+// 	$.ajax({
+<%-- 		url: "<%=request.getContextPath()%>/DesignAccessDB", --%>
+// 		type: "post",
+// 		data: {
+<%-- 			com_id_form_view: <%=((CompanyVO)(session.getAttribute("ord_comVO"))).getComID() %>, --%>
+// 			command: "retrieve"	
+// 		},
+// 		dataType: "html",
+// 	}).done(function(result){
+// 		$("#DesignResultTarget").html(result);
+// 	});
 	// End: Modified by ranian
 	
+	
+	
+	
+	//select功能
+		//onload
+	$("select[id='carType'] option:selected").attr("selected",null);
+	$("select[id='carType'] option[value='${ord_prod_id}']").attr("selected","selected");	
+	
+		//會員選擇選其他車時更換圖片
+	var prod_id;
+	$("#carType").change(function() {
+		prod_id = $("#carType").val();
+		$("#carView").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${ord_comVO.comID}&prodId="+prod_id)
+		$("input[name='prod_id']").val(prod_id);
+			
+	});
+	
+	// End select功能
 	
 	
 	//訂單第二頁nextBtn

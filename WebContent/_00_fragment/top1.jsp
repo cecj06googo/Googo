@@ -70,7 +70,7 @@
 	                            <a href="<c:url value='/_04_member/favorite.jsp'/>"><i class="fa fa-fw fa-heart"> </i>我的收藏</a>
 	                        </li>
                             <li>
-	                            <a href="<c:url value='/Temp/fakeLogin_Mem.jsp'/>"><i class="fa fa-fw fa-book"> </i>我的訂單</a>
+	                            <a href="<c:url value='/_04_member/orderMem.jsp'/>"><i class="fa fa-fw fa-book"> </i>我的訂單</a>
 	                        </li>
 	                        <li>
 	                            <a href="<c:url value='/_04_member/modMem.jsp'/>"><i class="fa fa-fw  fa-pencil"> </i>修改會員資料</a>

@@ -16,6 +16,7 @@ String areaString = (String)request.getAttribute("areaString");
 <link href="${pageContext.request.contextPath}/css/plugins/morris.css" rel="stylesheet">
 
 <jsp:include page="/_00_fragment/css2.jsp" />
+<jsp:include page="/_07_order/order_setInterval.jsp" />
 <title>Goo-go</title>
 <script type="text/javascript" charset="utf-8">
        	var donutString =<%= donutString %>;
@@ -51,7 +52,7 @@ String areaString = (String)request.getAttribute("areaString");
                                         <i class="fa fa-envelope-o fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">${newOrd}</div>
+                                        <div class="huge" id ="newOrd">${newOrd}</div>
                                         <div>新訂單喔!</div>
                                     </div>
                                 </div>
