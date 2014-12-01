@@ -12,18 +12,20 @@ use GGDB
 go
 
 --drop table 決定此程式設計順序
---IF EXISTS (SELECT name FROM GGDB.sys.tables WHERE name = N'Question_temp')
+--IF EXISTS (SELECT name FROM GGDB.sys.tables WHERE name = N'Ord_item')
 --BEGIN
+--drop table Ord_item;
+--drop table Product;
+--drop table Product_Type;
+--drop table Product_Kind;
+--drop table Question_temp;
+--drop table Accessory;
+--drop table Ord_temp;
+--drop table Answer;
+--drop table Orders;
+--drop table Ord_status;
 --drop table Member;
 --drop table Company;
---drop table Product;
---drop table Accessory;
---drop table Ord_status;
---drop table Orders;
---drop table Ord_item;
---drop table Question_temp;
---drop table Answer;
---drop table Ord_temp;
 --END
 
 --注意! 
@@ -53,11 +55,11 @@ Create Table Member(
  );
 			 
 
-insert into Member values ('aaa@abc.com.tw','aaa123','張君雅',0,'2000-11-17','A223456789','0312345678','0912365478','台中市西屯區河南路二段280號12樓',1,'123');
-insert into Member values ('bbb@abc.com.tw','aaa123','王小明',1,'1992-6-30','A187654321','0287654321','0987654321','台北市大安區羅斯福路二段280號',1,'123');
-insert into Member values ('cccccccccc@abc.com.tw','aaa123','陳阿華',1,'1988-5-17','A158459845','0225556987','0932666888','台北市中正區和平東路一段56號',1,'123');
-insert into Member values ('ddd@abc.com.tw','aaa123','林小美',0,'1975-9-5','A256842951','0233587964','0910258666','台北市大安區復興南路一段390號',1,'123');
-insert into Member values ('eee@abc.com.tw','aaa123','馬小九',1,'1977-12-1','A123666999','0233657777','0910222333','台北市信義區松壽路20號',1,'123');
+insert into Member values ('aaa@abc.com.tw','77ee51fc4289f81e57fb6c0524179318','張君雅',0,'2000-11-17','A223456789','0312345678','0912365478','台中市西屯區河南路二段280號12樓',1,'123');
+insert into Member values ('bbb@abc.com.tw','77ee51fc4289f81e57fb6c0524179318','王小明',1,'1992-6-30','A187654321','0287654321','0987654321','台北市大安區羅斯福路二段280號',1,'123');
+insert into Member values ('cccccccccc@abc.com.tw','77ee51fc4289f81e57fb6c0524179318','陳阿華',1,'1988-5-17','A158459845','0225556987','0932666888','台北市中正區和平東路一段56號',1,'123');
+insert into Member values ('ddd@abc.com.tw','77ee51fc4289f81e57fb6c0524179318','林小美',0,'1975-9-5','A256842951','0233587964','0910258666','台北市大安區復興南路一段390號',1,'123');
+insert into Member values ('eee@abc.com.tw','77ee51fc4289f81e57fb6c0524179318','馬小九',1,'1977-12-1','A123666999','0233657777','0910222333','台北市信義區松壽路20號',1,'123');
 
 
 
@@ -80,24 +82,27 @@ Create Table Company(
 );
 
 -- 新增資料 ( 目前10筆假資料 )
-INSERT INTO Company VALUES ('kitty123@google.com', 'kitty123', '長榮租車', '林俊宏', '高雄市前鎮區凱旋三路115號', '0788303030', '0756157892', 22843188, NULL, 0, NULL);
-INSERT INTO Company VALUES ('snoppy123@google.com', 'snoppy123', '台灣大哥大租車', '孫銘澤', '臺北市士林區忠誠路1段125號2樓', '0275012300', null, 22843574, NULL, 0, NULL);
-INSERT INTO Company VALUES ('micky123@pchome.com', 'micky123', '台灣租車', '徐范煦敏', '臺北市內湖區新湖三路196號3樓', '0200422939', '0200422939', 12144164, NULL, 0, NULL);
-INSERT INTO Company VALUES ('monkey123@pchome.com', 'monkey123', '竹青蜓租車', '林素芬', '桃園縣桃園市中埔二街208號5樓', '25429778', null, 22529771, NULL, 0, NULL);
-INSERT INTO Company VALUES ('kelly123@yahoo.com', 'kelly123', '冠亞租車', '謝志航', '新北市新莊區福壽街99巷11弄4之2號(3樓)', '86610100', null, 22825576, NULL, 0, NULL);
-INSERT INTO Company VALUES ('cindy123@pchome.com', 'cindy123', '全家租車', '裴淳吉', '新北市永和區中正路609巷4號', '23581727', null, 23270841, NULL, 0, NULL);
-INSERT INTO Company VALUES ('chilly123@google.com', 'chilly123', '商寶國際租車', '李偉娜', '臺北市松山區慶城街23-2號3樓', '0215123456', '0255896123', 23164551,NULL, 0, NULL);
-INSERT INTO Company VALUES ('batman123@google.com', 'batman123', '玩美離島租車', '林山良', '臺中市北區健行路779號1樓', '07001234', '0415006879', 22971937,NULL, 0, NULL);
-INSERT INTO Company VALUES ('super123@yahoo.com.tw', 'super123', '遠信租車', '沈文斌', '臺北市中正區衡陽路51號6樓之4', '022114566', '0287563547', 25053931,NULL, 0, NULL);
-INSERT INTO Company VALUES ('joke123@hotmail.net', 'joke123', '非常租車租車', '楊長庚', '新北市土城區中央路2段386號(1樓)', '092156546', null, 29169462,NULL, 0, NULL);
-INSERT INTO Company VALUES ('antai123@pchome.com', 'antai123', '安泰租車', '李小泰', '臺北市內湖區新湖二路196號1樓', '0200422940', '02004229340', 12144165,NULL, 0, NULL);
-INSERT INTO Company VALUES ('antai124@pchome.com', 'antai124', '安泰1租車', '李小泰1', '臺北市內湖區新湖二路197號1樓', '0200422941', '02004229341', 12144166,NULL, 0, NULL);
-INSERT INTO Company VALUES ('antai125@pchome.com', 'antai125', '安泰2租車', '李小泰2', '臺北市內湖區新湖二路198號1樓', '0200422942', '02004229342', 12144167,NULL, 0, NULL);
-INSERT INTO Company VALUES ('antai126@pchome.com', 'antai126', '安泰3租車', '李小泰3', '臺北市內湖區新湖二路199號1樓', '0200422943', '02004229343', 12144168,NULL, 0, NULL);
-INSERT INTO Company VALUES ('antai127@pchome.com', 'antai127', '安泰4租車', '李小泰4', '臺北市內湖區新湖二路200號1樓', '0200422944', '02004229344', 12144169,NULL, 0, NULL);
-INSERT INTO Company VALUES ('antai128@pchome.com', 'antai128', '只有機車租車', '李小泰5', '臺北市內湖區新湖二路201號1樓', '0200422945', '02004229345', 12144170,NULL, 0, NULL);
-INSERT INTO Company VALUES ('antai129@pchome.com', 'antai129', '只有汽車租車', '李小泰6', '臺北市內湖區新湖二路202號1樓', '0200422946', '02004229346', 12144171,NULL, 0, NULL);
-INSERT INTO Company VALUES ('eee@abc.com.tw', 'aaa123', '馬小九只有機車', '馬小九', '臺北市內湖區新湖二路202號1樓', '0233657777', '0910222333', 12144172,NULL, 0, NULL);
+INSERT INTO Company VALUES ('kitty123@pchome.com', '236b65a58d0e273b41bbde85ca61cc51', '長榮租車', '林俊宏', '高雄市前鎮區凱旋三路115號', '0788303030', '0756157892', 22843188, NULL, 1, NULL);
+INSERT INTO Company VALUES ('snoopy123@pchome.com', 'bf541761fa28953188fafb7b2a0b7e18', '台灣大哥大租車', '孫銘澤', '臺北市士林區忠誠路1段125號2樓', '0275012300', null, 22843574, NULL, 1, NULL);
+INSERT INTO Company VALUES ('micky123@pchome.com', '40991c500440e9d31cd471b481def59f', '趴趴夠租車', '陳淑媛', '宜蘭市校舍路159號1樓', '039381316', '039381316', 39976491, NULL, 1, NULL);
+INSERT INTO Company VALUES ('monkey123@pchome.com', '08ce0d43583bf621f2a1baba236e5845', '竹青蜓租車', '林素芬', '桃園縣桃園市中埔二街208號5樓', '25429778', null, 22529771, NULL, 1, NULL);
+INSERT INTO Company VALUES ('kelly123@pchome.com', '21f3f30bed9e4b37c7c4e7daf3251fb1', '冠亞租車', '謝志航', '新北市新莊區福壽街99巷11弄4之2號(3樓)', '86610100', null, 22825576, NULL, 1, NULL);
+INSERT INTO Company VALUES ('cindy123@pchome.com', '28051cf32e9e10f1ced9a43c55593f31', '全家租車', '裴淳吉', '新北市永和區中正路609巷4號', '23581727', null, 23270841, NULL, 1, NULL);
+INSERT INTO Company VALUES ('chilly123@pchome.com', '5b076e507d09d15f1e1e761e77956edc', '商寶國際租車', '李偉娜', '臺北市松山區慶城街23-2號3樓', '0215123456', '0255896123', 23164551, NULL, 1, NULL);
+INSERT INTO Company VALUES ('batman123@pchome.com', 'e6fd8eea6946cf20007bcb6d01fee684', '玩美離島租車', '林山良', '臺中市北區健行路779號1樓', '07001234', '0415006879', 22971937, NULL, 1, NULL);
+INSERT INTO Company VALUES ('super123@pchome.com', '78e69e7c6a00e34d8947209cc0f6e1b5', '遠信租車', '沈文斌', '臺北市中正區衡陽路51號6樓之4', '022114566', '0287563547', 25053931, NULL, 1, NULL);
+INSERT INTO Company VALUES ('joke123@pchome.com', 'f77e0995a48ff48d7d8be57e7398f15b', '非常租車租車', '楊長庚', '新北市土城區中央路2段386號(1樓)', '092156546', null, 29169462, NULL, 1, NULL);
+INSERT INTO Company VALUES ('antai123@pchome.com', 'e2b90587f0eefc4302dcfc61f2a794d2', '安泰租車', '李小泰', '臺北市內湖區新湖二路196號1樓', '0200422940', '02004229340', 12144165, NULL, 1, NULL);
+INSERT INTO Company VALUES ('antai124@pchome.com', 'dc286fac940d127a39856167c7e796bf', '和運租車中壢門市', '黃國輝', '桃園縣中壢市中園路167號', '034523030', '034523030', 21576206, NULL, 1, NULL);
+INSERT INTO Company VALUES ('antai125@pchome.com', '3e8b50b00d060ec11ba172cb92f123e9', '艾維士租車台北門市', '蕭世煌', '臺北市承德路三段276號', '0225995036', '0225995036', 28937839,NULL, 1, NULL);
+INSERT INTO Company VALUES ('antai126@pchome.com', '4d205432c03e8d205cb355c9de1c6d7d', '和運租車桃園高鐵門市', '黃國輝', '桃園縣中壢市青埔里高鐵北路1段6號', '034523031', '0345230301', 31408952, NULL, 1, NULL);
+INSERT INTO Company VALUES ('antai127@pchome.com', '283e11ac3cf66e052b2d92bb033b67b6', '艾維士租車高雄門市', '蕭世煌', '高雄市左營區菜公里重信路623號', '02422944', '024229344', 17859977, NULL, 1, NULL);
+INSERT INTO Company VALUES ('antai128@pchome.com', '7b3aed8c6365e6d78ba146bc1de59cb8', '只有機車租車', '李小泰5', '臺北市內湖區新湖二路201號1樓', '02422945', '024229345', 12144170, NULL, 1, NULL);
+INSERT INTO Company VALUES ('antai129@pchome.com', 'b000355537f24698975682ce870a53fd', '只有汽車租車', '李小泰6', '臺北市內湖區新湖二路202號1樓', '02422946', '024229346', 12144171, NULL, 1, NULL);
+INSERT INTO Company VALUES ('eee@abc.com.tw', '77ee51fc4289f81e57fb6c0524179318', '直航租車', '林麗純', '宜蘭縣羅東鎮勝利街20號1樓', '076250808', '076250808', 02968701, NULL, 1, NULL);
+INSERT INTO Company VALUES ('antai130@pchome.com', '77ee51fc4289f81e57fb6c0524179318', '金城租車行', '魏淑芬', '宜蘭縣羅東鎮大新里站前北路1號', '039533306', '039533306', 02424454, NULL, 1, NULL);
+INSERT INTO Company VALUES ('antai131@pchome.com', '77ee51fc4289f81e57fb6c0524179318', '達伯聯合租車', '謝俊哲', '宜蘭縣羅東鎮大新里公正路30號1樓', '039550513', '039550513', 10043128, NULL, 1, NULL);
+GO
 
 Create Table Product_Type(
             prodtype_id int   NOT NULL Primary Key,
@@ -159,9 +164,9 @@ insert into Product values (1,'一樣汽車名稱',1,4000,0.45,0x00,'ss',null,nu
 insert into Product values (1,'一樣汽車名稱',1,4000,0.45,0x00,'ss',null,null,null,1,null,null,null,56,1);
 insert into Product values (2,'野狼125',2,3000,0.93,0x00,'ss',null,null,null,1,null,null,null,5,1);
 insert into Product values (2,'競戰150',2,4000,0.77,0x00,'ss',null,null,null,1,null,null,null,6,1);
-insert into Product values (3,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,null,null,null,7,1);
-insert into Product values (3,'保時捷-T1',1,6000,0.89,0x00,'ss',null,null,null,1,null,null,null,8,1);
-insert into Product values (3,'Fighter150',2,7000,0.95,0x00,'ss',null,null,null,1,null,null,null,9,1);
+insert into Product values (4,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,null,null,null,7,1);
+insert into Product values (4,'保時捷-T1',1,6000,0.89,0x00,'ss',null,null,null,1,null,null,null,8,1);
+insert into Product values (4,'Fighter150',2,7000,0.95,0x00,'ss',null,null,null,1,null,null,null,9,1);
 insert into Product values (4,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,null,null,null,10,1);
 insert into Product values (4,'保時捷-T1',1,6000,0.89,0x00,'ss',null,null,null,1,null,null,null,11,1);
 insert into Product values (4,'Fighter150',2,7000,0.95,0x00,'ss',null,null,null,1,null,null,null,12,1);
@@ -207,23 +212,55 @@ insert into Product values (17,'保時捷-T2',1,7000,0.95,0x00,'ss',null,null,nu
 insert into Product values (18,'法拉利211',1,5000,0.67,0x00,'ss',null,null,null,1,1600,8,null,52,1);
 insert into Product values (18,'保時捷-T1',2,6000,0.89,0x00,'ss',null,null,null,1,250,2,null,53,1);
 insert into Product values (18,'保時捷-T2',3,7000,0.95,0x00,'ss',null,null,null,1,10,1,null,54,1);
-
-
+insert into Product values (3,'賓士E-320',1,5000,0.95,0x00,'ss',null,null,null,1,2000,4,null,'AF-9876',1);
+insert into Product values (3,'賓士E-320',1,5000,0.95,0x00,'ss',null,null,null,1,2000,4,null,'HL-6666',1);
+insert into Product values (3,'賓士E-320',1,5000,0.95,0x00,'ss',null,null,null,1,2000,4,null,'QQ-1983',1);
+insert into Product values (3,'法拉利458',1,8000,0.95,0x00,'ss',null,null,null,1,3000,4,null,'FS-9999',1);
+insert into Product values (3,'法拉利458',1,8000,0.95,0x00,'ss',null,null,null,1,3000,4,null,'RZ-3875',1);
+insert into Product values (3,'法拉利458',1,8000,0.95,0x00,'ss',null,null,null,1,3000,4,null,'AA-2452',1);
+insert into Product values (3,'Mini-Cooper-2014',1,5000,0.95,0x00,'ss',null,null,null,1,1500,4,null,'MS-8789',1);
+insert into Product values (3,'Mini-Cooper-2014',1,5000,0.95,0x00,'ss',null,null,null,1,1500,4,null,'AO-3765',1);
+insert into Product values (3,'Mini-Cooper-2014',1,5000,0.95,0x00,'ss',null,null,null,1,1500,4,null,'XO-6675',1);
+insert into Product values (3,'野狼125',2,600,0.6,0x00,'經典的鋼絲框輪圈，配備高亮度尾燈，襯托出眾不同的個性，循環五速檔位，加上超大型避震器經典砲，彈圓身金屬質感，展現傳統跑車風情。',null,null,null,4,125,null,null, 'KBG8745',1);
+insert into Product values (3,'野狼125',2,600,0.6,0x00,'經典的鋼絲框輪圈，配備高亮度尾燈，襯托出眾不同的個性，循環五速檔位，加上超大型避震器經典砲，彈圓身金屬質感，展現傳統跑車風情。',null,null,null,4,125,null,null, 'CHH4545',1);
+insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風格塗裝，全新輕量化鋁合金車架，三段變速附有避震功能，後照明警示燈，附加感光元件，具有自動/手動二種模式，自動模式可在天黑時自動起動警示燈，適合騎車旅行環島。',null,null,null,6,null,null,null, '捷安特GJ1',1);
+insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風格塗裝，全新輕量化鋁合金車架，三段變速附有避震功能，後照明警示燈，附加感光元件，具有自動/手動二種模式，自動模式可在天黑時自動起動警示燈，適合騎車旅行環島。',null,null,null,6,null,null,null, '捷安特GJ2',1);
+insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風格塗裝，全新輕量化鋁合金車架，三段變速附有避震功能，後照明警示燈，附加感光元件，具有自動/手動二種模式，自動模式可在天黑時自動起動警示燈，適合騎車旅行環島。',null,null,null,6,null,null,null, '捷安特GJ3',1);
+insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風格塗裝，全新輕量化鋁合金車架，三段變速附有避震功能，後照明警示燈，附加感光元件，具有自動/手動二種模式，自動模式可在天黑時自動起動警示燈，適合騎車旅行環島。',null,null,null,6,null,null,null, '捷安特GJ4',1);
 
 Create Table Accessory(
-            acc_id          int NOT NULL IDENTITY(1,1) Primary Key ,
+            acc_id          int NOT NULL IDENTITY(1,1) Primary Key,
+			acc_name        varchar(32) NOT NULL,
 			com_id          int NOT NULL ,
 			acc_detail      varchar(max) NOT NULL,
+			acc_pic         varbinary(max)  NOT NULL,
 			acc_price       decimal NOT NULL,
+			acc_status      int NOT NULL,
 
 			CONSTRAINT Accessory_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 );
-
-insert into Accessory values (1,'g',1000);
-insert into Accessory values (1,'g',1000);
-insert into Accessory values (1,'g',1000);
-insert into Accessory values (1,'g',1000);
-insert into Accessory values (1,'g',1000);
+insert into Accessory values ('高粱酒1',1,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒2',1,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒3',1,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒4',1,'wine', 0x00, 1000, 1);
+insert into Accessory values ('高粱酒5',1,'wine', 0x00, 1000, 1);
+insert into Accessory values ('啤酒1',2,'wine', 0x00, 1000, 1);
+insert into Accessory values ('安全座椅',2,'安全座椅',0x00,2000,1);
+insert into Accessory values ('Garmin導航機',2,'Garmin導航機',0x00,700,1);
+insert into Accessory values ('野炊卡式爐',2,'野炊卡式爐',0x00,350,1);
+insert into Accessory values ('烤肉用具組',2,'烤肉用具組',0x00,300,1);
+insert into Accessory values ('冰桶 - 6L',2,'冰桶 - 6L',0x00,100,1);
+insert into Accessory values ('冰桶 - 15L',2,'冰桶 - 15L',0x00,200,1);
+insert into Accessory values ('地墊',2,'地墊',0x00,800,1);
+insert into Accessory values ('營帳 - 2P',2,'營帳 - 2P',0x00,800,1);
+insert into Accessory values ('營帳 - 4P',2,'營帳 - 4P',0x00,1200,1);
+insert into Accessory values ('睡袋 - 超保暖羽絨',2,'睡袋 - 超保暖羽絨',0x00,600,1);
+insert into Accessory values ('睡袋 - 輕合成纖維',2,'睡袋 - 輕合成纖維',0x00,400,1);
+insert into Accessory values ('對講機全罩安全帽2頂',3,'對講機全罩安全帽2頂',0x00,300,1);
+insert into Accessory values ('清靜農場哞哞午餐卷2張',3,'清靜農場哞哞午餐卷2張',0x00,400,1);
+insert into Accessory values ('小人國遊樂園入場卷2張',3,'小人國遊樂園入場卷2張',0x00,600,1);
+insert into Accessory values ('尾掛置物箱',3,'尾掛置物箱',0x00,500,1);
+GO
 
 
 Create Table Ord_status(
@@ -240,6 +277,7 @@ insert into Ord_status values ('商家取消');
 insert into Ord_status values ('會員逾時');
 insert into Ord_status values ('商家逾時');
 insert into Ord_status values ('異常未還');
+GO
 
 Create Table Orders(
 		    ord_id          int NOT NULL IDENTITY(1,1) Primary Key ,
@@ -305,6 +343,39 @@ insert into Orders values (1,3,3,'2014-10-28 13:40:20','2015-12-22 13:20:00','20
 insert into Orders values (1,3,3,'2014-11-18 05:40:20','2014-11-19 13:20:00','2014-12-20 14:20:00',null,3000);
 insert into Orders values (1,3,3,'2014-10-28 13:40:20','2014-10-30 13:20:00','2014-11-02 14:20:00',null,3000);
 
+--賓士
+insert into Orders values (6,3,3,'2014-11-12 10:00:00','2014-11-28 13:20:00','2014-11-29 14:20:00','2014-11-25 10:00:00',3000);
+insert into Orders values (2,3,3,'2014-11-25 10:00:00','2014-11-27 10:20:00','2014-11-28 1:20:00','2014-11-25 10:00:00',3500);
+insert into Orders values (3,3,3,'2014-11-26 10:00:00','2014-12-08 13:20:00','2014-12-09 13:20:00','2014-11-12 10:00:00',3700);
+insert into Orders values (4,3,3,'2014-11-27 10:00:00','2014-12-10 13:20:00','2014-12-11 14:20:00','2014-11-12 10:00:00',3200);
+insert into Orders values (1,3,3,'2014-11-28 10:00:00','2014-12-09 20:20:00','2014-12-10 14:20:00',null,3300);
+--法拉利
+insert into Orders values (1,3,3,'2014-11-12 10:00:00','2014-11-28 09:20:00','2014-11-29 21:20:00',null,7000);
+insert into Orders values (2,3,3,'2014-11-12 10:00:00','2014-12-10 13:20:00','2014-12-11 14:20:00','2014-08-01 00:00:01',5600);
+insert into Orders values (3,3,3,'2014-11-12 10:00:00','2014-12-09 08:20:00','2014-12-09 20:20:00','2014-09-12 00:00:01',6600);
+insert into Orders values (4,3,3,'2014-11-12 10:00:00','2014-12-08 10:20:00','2014-12-09 15:20:00','2014-10-06 00:00:01',6800);
+insert into Orders values (1,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2014-12-10 14:20:00',null,6000);
+--miniCooper
+insert into Orders values (1,3,3,'2014-11-12 10:00:00','2014-11-28 09:20:00','2014-11-29 21:20:00',null,7000);
+insert into Orders values (3,3,3,'2014-11-12 10:00:00','2014-11-27 10:20:00','2014-11-28 1:20:00','2014-08-01 00:00:01',5600);
+insert into Orders values (3,3,3,'2014-11-12 10:00:00','2014-12-09 08:20:00','2014-12-09 20:20:00','2014-09-12 00:00:01',6600);
+insert into Orders values (2,3,3,'2014-11-12 10:00:00','2014-12-08 10:20:00','2014-12-09 15:20:00','2014-10-06 00:00:01',6800);
+insert into Orders values (5,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2014-12-10 14:20:00',null,6000);
+--野狼125
+insert into Orders values (2,3,3,'2014-11-12 10:00:00','2014-11-28 09:20:00','2014-11-29 21:20:00',null,7000);
+insert into Orders values (6,3,3,'2014-11-12 10:00:00','2014-12-10 13:20:00','2014-12-11 14:20:00','2014-08-01 00:00:01',5600);
+insert into Orders values (7,3,3,'2014-11-12 10:00:00','2014-12-09 08:20:00','2014-12-09 20:20:00','2014-09-12 00:00:01',6600);
+insert into Orders values (2,3,3,'2014-11-12 10:00:00','2014-12-08 10:20:00','2014-12-09 15:20:00','2014-10-06 00:00:01',6800);
+insert into Orders values (8,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2014-12-10 14:20:00',null,6000);
+--捷安特
+insert into Orders values (3,3,3,'2014-11-12 10:00:00','2014-11-28 09:20:00','2014-11-29 21:20:00',null,7000);
+insert into Orders values (4,3,3,'2014-11-12 10:00:00','2014-11-27 10:20:00','2014-11-28 1:20:00','2014-08-01 00:00:01',5600);
+insert into Orders values (3,3,3,'2014-11-12 10:00:00','2014-12-09 08:20:00','2014-12-09 20:20:00','2014-09-12 00:00:01',6600);
+insert into Orders values (2,3,3,'2014-11-12 10:00:00','2014-12-08 10:20:00','2014-12-09 15:20:00','2014-10-06 00:00:01',6800);
+insert into Orders values (9,3,3,'2014-11-12 10:00:00','2014-12-09 20:20:00','2014-12-10 14:20:00',null,6000);
+GO
+
+
 Create Table Ord_item(
 		    item_id         int NOT NULL IDENTITY(1,1) Primary Key ,
 			ord_id          int,
@@ -319,7 +390,6 @@ Create Table Ord_item(
 
 			CONSTRAINT Ord_item_com_id_fk FOREIGN KEY (ord_id) REFERENCES Orders (ord_id),
 			CONSTRAINT Ord_item_prod_id_fk FOREIGN KEY (prod_id) REFERENCES Product (prod_id),
-			CONSTRAINT Ord_item_acc_id_fk FOREIGN KEY (acc_id) REFERENCES Accessory (acc_id),
 
 );
 
@@ -365,6 +435,37 @@ insert into Ord_item values (38,1,1,'測試取消功能條件1','0987654321','02
 insert into Ord_item values (39,1,1,'測試取消功能條件2','0987654321','0234567890','gg@ya.123',null,null);
 insert into Ord_item values (40,1,1,'測試取消功能3','0987654321','0234567890','gg@ya.123',null,null);
 
+insert into Ord_item values (41,55,1,'馬小九','0234567890','0987654321','gg@ya.123',null,null);
+insert into Ord_item values (42,55,1,'來來哥','0234567890','0987654321','gg@ya.123',null,null);
+insert into Ord_item values (43,55,1,'曹蘭','0234567890','0987654321','gg@ya.123',null,null);
+insert into Ord_item values (44,56,1,'王月','0234567890','0987654321','gg@ya.123',null,null);
+insert into Ord_item values (45,57,1,'小S','0234567890','0987654321','gg@ya.123',null,null);
+
+insert into Ord_item values (46,58,1,'柯小哲','0234567890','0987654321','gg@ya.123',null,null);
+insert into Ord_item values (47,59,1,'歐陽妮妮','0234567890','0987654321','gg@ya.123',null,null);
+insert into Ord_item values (48,60,1,'黃詩芸','0234567890','0987654321','gg@ya.123',null,null);
+insert into Ord_item values (49,58,1,'李安泰','0234567890','0987654321','gg@ya.123',null,null);
+insert into Ord_item values (50,58,1,'周如','0234567890','0987654321','gg@ya.123',null,null);
+
+insert into Ord_item values (51,61,1,'租戚戚','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (52,62,1,'方文山','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (53,63,1,'方小三','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (54,61,1,'七七','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (55,61,1,'MAC','0987654321','0234567890','gg@ya.123',null,null);
+
+insert into Ord_item values (56,64,1,'高P','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (57,65,1,'天天','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (58,66,1,'張輛','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (59,64,1,'老爸','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (60,64,1,'狗哥','0987654321','0234567890','gg@ya.123',null,null);
+
+insert into Ord_item values (56,67,1,'高P','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (57,68,1,'天天','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (58,69,1,'張輛','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (59,67,1,'老爸','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (60,67,1,'狗哥','0987654321','0234567890','gg@ya.123',null,null);
+GO
+
 Create Table Question_temp(
              que_ver       int NOT NULL IDENTITY(1,1) Primary Key ,
 			 que_content   varchar(max) NOT NULL ,
@@ -372,6 +473,7 @@ Create Table Question_temp(
 
 			 CONSTRAINT Question_temp_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 );
+GO
 
 Create Table Answer(
 			ans_ver        int NOT NULL IDENTITY(1,1) Primary Key ,
@@ -384,6 +486,7 @@ Create Table Answer(
 			CONSTRAINT Answer_mem_id_fk FOREIGN KEY (mem_id) REFERENCES Member (mem_id),
 
 ); 
+GO
 
 Create Table Ord_temp(
 			ordt_id        int NOT NULL IDENTITY(1,1) Primary Key ,
@@ -392,3 +495,4 @@ Create Table Ord_temp(
 
 			CONSTRAINT Ord_temp_com_id_fk FOREIGN KEY (com_id) REFERENCES company (com_id),
 );
+GO

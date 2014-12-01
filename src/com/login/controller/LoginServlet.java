@@ -12,12 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 import com.company.model.CompanyService;
 import com.company.model.CompanyVO;
 import com.login.model.LoginService;
 import com.member.model.MemService;
 import com.member.model.MemVO;
 import com.orders.model.LoginOrdersOnLoad;
+import com.util.HashService;
 public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -36,43 +39,51 @@ public class LoginServlet extends HttpServlet {
 		String userAccount = request.getParameter("userAccount");
 		String userPwd = request.getParameter("userPwd");
 		String userIdentity = request.getParameter("optionsRadios");
-//		String rm = request.getParameter("rememberMe");
+		String rm = request.getParameter("rememberMe");
 		String requestURI = (String) session.getAttribute("requestURI");
 		String referURI = (String) session.getAttribute("referURI");      // 登入前原網頁路徑
 		boolean error = false;
 		
-		// 2. RememberMe  (暫不做)
+		// 2. RememberMe
 		Cookie cookieUser = null;
 		Cookie cookiePassword = null;
 		Cookie cookieRememberMe = null;
+		Cookie cookieUserIdentity = null;
 		
-//		if (rm != null) {
-//			cookieUser = new Cookie("user", userAccount);
-//			cookieUser.setMaxAge(30*60*60);
-//			cookieUser.setPath(request.getContextPath());
-////			String encodePassword = Base64.encode(password.getBytes());
-//			cookiePassword = new Cookie("password", userPwd);
-//			cookiePassword.setMaxAge(30*60*60);
-//			cookiePassword.setPath(request.getContextPath());
-//			cookieRememberMe = new Cookie("rm", "true");
-//			cookieRememberMe.setMaxAge(30*60*60);
-//			cookieRememberMe.setPath(request.getContextPath());
-//		} else {
-//			cookieUser = new Cookie("user", userAccount);
-//			cookieUser.setMaxAge(0);
-//			cookieUser.setPath(request.getContextPath());
-//			cookiePassword = new Cookie("password", userPwd);
-////			String encodePassword = Base64.encode(password.getBytes());
-////			cookiePassword = new Cookie("password", encodePassword);
-//			cookiePassword.setMaxAge(0);
-//			cookiePassword.setPath(request.getContextPath());
-//			cookieRememberMe = new Cookie("rm", "false");
-//			cookieRememberMe.setMaxAge(30*60*60);
-//			cookieRememberMe.setPath(request.getContextPath());
-//		}
-//		response.addCookie(cookieUser);
-//		response.addCookie(cookiePassword);
-//		response.addCookie(cookieRememberMe);
+		if (rm != null) {
+			cookieUser = new Cookie("user", userAccount);
+			cookieUser.setMaxAge(12*60*60);
+			cookieUser.setPath(request.getContextPath());
+			String encodePassword = HashService.encryptString(userPwd);    // AES + Base64 加密
+			cookiePassword = new Cookie("password", encodePassword);
+			cookiePassword.setMaxAge(24*60*60);
+			cookiePassword.setPath(request.getContextPath());
+			cookieRememberMe = new Cookie("rm", "true");
+			cookieRememberMe.setMaxAge(24*60*60);
+			cookieRememberMe.setPath(request.getContextPath());
+			cookieUserIdentity = new Cookie("or", userIdentity);
+			cookieUserIdentity.setMaxAge(24*60*60);
+			cookieUserIdentity.setPath(request.getContextPath());
+		} else {
+			cookieUser = new Cookie("user", userAccount);
+			cookieUser.setMaxAge(0);
+			cookieUser.setPath(request.getContextPath());
+			cookiePassword = new Cookie("password", userPwd);
+			String encodePassword = Base64.encodeBase64String(userPwd.getBytes());
+			cookiePassword = new Cookie("password", encodePassword);
+			cookiePassword.setMaxAge(0);
+			cookiePassword.setPath(request.getContextPath());
+			cookieRememberMe = new Cookie("rm", "false");
+			cookieRememberMe.setMaxAge(24*60*60);
+			cookieRememberMe.setPath(request.getContextPath());
+			cookieUserIdentity = new Cookie("or", userIdentity);
+			cookieUserIdentity.setMaxAge(0);
+			cookieUserIdentity.setPath(request.getContextPath());
+		}
+		response.addCookie(cookieUser);
+		response.addCookie(cookiePassword);
+		response.addCookie(cookieRememberMe);
+		response.addCookie(cookieUserIdentity);
 		
 		// 3. 進行會員身分驗證與登入確認
 		System.out.println("會員種類: " + userIdentity);
@@ -97,10 +108,12 @@ public class LoginServlet extends HttpServlet {
 				System.out.println("session裡面, 商家名稱: " + comVO.getComName());    // 測試用訊息
 			}
 			// 方便比對會員身分
-			session.setAttribute("userIdentity", userIdentity);
+//			session.setAttribute("userIdentity", userIdentity);
 		} catch(Exception e) {
 			e.getStackTrace();
 			session.setAttribute("LoginError", "該帳號不存在或密碼錯誤");
+			session.setAttribute("errorAccount", userAccount);
+			session.setAttribute("errorPassword", userPwd);
 			error = true;
 
 		}
@@ -114,7 +127,8 @@ public class LoginServlet extends HttpServlet {
 				if (requestURI != null) {
 					requestURI = (requestURI.length() == 0 ? request
 							.getRequestURI() : requestURI);
-					System.out.println("URI= " + request.getRequestURI());
+					System.out.println("request.getRequestURI= " +
+							request.getRequestURI());    // 測試用訊息
 					response.sendRedirect(response.encodeRedirectURL(requestURI));
 					return;
 				} 
@@ -127,9 +141,10 @@ public class LoginServlet extends HttpServlet {
 			else if (comVO != null) {
 					System.out.println("進入商家後端");    // 測試用訊息
 					// 商家訂單OnLoad
-					LoginOrdersOnLoad OCOL = new LoginOrdersOnLoad();  
-					session = OCOL.ComOnLoad(session,userId);
-					response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/manage.jsp"));
+//					LoginOrdersOnLoad OCOL = new LoginOrdersOnLoad();  
+//					session = OCOL.ComOnLoad(session,userId);
+					response.sendRedirect(response.encodeRedirectURL(
+							request.getContextPath() + "/manage"));
 					return;
 			}
 		}

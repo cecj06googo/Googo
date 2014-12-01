@@ -1,6 +1,7 @@
 package com.orders.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.company.model.CompanyVO;
+import com.orders.model.LoginOrdersOnLoad;
 import com.orders.model.OrdersService;
 import com.orders.model.OrdersVO;
 
@@ -35,6 +37,8 @@ public class OrdersActionCom extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException{
 		HttpSession session = request.getSession();
 	//分頁用
+		errorMsg.clear();
+		msgOK.clear();
 		CompanyVO comVO = new CompanyVO();
 		Integer userId = null;
 		Integer orderStatus = null;
@@ -42,13 +46,15 @@ public class OrdersActionCom extends HttpServlet {
 		
 		comVO = (CompanyVO) session.getAttribute("LoginComOK");
 		userId = comVO.getComID();
-		orderStatus = Integer.parseInt(session.getAttribute("orderStatus").toString());
-		orderTime = session.getAttribute("orderTime").toString();
+		orderStatus = Integer.parseInt(request.getParameter("orderStatus").toString());
+		orderTime = request.getParameter("orderTime").toString();
 	
 		OrdersService odrSvc = new OrdersService();
 		List<OrdersVO> ordVO = odrSvc.ordSearch_com(userId,
 				orderStatus, orderTime);
 		request.setAttribute("ordVO", ordVO);
+		request.setAttribute("orderStatusCom", orderStatus);
+		request.setAttribute("orderTimeCom", orderTime);
 		if (ordVO.isEmpty()) {
 			msgOK.put("SearchNull", "沒有資料");
 		}
@@ -60,6 +66,8 @@ public class OrdersActionCom extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter httpout = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		request.setAttribute("ErrMsg", errorMsg); // 顯示錯誤訊息
@@ -75,50 +83,7 @@ public class OrdersActionCom extends HttpServlet {
 		// 7 ('會員逾時');
 		// 8 ('商家逾時');
 		// 9 ('異常未還');
-		/********************* 找時間刪掉 **********************/
-		if ("fakeLogin_mem".equals(action)) {
-			try {
-				Integer user_id = null;
-				String Identity = "Mem";
-
-				try {
-					user_id = Integer.parseInt(session.getAttribute("user_id")
-							.toString().trim());
-				} catch (Exception e) {
-					errorMsg.put("errorlogin", "真的不要這樣..");
-				}
-
-				/******************* (存取資料+轉向) *********************/
-				if (errorMsg.isEmpty()) {
-					Integer sel_stus = 1;
-					String sel_time = "all";
-					OrdersService odrSvc = new OrdersService();
-					List<OrdersVO> ordVO = odrSvc.ordSearch_mem(user_id,
-							sel_stus, sel_time);
-
-					request.setAttribute("ordVO", ordVO);
-					session.setAttribute("sel_stus", sel_stus);
-					session.setAttribute("sel_time", sel_time);
-					session.setAttribute("Identity", Identity);
-					String url = "/_04_member/orderMem.jsp";
-					RequestDispatcher successView = request
-							.getRequestDispatcher(url);
-
-					successView.forward(request, response);
-				} else {
-					String url = "/index.jsp";
-					RequestDispatcher successView = request
-							.getRequestDispatcher(url);
-
-					successView.forward(request, response);
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}// end fakeLogin_mem if
-		/*******************************************/
-
+		
 		if ("selectCom".equals(action)) {
 			try {
 				errorMsg.clear();
@@ -168,8 +133,8 @@ public class OrdersActionCom extends HttpServlet {
 				}
 
 				/******************* (轉向) *********************/
-				session.setAttribute("orderStatus", orderStatus);
-				session.setAttribute("orderTime", orderTime);
+				request.setAttribute("orderStatusCom", orderStatus);
+				request.setAttribute("orderTimeCom", orderTime);
 				String url = "/_05_company/orderCom.jsp";
 				RequestDispatcher successView = request
 						.getRequestDispatcher(url);
@@ -177,7 +142,7 @@ public class OrdersActionCom extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} // end select
+		} // end selectCom
 
 		if ("newOrdCom".equals(action)) {
 			// 訂單狀態(1 = 未處理 )
@@ -199,8 +164,8 @@ public class OrdersActionCom extends HttpServlet {
 					orderTime);
 			System.out.println("未處理訂單數量:" + ordVO.size());
 			request.setAttribute("ordVO", ordVO);
-			session.setAttribute("orderStatus", ord_status);
-			session.setAttribute("orderTime", orderTime);
+			request.setAttribute("orderStatusCom", ord_status);
+			request.setAttribute("orderTimeCom", orderTime);
 			String url = "/_05_company/orderCom.jsp";
 			RequestDispatcher successView = request.getRequestDispatcher(url);
 			successView.forward(request, response);
@@ -222,21 +187,31 @@ public class OrdersActionCom extends HttpServlet {
 				System.out.println("session內的'comVO'物件有出錯");
 			}
 
-			/******************* (存取資料+轉向) *********************/
+			/******************* (存取資料) *********************/
 			OrdersService odrSvc = new OrdersService();
 			List<OrdersVO> ordVO = odrSvc.ordSearch_com(com_id, ord_status,
 					orderTime);
 			System.out.println("未還車訂單數量:" + ordVO.size());
 			request.setAttribute("ordVO", ordVO);
-			session.setAttribute("orderStatus", ord_status);
-			session.setAttribute("orderTime", orderTime);
-			/******************** (Send the Success view) ************/
+			request.setAttribute("orderStatusCom", ord_status);
+			request.setAttribute("orderTimeCom", orderTime);
+			/******************** (轉向) ***********************/
 			String url = "/_05_company/orderCom.jsp";
 			RequestDispatcher successView = request.getRequestDispatcher(url);
 			successView.forward(request, response);
 			/******************* (以上不做驗證) *********************/
 		} // end noreCar if
 
+		if ("refresh".equals(action)) {
+			LoginOrdersOnLoad lool = new LoginOrdersOnLoad();
+			CompanyVO comVO = new CompanyVO();
+			comVO = (CompanyVO) session.getAttribute("LoginComOK");
+			/******************** (轉向) ***********************/
+			httpout.print(lool.newOrdRefresh(comVO.getComID()));
+			/******************* (以上不做驗證) *********************/
+		}// end refresh
+		
+		
 		if ("accept".equals(action)) {
 			// 訂單狀態(2 = 已接受 )
 			Integer ord_status = 2;
@@ -340,8 +315,8 @@ public class OrdersActionCom extends HttpServlet {
 				} // end 表單驗證 while
 					// ------------------資料接收----------------------
 				_ord_id = request.getParameter("ord_id");
-				_orderStatus = session.getAttribute("orderStatus");
-				_orderTime = session.getAttribute("orderTime");
+				_orderStatus = request.getParameter("orderStatus");
+				_orderTime = request.getParameter("orderTime");
 				// ------------------資料驗證+轉型----------------------
 
 				try {
@@ -381,8 +356,8 @@ public class OrdersActionCom extends HttpServlet {
 					List<OrdersVO> ordVO = odrSvc.ordSearch_com(com_id,
 							orderStatus, orderTime);
 					request.setAttribute("ordVO", ordVO);
-					session.setAttribute("orderStatus", orderStatus);
-					session.setAttribute("orderTime", orderTime);
+					request.setAttribute("orderStatusCom", orderStatus);
+					request.setAttribute("orderTimeCom", orderTime);
 					if (ordVO.isEmpty()) {
 						msgOK.put("SearchNull", "沒有資料");
 					}

@@ -6,7 +6,7 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/plugins/morris.css" rel="stylesheet">
+
 <!-- js -->
 <%-- <script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script> --%>
 <%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
@@ -21,14 +21,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="<c:url value='/manage.jsp'/>" id="logo">
+                <a class="navbar-brand page-scroll" href="<c:url value='/manage'/>" id="logo">
                     <i class="fa fa-car"></i><span class="light"> 租車網</span> Goo-go
                 </a>
             </div>
             <!-- 提醒 -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+<!--                 <li class="dropdown"> -->
+<!--                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a> -->
                     <ul class="dropdown-menu message-dropdown">
                     <!-- 提醒1 -->
                         <li class="message-preview">
@@ -115,16 +115,16 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li id="selectManage">
-                        <a href="<c:url value='/manage.jsp'/>"><i class="fa fa-fw fa-bar-chart-o"></i> 報表分析</a>
+                        <a href="<c:url value='/manage'/>"><i class="fa fa-fw fa-bar-chart-o"></i> 報表分析</a>
                     </li>
                     <li id="selectOrder">
                         <a href="<c:url value='/_05_company/orderCom.jsp'/>"><i class="fa fa-fw fa-book"></i> 訂單管理</a>
                     </li>
                     <li id="scheduler">
-                        <a href="<c:url value='/_06_manage/scheduler.jsp'/>"><i class="fa fa-calendar"></i> 車輛調度</a>
+                        <a href="<c:url value='/scheduler'/>"><i class="fa fa-calendar"></i> 車輛調度</a>
                     </li>
                     <li id="Survey">
-                        <a href="#"><i class="fa fa-fw fa-file-text-o"></i> 問券分析</a>
+                        <a href="#"><i class="fa fa-fw fa-file-text-o"></i> 新功能</a>
                     </li>
                     <li id="selectStock">
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-th-list"></i> 庫存管理 <i class="fa fa-fw fa-caret-down"></i></a>
@@ -133,24 +133,32 @@
                                 <a href="<c:url value='/_06_manage/productInsert.jsp'/>">新品上架</a>
                             </li>
                             <li>
-                                <a href="<c:url value='/_06_manage/product.jsp'/>">車輛管理</a>
+                                <a href="<c:url value='/prod.show'/>">商品管理</a>
                             </li>
                             <li>
-                                <a href="#">配件管理</a>
+                                <a href="<c:url value='/_06_manage/AccInsert.jsp'/>">配件上架</a>
+                            </li>
+                            <li>
+                                <a href="<c:url value='/acc.show'/>">配件管理</a>
                             </li>
                         </ul>
                     </li>
                     <li id="selectDesignOrder">
                         <a href="<c:url value='/Temp/ApplySample_hooked.jsp' />"><i class="fa fa-fw fa-clipboard"></i> 設計訂單</a>
                     </li>
-                    <li id="selectDesignStock">
-                        <a href="#"><i class="fa fa-fw fa-edit"></i> 設計問券</a>
-                    </li >
                     <li id="selectModCom" >
                         <a href="<c:url value='/_06_manage/modCom.jsp'/>"><i class="fa fa-fw fa-pencil"></i> 修改商家資訊</a>
                     </li>
+                    <li id="selectDesignStock">
+                        <a href="#"><i class="fa fa-fw fa-shopping-cart"></i> Goo-go商城</a>
+                    </li > 
                      <li id="selectHelp">
                         <a href="<c:url value='/_06_manage/help.jsp'/>"><i class="fa fa-fw fa-info"></i> 幫助</a>
+                    </li>
+                    <li>
+                    	<c:if test="${not empty LoginComOK}">
+	                    	<a href="${pageContext.request.contextPath}/_01_login/logout.jsp"><i class="fa fa-fw fa-power-off"> </i>登出</a>
+	                    </c:if>
                     </li>
                 </ul>
             </div>

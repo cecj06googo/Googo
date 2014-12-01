@@ -18,12 +18,17 @@ import com.search.model.*;
 
 public class SearchServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		   System.out.println("進入doGet");
-		   String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
-		   String prod_type_str = new String((request.getParameter("prod_type")).getBytes("ISO-8859-1"),"UTF-8");
-		   String keySearch = new String((request.getParameter("keySearch")).getBytes("ISO-8859-1"),"UTF-8");
-   
-		   doPostdoGetShare(request,response,location,prod_type_str,keySearch);
+		   try{
+			   System.out.println("進入doGet");
+			   String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
+			   String prod_type_str = new String((request.getParameter("prod_type")).getBytes("ISO-8859-1"),"UTF-8");
+			   String keySearch = new String((request.getParameter("keySearch")).getBytes("ISO-8859-1"),"UTF-8");
+			   
+			   doPostdoGetShare(request,response,location,prod_type_str,keySearch);
+		   }catch(Exception e){
+			   System.out.println("錯誤!SearchServlet 的ISO-8859-1轉UTF-8轉換錯誤");
+			   e.printStackTrace();
+		   }
 		}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -88,17 +93,20 @@ public class SearchServlet extends HttpServlet{
 					    prod_type = Integer.parseInt(prod_type_str);			   
 				}
 				SearchService searchSvc = new SearchService();
+				List<String> comIdArray = new ArrayList<String>();
 				List<String> comAdressArray = new ArrayList<String>();
 				List<String> comNameArray = new ArrayList<String>();
 				List<SearchComVO> comList= searchSvc.getCompanysByCondition(location, prod_type,keySearch);
 				for (SearchComVO acomVO : comList) {
 					System.out.print(acomVO.getCom_id() + ",");
+					comIdArray.add(Integer.toString(acomVO.getCom_id()));
 					System.out.print(acomVO.getCom_name() + ",");
 					comNameArray.add("\""+acomVO.getCom_name()+"\"");
 					System.out.print(acomVO.getCom_address());
 					comAdressArray.add("\""+acomVO.getCom_address()+"\""); //把每一家地址存入
 					System.out.println();
 				}
+				request.setAttribute("comIdArray", comIdArray);//為了給research.jsp的javaScript使用
 				request.setAttribute("comAdressArray", comAdressArray);//為了給research.jsp的javaScript使用
 				request.setAttribute("comNameArray", comNameArray);//為了給research.jsp的javaScript使用
 				request.setAttribute("comList", comList);//為了給research.jsp計算總商店筆數

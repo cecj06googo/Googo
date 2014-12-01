@@ -35,7 +35,8 @@ public class LoginMemFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-	
+		
+		request.setCharacterEncoding("UTF-8");
 		boolean isRequestedSessionIdValid = false;
 		if (request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
 			HttpServletRequest req = (HttpServletRequest) request;
@@ -47,7 +48,12 @@ public class LoginMemFilter implements Filter {
 			session.setAttribute("referURI", req.getHeader("referer"));    // 將原網頁路徑存入session
 			isRequestedSessionIdValid = req.isRequestedSessionIdValid();
 			
-			if (mustLogin()) {    		  // 需要登入
+			// 取得商品id, 給訂單使用
+			if(req.getParameter("detail_prod_id") != null) 
+				session.setAttribute("detail_prod_id", req.getParameter("detail_prod_id"));
+			
+			// 需要登入
+			if (mustLogin()) {
 				if (checkLogin(req)) {    // 檢查是否已登入   
 					chain.doFilter(request, response);    // 已經登入
 				}
@@ -87,9 +93,9 @@ public class LoginMemFilter implements Filter {
 		boolean login = false;
 		for (String sURL : url) {
 			if (sURL.endsWith("*")) {    // 判斷是否為 * 結尾, 成立回傳true
-//				System.out.println("( " + sURL + " )");
+				System.out.println("( " + sURL + " )");
 				sURL = sURL.substring(0, sURL.length() - 1);
-//				System.out.println("[ " + sURL + " ]");
+				System.out.println("[ " + sURL + " ]");
 				if (servletPath.startsWith(sURL)) {
 					login = true;
 					break;

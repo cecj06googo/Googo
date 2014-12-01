@@ -1,6 +1,8 @@
 package com.template.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,15 +34,20 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 		 
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getParameter("command");
-		String view = "/Temp/ViewSample.jsp";
-		int id = 0;
-		if (request.getParameter("id_form_view") != null) {
-			id = Integer.parseInt(request.getParameter("id_form_view"));
-		}
 		int com_id = Integer.parseInt(request.getParameter("com_id_form_view"));
-		String content = request.getParameter("content_form_view");
+		String content = "";
+		if(request.getParameter("content_form_view") != null){
+			content = new String(request.getParameter("content_form_view").getBytes("ISO-8859-1"),"UTF-8");	
+		}else{
+			System.out.println("no design content detected.");
+			return;
+		}
+		
+		String designResult = "";
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter httpout = response.getWriter();
+		
 		System.out.println("command: " + command);
-		System.out.println("id: " + id);
 		System.out.println("com id: " + com_id);
 		
 		if ("insert".equals(command)) {
@@ -53,17 +60,26 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 			tempVo.setContent(content);
 			Prototype_OrderTemp_DAO dao = new Prototype_OrderTemp_DAO();
 			dao.insert(tempVo);
+			
+			httpout.print("insertOK");
 		}
 		
 		if ("retrieve".equals(command)) {
 			Prototype_OrderTemp_DAO dao = new Prototype_OrderTemp_DAO();
-			Prototype_OrderTemp_VO tempVo = dao.retrieve(id, com_id);
+			Prototype_OrderTemp_VO tempVo = dao.retrieve(com_id);
+			designResult = tempVo.getContent();
 			
-			System.out.println("load content: \n" + tempVo.getContent());
+			if(designResult == null || designResult.trim().length() < 1){
+				designResult = "";
+			}// if there is no designed template for current company, show empty string instead of null 
 			
-			request.setAttribute("tempVo", tempVo);
-			RequestDispatcher viewJsp = request.getRequestDispatcher(view);
-			viewJsp.forward(request, response);
+			System.out.println("load content: \n" + designResult);
+			
+			httpout.print(designResult); // modified for ajax retrieval 
+			
+//			request.setAttribute("tempVo", tempVo);
+//			RequestDispatcher viewJsp = request.getRequestDispatcher(view);
+//			viewJsp.forward(request, response);
 		}
 	}
 

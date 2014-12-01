@@ -23,6 +23,8 @@ int currentCom = (int)comVO.getComID();
 <link href="<%=request.getContextPath()%>/css/form_builder.css" rel="stylesheet">
 
 <script>
+// 取得新增成功訊息
+var DesignerMsg = <%= request.getAttribute("DesignerMsg") %>
 // 取得當前登入商家 id 供設計器使用
 var currentCom = <%= currentCom %>;
 // 提供 form_builder.js 使用的路徑
@@ -61,63 +63,46 @@ $("#selectManage").addClass("active");
             
             <!-- modified: document heading  -->
             <div class="col-lg-offset-1 col-md-10">
-            	<div class="alert alert-danger" role="alert">This is modified version for various tests. Current company id: ${currentCom} </div>
+            	<div class="alert alert-success" role="alert" style="visibility:hidden"></div>
             </div>
             
             <div class="col-lg-offset-1 col-sm-10 col-md-10">
                 <div class="row">
                     <div class="col-sm-6 col-md-6">
-                        <!-- <h1>Form Builder</h1> -->
-                        <!-- <hr> -->
                         
-                        <!-- modified: keep editor, need to solve source update problem -->
-                        <form id="content" class="form-horizontal">
-                        	<fieldset id="content_form_name">
-								<legend>Form Name</legend>
-							</fieldset>
-							${tempVo.content}
-						</form>
-						<div style="display:none;">
-							<textarea id="source"></textarea>
-						</div>
-						<!-- modified: button - save form -->
-						<form id="form_view" action="<%=request.getContextPath()%>/DesignAccessDB" method="post">
+                        <div class="tabbable">
+                        	<ul class="nav nav-tabs">
+                        		<li class="active"><a href="#editor-tab" data-toggle="tab">編輯區</a></li>
+                        	</ul>
+                        	<div class="tab-content">
+                        		<div class="tab-pane active" id="editor-tab">
+									<br>
+									<form id="content" class="form-horizontal">
+                        				<fieldset>
+                        					<legend><p style="text-align:center">請拖拉右側設計元件至此</p></legend>
+                        				</fieldset>
+										${tempVo.content}
+									</form>
+									<div style="display:none;">
+										<textarea id="source"></textarea>
+									</div>
+                        		</div>
+                        	</div>
+                        </div>
+
+						<form id="form_view" action="<%=request.getContextPath()%>/DesignAccessDB" method="post" style="display:none">
 							com_id<input type="text" name="com_id_form_view" id="com_id_form_view" value="${currentCom}" /><br>
 							command<input type="text" id="command" name="command" value="insert" readonly /><br>
 							content<textarea name="content_form_view" id="content_form_view"></textarea><br>
-							<button type="button" class="btn btn-primary" id="save_form_view">Save Form for View</button>
 						</form>
+						<button type="button" class="btn btn-primary" id="save_form_view">儲存設計</button>
 						
-						<form id="form_load" action="<%=request.getContextPath()%>/DesignAccessDB" method="post">
+						<form id="form_load" action="<%=request.getContextPath()%>/DesignAccessDB" method="post" style="display:none">
 							This form is used to load previous design result for editing.
 							com_id<input type="text" name="com_id_form_view" id="com_id_form_view" value="${currentCom}" /><br>
 							command<input type="text" id="command" name="command" value="load" readonly /><br>
 						</form>
-						<button type="button" class="btn btn-primary" id="save_form_design">Load Form for Editing</button>
-						
-                        <!-- modified: removed tab, keep editor, hide source -->
-                        <!--  
-                        <div class="tabbable">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#editor-tab" data-toggle="tab">Editor</a></li>
-                                <li><a href="#source-tab" data-toggle="tab">Source</a></li>
-                            </ul>
-
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="editor-tab">
-                                    <form id="content" class="form-horizontal">
-                                        <fieldset id="content_form_name">
-                                            <legend>Form Name</legend>
-                                        </fieldset>
-                                    </form>
-                                </div>
-
-                                <div class="tab-pane" id="source-tab">
-                                    <textarea id="source"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        -->
+						<button type="button" class="btn btn-primary" id="save_form_design">載入設計</button>
                         
                     </div>
 
@@ -125,8 +110,8 @@ $("#selectManage").addClass("active");
                         
                         <div class="tabbable">
                         	<ul class="nav nav-tabs">
-                        		<li class="active"><a href="#components-tab" data-toggle="tab">Components</a></li>
-                        		<li><a href="#predefined-tab" data-toggle="tab">Predefined</a></li>
+                        		<li class="active"><a href="#components-tab" data-toggle="tab">一般設計元件</a></li>
+                        		<li><a href="#predefined-tab" data-toggle="tab">套裝設計元件</a></li>
                         	</ul>
                         	<div class="tab-content">
                         		<div class="tab-pane active" id="components-tab">
@@ -135,23 +120,23 @@ $("#selectManage").addClass("active");
                         			<hr>
                         			<div id="components-container" class="form-horizontal">
                             			<div class="component form-group" data-type="text">
-                                			<label class="control-label col-sm-4" for="text_input">Text Input</label>
+                                			<label class="control-label col-sm-4" for="text_input">文字輸入框</label>
                                 			<div class="controls col-sm-8">
                                     		<input type="text" name="" id="text_input" placeholder="placeholder" class="form-control">
                                 			</div>
                             			</div>
 
                             			<div class="component form-group" data-type="textarea">
-                                			<label class="control-label col-sm-4" for="textarea">Textarea</label>
+                                			<label class="control-label col-sm-4" for="textarea">段落輸入框</label>
                                 			<div class="controls col-sm-8">
                                     		<textarea name="" class="form-control" id="textarea" placeholder="placeholder"></textarea>
                                 			</div>
                             			</div>
 
-                            			<div class="component form-group" data-type="select_basic">
-                                			<label class="control-label col-sm-4" for="select_basic">Select - Basic</label>
+                            			<div class="component form-group" data-type="SelectBasic">
+                                			<label class="control-label col-sm-4" for="SelectBasic">下拉單選</label>
                                 			<div class="controls col-sm-8">
-                                    		<select class="form-control" name="" id="select_basic">
+                                    		<select class="form-control" name="" id="SelectBasic">
                                         	<option value="1">Option 1</option>
                                         	<option value="2">Option 2</option>
                                         	<option value="3">Option 3</option>
@@ -159,10 +144,10 @@ $("#selectManage").addClass("active");
                                 			</div>
                             			</div>
 
-                            			<div class="component form-group" data-type="select_multiple">
-                                			<label class="control-label col-sm-4" for="select_multiple">Select - Multiple</label>
+                            			<div class="component form-group" data-type="SelectMultiple">
+                                			<label class="control-label col-sm-4" for="SelectMultiple">下拉多選</label>
                                 			<div class="controls col-sm-8">
-                                    		<select name="" class="form-control" id="select_multiple" multiple="multiple" size="3">
+                                    		<select name="" class="form-control" id="SelectMultiple" multiple="multiple" size="3">
                                         	<option value="1">Option 1</option>
                                         	<option value="2">Option 2</option>
                                         	<option value="3">Option 3</option>
@@ -171,7 +156,7 @@ $("#selectManage").addClass("active");
                             			</div>
 
                             			<div class="component form-group" data-type="checkbox">
-                                			<label class="control-label col-sm-4">Checkboxes</label>
+                                			<label class="control-label col-sm-4">複選框</label>
                                 			<div class="controls col-sm-8">
                                     		<div class="checkbox"><label class="" for="checkbox_1">
                                         	<input type="checkbox" name="checkbox" id="checkbox_1">
@@ -189,7 +174,7 @@ $("#selectManage").addClass("active");
                             			</div>
 
                             			<div class="component form-group" data-type="radio">
-                                			<label class="control-label col-sm-4">Radio Buttons</label>
+                                			<label class="control-label col-sm-4">單選圈</label>
                                 			<div class="controls col-sm-8">
                                     		<div class="radio"><label class="" for="radio_1">
                                         	<input type="radio" name="radio" id="radio_1">
@@ -206,8 +191,8 @@ $("#selectManage").addClass("active");
                                 			</div>
                             			</div>
 
-                            			<div class="component form-group" data-type="static_text">
-                                			<label class="control-label col-sm-4">Static Text</label>
+                            			<div class="component form-group" data-type="StaticText">
+                                			<label class="control-label col-sm-4">文字說明</label>
                                 			<div class="controls col-sm-8">
                                     		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 			</div>
@@ -225,14 +210,44 @@ $("#selectManage").addClass("active");
                         		<div class="tab-pane" id="predefined-tab">
                         			<hr>
                         			<div id="components-container" class="form-horizontal">
-                        				<div class="component form-group" data-type="pre_select_basic">
-                                			<label class="control-label col-sm-4" for="pre_select_basic">Predefined - Select - Basic</label>
+                        				
+                        				<div class="component form-group" data-type="PreSelectBasic">
+                                			<label class="control-label col-sm-4" for="PreSelectBasic">配備單選下拉</label>
                                 			<div class="controls col-sm-8">
-                                    		<select class="form-control" name="" id="pre_select_basic">
+                                    		<select class="form-control" name="" id="PreSelectBasic">
                                         	<option value="0">Dynamic options from DB</option>
                                     		</select>
                                 			</div>
                             			</div>
+                            			
+                            			<div class="component form-group" data-type="PreBox">
+                                			<label class="control-label col-sm-4" for="PreSelectBasic">配備自訂下拉</label>
+                                			<div class="controls col-sm-8">
+                                    		<select class="form-control" name="" id="PreBox">
+                                        	<option value="0">Dynamic options from DB</option>
+                                    		</select>
+                                			</div>
+                            			</div>
+                            			
+                            			<div class="component form-group" data-type="AdditionalInsurance">
+                                			<label class="control-label col-sm-4" for="AdditionalInsuranceName">加保人姓名</label>
+                                			<div class="controls col-sm-8">
+                                    			<input type="text" class="form-control" name="" id="AdditionalInsuranceName" style="margin-bottom:5px" value="預設被保險人，請按照身份證或駕照姓名填寫">
+                                    		</div>
+                                    		<label class="control-label col-sm-4" for="AdditionalInsurancePhone">加保人手機</label>
+                                			<div class="controls col-sm-8">
+                                    			<input type="text" class="form-control" name="" id="AdditionalInsurancePhone" style="margin-bottom:5px" value="格式：0900-000-000">
+                                    		</div>
+                                    		<label class="control-label col-sm-4" for="AdditionalInsuranceMail">聯絡郵件</label>
+                                			<div class="controls col-sm-8">
+                                    			<input type="text" class="form-control" name="" id="AdditionalInsuranceMail" style="margin-bottom:5px" value="任何臨時車輛異動將即時以電子郵件通知您">
+                                    		</div>
+                                    		<label class="control-label col-sm-4" for="AdditionalInsuranceID">身份證字號</label>
+                                			<div class="controls col-sm-8">
+                                    			<input type="text" class="form-control" name="" id="AdditionalInsuranceID" style="margin-bottom:5px" value="主管機關備查用，請務必填寫正確">
+                                    		</div>
+                            			</div>
+                            			
                         			</div>
                         		</div>
                         	</div>

@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% 
+String jsonString = (String)request.getAttribute("jsonString");
+String elements = (String)request.getAttribute("elements");
+%>
+<c:set value="<%= elements %>" var="elements" />
+<c:set value="<%= jsonString %>" var="jsonString" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -36,6 +42,8 @@
 			var scheduler_container = document.getElementById("scheduler_car");
 			var scheduler_container_divs = scheduler_container.getElementsByTagName("div");
 			var dhx_cal_data = scheduler_container_divs[scheduler_container_divs.length-1];
+
+			var contextPath = "<%=request.getContextPath()%>";
 
 			// while target has parent node and we haven't reached dhx_cal_data
 			// we can keep checking if it is timeline section
@@ -84,26 +92,45 @@
             
   
             //車名
-            var elements = [ // original hierarhical array to display
-			{key:"NISSAN LAVINA", label:"NISSAN LAVINA", open: true, children: [
-				{key:"n1", label:"1051-EE"},
-				{key:"n2", label:"1548-AA"},
-				{key:"n3", label:"5894-BB"},
+            var elements = <%= elements %>;
+       /*     var elements = [ // original hierarhical array to display
+			{key:"Fighter150", label:"Fighter150", open: true, children: [
+				{key:"5684-XX", label:"5684-XX"},
+				{key:"1369-AA", label:"1369-AA"},
+				{key:"2989-BB", label:"2989-BB"},
+				{key:"9856-AA", label:"9856-AA"},
+				{key:"8795-FF", label:"8795-FF"},
+				{key:"CC-8856", label:"CC-8856"},
 			]},
-			{key:"MAZDA 3", label:"MAZDA 3", open:true, children: [
-				{key:"m1", label:"BB-4654"},
-				{key:"m2", label:"BB-7854"},
-				{key:"m3", label:"YY-4654"},
-				{key:"m4", label:"BB-4666"}
+			{key:"法拉利211", label:"法拉利211", open:true, children: [
+				{key:"FF-2344", label:"FF-2344"},
+				{key:"EE-7898", label:"EE-7898"},
+				{key:"AA-1568", label:"AA-1568"},
+				{key:"8562-BB", label:"8562-BB"}
 			]},
-			{key:"機車", label:"機車", open:true, children: [
-                {key:"機車1", label:"AAA-513"},
-                {key:"機車2", label:"AAA-514"},
-                {key:"機車3", label:"AAA-515"},
-                {key:"機車4", label:"AAA-516"},
-                {key:"機車5", label:"AAA-517"},
+			{key:"保時捷-T1", label:"保時捷-T1", open:true, children: [
+                {key:"7759-BB", label:"7759-BB"},
+                {key:"5659-AA", label:"5659-AA"},
+                {key:"8526-QQ", label:"8526-QQ"},
+                {key:"YY-2162", label:"YY-2162"},
+                {key:"CC-0619", label:"CC-0619"},
+                {key:"HH-3213", label:"HH-3213"},
             ]},
-			];
+            {key:"野狼125", label:"野狼125", open:true, children: [
+                 {key:"7989-BB", label:"7989-BB"},
+            ]},
+             {key:"賓士320", label:"賓士320", open:true, children: [
+                 {key:"7761-EE", label:"7761-EE"},
+                 {key:"1591-EE", label:"1591-EE"},
+                 {key:"2068-EE", label:"2068-EE"},
+                 {key:"YY-2162", label:"YY-2162"},
+                 {key:"CC-0619", label:"CC-0619"},
+                 {key:"HH-3213", label:"HH-3213"},
+            ]},
+            {key:"競戰150", label:"競戰150", open:true, children: [
+                 {key:"7569-BB", label:"7569-BB"},
+            ]},
+			];*/
             
             scheduler.createTimelineView({
             	section_autoheight: false,
@@ -139,24 +166,9 @@
 
             
 			//開始時間
-            scheduler.init('scheduler_car',new Date(2014,5,30),"timeline");
-            scheduler.parse([
-                { start_date: "2014-07-01 09:00", end_date: "2014-07-02 12:00", text:"訂單-12458", section_id:"n1", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-                { start_date: "2014-06-30 10:00", end_date: "2014-06-30 21:00", text:"訂單-89411", section_id:"n1", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-                { start_date: "2014-06-30 10:00", end_date: "2014-06-30 14:00", text:"訂單-64168", section_id:"n2", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-                { start_date: "2014-06-30 16:00", end_date: "2014-07-02 17:00", text:"訂單-46598", section_id:"n3", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-
-                { start_date: "2014-06-30 12:00", end_date: "2014-07-02 20:00", text:"訂單-48865", section_id:"m1", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-                { start_date: "2014-06-30 09:00", end_date: "2014-06-30 18:00", text:"訂單-44864", section_id:"m2", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-                { start_date: "2014-06-30 16:30", end_date: "2014-07-01 18:00", text:"訂單-46558", section_id:"m3", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-                { start_date: "2014-06-30 18:30", end_date: "2014-07-01 00:00", text:"訂單-45564", section_id:"m4", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-             
-                { start_date: "2014-06-30 12:00", end_date: "2014-07-02 20:00", text:"訂單-48865", section_id:"機車1", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-                { start_date: "2014-06-30 14:00", end_date: "2014-07-01 08:00", text:"訂單-44864", section_id:"機車2", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-                { start_date: "2014-06-30 16:30", end_date: "2014-07-01 18:00", text:"訂單-46558", section_id:"機車3", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-                { start_date: "2014-06-30 18:30", end_date: "2014-07-01 00:00", text:"訂單-45564", section_id:"機車4", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-                { start_date: "2014-06-30 15:30", end_date: "2014-07-01 15:00", text:"訂單-45588", section_id:"機車5", details:"租車人:黃詩芸  <br>連絡電話:0910069696"},
-            ],"json");
+            scheduler.init('scheduler_car',new Date(),"timeline");
+			var jsonString= <%= jsonString %>;
+            scheduler.parse(jsonString,"json");
         }
         function show_minical(){
             if (scheduler.isCalendarVisible()){
@@ -193,19 +205,20 @@
          <!--條件搜尋-->
          <div class="col-md-10 text-center">
 	     <div class="row" >
-           	<form class="form-inline" role="form">
+           	<form class="form-inline" role="form" name="searchCar" id="searchCar" action="<%=request.getContextPath()%>/schedulerSearchCar" method="post">
               <div class="form-group">
-                    <select class="form-control input-lg"  autofocus="" >
-                        <option>種類</option>  <!--純顯示 不能給user選-->
-                        <option>汽車</option>
-                        <option>機車</option>
-                        <option>腳踏車</option>
+                    <select class="form-control input-lg"  name="prod_type" >
+                        <option>交通工具</option>  <!--純顯示 不能給user選-->
+                        <option value="1">汽車</option>
+                        <option value="2">機車</option>
+                        <option value="3">腳踏車</option>
                     </select>
                 </div>
                  <div class="form-group">
-                      <input type="text" class="form-control input-lg" placeholder="請輸入關鍵字">
+                      <input type="text" class="form-control input-lg" name="keySearch" placeholder="請輸入車輛名稱">
                  </div>
 			<button class="btn btn-default btn-lg" type="submit"><i class="fa fa-search"></i></button>
+			<div><Font color="red">${ErrMsg}</Font></div>
             </form><br>
         </div> 
         </div><!--/.條件搜尋-->

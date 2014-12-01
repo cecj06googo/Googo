@@ -2,9 +2,7 @@ package com.products.controller;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -20,8 +18,8 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.company.model.CompanyVO;
-import com.products.model.ProductsService;
 import com.products.model.ProductVO;
+import com.products.model.ProductsService;
 
 public class ProductServlet extends HttpServlet {
 
@@ -40,7 +38,7 @@ public class ProductServlet extends HttpServlet {
 		Map<String, String> succesMsgs = new HashMap<String, String>();
 		Map<String, String> errorMsgs = new HashMap<String, String>();
 		request.setAttribute("ErrorMsg", errorMsgs); // 顯示錯誤訊息
-		request.setAttribute("MsgOK", succesMsgs); // 顯示錯誤訊息
+		request.setAttribute("MsgOK", succesMsgs); // 顯示成功訊息
 		// String abc = "abc";
 		// request.setAttribute("abc", abc); // 顯示錯誤訊息
 		System.out.println("Ready? servlet begins~");
@@ -59,7 +57,9 @@ public class ProductServlet extends HttpServlet {
 		int prodType = 0;
 		double prodPrice = 0;
 		double prodDisc = 0;// 5
-		byte[] prodPic = bs;
+		byte[] prodPic = null;
+
+		String picName1;
 
 		String prodArticle = "2";// 7
 		byte[] prodSubPic1 = null;
@@ -94,7 +94,6 @@ public class ProductServlet extends HttpServlet {
 			// ------------------表單驗證+資料接收----------------------
 			if (ServletFileUpload.isMultipartContent(request)) {
 				try {
-					// 檔案名稱
 					List<FileItem> multiparts = new ServletFileUpload(
 							new DiskFileItemFactory()).parseRequest(request);
 					// 逐筆讀取form表單內容
@@ -153,29 +152,140 @@ public class ProductServlet extends HttpServlet {
 									.equals(item.getFieldName())) {
 								prodControl = new Integer(fieldvalue.trim());
 							}
-							// }
-							// else {
-							// // **需在前端設計圖片格式驗證
-							// String picName = item.getName(); // 取得文件名稱
-							// System.out.println(picName);
-							// if (picName == null || picName.trim().length() ==
-							// 0)
-							// {
-							// continue;
-							// }
-							// else {
-							// try {
-							// BufferedInputStream in = new BufferedInputStream(
-							// item.getInputStream()); // 讀入圖片串流資料
-							// comPic = new byte[in.available()]; //
-							// available()取得字節長度
-							// // **有空回來處理網路斷訊產生的問題
-							// in.read(comPic);
-							// in.close();
-							// } catch (Exception e) {
-							// e.getStackTrace();
-							// }
-							// }
+						} else {
+
+							// File uploadedFile = new File(item.getName());
+
+							// item.write(uploadedFile);
+							// if(uploadedFile.exists())
+							// System.out.println("uploadedFile "+uploadedFile);
+							// InputStream uploadedStream =
+							// item.getInputStream();
+							// uploadedStream.close();
+							// String saveDirectory
+							// =request.getRealPath(saveDirectory);
+							// System.out.println(saveDirectory);
+							//
+							// // 限制上傳之檔案大小為 5 MB
+							// int maxFileSize = 5 * 1024 * 1024 ;
+							// //檔案上傳完畢
+							// MultipartRequest multi = new
+							// MultipartRequest(request , saveDirectory ,
+							// maxFileSize, "UTF-8");
+							// File file =
+							// multi.getFile("clientFile");//取得剛剛上傳的檔案物件
+							// //
+							// System.out.print(file.getAbsolutePath());//秀出檔案總管中的路徑
+							// String aaa= multi.getParameter("aaa");
+							// System.out.println(aaa);
+							//
+							// FileInputStream fs = new FileInputStream(file);
+							// byte[] buffer = new byte[fs.available()];
+							// fs.read(buffer,0,buffer.length);
+							// fs.close();
+
+							// **需在前端設計圖片格式驗證
+							picName1 = item.getName(); // 取得文件名稱
+							System.out.println(picName1 + "+");
+
+							if ("prodPic".equals(item.getFieldName())) {
+								try {
+									BufferedInputStream in = new BufferedInputStream(
+											item.getInputStream()); // 讀入圖片串流資料
+									prodPic = new byte[in.available()];
+									System.out.println(prodPic + "++");
+									byte[] data = item.get();
+									System.out.println(prodPic);
+									System.out.println(prodPic.length + " pic");
+									// available()取得字節長度
+									// **有空回來處理網路斷訊產生的問題
+									in.read(prodPic);
+									in.close();
+								} catch (Exception e) {
+									e.getStackTrace();
+								}
+							} else if (prodSubPic1 == null) {
+								try {
+									BufferedInputStream in = new BufferedInputStream(
+											item.getInputStream()); // 讀入圖片串流資料
+									prodSubPic1 = new byte[in.available()];
+									System.out.println(prodSubPic1 + "-+");
+									byte[] data = item.get();
+									System.out.println(prodSubPic1);
+									System.out.println(prodSubPic1.length
+											+ " pic");
+									// available()取得字節長度
+									// **有空回來處理網路斷訊產生的問題
+									in.read(prodSubPic1);
+									in.close();
+								} catch (Exception e) {
+									e.getStackTrace();
+								}
+							} else if (prodSubPic2 == null) {
+								try {
+									BufferedInputStream in = new BufferedInputStream(
+											item.getInputStream()); // 讀入圖片串流資料
+									prodSubPic2 = new byte[in.available()];
+									System.out.println(prodSubPic2 + "-+");
+									byte[] data = item.get();
+									System.out.println(prodSubPic2);
+									System.out.println(prodSubPic2.length
+											+ " pic");
+									// available()取得字節長度
+									// **有空回來處理網路斷訊產生的問題
+									in.read(prodSubPic2);
+									in.close();
+								} catch (Exception e) {
+									e.getStackTrace();
+								}
+							} else if (prodSubPic3 == null) {
+								try {
+									BufferedInputStream in = new BufferedInputStream(
+											item.getInputStream()); // 讀入圖片串流資料
+									prodSubPic3 = new byte[in.available()];
+									System.out.println(prodSubPic3 + "-+");
+									byte[] data = item.get();
+									System.out.println(prodSubPic3);
+									System.out.println(prodSubPic3.length
+											+ " pic");
+									// available()取得字節長度
+									// **有空回來處理網路斷訊產生的問題
+									in.read(prodSubPic3);
+									in.close();
+								} catch (Exception e) {
+									e.getStackTrace();
+								}
+
+								// else if (prodSubPic2 == null) {
+								// try {
+								// BufferedInputStream in = new
+								// BufferedInputStream(
+								// item.getInputStream()); // 讀入圖片串流資料
+								// prodSubPic2 = new byte[in.available()];
+								// System.out.println(picName1 + "+");
+								// // available()取得字節長度
+								// // **有空回來處理網路斷訊產生的問題
+								// in.read(prodPic);
+								// in.close();
+								// } catch (Exception e) {
+								// e.getStackTrace();
+								// }
+								// } else if (prodSubPic3 == null) {
+								// try {
+								// BufferedInputStream in = new
+								// BufferedInputStream(
+								// item.getInputStream()); // 讀入圖片串流資料
+								// prodSubPic3 = new byte[in.available()];
+								// System.out.println(picName1 + "+");
+								// // available()取得字節長度
+								// // **有空回來處理網路斷訊產生的問題
+								// in.read(prodPic);
+								// in.close();
+								// } catch (Exception e) {
+								// e.getStackTrace();
+								// }
+								// }
+							}
 						} // end outer else
 					} // end for loop
 						// 存入商家編號
@@ -185,17 +295,16 @@ public class ProductServlet extends HttpServlet {
 
 					// ---------------寫入database----------------------
 					if (errorMsgs.isEmpty()) {
-						ProductVO = productsService
-								.addProd(prodId, _comId, prodName,prodType, prodPrice, prodDisc, prodPic,
-										prodArticle, prodSubPic1, prodSubPic2,
-										prodSubPic3, prodKind, prodCc,
-										prodCarrier, prodControl, prodPlate,
-										prodStatus);
+						ProductVO = productsService.addProd(prodId, _comId,
+								prodName, prodType, prodPrice, prodDisc,
+								prodPic, prodArticle, prodSubPic1, prodSubPic2,
+								prodSubPic3, prodKind, prodCc, prodCarrier,
+								prodControl, prodPlate, prodStatus);
 
-//						System.out.println(ProductVO.getProdId());
-//						System.out.println(ProductVO.getComId());
-//						System.out.println(ProductVO.getProdName());
-//						System.out.println(ProductVO.getProdType());
+						// System.out.println(ProductVO.getProdId());
+						// System.out.println(ProductVO.getComId());
+						// System.out.println(ProductVO.getProdName());
+						// System.out.println(ProductVO.getProdType());
 
 						request.setAttribute("ProductVO", ProductVO);
 						succesMsgs.put("InsertOK",
@@ -222,5 +331,4 @@ public class ProductServlet extends HttpServlet {
 		}
 
 	}// end post
-
 }

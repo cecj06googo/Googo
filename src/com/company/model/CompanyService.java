@@ -2,6 +2,7 @@ package com.company.model;
 
 import java.io.IOException;
 import java.util.List;
+import com.util.HashService;
 
 public class CompanyService {
 	
@@ -42,7 +43,8 @@ public class CompanyService {
 		
 		CompanyVO comVO = new CompanyVO();
 		comVO.setComAccount(comAccount);
-		comVO.setComPwd(comPwd);
+		String encrypedString = HashService.encryptString(comPwd);
+		comVO.setComPwd(HashService.getMD5Endocing(encrypedString));
 		comVO.setComName(comName);
 		comVO.setComOwner(comOwner);
 		comVO.setComAddr(comAddr);

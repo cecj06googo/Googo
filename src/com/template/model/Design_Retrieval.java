@@ -37,7 +37,7 @@ public class Design_Retrieval extends HttpServlet {
 		ResultSet rs = null;
 		int com_id = 1;
 		String designResult = "";
-		StringWriter out = new StringWriter();
+		//StringWriter out = new StringWriter();
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter httpout = response.getWriter();
 		
@@ -48,6 +48,9 @@ public class Design_Retrieval extends HttpServlet {
 			
 			if(request.getParameter("com_id_form_view") != null){
 				com_id = Integer.parseInt((String)request.getParameter("com_id_form_view"));	
+			}else{
+				System.out.print("Design Retrieval Message: Missing com_id, abort retrieval.");
+				return;
 			}
 			System.out.println("Load design of: " + com_id);
 			pstmt.setInt(1, com_id);
@@ -59,16 +62,21 @@ public class Design_Retrieval extends HttpServlet {
 				System.out.println(designResult);
 			}
 			
-			httpout.print(designResult);
-			
+			// response designResult only if there is saved template for this company
+			if(designResult != null && designResult.trim().length() > 3){
+				httpout.print(designResult);
+			}else{
+				System.out.println("No designed template for current company.");
+			}
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (out != null) {
+			if (httpout != null) {
 				try {
-					out.close();
+					httpout.close();
 				} catch (Exception se) {
 					se.printStackTrace(System.err);
 				}

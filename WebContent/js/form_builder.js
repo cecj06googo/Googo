@@ -120,18 +120,30 @@ $(function() {
 
         // add component to form
         addComponent: function(component) {
-            component
+            // transform the added component to an element
+        	var componentResult = component
             .clone()
             .removeClass('component')
             .addClass('element')
-            .removeAttr('id')
-            .prepend('<div class="close">&times;</div>')
+            .removeAttr('id');
+            
+        	// attach the transformed element to editing area
+        	componentResult
+            .prepend('<div class="close">&times;</div><br>')
             .appendTo("#content");
 
             $("#options_modal").modal('hide');
+            $("#content").find("fieldset").hide();
 
             this.updateSource();
-            // modified: test
+            // counter ticks for a new element
+            form_builder.counter++;
+            
+            // set id and name of the new element
+            var $el = $(componentResult);
+            var type= $(componentResult).data('type');
+            form_builder.setElement($el);
+            form_builder[type].setIdentification();
             console.log($("#content").html());
         },
 
@@ -184,12 +196,20 @@ $(function() {
         	.done(function(data){
         		//console.log(data);
         		//add element shell
-        		$("#content").empty();
-        		designResult = $(data);
-        		designResult.addClass("ui-draggable element")
-        					.prepend('<div class="close">×</div>')
-        					.appendTo("#content");
+        		if(data != null && data.length > 3){
+        			$("#content").empty();
+            		designResult = $(data);
+            		designResult.addClass("ui-draggable element")
+            					.prepend('<div class="close">×</div>')
+            					.appendTo("#content");
+        		}
         	});
+        	
+        	$(".alert-success").text("載入設計結果");
+        	$(".alert-success").css("visibility", "visible");
+        	var onloadMsgTimeout = window.setTimeout(function(){
+        		$(".alert-success").css("visibility", "hidden");
+        	}, 1000);
         },
 
         // form title options
@@ -243,10 +263,17 @@ $(function() {
                 //label.text($(this.prefix + 'label').val()).attr('for', name);
 
                 //input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', name);
-                form_builder.counter++;
-                input.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', 'custField_' + form_builder.counter);
-                input.attr('name', input.attr('id'));
+                
+                input.attr('placeholder', $(this.prefix + 'placeholder').val());
                 label.text($(this.prefix + 'label').val()).attr('for', input.attr('id'));
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+                input = el.find('input[type=text]');
+            	
+            	input.attr('id', 'custField_' + form_builder.counter + '_text')
+            		 .attr('name', input.attr('id'));
             }
         },
 
@@ -274,19 +301,26 @@ $(function() {
 //                label.text($(this.prefix + 'label').val());
 //                textarea.attr('placeholder', $(this.prefix + 'placeholder').val());
                 
-                form_builder.counter++;
-                textarea.attr('placeholder', $(this.prefix + 'placeholder').val()).attr('id', 'custField_' + form_builder.counter);
-                textarea.attr('name', textarea.attr('id'));
+                
+                textarea.attr('placeholder', $(this.prefix + 'placeholder').val());
                 label.text($(this.prefix + 'label').val()).attr('for', textarea.attr('id'));
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+                textarea = el.find('textarea');
+            	
+            	textarea.attr('id', 'custField_' + form_builder.counter + '_textarea')
+            		 .attr('name', textarea.attr('id'));
             }
         },
 
         /*====================== Begin: Predefined Components ====================*/
         
      // predefined select box options
-        pre_select_basic: {
+        PreSelectBasic: {
             // options class prefix
-            prefix: '.options_pre_select_basic_',
+            prefix: '.options_PreSelectBasic_',
 
             // initialize modal content
             get: function() {
@@ -297,7 +331,8 @@ $(function() {
                 
                 $.ajax({
                 	url: contextPath + "/GetAccessory",
-            		dataType: "json",
+            		data: {com_id: currentCom},
+                	dataType: "json",
             	})
             	.done(function(data){
             		console.log(data);
@@ -323,22 +358,187 @@ $(function() {
                 	option.text(pre_databean[index].description);
                 	select.append(option);
                 });
-                
-                form_builder.counter++;
-                select.attr('id', 'custPreField_' + form_builder.counter);
-                select.attr('name', select.attr('id'));
+
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
                 
-                //select.append(list_options);
-            }
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+            	select = el.find('select');
+            	
+            	select.attr('id', 'custField_' + form_builder.counter + '_PreSelectBasic');
+                select.attr('name', select.attr('id'));
+            },
+        },
+        
+        PreBox: {
+        	
+        	prefix: '.options_PreBox_',
+        	
+        	get: function(){
+        		var el = form_builder.getElement(),
+        			elementSelect = el.find("[id$='PreBox']"),
+        			elementOptions = elementSelect.find("option");
+        			displayPool = '',
+        			displayPoolOptions = '',
+        			availablePool = '',
+        			label = el.find('label');
+        		
+        		/********************** Begin Initialization ************************/
+        		$.ajax({
+                	url: contextPath + "/GetAccessory",
+            		data: {com_id: currentCom},
+                	dataType: "json",
+            	})
+            	.done(function(data){
+            		console.log(data);
+            		pre_databean = data;
+            		
+            		// initialize displayPool, check if current element has options
+            		if(elementOptions.length > 0){
+            			
+            			// check if DB available accessories match options in current element, show matched options
+            			$(pre_databean).each(function(index){
+            				for(i = 0; i < elementOptions.length; i++){
+            					if($(elementOptions[i]).attr("data-id") == pre_databean[index]["acc_id"]){
+            						$(elementOptions[i]).clone().appendTo("#displayPool");
+            					}
+            				}
+                		});
+            			
+            			// check if options in current element match DB available accessories, mark unmatched options
+            			for(j = 0; j < elementOptions.length; j++){
+            				var matchOK = 0;
+            				$(pre_databean).each(function(index){
+            					if(pre_databean[index]["acc_id"] == $(elementOptions[j]).attr("data-id")){
+            						matchOK = 1;
+            						return false; // break .each()
+            					}
+            				});
+            				if(matchOK == 0){
+            					$(elementOptions[j]).attr("class", "mkrm"); // Mark Remove
+            				}
+            			}
+            			
+            			// remove marked options in element
+            			if(elementOptions.find(".mkrm").length > 0){
+            				$("elementOptions .mkrm").remove();
+            			}
+
+        			}// end if: displayPool initialization
+            		
+            		// initialize availablePool, load available accessories which are not in displayPool
+            		displayPool = $("#displayPool");
+            		availablePool = $("#availablePool");
+            		displayPoolOptions = displayPool.find("option");
+            		
+            		$(pre_databean).each(function(index){
+            			var appendOK = 1;
+            			for(k = 0; k < displayPool.find("option").length; k++){
+            				if(pre_databean[index]["acc_id"] == $(displayPoolOptions[k]).attr("data-id")){
+            					appendOK = 0;
+            					break;
+            				}
+            			}
+            			if(appendOK == 1){
+            				$("<option></option>").attr("data-id", pre_databean[index]["acc_id"])
+            									  .val(pre_databean[index]["price"])
+            									  .text(pre_databean[index]["description"])
+            									  .appendTo(availablePool);
+            			}
+            		});// end .each(): vailablePool initialization
+            	});// end ajax handler .done()
+        		
+        		$(this.prefix + 'label').val(el.find('label').text());
+        		/********************** End Initialization ************************/
+        		
+        		$("#addToDisplay").on("click", function(){
+        			$(availablePool).find(":selected").appendTo(displayPool);
+        		});
+        		
+        		$("#removeFromDisplay").on("click", function(){
+        			$(displayPool).find(":selected").appendTo(availablePool);
+        		});
+        		
+        	},// end get()
+        	
+        	set: function(){
+        		var el = form_builder.getElement(),
+    				elementSelect = el.find("[id$='PreBox']"),
+    				elementOptions = elementSelect.find("option");
+    				displayPool = $("#displayPool"),
+    				displayPoolOptions = displayPool.find("option"),
+    				availablePool = $("#availablePool"),
+    				label = el.find('label');
+        		
+    			$(elementOptions).remove();
+        		$(displayPoolOptions).clone().appendTo(elementSelect);
+        		
+        		label.text($(this.prefix + 'label').val());
+        	},
+        	
+        	setIdentification: function(){
+        		var el = form_builder.getElement(),
+        		elementSelect = el.find("[id$='PreBox']"),
+        		label = el.find('label');
+
+        		elementSelect.attr("id", 'custField_' + form_builder.counter + '_PreBox');
+        		elementSelect.attr("name", elementSelect.attr("id"));
+        		label.attr('for', elementSelect.attr('id'));
+        	},
+        	
+        },
+        
+        AdditionalInsurance: {
+        	
+        	prefix: '.options_AdditionalInsurance_',
+        	
+        	get: function(){
+        		var el = form_builder.getElement();
+        		
+        		$(this.prefix + 'NamePlaceholder').val($(el).find("input[id$='AdditionalInsuranceName']").val());
+        		$(this.prefix + 'PhonePlaceholder').val($(el).find("input[id$='AdditionalInsurancePhone']").val());
+        		$(this.prefix + 'MailPlaceholder').val($(el).find("input[id$='AdditionalInsuranceMail']").val());
+        		$(this.prefix + 'IDPlaceholder').val($(el).find("input[id$='AdditionalInsuranceID']").val());
+        	},
+        	
+        	set: function(){
+        		var el = form_builder.getElement();
+        		
+        		el.find('input[id$="AdditionalInsuranceName"]').attr("value", $(this.prefix + 'NamePlaceholder').val());
+        		el.find('input[id$="AdditionalInsurancePhone"]').attr("value", $(this.prefix + 'PhonePlaceholder').val());
+        		el.find('input[id$="AdditionalInsuranceMail"]').attr("value", $(this.prefix + 'MailPlaceholder').val());
+        		el.find('input[id$="AdditionalInsuranceID"]').attr("value", $(this.prefix + 'IDPlaceholder').val());
+	
+        	},
+        	
+        	setIdentification: function(){
+            	var el = form_builder.getElement();
+            	
+            	el.find('input[id$="AdditionalInsuranceName"]').attr("id", 'custField_' + form_builder.counter + '_AdditionalInsuranceName')
+            											 .attr("name", 'custField_' + form_builder.counter + '_AdditionalInsurance');
+        		el.find('input[id$="AdditionalInsurancePhone"]').attr("id", 'custField_' + form_builder.counter + '_AdditionalInsurancePhone')
+        												  .attr("name", 'custField_' + form_builder.counter + '_AdditionalInsurance');
+        		el.find('input[id$="AdditionalInsuranceMail"]').attr("id", 'custField_' + form_builder.counter + '_AdditionalInsuranceMail')
+        												 .attr("name", 'custField_' + form_builder.counter + '_AdditionalInsurance');
+        		el.find('input[id$="AdditionalInsuranceID"]').attr("id", 'custField_' + form_builder.counter + '_AdditionalInsuranceID')
+        													.attr("name", 'custField_' + form_builder.counter + '_AdditionalInsurance');
+        		var labels = el.find('label');
+
+        		$(labels[0]).attr("for", 'custField_' + form_builder.counter + '_AdditionalInsuranceName');
+        		$(labels[1]).attr("for", 'custField_' + form_builder.counter + '_AdditionalInsurancePhone');
+        		$(labels[2]).attr("for", 'custField_' + form_builder.counter + '_AdditionalInsuranceMail');
+        		$(labels[3]).attr("for", 'custField_' + form_builder.counter + '_AdditionalInsuranceID');
+            },
         },
         
         /*====================== End: Predefined Components ====================*/
         
         // basic select box options
-        select_basic: {
+        SelectBasic: {
             // options class prefix
-            prefix: '.options_select_basic_',
+            prefix: '.options_SelectBasic_',
 
             // get basic select options
             get: function() {
@@ -393,18 +593,23 @@ $(function() {
                     }
                 });
 
-                form_builder.counter++;
-                select.attr('id', 'custField_' + form_builder.counter);
-                select.attr('name', select.attr('id'));
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
                 select.html(list_options);
-            }
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+            	select = el.find('select');
+            	
+            	select.attr('id', 'custField_' + form_builder.counter + '_SelectBasic');
+                select.attr('name', select.attr('id'));
+            },
         },
 
         // multi select box options
-        select_multiple: {
+        SelectMultiple: {
             // options class prefix
-            prefix: '.options_select_multiple_',
+            prefix: '.options_SelectMultiple_',
 
             // get multiple select options
             get: function() {
@@ -458,14 +663,18 @@ $(function() {
                         }
                     }
                 });
-                	
-                form_builder.counter++;
-                select.attr('id', 'custField_' + form_builder.counter);
-                //select.attr('name', form_builder.cleanName($(this.prefix + 'name').val()) + '[]');
-                select.attr('name', select.attr('id'));
+
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));;
                 select.html(list_options);
-            }
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+            	select = el.find('select');
+            	
+            	select.attr('id', 'custField_' + form_builder.counter + '_SelectMultiple');
+                select.attr('name', select.attr('id'));
+            },
         },
 
         // checkbox options
@@ -497,7 +706,7 @@ $(function() {
             // set checkbox options
             set: function() {
             	//prepare index for group name: custField_box_
-            	form_builder.counter++;
+            	
             	var el = form_builder.getElement(),
                     label = el.find('label:first'),
                     split = form_builder.delimeter,
@@ -510,14 +719,14 @@ $(function() {
 
                     // element name
                     //name = form_builder.cleanName($(this.prefix + 'name').val()),
-                    name = 'custField_box_' + form_builder.counter,
 
                     // options buffer
                     list_options = "\n";
 
                 // loop through each option
                 $.each(checkbox_options, function(key, val) {
-                    var id = name + '_' + key;
+                    var name = $(el).data("name");
+                	var id = name + '_' + key;
 
                     if (val.length > 0) {
                         // if delimiter found, split val into array value -> display
@@ -543,7 +752,12 @@ $(function() {
 
                 label.text($(this.prefix + 'label').val());
                 el.find('.controls').html(list_options);
-            }
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement();
+            	$(el).data("name", 'custField_' + form_builder.counter + '_checkbox');
+            },
         },
 
         // radio buttons options
@@ -575,7 +789,7 @@ $(function() {
             // set radio button options
             set: function() {
             	//prepare index for group name: custField_box_
-            	form_builder.counter++;
+            	
             	var el = form_builder.getElement(),
                     label = el.find('label:first'),
                     split = form_builder.delimeter,
@@ -587,14 +801,14 @@ $(function() {
                     radio_options = options_blob.replace(/\r\n/, "\n").split("\n"),
 
                     // element name
-                    name = 'custField_radio_' + form_builder.counter,
 
                     // options buffer
                     list_options = "\n";
 
                 // loop through each option
                 $.each(radio_options, function(key, val) {
-                    var id = name+'_'+key;
+                    var name = $(el).data("name");
+                	var id = name+'_'+key;
 
                     if (val.length > 0) {
                         // if delimiter found, split val into array value -> display
@@ -620,12 +834,17 @@ $(function() {
 
                 label.text($(this.prefix + 'label').val());
                 el.find('.controls').html(list_options);
-            }
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement();
+            	$(el).data("name", 'custField_' + form_builder.counter + '_radio');
+            },
         },
 
         // static text options
-        static_text: {
-            prefix: '.options_static_text_',
+        StaticText: {
+            prefix: '.options_StaticText_',
 
             get: function() {
                 var el = form_builder.getElement();
@@ -639,6 +858,14 @@ $(function() {
 
                 el.find('label').text($(this.prefix + 'label').val());
                 el.find('.controls').html($(this.prefix + 'text').val());
+            },
+            
+            setIdentification: function(){
+            	var el = form_builder.getElement(),
+                input = $(el).children("div[class!='close']");
+            	
+            	input.attr('id', 'custField_' + form_builder.counter + '_StaticText')
+            		 .attr('name', input.attr('id'));
             }
         },
 
@@ -719,6 +946,14 @@ $(function() {
         $(this).parent().remove();
         form_builder.updateSource();
         console.log($("#content").html());
+        
+        if($("#content").find("div").length == 0){
+        	if($("#content").find("fieldset").length == 0){
+        		$("#content").append($("<fieldset><legend><p style='text-align:center'>請拖拉右側設計元件至此</p></legend></fieldset>"));
+        	}
+        	$("#content").find("fieldset").show();
+        }
+        console.log($("#content").find("div").length);
     });
 
     // elements are components that have been added to the form
@@ -810,11 +1045,32 @@ $(function() {
 //						.trim();
 		$("#content_form_view").text(design_result);
 		console.log(design_result);
-		$("#form_view").submit();
+		
+		var content_of_design = $("#content_form_view").text();
+		$.ajax({
+			url: contextPath + "/DesignAccessDB",
+    		data: {
+    				com_id_form_view: currentCom,
+    				command: "insert",
+    				content_form_view: content_of_design,
+    				},
+        	dataType: "html"
+		})
+		.done(function(returnData){
+			if(returnData.trim() == "insertOK"){
+				$(".alert-success").text("儲存成功");
+				$(".alert-success").css("visibility", "visible");
+				var saveMsgTimeout = window.setTimeout(function(){
+					$(".alert-success").css("visibility", "hidden");
+				}, 1000)
+			}
+		});
 	});
 	
 	//modified: load form for editing
 	$("#save_form_design").on("click", function(){
 		form_builder.loadDesign();
 	});
+	
+	form_builder.loadDesign();
 });

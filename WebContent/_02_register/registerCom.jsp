@@ -18,81 +18,85 @@
                   <label class="control-label">帳號:</label>
                   <div class="controls">
                       <input type="text" class="form-control" name="comAccount" id="com_account"
-                       placeholder="請輸入e-mail" value="${companyVO.comAccount}"
-                       data-toggle="tooltip" data-placement="top" title="請輸入email"  >
+                       placeholder="example@pchome.com" value="${companyVO.comAccount}"
+                       data-toggle="tooltip" data-placement="top" title="<h5>請輸入您的E-mail。<h5>" >
                    </div>
                    <span><font color="red" size="-1">${errorMsgs.errorAccount}</font></span>
                </div>
                <div class="control-group form-group">
                    <label class="control-label">密碼:</label>
-                   <div class="controls ">
+                   <div class="controls">
                        <input type="password" class="form-control" name="comPwd" id="com_pwd"
-                        placeholder="請輸入6~12，包含英文與數字" value="${companyVO.comPwd}" >
+                        placeholder="請輸入密碼" value="${companyVO.comPwd}"
+                        data-toggle="tooltip" data-placement="top" title="<h5>密碼請輸入6至12個字元，英文數字至少各1個字元。<h5>" >
                    </div>
                     <span><font color="red" size="-1">${errorMsgs.errorPwd}</font></span>
                </div>
                <div class="control-group form-group">
                 <label class="control-label">密碼確認:</label>
-                <div class="controls ">
+                <div class="controls">
                     <input type="password" class="form-control" name="comPwdConfirm" 
                      placeholder="請再次輸入密碼" value="${companyVO.comPwd}" >
                 </div>
             </div>
                <div class="control-group form-group">
                    <label>商家名稱:</label>
-                   <div class="controls ">
+                   <div class="controls">
                        <input type="text" class="form-control" name="comName" id="com_name"
-                        value="${companyVO.comName}" >
+                        value="${companyVO.comName}"
+                        data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-。<h5>" >
                    </div>
                    <span><font color="red" size="-1">${errorMsgs.errorName}</font></span>
                </div>
                <div class="control-group form-group">
                    <label>負責人:</label>
-                   <div class="controls ">
+                   <div class="controls">
                        <input type="text" class="form-control" name="comOwner" id="com_owner"
-                        value="${companyVO.comOwner}">
+                        value="${companyVO.comOwner}"
+                        data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-。<h5>" >
                    </div>
                    <span><font color="red" size="-1">${errorMsgs.errorOwner}</font></span>
                </div>
                <div class="control-group form-group">
                    <label>營業統編:</label>
-                   <div class="controls ">
+                   <div class="controls">
                        <input type="text" class="form-control" name="comVAT" id="com_vat"
-                        value="${companyVO.comVAT}">
+                        value="${companyVO.comVAT}"
+                        data-toggle="tooltip" data-placement="top" title="<h5>營業統編為8碼。<h5>" >
                    </div>
                    <span><font color="red" size="-1">${errorMsgs.errorVAT}</font></span>
                </div>
 			   <div class="control-group form-group">
                    <label>地址:</label>
-                   <div class="controls ">
+                   <div class="controls">
                        <input type="text" class="form-control" name="comAddr" id="com_address"
-                        value="${companyVO.comAddr}">
+                        value="${companyVO.comAddr}"
+                        data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-，至少要有5個字元。<h5>" >
                    </div>
                    <span><font color="red" size="-1">${errorMsgs.errorAddr}</font></span>
                </div>
                <div class="control-group form-group">
                    <label>電話:</label>
-                   <div class="controls ">
+                   <div class="controls">
                        <input type="tel" class="form-control" name="comTel" id="com_tel"
-                        value="${companyVO.comTel}">
+                        value="${companyVO.comTel}"
+                        data-toggle="tooltip" data-placement="top" title="<h5>您可以使用數字和-，至少要有8碼，至多15碼。<h5>" >
                    </div>
                    <span><font color="red" size="-1">${errorMsgs.errorTel}</font></span>
                </div>
                <div class="control-group form-group">
                    <label>fax:</label>
-                   <div class="controls ">
+                   <div class="controls">
                        <input type="tel" class="form-control" name="comFax" id="com_fax"
-                        value="${companyVO.comFax}">
+                        value="${companyVO.comFax}"
+                        data-toggle="tooltip" data-placement="top" title="<h5>您可以使用數字和-，至少要有8碼，至多15碼。<h5>" >
                    </div>
                    <span><font color="red" size="-1">${errorMsgs.errorFax}</font></span>
                </div>
               
               <br> 
-              <button type="submit" class="btn btn-success" 
-               data-toggle="modal" data-target="#register_success" >送出</button>
-               <input type="reset" class="btn" value="重填"/>
-              <input type="button" class="btn btn-danger" value="取消" 
-               onclick="self.location.href='<%=request.getContextPath()%>/index.jsp'" />
+             <button type="reset" class="btn btn-danger" >取消 </button>
+             <button type="submit" class="btn btn-success" form="registerComForm">送出 </button>
           </form>
           
           <div id="yourimg"></div>
@@ -111,12 +115,9 @@
 
 
 <script>
+$("[data-toggle='tooltip']").tooltip({html : true });
+
 (function($){ 
- 	$("[data-toggle='tooltip']").tooltip();
- 	
- 	
- 	
- 	
 	$(document).ready(function() {
 		$("#registerComForm").bootstrapValidator({
 			feedbackIcons: {

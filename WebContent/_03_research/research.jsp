@@ -27,9 +27,10 @@
 		initMapCenter();
 	}//end function initialize()
 
+	var comIdArray =<%=request.getAttribute("comIdArray")%>;//公司Id陣列
 	var comAdressArray = <%=request.getAttribute("comAdressArray")%>; //公司地址陣列
 	var comNameArray =<%=request.getAttribute("comNameArray")%>;//公司名稱陣列
-	function setMarkers(map, locations) {
+	function setMarkers(map, locations,comIdValue) {
 
 		var image = {
 			url : 'images/icon1.jpg',
@@ -47,16 +48,22 @@
 		};
 		var beach = locations;
 		var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
+		//location =1 傳過去沒有用
+		var urlPath= "<%=request.getContextPath()%>/DispComFirstPage.do?comId="+comIdValue;
 		var marker = new google.maps.Marker({
 			position : myLatLng,
 			map : map,
-			// icon: image,
+			// icon: image,		
+			url: urlPath,
 			shape : shape,
 			title : beach[0],
 		//zIndex : beach[3]
 		});
+		google.maps.event.addListener(marker, 'click', function() {
+		    window.location.href = this.url;
+		});//test
 	}//end function setMarkers(map, locations)
-	function addressToLatLng(comName,addr, map) {//將中文地址轉為經緯度
+	function addressToLatLng(comId,comName,addr, map) {//將中文地址轉為經緯度
 		var geocoder = new google.maps.Geocoder();
 		geocoder.geocode({
 			"address" : addr
@@ -64,7 +71,7 @@
 			if (status == google.maps.GeocoderStatus.OK) {
 				var coordinate = [comName, results[0].geometry.location.lat(),
 						results[0].geometry.location.lng() ]
-				setMarkers(map, coordinate);
+				setMarkers(map, coordinate,comId);
 				//alert(position);
 			} else {
 				alert("查無經緯度");
@@ -97,7 +104,7 @@
 			endIndex = comAdressArray.length-1; //則將剩餘的顯示
 		}
 		for (var i = startIndex; i <= endIndex ; i++) {	
-			addressToLatLng(comNameArray[i],comAdressArray[i], map); //傳入地址陣列
+			addressToLatLng(comIdArray[i],comNameArray[i],comAdressArray[i], map); //傳入地址陣列
 		}
 	}
 	function initMapCenter(){ //先查詢縣市初步位置再將中心點設置在該地區
@@ -129,6 +136,7 @@
 			});//end  geocoder.geocode			
 		}//end else 進入此else表示有根據地區搜尋	
 	}//end function initMapCenter()
+	
 	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 <!-- Google Map End-->
@@ -163,9 +171,9 @@
 					begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 					<!-- 第1筆商家 -->
 					<div class="col-md-6 img-portfolio">
-						<a href="<c:url value='/DispComFirstPage.do?comId=${SearchComVO.com_id}'/>"> <img
+						<a href="<c:url value='/DispComFirstPage.do?comId=${SearchComVO.com_id}&location=${location}'/>"> <img
 							class="img-responsive img-hover"
-							src="${pageContext.request.contextPath}/img/13.jpg" alt="">
+							src="${pageContext.servletContext.contextPath}/image?comID=${SearchComVO.com_id}">
 						</a>
 						<h3>
 							<a href="<c:url value='/DispComFirstPage.do?comId=${SearchComVO.com_id}&location=${location}'/>">${SearchComVO.com_name}</a>

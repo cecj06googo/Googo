@@ -37,24 +37,24 @@
          <div class="col-lg-12">
 		<!--內容-->
         <div id="myTabContent" class="tab-content">
- 	   <!--標籤2內容-->
+ 	   	<!--標籤2內容-->
         <div class="tab-pane fade active in" id="register-two">
                      <br>
 <!--      		<div class="col-lg-5 col-lg-offset-1"> -->
 <!--          			<br> -->
         
-        <div class="col-lg-12 col-lg-offset-1">
-			<img class="img-responsive" 
+        <div class="col-sm-12 col-sm-offset-1">
+			<img class="img-responsive" id="comImg"
 				src='${pageContext.servletContext.contextPath}/image?comID=${LoginComOK.comID}' alt=""> <!-- http://placehold.it/750x450  -->
 				
 				<br><br>
 		   </div>
          				
      	<!--修改商家form-->
-     	<form name="Update_company" enctype="multipart/form-data" id="updateComForm" action="<%=request.getContextPath()%>/Company.Update" 
-     	      method="POST" novalidate>
+     	<form name="Update_company" enctype="multipart/form-data" id="updateComForm" 
+     			action="<%=request.getContextPath()%>/Company.Update" method="POST">
      	      <div class="col-lg-4">
-                 <div class="control-group form-group ">
+                 <div class="control-group form-group">
                      <label class="control-label">帳號:</label>
                      <div class="controls">
                          <input type="text" class="form-control" name="comAccount" id="com_account" 
@@ -64,35 +64,37 @@
                      <span><font color="red" size="-1">${errorMsgs.errorAccount}</font></span>
                  </div>
                  <div class="control-group form-group">
-                     <label class="control-label">密碼:</label>
-                     <div class="controls ">
+                     <label class="control-label">修改新密碼:</label>
+                     <div class="controls">
                          <input type="password" class="form-control" name="comPwd" id="com_pwd" 
-                          placeholder="" value="${LoginComOK.comPwd}"
-                          data-toggle="tooltip" data-placement="top" title="<h5>請輸入6-12個字元，英文數字至少各一。<h5>"  >
+                          placeholder="修改請輸入新密碼" value=""
+                          data-toggle="tooltip" data-placement="top" title="<h5>密碼請輸入6至12個字元，英文數字至少各1個字元。<h5>"  >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorPwd}</font></span>
                  </div>
                  <div class="control-group form-group">
-                     <label class="control-label">密碼確認:</label>
-                     <div class="controls ">
+                     <label class="control-label">確認新密碼:</label>
+                     <div class="controls">
                          <input type="password" class="form-control" name="comPwdConfirm" id="com_pwd"
-                          placeholder="請再次輸入密碼" value="${LoginComOK.comPwd}"
-                          data-toggle="tooltip" data-placement="top" title="<h5>請再次輸入密碼<h5>" >
+                          placeholder="請再次輸入新密碼" value=""
+                          data-toggle="tooltip" data-placement="top" title="<h5>請再次輸入新密碼。<h5>" >
                      </div>
                  </div>
                  <div class="control-group form-group">
                      <label>商家名稱:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="text" class="form-control" name="comName" id="com_name"
-                          placeholder="" value="${LoginComOK.comName}" >
+                          placeholder="" value="${LoginComOK.comName}"
+                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-。<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorName}</font></span>
                  </div>
                  <div class="control-group form-group">
                      <label>負責人:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="text" class="form-control" name="comOwner" id="com_owner"
-                          placeholder="" value="${LoginComOK.comOwner}">
+                          placeholder="" value="${LoginComOK.comOwner}"
+                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-。<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorOwner}</font></span>
                  </div>
@@ -100,7 +102,7 @@
              <div class="col-lg-5 col-lg-offset-1">
             	<div class="control-group form-group">
                      <label>營業統編:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="text" class="form-control" name="comVAT" id="com_vat" 
                          placeholder="" value="${LoginComOK.comVAT}" disabled>
                      </div>
@@ -108,47 +110,66 @@
                  </div>
 				<div class="control-group form-group">
                      <label>地址:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="text" class="form-control" name="comAddr" id="com_address" 
-                         placeholder="" value="${LoginComOK.comAddr}">
+                         placeholder="" value="${LoginComOK.comAddr}"
+                         data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-，至少要有5個字元。<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorAddr}</font></span>
                  </div>
                  <div class="control-group form-group">
                      <label>電話:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="tel" class="form-control" name="comTel" id="com_tel"
-                          placeholder="" value="${LoginComOK.comTel}">
+                          placeholder="" value="${LoginComOK.comTel}"
+                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用數字和-，至少要有8碼，至多15碼。<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorTel}</font></span>
                  </div>
                  <div class="control-group form-group">
                      <label>fax:</label>
-                     <div class="controls ">
+                     <div class="controls">
                          <input type="tel" class="form-control" name="comFax" id="com_fax"
-                          placeholder="" value="${LoginComOK.comFax}">
+                          placeholder="" value="${LoginComOK.comFax}"
+                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用數字和-，至少要有8碼，至多15碼。<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorFax}</font></span>
                  </div>
                  <div class="control-group form-group">
-					 <label>商家封面圖片:</label> <input type="file" name="comPic">
+					 <label>商家封面圖片:</label> 
+					 <input type="file" name="comPic" id="comLogo" onchange="fileShow();" accept="image/*">
 				 </div>
-				 <span></span>
                 </div> <!-- 分列 --> 
                  
-           <div class="col-lg-12"> 
-           		<br>  
-                <input type="hidden" name="action" value="update"> 
-				<input type="hidden" name="comID" value="${LoginComOK.comID}"> 
-				<input type="hidden" name="comAccount" value="${LoginComOK.comAccount}">
-				<input type="hidden" name="comVAT" value="${LoginComOK.comVAT}">
-				<input type="hidden" name="comStatus" value="${LoginComOK.comStatus}">
-                <button type="submit" data-loading-text="Loading..." class="btn btn-danger">儲存</button>
-           </div>
-            </form>
-           </div>  
-           
-		   
+           	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" 
+           				aria-labelledby="ComfirmModalLabel" aria-hidden="true">
+  				<div class="modal-dialog modal-sm">
+    				<div class="modal-content"> 
+    					<div class="modal-header">
+    						<h4 class="modal-title" id="ComfirmModalLabel">確認修改?</h4>
+    					</div>
+    					<div class="modal-footer">
+                			<input type="hidden" name="action" value="update"> 
+							<input type="hidden" name="comID" value="${LoginComOK.comID}"> 
+							<input type="hidden" name="comAccount" value="${LoginComOK.comAccount}">
+							<input type="hidden" name="comVAT" value="${LoginComOK.comVAT}">
+							<input type="hidden" name="comStatus" value="${LoginComOK.comStatus}">
+							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                			<button type="submit" data-loading-text="Loading..." class="btn btn-danger">確認</button>
+               			</div>
+           			</div>
+           		</div>
+           	</div>
+		</form> <!--  商家修改資料Form -->
+            
+            
+        <!-- 確認修改彈出視窗 -->
+        <div class="col-lg-12">
+        		<br>
+			<button type="button" class="btn btn-primary" data-toggle="modal" 
+				data-target=".bs-example-modal-sm">儲存</button>
+				<br><br>
+		</div>
 <!-- 				選取檔案 -->
 <!-- 				<form name="imageupload" enctype="multipart/form-data" action="image" method="POST"> -->
 <!-- 					<div class="control-group form-group"> -->
@@ -170,10 +191,6 @@
     </div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
 
-
-<!-- jQuery Version 1.11.0 -->
-<%-- 	<script src="<%=request.getContextPath()%>/js/jquery-1.11.0.js"></script> --%>
-
 <!-- Bootstrap Core JavaScript -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
@@ -185,6 +202,21 @@ $("#selectModCom").addClass("active");
 
 <script>
 $("[data-toggle='tooltip']").tooltip({html : true });
+
+
+// 即時顯示圖片
+function fileShow() {
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		var fileContent = e.target.result;
+		var show = document.getElementById("comImg");
+		show.setAttribute("src", fileContent);
+	}
+	file = document.getElementById("comLogo").files[0];
+	reader.readAsDataURL(file);
+}
+
+
 
 (function($){
 	$(document).ready(function() {
@@ -199,9 +231,6 @@ $("[data-toggle='tooltip']").tooltip({html : true });
 	    		comPwd: {
 					trigger: 'keyup blur',
 					validators: {
-						notEmpty: {
-							message: '密碼欄請勿空白'
-						},
 						stringLength: {
 							min: 6,
 							max: 12,
@@ -221,9 +250,6 @@ $("[data-toggle='tooltip']").tooltip({html : true });
 				comPwdConfirm: {
 					trigger: 'keyup blur',
 					validators: {
-						notEmpty: {
-							message: '密碼確認不可空白'
-						},
 						identical: {
 							field: 'comPwd',
 							message:'與密碼不相符, 再試一次?'
@@ -288,7 +314,7 @@ $("[data-toggle='tooltip']").tooltip({html : true });
 							message: '地址限5~64字數'
 						},
 						regexp : {
-							regexp: /^[(\u4e00-\u9fa5)\-(a-zA-Z0-9_)]+$/,
+							regexp: /^[(\u4e00-\u9fa5)\-(a-zA-Z0-9)]+$/,
 							message: '只能是中、英文字母、數字和-'
 						},
 					} // end validators
@@ -325,9 +351,6 @@ $("[data-toggle='tooltip']").tooltip({html : true });
 					} // end validators
 				}, // end comFax
 	    	} // end fields
-	    }).on('success.form.bv', function() {
-	    	$("#successInfo").html('<font color="red" size="3">修改成功</font>');
-	    	
 	    }); // end bootstrapValidator
 	}); // end ready 
 

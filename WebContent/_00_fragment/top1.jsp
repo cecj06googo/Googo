@@ -38,9 +38,17 @@
                        	</c:if>
                     </li>
                     <li>
-                    	<c:if test="${empty LoginMemOK && empty LoginComOK}">
-	                        <a href="#myModal"  data-toggle="modal" data-target="#login" >登入</a>
-	                    </c:if>
+                    	<c:choose>
+                    		<c:when test="${!empty LoginMemOK}">
+                    			<a href="${pageContext.request.contextPath}/_01_login/logout.jsp"><i class="fa fa-fw fa-power-off"> </i>登出</a>
+                    		</c:when>
+                    		<c:otherwise>
+                    			<a href="#myModal"  data-toggle="modal" data-target="#login" >登入</a>
+                    		</c:otherwise>
+                    	</c:choose>
+<%--                     	<c:if test="${empty LoginMemOK && empty LoginComOK}"> --%>
+<!-- 	                        <a href="#myModal"  data-toggle="modal" data-target="#login" >登入</a> -->
+<%-- 	                    </c:if> --%>
                     </li>
                     <li>
                         <a href="<c:url value='/_00_fragment/about.jsp'/>">關於</a>
@@ -62,7 +70,7 @@
 	                            <a href="<c:url value='/_04_member/favorite.jsp'/>"><i class="fa fa-fw fa-heart"> </i>我的收藏</a>
 	                        </li>
                             <li>
-	                            <a href="<c:url value='/Temp/fakeLogin_Mem.jsp'/>"><i class="fa fa-fw fa-book"> </i>我的訂單</a>
+	                            <a href="<c:url value='/_04_member/orderMem.jsp'/>"><i class="fa fa-fw fa-book"> </i>我的訂單</a>
 	                        </li>
 	                        <li>
 	                            <a href="<c:url value='/_04_member/modMem.jsp'/>"><i class="fa fa-fw  fa-pencil"> </i>修改會員資料</a>
@@ -93,6 +101,7 @@
 	var timeOut = '<%= session.getAttribute("timeOut") %>';
 	var mustMemLogin = '<%= session.getAttribute("mustMemLogin") %>';
 	var mustComLogin = '<%= session.getAttribute("mustComLogin") %>';
+	
 //  	alert("errorMsg = " + errorMsg + ", timeOut = " + timeOut 
 //  			+ ", mustMemLogin = " + mustMemLogin + ", mustComLogin = " + mustComLogin);
 	
@@ -113,12 +122,22 @@
 	else if (errorMsg != 'null') {
 		$('#login').modal('show');
 		<% session.removeAttribute("LoginError"); %>
+		<% session.removeAttribute("errorAccount"); %>
+		<% session.removeAttribute("errorPassword"); %>
 	}
 	else {
 //  		alert("不用彈出登入");
 	}
+	
+	var errMsgs = '<%= session.getAttribute("checkAccountError") %>';
+	if(errMsgs != 'null'){
+		alert("請重填");
+		$('#forgetpwd').modal('show');
+		<% session.removeAttribute("checkAccountError"); %>
+		<% session.removeAttribute("noExistAccount"); %>
+	}
 
-
+    
 })(jQuery)
 
 
