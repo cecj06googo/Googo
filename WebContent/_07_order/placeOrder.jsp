@@ -235,17 +235,17 @@ $(document).ready(function () {
 	
 	// Begin: Modified by ranian
 	// retrieve designed form template and attach to div #DesignResultTarget
-// 	$.ajax({
-<%-- 		url: "<%=request.getContextPath()%>/DesignAccessDB", --%>
-// 		type: "post",
-// 		data: {
-<%-- 			com_id_form_view: <%=((CompanyVO)(session.getAttribute("ord_comVO"))).getComID() %>, --%>
-// 			command: "retrieve"	
-// 		},
-// 		dataType: "html",
-// 	}).done(function(result){
-// 		$("#DesignResultTarget").html(result);
-// 	});
+ 	$.ajax({
+ 		url: "<%=request.getContextPath()%>/DesignAccessDB",
+ 		type: "post",
+ 		data: {
+		com_id_form_view: <%=((CompanyVO)(session.getAttribute("ord_comVO"))).getComID() %>,
+		command: "retrieve"	
+ 		},
+ 		dataType: "html",
+ 	}).done(function(result){
+ 		$("#DesignResultTarget").html(result);
+ 	});
 	// End: Modified by ranian
 	
 	
