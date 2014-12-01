@@ -139,9 +139,11 @@
 								<font size="-1" color="#FF0000">${ErrorMsg.errorProdDisc}</font>
 							</div>
 							<div class="control-group  form-group">
-								<label>車輛類型:</label> <input type="hidden" id="kind"
-									value="${ProductVO.prodKind}" /> <select class="form-control"
-									name="prodKind" id="prodKind" data-toggle="tooltip"
+								<label>車輛類型:</label> 
+<!-- 								<input type="hidden" id="kind" name="prodKindH" -->
+<%-- 									value="${ProductVO.prodKind}" />  --%>
+								<select class="form-control"
+									name="prodKind" id="prodKinds" data-toggle="tooltip"
 									data-placement="top" title="<h5>請輸入商品類型<h5>">
 									<!--                 	不知道為啥不會顯示 -->
 									<%--                 	<c:if test="${ProductVO.prodType== '2'} "> --%>
@@ -293,14 +295,14 @@
 		<!-- /#page-wrapper -->
 	</div>
 	<!-- /#wrapper -->
-<!-- 	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js"></script> --%>
 
-	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script> --%>
 
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/bootstrapValidator.min.js"></script>
 
- -->
+
 	<script>
 		$("[data-toggle='tooltip']").tooltip({
 			html : true
@@ -386,6 +388,14 @@
 					                    },
 									} // end validators
 								}, // end prodDisc
+								prodType: {
+						                validators: {
+						                	trigger: '',
+						                    notEmpty: {
+						                        message: '請選擇種類'
+						                    }
+						                }
+						            },
 								prodCc: {
 									trigger: 'keyup blur',
 									validators: {
@@ -448,8 +458,8 @@
 	}
 
 	function hide1() {
-		$("#prodKind").empty();
-		$("#prodKind")
+		$("#prodKinds").empty();
+		$("#prodKinds")
 				.html(
 						'<option class="pKind" value="1">轎車</option>	<option class="pKind" value="2">休旅車</option>');
 		document.getElementById('c1').style.display = "inline";
@@ -457,8 +467,8 @@
 		document.getElementById('cnl1').style.display = "inline";
 	}
 	function hide2() {
-		$("#prodKind").empty();
-		$("#prodKind")
+		$("#prodKinds").empty();
+		$("#prodKinds")
 				.html(
 						'<option class="pKind" value="3">大型重型機車</option><option class="pKind" value="4">普通重型機車</option><option class="pKind" value="5">普通輕型機車</option>');
 		document.getElementById('c1').style.display = "none";
@@ -466,8 +476,8 @@
 		document.getElementById('cnl1').style.display = "none";
 	}
 	function hide3() {
-		$("#prodKind").empty();
-		$("#prodKind")
+		$("#prodKinds").empty();
+		$("#prodKinds")
 				.html(
 						'<option class="pKind" value="6">越野腳踏車</option><option class="pKind" value="7">摺疊腳踏車</option><option class="pKind" value="8">電動腳踏車</option><option class="pKind" value="9">一般腳踏車</option>');
 		document.getElementById('c1').style.display = "none";
