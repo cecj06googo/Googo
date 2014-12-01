@@ -1,11 +1,7 @@
 package com.company.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -13,13 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
-import com.company.model.CompanyDAO;
 import com.company.model.CompanyService;
 import com.company.model.CompanyVO;
 import com.util.HashService;
@@ -64,20 +54,20 @@ public class RegisterCompany extends HttpServlet {
 			if (comName == null || comName.trim().length() == 0) {
 				errorMsgs.put("errorName", "公司名稱請勿空白");
 			}
-			String comNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,32}$";
+			String comNameReg = "^[(\u4e00-\u9fa5)\\-(a-zA-Z0-9)]{1,32}$";
 			if (!comName.trim().matches(comNameReg)) {
 				errorMsgs.put("errorName",
-						"公司名稱:只能是中、英文字母、數字和_ , 且長度必需在1到32之間");
+						"公司名稱:只能是中、英文字母、數字和- , 且長度必需在1到32之間");
 			}
 
 			String comOwner = req.getParameter("comOwner");
 			if (comOwner == null || comOwner.trim().length() == 0) {
 				errorMsgs.put("errorOwner", "公司代表人姓名請勿空白");
 			}
-			String comOwnerReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,32}$";
+			String comOwnerReg = "^[((\u4e00-\u9fa5)\\-(a-zA-Z0-9)]{1,32}$";
 			if (!comOwner.trim().matches(comOwnerReg)) {
 				errorMsgs.put("errorOwner",
-						"公司名:只能是中、英文字母、數字和_ , 且長度必需在1到32之間");
+						"公司名:只能是中、英文字母、數字和- , 且長度必需在1到32之間");
 			}
 
 			String comAddr = req.getParameter("comAddr");
@@ -155,7 +145,7 @@ public class RegisterCompany extends HttpServlet {
 					comOwner, comAddr, comTel, comFax, comVAT, comStatus, comHashURL);
 			
 			// 3.新增完成,準備轉交(寄送認證信)
-//			SendActivateAccount.sendAccount(companyVO,req.getServerName(),req.getLocalPort(),req.getContextPath());
+			SendActivateAccount.sendAccount(companyVO,req.getServerName(),req.getLocalPort(),req.getContextPath());
 			String url = req.getContextPath() + "/index.jsp";
 			res.sendRedirect(res.encodeRedirectURL(url));
 		// 其他可能的錯誤處理

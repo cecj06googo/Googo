@@ -68,7 +68,7 @@
                      <div class="controls">
                          <input type="password" class="form-control" name="comPwd" id="com_pwd" 
                           placeholder="修改請輸入新密碼" value=""
-                          data-toggle="tooltip" data-placement="top" title="<h5>請輸入6-12個字元，英文數字至少各一。<h5>"  >
+                          data-toggle="tooltip" data-placement="top" title="<h5>密碼請輸入6至12個字元，英文數字至少各1個字元。<h5>"  >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorPwd}</font></span>
                  </div>
@@ -77,7 +77,7 @@
                      <div class="controls">
                          <input type="password" class="form-control" name="comPwdConfirm" id="com_pwd"
                           placeholder="請再次輸入新密碼" value=""
-                          data-toggle="tooltip" data-placement="top" title="<h5>請再次輸入新密碼<h5>" >
+                          data-toggle="tooltip" data-placement="top" title="<h5>請再次輸入新密碼。<h5>" >
                      </div>
                  </div>
                  <div class="control-group form-group">
@@ -85,7 +85,7 @@
                      <div class="controls">
                          <input type="text" class="form-control" name="comName" id="com_name"
                           placeholder="" value="${LoginComOK.comName}"
-                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-<h5>" >
+                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-。<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorName}</font></span>
                  </div>
@@ -94,7 +94,7 @@
                      <div class="controls">
                          <input type="text" class="form-control" name="comOwner" id="com_owner"
                           placeholder="" value="${LoginComOK.comOwner}"
-                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-<h5>" >
+                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-。<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorOwner}</font></span>
                  </div>
