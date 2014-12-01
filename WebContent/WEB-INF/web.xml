@@ -197,7 +197,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
-		<url-pattern>/Login.gg</url-pattern>
+		<url-pattern>/Login.do</url-pattern>
 	</servlet-mapping>
 	<!-- End: 登入相關 -->
 

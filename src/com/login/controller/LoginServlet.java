@@ -56,13 +56,13 @@ public class LoginServlet extends HttpServlet {
 			cookieUser.setPath(request.getContextPath());
 			String encodePassword = HashService.encryptString(userPwd);    // AES + Base64 加密
 			cookiePassword = new Cookie("password", encodePassword);
-			cookiePassword.setMaxAge(12*60*60);
+			cookiePassword.setMaxAge(24*60*60);
 			cookiePassword.setPath(request.getContextPath());
 			cookieRememberMe = new Cookie("rm", "true");
-			cookieRememberMe.setMaxAge(12*60*60);
+			cookieRememberMe.setMaxAge(24*60*60);
 			cookieRememberMe.setPath(request.getContextPath());
 			cookieUserIdentity = new Cookie("or", userIdentity);
-			cookieUserIdentity.setMaxAge(12*60*60);
+			cookieUserIdentity.setMaxAge(24*60*60);
 			cookieUserIdentity.setPath(request.getContextPath());
 		} else {
 			cookieUser = new Cookie("user", userAccount);
@@ -74,7 +74,7 @@ public class LoginServlet extends HttpServlet {
 			cookiePassword.setMaxAge(0);
 			cookiePassword.setPath(request.getContextPath());
 			cookieRememberMe = new Cookie("rm", "false");
-			cookieRememberMe.setMaxAge(12*60*60);
+			cookieRememberMe.setMaxAge(24*60*60);
 			cookieRememberMe.setPath(request.getContextPath());
 			cookieUserIdentity = new Cookie("or", userIdentity);
 			cookieUserIdentity.setMaxAge(0);

@@ -84,7 +84,8 @@
                      <label>商家名稱:</label>
                      <div class="controls">
                          <input type="text" class="form-control" name="comName" id="com_name"
-                          placeholder="" value="${LoginComOK.comName}" >
+                          placeholder="" value="${LoginComOK.comName}"
+                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorName}</font></span>
                  </div>
@@ -92,7 +93,8 @@
                      <label>負責人:</label>
                      <div class="controls">
                          <input type="text" class="form-control" name="comOwner" id="com_owner"
-                          placeholder="" value="${LoginComOK.comOwner}">
+                          placeholder="" value="${LoginComOK.comOwner}"
+                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorOwner}</font></span>
                  </div>
@@ -110,7 +112,8 @@
                      <label>地址:</label>
                      <div class="controls">
                          <input type="text" class="form-control" name="comAddr" id="com_address" 
-                         placeholder="" value="${LoginComOK.comAddr}">
+                         placeholder="" value="${LoginComOK.comAddr}"
+                         data-toggle="tooltip" data-placement="top" title="<h5>您可以使用字母、數字和-，至少要有5個字元。<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorAddr}</font></span>
                  </div>
@@ -118,7 +121,8 @@
                      <label>電話:</label>
                      <div class="controls">
                          <input type="tel" class="form-control" name="comTel" id="com_tel"
-                          placeholder="" value="${LoginComOK.comTel}">
+                          placeholder="" value="${LoginComOK.comTel}"
+                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用數字和-，至少要有8碼，至多15碼。<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorTel}</font></span>
                  </div>
@@ -126,7 +130,8 @@
                      <label>fax:</label>
                      <div class="controls">
                          <input type="tel" class="form-control" name="comFax" id="com_fax"
-                          placeholder="" value="${LoginComOK.comFax}">
+                          placeholder="" value="${LoginComOK.comFax}"
+                          data-toggle="tooltip" data-placement="top" title="<h5>您可以使用數字和-，至少要有8碼，至多15碼。<h5>" >
                      </div>
                      <span><font color="red" size="-1">${errorMsgs.errorFax}</font></span>
                  </div>
@@ -309,7 +314,7 @@ function fileShow() {
 							message: '地址限5~64字數'
 						},
 						regexp : {
-							regexp: /^[(\u4e00-\u9fa5)\-(a-zA-Z0-9_)]+$/,
+							regexp: /^[(\u4e00-\u9fa5)\-(a-zA-Z0-9)]+$/,
 							message: '只能是中、英文字母、數字和-'
 						},
 					} // end validators

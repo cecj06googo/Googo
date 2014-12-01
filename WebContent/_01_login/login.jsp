@@ -40,7 +40,7 @@
 			<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 			<!-- form-->	
-		      <form role="form" id="login_form" action="<%=request.getContextPath()%>/Login.gg" method="post">
+		      <form role="form" id="login_form" action="<%=request.getContextPath()%>/Login.do" method="post">
 		        <div id="inputEmailDiv" class="form-group">
 		          <label > E-mail:</label><font size="-1" color="#FF0000">${ErrorMsg.errorLogin}</font>
 		          <c:choose>
