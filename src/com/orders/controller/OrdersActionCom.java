@@ -203,8 +203,6 @@ public class OrdersActionCom extends HttpServlet {
 		} // end noreCar if
 
 		if ("refresh".equals(action)) {
-			
-			
 			LoginOrdersOnLoad lool = new LoginOrdersOnLoad();
 			CompanyVO comVO = new CompanyVO();
 			comVO = (CompanyVO) session.getAttribute("LoginComOK");

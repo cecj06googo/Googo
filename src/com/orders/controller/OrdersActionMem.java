@@ -226,6 +226,8 @@ public class OrdersActionMem extends HttpServlet {
 						prod_id = Integer.parseInt(_prod_id.toString());
 					} catch (NumberFormatException e) {
 						errorMsg.put("errorProd_id", "看到鬼，商品編號應該為整數");
+					} catch (NullPointerException e) {
+						errorMsg.put("errorMem_id", "看到鬼，會員ID應該為整數不應為空值");
 					}
 					if (item_name == null || item_name.trim().length() == 0) {
 						errorMsg.put("errorItem_name", "領車人姓名欄必須輸入");

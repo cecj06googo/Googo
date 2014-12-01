@@ -27,8 +27,8 @@
             </div>
             <!-- 提醒 -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+<!--                 <li class="dropdown"> -->
+<!--                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a> -->
                     <ul class="dropdown-menu message-dropdown">
                     <!-- 提醒1 -->
                         <li class="message-preview">

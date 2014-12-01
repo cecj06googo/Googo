@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -61,19 +63,21 @@ public class placeOrdSetAttr extends HttpServlet{
 		CompanyVO comVO = cs.getOneCom(com_id);
 		LoginOrdProdOnLoadDAO LOPOLD = new LoginOrdProdOnLoadDAO();
 		ProductVO prodVO = new ProductVO();
+		Map<String, String> prodPriceMap = new HashMap<String, String>();
 		prodVO.setComId(com_id);
 		List<ProductVO> ord_prodVoList  = LOPOLD.getAll(prodVO);
 		
-//		System.out.println("prodVoList.size:"+ord_prodVoList.size());
-//		for (int i = 0,max = ord_prodVoList.size() ; i < max; i++) {
-//			ProductVO obj = ord_prodVoList.get(i);
-//			
+		System.out.println("prodVoList.size:"+ord_prodVoList.size());
+		for (int i = 0,max = ord_prodVoList.size() ; i < max; i++) {
+			ProductVO obj = ord_prodVoList.get(i);
+			prodPriceMap.put(String.valueOf(obj.getProdId()),String.valueOf(obj.getProdPrice()));
 //			boolean a = ord_prodVoList.contains(obj.getProdName());
-//			System.out.println(a);
+//			System.out.println("prod_type:"+obj.getProdType());
 //			System.out.println("prodId:"+obj.getProdId());
 //			System.out.println("prodName:"+obj.getProdName());
-//		}
-		
+			System.out.println("getProdPrice:"+obj.getProdPrice());
+		}
+		session.setAttribute("prodPriceMap", prodPriceMap);
 //		session.setAttribute("ord_memVO", memVO);
 		session.setAttribute("ord_comVO", comVO); //key修改會影響彥靖
 		session.setAttribute("ord_prod_id", prod_id);

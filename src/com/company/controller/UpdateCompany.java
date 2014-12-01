@@ -1,12 +1,7 @@
 package com.company.controller;
 
 import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.Flushable;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +9,6 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +23,7 @@ import com.company.model.CompanyVO;
 import com.util.HashService;
 
 
-@MultipartConfig
+
 public class UpdateCompany extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -62,7 +56,9 @@ public class UpdateCompany extends HttpServlet {
 				System.out.println("試試看 -->" + req.getParameter("comAddr"));
 				// 逐筆讀取form表單內容
 				for (FileItem item : multiparts) {
+					System.out.println("in for each");
 					if (item.isFormField()) {
+						System.out.println("in if");
 						// 將接到的內容字串轉成UTF-8編碼字串
 						String fieldvalue = item.getString("UTF-8");
 //						fieldvalue = new String(

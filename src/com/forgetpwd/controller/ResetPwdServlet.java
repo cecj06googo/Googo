@@ -52,20 +52,16 @@ public class ResetPwdServlet extends HttpServlet {
 */			
 		    try{
 		    	mem_qq = req.getParameter("mem_qq");
-		    	com_hashURL = req.getParameter("com_hashURL");
-		    	if(mem_qq != null){
+		    	com_hashURL = req.getParameter("com_HashURL");		    	
+		    	if(com_hashURL == null){
 		    		if (mem_qq == null || mem_qq.trim().length() == 0) {
 			    		errMsgs.put("errorQQ","無此帳號");
 					}
-		    	}else if(com_hashURL != null){
+		    	}else if(mem_qq == null){
 		    		if (com_hashURL == null || com_hashURL.trim().length() == 0) {
-			    		errMsgs.put("errorQQ","無此帳號");
+			    		errMsgs.put("errorHash","無此帳號");
 					}
 		    	}
-		    	if (mem_qq == null || mem_qq.trim().length() == 0) {
-		    		errMsgs.put("errorQQ","無此帳號");
-				}
-		    	
 				String newPwd = req.getParameter("newpwd");
 				if(newPwd == null || newPwd.trim().length() == 0){
 					errMsgs.put("errorPwd", "密碼欄請勿空白");
@@ -84,7 +80,7 @@ public class ResetPwdServlet extends HttpServlet {
 					return;	
 				}
 		        
-		        if(mem_qq != null){
+		        if(com_hashURL== null){
 		        ForgetPwdService fgtService = new ForgetPwdService();
 		        memVO = fgtService.findMemByQQ(mem_qq);
 		        String encrypedString = MemService.encryptString(newPwd);
@@ -95,7 +91,7 @@ public class ResetPwdServlet extends HttpServlet {
 				System.out.println("修改完成");
 				session.setAttribute("LoginMemOK", memVO);
 				
-		        }else if(com_hashURL != null){
+		        }else if(mem_qq == null){
 		        	ForgetPwdService fgtService = new ForgetPwdService();
 		    	    comVO = fgtService.findComByHash(com_hashURL);
 		    	    String encrypedString = MemService.encryptString(newPwd);
