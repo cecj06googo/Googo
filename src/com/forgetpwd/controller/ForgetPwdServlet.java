@@ -20,6 +20,7 @@ import com.forgetpwd.model.ForgetPwdVO;
 import com.forgetpwd.model.SendResetPwdEmail;
 import com.member.model.MemService;
 import com.member.model.MemVO;
+import com.util.HashService;
 
 public class ForgetPwdServlet extends HttpServlet{
 	
@@ -92,8 +93,10 @@ public class ForgetPwdServlet extends HttpServlet{
 			}else if("Com".equals(userIdentity)){
 				CompanyService comSvc = new CompanyService();
 				comVO = comSvc.getOneCom(userId);
+				String encrypedString2 = HashService.encryptString(comVO.getComAccount());
+				String comHashURL = HashService.getMD5Endocing(encrypedString2);
+				comVO.setComHashURL(comHashURL);
 //				session.setAttribute("checkComOK", comVO);
-				System.out.println();
 				System.out.println("session內的com_account: "+comVO.getComAccount());
 			}
 /*		if(!errMsgs.isEmpty()){
@@ -109,7 +112,7 @@ public class ForgetPwdServlet extends HttpServlet{
 //			session.setAttribute("checkAccountError", "該帳號不存在");
 //			session.setAttribute("noExistAccount", userAccount);
 			error = true;
-			RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/sendMailSuccess.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/reset.jsp");
 			failureView.forward(req, res);
 			
 		}//end of catch
@@ -122,11 +125,11 @@ public class ForgetPwdServlet extends HttpServlet{
 			SendResetPwdEmail.sendMemResetEmail(memVO, req.getServerName(), req.getLocalPort(), req.getContextPath());
 			
 		}else if("Com".equals(userIdentity)){
-			return;
+			SendResetPwdEmail.sendComResetEmail(comVO, req.getServerName(), req.getLocalPort(), req.getContextPath());
 		}
 		
 		System.out.println("已寄出ResetMail");
-		String url = "/_01_login/sendMailSuccess.jsp";
+		String url = "/_01_login/index.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url);
 		successView.forward(req, res);
 		}//end of if(!error)

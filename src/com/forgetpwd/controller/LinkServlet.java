@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.company.model.CompanyVO;
 import com.forgetpwd.model.ForgetPwdService;
 import com.member.model.MemService;
 import com.member.model.MemVO;
@@ -29,6 +30,7 @@ public class LinkServlet extends HttpServlet {
 		Map<String, String> errMsgs = new HashMap<String, String>();
 		req.setAttribute("errMsgs", errMsgs);
 		MemVO memVO=null;
+		CompanyVO comVO = null;
 		boolean error = false;
 		HttpSession session = req.getSession();
 		
@@ -44,21 +46,38 @@ public class LinkServlet extends HttpServlet {
 */			
 		    try{
 		    	String mem_qq = req.getParameter("qq");
-		    	if (mem_qq == null || mem_qq.trim().length() == 0) {
-		    		errMsgs.put("errorQQ","無此帳號");
-				}
+		    	String com_hash = req.getParameter("hash");
+		    	if(com_hash == null){
+		    		    if (mem_qq == null || mem_qq.trim().length() == 0) {
+			    		errMsgs.put("errorQQ","無此帳號");
+					    }
+		    		    
+				        ForgetPwdService fgtService = new ForgetPwdService();
+				        memVO = fgtService.findMemByQQ(mem_qq);
+				        req.setAttribute("memVO", memVO);
+		    	}else if(mem_qq == null){
+		    		if (com_hash == null || com_hash.trim().length() == 0) {
+			    		errMsgs.put("errorHash","無此帳號");
+					}
+		    	}
 		    	
-				
-		        if (!errMsgs.isEmpty()) {
+		    	if (!errMsgs.isEmpty()) {
 		        	RequestDispatcher failureView = req.getRequestDispatcher("/_01_login/resetPwd.jsp");
 					failureView.forward(req, res);
 					return;	
 				}
+		    	
+		    	if(com_hash == null){
+		    		 ForgetPwdService fgtService = new ForgetPwdService();
+				     memVO = fgtService.findMemByQQ(mem_qq);
+				     req.setAttribute("memVO", memVO);
+		    	}else if(mem_qq == null){
+		    		 ForgetPwdService fgtService = new ForgetPwdService();
+		    		 comVO = fgtService.findComByHash(com_hash);
+		    		 req.setAttribute("comVO", comVO);
+		    	}
 		        
-		        
-		        ForgetPwdService fgtService = new ForgetPwdService();
-		        memVO = fgtService.findMemByQQ(mem_qq);
-		        req.setAttribute("memVO", memVO);
+		       
 		       
 				String url = "/_01_login/reset.jsp"; 
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
