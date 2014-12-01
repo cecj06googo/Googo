@@ -29,7 +29,7 @@ import com.company.model.CompanyVO;
 import com.util.HashService;
 
 
-@MultipartConfig
+
 public class UpdateCompany extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
