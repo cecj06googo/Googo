@@ -51,8 +51,8 @@
 		   </div>
          				
      	<!--修改商家form-->
-     	<form name="Update_company" id="updateComForm" action="<%=request.getContextPath()%>/Company.Update" 
-     	      method="POST" enctype="multipart/form-data">
+     	<form name="Update_company" enctype="multipart/form-data" id="updateComForm" 
+     			action="<%=request.getContextPath()%>/Company.Update" method="POST">
      	      <div class="col-lg-4">
                  <div class="control-group form-group">
                      <label class="control-label">帳號:</label>
@@ -132,9 +132,8 @@
                  </div>
                  <div class="control-group form-group">
 					 <label>商家封面圖片:</label> 
-					 <input type="file" name="comLogo" id="comPic" onchange="fileShow();" accept="image/*">
+					 <input type="file" name="comPic" id="comLogo" onchange="fileShow();" accept="image/*">
 				 </div>
-				 <span></span>
                 </div> <!-- 分列 --> 
                  
            	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" 
@@ -164,8 +163,8 @@
         		<br>
 			<button type="button" class="btn btn-primary" data-toggle="modal" 
 				data-target=".bs-example-modal-sm">儲存</button>
+				<br><br>
 		</div>
-             
 <!-- 				選取檔案 -->
 <!-- 				<form name="imageupload" enctype="multipart/form-data" action="image" method="POST"> -->
 <!-- 					<div class="control-group form-group"> -->
@@ -208,7 +207,7 @@ function fileShow() {
 		var show = document.getElementById("comImg");
 		show.setAttribute("src", fileContent);
 	}
-	file = document.getElementById("comPic").files[0];
+	file = document.getElementById("comLogo").files[0];
 	reader.readAsDataURL(file);
 }
 
