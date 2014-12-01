@@ -28,7 +28,7 @@
                 <font color="red" size="-1">${errMsgs.errorPwdCheck}</font>
             </div>
               <input type="hidden" name="mem_qq" value="${memVO.mem_qq}">
-              <input type="hidden" name="com_qq" value="${comVO.com_hashURL}">
+              <input type="hidden" name="com_HashURL" value="${comVO.comHashURL}">
           	  <button type="reset" class="btn btn-danger" >取消 </button>
               <button type="submit" class="btn btn-success" form="resetpwd_form">送出 </button>
 
