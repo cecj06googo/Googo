@@ -24,7 +24,7 @@
                 <ol class="breadcrumb">
                     <li><a href="##">CECJ06</a>
                     </li>
-                    <li class="active">第二組</li>
+                    <li class="active">第一組</li>
                 </ol>
             </div>
         </div>
@@ -40,7 +40,7 @@
 		<!-- Service Tabs -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Goo-go</h2>
+                <h2 class="page-header">Goo-go<small>租車平台</small></h2>
             </div>
             <div class="col-lg-12">
 
@@ -84,7 +84,7 @@
        <!-- 開發人員 -->
         <div class="row" id="accessoriesRoW">
             <div class="col-lg-12">
-                <h2 class="page-header">開發人員 </h2><h3>CECJ06_第二組</h3>
+                <h2 class="page-header">開發人員<small>developers</small></h2><h4>CECJ06_第一組</h4>
             </div>
             <!-- 開發人員1 500*400-->
             <div class="col-md-3 col-sm-6">
@@ -188,119 +188,92 @@
         <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">開發工具</h2>
+                <h2 class="page-header">開發工具   <small> develop tool</small></h2>
             </div>
             <div class="col-md-4">
                 <div class="media">
                     <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-tree fa-stack-1x fa-inverse"></i>
-                        </span> 
+                       <img src="${pageContext.request.contextPath}/img/java.png" class="img-rounded" style="height:56px;width:56px">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Java</h4>
+                        <p>Java是一種電腦程式設計語言，擁有跨平台、物件導向、泛型程式設計的特性，廣泛應用於企業級Web應用開發和行動應用開發。</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="pull-left">
+                        <img src="${pageContext.request.contextPath}/img/hibernate.png" class="img-rounded" style="height:56px;width:56px">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Hibernate</h4>
+                        <p>Java語言下的物件關聯對映解決方案。它為物件導向的領域模型到傳統的關聯型資料庫的對映，提供了一個使用方便的框架。</p>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="pull-left">
+                        <img src="${pageContext.request.contextPath}/img/git.png" class="img-rounded" style="height:56px;width:56px"> 
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Git</h4>
+                        <p>Git為開放源碼、分散式的版本控制系統，具有分散式、效能好、本地存取、無痛分支的特性。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="media">
+                    <div class="pull-left">
+                         <img src="${pageContext.request.contextPath}/img/eclipse.png" class="img-rounded" style="height:56px;width:56px">
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Ecilpse</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                        <p>著名的跨平台開源整合式開發環境，本身為一個框架平台，搭配眾多外掛模組的支援，使得Eclipse擁有較佳的靈活性。</p>
                     </div>
                 </div>
                 <div class="media">
                     <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-car fa-stack-1x fa-inverse"></i>
-                        </span> 
+                        <img src="${pageContext.request.contextPath}/img/aptana.png" class="img-rounded" style="height:56px;width:56px">
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Apatana</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                        <h4 class="media-heading">Aptana</h4>
+                        <p>是一個基於Eclipse的集成式Web開發環境，其最廣為人知的是它非常強悍的JavaScript 編輯器和調試器。</p>
                     </div>
                 </div>
                 <div class="media">
                     <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-support fa-stack-1x fa-inverse"></i>
-                        </span> 
+                        <img src="${pageContext.request.contextPath}/img/bootstrap.png" class="img-rounded" style="height:56px;width:56px"> 
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">Bootstrap</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                        <p>是Twitter推出的強大前端框架。有12列嚮應式 網格、豐富的元件、JavaScript外掛、佈局、表單控制項、還有 基於網頁客製化工具。</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="media">
                     <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-database fa-stack-1x fa-inverse"></i>
-                        </span> 
+                         <img src="${pageContext.request.contextPath}/img/azure.png" class="img-rounded" style="height:56px;width:56px"> 
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Service Four</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                        <h4 class="media-heading">Microsoft Windows Azure</h4>
+                        <p>是開放且彈性的雲端平台，可讓您跨全球Microsoft 管理的資料中心網路，快速建置、部署及管理平台。</p>
                     </div>
                 </div>
                 <div class="media">
                     <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-bomb fa-stack-1x fa-inverse"></i>
-                        </span> 
+                        <img src="${pageContext.request.contextPath}/img/SQLServer.png" class="img-rounded" style="height:56px;width:56px">
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Service Five</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                        <h4 class="media-heading">MSSQL</h4>
+                        <p>Microsoft SQL Server是由美國微軟公司所推出的關聯式資料庫，在處理海量數據的效率佳，後台開發的具靈活性，可擴展性等。</p>
                     </div>
                 </div>
                 <div class="media">
                     <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-bank fa-stack-1x fa-inverse"></i>
-                        </span> 
+                        <img src="${pageContext.request.contextPath}/img/tomcat.png" class="img-rounded" style="height:56px;width:56px"> 
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">Service Six</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="media">
-                    <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-paper-plane fa-stack-1x fa-inverse"></i>
-                        </span> 
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Service Seven</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-space-shuttle fa-stack-1x fa-inverse"></i>
-                        </span> 
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Service Eight</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="pull-left">
-                        <span class="fa-stack fa-2x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-recycle fa-stack-1x fa-inverse"></i>
-                        </span> 
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Service Nine</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo itaque ipsum sit harum.</p>
+                        <h4 class="media-heading">Tomcat</h4>
+                        <p>是由Apache軟體基金會下屬的Jakarta專案開發的一個Servlet容器，提供了一個Jasper編譯器用以將JSP編譯成對應的Servlet。</p>
                     </div>
                 </div>
             </div>
@@ -310,9 +283,9 @@
         <!-- 發問 -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">我想問問題
+                <h2 class="page-header">我想問問題
                     <small>FAQ</small>
-                </h1>
+                </h2>
             </div>
         </div>
         <div class="row">
@@ -397,9 +370,9 @@
 		<!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Contact
-                    <small>Subheading</small>
-                </h1>
+                <h2 class="page-header">與我們聯絡
+                    <small>Contact</small>
+                </h2>
             </div>
         </div>
         <!-- /.row -->
@@ -409,21 +382,20 @@
             <!-- Map Column -->
             <div class="col-md-8">
                 <!-- Embedded Google Map -->
-                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
+                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=25.0337622,121.5432827&amp;spn=25.0337622,121.5432827&amp;t=m&amp;z=10&amp;output=embed"></iframe>
             </div>
             <!-- Contact Details Column -->
             <div class="col-md-4">
-                <h3>Contact Details</h3>
-                <p>
-                    3481 Melrose Place<br>Beverly Hills, CA 90210<br>
+                <h3>聯絡資訊</h3>
+                <p>台北市復興南路一段390號3樓305室<br>
                 </p>
                 <p><i class="fa fa-phone"></i> 
-                    <abbr title="Phone">P</abbr>: (123) 456-7890</p>
+                    <abbr title="Phone">電話</abbr>: (+886) 2-6631-8168</p>
                 <p><i class="fa fa-envelope-o"></i> 
-                    <abbr title="Email">E</abbr>: <a href="mailto:name@example.com">name@example.com</a>
+                    <abbr title="Email">E-mail</abbr>: <a href="mailto:googocar@gmail.com">googocar@gmail.com</a>
                 </p>
                 <p><i class="fa fa-clock-o"></i> 
-                    <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM</p>
+                    <abbr title="Hours">聯絡時間</abbr>: 星期一 ~ 星期五: 上午 9:00 至  下 午5:00 </p>
                 <ul class="list-unstyled list-inline list-social-icons">
                     <li>
                         <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
