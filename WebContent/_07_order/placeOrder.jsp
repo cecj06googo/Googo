@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.template.model.Prototype_OrderTemp_VO, com.member.model.MemVO, com.company.model.CompanyVO"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <% Prototype_OrderTemp_VO tempVo = (Prototype_OrderTemp_VO)request.getAttribute("tempVo"); %>    
 <!DOCTYPE html>
 <html>
@@ -72,11 +73,14 @@
 <input type="hidden" name="mem_account" value="${LoginMemOK.mem_account}" />
 <input type="hidden" name="mem_phone" value="${LoginMemOK.mem_phone}" />  
 <input type="hidden" name="mem_tel" value="${LoginMemOK.mem_tel}" />
-<input type="hidden" name="prod_id"  />
+<input type="hidden" name="prod_id" value="${ord_prod_id}" />
 <input type="hidden" name="item_name"  />
 <input type="hidden" name="item_email"  />
 <input type="hidden" name="item_phone"  />  
 <input type="hidden" name="item_tel"  />
+<c:forEach var="ord_prodVO" items="${ord_prodVoList}">
+<input type="hidden" name="${ord_prodVO.prodId}" value="<fmt:formatNumber value="${ord_prodVO.prodPrice}" pattern="#" />"/>
+</c:forEach>
 <!--member table phone和tel欄位設計  not null  -->
 <%-- <input type="hidden" name="com_id" value="${ord_comVO.comID}" />  session ord_comVO內 --%>
 <%-- <input type="hidden" name="prod_id" value="${ord_prod_id}" /> session ord_prod_id內 --%>
@@ -109,9 +113,30 @@
 	            <div class="form-group">
                    <label><span class="span-space"></span>車型</label>
                    <select  required="required" class="form-control" id="carType">
+                   <optgroup style="background-color: #DCDCDC" label="汽車">
                    <c:forEach var="ord_prodVO" items="${ord_prodVoList}">
+                   	<c:if test="${ord_prodVO.prodType == 1}">
+                   		<option value="${ord_prodVO.prodId}">${ord_prodVO.prodName}</option>
+                   		
+                   	</c:if>
+                   	</c:forEach>
+                   </optgroup>
+                   
+                   
+                   <optgroup  style="background-color: #DCDCDC" label="機車">
+                   <c:forEach var="ord_prodVO" items="${ord_prodVoList}">
+                   <c:if test="${ord_prodVO.prodType == 2}">
                   		<option value="${ord_prodVO.prodId}">${ord_prodVO.prodName}</option>
-                   </c:forEach>
+                  </c:if>
+                  </c:forEach>
+                   </optgroup>
+                   <optgroup  style="background-color: #DCDCDC" label="腳踏車">
+                   <c:forEach var="ord_prodVO" items="${ord_prodVoList}">
+                   <c:if test="${ord_prodVO.prodType == 3}">
+                  	<option value="${ord_prodVO.prodId}">${ord_prodVO.prodName}</option>
+                    </c:if>              
+                    </c:forEach>  
+                   </optgroup>
                    </select>
 	            </div>
 	        </div>  
@@ -120,12 +145,21 @@
 		    </div>
 		    <div class="col-xs-6 div-height-carView">
 		    <!-- 商品圖片 -->
-		    <figure>
-		    <figcaption  class="label-center"><label>車輛預覽</label></figcaption>
+		    <figure  class="label-center">
+		    <figcaption ><label>車輛預覽</label></figcaption>
 				<img class="img-responsive input-carView "
 					id = "carView"
 					src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${ord_comVO.comID}&prodId=${ord_prod_id}'
 					alt="">
+					<span id="carPrice">
+<%-- 					aa${ord_prod_id} --%>
+					<c:forEach var="ord_prodVO" items="${ord_prodVoList}">
+<%-- 					${ord_prodVO.prodId} --%>
+					<c:if test="(${ord_prodVO.prodId})==(${ord_prod_id}) ">
+					${ord_prodVO.prodPrice}
+					</c:if>
+					</c:forEach>
+					</span>
 					</figure>
 			<!-- /商品圖片 -->		
 		    </div>
@@ -256,13 +290,25 @@ $(document).ready(function () {
 	$("select[id='carType'] option:selected").attr("selected",null);
 	$("select[id='carType'] option[value='${ord_prod_id}']").attr("selected","selected");	
 	
+	
+	if($("optgroup[label=汽車] option").length == 0){
+		$("optgroup[label=汽車]").addClass('hide');
+	}
+	if($("optgroup[label=機車] option").length == 0){
+		$("optgroup[label=機車]").addClass('hide');
+	}
+	if ($("optgroup[label='腳踏車'] option").length == 0){
+		$("optgroup[label=腳踏車]").addClass('hide');
+	}
+	
 		//會員選擇選其他車時更換圖片
 	var prod_id;
+	
 	$("#carType").change(function() {
 		prod_id = $("#carType").val();
 		$("#carView").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${ord_comVO.comID}&prodId="+prod_id)
 		$("input[name='prod_id']").val(prod_id);
-			
+		$("#carPrice").html("車輛租金： "+$("input[name='"+prod_id+"']").val()+"/天")
 	});
 	
 	// End select功能
