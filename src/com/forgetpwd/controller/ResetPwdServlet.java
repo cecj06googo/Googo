@@ -52,20 +52,16 @@ public class ResetPwdServlet extends HttpServlet {
 */			
 		    try{
 		    	mem_qq = req.getParameter("mem_qq");
-		    	com_hashURL = req.getParameter("com_HashURL");
+		    	com_hashURL = req.getParameter("com_HashURL");		    	
 		    	if(com_hashURL == null){
 		    		if (mem_qq == null || mem_qq.trim().length() == 0) {
 			    		errMsgs.put("errorQQ","無此帳號");
 					}
-		    	}else if( mem_qq == null){
+		    	}else if(mem_qq == null){
 		    		if (com_hashURL == null || com_hashURL.trim().length() == 0) {
 			    		errMsgs.put("errorHash","無此帳號");
 					}
 		    	}
-		    	if (mem_qq == null || mem_qq.trim().length() == 0) {
-		    		errMsgs.put("errorQQ","無此帳號");
-				}
-		    	
 				String newPwd = req.getParameter("newpwd");
 				if(newPwd == null || newPwd.trim().length() == 0){
 					errMsgs.put("errorPwd", "密碼欄請勿空白");
