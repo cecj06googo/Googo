@@ -382,7 +382,7 @@
             <!-- Map Column -->
             <div class="col-md-8">
                 <!-- Embedded Google Map -->
-                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=25.0337622,121.5432827&amp;spn=25.0337622,121.5432827&amp;t=m&amp;z=10&amp;output=embed"></iframe>
+                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src=http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=台北市復興南路一段390號&z=16&output=embed&t=></iframe>
             </div>
             <!-- Contact Details Column -->
             <div class="col-md-4">
