@@ -122,14 +122,14 @@ $("#selectManage").addClass("active");
                             			<div class="component form-group" data-type="text">
                                 			<label class="control-label col-sm-4" for="text_input">文字輸入框</label>
                                 			<div class="controls col-sm-8">
-                                    		<input type="text" name="" id="text_input" placeholder="placeholder" class="form-control">
+                                    		<input type="text" name="" id="text_input" placeholder="預設內容" class="form-control">
                                 			</div>
                             			</div>
 
                             			<div class="component form-group" data-type="textarea">
                                 			<label class="control-label col-sm-4" for="textarea">段落輸入框</label>
                                 			<div class="controls col-sm-8">
-                                    		<textarea name="" class="form-control" id="textarea" placeholder="placeholder"></textarea>
+                                    		<textarea name="" class="form-control" id="textarea" placeholder="預設內容"></textarea>
                                 			</div>
                             			</div>
 
@@ -137,9 +137,9 @@ $("#selectManage").addClass("active");
                                 			<label class="control-label col-sm-4" for="SelectBasic">下拉單選</label>
                                 			<div class="controls col-sm-8">
                                     		<select class="form-control" name="" id="SelectBasic">
-                                        	<option value="1">Option 1</option>
-                                        	<option value="2">Option 2</option>
-                                        	<option value="3">Option 3</option>
+                                        	<option value="1">選項一</option>
+                                        	<option value="2">選項二</option>
+                                        	<option value="3">選項三</option>
                                     		</select>
                                 			</div>
                             			</div>
@@ -148,9 +148,9 @@ $("#selectManage").addClass("active");
                                 			<label class="control-label col-sm-4" for="SelectMultiple">下拉多選</label>
                                 			<div class="controls col-sm-8">
                                     		<select name="" class="form-control" id="SelectMultiple" multiple="multiple" size="3">
-                                        	<option value="1">Option 1</option>
-                                        	<option value="2">Option 2</option>
-                                        	<option value="3">Option 3</option>
+                                        	<option value="1">選項一</option>
+                                        	<option value="2">選項二</option>
+                                        	<option value="3">選項三</option>
                                     		</select>
                                 			</div>
                             			</div>
@@ -160,15 +160,15 @@ $("#selectManage").addClass("active");
                                 			<div class="controls col-sm-8">
                                     		<div class="checkbox"><label class="" for="checkbox_1">
                                         	<input type="checkbox" name="checkbox" id="checkbox_1">
-                                        	Option 1
+                                        	選項一
                                     		</label></div>
                                     		<div class="checkbox"><label class="" for="checkbox_2">
                                         	<input type="checkbox" name="checkbox" id="checkbox_2">
-                                        	Option 2
+                                        	選項二
                                     		</label></div>
                                     		<div class="checkbox"><label class="" for="checkbox_3">
                                         	<input type="checkbox" name="checkbox" id="checkbox_3">
-                                        	Option 3
+                                        	選項三
                                     		</label></div>
                                 			</div>
                             			</div>
@@ -178,15 +178,15 @@ $("#selectManage").addClass("active");
                                 			<div class="controls col-sm-8">
                                     		<div class="radio"><label class="" for="radio_1">
                                         	<input type="radio" name="radio" id="radio_1">
-                                        	Option 1
+                                        	選項一
                                     		</label></div>
                                     		<div class="radio"><label class="" for="radio_2">
                                         	<input type="radio" name="radio" id="radio_2">
-                                        	Option 2
+                                        	選項二
                                     		</label></div>
                                     		<div class="radio"><label class="" for="radio_3">
                                         	<input type="radio" name="radio" id="radio_3">
-                                        	Option 3
+                                        	選項三
                                     		</label></div>
                                 			</div>
                             			</div>
@@ -194,7 +194,7 @@ $("#selectManage").addClass("active");
                             			<div class="component form-group" data-type="StaticText">
                                 			<label class="control-label col-sm-4">文字說明</label>
                                 			<div class="controls col-sm-8">
-                                    		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    		靜態內容，可以接受HTML格式標籤
                                 			</div>
                             			</div>
 										
@@ -215,7 +215,7 @@ $("#selectManage").addClass("active");
                                 			<label class="control-label col-sm-4" for="PreSelectBasic">配備單選下拉</label>
                                 			<div class="controls col-sm-8">
                                     		<select class="form-control" name="" id="PreSelectBasic">
-                                        	<option value="0">Dynamic options from DB</option>
+                                        	<option value="0">請下拉選擇配備</option>
                                     		</select>
                                 			</div>
                             			</div>
@@ -224,7 +224,7 @@ $("#selectManage").addClass("active");
                                 			<label class="control-label col-sm-4" for="PreSelectBasic">配備自訂下拉</label>
                                 			<div class="controls col-sm-8">
                                     		<select class="form-control" name="" id="PreBox">
-                                        	<option value="0">Dynamic options from DB</option>
+                                        	<option value="0">請下拉選擇配備</option>
                                     		</select>
                                 			</div>
                             			</div>

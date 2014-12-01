@@ -416,7 +416,7 @@ $(function() {
             						return false; // break .each()
             					}
             				});
-            				if(matchOK == 0){
+            				if(matchOK == 0 && $(elementOptions[j]).val() != 0){
             					$(elementOptions[j]).attr("class", "mkrm"); // Mark Remove
             				}
             			}
@@ -472,6 +472,10 @@ $(function() {
     				availablePool = $("#availablePool"),
     				label = el.find('label');
         		
+    			$("<option></option>").val(0)
+					  .text("請下拉選擇配備")
+					  .prependTo(elementSelect);
+    				
     			$(elementOptions).remove();
         		$(displayPoolOptions).clone().appendTo(elementSelect);
         		
