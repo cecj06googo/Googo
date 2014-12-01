@@ -11,6 +11,15 @@
 	<jsp:include page="/_00_fragment/top2.jsp" />
 <jsp:include page="/_00_fragment/css2.jsp" />
 <%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
+<style type="text/css">
+#accPic{
+	height:80px; 
+	width:100px;
+}
+td{
+	align=center;
+}
+</style>
 <title>Goo-go</title>
 
 </head>
@@ -31,31 +40,33 @@
 		<div class="col-md-10 col-md-offset-1">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">汽車</h3>
+                <h3 class="panel-title">配件		</h3>
             </div>
             <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>配件圖片</th>
                         <th>商品名稱</th>
                         <th>價格</th>
-                        <th>配備圖片</th>
+                        <th>配件說明</th>
                         <th class="text-center ath">修改/刪除</th>
                     </tr>
                 </thead>
                 <tbody>
                    <c:forEach var="AccVO" items="${accList}">
                    	<tr id="${AccVO.accId}">
-                   		<td id="${AccVO.accId}">${AccVO.accName}</td>
-                    	<td id="${AccVO.accId}">${AccVO.accPrice}</td>
-                    	<td id="${AccVO.accId}">
-                   			<img src="${pageContext.servletContext.contextPath}/ShowAccsPicturs.do?comID=${AccVO.comId}&accID=${AccVO.accId}">
+                   		<td id="${AccVO.accId}">
+                   			<img id="accPic" src="${pageContext.servletContext.contextPath}/ShowAccsPicturs.do?comID=${AccVO.comId}&accID=${AccVO.accId}">
                    		</td>
+                		<td id="${AccVO.accId}">${AccVO.accName}</td>
+                    	<td id="${AccVO.accId}">${AccVO.accPrice}</td>
+                    	<td id="${AccVO.accId}">${AccVO.accDetail}</td>
                     	<td class="text-center">
                         	<a href="#" class='btn btn-success'  data-toggle="modal" data-target="#editProduct" id="${AccVO.accId}"><span class="glyphicon glyphicon-edit"></span> 修改</a> 
                        		<a href="#" class="btn btn-danger " data-toggle="modal" data-target="#delProduct" id="${AccVO.accId}"><span class="glyphicon glyphicon-remove"></span> 刪除</a>
-                         </td>
-                    	</tr>
+                        </td>
+                    </tr>
                     	<input type="hidden" name="${AccVO.accId}AccId" value="${AccVO.accId}"/>
                     	<input type="hidden" name="${AccVO.accId}AccName" value="${AccVO.accName}"/>
                     	<input type="hidden" name="${AccVO.accId}AccPrice" value="${AccVO.accPrice}"/>

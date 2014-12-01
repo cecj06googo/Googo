@@ -72,9 +72,9 @@
 								<div>
 									<img class="img-responsive" id="img1">
 								</div>
-								<input type="file" name="accPic" id="prodPic"
-									multiple="multiple" onchange="fileShow();" accept="image/*                                                                                      "> <font
-									size="-1" color="#FF0000">${ErrorMsg.errorProdPic}</font>
+								<input type="file" name="accPic" id="accPic"
+									multiple="multiple" onchange="fileShow();" accept="image/*">
+								<font size="-1" color="#FF0000">${ErrorMsg.errorProdPic}</font>
 							</div>
 							<br>
 							<button type="reset" class="btn btn-primary">取消</button>
@@ -93,7 +93,17 @@
 
 	<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 	<script>
-		
+	function fileShow() {
+		document.getElementById('img1').style.display = "inline";
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			var fileContent = e.target.result;
+			var show = document.getElementById("img1");
+			show.setAttribute("src", fileContent);
+		}
+		file = document.getElementById("accPic").files[0];
+		reader.readAsDataURL(file);
+	}
 	</script>
 
 
