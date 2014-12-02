@@ -154,7 +154,8 @@
 							<input type="hidden" name="comAccount" value="${LoginComOK.comAccount}">
 							<input type="hidden" name="comVAT" value="${LoginComOK.comVAT}">
 							<input type="hidden" name="comStatus" value="${LoginComOK.comStatus}">
-							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							<button type="button" class="btn btn-default" 
+							              style="background-color:#c0c0c0" data-dismiss="modal">返回</button>
                 			<button type="submit" data-loading-text="Loading..." class="btn btn-danger">確認</button>
                			</div>
            			</div>
