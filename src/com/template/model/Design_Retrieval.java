@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Design_Retrieval")
+
 public class Design_Retrieval extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

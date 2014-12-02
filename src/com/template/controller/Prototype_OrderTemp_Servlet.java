@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.template.model.Prototype_OrderTemp_DAO;
 import com.template.model.Prototype_OrderTemp_VO;
 
-/**
- * Servlet implementation class Prototype_OrderTemp_Servlet
- */
-@WebServlet("/Prototype_OrderTemp_Servlet")
+
 public class Prototype_OrderTemp_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
