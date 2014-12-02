@@ -32,7 +32,7 @@ public class ForgetPwdJDBCDAO implements ForgetPwdDAO_interface {
 	private static final String GET_ONE_COM_STMT_BY_HASH = 
 			"SELECT com_id, com_account,com_pwd,com_name,com_owner, com_vat,com_tel,com_fax,com_address,com_status,com_hashURL FROM Company where com_hashURL = ?";
 	private static final String UPDATE_COM = 
-			"UPDATE Company com_id=? com_account=?com_pwd=?com_name=?com_owner=?com_vat=?com_tel=?com_fax=?com_address=?com_status=?com_hashURL=?";
+			"UPDATE Company set com_account=?,com_pwd=?,com_name=?,com_owner=?,com_vat=?,com_tel=?,com_fax=?,com_address=?,com_status=?,com_hashURL=? where com_id=?";
 
 	@Override
 	public void update(String user_identity,String user_account,String user_newPwd) {
@@ -356,17 +356,18 @@ public class ForgetPwdJDBCDAO implements ForgetPwdDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE_COM);
 
-			pstmt.setInt(1, comVO.getComID());
-			pstmt.setString(2, comVO.getComAccount());
-			pstmt.setString(3, comVO.getComPwd());
-			pstmt.setString(4, comVO.getComName());
-			pstmt.setString(5, comVO.getComOwner());
-			pstmt.setString(6, comVO.getComVAT());
-			pstmt.setString(7, comVO.getComTel());
-			pstmt.setString(8, comVO.getComFax());
-			pstmt.setString(9, comVO.getComAddr());
-			pstmt.setInt(10, comVO.getComStatus());
-			pstmt.setString(11, comVO.getComHashURL());
+			// com_id=? com_account=?com_pwd=?com_name=?com_owner=?com_vat=?com_tel=?com_fax=?com_address=?com_status=?com_hashURL=?";
+			pstmt.setString(1, comVO.getComAccount());
+			pstmt.setString(2, comVO.getComPwd());
+			pstmt.setString(3, comVO.getComName());
+			pstmt.setString(4, comVO.getComOwner());
+			pstmt.setString(5, comVO.getComVAT());
+			pstmt.setString(6, comVO.getComTel());
+			pstmt.setString(7, comVO.getComFax());
+			pstmt.setString(8, comVO.getComAddr());
+			pstmt.setInt(9, comVO.getComStatus());
+			pstmt.setString(10, comVO.getComHashURL());
+			pstmt.setInt(11, comVO.getComID());
 			System.out.println("進入DAO");
 			pstmt.executeUpdate();
 

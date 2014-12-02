@@ -52,17 +52,20 @@ public class ResetPwdServlet extends HttpServlet {
 */			
 		    try{
 		    	mem_qq = req.getParameter("mem_qq");
-		    	com_hashURL = req.getParameter("com_HashURL");		    	
-		    	if(com_hashURL == null){
-		    		if (mem_qq == null || mem_qq.trim().length() == 0) {
+		    	System.out.println("出現mem_qq: "+mem_qq);
+		    	com_hashURL = req.getParameter("com_HashURL");
+		    	System.out.println("出現com_hashURL: "+com_hashURL);
+		    	if(com_hashURL == ""){
+		    		if (mem_qq == "" || mem_qq.trim().length() == 0) {
 			    		errMsgs.put("errorQQ","無此帳號");
 					}
-		    	}else if(mem_qq == null){
-		    		if (com_hashURL == null || com_hashURL.trim().length() == 0) {
+		    	}else if(mem_qq == ""){
+		    		if (com_hashURL == "" || com_hashURL.trim().length() == 0) {
 			    		errMsgs.put("errorHash","無此帳號");
 					}
 		    	}
 				String newPwd = req.getParameter("newpwd");
+				System.out.println("出現newPwd: "+newPwd);
 				if(newPwd == null || newPwd.trim().length() == 0){
 					errMsgs.put("errorPwd", "密碼欄請勿空白");
 				}
@@ -71,16 +74,24 @@ public class ResetPwdServlet extends HttpServlet {
 					errMsgs.put("errorPwd", "密碼格式有誤(英數各一,長度限6~12字數");
 				}
 				String newPwdCheck = req.getParameter("newpwdcheck");
+				System.out.println("出現newPwdCheck: "+newPwdCheck);
 				if(!newPwd.equals(newPwdCheck)){
 					errMsgs.put("errorPwdCheck", "兩次輸入的密碼不一致");
 				}
 		        if (!errMsgs.isEmpty()) {
-		        	RequestDispatcher failureView = req.getRequestDispatcher("/resetpwd.gg?qq=" + mem_qq);
-					failureView.forward(req, res);
+		            if(com_hashURL == ""){
+		                RequestDispatcher failureView = req.getRequestDispatcher("/resetpwd.gg?qq=" + mem_qq);
+		                failureView.forward(req, res);
+		                
+		            }else if(mem_qq == ""){
+		            	RequestDispatcher failureView = req.getRequestDispatcher("/resetpwd.gg?hash="+com_hashURL);
+		            	failureView.forward(req, res);
+		            }
+					
 					return;	
 				}
 		        
-		        if(com_hashURL== null){
+		        if(com_hashURL== ""){
 		        ForgetPwdService fgtService = new ForgetPwdService();
 		        memVO = fgtService.findMemByQQ(mem_qq);
 		        String encrypedString = MemService.encryptString(newPwd);
@@ -89,28 +100,38 @@ public class ResetPwdServlet extends HttpServlet {
 				System.out.println("開始修改資料");
 				fgtService.updateMemPwd(memVO);
 				System.out.println("修改完成");
-				session.setAttribute("LoginMemOK", memVO);
+				session.setAttribute("LoginMemOK", memVO);String url = "/index.jsp"; 
+				RequestDispatcher successView = req.getRequestDispatcher(url); 
+				successView.forward(req, res);
 				
-		        }else if(mem_qq == null){
+		        }else if(mem_qq == ""){
 		        	ForgetPwdService fgtService = new ForgetPwdService();
 		    	    comVO = fgtService.findComByHash(com_hashURL);
-		    	    String encrypedString = MemService.encryptString(newPwd);
+		    	    String encrypedString = HashService.encryptString(newPwd);
 		    	    comVO.setComPwd(HashService.getMD5Endocing(encrypedString));
+		    	    System.out.println("新密碼: " + newPwd+ "編碼完成");
 		    	    fgtService.updateComPwd(comVO);
 		    	    System.out.println("修改完成");
 					session.setAttribute("LoginComOK", comVO);
+					String url = "/manage"; 
+					RequestDispatcher successView = req.getRequestDispatcher(url); 
+					successView.forward(req, res);
+				
 		    	    
 		        }
-		        String url = "/index.jsp"; 
-				RequestDispatcher successView = req.getRequestDispatcher(url); 
-				successView.forward(req, res);
+		        
 		        
 		        }catch (Exception e) {
 					System.out.println("出現Exception");
 					errMsgs.put("errorException",e.getMessage());
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/resetpwd.gg?qq=" + mem_qq);
-					failureView.forward(req, res);
+					 if(com_hashURL == ""){
+			                RequestDispatcher failureView = req.getRequestDispatcher("/resetpwd.gg?qq=" + mem_qq);
+			                failureView.forward(req, res);
+			                
+			            }else if(mem_qq == ""){
+			            	RequestDispatcher failureView = req.getRequestDispatcher("/resetpwd.gg?hash="+com_hashURL);
+			            	failureView.forward(req, res);
+			            }
 				}//end of catch
 			// Send the use back to the form, if there were errors
 /*			if(!errMsgs.isEmpty()){
