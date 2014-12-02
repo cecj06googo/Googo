@@ -46,7 +46,9 @@ public class LinkServlet extends HttpServlet {
 */			
 		    try{
 		    	String mem_qq = req.getParameter("qq");
+		    	System.out.println("出現qq: "+mem_qq);
 		    	String com_hash = req.getParameter("hash");
+		    	System.out.println("出現com_hash: "+com_hash);
 		    	if(com_hash == null){
 		    		    if (mem_qq == null || mem_qq.trim().length() == 0) {
 			    		errMsgs.put("errorQQ","無此帳號");

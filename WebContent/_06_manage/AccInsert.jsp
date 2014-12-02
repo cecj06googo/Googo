@@ -60,7 +60,7 @@
 							<div class="control-group form-group">
 								<label>配備說明:</label>
 								<div class="controls ">
-									<textarea rows="5" class="form-control" name="accArticle">${ProductVO.prodArticle}</textarea>
+									<textarea rows="5" class="form-control" name="accDetail">${ProductVO.prodArticle}</textarea>
 								</div>
 								<font size="-1" color="#FF0000">${ErrorMsg.errorProdArticle}</font>
 							</div>
