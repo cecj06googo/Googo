@@ -61,23 +61,26 @@ public class placeOrdSetAttr extends HttpServlet{
 		//把CompanyVO和List<ProductVO>存入session
 		CompanyService cs = new CompanyService();
 		CompanyVO comVO = cs.getOneCom(com_id);
+		
 		LoginOrdProdOnLoadDAO LOPOLD = new LoginOrdProdOnLoadDAO();
 		ProductVO prodVO = new ProductVO();
-		Map<String, String> prodPriceMap = new HashMap<String, String>();
 		prodVO.setComId(com_id);
+		prodVO.setProdId(prod_id);
 		List<ProductVO> ord_prodVoList  = LOPOLD.getAll(prodVO);
-		
+		prodVO = LOPOLD.prodIdgetAll(prodVO);
 		System.out.println("prodVoList.size:"+ord_prodVoList.size());
-		for (int i = 0,max = ord_prodVoList.size() ; i < max; i++) {
-			ProductVO obj = ord_prodVoList.get(i);
-			prodPriceMap.put(String.valueOf(obj.getProdId()),String.valueOf(obj.getProdPrice()));
+		
+		
+//		for (int i = 0,max = ord_prodVoList.size() ; i < max; i++) {
+//			ProductVO obj = ord_prodVoList.get(i);
+//			prodPriceMap.put(String.valueOf(obj.getProdId()),String.valueOf(obj.getProdPrice()));
 //			boolean a = ord_prodVoList.contains(obj.getProdName());
 //			System.out.println("prod_type:"+obj.getProdType());
 //			System.out.println("prodId:"+obj.getProdId());
 //			System.out.println("prodName:"+obj.getProdName());
-			System.out.println("getProdPrice:"+obj.getProdPrice());
-		}
-		session.setAttribute("prodPriceMap", prodPriceMap);
+//			System.out.println("getProdPrice:"+obj.getProdPrice());
+//		}
+		session.setAttribute("ord_prodVO_price", prodVO);
 //		session.setAttribute("ord_memVO", memVO);
 		session.setAttribute("ord_comVO", comVO); //key修改會影響彥靖
 		session.setAttribute("ord_prod_id", prod_id);

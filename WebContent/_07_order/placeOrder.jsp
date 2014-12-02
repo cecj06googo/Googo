@@ -55,11 +55,11 @@
         </div>
         <div class="stepwizard-step">
             <a href="#step-3" type="button" class="btn btn-default" id="circle" disabled="disabled">3</a>
-            <p class="p-width">&nbsp&nbsp其他資訊&nbsp&nbsp</p>
+            <p class="p-width">&nbsp;&nbsp;其他資訊&nbsp;&nbsp;</p>
         </div>
         <div class="stepwizard-step">
             <a href="#step-4" type="button" class="btn btn-default" id="circle" disabled="disabled">4</a>
-            <p class="p-width">&nbsp&nbsp&nbsp&nbsp完成&nbsp&nbsp&nbsp&nbsp</p>
+            <p class="p-width">&nbsp;&nbsp;&nbsp;&nbsp;完成&nbsp;&nbsp;&nbsp;&nbsp;</p>
         </div>
     </div>
 </div>
@@ -151,15 +151,7 @@
 					id = "carView"
 					src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${ord_comVO.comID}&prodId=${ord_prod_id}'
 					alt="">
-					<span id="carPrice">
-<%-- 					aa${ord_prod_id} --%>
-					<c:forEach var="ord_prodVO" items="${ord_prodVoList}">
-<%-- 					${ord_prodVO.prodId} --%>
-					<c:if test="(${ord_prodVO.prodId})==(${ord_prod_id}) ">
-					${ord_prodVO.prodPrice}
-					</c:if>
-					</c:forEach>
-					</span>
+					<span id="carPrice">車輛租金：&nbsp;<fmt:formatNumber value="${ord_prodVO_price.prodPrice}" pattern="#"/>/天</span>
 					</figure>
 			<!-- /商品圖片 -->		
 		    </div>
@@ -194,32 +186,32 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label"><span class="span-space"></span>連絡電話</label><br>
-                    <span class="span-red">*</span>手機<input maxlength="200" type="text" required="required" name="driver_phone" placeholder="請輸入手機"  />
-                    	市話<input maxlength="200" type="text" required="required" name="driver_tel" placeholder="請輸入市話"  />
+                    
+                    	<span class="span-red">*</span><span class="span-phone">手機:&nbsp;</span><input maxlength="200" type="text" required="required" class="form-control" name="driver_phone" placeholder="請輸入手機"  />
+                   <br>
+                    	<span  class="span-phone">&nbsp;&nbsp;市話:&nbsp;</span><input maxlength="200" type="text" required="required" class="form-control" name="driver_tel" placeholder="請輸入市話"/>
+                    	
                 </div> 
                 </fieldset>         
             </div>
                   	        <div class="col-xs-6">
 	        <p class="p-right">* 必填選項</p>
-<!-- 	        放車子圖片 -->
+<!-- 	        會員資料預覽 -->
+<br><br>
 		            	<p class="x-center"><label>會員資料預覽</label></p>
 		            	<table class="table">
 		            		<thead>
 		            			<tr>
-			            			<th>會員姓名：</th>
-			            			<th>${LoginMemOK.mem_name}</th>
+			            			<th style=" border:0;"><span class="th-leftpadding">會員姓名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_name}</span></th>
 		            			</tr>
 		            			<tr>
-			            			<th>會員e-mail：</th>
-			            			<th>${LoginMemOK.mem_account}</th>
+			            			<th style=" border:0;"><span class="th-leftpadding">會員e-mail：&nbsp;${LoginMemOK.mem_account}</span></th>
 		            			</tr>
 		            			<tr>
-		            				<th>行動電話：</th>
-		            				<th>${LoginMemOK.mem_phone}</th>
+		            				<th style=" border:0;"><span class="th-leftpadding">行動電話：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_phone}</span></th>
 		            			</tr>
 		            			<tr>
-		            				<th>市內電話：</th>
-		            				<th>${LoginMemOK.mem_tel}</th>
+		            				<th style=" border:0;"><span class="th-leftpadding">市內電話：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_tel}</span></th>
 		            			</tr>
 		            		</thead>
 		            	</table>    	
@@ -269,17 +261,17 @@ $(document).ready(function () {
 	
 	// Begin: Modified by ranian
 	// retrieve designed form template and attach to div #DesignResultTarget
-// 	$.ajax({
-<%-- 		url: "<%=request.getContextPath()%>/DesignAccessDB", --%>
-// 		type: "post",
-// 		data: {
-<%-- 			com_id_form_view: <%=((CompanyVO)(session.getAttribute("ord_comVO"))).getComID() %>, --%>
-// 			command: "retrieve"	
-// 		},
-// 		dataType: "html",
-// 	}).done(function(result){
-// 		$("#DesignResultTarget").html(result);
-// 	});
+	$.ajax({
+		url: "<%=request.getContextPath()%>/DesignAccessDB",
+		type: "post",
+		data: {
+			com_id_form_view: <%=((CompanyVO)(session.getAttribute("ord_comVO"))).getComID() %>,
+			command: "retrieve"	
+		},
+		dataType: "html",
+	}).done(function(result){
+		$("#DesignResultTarget").html(result);
+	});
 	// End: Modified by ranian
 	
 	

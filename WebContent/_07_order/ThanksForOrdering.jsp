@@ -74,7 +74,7 @@
               <div class="col-xs-12 div-css x-border">
                <a href="<c:url value='/index.jsp'/>"><button class="btn btn-default btn-lg pull-right" type="button">回首頁</button></a>
                <form role="form" name="ord_form" novalidate action="<%=request.getContextPath()%>/ActionMem.do" method="post">
-                <button class="btn btn-info btn-lg pull-right" type="submit">訂單管理</button>
+                <button class="btn btn-info btn-lg pull-right" type="submit">查看訂單</button>
                 <input type="hidden" name="action" value="mem_ord"/>
                 </form>
                 </div>

@@ -114,6 +114,12 @@ font-size: 24px;
 .span-accept{
 	font-size: 16px;
 }
+.span-phone{
+	font-size: 15px;
+}
+.th-leftpadding{
+	margin-left: 14em;
+}
 .form-input {
 /*   display: block; block 此元素将显示为块级元素，此元素前后会带有换行符。 */
   width: 70%;

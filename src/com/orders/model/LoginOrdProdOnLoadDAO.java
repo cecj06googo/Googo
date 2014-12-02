@@ -17,8 +17,8 @@ public class LoginOrdProdOnLoadDAO {
 	String passwd = "sa123456";
 	
 	private static final String SELECT_GETALL_PRODUCTS = "SELECT prod_id, prod_name,prod_type,prod_price FROM product WHERE prod_status = 1 AND prod_id IN (SELECT MAX(prod_id) FROM Product WHERE com_id=? GROUP BY prod_name)";
-
-
+	private static final String SELECT_GETONE_BYPRODID = "SELECT prod_price FROM product WHERE prod_status = 1 AND prod_id = ?";
+	
 	public List<ProductVO> getAll(ProductVO ProductVO) {
 		List<ProductVO> list = new ArrayList<ProductVO>();
 		Connection con = null;
@@ -76,4 +76,56 @@ public class LoginOrdProdOnLoadDAO {
 		}
 		return list;
 	} // end getAll
+	
+	public ProductVO prodIdgetAll(ProductVO ProductVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_GETONE_BYPRODID);
+			pstmt.setInt(1, ProductVO.getProdId());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ProductVO.setProdPrice(rs.getInt("prod_price"));
+			}
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return ProductVO;
+	} // end prodIdgetAll
 } // end LoginOrdProdOnLoadDAO
