@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONValue;
 
-@WebServlet("/Accesory_Retrieval")
+
 public class Accessory_Retrieval extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
