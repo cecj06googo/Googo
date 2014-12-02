@@ -60,23 +60,27 @@
 <!-------------- 訂單第四頁 ------------------>
 <!-- submit後回來顯示第四頁  (最簡單的方法是連到另一支樣式一模一樣的jsp) -->
 <!-- c:if (訂單新增ok(Map物件) != null    -->
-    <div class="row setup-content div-border x-border x-border" >
-        <div class="col-xs-12 div-back div-height x-border">
-            <div class="col-xs-12 div-css x-border">
-                <span class="harder-font">完成</span>
-                <div>
-                
-                <div class="col-xs-12 div-css x-border">
-                <br><br>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="row setup-content div-border" >
+        <div class="col-xs-12 div-back">
+            <div class="col-xs-12 div-css div-center">
+                <h1>租訂完成</h1>
+                <div class="col-xs-12 div-css div-center">
+ 					<form name="ord_form"  action="<%=request.getContextPath()%>/ActionMem.do" method="post">
+					<h4>
+					<span>親愛的 ${LoginMemOK.mem_name} 您好：</span><br><br>
+					<span>系統已將您的訂單明細寄發至您的信箱中</span><br><br>
+					<span>也可至「</span><a href="#" onclick="document.ord_form.submit();">我的訂單</a><span>」瀏覽訂單資訊</span><br><br>
+					<span>期待您再度光臨 </span><br>
+					   </h4>
+ 					
+               
+	                <input type="hidden" name="action" value="mem_ord"/>
+	                </form>
+                <br><br><br>
+                <div class="col-xs-12">
+                <a href="<c:url value='/index.jsp'/>"><button class="btn btn-default btn-lg" type="button">回首頁</button></a>
                 </div>
-                
-              <div class="col-xs-12 div-css x-border">
-               <a href="<c:url value='/index.jsp'/>"><button class="btn btn-default btn-lg pull-right" type="button">回首頁</button></a>
-               <form role="form" name="ord_form" novalidate action="<%=request.getContextPath()%>/ActionMem.do" method="post">
-                <button class="btn btn-info btn-lg pull-right" type="submit">查看訂單</button>
-                <input type="hidden" name="action" value="mem_ord"/>
-                </form>
+                <br><br><br><br>
                 </div>
             </div>
         </div>
@@ -98,5 +102,4 @@
 	<!-- /.container -->
 
 </body>
-
 </html>

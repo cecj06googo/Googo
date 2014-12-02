@@ -16,11 +16,11 @@ public class LoginOrdProdOnLoadDAO {
 	String userid = "sa";
 	String passwd = "sa123456";
 	
-	private static final String SELECT_GETALL_PRODUCTS = "SELECT prod_id, prod_name,prod_type,prod_price FROM product WHERE prod_status = 1 AND prod_id IN (SELECT MAX(prod_id) FROM Product WHERE com_id=? GROUP BY prod_name)";
-	private static final String SELECT_GETONE_BYPRODID = "SELECT prod_price FROM product WHERE prod_status = 1 AND prod_id = ?";
+	private static final String SELECT_GETALL_PRODUCTS = "SELECT prod_id,prod_disc,prod_name,prod_type,prod_price FROM product WHERE prod_status = 1 AND prod_id IN (SELECT MAX(prod_id) FROM Product WHERE com_id=? GROUP BY prod_name)";
+	private static final String SELECT_GETONE_BYPRODID = "SELECT prod_price,prod_disc FROM product WHERE prod_status = 1 AND prod_id = ?";
 	
-	public List<ProductVO> getAll(ProductVO ProductVO) {
-		List<ProductVO> list = new ArrayList<ProductVO>();
+	public List<ProductOrderVO> getAll(ProductOrderVO ProdOrdVO) {
+		List<ProductOrderVO> list = new ArrayList<ProductOrderVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -30,16 +30,18 @@ public class LoginOrdProdOnLoadDAO {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(SELECT_GETALL_PRODUCTS);
-			pstmt.setInt(1, ProductVO.getComId());
+			pstmt.setInt(1, ProdOrdVO.getComId());
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				ProductVO = new ProductVO();
-				ProductVO.setProdId(rs.getInt("prod_id"));
-				ProductVO.setProdName(rs.getString("prod_name"));
-				ProductVO.setProdType(rs.getInt("prod_type"));
-				ProductVO.setProdPrice(rs.getInt("prod_price"));
-				list.add(ProductVO);
+				ProdOrdVO = new ProductOrderVO();
+				ProdOrdVO.setProdId(rs.getInt("prod_id"));
+				ProdOrdVO.setProdName(rs.getString("prod_name"));
+				ProdOrdVO.setProdType(rs.getInt("prod_type"));
+				ProdOrdVO.setProdPrice(rs.getInt("prod_price"));
+				ProdOrdVO.setProdDisc(rs.getDouble("prod_disc"));
+				ProdOrdVO = compute(ProdOrdVO);
+				list.add(ProdOrdVO);
 			}
 
 			// Handle any driver errors
@@ -77,7 +79,7 @@ public class LoginOrdProdOnLoadDAO {
 		return list;
 	} // end getAll
 	
-	public ProductVO prodIdgetAll(ProductVO ProductVO) {
+	public ProductOrderVO prodIdgetAll(ProductOrderVO ProdOrdVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -87,11 +89,13 @@ public class LoginOrdProdOnLoadDAO {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(SELECT_GETONE_BYPRODID);
-			pstmt.setInt(1, ProductVO.getProdId());
+			pstmt.setInt(1, ProdOrdVO.getProdId());
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				ProductVO.setProdPrice(rs.getInt("prod_price"));
+				ProdOrdVO.setProdPrice(rs.getInt("prod_price"));
+				ProdOrdVO.setProdDisc(rs.getDouble("prod_disc"));
+				ProdOrdVO = compute(ProdOrdVO);
 			}
 
 			// Handle any driver errors
@@ -126,6 +130,14 @@ public class LoginOrdProdOnLoadDAO {
 				}
 			}
 		}
-		return ProductVO;
+		return ProdOrdVO;
 	} // end prodIdgetAll
+	
+	public ProductOrderVO compute(ProductOrderVO ProdOrdVO) {
+		Integer price = ProdOrdVO.getProdPrice();
+		Double disc = ProdOrdVO.getProdDisc();
+		ProdOrdVO.setPriceDiscOK((new Double((price.doubleValue()*disc)).intValue()));
+		System.out.println("計算後的價格:"+ProdOrdVO.getPriceDiscOK());
+		return ProdOrdVO;
+	}
 } // end LoginOrdProdOnLoadDAO

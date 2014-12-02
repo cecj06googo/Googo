@@ -19,7 +19,7 @@ import com.template.model.OrderItemSimulationVO;
 import com.template.model.OrderSimulationDAO;
 import com.template.model.OrderSimulationVO;
 
-@WebServlet("/OrderSimulation")
+
 public class OrderSimulationInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

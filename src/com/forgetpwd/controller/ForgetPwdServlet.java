@@ -129,7 +129,7 @@ public class ForgetPwdServlet extends HttpServlet{
 		}
 		
 		System.out.println("已寄出ResetMail");
-		String url = "/_01_login/index.jsp";
+		String url = "/index.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url);
 		successView.forward(req, res);
 		}//end of if(!error)

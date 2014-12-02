@@ -9,7 +9,8 @@ $(document).ready(function(){
 		if(custFieldArray.length > 0){
 			
 			// bundle contains fieldObj(s), each fieldObj holds data of a customized field
-			var custFieldsBundle = {custFields:[]};  
+			var custFieldsBundle = {custFields:[]};
+			var sumUp = 0;
 			
 			// one by one, convert customized field data into json format data and store them into fieldObj
 			for(i = 0; i < custFieldArray.length; i++){
@@ -78,10 +79,12 @@ $(document).ready(function(){
 					fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label.control-label").text();
 					fieldValue = field.val();
 					fieldValueDescription = field.find("option:selected").text();
+					sumUp += parseInt(fieldValue);
 				}else if(fieldType == "PreBox"){
 					fieldLabel = field.parents("div[data-type=" + fieldType + "]").find("label.control-label").text();
 					fieldValue = field.val();
 					fieldValueDescription = field.find("option:selected").text();
+					sumUp += parseInt(fieldValue);
 				}
 				
 				fieldObj.id = field.prop("id");
@@ -97,6 +100,7 @@ $(document).ready(function(){
 				console.log("Field Value Description: " + fieldValueDescription);
 				console.log("Field Checked: " + fieldChecked);
 				console.log("corresponding obj: " + JSON.stringify(fieldObj) + "\n");
+				console.log("Total cost: " + sumUp);
 				
 				custFieldsBundle.custFields.push(fieldObj);
 			};// end fields-to-object conversion process

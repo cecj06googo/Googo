@@ -74,8 +74,12 @@ height: 500px;
     background-color:#efefef;
     border: 1px solid #e7e7e7;
 }
-
-
+.div-center {
+	text-align: center;
+}
+.btn-margin-center {
+	margin:0 auto 0 auto;	
+}
 /* ---抓範圍--- */
 .x-border{
     border: 1px solid #c0c0c0;
@@ -117,8 +121,14 @@ font-size: 24px;
 .span-phone{
 	font-size: 15px;
 }
+.span-price{
+	font-size: 12pt;
+}
 .th-leftpadding{
-	margin-left: 14em;
+	margin-left: 13em;
+}
+.btn-bottom{
+	margin-bottom: 4em;
 }
 .form-input {
 /*   display: block; block 此元素将显示为块级元素，此元素前后会带有换行符。 */
