@@ -351,13 +351,15 @@ $(function() {
                     select = el.find('select'),
                     label = el.find('label');
                     //list_options = "";
-
+                
+                $(select).empty();
                 $(pre_databean).each(function(index){
                 	var option = $("<option></option>");
                 	option.val(pre_databean[index].price);
                 	option.text(pre_databean[index].description);
                 	select.append(option);
                 });
+                $("<option>請下拉選擇配備</option>").val(0).prependTo(select);
 
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
                 
