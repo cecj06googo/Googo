@@ -1,20 +1,13 @@
 package com.company.controller;
 
 import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.Flushable;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +22,7 @@ import com.company.model.CompanyVO;
 import com.util.HashService;
 
 
-@MultipartConfig
+
 public class UpdateCompany extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -52,14 +45,12 @@ public class UpdateCompany extends HttpServlet {
 		String comAccount = null, comPwd = null, comName = null, comOwner = null, 
 			   comAddr = null, comTel = null, comFax = null, comVAT = null;
 
-		System.out.println("外面試試看 -->" + req.getParameter("comAddr"));
 		if (ServletFileUpload.isMultipartContent(req)) {
 			try {
 				// 檔案名稱
 				List<FileItem> multiparts = new ServletFileUpload(
 						new DiskFileItemFactory()).parseRequest(req);
 				
-				System.out.println("試試看 -->" + req.getParameter("comAddr"));
 				// 逐筆讀取form表單內容
 				for (FileItem item : multiparts) {
 					if (item.isFormField()) {
@@ -95,7 +86,7 @@ public class UpdateCompany extends HttpServlet {
 							if (comName == null || comName.trim().length() == 0)
 								errorMsgs.put("errorName", "公司名稱請勿空白");
 							
-							String comNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,32}$";
+							String comNameReg = "^[(\u4e00-\u9fa5)\\-(a-zA-Z0-9)]{1,32}$";
 							if (!comName.trim().matches(comNameReg))
 								errorMsgs.put("errorName", "公司名稱:只能是中、英文字母、數字和_ , 且長度必需在1到32之間");
 						} 
@@ -104,7 +95,7 @@ public class UpdateCompany extends HttpServlet {
 							if (comOwner == null || comOwner.trim().length() == 0)
 								errorMsgs.put("errorOwner", "公司代表人姓名請勿空白");
 							
-							String comOwnerReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,32}$";
+							String comOwnerReg = "^[(\u4e00-\u9fa5)\\-(a-zA-Z0-9)]{1,32}$";
 							if (!comOwner.trim().matches(comOwnerReg))
 								errorMsgs.put("errorOwner", "公司名:只能是中、英文字母、數字和_ , 且長度必需在1到32之間");
 						}
@@ -113,9 +104,9 @@ public class UpdateCompany extends HttpServlet {
 							if (comAddr == null || comAddr.trim().length() == 0)
 								errorMsgs.put("errorAddr", "公司地址請勿空白");
 								
-							String comAddrReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,32}$";
+							String comAddrReg = "^[(\u4e00-\u9fa5)\\-(a-zA-Z0-9)]{1,64}$";
 							if (!comAddr.trim().matches(comAddrReg))
-								errorMsgs.put("errorAddr", "公司名:只能是中、英文字母、數字和_ , 且長度必需在1到32之間");
+								errorMsgs.put("errorAddr", "公司名:只能是中、英文字母、數字和- , 且長度必需在5到64之間");
 						} 
 						else if ("comTel".equals(item.getFieldName())) {
 							comTel = fieldvalue;

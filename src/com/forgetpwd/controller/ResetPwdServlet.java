@@ -18,6 +18,7 @@ import com.forgetpwd.model.SendResetPwdEmail;
 import com.member.model.MemDAO;
 import com.member.model.MemService;
 import com.member.model.MemVO;
+import com.util.HashService;
 
 public class ResetPwdServlet extends HttpServlet {
 	
@@ -33,8 +34,10 @@ public class ResetPwdServlet extends HttpServlet {
 		Map<String, String> errMsgs = new HashMap<String, String>();
 //		req.setAttribute("errMsgs", errMsgs);
 		MemVO memVO=null;
+		CompanyVO comVO = null;
 		boolean error = false;
 		String mem_qq = null;
+		String com_hashURL = null;
 		HttpSession session = req.getSession();
 		
 			/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
@@ -49,10 +52,16 @@ public class ResetPwdServlet extends HttpServlet {
 */			
 		    try{
 		    	mem_qq = req.getParameter("mem_qq");
-		    	if (mem_qq == null || mem_qq.trim().length() == 0) {
-		    		errMsgs.put("errorQQ","無此帳號");
-				}
-		    	
+		    	com_hashURL = req.getParameter("com_HashURL");		    	
+		    	if(com_hashURL == null){
+		    		if (mem_qq == null || mem_qq.trim().length() == 0) {
+			    		errMsgs.put("errorQQ","無此帳號");
+					}
+		    	}else if(mem_qq == null){
+		    		if (com_hashURL == null || com_hashURL.trim().length() == 0) {
+			    		errMsgs.put("errorHash","無此帳號");
+					}
+		    	}
 				String newPwd = req.getParameter("newpwd");
 				if(newPwd == null || newPwd.trim().length() == 0){
 					errMsgs.put("errorPwd", "密碼欄請勿空白");
@@ -71,7 +80,7 @@ public class ResetPwdServlet extends HttpServlet {
 					return;	
 				}
 		        
-		        
+		        if(com_hashURL== null){
 		        ForgetPwdService fgtService = new ForgetPwdService();
 		        memVO = fgtService.findMemByQQ(mem_qq);
 		        String encrypedString = MemService.encryptString(newPwd);
@@ -81,10 +90,20 @@ public class ResetPwdServlet extends HttpServlet {
 				fgtService.updateMemPwd(memVO);
 				System.out.println("修改完成");
 				session.setAttribute("LoginMemOK", memVO);
-				String url = "/index.jsp"; 
+				
+		        }else if(mem_qq == null){
+		        	ForgetPwdService fgtService = new ForgetPwdService();
+		    	    comVO = fgtService.findComByHash(com_hashURL);
+		    	    String encrypedString = MemService.encryptString(newPwd);
+		    	    comVO.setComPwd(HashService.getMD5Endocing(encrypedString));
+		    	    fgtService.updateComPwd(comVO);
+		    	    System.out.println("修改完成");
+					session.setAttribute("LoginComOK", comVO);
+		    	    
+		        }
+		        String url = "/index.jsp"; 
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);
-		        
 		        
 		        }catch (Exception e) {
 					System.out.println("出現Exception");

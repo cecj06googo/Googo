@@ -46,9 +46,9 @@ public class ShowImage extends HttpServlet {
 			}
 		} 
 		else {
-			res.setContentType("image/jpg");
+			res.setContentType("image/png");
 			// 預設商家圖片
-			File file = new File(getServletContext().getRealPath("/img/ComDefaultPic.jpg"));
+			File file = new File(getServletContext().getRealPath("/img/ComDefaultPic.png"));
 			System.out.println("商家預設圖片是否存在: " + file.exists());    // 測試用訊息
 			byte[] comPic = new byte[(int) file.length()];
 			try {

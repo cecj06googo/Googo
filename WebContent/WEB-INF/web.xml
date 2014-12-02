@@ -95,6 +95,15 @@
 	<servlet-mapping>
 		<servlet-name>IndexPlaceRecommend</servlet-name>
 		<url-pattern>/PlaceRecommend.do</url-pattern>
+	</servlet-mapping>	
+	<servlet>
+		<display-name>ContactUs</display-name>
+		<servlet-name>ContactUs</servlet-name>
+		<servlet-class>com.company.controller.ContactUs</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ContactUs</servlet-name>
+		<url-pattern>/ContactUs.do</url-pattern>
 	</servlet-mapping>
 	<!-- End: 搜尋相關 -->
 
@@ -197,7 +206,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
-		<url-pattern>/Login.gg</url-pattern>
+		<url-pattern>/Login.do</url-pattern>
 	</servlet-mapping>
 	<!-- End: 登入相關 -->
 

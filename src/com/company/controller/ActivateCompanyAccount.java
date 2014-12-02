@@ -52,7 +52,7 @@ public class ActivateCompanyAccount extends HttpServlet {
 			
 			// 3.新增完成,準備轉交(Send the Success view)
 			request.getSession().setAttribute("LoginComOK", comVO); 
-			String requestURI = request.getContextPath() + "/manage.jsp";
+			String requestURI = request.getContextPath() + "/manage";
 			response.sendRedirect(response.encodeRedirectURL(requestURI));
 			// 其他可能的錯誤處理
 	    	}catch (Exception e) {

@@ -16,7 +16,7 @@ public class LoginOrdProdOnLoadDAO {
 	String userid = "sa";
 	String passwd = "sa123456";
 	
-	private static final String SELECT_GETALL_PRODUCTS = "SELECT prod_id, prod_name FROM product WHERE prod_status = 1 AND prod_id IN (SELECT MAX(prod_id) FROM Product WHERE com_id=? GROUP BY prod_name)";
+	private static final String SELECT_GETALL_PRODUCTS = "SELECT prod_id, prod_name,prod_type,prod_price FROM product WHERE prod_status = 1 AND prod_id IN (SELECT MAX(prod_id) FROM Product WHERE com_id=? GROUP BY prod_name)";
 
 
 	public List<ProductVO> getAll(ProductVO ProductVO) {
@@ -37,6 +37,8 @@ public class LoginOrdProdOnLoadDAO {
 				ProductVO = new ProductVO();
 				ProductVO.setProdId(rs.getInt("prod_id"));
 				ProductVO.setProdName(rs.getString("prod_name"));
+				ProductVO.setProdType(rs.getInt("prod_type"));
+				ProductVO.setProdPrice(rs.getInt("prod_price"));
 				list.add(ProductVO);
 			}
 

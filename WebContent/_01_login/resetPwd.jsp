@@ -9,7 +9,7 @@
             <div class="control-group form-group ">
                     <label>帳號:</label>
                     <div class="controls input-group">
-                        <input type="text" class="form-control" id="mem_account" name="mem_account" value="${memVO.mem_account}" disabled>
+                        <input type="text" class="form-control" id="mem_account" name="mem_account" value="${memVO.mem_account}${comVO.comAccount}" disabled>
                    		<span class="input-group-addon"><i class="fa fa-ban"></i></span>
                     </div>
              </div>
@@ -28,6 +28,7 @@
                 <font color="red" size="-1">${errMsgs.errorPwdCheck}</font>
             </div>
               <input type="hidden" name="mem_qq" value="${memVO.mem_qq}">
+              <input type="hidden" name="com_HashURL" value="${comVO.comHashURL}">
           	  <button type="reset" class="btn btn-danger" >取消 </button>
               <button type="submit" class="btn btn-success" form="resetpwd_form">送出 </button>
 

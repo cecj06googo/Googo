@@ -1,5 +1,6 @@
 package com.forgetpwd.model;
 
+import com.company.model.CompanyVO;
 import com.member.model.MemDAO;
 import com.member.model.MemDAO_interface;
 import com.member.model.MemVO;
@@ -27,9 +28,15 @@ public class ForgetPwdService {
 	public MemVO findMemByQQ(String mem_qq){
 		return dao.findByQQ(mem_qq);
 	}
+	public CompanyVO findComByHash(String com_hashURL){
+		return dao.findByHash(com_hashURL);
+	}
 	
 	public void updateMemPwd(MemVO memVO){
 		memdao.update(memVO);
+	}
+	public void updateComPwd(CompanyVO comVO){
+		dao.updateCom(comVO);
 	}
 
 }

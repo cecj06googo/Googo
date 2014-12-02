@@ -11,6 +11,12 @@
 	<jsp:include page="/_00_fragment/top2.jsp" />
 <jsp:include page="/_00_fragment/css2.jsp" />
 <%-- <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
+<style type="text/css">
+#prodPicSmall{
+	height:80px; 
+	width:100px;
+}
+</style>
 <title>Goo-go</title>
 
 </head>
@@ -38,6 +44,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>商品圖片</th>
                         <th>商品名稱</th>
 <!--                         這邊的欄位應該要設成固定長度 -->
                         <th>優惠</th>
@@ -50,6 +57,9 @@
                    <c:forEach var="ProductVO" items="${car}">
 <%--                    <c:set var="prod'${ProductVO.prodId}'" value="${ProductVO}" scope="session"/> --%>
                    	<tr id="${ProductVO.prodId}">
+                    	<td id="${ProductVO.prodId}">
+                   			<img id="prodPicSmall" src="${pageContext.servletContext.contextPath}/ProdImg?comID=${ProductVO.comId}&prodId=${ProductVO.prodId}&pic=1">
+                   		</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodName}</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodDisc}</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodPrice}</td>
@@ -91,6 +101,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr >
+                        <th>商品圖片</th>
                         <th>商品名稱</th>
                         <th>優惠</th>
                         <th>價格</th>
@@ -101,6 +112,9 @@
                 <tbody>
                    <c:forEach var="ProductVO" items="${moto}">
                     	<tr id="${ProductVO.prodId}">
+                    	<td id="${ProductVO.prodId}">
+                   			<img id="prodPicSmall" src="${pageContext.servletContext.contextPath}/ProdImg?comID=${ProductVO.comId}&prodId=${ProductVO.prodId}&pic=1">
+                   		</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodName}</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodDisc}</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodPrice}</td>
@@ -142,6 +156,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>商品圖片</th>
                         <th>商品名稱</th>
                         <th>優惠</th>
                         <th>價格</th>
@@ -152,6 +167,9 @@
                 <tbody>
                     <c:forEach var="ProductVO" items="${bike}">
                     	<tr id="${ProductVO.prodId}">
+                    	<td id="${ProductVO.prodId}">
+                   			<img id="prodPicSmall" src="${pageContext.servletContext.contextPath}/ProdImg?comID=${ProductVO.comId}&prodId=${ProductVO.prodId}&pic=1">
+                   		</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodName}</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodDisc}</td>
                     	<td id="${ProductVO.prodId}">${ProductVO.prodPrice}</td>

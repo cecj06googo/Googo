@@ -155,21 +155,21 @@
                 <h2 class="page-header">Goo-go簡介</h2>
             </div>
             <div class="col-md-6">
-                <p>Goo-go提供給您的便捷服務:</p>
+                <p><h4>Goo-go提供給您的便捷服務:</h4></p><br>
                 <ul>
-                    <li><strong>簡約大方的使用介面，讓您能快速上手</strong>
+                    <li><h4><strong>簡約大方的使用介面，讓您能快速上手。</strong></h4>
                     </li>
-                    <li><strong>根據地區及車種，快速找到符合您需求的交通工具</strong>
+                    <li><h4><strong>根據地區及車種，快速找到符合您需求的交通工具。</strong></h4>
                     </li>
-                    <li><strong>景點推薦，讓您不需煩惱假日去處，並幫您搜尋附近的商店。</strong>
+                    <li><h4><strong>景點推薦，讓您不需煩惱假日去處，並幫您搜尋附近的商店。</strong></h4>
                     </li>
-                    <li><strong>利用Google地圖，幫您快速找到離您最近的商家。</strong>
+                    <li><h4><strong>利用Google地圖，幫您快速找到離您最近的商家。</strong></h4>
                     </li>
-                    <li><strong>貼心的價格搜尋與多視角商品圖片，讓您找到最適合的車輛。</strong>
+                    <li><h4><strong>貼心的價格搜尋與多視角商品圖片，讓您找到最適合的車輛。</strong></h4>
                     </li>
-                    <li><strong>簡便的租車流程，省略繁複的租車步驟，節省您的時間與心力。</strong>
+                    <li><h4><strong>簡便的租車流程，省略繁複的租車步驟，節省您的時間與心力。</strong></h4>
                     </li>
-                </ul>
+                </ul><br>
                 <p>Goo-go的中心主旨是為了帶給使用者透明化的價格，讓租車市場更符合供需原則以達價格公平與公正。在此平台的商家，經過條件的篩選，提升平台商家的素質，讓使用者能更安心租車。</p>
             </div>
             <div class="col-md-6">
@@ -184,7 +184,7 @@
             <div class="col-lg-12">
                 <h1 class="page-header">智慧而親切的管理後台</h1>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-check"></i>簡易操作的商品管理</h4>
@@ -195,7 +195,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-gift"></i>智慧化的訂單管理</h4>
@@ -206,7 +206,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-compass"></i>數據化的報表分析</h4>
