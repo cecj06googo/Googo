@@ -94,6 +94,8 @@
 		<jsp:include page="/_01_login/login.jsp" />
 		<!-- 忘記密碼 -->
 		<jsp:include page="/_01_login/forgetPwd.jsp" />
+		<!-- 忘記密碼寄信成功 -->
+        <jsp:include page="/_01_login/sendMailSuccess.jsp" />
 	
 <script>
 (function($) {
