@@ -120,6 +120,7 @@ $(document).ready(function(){
 	// Integrated version of the following jQuery binding
 	// $("form").submit(function(){ copy the handler code here })
 	
-	$("#inspectCust").on("click", PackingAndSumup);
+	// $("#inspectCust").on("click", PackingAndSumup);
+	$("form").submit(PackingAndSumup);
 	
 });// end of document ready
