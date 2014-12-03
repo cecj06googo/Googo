@@ -25,7 +25,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="<c:url value='/index.jsp'/>" id="logo">
-                    <i class="fa fa-car"></i><span class="light"> 租車網</span> Goo-go
+                    <i class="fa fa-car"></i><span class="light"> Goo-go 租車網</span> 
                 </a>
 
             </div>
