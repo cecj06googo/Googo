@@ -239,14 +239,14 @@
             <div class="col-xs-12">
                 <h3>其他資訊</h3>
                 <!-- Begin: Modified by ranian -->
-                <textarea id="pritem_acc" name="pritem_acc">stand by for json bundle</textarea>
-                <input type="button" id="inspectCust" value="Inspect Customized Fields" />
+                <textarea id="pritem_acc" name="pritem_acc" hidden></textarea>
+                <input type="button" id="inspectCust" value="Inspect Customized Fields" hidden/>
                 <div class="col-xs-6">
                 	<div id="DesignResultTarget"></div>
                 </div>
                 <!-- End: Modified by ranian -->
                 <br><br><br>
-                <button class="btn btn-success btn-lg pull-right btn-bottom" type="submit">送出</button>
+                <button class="btn btn-success btn-lg pull-right btn-bottom" type="submit" hidden>送出</button>
             </div>
         </div>
     </div>
@@ -317,6 +317,9 @@ $(document).ready(function () {
 		$("input[name='prodDisc']").val($("input[name='disc"+prod_id+"']").val());
 		$("input[name='prodPrice']").val($("input[name='price"+prod_id+"']").val());
 		$("#carPrice").html("車輛租金： "+$("input[name='price"+prod_id+"']").val()+"/天")
+		
+		// modified by Ranian: recalculate total cost
+		PackingAndSumup();
 	});
 	
 	// End select功能

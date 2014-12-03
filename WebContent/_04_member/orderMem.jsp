@@ -216,6 +216,80 @@
 </body>
 <script>
 $(document).ready(function(){
+	
+	console.log("enter retrieval block");
+	
+	var displayFields = $(".pritem_acc");
+	
+	for(i = 0; i < displayFields.length; i++){
+		
+		var displayResult = "<br/>";
+		var displayField = displayFields[i];
+		var entryData = '';
+		var type = '';
+		var label = '';
+		var value = '';
+		var valueDescription = '';
+		
+		if(displayField.textContent.trim().length > 2){
+			
+			var jsonBundle = $.parseJSON($(displayField).text());
+			console.log(jsonBundle);
+			
+			for(j = 0; j < jsonBundle.custFields.length; j++){
+				
+				label = jsonBundle.custFields[j]['label'];
+				value = jsonBundle.custFields[j]['value'];
+				
+				if("text" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("textarea" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("SelectBasic" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
+				}else if("SelectMultiple" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
+				}else if("checkbox" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
+				}else if("radio" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
+				}else if("AdditionalInsuranceName" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("AdditionalInsurancePhone" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("AdditionalInsuranceMail" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("AdditionalInsuranceID" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("PreSelectBasic" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + "元, " + valueDescription + "\n");
+				}else if("PreBox" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + "元, " + valueDescription + "\n");
+				}else {
+					entryData = '';
+				}
+				
+				console.log(entryData);	
+				
+				displayResult += (entryData + "<br/>");
+			}// end for: process each customized field data
+		}// end if: inspect if there is any customized field
+		
+		$(displayField).empty();
+		$(displayField).html(displayResult);
+		
+	}// end for: process each order
+	
+});
+</script>
+<script>
+$(document).ready(function(){
 	//-----訂單狀態預設改成user選擇---------
 	$("select[name^='orderStatus'] option:selected").attr("selected",null);
 	$("select[name^='orderStatus'] option[value='${orderStatusMem}']").attr("selected","selected");

@@ -131,7 +131,6 @@
                     	<input type="hidden" name="${ProductVO.prodId}prodKind" value="${ProductVO.prodKind}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodPlate" value="${ProductVO.prodPlate}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/>
-                    	<input type="hidden" name="${ProductVO.prodId}prodArticle" value="${ProductVO.prodArticle}"/> 	
                     	<input type="hidden" name="${ProductVO.prodId}prodCarrier" value="${ProductVO.prodCarrier}"/>
                     	<input type="hidden" name="${ProductVO.prodId}prodCc" value="${ProductVO.prodCc}"/>
 						<input type="hidden" name="${ProductVO.prodId}prodControl" value="${ProductVO.prodControl}"/>
