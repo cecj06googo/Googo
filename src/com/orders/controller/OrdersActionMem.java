@@ -175,7 +175,10 @@ public class OrdersActionMem extends HttpServlet {
 							item_all = value; //目前沒用到
 						} else if (name.equalsIgnoreCase("prod_id")) {
 							_prod_id = value;
-						}else{
+						} else if (name.equalsIgnoreCase("item_total")) {
+							_item_total = value;
+						}
+						else{
 							continue;
 						}
 					} // end while
@@ -186,8 +189,8 @@ public class OrdersActionMem extends HttpServlet {
 
 //					_prod_id = session.getAttribute("prod_id");
 					
-//					_item_total = request.getParameter("prod_price");
-					_item_total = 3000;
+//					_item_total = request.getParameter("item_total");
+//					_item_total = 3000;
 					// ------------------資料驗證+轉型----------------------
 					// 日期轉型限定日期選擇器選擇的值，使用者自行輸入的話很有可能會轉不了
 					// 檢查使用者輸入資料

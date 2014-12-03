@@ -21,7 +21,7 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 			+ " VALUES (?, ?, ?, ?, ?, ?,null,?)";
 	private static final String INSERT_OrderItem = "INSERT INTO Ord_item (ord_id,prod_id,acc_id,item_name,item_tel,item_phone,item_email,pritem_acc,item_all)"
 			+ " VALUES (?,?,?,?,?,?,?,?,?)";
-	private static final String SELECT_GETALL_Mem = "SELECT ord.ord_id,ord.ord_id, ord.ord_status, sta.status_char, com_name , com_account ,ord_time, ord_getday, ord_reday , ord_lastuptime , item_total , item_name,item_tel,item_phone,item_email,pritem_acc,item_all,prod_name,prod_plate,prod_price,prod_disc FROM Orders ord JOIN Ord_status sta ON ord.ord_status =  sta.ord_status JOIN Company com ON ord.com_id = com.com_id JOIN Ord_item item ON ord.ord_id = item.ord_id JOIN Product prod ON item.prod_id = prod.prod_id WHERE  ord.mem_id = ? ORDER BY ord.ord_status, ord.ord_id";
+	private static final String SELECT_GETALL_Mem = "SELECT ord.ord_id,ord.ord_id, ord.ord_status, sta.status_char, com_name , com_account,com_address,ord_time, ord_getday, ord_reday , ord_lastuptime , item_total , item_name,item_tel,item_phone,item_email,pritem_acc,item_all,prod_name,prod_plate,prod_price,prod_disc FROM Orders ord JOIN Ord_status sta ON ord.ord_status =  sta.ord_status JOIN Company com ON ord.com_id = com.com_id JOIN Ord_item item ON ord.ord_id = item.ord_id JOIN Product prod ON item.prod_id = prod.prod_id WHERE  ord.mem_id = ? ORDER BY ord.ord_status, ord.ord_id";
 	// 串接會出錯，趕時間選擇一條流
 	private static final String SELECT_GETALL_Com = "SELECT ord.ord_id, ord.ord_status, sta.status_char, mem_account ,ord_time, ord_getday, ord_reday , ord_lastuptime , item_total , item_name,item_tel,item_phone,item_email,pritem_acc,item_all, prod_name,prod_plate,prod_price,prod_disc FROM Orders ord JOIN Ord_status sta  ON ord.ord_status =  sta.ord_status JOIN Member mem  ON ord.mem_id = mem.mem_id JOIN Ord_item item  ON ord.ord_id = item.ord_id JOIN Product prod  ON item.prod_id = prod.prod_id WHERE ord.com_id = ? ORDER BY ord.ord_status,ord_id";
 	// 串接會出錯，趕時間選擇一條流
@@ -144,6 +144,8 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 				ordVO.setProd_plate(rs.getString("prod_plate"));
 				ordVO.setProd_price(rs.getDouble("prod_price"));
 				ordVO.setProd_disc(rs.getDouble("prod_disc"));
+				ordVO.setCom_address(rs.getString("com_address"));
+				
 				list.add(ordVO);
 			}
 
