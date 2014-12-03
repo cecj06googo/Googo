@@ -77,9 +77,9 @@
 								<font size="-1" color="#FF0000">${ErrorMsg.errorProdPic}</font>
 							</div>
 							<br>
-							<button type="reset" class="btn btn-primary">取消</button>
+							<button type="submit" class="btn btn-success">新增</button>
+							<button type="reset" class="btn btn-danger">取消</button>
 							<font size="-1" color="#FF0000">${ErrorMsg.errTitle}</font>
-							<button type="submit" class="btn btn-danger">新增</button>
 						</div>
 					</div>
 				</form>
