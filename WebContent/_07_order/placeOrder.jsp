@@ -244,6 +244,10 @@
                 <div class="col-xs-6">
                 	<div id="DesignResultTarget"></div>
                 </div>
+                <div class="col-xs-6">
+                	<p><i>金額小計</i></p>
+                	<div id="subtotal"></div>
+                </div>
                 <!-- End: Modified by ranian -->
                 <br><br><br>
                 <button class="btn btn-success btn-lg pull-right btn-bottom" type="submit" hidden>送出</button>
@@ -281,6 +285,7 @@ $(document).ready(function () {
  		dataType: "html",
  	}).done(function(result){
  		$("#DesignResultTarget").html(result);
+ 		PackingAndSumup();
  	});
 	// End: Modified by ranian
 	
