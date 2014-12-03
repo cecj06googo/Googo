@@ -244,25 +244,44 @@
 				<td style="padding:0" colspan="8">
 				<div id="collapseOne${ordVO.ord_id}" class="panel-collapse collapse">
                         <div class="panel-body">
+                        <div class="col-xs-12">
+                     	   <div class="col-xs-6">
+                     	   <label>訂車資訊</label><br>
                         	<span>訂單編號: ${ordVO.ord_id}</span><br>
-                        	<span>訂購時間: ${ordVO.ord_time}</span><br>
-                        	<span>取車日期: ${ordVO.ord_getday}</span><br>
-                        	<span>還車日期: ${ordVO.ord_reday}</span><br>
-                        	<span>最後修改日期: ${ordVO.ord_lastuptime 	== null ? "無": ordVO.ord_lastuptime }</span><br>
+                        	<span>訂購時間: <fmt:formatDate value="${ordVO.ord_time}" pattern="yyyy-MM-dd HH:mm:ss" /></span><br>
+                        	<span>取車日期: <fmt:formatDate value="${ordVO.ord_getday}" pattern="yyyy-MM-dd HH:mm:ss" /></span><br>
+                        	<span>還車日期: <fmt:formatDate value="${ordVO.ord_reday}" pattern="yyyy-MM-dd HH:mm:ss" /></span><br>
+							<br>
                         	<br>
+                        	</div>
+                        	<div class="col-xs-6">
+                        	<label>駕駛人資訊</label><br>
                         	<span>連絡人姓名: ${ordVO.item_name  		== null ? "無": ordVO.item_name }</span><br>
                         	<span>連絡人市話: ${ordVO.item_tel 			== null ? "無": ordVO.item_tel }</span><br>
                         	<span>連絡人行動: ${ordVO.item_phone 		== null ? "無": ordVO.item_phone }</span><br>
                         	<span>連絡人信箱: ${ordVO.item_email  		== null ? "無": ordVO.item_email }</span><br>
-                        	<span>配件名稱: <span class="pritem_acc">${ordVO.pritem_acc  		== null ? "無": ordVO.pritem_acc }</span></span><br>
-                        	<span>商家自訂欄位(目前無): ${ordVO.item_all  == null ? "無": ordVO.item_all }</span><br>
-                        	<span>會員e-mail: ${ordVO.mem_account}</span><br>
-                        	<span>商品名稱: ${ordVO.prod_name}</span><br>
+                        	<br>
+                        	<br>
+                        	</div>
+                        	
+                        	<div class="col-xs-6">
+                        	<label>其他資訊</label><br>
+                        	<span class="pritem_acc">${ordVO.pritem_acc  		== null ? "無": ordVO.pritem_acc }</span>
+                        	<br>
+                        	<br>
+                        	</div>
+                        	
+                        	<div class="col-xs-6">
+                        	<label>商品資訊</label><br>
+                        	<span>車輛名稱: ${ordVO.prod_name}</span><br>
+                        	<span>商品原價: <fmt:formatNumber value="${ordVO.prod_price}" pattern="#"/></span><br>
+                        	<span>商品折扣: ${ordVO.prod_disc == null ? "無": ordVO.prod_disc }</span><br>
                         	<span>車牌: ${ordVO.prod_plate}</span><br>
-                        	<span>商品價格: ${ordVO.prod_price}</span><br>
-                        	<span>商品折扣: ${ordVO.prod_disc  		== null ? "無": ordVO.prod_disc }</span><br>
-                        	<span>配件價格: ${ordVO.acc_price}</span><br>
-                        	<span>配件名稱: ${ordVO.acc_detail  		== null ? "無": ordVO.acc_detail }</span><br>
+                        	<br>
+                        	<br>
+							</div>
+                        </div>
+                      
                         </div>
                     </div>
 				</td>
@@ -350,7 +369,7 @@ $(document).ready(function(){
 	
 	for(i = 0; i < displayFields.length; i++){
 		
-		var displayResult = "<br/>";
+		var displayResult = "";
 		var displayField = displayFields[i];
 		var entryData = '';
 		var type = '';

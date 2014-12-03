@@ -344,7 +344,7 @@ $(document).ready(function () {
 			$("input[name='item_tel']").val($("input[name='driver_tel']").val());
 		}
 	});
-	// End checkbox
+	// End 訂單第二頁nextBtn
 	
 	// checkbox
 	$("#memBox").click(function() {

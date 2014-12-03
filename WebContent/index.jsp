@@ -85,7 +85,7 @@
                 <a href="<c:url value='/PlaceRecommend.do'/>" class="portfolio-link" >
                 	<div class="caption">
                             <div class="caption-content">
-                               <h1>宜蘭衝浪</h1>
+                               <h1>宜蘭童玩節</h1>
                             </div>
                     </div> 
                     <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/img/07.jpg" alt="">
