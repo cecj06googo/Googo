@@ -369,21 +369,35 @@ $(document).ready(function(){
 				value = jsonBundle.custFields[j]['value'];
 				
 				if("text" == jsonBundle.custFields[j]['type']){
-					entryData = (label + ", " + value + "\n");
+					entryData = (label + "： " + value + "\n");
 				}else if("textarea" == jsonBundle.custFields[j]['type']){
-					entryData = (label + ", " + value + "\n");
+					entryData = (label + "： " + value + "\n");
 				}else if("SelectBasic" == jsonBundle.custFields[j]['type']){
 					valueDescription = jsonBundle.custFields[j]['valueDescription'];
-					entryData = (label + ", " + value + ", " + valueDescription + "\n");
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
 				}else if("SelectMultiple" == jsonBundle.custFields[j]['type']){
 					valueDescription = jsonBundle.custFields[j]['valueDescription'];
-					entryData = (label + ", " + value + ", " + valueDescription + "\n");
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
 				}else if("checkbox" == jsonBundle.custFields[j]['type']){
 					valueDescription = jsonBundle.custFields[j]['valueDescription'];
-					entryData = (label + ", " + value + ", " + valueDescription + "\n");
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
 				}else if("radio" == jsonBundle.custFields[j]['type']){
 					valueDescription = jsonBundle.custFields[j]['valueDescription'];
-					entryData = (label + ", " + value + ", " + valueDescription + "\n");
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
+				}else if("AdditionalInsuranceName" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("AdditionalInsurancePhone" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("AdditionalInsuranceMail" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("AdditionalInsuranceID" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("PreSelectBasic" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + "元, " + valueDescription + "\n");
+				}else if("PreBox" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + "元, " + valueDescription + "\n");
 				}else {
 					entryData = '';
 				}
