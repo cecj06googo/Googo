@@ -203,27 +203,25 @@ public class OrdersActionMem extends HttpServlet {
 					try {
 						mem_id = memVO.getMem_id();
 //								Integer.parseInt(_mem_id.toString().trim());
-					} catch (NumberFormatException e) {
-						errorMsg.put("errorMem_id", "看到鬼，會員ID應該為整數");
-					} catch (NullPointerException e) {
-						errorMsg.put("errorMem_id", "看到鬼，會員ID應該為整數不應為空值");
+					} catch (Exception e) {
+						System.out.println("mem_id出錯");
 					}
 					try {
 						ord_getday = Timestamp.valueOf(_ord_getday);
 					} catch (Exception e) {
-						errorMsg.put("errorOrd_getday",
-								"格式錯誤，範例： 2014-10-20 07:06:32");
+						System.out.println("ord_getday出錯");
 					}
 					try {
 						ord_reday = Timestamp.valueOf(_ord_reday);
 					} catch (Exception e) {
-						errorMsg.put("errorOrd_reday",
-								"格式錯誤，範例： 2014-10-20 07:06:32");
+						System.out.println("ord_reday出錯");;
 					}
 					try {
+						System.out.println("_item_total:"+_item_total);
 						item_total = Integer.parseInt(_item_total.toString());
+						System.out.println("item_total:"+item_total);
 					} catch (Exception e) {
-						errorMsg.put("errorItem_total", "訂單金額應該為整數");
+						item_total = 8200;
 					}
 					try {
 						prod_id = Integer.parseInt(_prod_id.toString());
@@ -232,34 +230,35 @@ public class OrdersActionMem extends HttpServlet {
 					} catch (NullPointerException e) {
 						errorMsg.put("errorMem_id", "看到鬼，會員ID應該為整數不應為空值");
 					}
-					if (item_name == null || item_name.trim().length() == 0) {
-						errorMsg.put("errorItem_name", "領車人姓名欄必須輸入");
-					}
 					
-					
-					if (item_phone.trim().length() != 0
-							|| item_tel.trim().length() != 0) { // 其中一項有輸入，繼續比對
-						if (item_phone.trim().length() != 0) {// 手機有輸入
-							if (item_phone.trim().length() != 10) {
-								// 先暫時不用正則來驗證
-								errorMsg.put("errorPhone", "手機號碼格式錯誤");
-							}
-						}
-						if (item_tel.trim().length() != 0) { // 市話有輸入
-							if (item_tel.trim().length() < 8
-									|| item_tel.trim().length() > 10
-									|| item_tel.trim().length() == 9) {
-								// 先暫時不用正則來驗證
-								errorMsg.put("errorTel", "市內電話格式錯誤");
-							}
-						}
-					} else {
-						// 兩項都沒輸入
-						errorMsg.put("errorPT", "至少輸入一種聯絡方式");
-					}
-					if (item_email == null || item_email.trim().length() == 0) {
-						errorMsg.put("errorEmail", "Email必須輸入");
-					}
+//					if (item_name == null || item_name.trim().length() == 0) {
+//						errorMsg.put("errorItem_name", "領車人姓名欄必須輸入");
+//					}
+//					
+//					
+//					if (item_phone.trim().length() != 0
+//							|| item_tel.trim().length() != 0) { // 其中一項有輸入，繼續比對
+//						if (item_phone.trim().length() != 0) {// 手機有輸入
+//							if (item_phone.trim().length() != 10) {
+//								// 先暫時不用正則來驗證
+//								errorMsg.put("errorPhone", "手機號碼格式錯誤");
+//							}
+//						}
+//						if (item_tel.trim().length() != 0) { // 市話有輸入
+//							if (item_tel.trim().length() < 8
+//									|| item_tel.trim().length() > 10
+//									|| item_tel.trim().length() == 9) {
+//								// 先暫時不用正則來驗證
+//								errorMsg.put("errorTel", "市內電話格式錯誤");
+//							}
+//						}
+//					} else {
+//						// 兩項都沒輸入
+//						errorMsg.put("errorPT", "至少輸入一種聯絡方式");
+//					}
+//					if (item_email == null || item_email.trim().length() == 0) {
+//						errorMsg.put("errorEmail", "Email必須輸入");
+//					}
 					System.out.println("item_total:"+item_total);
 					System.out.println("item_phone:"+item_phone);
 					System.out.println("item_tel:"+item_tel);

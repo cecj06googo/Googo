@@ -274,7 +274,7 @@
                         	<div class="col-xs-6">
                         	<label>商品資訊</label><br>
                         	<span>車輛名稱: ${ordVO.prod_name}</span><br>
-                        	<span>商品價格: ${ordVO.prod_price}</span><br>
+                        	<span>商品原價: <fmt:formatNumber value="${ordVO.prod_price}" pattern="#"/></span><br>
                         	<span>商品折扣: ${ordVO.prod_disc == null ? "無": ordVO.prod_disc }</span><br>
                         	<span>車牌: ${ordVO.prod_plate}</span><br>
                         	<br>
