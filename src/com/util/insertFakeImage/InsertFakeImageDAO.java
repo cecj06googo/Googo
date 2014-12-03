@@ -132,8 +132,8 @@ public class InsertFakeImageDAO {
 
 	
 	public void InsertImagesByAccName(String AccName,String srcAccPic){
-	    //根據Product 的商品名稱 把該商品的圖片塞進去
-		//prodName:商品名稱  srcMainProdPic:主要圖片的路徑....依此類推
+	    //根據Accessory的配備名稱 把該配備的圖片塞進去
+		//向Antenator致敬！彈性好用啊！！！！
 		String insertStmt = "UPDATE Accessory SET acc_pic = ? WHERE acc_name = ?";
 		String[] srcArray = {srcAccPic};
 		try{	
