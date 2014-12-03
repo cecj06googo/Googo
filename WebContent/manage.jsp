@@ -16,7 +16,7 @@ String areaString = (String)request.getAttribute("areaString");
 <link href="${pageContext.request.contextPath}/css/plugins/morris.css" rel="stylesheet">
 
 <jsp:include page="/_00_fragment/css2.jsp" />
-<jsp:include page="/_07_order/order_setInterval.jsp" />
+<%-- <jsp:include page="/_07_order/order_setInterval.jsp" /> --%>
 <title>Goo-go</title>
 <script type="text/javascript" charset="utf-8">
        	var donutString =<%= donutString %>;

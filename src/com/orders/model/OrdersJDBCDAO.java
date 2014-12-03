@@ -346,15 +346,15 @@ public class OrdersJDBCDAO implements OrdersDAO_interface {
 
 	public Boolean con_Time(OrdersVO ordVO, String orderTime) {
 		long _user_long = -1;
-
+		//86400 一天的毫秒數
 		if (orderTime.equals("all")) {
 			return true;
 		} else if (orderTime.equals("1W")) {
-			_user_long = 604800;
+			_user_long = 604800;  // 7天
 		} else if (orderTime.equals("1M")) {
-			_user_long = 2678400; // 31天
+			_user_long = 2592000; // 30天
 		} else if (orderTime.equals("3M")) {
-			_user_long = 8035200; // 93天
+			_user_long = 7776000; // 90天
 		}
 
 		long _today = System.currentTimeMillis() / 1000;

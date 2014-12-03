@@ -55,11 +55,11 @@
         </div>
         <div class="stepwizard-step">
             <a href="#step-3" type="button" class="btn btn-default" id="circle" disabled="disabled">3</a>
-            <p class="p-width">&nbsp&nbsp其他資訊&nbsp&nbsp</p>
+            <p class="p-width">&nbsp;&nbsp;其他資訊&nbsp;&nbsp;</p>
         </div>
         <div class="stepwizard-step">
             <a href="#step-4" type="button" class="btn btn-default" id="circle" disabled="disabled">4</a>
-            <p class="p-width">&nbsp&nbsp&nbsp&nbsp完成&nbsp&nbsp&nbsp&nbsp</p>
+            <p class="p-width">&nbsp;&nbsp;&nbsp;&nbsp;完成&nbsp;&nbsp;&nbsp;&nbsp;</p>
         </div>
     </div>
 </div>
@@ -78,9 +78,17 @@
 <input type="hidden" name="item_email"  />
 <input type="hidden" name="item_phone"  />  
 <input type="hidden" name="item_tel"  />
+<!-- 彥靖看這裡-->
+<input type="hidden" name="prodDisc" value="${ord_prodVO.prodDisc}" />   <!-- 商品折扣      -->
+<input type="hidden" name="prodPrice" value="${ord_prodVO.priceDiscOK}" />  <!-- 商品單價      -->
+<input type="hidden" name="item_total"  /> <!-- 訂單總金額  -->
+<!-- /.彥靖看這裡  value是初值以防會員沒選擇，改變車輛後的值也會存回去，總金額無值 -->
+<!-- 商品價格&折扣黑箱 -->
 <c:forEach var="ord_prodVO" items="${ord_prodVoList}">
-<input type="hidden" name="${ord_prodVO.prodId}" value="<fmt:formatNumber value="${ord_prodVO.prodPrice}" pattern="#" />"/>
+<input type="hidden" name="price${ord_prodVO.prodId}" value="<fmt:formatNumber value="${ord_prodVO.priceDiscOK}" pattern="#" />"/>
+<input type="hidden" name="disc${ord_prodVO.prodId}" value="${ord_prodVO.prodDisc}" />
 </c:forEach>
+<!-- /.商品價格折扣黑箱 -->
 <!--member table phone和tel欄位設計  not null  -->
 <%-- <input type="hidden" name="com_id" value="${ord_comVO.comID}" />  session ord_comVO內 --%>
 <%-- <input type="hidden" name="prod_id" value="${ord_prod_id}" /> session ord_prod_id內 --%>
@@ -151,15 +159,8 @@
 					id = "carView"
 					src='${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${ord_comVO.comID}&prodId=${ord_prod_id}'
 					alt="">
-					<span id="carPrice">
-<%-- 					aa${ord_prod_id} --%>
-					<c:forEach var="ord_prodVO" items="${ord_prodVoList}">
-<%-- 					${ord_prodVO.prodId} --%>
-					<c:if test="(${ord_prodVO.prodId})==(${ord_prod_id}) ">
-					${ord_prodVO.prodPrice}
-					</c:if>
-					</c:forEach>
-					</span>
+					<span id="cardisc" class="span-price">優惠折扣：&nbsp;/折</span><br>
+					<span id="carPrice" class="span-price">車輛租金：&nbsp;<fmt:formatNumber value="${ord_prodVO.priceDiscOK}" pattern="#"/>/天</span>
 					</figure>
 			<!-- /商品圖片 -->		
 		    </div>
@@ -194,47 +195,47 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label"><span class="span-space"></span>連絡電話</label><br>
-                    <span class="span-red">*</span>手機<input maxlength="200" type="text" required="required" name="driver_phone" placeholder="請輸入手機"  />
-                    	市話<input maxlength="200" type="text" required="required" name="driver_tel" placeholder="請輸入市話"  />
+                    
+                    	<span class="span-red">*</span><span class="span-phone">手機:&nbsp;</span><input maxlength="200" type="text" required="required" class="form-control" name="driver_phone" placeholder="請輸入手機"  />
+                   <br>
+                    	<span  class="span-phone">&nbsp;&nbsp;市話:&nbsp;</span><input maxlength="200" type="text" required="required" class="form-control" name="driver_tel" placeholder="請輸入市話"/>
+                    	
                 </div> 
                 </fieldset>         
             </div>
                   	        <div class="col-xs-6">
 	        <p class="p-right">* 必填選項</p>
-<!-- 	        放車子圖片 -->
+<!-- 	        會員資料預覽 -->
+<br><br>
 		            	<p class="x-center"><label>會員資料預覽</label></p>
 		            	<table class="table">
 		            		<thead>
 		            			<tr>
-			            			<th>會員姓名：</th>
-			            			<th>${LoginMemOK.mem_name}</th>
+			            			<th style=" border:0;"><span class="th-leftpadding">會員姓名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_name}</span></th>
 		            			</tr>
 		            			<tr>
-			            			<th>會員e-mail：</th>
-			            			<th>${LoginMemOK.mem_account}</th>
+			            			<th style=" border:0;"><span class="th-leftpadding">會員e-mail：&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_account}</span></th>
 		            			</tr>
 		            			<tr>
-		            				<th>行動電話：</th>
-		            				<th>${LoginMemOK.mem_phone}</th>
+		            				<th style=" border:0;"><span class="th-leftpadding">行動電話：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_phone}</span></th>
 		            			</tr>
 		            			<tr>
-		            				<th>市內電話：</th>
-		            				<th>${LoginMemOK.mem_tel}</th>
+		            				<th style=" border:0;"><span class="th-leftpadding">市內電話：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_tel}</span></th>
 		            			</tr>
 		            		</thead>
 		            	</table>    	
 		            	<p class="x-center span-accept x-right"><input type="checkbox" id="memBox"/>同會員資料</p>
 		    </div>
                  <div class=" col-xs-12 ">
-		    	<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" id="two_next">下一頁</button>
-		    </div>
+		    	<button class="btn btn-primary nextBtn btn-lg pull-right btn-bottom" type="button" id="two_next">下一頁</button>
+		    	</div>
         </div>
     </div>
 <!-------------- /.訂單第二頁 ---------------->
 
 <!-------------- 訂單第三頁 ------------------>
     <div class="row setup-content div-border" id="step-3">
-        <div class="col-xs-12">
+        <div class="col-xs-12 div-back">
             <div class="col-xs-12">
                 <h3>其他資訊</h3>
                 <!-- Begin: Modified by ranian -->
@@ -244,7 +245,8 @@
                 	<div id="DesignResultTarget"></div>
                 </div>
                 <!-- End: Modified by ranian -->
-                <button class="btn btn-success btn-lg pull-right" type="submit">送出</button>
+                <br><br><br>
+                <button class="btn btn-success btn-lg pull-right btn-bottom" type="submit">送出</button>
             </div>
         </div>
     </div>
@@ -290,7 +292,9 @@ $(document).ready(function () {
 	$("select[id='carType'] option:selected").attr("selected",null);
 	$("select[id='carType'] option[value='${ord_prod_id}']").attr("selected","selected");	
 	
-	
+	var discStr;
+	discStr = $("input[name=prodDisc]").val();
+	$("#cardisc").html("優惠折扣：&nbsp"+discStr.substring(2)+"&nbsp折")
 	if($("optgroup[label=汽車] option").length == 0){
 		$("optgroup[label=汽車]").addClass('hide');
 	}
@@ -306,9 +310,13 @@ $(document).ready(function () {
 	
 	$("#carType").change(function() {
 		prod_id = $("#carType").val();
+		discStr = $("input[name=disc"+prod_id+"]").val();
+		$("#cardisc").html("優惠折扣：&nbsp"+discStr.substring(2)+"&nbsp折")
 		$("#carView").attr("src","${pageContext.servletContext.contextPath}/ComFirstPageImg?comID=${ord_comVO.comID}&prodId="+prod_id)
 		$("input[name='prod_id']").val(prod_id);
-		$("#carPrice").html("車輛租金： "+$("input[name='"+prod_id+"']").val()+"/天")
+		$("input[name='prodDisc']").val($("input[name='disc"+prod_id+"']").val());
+		$("input[name='prodPrice']").val($("input[name='price"+prod_id+"']").val());
+		$("#carPrice").html("車輛租金： "+$("input[name='price"+prod_id+"']").val()+"/天")
 	});
 	
 	// End select功能

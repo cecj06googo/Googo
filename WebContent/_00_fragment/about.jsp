@@ -45,34 +45,62 @@
             <div class="col-lg-12">
 
                 <ul id="myTab" class="nav nav-tabs nav-justified">
-                    <li class="active"><a href="#service-one" data-toggle="tab"><i class="fa fa-tree"></i> 緣起</a>
+                    <li class="active"><a href="#service-one" data-toggle="tab"><i class="fa fa-hand-o-up"></i> 緣起</a>
                     </li>
-                    <li class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-car"></i> 特色</a>
+                    <li class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-star"></i> 特色</a>
                     </li>
-                    <li class=""><a href="#service-three" data-toggle="tab"><i class="fa fa-support"></i> 屁話</a>
-                    </li>
-                    <li class=""><a href="#service-four" data-toggle="tab"><i class="fa fa-database"></i> 吃吃便當</a>
+                    <li class=""><a href="#service-three" data-toggle="tab"><i class="fa fa-university"></i>資策會</a>
                     </li>
                 </ul>
 
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade active in" id="service-one">
-                        <h4>屁話區</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
+                        <br>
+                        <p> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;旅遊需要租用交通工具時，經常是耗時費力，有時候找半天租不到、又要擔心時候被不誠信店家誆騙；在封閉、訊息流動不佳的市場，良心經營的業者也可能因為劣幣驅逐良幣而難以接觸到更多實際有需要的客人。</p>
+                        <p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我們希望利用網路即時跨地域的特性，打造一個好的租車平台，讓消費者輕易找到價格透明、商品可靠的店家，另一方面也擴張店家能夠接觸到的潛在客源，做大市場創造雙贏。相異於一般制式化的網站商城，我們在介面設計上力圖簡練，專注在提供最符合使用者需求的搜尋結果，並且利用表單設計器的客製功能提供店家彈性的上架行銷，還能夠自行設計問卷蒐集客戶意見。</p>
+                  		<p>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Goo-go的中心主旨是為了帶給使用者透明化的價格，讓租車市場更符合供需原則以達價格公平與公正。在此平台的商家，經過條件的篩選，提升平台商家的素質，讓使用者能更安心租車。</p>
                     </div>
                     <div class="tab-pane fade" id="service-two">
-                        <h4>Service Two</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                    </div>
+                    <div class="row">
+                    <div class="col-lg-6">
+                      <ul><h4><strong>一般會員</strong></h4>
+                    <li><h5>簡約大方的使用介面，讓您能快速上手。</h5>
+                    </li>
+                    <li><h5>根據地區及車種，快速找到符合您需求的交通工具。</h5>
+                    </li>
+                    <li><h5>景點推薦，讓您不需煩惱假日去處，並幫您搜尋附近的商店。</h5>
+                    </li>
+                    <li><h5>利用Google地圖，幫您快速找到離您最近的商家。</h5>
+                    </li>
+                    <li><h5>貼心的價格搜尋與多視角商品圖片，讓您找到最適合的車輛。</h5>
+                    </li>
+                    <li><h5>簡便的租車流程，省略繁複的租車步驟，節省您的時間與心力。</h5>
+                    </li>
+                 
+                	</ul><br>
+                	</div>
+                	<div class="col-lg-6">
+                	<ul><h4><strong>商家會員</strong></h4>
+                
+                    <li><h5>簡單的管理介面，讓人輕易上手。</h5>
+                    </li>
+                    <li><h5>設計器技術能讓您客製化訂單，製作最適合您產品的訂單畫面。</h5>
+                    </li>
+                    <li><h5>商品管理介面簡單操作，輕鬆上架商品與人性化管理商品與瀏覽商品明細。</h5>
+                    </li>
+                    <li><h5>自動幫你歸類各種訂單狀態，透過簡易的過濾搜尋，輕鬆管理。</h5>
+                    </li>
+                    <li><h5>圖像化的車輛調度，讓您了解車輛的出借情形，並且用簡易拖拉即可調度車輛。</h5>
+                    </li>
+                    <li><h5>數據化的報表分析，圖形化的呈現讓您對數據一目了然，掌握商機。</h5>
+                    </li>
+                 
+                	</ul><br>
+                	</div>
+               		</div>
+            </div>
                     <div class="tab-pane fade" id="service-three">
                         <h4>Service Three</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
-                    </div>
-                    <div class="tab-pane fade" id="service-four">
-                        <h4>Service Four</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae repudiandae fugiat illo cupiditate excepturi esse officiis consectetur, laudantium qui voluptatem. Ad necessitatibus velit, accusantium expedita debitis impedit rerum totam id. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quibusdam recusandae illum, nesciunt, architecto, saepe facere, voluptas eum incidunt dolores magni itaque autem neque velit in. At quia quaerat asperiores.</p>
                     </div>
@@ -380,12 +408,12 @@
         <!-- Content Row -->
         <div class="row">
             <!-- Map Column -->
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <!-- Embedded Google Map -->
                 <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src=http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=台北市復興南路一段390號&z=16&output=embed&t=></iframe>
             </div>
             <!-- Contact Details Column -->
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <h3>聯絡資訊</h3>
                 <p>台北市復興南路一段390號3樓305室<br>
                 </p>
