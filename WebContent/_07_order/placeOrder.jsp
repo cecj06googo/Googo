@@ -317,6 +317,9 @@ $(document).ready(function () {
 		$("input[name='prodDisc']").val($("input[name='disc"+prod_id+"']").val());
 		$("input[name='prodPrice']").val($("input[name='price"+prod_id+"']").val());
 		$("#carPrice").html("車輛租金： "+$("input[name='price"+prod_id+"']").val()+"/天")
+		
+		// modified by Ranian: recalculate total cost
+		PackingAndSumup();
 	});
 	
 	// End select功能
