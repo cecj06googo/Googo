@@ -29,11 +29,17 @@ public class Accessory_Retrieval extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
+		
+//		solo version
+//		String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+//		String url = "jdbc:sqlserver://localhost:1433; databaseName=GGDB";
+//		String user = "sa";
+//		String pw = "sa123456";
+		
 		String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-		String url = "jdbc:sqlserver://localhost:1433; databaseName=GGDB";
-		String user = "sa";
-		String pw = "sa123456";
+		String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
+		String user = "googocar@i64nhzkqmt";
+		String pw = "Sa123456";
 		int com_id = Integer.parseInt(request.getParameter("com_id"));
 		
 		String pstmt_Retrieve = "select acc_id, acc_detail, acc_price from Accessory where com_id = ?";
