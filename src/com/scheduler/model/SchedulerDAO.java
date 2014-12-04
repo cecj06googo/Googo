@@ -16,9 +16,9 @@ import com.orders.model.OrdersVO;
 public class SchedulerDAO {
 	
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
-	String userid = "sa";
-	String passwd = "sa123456";
+	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
+	String userid = "googocar@i64nhzkqmt";
+	String passwd = "Sa123456";
 
 	private static final String UPDATE_PROD_ID = 
 		"UPDATE Ord_item set prod_id = (select prod_id from Product where prod_plate=?) where item_id = ?";

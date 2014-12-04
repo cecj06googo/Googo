@@ -14,7 +14,7 @@
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		//SQL Server
-		String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
+		String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
 		String query = "select count(*) from Member where mem_account=?";
 		String query2 = "select count(*) from Company where com_account=?";
 		String user_account = request.getParameter("user_account");
@@ -22,7 +22,7 @@
 		try{
 			//SQL Server
 			DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
-			conn = DriverManager.getConnection(url, "sa", "sa123456");
+			conn = DriverManager.getConnection(url, "googocar@i64nhzkqmt", "Sa123456");
 		
 			if("Mem".equals(user_identity)){
 				stmt = conn.prepareStatement(query);

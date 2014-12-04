@@ -10,10 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccessoryDAO implements AccessoryDAO_interface {
+//	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+//	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
+//	String userid = "sa";
+//	String passwd = "sa123456";
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
-	String userid = "sa";
-	String passwd = "sa123456";
+	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
+	String userid = "googocar@i64nhzkqmt";
+	String passwd = "Sa123456";
 
 	private static final String INSERT_ACCESSORY = "INSERT INTO Accessory "
 			+ "(acc_name, com_id, acc_detail, acc_pic, acc_price, acc_status) "
