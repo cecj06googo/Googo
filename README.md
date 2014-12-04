@@ -5,6 +5,9 @@ Our Googo Project.
 
 
 ###版本更新
+V1.9.0 - <br/>
+最後穩定版 <br/>
+
 v1.2.0 - <br/>
 Demo穩定版  <br/>
 
