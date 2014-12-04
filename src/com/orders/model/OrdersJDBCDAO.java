@@ -13,9 +13,9 @@ import java.util.List;
 
 public class OrdersJDBCDAO implements OrdersDAO_interface {
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
-	String userid = "sa";
-	String passwd = "sa123456";
+	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
+	String userid = "googocar@i64nhzkqmt";
+	String passwd = "Sa123456";
 
 	private static final String INSERT_Orders = "INSERT INTO Orders (ord_status,com_id,mem_id,ord_time,ord_getday,ord_reday,ord_lastuptime,item_total)"
 			+ " VALUES (?, ?, ?, ?, ?, ?,null,?)";
