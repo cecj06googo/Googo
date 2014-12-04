@@ -10,10 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsDAO implements ProductsDAO_interface {
+//	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+//	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
+//	String userid = "sa";
+//	String passwd = "sa123456";
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
-	String userid = "sa";
-	String passwd = "sa123456";
+	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
+	String userid = "googocar@i64nhzkqmt";
+	String passwd = "Sa123456";
 	// Product table 總共17個欄位
 	private static final String INSERT_Products = "INSERT INTO Product "
 			+ "(com_id, prod_name, prod_type, prod_price, prod_disc,"

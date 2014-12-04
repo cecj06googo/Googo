@@ -13,10 +13,14 @@ import java.util.Set;
 
 public class SearchComDAO implements SearchComDAO_interface {
 
+//	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+//	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
+//	String userid = "sa";
+//	String passwd = "sa123456";
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
-	String userid = "sa";
-	String passwd = "sa123456";
+	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
+	String userid = "googocar@i64nhzkqmt";
+	String passwd = "Sa123456";
 
 	private static final String GET_ONE_STMT = "select com_id,com_name,com_address from Company where com_id = ?";
 	private String Search_Com_STMT = "select distinct com.com_id,com.com_name,com.com_address"
