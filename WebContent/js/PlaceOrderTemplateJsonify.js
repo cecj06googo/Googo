@@ -31,13 +31,13 @@ function PackingAndSumup (){
 	
 	var custFieldArray = $('[id^="custField"]');
 	
+	var sumUp = 0;
+	var mainProductCost = 0;
+	
 	if(custFieldArray.length > 0){
 		
 		// bundle contains fieldObj(s), each fieldObj holds data of a customized field
 		var custFieldsBundle = {custFields:[]};
-		var sumUp = 0;
-		var mainProductCost = 0;
-		
 		subtotalObj.resetEntry();
 		
 		// one by one, convert customized field data into json format data and store them into fieldObj

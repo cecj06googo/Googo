@@ -242,7 +242,7 @@
                 <textarea id="pritem_acc" name="pritem_acc" hidden></textarea>
                 <input type="button" id="inspectCust" value="Inspect Customized Fields" hidden/>
                 <div class="col-xs-6">
-                	<div id="DesignResultTarget"></div>
+                	<div id="DesignResultTarget" style="min-height: 100px"></div>
                 </div>
                 <div class="col-xs-6">
                 	<p><i>金額小計</i></p>
