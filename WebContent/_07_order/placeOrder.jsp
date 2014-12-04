@@ -208,22 +208,36 @@
 <!-- 	        會員資料預覽 -->
 <br><br>
 		            	<p class="x-center"><label>會員資料預覽</label></p>
-		            	<table class="table">
-		            		<thead>
-		            			<tr>
-			            			<th style=" border:0;"><span class="th-leftpadding">會員姓名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_name}</span></th>
-		            			</tr>
-		            			<tr>
-			            			<th style=" border:0;"><span class="th-leftpadding">會員e-mail：&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_account}</span></th>
-		            			</tr>
-		            			<tr>
-		            				<th style=" border:0;"><span class="th-leftpadding">行動電話：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_phone}</span></th>
-		            			</tr>
-		            			<tr>
-		            				<th style=" border:0;"><span class="th-leftpadding">市內電話：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_tel}</span></th>
-		            			</tr>
-		            		</thead>
-		            	</table>    	
+		            	
+<!-- 		            	<div class="col-xs-6 div-center"> -->
+<!-- 		            	<span>會員姓名：</span> -->
+<!-- 		            	<span>會員e-mail：</span> -->
+<!-- 		            	<span>行動電話：</span> -->
+<!-- 		            	<span>市內電話：</span> -->
+<!-- 		            	</div> -->
+		            	
+		            		<p class="x-center">會員姓名：&nbsp;${LoginMemOK.mem_name}</p>
+		            		<p class="x-center">會員e-mail：&nbsp;${LoginMemOK.mem_account}</p>
+		            		<p class="x-center">行動電話：&nbsp;${LoginMemOK.mem_phone}</p>
+		            		<p class="x-center">市內電話：&nbsp;${LoginMemOK.mem_tel}</p>
+		            		
+		            	
+<!-- 		            	<table class="table x-center"> -->
+<!-- 		            		<thead> -->
+<!-- 		            			<tr> -->
+<%-- 			            			<th style=" border:0;"><span>會員姓名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_name}</span></th> --%>
+<!-- 		            			</tr> -->
+<!-- 		            			<tr> -->
+<%-- 			            			<th style=" border:0;"><span class="th-leftpadding">會員e-mail：&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_account}</span></th> --%>
+<!-- 		            			</tr> -->
+<!-- 		            			<tr> -->
+<%-- 		            				<th style=" border:0;"><span class="th-leftpadding">行動電話：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_phone}</span></th> --%>
+<!-- 		            			</tr> -->
+<!-- 		            			<tr> -->
+<%-- 		            				<th style=" border:0;"><span class="th-leftpadding">市內電話：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_tel}</span></th> --%>
+<!-- 		            			</tr> -->
+<!-- 		            		</thead> -->
+<!-- 		            	</table>    	 -->
 		            	<p class="x-center span-accept x-right"><input type="checkbox" id="memBox"/>同會員資料</p>
 		    </div>
                  <div class=" col-xs-12 ">
@@ -241,7 +255,7 @@
                 <!-- Begin: Modified by ranian -->
                 <textarea id="pritem_acc" name="pritem_acc" hidden></textarea>
                 <input type="button" id="inspectCust" value="Inspect Customized Fields" hidden/>
-                <div class="col-xs-6">
+                <div class="col-xs-10">
                 	<div id="DesignResultTarget"></div>
                 </div>
                 <!-- End: Modified by ranian -->
