@@ -12,9 +12,9 @@ import com.products.model.ProductVO;
 
 public class LoginOrdProdOnLoadDAO {
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
-	String userid = "sa";
-	String passwd = "sa123456";
+	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
+	String userid = "googocar@i64nhzkqmt";
+	String passwd = "Sa123456";
 	
 	private static final String SELECT_GETALL_PRODUCTS = "SELECT prod_id,prod_disc,prod_name,prod_type,prod_price FROM product WHERE prod_status = 1 AND prod_id IN (SELECT MAX(prod_id) FROM Product WHERE com_id=? GROUP BY prod_name)";
 	private static final String SELECT_GETONE_BYPRODID = "SELECT prod_price,prod_disc FROM product WHERE prod_status = 1 AND prod_id = ?";
