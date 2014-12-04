@@ -29,26 +29,28 @@ public class OrdersActionCom extends HttpServlet {
 			throws ServletException, IOException {
 		page(request,response);
 	}
-
+	//拉到全域來讓其他方法使用
 	public Map<String, String> errorMsg = new HashMap<String, String>();
 	public Map<String, String> msgOK = new HashMap<String, String>();
-
+	
+	//點分頁頁數時Get會跑這
 	protected void page(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException{
 		HttpSession session = request.getSession();
-	//分頁用
+		//一開始先把mag清掉以免有殘留
 		errorMsg.clear();
 		msgOK.clear();
+		//宣告區域變數
 		CompanyVO comVO = new CompanyVO();
 		Integer userId = null;
 		Integer orderStatus = null;
 		String orderTime = "";
-		
+		//接值
 		comVO = (CompanyVO) session.getAttribute("LoginComOK");
 		userId = comVO.getComID();
 		orderStatus = Integer.parseInt(request.getParameter("orderStatus").toString());
 		orderTime = request.getParameter("orderTime").toString();
-	
+		/******************* (存取資料) *********************/
 		OrdersService odrSvc = new OrdersService();
 		List<OrdersVO> ordVO = odrSvc.ordSearch_com(userId,
 				orderStatus, orderTime);
@@ -58,6 +60,7 @@ public class OrdersActionCom extends HttpServlet {
 		if (ordVO.isEmpty()) {
 			msgOK.put("SearchNull", "沒有資料");
 		}
+		/******************* (轉向) *********************/
 		String url = "/_05_company/orderCom.jsp";
 		RequestDispatcher successView = request
 				.getRequestDispatcher(url);
@@ -66,12 +69,17 @@ public class OrdersActionCom extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
+		//ajax專用 PrintWriter
 		PrintWriter httpout = response.getWriter();
+		//防止亂碼意外
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = request.getSession();
+		//把msg存入request
 		request.setAttribute("ErrMsg", errorMsg); // 顯示錯誤訊息
 		request.setAttribute("MsgOK", msgOK); // 顯示成功訊息
+		//由html <form>tag內<input type="hidden" name+"action" value="xxx"/>的value值來決定跑servlet中的哪個分支(if)
 		String action = request.getParameter("action");
 		// ---訂單狀態對照表
 		// 1 ('未處理');
@@ -84,18 +92,21 @@ public class OrdersActionCom extends HttpServlet {
 		// 8 ('商家逾時');
 		// 9 ('異常未還');
 		
+		//(商家搜尋訂單動作)
 		if ("selectCom".equals(action)) {
 			try {
+				//一開始先把mag清掉以免有殘留
 				errorMsg.clear();
 				msgOK.clear();
 				// ------------------資料接收----------------------
-				// String暫時接收屬性
+				// String暫時接收變數
 				String _orderStatus = "";
-				// 真接收屬性
+				// 真接收變數
 				CompanyVO comVO = new CompanyVO();
 				Integer userId = null;
 				Integer orderStatus = null;
 				String orderTime = "";
+				//接值catch住
 				try {
 					comVO = (CompanyVO) session.getAttribute("LoginComOK");
 					userId = comVO.getComID();
@@ -106,7 +117,6 @@ public class OrdersActionCom extends HttpServlet {
 					e.printStackTrace();
 				}
 				// ------------------資料驗證+轉型----------------------
-				// 其實也可以直接轉(值都是用選擇器選的)，只怕有其他未知安全漏洞
 				try {
 					orderStatus = Integer.parseInt(_orderStatus.toString()
 							.trim());
@@ -144,12 +154,14 @@ public class OrdersActionCom extends HttpServlet {
 			}
 		} // end selectCom
 
+		//(未處理訂單數量統計)商家登入後轉往商家頁面前會跑這裡
 		if ("newOrdCom".equals(action)) {
 			// 訂單狀態(1 = 未處理 )
+			// String暫時接收變數
 			Integer ord_status = 1;
 			String orderTime = "all";
 			Integer com_id = null;
-
+			//接值catch住
 			try {
 				CompanyVO comVO = new CompanyVO();
 				comVO = (CompanyVO) session.getAttribute("LoginComOK");
@@ -158,7 +170,7 @@ public class OrdersActionCom extends HttpServlet {
 				e.printStackTrace();
 				System.out.println("session內的'comVO'物件有出錯");
 			}
-			/******************* (存取資料+轉向) *********************/
+			/******************* (存取資料) *********************/
 			OrdersService odrSvc = new OrdersService();
 			List<OrdersVO> ordVO = odrSvc.ordSearch_com(com_id, ord_status,
 					orderTime);
@@ -166,6 +178,7 @@ public class OrdersActionCom extends HttpServlet {
 			request.setAttribute("ordVO", ordVO);
 			request.setAttribute("orderStatusCom", ord_status);
 			request.setAttribute("orderTimeCom", orderTime);
+			/******************* (轉向) *********************/
 			String url = "/_05_company/orderCom.jsp";
 			RequestDispatcher successView = request.getRequestDispatcher(url);
 			successView.forward(request, response);

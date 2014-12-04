@@ -14,13 +14,13 @@
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		//SQL Server
-		String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
+		String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
 		String query = "select count(*) from Member where mem_account=?";
 		String mem_account = request.getParameter("mem_account");
 		try{
-			//SQL Server
+			//SQL 
 			DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
-			conn = DriverManager.getConnection(url, "sa", "sa123456");
+			conn = DriverManager.getConnection(url, "googocar@i64nhzkqmt", "Sa123456");
 		
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1,mem_account);
