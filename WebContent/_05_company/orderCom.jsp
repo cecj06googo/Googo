@@ -266,7 +266,7 @@
                         	
                         	<div class="col-xs-6">
                         	<label>其他資訊</label><br>
-                        	<span class="pritem_acc">${ordVO.pritem_acc == 0 ? "無": ordVO.pritem_acc }</span>
+                        	<span class="pritem_acc">${ordVO.pritem_acc == null ? "無": ordVO.pritem_acc }</span>
                         	<br>
                         	<br>
                         	</div>
