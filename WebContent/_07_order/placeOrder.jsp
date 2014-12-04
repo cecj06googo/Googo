@@ -110,12 +110,12 @@
       			<div class="form-group">
                    <label><span class="span-red">*</span>取車日期</label>
 <%--                    <input type="image" id="icon-calendar" src="${pageContext.request.contextPath}/img/order/calendar.png"> --%>
-				   <input id="showGet"  maxlength="100" type="text" required="required" class="form-control"  placeholder="請選擇取車日期" />
+				   <input id="showGet"  maxlength="100" type="text" readonly required="required" class="form-control"  placeholder="請選擇取車日期" />
                    <input type="hidden" name="ord_getday" value="" />
                 </div>
                 <div class="form-group">
                    <label><span class="span-red">*</span>還車日期</label>
-                   <input id="showReturn"  maxlength="100" type="text" required="required" class="form-control"  placeholder="請選擇還車日期" />
+                   <input id="showReturn"  maxlength="100" type="text" readonly required="required" class="form-control"  placeholder="請選擇還車日期" />
 	               <input type="hidden" name="ord_reday" value="" />
 	            </div>
 	            <div class="form-group">
@@ -203,11 +203,11 @@
                 </div> 
                 </fieldset>         
             </div>
-                  	        <div class="col-xs-6">
+                  	        <div class="col-xs-6 th-leftpadding">
 	        <p class="p-right">* 必填選項</p>
 <!-- 	        會員資料預覽 -->
 <br><br>
-		            	<p class="x-center"><label>會員資料預覽</label></p>
+		            	<p class="x-center"><label style="font-size: 16pt">會員資料預覽</label></p>
 		            	
 <!-- 		            	<div class="col-xs-6 div-center"> -->
 <!-- 		            	<span>會員姓名：</span> -->
@@ -216,28 +216,28 @@
 <!-- 		            	<span>市內電話：</span> -->
 <!-- 		            	</div> -->
 		            	
-		            		<p class="x-center">會員姓名：&nbsp;${LoginMemOK.mem_name}</p>
-		            		<p class="x-center">會員e-mail：&nbsp;${LoginMemOK.mem_account}</p>
-		            		<p class="x-center">行動電話：&nbsp;${LoginMemOK.mem_phone}</p>
-		            		<p class="x-center">市內電話：&nbsp;${LoginMemOK.mem_tel}</p>
+<%-- 		            		<p class="x-center">會員姓名：&nbsp;${LoginMemOK.mem_name}</p> --%>
+<%-- 		            		<p class="x-center">會員e-mail：&nbsp;${LoginMemOK.mem_account}</p> --%>
+<%-- 		            		<p class="x-center">行動電話：&nbsp;${LoginMemOK.mem_phone}</p> --%>
+<%-- 		            		<p class="x-center">市內電話：&nbsp;${LoginMemOK.mem_tel}</p> --%>
 		            		
 		            	
-<!-- 		            	<table class="table x-center"> -->
-<!-- 		            		<thead> -->
-<!-- 		            			<tr> -->
-<%-- 			            			<th style=" border:0;"><span>會員姓名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_name}</span></th> --%>
-<!-- 		            			</tr> -->
-<!-- 		            			<tr> -->
-<%-- 			            			<th style=" border:0;"><span class="th-leftpadding">會員e-mail：&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_account}</span></th> --%>
-<!-- 		            			</tr> -->
-<!-- 		            			<tr> -->
-<%-- 		            				<th style=" border:0;"><span class="th-leftpadding">行動電話：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_phone}</span></th> --%>
-<!-- 		            			</tr> -->
-<!-- 		            			<tr> -->
-<%-- 		            				<th style=" border:0;"><span class="th-leftpadding">市內電話：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${LoginMemOK.mem_tel}</span></th> --%>
-<!-- 		            			</tr> -->
-<!-- 		            		</thead> -->
-<!-- 		            	</table>    	 -->
+		            	<table class="x-center th-leftpadding">
+		            		<thead>
+		            			<tr>
+			            			<th><span>會員姓名：${LoginMemOK.mem_name}</span></th>
+		            			</tr>
+		            			<tr>
+			            			<th><span class="th-leftpadding">會員e-mail：${LoginMemOK.mem_account}</span></th>
+		            			</tr>
+		            			<tr>
+		            				<th><span class="th-leftpadding">行動電話：${LoginMemOK.mem_phone}</span></th>
+		            			</tr>
+		            			<tr>
+		            				<th><span class="th-leftpadding">市內電話：${LoginMemOK.mem_tel}</span></th>
+		            			</tr>
+		            		</thead>
+		            	</table>    	
 		            	<p class="x-center span-accept x-right"><input type="checkbox" id="memBox"/>同會員資料</p>
 		    </div>
                  <div class=" col-xs-12 ">

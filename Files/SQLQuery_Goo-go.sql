@@ -467,20 +467,20 @@ insert into Ord_item values (1,61,1,'馬小九','0987654321','0234567890','gg@ya
 --insert into Ord_item values (39,1,1,'測試取消功能條件2','0987654321','0234567890','gg@ya.123',null,null);
 --insert into Ord_item values (40,1,1,'測試取消功能3','0987654321','0234567890','gg@ya.123',null,null);
 --車子 for 12/10號
-insert into Ord_item values (2,58,1,'柯小哲','0234567890','0987654321','gg@ya.123',null,null);
+insert into Ord_item values (2,58,1,'柯小哲','0234567890','0987654321','gg@ya.123','{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"小人國優惠套餐","value":"600","valueDescription":"小人國遊樂園入場卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"老闆~可以殺價嗎?","valueDescription":""}]}',null);
 insert into Ord_item values (3,59,1,'歐陽妮妮','0234567890','0987654321','gg@ya.123',null,null);
 insert into Ord_item values (4,60,1,'黃詩芸','0234567890','0987654321','gg@ya.123',null,null);
 insert into Ord_item values (5,58,1,'李安泰','0234567890','0987654321','gg@ya.123',null,null);
-insert into Ord_item values (6,58,1,'周如','0234567890','0987654321','gg@ya.123',null,null);
+insert into Ord_item values (6,58,1,'周如','0234567890','0987654321','gg@ya.123','{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"清靜農場超清靜午餐","value":"400","valueDescription":"清靜農場哞哞午餐卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
 
 insert into Ord_item values (7,55,1,'馬小九','0234567890','0987654321','gg@ya.123',null,null);
 insert into Ord_item values (8,55,1,'來來哥','0234567890','0987654321','gg@ya.123',null,null);
 insert into Ord_item values (9,55,1,'曹蘭','0234567890','0987654321','gg@ya.123',null,null);
-insert into Ord_item values (10,56,1,'王月','0234567890','0987654321','gg@ya.123',null,null);
-insert into Ord_item values (11,57,1,'小S','0234567890','0987654321','gg@ya.123',null,null);
+insert into Ord_item values (10,56,1,'王月','0234567890','0987654321','gg@ya.123','{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
+insert into Ord_item values (11,57,1,'小S','0234567890','0987654321','gg@ya.123','{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
 
-insert into Ord_item values (12,61,1,'租戚戚','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (13,62,1,'方文山','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (12,61,1,'租戚戚','0987654321','0234567890','gg@ya.123','{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
+insert into Ord_item values (13,62,1,'方文山','0987654321','0234567890','gg@ya.123','{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
 insert into Ord_item values (14,63,1,'方小三','0987654321','0234567890','gg@ya.123',null,null);
 insert into Ord_item values (15,61,1,'七七','0987654321','0234567890','gg@ya.123',null,null);
 insert into Ord_item values (16,61,1,'MAC','0987654321','0234567890','gg@ya.123',null,null);
@@ -491,11 +491,11 @@ insert into Ord_item values (19,66,1,'張輛','0987654321','0234567890','gg@ya.1
 insert into Ord_item values (20,64,1,'老爸','0987654321','0234567890','gg@ya.123',null,null);
 insert into Ord_item values (21,64,1,'狗哥','0987654321','0234567890','gg@ya.123',null,null);
 
-insert into Ord_item values (22,67,1,'高P','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (22,67,1,'高P','0987654321','0234567890','gg@ya.123','{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"清靜農場超清靜午餐","value":"400","valueDescription":"清靜農場哞哞午餐卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"我要紐約客牛排","valueDescription":""}]}',null);
 insert into Ord_item values (23,68,1,'天天','0987654321','0234567890','gg@ya.123',null,null);
 insert into Ord_item values (24,69,1,'張輛','0987654321','0234567890','gg@ya.123',null,null);
 insert into Ord_item values (25,67,1,'老爸','0987654321','0234567890','gg@ya.123',null,null);
-insert into Ord_item values (26,67,1,'狗哥','0987654321','0234567890','gg@ya.123',null,null);
+insert into Ord_item values (26,67,1,'狗哥','0987654321','0234567890','gg@ya.123','{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"清靜農場超清靜午餐","value":"400","valueDescription":"清靜農場哞哞午餐卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
 --報表
 insert into Ord_item values (27,57,1,'柯小哲','0234567890','0987654321','gg@ya.123',null,null);
 insert into Ord_item values (28,57,1,'歐陽妮妮','0234567890','0987654321','gg@ya.123',null,null);
