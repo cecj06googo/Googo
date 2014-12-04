@@ -84,7 +84,7 @@ Create Table Company(
 -- 新增資料 ( 目前10筆假資料 )
 INSERT INTO Company VALUES ('kitty123@pchome.com', '236b65a58d0e273b41bbde85ca61cc51', '長榮租車', '林俊宏', '高雄市前鎮區凱旋三路115號', '0788303030', '0756157892', 22843188, NULL, 1, NULL);
 INSERT INTO Company VALUES ('snoopy123@pchome.com', 'bf541761fa28953188fafb7b2a0b7e18', '台灣大哥大租車', '孫銘澤', '臺北市士林區忠誠路1段125號2樓', '0275012300', null, 22843574, NULL, 1, NULL);
-INSERT INTO Company VALUES ('micky123@pchome.com', '40991c500440e9d31cd471b481def59f', '趴趴夠租車', '陳淑媛', '宜蘭市校舍路159號1樓', '039381316', '039381316', 39976491, NULL, 1, NULL);
+INSERT INTO Company VALUES ('micky123@pchome.com', '40991c500440e9d31cd471b481def59f', '趴趴夠租車', '丁丁', '宜蘭市校舍路159號1樓', '039381316', '039381316', 39976491, NULL, 1, NULL);
 INSERT INTO Company VALUES ('monkey123@pchome.com', '08ce0d43583bf621f2a1baba236e5845', '竹青蜓租車', '林素芬', '桃園縣桃園市中埔二街208號5樓', '25429778', null, 22529771, NULL, 1, NULL);
 INSERT INTO Company VALUES ('kelly123@pchome.com', '21f3f30bed9e4b37c7c4e7daf3251fb1', '冠亞租車', '謝志航', '新北市新莊區福壽街99巷11弄4之2號(3樓)', '86610100', null, 22825576, NULL, 1, NULL);
 INSERT INTO Company VALUES ('cindy123@pchome.com', '28051cf32e9e10f1ced9a43c55593f31', '全家租車', '裴淳吉', '新北市永和區中正路609巷4號', '23581727', null, 23270841, NULL, 1, NULL);
