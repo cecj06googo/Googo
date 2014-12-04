@@ -102,6 +102,7 @@ INSERT INTO Company VALUES ('antai129@pchome.com', 'b000355537f24698975682ce870a
 INSERT INTO Company VALUES ('eee@abc.com.tw', '77ee51fc4289f81e57fb6c0524179318', '直航租車', '林麗純', '宜蘭縣羅東鎮勝利街20號1樓', '076250808', '076250808', 02968701, NULL, 1, NULL);
 INSERT INTO Company VALUES ('antai130@pchome.com', '77ee51fc4289f81e57fb6c0524179318', '金城租車行', '魏淑芬', '宜蘭縣羅東鎮大新里站前北路1號', '039533306', '039533306', 02424454, NULL, 1, NULL);
 INSERT INTO Company VALUES ('antai131@pchome.com', '77ee51fc4289f81e57fb6c0524179318', '達伯聯合租車', '謝俊哲', '宜蘭縣羅東鎮大新里公正路30號1樓', '039550513', '039550513', 10043128, NULL, 1, NULL);
+INSERT INTO Company VALUES ('antai132@pchome.com', '77ee51fc4289f81e57fb6c0524179318', '趴趴夠租車', '席博芷', '屏東縣恆春鎮墾丁路596號', '08861321', '08862047', 10043130, NULL, 1, NULL);
 GO
 
 Create Table Product_Type(
