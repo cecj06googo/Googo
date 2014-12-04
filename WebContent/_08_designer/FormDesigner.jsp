@@ -212,19 +212,19 @@ $("#selectManage").addClass("active");
                         			<div id="components-container" class="form-horizontal">
                         				
                         				<div class="component form-group" data-type="PreSelectBasic">
-                                			<label class="control-label col-sm-4" for="PreSelectBasic">配備單選下拉</label>
+                                			<label class="control-label col-sm-4" for="PreSelectBasic">配件單選下拉</label>
                                 			<div class="controls col-sm-8">
                                     		<select class="form-control" name="" id="PreSelectBasic">
-                                        	<option value="0">請下拉選擇配備</option>
+                                        	<option value="0">請下拉選擇配件</option>
                                     		</select>
                                 			</div>
                             			</div>
                             			
                             			<div class="component form-group" data-type="PreBox">
-                                			<label class="control-label col-sm-4" for="PreSelectBasic">配備自訂下拉</label>
+                                			<label class="control-label col-sm-4" for="PreSelectBasic">配件自訂下拉</label>
                                 			<div class="controls col-sm-8">
                                     		<select class="form-control" name="" id="PreBox">
-                                        	<option value="0">請下拉選擇配備</option>
+                                        	<option value="0">請下拉選擇配件</option>
                                     		</select>
                                 			</div>
                             			</div>

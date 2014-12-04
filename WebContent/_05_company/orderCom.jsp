@@ -110,8 +110,8 @@
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne${ordVO.ord_id}" id="${ordVO.ord_id}">完整明細</a>     
 					</td>
 <!-- 					<td>汽車</td> -->
-					<td><a href="#">${ordVO.prod_name}</a></td>
-					<td><a href="#">${ordVO.item_total}</a></td>
+					<td><a>${ordVO.prod_name}</a></td>
+					<td><a>${ordVO.item_total}</a></td>
 					<c:if test="${ordVO.status_char == '異常未還'}">
 						<td style="color:red">${ordVO.status_char}</td>
 					</c:if>

@@ -125,7 +125,9 @@ font-size: 24px;
 	font-size: 12pt;
 }
 .th-leftpadding{
-	margin-left: 13em;
+	padding: 0 auto 0 auto;
+	margin:0 auto 0 auto;
+font-size: 14pt;
 }
 .btn-bottom{
 	margin-bottom: 4em;
