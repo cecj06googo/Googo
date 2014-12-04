@@ -359,7 +359,7 @@ $(function() {
                 	option.text(pre_databean[index].description);
                 	select.append(option);
                 });
-                $("<option>請下拉選擇配備</option>").val(0).prependTo(select);
+                $("<option>請下拉選擇配件</option>").val(0).prependTo(select);
 
                 label.text($(this.prefix + 'label').val()).attr('for', select.attr('id'));
                 
@@ -475,7 +475,7 @@ $(function() {
     				label = el.find('label');
         		
     			$("<option></option>").val(0)
-					  .text("請下拉選擇配備")
+					  .text("請下拉選擇配件")
 					  .prependTo(elementSelect);
     				
     			$(elementOptions).remove();
