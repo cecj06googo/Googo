@@ -25,6 +25,10 @@ public class InsertEveryImageByProdName {
 			insertFakeImg.InsertImagesByProdName("Mini-Cooper-2014", "WebContent/img/demoCars/MINI_COOPER_01.jpg", "WebContent/img/demoCars/MINI_COOPER_02.jpg", "WebContent/img/demoCars/MINI_COOPER_03.jpg", "WebContent/img/demoCars/MINI_COOPER_04.jpg");
 			insertFakeImg.InsertImagesByProdName("野狼125", "WebContent/img/demoCars/125-1.jpg", "WebContent/img/demoCars/125-2.jpg", "WebContent/img/demoCars/125-3.jpg", "WebContent/img/demoCars/125-4.jpg");
 			insertFakeImg.InsertImagesByProdName("捷安特GreatJourney", "WebContent/img/demoCars/GJ1-1.jpg", "WebContent/img/demoCars/GJ1-2.jpg", "WebContent/img/demoCars/GJ1-3.jpg", "WebContent/img/demoCars/GJ1-4.jpg");
+			insertFakeImg.InsertImagesByProdName("MERIDA-FB-106", "WebContent/img/demoCars/m-1.jpg", "WebContent/img/demoCars/m-2.jpg", "WebContent/img/demoCars/m-3.jpg", "WebContent/img/demoCars/m-4.jpg");
+			insertFakeImg.InsertImagesByProdName("Audi電動腳踏車", "WebContent/img/demoCars/A-1.jpg", "WebContent/img/demoCars/A-2.jpg", "WebContent/img/demoCars/A-3.jpg", "WebContent/img/demoCars/A-4.jpg");
+			
+//			這是商品和配備的分隔線 不要加錯邊
 			insertFakeImg.InsertImagesByAccName("黃色小鴨游泳圈", "WebContent/img/demoAcc/duck.jpg");
 			insertFakeImg.InsertImagesByAccName("很普通游泳圈", "WebContent/img/demoAcc/circle.jpg");
 			insertFakeImg.InsertImagesByAccName("童玩節單日暢遊卷2張", "WebContent/img/demoAcc/coupon01.jpg");

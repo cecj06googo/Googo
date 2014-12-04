@@ -237,6 +237,8 @@ insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風
 insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風格塗裝，全新輕量化鋁合金車架，三段變速附有避震功能，後照明警示燈，附加感光元件，具有自動/手動二種模式，自動模式可在天黑時自動起動警示燈，適合騎車旅行環島。',null,null,null,6,null,null,null, '捷安特GJ2',1);
 insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風格塗裝，全新輕量化鋁合金車架，三段變速附有避震功能，後照明警示燈，附加感光元件，具有自動/手動二種模式，自動模式可在天黑時自動起動警示燈，適合騎車旅行環島。',null,null,null,6,null,null,null, '捷安特GJ3',1);
 insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風格塗裝，全新輕量化鋁合金車架，三段變速附有避震功能，後照明警示燈，附加感光元件，具有自動/手動二種模式，自動模式可在天黑時自動起動警示燈，適合騎車旅行環島。',null,null,null,6,null,null,null, '捷安特GJ4',1);
+insert into Product values (3,'MERIDA-FB-106',3,250,0.65,0x00,'造型優美，白色的外觀配上圓弧白色，除非常漂亮，構造樸實簡單，調整非常的容易，簡單輕巧的設計，只要利用一個卡準就可以把車子折起來帶走，十分的方便攜帶!',null,null,null,7,null,null,null, 'ERIDAM1',1);
+insert into Product values (3,'Audi電動腳踏車',3,250,0.65,0x00,'不同於傳統笨重的電動腳踏車，以大量CFRP碳纖維複合材料打造而成的Audi e-bike，擁有了輕量而堅固的特點，時速80公里的最高速度，還能夠展現出各式的單車特技。',null,null,null,8,null,null,null, 'Audi1',1);
 
 Create Table Accessory(
             acc_id          int NOT NULL IDENTITY(1,1) Primary Key,
