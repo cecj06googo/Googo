@@ -24,6 +24,7 @@ import com.member.model.MemService;
 import com.member.model.MemVO;
 import com.orders.model.LoginOrdProdOnLoadDAO;
 import com.orders.model.OrdersVO;
+import com.orders.model.ProductOrderVO;
 import com.products.model.ProductVO;
 import com.products.model.ProductsDAO;
 
@@ -58,27 +59,34 @@ public class placeOrdSetAttr extends HttpServlet{
 //		MemVO memVO = ms.getOneMem(mem_id);
 		 
 		
-		//把CompanyVO和List<ProductVO>存入session
+		//取出商家資料
 		CompanyService cs = new CompanyService();
 		CompanyVO comVO = cs.getOneCom(com_id);
+		//取出商品資料(自訂DAO和VO)
+		ProductOrderVO prodOrdVO = new ProductOrderVO();
+		prodOrdVO.setProdId(prod_id);
+		prodOrdVO.setComId(com_id);
 		LoginOrdProdOnLoadDAO LOPOLD = new LoginOrdProdOnLoadDAO();
-		ProductVO prodVO = new ProductVO();
-		Map<String, String> prodPriceMap = new HashMap<String, String>();
-		prodVO.setComId(com_id);
-		List<ProductVO> ord_prodVoList  = LOPOLD.getAll(prodVO);
+		List<ProductOrderVO> ord_prodVoList  = LOPOLD.getAll(prodOrdVO);
+		prodOrdVO = LOPOLD.prodIdgetAll(prodOrdVO);
 		
+		
+		
+		
+		System.out.println("單一ProdDisc:"+prodOrdVO.getProdDisc());
 		System.out.println("prodVoList.size:"+ord_prodVoList.size());
-		for (int i = 0,max = ord_prodVoList.size() ; i < max; i++) {
-			ProductVO obj = ord_prodVoList.get(i);
-			prodPriceMap.put(String.valueOf(obj.getProdId()),String.valueOf(obj.getProdPrice()));
+		
+//		for (int i = 0,max = ord_prodVoList.size() ; i < max; i++) {
+//			ProductVO obj = ord_prodVoList.get(i);
+//			prodPriceMap.put(String.valueOf(obj.getProdId()),String.valueOf(obj.getProdPrice()));
 //			boolean a = ord_prodVoList.contains(obj.getProdName());
 //			System.out.println("prod_type:"+obj.getProdType());
 //			System.out.println("prodId:"+obj.getProdId());
 //			System.out.println("prodName:"+obj.getProdName());
-			System.out.println("getProdPrice:"+obj.getProdPrice());
-		}
-		session.setAttribute("prodPriceMap", prodPriceMap);
+//			System.out.println("getProdPrice:"+obj.getProdPrice());
+//		}
 //		session.setAttribute("ord_memVO", memVO);
+		session.setAttribute("ord_prodVO", prodOrdVO);
 		session.setAttribute("ord_comVO", comVO); //key修改會影響彥靖
 		session.setAttribute("ord_prod_id", prod_id);
 		session.setAttribute("ord_prodVoList", ord_prodVoList);

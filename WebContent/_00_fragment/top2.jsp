@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="<c:url value='/manage'/>" id="logo">
-                    <i class="fa fa-car"></i><span class="light"> 租車網</span> Goo-go
+                    <i class="fa fa-car"></i><span class="light"> Goo-go 租車網</span>
                 </a>
             </div>
             <!-- 提醒 -->
@@ -144,7 +144,7 @@
                         </ul>
                     </li>
                     <li id="selectDesignOrder">
-                        <a href="<c:url value='/Temp/ApplySample_hooked.jsp' />"><i class="fa fa-fw fa-clipboard"></i> 設計訂單</a>
+                        <a href="<c:url value='/_08_designer/FormDesigner.jsp' />"><i class="fa fa-fw fa-clipboard"></i> 設計訂單</a>
                     </li>
                     <li id="selectModCom" >
                         <a href="<c:url value='/_06_manage/modCom.jsp'/>"><i class="fa fa-fw fa-pencil"></i> 修改商家資訊</a>

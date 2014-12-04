@@ -85,7 +85,7 @@
                 <a href="<c:url value='/PlaceRecommend.do'/>" class="portfolio-link" >
                 	<div class="caption">
                             <div class="caption-content">
-                               <h1>宜蘭衝浪</h1>
+                               <h1>宜蘭童玩節</h1>
                             </div>
                     </div> 
                     <img class="img-responsive img-portfolio img-hover" src="${pageContext.request.contextPath}/img/07.jpg" alt="">
@@ -190,7 +190,7 @@
                         <h4><i class="fa fa-fw fa-check"></i>簡易操作的商品管理</h4>
                     </div>
                     <div class="panel-body">
-                        <p>簡單的管理介面，讓人輕易上手，結合商品圖片讓您對每項商品瞭如指掌，設計器技術能讓您客製化訂單，製作最適合您產品的訂單畫面，簡潔的流程設計，讓您管理商品更有效率。</p>
+                        <p style="font-size:16px">簡單的管理介面，讓身為商家會員的您可以輕易上手，結合商品圖片讓您對每項商品瞭如指掌。設計器技術能讓您客製化訂單，製作最適合您產品的訂單畫面，搭配簡潔的流程設計，為您打造最有效率的商品管理操作。</p>
 <!--                         <a href="#" class="btn btn-default">Learn More</a> -->
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                         <h4><i class="fa fa-fw fa-gift"></i>智慧化的訂單管理</h4>
                     </div>
                     <div class="panel-body">
-                        <p>自動幫你歸類各種訂單狀態，無論是未處理的訂單或逾時未還的商品以及不同時間的訂單，透過簡易的過濾搜尋，清楚明瞭呈現你所需的資訊，圖像化的車輛調度，讓您了解車輛的出借情形，並且用簡易拖拉的方式，即可調度車輛。</p>
+                        <p style="font-size:16px">自動幫你歸類各種訂單狀態，無論是未處理的訂單或逾時未還的商品以及不同時間的訂單，透過簡易的過濾搜尋，清楚明瞭呈現你所需的資訊，圖像化的車輛調度，讓您了解車輛的出借情形，用簡易拖拉的方式，即可調度車輛。</p>
 <!--                         <a href="#" class="btn btn-default">Learn More</a> -->
                     </div>
                 </div>
@@ -212,7 +212,7 @@
                         <h4><i class="fa fa-fw fa-compass"></i>數據化的報表分析</h4>
                     </div>
                     <div class="panel-body">
-                        <p>資料即是金礦，數據化的報表分析，讓您得知哪幾樣商品是您當紅炸子雞，並且圖形化的呈現讓您對數據一目了然，讓您知道在不同時間與各車種的業績，幫助您決策判斷，有足夠的資訊才能做出對的決定。</p>
+                        <p style="font-size:16px">資料即是金礦，我們提供數據化的報表分析，讓您得知哪幾樣商品是您當紅炸子雞，並且圖形化的呈現讓您對數據一目了然，讓您知道在不同時間與各車種的業績，幫助您決策判斷，有足夠的資訊才能做出最佳的決定。</p>
 <!--                         <a href="#" class="btn btn-default">Learn More</a> -->
                     </div>
                 </div>
@@ -223,7 +223,7 @@
         <div class="well">
             <div class="row">
                 <div class="col-md-8">
-                    <p>心動不如馬上行動!加入後有一個月的免費試用，試用期後每筆交易只抽取2%的費用，適應性的收費方式，能減輕商家在淡季的負擔。</p>
+                    <p style="font-size:16px">心動不如馬上行動!加入後有一個月的免費試用，試用期後每筆交易只抽取2%的費用，適應性的收費方式，能減輕商家在淡季的負擔。</p>
                 </div>
                 <div class="col-md-4">
                     <a class="btn btn-lg btn-default btn-block" href="<c:url value='/_02_register/register2.jsp'/>">註冊商家</a>

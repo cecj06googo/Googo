@@ -42,7 +42,7 @@
 	        <div class="form-group ">
 	          <label > 優惠:</label>
 	          <div class="form-inline">
-	          <input type="text" class="form-control" name="prodDisc" placeholder="請輸入商品優惠">折
+	          <input type="text" class="form-control" name="prodDisc" placeholder="請輸入商品優惠">
 	          </div>
 	        </div>
 <!--             <div class="form-group "> -->

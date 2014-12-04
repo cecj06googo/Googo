@@ -17,11 +17,11 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					宜蘭好趣處 <small> Yilan</small>
+					宜蘭童玩節 <small> Yilan</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.html">Goo-go</a></li>
-					<li class="active">衝浪、飛行傘、野餐、民宿、小城堡</li>
+					<li class="active">展覽、遊戲、童玩的好朋友、走跳宜蘭</li>
 				</ol>
 			</div>
 		</div>
@@ -68,19 +68,19 @@
 			</div>
 
 			<div class="col-md-4">
-				<h3>Project Description</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-					viverra euismod odio, gravida pellentesque urna varius vitae. Sed
-					dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris
-					ultricies, justo eu convallis placerat, felis enim.</p>
-				<h3>Project Details</h3>
+				<h3><strong>節慶由來</strong></h3>
+				<p><h4>國際童玩節在宜蘭冬山河親水公園舉行，以童玩為主角，設計以演出、遊戲、親水、展覽等不同主軸的活動內容，讓大人和小孩共同重新體驗遊戲中的娛悅，每年都吸引眾多人潮參加。</h4></p>
+				<h3><strong>遊戲項目</strong></h3>
 				<ul>
-					<li>烏石港衝浪</li>
-					<li>蘭陽博物館</li>
-					<li>伯朗咖啡</li>
-					<li>外澳飛行傘</li>
-					<li>頭城美食</li>
-					<li>雙獅</li>
+					<li><h4>倒轉水迷宮</h4></li>
+					<li><h4>跳棋水舞台</h4></li>
+					<li><h4>展翼水滑道</h4></li>
+					<li><h4>白浪滔滔</h4></li>
+					<li><h4>青蛙滑水</h4></li>
+					<li><h4>沙灘戰場</h4></li>
+					<li><h4>種子船的魔幻漂航紀事</h4></li>
+					<li><h4>龍舟體驗</h4></li>
+					<li><h4>風帆體驗</h4></li>
 				</ul>
 			</div>
 

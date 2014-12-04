@@ -97,7 +97,7 @@
 				<tr align='center' valign='middle'>
 					<td>${ordVO.ord_id}</td>
 					<td><fmt:formatDate value="${ordVO.ord_time}" pattern="yyyy-MM-dd HH:mm:ss" /><br>  
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne${ordVO.ord_id}" id="${ordVO.ord_id}">完整明細</a>     
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne${ordVO.ord_id}" id="${ordVO.ord_id}">完整明細</a>     
 					</td>
 					<td><a href="#">${ordVO.prod_name}</a></td>
 					<td><a href="#">${ordVO.item_total}</a></td>
@@ -127,26 +127,43 @@
 				<td style="padding:0" colspan="6">
 				<div id="collapseOne${ordVO.ord_id}" class="panel-collapse collapse">
                         <div class="panel-body">
+                        <div class="col-xs-12">
+                     	   <div class="col-xs-6">
+                     	   <label>訂車資訊</label><br>
                         	<span>訂單編號: ${ordVO.ord_id}</span><br>
-                        	<span>訂購時間: ${ordVO.ord_time}</span><br>
-                        	<span>取車日期: ${ordVO.ord_getday}</span><br>
-                        	<span>還車日期: ${ordVO.ord_reday}</span><br>
-                        	<span>最後修改日期: ${ordVO.ord_lastuptime 	== null ? "無": ordVO.ord_lastuptime }</span><br>
+                        	<span>訂購時間: <fmt:formatDate value="${ordVO.ord_time}" pattern="yyyy-MM-dd HH:mm:ss" /></span><br>
+                        	<span>取車日期: <fmt:formatDate value="${ordVO.ord_getday}" pattern="yyyy-MM-dd HH:mm:ss" /></span><br>
+                        	<span>還車日期: <fmt:formatDate value="${ordVO.ord_reday}" pattern="yyyy-MM-dd HH:mm:ss" /></span><br>
+                        	<span>取車地點: ${ordVO.com_address}</span><br>
                         	<br>
+                        	</div>
+                        	<div class="col-xs-6">
+                        	<label>駕駛人資訊</label><br>
                         	<span>連絡人姓名: ${ordVO.item_name  		== null ? "無": ordVO.item_name }</span><br>
                         	<span>連絡人市話: ${ordVO.item_tel 			== null ? "無": ordVO.item_tel }</span><br>
                         	<span>連絡人行動: ${ordVO.item_phone 		== null ? "無": ordVO.item_phone }</span><br>
                         	<span>連絡人信箱: ${ordVO.item_email  		== null ? "無": ordVO.item_email }</span><br>
-                        	<span>配件名稱: <span class="pritem_acc">${ordVO.pritem_acc  		== null ? "無": ordVO.pritem_acc }</span></span><br>
-                        	<span>商家自訂欄位(目前無): ${ordVO.item_all  == null ? "無": ordVO.item_all }</span><br>
+                        	<br>
+                        	<br>
+                        	</div>
+                        	
+                        	<div class="col-xs-6">
+                        	<label>其他資訊</label><br>
+                        	<span class="pritem_acc">${ordVO.pritem_acc  		== null ? "無": ordVO.pritem_acc }</span>
+                        	<br>
+                        	<br>
+                        	</div>
+                        	
+                        	<div class="col-xs-6">
+                        	<label>商品資訊</label><br>
                         	<span>商家名稱: ${ordVO.com_name}</span><br>
                         	<span>商家e-mail: ${ordVO.com_account}</span><br>
-                        	<span>商品名稱: ${ordVO.prod_name}</span><br>
+                        	<span>車輛名稱: ${ordVO.prod_name}</span><br>
+                        	<span>商品折扣: ${ordVO.prod_disc == null ? "無": ordVO.prod_disc }</span><br>
+                        	<span>商品原價: <fmt:formatNumber value="${ordVO.prod_price}" pattern="#"/></span><br>
                         	<span>車牌: ${ordVO.prod_plate}</span><br>
-                        	<span>商品價格: ${ordVO.prod_price}</span><br>
-                        	<span>商品折扣: ${ordVO.prod_disc  		== null ? "無": ordVO.prod_disc }</span><br>
-                        	<span>配件價格: ${ordVO.acc_price}</span><br>
-                        	<span>配件名稱: ${ordVO.acc_detail  		== null ? "無": ordVO.acc_detail }</span><br>
+							</div>
+                        </div>
                         </div>
                     </div>
 				</td>
@@ -214,6 +231,80 @@
     <!-- /.container -->
 
 </body>
+<script>
+$(document).ready(function(){
+	
+	console.log("enter retrieval block");
+	
+	var displayFields = $(".pritem_acc");
+	
+	for(i = 0; i < displayFields.length; i++){
+		
+		var displayResult = "";
+		var displayField = displayFields[i];
+		var entryData = '';
+		var type = '';
+		var label = '';
+		var value = '';
+		var valueDescription = '';
+		
+		if(displayField.textContent.trim().length > 2){
+			
+			var jsonBundle = $.parseJSON($(displayField).text());
+			console.log(jsonBundle);
+			
+			for(j = 0; j < jsonBundle.custFields.length; j++){
+				
+				label = jsonBundle.custFields[j]['label'];
+				value = jsonBundle.custFields[j]['value'];
+				
+				if("text" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("textarea" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("SelectBasic" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
+				}else if("SelectMultiple" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
+				}else if("checkbox" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
+				}else if("radio" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + ", " + valueDescription + "\n");
+				}else if("AdditionalInsuranceName" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("AdditionalInsurancePhone" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("AdditionalInsuranceMail" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("AdditionalInsuranceID" == jsonBundle.custFields[j]['type']){
+					entryData = (label + "： " + value + "\n");
+				}else if("PreSelectBasic" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + "元, " + valueDescription + "\n");
+				}else if("PreBox" == jsonBundle.custFields[j]['type']){
+					valueDescription = jsonBundle.custFields[j]['valueDescription'];
+					entryData = (label + "： " + value + "元, " + valueDescription + "\n");
+				}else {
+					entryData = '';
+				}
+				
+				console.log(entryData);	
+				
+				displayResult += (entryData + "<br/>");
+			}// end for: process each customized field data
+		}// end if: inspect if there is any customized field
+		
+		$(displayField).empty();
+		$(displayField).html(displayResult);
+		
+	}// end for: process each order
+	
+});
+</script>
 <script>
 $(document).ready(function(){
 	//-----訂單狀態預設改成user選擇---------

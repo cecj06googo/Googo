@@ -187,9 +187,9 @@
 							</ul>
 						</div>
 						<div class="tab-pane fade" id="service-three">
-							<h4>Service</h4>
-							<p>目前尚無優惠方案的欄位，是商家上架還是配件上架??</p>
-							<a href="#accessoriesRoW">配件配件配件</a>
+							<h4>目前尚無優惠方案</h4>
+<!-- 							<p>目前尚無優惠方案的欄位，是商家上架還是配件上架??</p> -->
+<!-- 							<a href="#accessoriesRoW">配件配件配件</a> -->
 						</div>
 					</div>
 					<!-- /標籤內容 -->

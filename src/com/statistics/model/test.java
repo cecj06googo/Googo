@@ -20,7 +20,7 @@ public class test {
 
 	public static void main(String[] args) {
 		DataDAO dataDAO=new DataDAO();
-		List<DordersVO> list=dataDAO.Area(6);
+		List<DordersVO> list=dataDAO.Area(3);
 		System.out.println(list);
 		//1.將訂單明細轉json
 		String areaString="";

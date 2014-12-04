@@ -147,23 +147,22 @@
         <!-- Content Row -->
         <div class="row">
             <!-- Map Column -->
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <!-- Embedded Google Map -->
-                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
+                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src=http://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=台北市復興南路一段390號&z=16&output=embed&t=></iframe>
             </div>
             <!-- Contact Details Column -->
-            <div class="col-md-4">
-                <h3>Contact Details</h3>
-                <p>
-                    3481 Melrose Place<br>Beverly Hills, CA 90210<br>
+            <div class="col-md-6">
+               <h3>聯絡資訊</h3>
+                <p>台北市復興南路一段390號3樓305室<br>
                 </p>
                 <p><i class="fa fa-phone"></i> 
-                    <abbr title="Phone">P</abbr>: (123) 456-7890</p>
+                    <abbr title="Phone">電話</abbr>: (+886) 2-6631-8168</p>
                 <p><i class="fa fa-envelope-o"></i> 
-                    <abbr title="Email">E</abbr>: <a href="mailto:name@example.com">name@example.com</a>
+                    <abbr title="Email">E-mail</abbr>: <a href="mailto:googocar@gmail.com">googocar@gmail.com</a>
                 </p>
                 <p><i class="fa fa-clock-o"></i> 
-                    <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM</p>
+                    <abbr title="Hours">聯絡時間</abbr>: 星期一 ~ 星期五: 上午 9:00 至  下 午5:00 </p>
                 <ul class="list-unstyled list-inline list-social-icons">
                     <li>
                         <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>

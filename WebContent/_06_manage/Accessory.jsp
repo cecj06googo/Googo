@@ -57,7 +57,7 @@ td{
                    <c:forEach var="AccVO" items="${accList}">
                    	<tr id="${AccVO.accId}">
                    		<td id="${AccVO.accId}">
-                   			<img id="accPic" src="${pageContext.servletContext.contextPath}/ShowAccsPicturs.do?comID=${AccVO.comId}&accID=${AccVO.accId}">
+                   			<img id="accPic" class="img-responsive" src="${pageContext.servletContext.contextPath}/ShowAccsPicturs.do?comID=${AccVO.comId}&accID=${AccVO.accId}">
                    		</td>
                 		<td id="${AccVO.accId}">${AccVO.accName}</td>
                     	<td id="${AccVO.accId}">${AccVO.accPrice}</td>
