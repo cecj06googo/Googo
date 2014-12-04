@@ -117,24 +117,30 @@
             <!-- 開發人員1 500*400-->
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/05.jpg" alt="">
-                    <div class="caption">
-                    	<h5>組長</h5>
-                        <h4>李安泰</h4>
-                        <li>email驗證</li>
-                        <li>容易shutdown</li>
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/developer/1.jpg" alt="">
+                    <div class="caption" style="height: 250px">
+                    	<h4>組長 (被組員霸凌)</h4>
+                        <h3>李安泰</h3>
+                        <li><h4>複合式搜尋</h4></li>
+                        <li><h4>商家系統功能</h4></li>
+                        <li><h4>Google地圖整合</h4></li>
+                        <li><h4>條件搜尋過濾</h4></li>
+                        <li><h4>資料庫Java工具程式</h4></li>
                     </div>
                 </div>
             </div>
             <!-- 開發人員2 -->
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/05.jpg" alt="">
-                    <div class="caption">
-                        <h5>組員</h5>
-                        <h4>李安泰</h4>
-                        <li>email驗證</li>
-                        <li>容易shutdown</li>
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/developer/2.jpg" alt="">
+                    <div class="caption" style="height: 250px">
+                        <h4>組員</h4>
+                        <h3>黃詩芸</h3>
+                        <li><h4>網站風格設計</h4></li>
+                        <li><h4>商家報表分析系統</h4></li>
+                        <li><h4>商家車輛資源調度</h4></li>
+                        <li><h4>會員註冊及修改</h4></li>
+                        <li><h4>註冊開通帳號</h4></li>
                     </div>
                 </div>
             </div>
@@ -142,59 +148,74 @@
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <img class="img-responsive" src="${pageContext.request.contextPath}/img/05.jpg" alt="">
-                    <div class="caption">
-                        <h5>組員</h5>
-                        <h4>李安泰</h4>
-                        <li>email驗證</li>
-                        <li>容易shutdown</li>
-                     </div>
+                    <div class="caption" style="height: 250px">
+                        <h4>組員</h4>
+                        <h3>周娍如</h3>
+                        <li><h4>忘記密碼</h4></li>
+                        <li><h4>畫面自動切換</h4></li>
+                        <li><h4>資料庫整合設計</h4></li>
+                        <li><h4>聯繫開發人員</h4></li>
+                        <li><h4>Java Mail</h4></li>
+                    </div>
                 </div>
             </div>
             <!-- 開發人員4 -->
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/05.jpg" alt="">
-                    <div class="caption">
-                        <h5>組員</h5>
-                        <h4>李安泰</h4>
-                        <li>email驗證</li>
-                        <li>容易shutdown</li>
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/developer/4.jpg" alt="">
+                    <div class="caption" style="height: 250px">
+                        <h4>組員</h4>
+                        <h3>高振瑋</h3>
+                        <li><h4>雲端系統建置</h4></li>
+                        <li><h4>版本控管</h4></li>
+                        <li><h4>商家註冊及修改</h4></li>
+                        <li><h4>登入登出系統開發</h4></li>
+                        <li><h4>Hibernate環境建置</h4></li>
                     </div>
                 </div>
             </div>
             <!-- 開發人員5 -->
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/05.jpg" alt="">
-                    <div class="caption">
-                        <h5>組員</h5>
-                        <h4>李安泰</h4>
-                        <li>email驗證</li>
-                        <li>容易shutdown</li>
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/developer/5.jpg" alt="">
+                    <div class="caption" style="height: 250px">
+                        <h4>組員</h4>
+                        <h3>劉彥靖</h3>
+                        <li><h4>表單設計器</h4></li>
+                        <li><h4>資料庫動態元件</h4></li>
+                        <li><h4>網站架構規劃</h4></li>
+                        <li><h4>網站企劃</h4></li>
+                        <li><h4>訂單系統整合</h4></li>
                     </div>
                 </div>
             </div>
             <!-- 開發人員6 -->
             <div class="col-md-3 col-sm-6">
             <div class="thumbnail">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/05.jpg" alt="">
-                    <div class="caption">
-                        <h5>組員</h5>
-                        <h4>李安泰</h4>
-                        <li>email驗證</li>
-                        <li>容易shutdown</li>
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/developer/6.png" alt="">
+                    <div class="caption" style="height: 250px">
+                        <h4>組員</h4>
+                        <h3>陳彥達</h3>
+                        <li><h4>商品管理系統</h4></li>
+                        <li><h4>配件管理系統</h4></li>
+                        <li><h4>商家首頁整合</h4></li>
+                        <li><h4>網站架構規劃</h4></li>
+                        <li><h4>訂單系統整合</h4></li>
                     </div>
                 </div>
             </div>
             <!-- 開發人員7 -->
               <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/05.jpg" alt="">
-                    <div class="caption">
-                        <h5>組員</h5>
-                        <h4>李安泰</h4>
-                        <li>email驗證</li>
-                        <li>容易shutdown</li>
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/developer/7.jpg" alt="">
+                    <div class="caption" style="height: 250px">
+                         <h4>組員</h4>
+                        <h3>阮价林</h3>
+                        <li><h4>訂單管理系統</h4></li>
+                        <li><h4>訂單排程系統</h4></li>
+                        <li><h4>資料庫架構規劃</h4></li>
+                        <li><h4>訂單系統規劃</h4></li>
+                        <li><h4>訂單系統整合</h4></li>
                     </div>
                 </div>
             </div>
@@ -202,11 +223,12 @@
               <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <img class="img-responsive" src="${pageContext.request.contextPath}/img/05.jpg" alt="">
-                    <div class="caption">
-                        <h5>組員</h5>
-                        <h4>李安泰</h4>
-                        <li>email驗證</li>
-                        <li>容易shutdown</li>
+                    <div class="caption" style="height: 250px">
+                         <h4>組員</h4>
+                        <h3>郭庭翰</h3>
+                        <li><h4>登入登出系統設計</h4></li>
+                        <li><h4>Bootstrap導入</h4></li>
+                        <li><h4>網站風格設計</h4></li>
                     </div>
                 </div>
             </div>
