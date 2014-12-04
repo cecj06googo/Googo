@@ -255,8 +255,17 @@
                 <!-- Begin: Modified by ranian -->
                 <textarea id="pritem_acc" name="pritem_acc" hidden></textarea>
                 <input type="button" id="inspectCust" value="Inspect Customized Fields" hidden/>
+<<<<<<< HEAD
                 <div class="col-xs-10">
                 	<div id="DesignResultTarget"></div>
+=======
+                <div class="col-xs-8">
+                	<div id="DesignResultTarget" style="min-height: 100px"></div>
+                </div>
+                <div class="col-xs-4">
+                	<p><i>金額小計</i></p>
+                	<div id="subtotal"></div>
+>>>>>>> 20674eba84837750fbbb6fabc2b858b618b7a4ab
                 </div>
                 <!-- End: Modified by ranian -->
                 <br><br><br>
@@ -295,6 +304,7 @@ $(document).ready(function () {
  		dataType: "html",
  	}).done(function(result){
  		$("#DesignResultTarget").html(result);
+ 		PackingAndSumup();
  	});
 	// End: Modified by ranian
 	
