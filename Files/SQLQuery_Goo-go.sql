@@ -231,8 +231,12 @@ insert into Product values (3,'豐田-Yaris',1,2800,0.95,0x00,'Yaris擁有更為
 insert into Product values (3,'保時捷-911',1,6000,0.95,0x00,'保時捷911是國際二十世紀最有影響力的汽車排行榜中的第五名，因其獨特的風格與極佳的耐用性享譽國際。',null,null,null,1,3290,4,null,'WI-2749',1);
 insert into Product values (3,'保時捷-911',1,6000,0.95,0x00,'保時捷911是國際二十世紀最有影響力的汽車排行榜中的第五名，因其獨特的風格與極佳的耐用性享譽國際。',null,null,null,1,3290,4,null,'EU-1035',1);
 insert into Product values (3,'保時捷-911',1,6000,0.95,0x00,'保時捷911是國際二十世紀最有影響力的汽車排行榜中的第五名，因其獨特的風格與極佳的耐用性享譽國際。',null,null,null,1,3290,4,null,'KE-0273',1);
+
 insert into Product values (3,'野狼125',2,600,0.6,0x00,'經典的鋼絲框輪圈，配備高亮度尾燈，襯托出眾不同的個性，循環五速檔位，加上超大型避震器經典砲，彈圓身金屬質感，展現傳統跑車風情。',null,null,null,4,125,2,null, 'KBG8745',1);
 insert into Product values (3,'野狼125',2,600,0.6,0x00,'經典的鋼絲框輪圈，配備高亮度尾燈，襯托出眾不同的個性，循環五速檔位，加上超大型避震器經典砲，彈圓身金屬質感，展現傳統跑車風情。',null,null,null,4,125,2,null, 'CHH4545',1);
+insert into Product values (3,'Yamaha-CUXI',2,250,0.65,0x00,'搭載日本原裝元件的次世代 Fi 引擎、YMJET-Fi 系統及 TPS(油門感知器)，不但讓扭力提升12%，也大大提升引擎燃燒速率並獲得更大馬力，同時可自動調整引擎點火角度及噴油量更省油、更環保！',null,null,null,8,null,null,null, 'GBA2553',1);
+insert into Product values (3,'Yamaha BWS',2,250,0.65,0x00,'BW`S的引擎搭載有以YAMAHA獨創G.E.N.I.C.H.電子控制技術為基礎開發的高信賴性 F.I系統。可以利用TPS將情報回傳給ECU、由ECU配合油門的開度提供最適的燃料量。所以可以維持靈敏的油門反應的同時,利用稀薄燃燒來達到省油的效果並且利用傳動的最佳化設定使得低～中速域的扭力及馬力得以大幅提昇。',null,null,null,8,null,null,null, 'LPG3364',1);
+
 insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風格塗裝，全新輕量化鋁合金車架，三段變速附有避震功能，後照明警示燈，附加感光元件，具有自動/手動二種模式，自動模式可在天黑時自動起動警示燈，適合騎車旅行環島。',null,null,null,6,null,null,null, '捷安特GJ1',1);
 insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風格塗裝，全新輕量化鋁合金車架，三段變速附有避震功能，後照明警示燈，附加感光元件，具有自動/手動二種模式，自動模式可在天黑時自動起動警示燈，適合騎車旅行環島。',null,null,null,6,null,null,null, '捷安特GJ2',1);
 insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風格塗裝，全新輕量化鋁合金車架，三段變速附有避震功能，後照明警示燈，附加感光元件，具有自動/手動二種模式，自動模式可在天黑時自動起動警示燈，適合騎車旅行環島。',null,null,null,6,null,null,null, '捷安特GJ3',1);
@@ -240,8 +244,7 @@ insert into Product values (3,'捷安特GreatJourney',3,300,0.75,0x00,'運動風
 insert into Product values (3,'MERIDA-FB-106',3,250,0.65,0x00,'造型優美，白色的外觀配上圓弧白色，除非常漂亮，構造樸實簡單，調整非常的容易，簡單輕巧的設計，只要利用一個卡準就可以把車子折起來帶走，十分的方便攜帶!',null,null,null,7,null,null,null, 'ERIDAM1',1);
 insert into Product values (3,'Audi電動腳踏車',3,250,0.65,0x00,'不同於傳統笨重的電動腳踏車，以大量CFRP碳纖維複合材料打造而成的Audi e-bike，擁有了輕量而堅固的特點，時速80公里的最高速度，還能夠展現出各式的單車特技。',null,null,null,8,null,null,null, 'Audi1',1);
 
-insert into Product values (3,'Yamaha-CUXI',3,250,0.65,0x00,'搭載日本原裝元件的次世代 Fi 引擎、YMJET-Fi 系統及 TPS(油門感知器)，不但讓扭力提升12%，也大大提升引擎燃燒速率並獲得更大馬力，同時可自動調整引擎點火角度及噴油量更省油、更環保！',null,null,null,8,null,null,null, 'GBA2553',1);
-insert into Product values (3,'Yamaha BWS',3,250,0.65,0x00,'BW`S的引擎搭載有以YAMAHA獨創G.E.N.I.C.H.電子控制技術為基礎開發的高信賴性 F.I系統。可以利用TPS將情報回傳給ECU、由ECU配合油門的開度提供最適的燃料量。所以可以維持靈敏的油門反應的同時,利用稀薄燃燒來達到省油的效果並且利用傳動的最佳化設定使得低～中速域的扭力及馬力得以大幅提昇。',null,null,null,8,null,null,null, 'LPG3364',1);
+
 
 Create Table Accessory(
             acc_id          int NOT NULL IDENTITY(1,1) Primary Key,

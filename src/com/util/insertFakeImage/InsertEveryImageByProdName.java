@@ -22,6 +22,8 @@ public class InsertEveryImageByProdName {
 			insertFakeImg.InsertImagesByProdName("保時捷-911","WebContent/img/demoCars/porsche_01.jpg","WebContent/img/demoCars/porsche_02.jpg","WebContent/img/demoCars/porsche_03.jpg","WebContent/img/demoCars/porsche_04.jpg");
 			//-------------機車區域------------------------------
 			insertFakeImg.InsertImagesByProdName("野狼125", "WebContent/img/demoCars/125-1.jpg", "WebContent/img/demoCars/125-2.jpg", "WebContent/img/demoCars/125-3.jpg", "WebContent/img/demoCars/125-4.jpg");
+			insertFakeImg.InsertImagesByProdName("Yamaha-CUXI", "WebContent/img/demoCars/CUXi-01.jpg", "WebContent/img/demoCars/CUXi-02.jpg", "WebContent/img/demoCars/CUXi-03.jpg", "WebContent/img/demoCars/CUXi-04.jpg");
+			insertFakeImg.InsertImagesByProdName("Yamaha BWS", "WebContent/img/demoCars/BWS-01.jpg", "WebContent/img/demoCars/BWS-02.jpg", "WebContent/img/demoCars/BWS-03.jpg", "WebContent/img/demoCars/BWS-04.jpg");
 			//-------------腳踏車區域------------------------------
 			insertFakeImg.InsertImagesByProdName("捷安特GreatJourney", "WebContent/img/demoCars/GJ1-1.jpg", "WebContent/img/demoCars/GJ1-2.jpg", "WebContent/img/demoCars/GJ1-3.jpg", "WebContent/img/demoCars/GJ1-4.jpg");
 			insertFakeImg.InsertImagesByProdName("MERIDA-FB-106", "WebContent/img/demoCars/m-1.jpg", "WebContent/img/demoCars/m-2.jpg", "WebContent/img/demoCars/m-3.jpg", "WebContent/img/demoCars/m-4.jpg");
