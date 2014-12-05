@@ -222,7 +222,7 @@
             <!-- 開發人員8 -->
               <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
-                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/developer/8.jpg alt="">
+                    <img class="img-responsive" src="${pageContext.request.contextPath}/img/developer/8.jpg" alt="">
                     <div class="caption" style="height: 250px">
                          <h4>組員</h4>
                         <h3>郭庭翰</h3>
