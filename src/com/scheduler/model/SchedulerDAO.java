@@ -202,7 +202,7 @@ public class SchedulerDAO {
 				SEARCH_STMT += " and prod_type = " + prod_type;
 			}
 			if (keySearch != null) {// keySearch不是空的
-				SEARCH_STMT += " and (prod_name like'%" + keySearch +"%')";
+				SEARCH_STMT += " and (prod_name like N'%" + keySearch +"%')";
 			}
 			SEARCH_STMT +="order by prod_name";
 			
@@ -269,7 +269,7 @@ public class SchedulerDAO {
 				SEARCH_PLATE_STMT += " and prod_type = " + prod_type;
 			}
 			if (keySearch != null) {// keySearch不是空的
-				SEARCH_PLATE_STMT += " and (prod_name like'%" + keySearch +"%')";
+				SEARCH_PLATE_STMT += " and (prod_name like N'%" + keySearch +"%')";
 			}
 			SEARCH_PLATE_STMT +="order by prod_type,prod_name";
 			
