@@ -37,6 +37,9 @@ public class SendMail {
 		try {
  
 			Message message = new MimeMessage(session);
+			message.setContent(subjectTitle, "text/html;charset=UTF-8");//將文字轉碼
+			message.setContent(messageContent, "text/html;charset=UTF-8");//將文字轉碼
+			
 			message.setFrom(new InternetAddress(senderAdress)); //from adress
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(recieverAdress)); //to adress		
