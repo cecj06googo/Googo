@@ -42,16 +42,16 @@ public class SearchComDAO implements SearchComDAO_interface {
 
 		try {
 			if (location != null) { // 地區不是空的
-				Search_Com_STMT += " and com.com_address like '%" + location
+				Search_Com_STMT += " and com.com_address like N'%" + location
 						+ "%'";
 			}
 			if (prod_type != null) { // 交通工具不是空的
 				Search_Com_STMT += " and prod.prod_type = " + prod_type;
 			}
 			if (keySearch != null) {// keySearch不是空的
-				Search_Com_STMT += " and (com.com_name like'%" + keySearch
-						+ "%' " + "or com.com_address like '%" + keySearch
-						+ "%' " + "or prod.prod_name like '%" + keySearch
+				Search_Com_STMT += " and (com.com_name like N'%" + keySearch
+						+ "%' " + "or com.com_address like N'%" + keySearch
+						+ "%' " + "or prod.prod_name like N'%" + keySearch
 						+ "%')";
 			}
 			System.out.println(Search_Com_STMT); // Antai test
