@@ -4,7 +4,15 @@ Googo
 Our Googo Project.
 
 
-###版本更新
+##版本更新
+###Cloud
+V1.0.0 - <br/>
+雲端初版  <br/>
+
+###Local
+V1.9.0 - <br/>
+最後穩定版 <br/>
+
 v1.2.0 - <br/>
 Demo穩定版  <br/>
 
