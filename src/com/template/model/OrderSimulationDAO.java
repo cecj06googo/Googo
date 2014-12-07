@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.util.ConnectConstant;
+
 public class OrderSimulationDAO {
 	
 	String INSERT_ORDER = "insert into Orders " + 
@@ -24,10 +26,10 @@ public class OrderSimulationDAO {
 //		String user = "sa";
 //		String pw = "sa123456";
 		
-		String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-		String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-		String user = "googocar@i64nhzkqmt";
-		String pw = "Sa123456";
+		String driver = ConnectConstant.driver;
+		String url = ConnectConstant.url;
+		String user = ConnectConstant.userid;
+		String pw = ConnectConstant.passwd;
 		
 		Connection conn = null;
 		

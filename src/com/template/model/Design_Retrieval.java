@@ -2,7 +2,6 @@ package com.template.model;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,10 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.util.ConnectConstant;
 
 
 public class Design_Retrieval extends HttpServlet {
@@ -31,10 +31,10 @@ public class Design_Retrieval extends HttpServlet {
 //		String user = "sa";
 //		String pw = "sa123456";
 		
-		String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-		String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-		String user = "googocar@i64nhzkqmt";
-		String pw = "Sa123456";
+		String driver = ConnectConstant.driver;
+		String url = ConnectConstant.url;
+		String user = ConnectConstant.userid;
+		String pw = ConnectConstant.passwd;
 		
 		String pstmt_Retrieve = "select ordt_content from Ord_temp where ordt_id = (SELECT MAX(ordt_id) FROM Ord_temp WHERE com_id = ?)";
 		
