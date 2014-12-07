@@ -13,12 +13,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONValue;
+
+import com.util.ConnectConstant;
 
 
 public class Accessory_Retrieval extends HttpServlet {
@@ -36,10 +37,10 @@ public class Accessory_Retrieval extends HttpServlet {
 //		String user = "sa";
 //		String pw = "sa123456";
 		
-		String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-		String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-		String user = "googocar@i64nhzkqmt";
-		String pw = "Sa123456";
+		String driver = ConnectConstant.driver;
+		String url = ConnectConstant.url;
+		String user = ConnectConstant.userid;
+		String pw = ConnectConstant.passwd;
 		int com_id = Integer.parseInt(request.getParameter("com_id"));
 		
 		String pstmt_Retrieve = "select acc_id, acc_detail, acc_price from Accessory where com_id = ?";
