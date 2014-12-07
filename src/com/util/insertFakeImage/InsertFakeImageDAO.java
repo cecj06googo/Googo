@@ -237,6 +237,7 @@ public class InsertFakeImageDAO {
 
 	// 需要一個根據不同車種會讀回prod_id的陣列
 	public static void main(String[] args) {
+		long time1, time2,time3;
 		Connection conn;
 		ConnectionUtil conutil = new ConnectionUtil();
 		conn = conutil.getConnection();
@@ -255,6 +256,7 @@ public class InsertFakeImageDAO {
 				System.out.println("conn 獲取失敗");
 				return;
 			}
+			time1 = System.currentTimeMillis(); //得取開始時間
 			for(int i=1;i<=4;i++){ //寫入圖片
 				if(i==1){insertColumn ="prod_pic";}//商品主圖片 
 				if(i==2){insertColumn ="prod_subPic1"; }//商品副圖片1 
@@ -263,12 +265,15 @@ public class InsertFakeImageDAO {
 				insertFakeImg.insertProdImgByCarType("1", carSrcPath,insertColumn);// 汽車
 				insertFakeImg.insertProdImgByCarType("2", motorSrcPath,insertColumn);// 機車
 				insertFakeImg.insertProdImgByCarType("3", bikeSrcPath,insertColumn);// 腳踏車
-				
+				time3= System.currentTimeMillis();
+				System.out.println("目前塞完了"+insertColumn+"共花了" + (time3-time1)/1000 + "秒，請耐心等待，約需260秒...");
 			}			
 			insertFakeImg.insertComImg(comSrcPath); // 公司大頭貼
 			//insertFakeImg.insertProdsIntoduction(); //寫入商品介紹
 			insertFakeImg.insertAccImg(accSrcPath);//寫入配件圖片
+			time2 = System.currentTimeMillis();
 			System.out.println("圖片寫入結束，執行結果請看上方!");
+			System.out.println("執行Antainet共花了" + (time2-time1)/1000 + "秒");
 		} catch (Exception e) {
 			System.out.println("InsertFakeImageDAO 錯誤");
 			e.printStackTrace();

@@ -3,11 +3,12 @@ package com.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 //雲端版本的帳密
-//String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-//String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-//String userid = "googocar@i64nhzkqmt";
-//String passwd = "Sa123456";
+
 public class ConnectionUtil {
+	String driver = ConnectConstant.driver;
+	String url = ConnectConstant.url;
+	String userid = ConnectConstant.userid;
+	String passwd =  ConnectConstant.passwd;
 	public Connection getConnection(){
 		 Connection conn = null;
 		 try {  
@@ -15,9 +16,9 @@ public class ConnectionUtil {
 //			 String connUrl = "jdbc:sqlserver://localhost:1433;databaseName=GGDB";
 //			 conn = DriverManager.getConnection(connUrl, "sa", "sa123456");
 			 
-			 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			 String connUrl = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-			 conn = DriverManager.getConnection(connUrl, "googocar@i64nhzkqmt", "Sa123456");
+			 Class.forName(driver);
+			 String connUrl = url;
+			 conn = DriverManager.getConnection(connUrl,userid,passwd);
 			 return conn;		
 		 } catch (Exception e) {
 				e.printStackTrace();
