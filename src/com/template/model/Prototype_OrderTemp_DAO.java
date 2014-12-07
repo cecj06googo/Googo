@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.util.ConnectConstant;
+
 public class Prototype_OrderTemp_DAO {
 	
 //	solo version
@@ -14,10 +16,10 @@ public class Prototype_OrderTemp_DAO {
 //	String user = "sa";
 //	String pw = "sa123456";
 	
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-	String user = "googocar@i64nhzkqmt";
-	String pw = "Sa123456";
+	String driver = ConnectConstant.driver;
+	String url = ConnectConstant.url;
+	String user = ConnectConstant.userid;
+	String pw = ConnectConstant.passwd;
 	
 	private static final String pstmt_Insert = "insert into Ord_temp (ordt_content, com_id) values(?, ?)";
 	private static final String pstmt_Retrieve = "select ordt_content from Ord_temp where com_id = ? AND ordt_id = (SELECT MAX(ordt_id) FROM Ord_temp WHERE com_id = ?)";

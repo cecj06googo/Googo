@@ -9,16 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.orders.model.OrdersVO;
+import com.util.ConnectConstant;
 
 
 
 
 public class SchedulerDAO {
 	
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-	String userid = "googocar@i64nhzkqmt";
-	String passwd = "Sa123456";
+	String driver = ConnectConstant.driver;
+	String url = ConnectConstant.url;
+	String userid = ConnectConstant.userid;
+	String passwd = ConnectConstant.passwd;
 
 	private static final String UPDATE_PROD_ID = 
 		"UPDATE Ord_item set prod_id = (select prod_id from Product where prod_plate=?) where item_id = ?";

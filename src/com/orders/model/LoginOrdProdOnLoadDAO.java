@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.products.model.ProductVO;
+import com.util.ConnectConstant;
 
 public class LoginOrdProdOnLoadDAO {
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-	String userid = "googocar@i64nhzkqmt";
-	String passwd = "Sa123456";
+	
+	public final static String driver = ConnectConstant.driver;
+	public final static String url = ConnectConstant.url;
+	public final static String userid = ConnectConstant.userid;
+	public final static String passwd = ConnectConstant.passwd;
 	
 	private static final String SELECT_GETALL_PRODUCTS = "SELECT prod_id,prod_disc,prod_name,prod_type,prod_price FROM product WHERE prod_status = 1 AND prod_id IN (SELECT MAX(prod_id) FROM Product WHERE com_id=? GROUP BY prod_name)";
 	private static final String SELECT_GETONE_BYPRODID = "SELECT prod_price,prod_disc FROM product WHERE prod_status = 1 AND prod_id = ?";

@@ -11,11 +11,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.util.ConnectConstant;
+
 public class OrdersJDBCDAO implements OrdersDAO_interface {
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-	String userid = "googocar@i64nhzkqmt";
-	String passwd = "Sa123456";
+
+	public final static String driver = ConnectConstant.driver;
+	public final static String url = ConnectConstant.url;
+	public final static String userid = ConnectConstant.userid;
+	public final static String passwd = ConnectConstant.passwd;
 
 	private static final String INSERT_Orders = "INSERT INTO Orders (ord_status,com_id,mem_id,ord_time,ord_getday,ord_reday,ord_lastuptime,item_total)"
 			+ " VALUES (?, ?, ?, ?, ?, ?,null,?)";

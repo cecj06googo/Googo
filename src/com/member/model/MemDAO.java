@@ -9,14 +9,16 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.json.simple.JSONValue;
+
+import com.util.ConnectConstant;
 //JNDI
 public class MemDAO implements MemDAO_interface {
 	
 	
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-	String userid = "googocar@i64nhzkqmt";
-	String passwd = "Sa123456";
+	String driver = ConnectConstant.driver;
+	String url = ConnectConstant.url;
+	String userid = ConnectConstant.userid;
+	String passwd = ConnectConstant.passwd;
 
 
 	private static final String INSERT_STMT = 
