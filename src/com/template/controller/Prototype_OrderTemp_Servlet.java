@@ -45,7 +45,7 @@ public class Prototype_OrderTemp_Servlet extends HttpServlet {
 		if ("insert".equals(command)) {
 			
 			if(request.getParameter("content_form_view") != null){
-				content = new String(request.getParameter("content_form_view").getBytes("ISO-8859-1"),"UTF-8");	
+				content = request.getParameter("content_form_view");	
 			}else{
 				System.out.println("no design content detected.");
 				return;
