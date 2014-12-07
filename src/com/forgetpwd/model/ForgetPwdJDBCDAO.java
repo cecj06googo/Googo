@@ -5,15 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import com.util.ConnectConstant;
 
 import com.company.model.CompanyVO;
 import com.member.model.MemVO;
 
 public class ForgetPwdJDBCDAO implements ForgetPwdDAO_interface {
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-	String userid = "googocar@i64nhzkqmt";
-	String passwd = "Sa123456";
+	String driver = ConnectConstant.driver;
+	String url = ConnectConstant.url;
+	String userid = ConnectConstant.userid;
+	String passwd = ConnectConstant.passwd;
 /*	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=GGDB";
 	String userid = "sa";
