@@ -11,15 +11,16 @@ import java.util.Date;
 import java.util.List;
 
 import com.scheduler.model.SchedulerVO;
+import com.util.ConnectConstant;
 
 
 
 public class DataDAO {
 	
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-	String userid = "googocar@i64nhzkqmt";
-	String passwd = "Sa123456";
+	String driver = ConnectConstant.driver;
+	String url = ConnectConstant.url;
+	String userid = ConnectConstant.userid;
+	String passwd = ConnectConstant.passwd;
 	
 	private String DONUT = 
 			"select ord.Ord_status,sta.status_char, count(ord.Ord_status)as countt  from orders ord join ord_status sta on ord.ord_status =sta.ord_status  where com_id=? ";

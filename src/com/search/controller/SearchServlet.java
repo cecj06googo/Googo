@@ -20,9 +20,13 @@ public class SearchServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		   try{
 			   System.out.println("進入doGet");
-			   String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
-			   String prod_type_str = new String((request.getParameter("prod_type")).getBytes("ISO-8859-1"),"UTF-8");
-			   String keySearch = new String((request.getParameter("keySearch")).getBytes("ISO-8859-1"),"UTF-8");
+//			   String location = new String((request.getParameter("location")).getBytes("ISO-8859-1"),"UTF-8");
+//			   String prod_type_str = new String((request.getParameter("prod_type")).getBytes("ISO-8859-1"),"UTF-8");
+//			   String keySearch = new String((request.getParameter("keySearch")).getBytes("ISO-8859-1"),"UTF-8");
+			   
+			   String location = request.getParameter("location");
+			   String prod_type_str = request.getParameter("prod_type");
+			   String keySearch = request.getParameter("keySearch");
 			   
 			   doPostdoGetShare(request,response,location,prod_type_str,keySearch);
 		   }catch(Exception e){

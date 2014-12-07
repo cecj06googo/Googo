@@ -6,21 +6,21 @@
 <%@page import="java.util.LinkedList"%>  
 <%@page import="java.util.List"%>
 <%@page import="org.json.simple.JSONValue"%>
-<%@ page import="java.sql.*;" %>
-
+<%@ page import="java.sql.*" %>
+<%@ page import="com.util.*" %>
 <% 
 
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		//SQL Server
-		String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
+		String url = ConnectConstant.url;
 		String query = "select count(*) from Member where mem_account=?";
 		String mem_account = request.getParameter("mem_account");
 		try{
 			//SQL 
 			DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
-			conn = DriverManager.getConnection(url, "googocar@i64nhzkqmt", "Sa123456");
+			conn = DriverManager.getConnection(url,ConnectConstant.userid,ConnectConstant.passwd);
 		
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1,mem_account);

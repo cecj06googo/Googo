@@ -70,7 +70,7 @@ public class OrdersActionCom extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		//ajax專用 PrintWriter
-		PrintWriter httpout = response.getWriter();
+//		PrintWriter httpout = response.getWriter();
 		//防止亂碼意外
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -220,7 +220,7 @@ public class OrdersActionCom extends HttpServlet {
 			CompanyVO comVO = new CompanyVO();
 			comVO = (CompanyVO) session.getAttribute("LoginComOK");
 			/******************** (轉向) ***********************/
-			httpout.print(lool.newOrdRefresh(comVO.getComID()));
+//			httpout.print(lool.newOrdRefresh(comVO.getComID()));
 			/******************* (以上不做驗證) *********************/
 		}// end refresh
 		
