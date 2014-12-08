@@ -317,8 +317,7 @@ Create Table Orders(
 			item_total      int NOT NULL,
 
 			CONSTRAINT Orders_com_id_fk FOREIGN KEY (com_id) REFERENCES [dbo].[Company] (com_id),
-			CONSTRAINT Orders_mem_id_fk FOREIGN KEY (mem_id) REFERENCES [dbo].[Member] (mem_id),
-			CONSTRAINT Orders_ord_status_fk FOREIGN KEY (ord_status) REFERENCES [dbo].[Ord_status] (ord_status),
+			CONSTRAINT Orders_ord_status_fk FOREIGN KEY (ord_status) REFERENCES [dbo].[Ord_status] (ord_status)
 );
 
 
@@ -358,9 +357,7 @@ Create Table Orders(
 --insert into [dbo].[Orders] values (1,3,3,'2014-10-28 13:40:20','2015-01-06 13:20:00','2015-01-08 14:20:00',null,7000);
 --insert into [dbo].[Orders] values (1,3,3,'2014-10-28 13:40:20','2015-01-06 13:20:00','2015-01-08 14:20:00',null,4000);
 --insert into [dbo].[Orders] values (2,3,3,'2014-07-28 13:40:20','2014-08-11 13:20:00','2014-08-13 14:20:00','2014-08-01 00:00:01',4000);
---異常未還
-insert into [dbo].[Orders] values (9,3,3,'2014-11-30 13:23:55','2014-12-08 13:20:00','2014-12-09 16:20:00','2014-12-09 12:00:01',8200);
---
+
 --insert into [dbo].[Orders] values (8,3,3,'2014-09-11 13:20:44','2014-09-22 13:20:00','2014-09-25 17:20:00','2014-09-24 13:30:21',6000);
 --insert into [dbo].[Orders] values (7,3,3,'2014-10-11 13:30:21','2014-01-22 13:20:00','2014-01-23 18:20:00','2014-10-12 13:30:21',7000);
 --insert into [dbo].[Orders] values (5,3,3,'2014-10-30 13:30:21','2014-01-22 13:20:00','2014-01-23 18:20:00','2014-11-12 22:42:39',7000);
@@ -387,7 +384,7 @@ insert into [dbo].[Orders] values (1,3,3,'2014-11-28 10:00:00','2014-12-06 20:20
 insert into [dbo].[Orders] values (1,3,3,'2014-11-30 14:33:00','2014-12-08 09:20:00','2014-12-08 21:20:00',null,7000);
 insert into [dbo].[Orders] values (1,3,3,'2014-12-01 16:00:00','2014-12-08 06:20:00','2014-12-10 08:20:00','2014-08-01 00:00:01',5600);
 insert into [dbo].[Orders] values (3,3,3,'2014-11-12 10:00:00','2014-12-10 20:20:00','2014-12-11 09:20:00','2014-09-12 00:00:01',6600);
-insert into [dbo].[Orders] values (2,3,3,'2014-11-12 10:00:00','2014-12-10 10:20:00','2014-12-11 15:20:00','2014-10-06 00:00:01',6800);
+insert into [dbo].[Orders] values (2,3,3,'2014-11-12 10:00:00','2014-12-10 00:20:00','2014-12-10 06:20:00','2014-12-10 06:20:11',6800);
 insert into [dbo].[Orders] values (5,3,3,'2014-11-12 10:00:00','2014-12-02 20:20:00','2014-12-03 14:20:00',null,13000);
 --野狼125
 insert into [dbo].[Orders] values (2,3,3,'2014-11-12 10:00:00','2014-12-09 09:20:00','2014-12-10 21:20:00',null,7000);
@@ -424,6 +421,10 @@ insert into [dbo].[Orders] values (4,3,3,'2014-11-12 10:00:00','2014-12-02 10:20
 insert into [dbo].[Orders] values (2,3,3,'2014-11-12 10:00:00','2014-12-02 10:20:00','2014-12-06 14:20:00',null,8900);
 insert into [dbo].[Orders] values (2,3,3,'2014-11-12 10:00:00','2014-12-06 10:20:00','2014-12-06 14:20:00',null,8000);
 --insert into [dbo].[Orders] values (2,3,3,'2014-11-12 10:00:00','2014-12-10 10:20:00','2014-12-10 14:20:00',null,5300);
+
+--異常未還
+insert into [dbo].[Orders] values (9,3,6,'2014-12-10 09:52:12.967','2014-12-10 12:00:00.000','2014-12-11 16:30:00.000','2014-12-11 17:30:00.000',8100);
+--	
 GO
 
 
@@ -476,9 +477,6 @@ Create Table Ord_item(
 --insert into [dbo].[Ord_item] values (29,1,1,'租車苦主4','0987654321','0234567890','gg@ya.123',null,null);
 --insert into [dbo].[Ord_item] values (30,1,1,'租車苦主5','0987654321','0234567890','gg@ya.123',null,null);
 --insert into [dbo].[Ord_item] values (31,1,1,'租車苦主1','0987654321','0234567890','gg@ya.123',null,null);
---異常未還明細
-insert into [dbo].[Ord_item] values (1,61,1,N'馬小九','0987654321','0234567890','gg@ya.123',null,null);
---
 --insert into [dbo].[Ord_item] values (33,1,1,'租車苦主3','0987654321','0234567890','gg@ya.123',null,null);
 --insert into [dbo].[Ord_item] values (34,1,1,'租車苦主4','0987654321','0234567890','gg@ya.123',null,null);
 --insert into [dbo].[Ord_item] values (35,1,1,'租車苦主5','0987654321','0234567890','gg@ya.123',null,null);
@@ -488,57 +486,60 @@ insert into [dbo].[Ord_item] values (1,61,1,N'馬小九','0987654321','023456789
 --insert into [dbo].[Ord_item] values (39,1,1,'測試取消功能條件2','0987654321','0234567890','gg@ya.123',null,null);
 --insert into [dbo].[Ord_item] values (40,1,1,'測試取消功能3','0987654321','0234567890','gg@ya.123',null,null);
 --車子 for 12/10號
-insert into [dbo].[Ord_item] values (2,58,1,N'柯小哲','0234567890','0987654321','gg@ya.123',N'{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"小人國優惠套餐","value":"600","valueDescription":"小人國遊樂園入場卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"老闆~可以殺價嗎?","valueDescription":""}]}',null);
-insert into [dbo].[Ord_item] values (3,59,1,N'歐陽妮妮','0234567890','0987654321','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (4,60,1,N'黃詩芸','0234567890','0987654321','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (5,58,1,N'李安泰','0234567890','0987654321','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (6,58,1,N'周如','0234567890','0987654321','gg@ya.123',N'{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"清靜農場超清靜午餐","value":"400","valueDescription":"清靜農場哞哞午餐卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
+insert into [dbo].[Ord_item] values (1,58,1,N'柯小哲','0234567890','0987654321','gg@ya.123',N'{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"小人國優惠套餐","value":"600","valueDescription":"小人國遊樂園入場卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"老闆~可以殺價嗎?","valueDescription":""}]}',null);
+insert into [dbo].[Ord_item] values (2,59,1,N'歐陽妮妮','0234567890','0987654321','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (3,60,1,N'黃詩芸','0234567890','0987654321','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (4,58,1,N'李安泰','0234567890','0987654321','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (5,58,1,N'周如','0234567890','0987654321','gg@ya.123',N'{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"清靜農場超清靜午餐","value":"400","valueDescription":"清靜農場哞哞午餐卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
 
-insert into [dbo].[Ord_item] values (7,55,1,N'馬小九','0234567890','0987654321','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (8,55,1,N'來來哥','0234567890','0987654321','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (9,55,1,N'曹蘭','0234567890','0987654321','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (10,56,1,N'王月','0234567890','0987654321','gg@ya.123',N'{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
-insert into [dbo].[Ord_item] values (11,57,1,N'小S','0234567890','0987654321','gg@ya.123',N'{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
+insert into [dbo].[Ord_item] values (6,55,1,N'馬小九','0234567890','0987654321','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (7,55,1,N'來來哥','0234567890','0987654321','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (8,55,1,N'曹蘭','0234567890','0987654321','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (9,56,1,N'王月','0234567890','0987654321','gg@ya.123',N'{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
+insert into [dbo].[Ord_item] values (10,57,1,N'小S','0234567890','0987654321','gg@ya.123',N'{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
 
-insert into [dbo].[Ord_item] values (12,60,1,N'租戚戚','0987654321','0234567890','gg@ya.123',N'{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
-insert into [dbo].[Ord_item] values (13,62,1,N'方文山','0987654321','0234567890','gg@ya.123',N'{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
-insert into [dbo].[Ord_item] values (14,63,1,N'方小三','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (15,61,1,N'七七','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (16,61,1,N'MAC','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (11,60,1,N'租戚戚','0987654321','0234567890','gg@ya.123',N'{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
+insert into [dbo].[Ord_item] values (12,62,1,N'方文山','0987654321','0234567890','gg@ya.123',N'{"custFields":[{"id":"custField_2_PreBox","type":"PreBox","label":"機車愜意配件","value":"300","valueDescription":"對講機全罩安全帽2頂"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
+insert into [dbo].[Ord_item] values (13,63,1,N'方小三','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (14,61,1,N'七七','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (15,61,1,N'MAC','0987654321','0234567890','gg@ya.123',null,null);
 
-insert into [dbo].[Ord_item] values (17,64,1,N'高P','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (18,65,1,N'天天','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (19,66,1,N'張輛','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (20,64,1,N'老爸','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (21,64,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (16,64,1,N'高P','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (17,65,1,N'天天','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (18,66,1,N'張輛','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (19,64,1,N'老爸','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (20,64,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
 
-insert into [dbo].[Ord_item] values (22,67,1,N'高P','0987654321','0234567890','gg@ya.123',N'{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"清靜農場超清靜午餐","value":"400","valueDescription":"清靜農場哞哞午餐卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"我要紐約客牛排","valueDescription":""}]}',null);
-insert into [dbo].[Ord_item] values (23,68,1,N'天天','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (24,69,1,N'張輛','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (25,67,1,N'老爸','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (26,67,1,N'狗哥','0987654321','0234567890','gg@ya.123',N'{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"清靜農場超清靜午餐","value":"400","valueDescription":"清靜農場哞哞午餐卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
+insert into [dbo].[Ord_item] values (21,67,1,N'高P','0987654321','0234567890','gg@ya.123',N'{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"清靜農場超清靜午餐","value":"400","valueDescription":"清靜農場哞哞午餐卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"我要紐約客牛排","valueDescription":""}]}',null);
+insert into [dbo].[Ord_item] values (22,68,1,N'天天','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (23,69,1,N'張輛','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (24,67,1,N'老爸','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (25,67,1,N'狗哥','0987654321','0234567890','gg@ya.123',N'{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"清靜農場超清靜午餐","value":"400","valueDescription":"清靜農場哞哞午餐卷2張"},{"id":"custField_2_textarea","type":"textarea","label":"特殊需求","value":"無","valueDescription":""}]}',null);
 --報表
-insert into [dbo].[Ord_item] values (27,57,1,N'柯小哲','0234567890','0987654321','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (28,57,1,N'歐陽妮妮','0234567890','0987654321','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (29,57,1,N'黃詩芸','0234567890','0987654321','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (30,57,1,N'李安泰','0234567890','0987654321','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (31,57,1,N'周如','0234567890','0987654321','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (32,66,1,N'高P','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (33,66,1,N'天天','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (34,66,1,N'張輛','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (35,66,1,N'老爸','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (36,66,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (37,68,1,N'高P','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (38,69,1,N'天天','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (39,68,1,N'張輛','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (40,69,1,N'老爸','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (41,68,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (42,66,1,N'老爸','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (43,68,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (44,61,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (26,57,1,N'柯小哲','0234567890','0987654321','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (27,57,1,N'歐陽妮妮','0234567890','0987654321','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (28,57,1,N'黃詩芸','0234567890','0987654321','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (29,57,1,N'李安泰','0234567890','0987654321','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (30,57,1,N'周如','0234567890','0987654321','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (31,66,1,N'高P','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (32,66,1,N'天天','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (33,66,1,N'張輛','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (34,66,1,N'老爸','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (35,66,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (36,68,1,N'高P','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (37,69,1,N'天天','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (38,68,1,N'張輛','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (39,69,1,N'老爸','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (40,68,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (41,66,1,N'老爸','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (42,68,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (43,61,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
+insert into [dbo].[Ord_item] values (44,66,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
 insert into [dbo].[Ord_item] values (45,66,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
 insert into [dbo].[Ord_item] values (46,66,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
-insert into [dbo].[Ord_item] values (47,66,1,N'狗哥','0987654321','0234567890','gg@ya.123',null,null);
+--異常未還明細
+insert into [dbo].[Ord_item] values (47,60,0,N'振瑋','0910888168','23652365','cecj06googo@gmail.com',N'{"custFields":[{"id":"custField_1_PreBox","type":"PreBox","label":"遊樂園優惠券","value":"500","valueDescription":"童玩節單日暢遊卷2張"},{"id":"custField_2_PreBox","type":"PreBox","label":"游泳用具","value":"0","valueDescription":"請下拉選擇配件"},{"id":"custField_3_textarea","type":"textarea","label":"特殊需求","value":"法拉利紅色","valueDescription":""}]}','abc');
+--
 GO
 
 Create Table Question_temp(
