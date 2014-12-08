@@ -33,7 +33,7 @@
         <!-- Image Header -->
         <div class="row">
             <div class="col-lg-12">
-                <img class="img-responsive" src="http://placehold.it/1200x300" alt="">
+                <img class="img-responsive" src="${pageContext.request.contextPath}/img/about.jpg" alt="">
             </div>
         </div>
         <!-- /.row -->
@@ -234,6 +234,19 @@
             </div>
         </div>
         <!-- /.開發人員-->
+        <div class="row">
+      		 <div class="col-lg-12">
+                <h2 class="page-header">特別銘謝   <small>  I LOVE YOU</small></h2>
+            </div>
+        	<div class="col-lg-10 col-lg-offset-1" >
+        		<h3>導師 &nbsp;&nbsp;&nbsp;邱華傑 </h3>
+        		<h3>講師&nbsp;&nbsp;&nbsp;  紀宜昕  王孝弘  王憲春   余中平    吳永志  馬全德  郭忠義  </h3>
+        		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;潘麗珍  陳銀華  黃忠成  詹景逸   劉翰卿     羅英嘉  蘇國鈞</h3>
+        	 	<h3>輔導員&nbsp;&nbsp;&nbsp;羅秀燕  劉菊秋 </h3>
+        		<h3>鼎新電腦股份有限公司 </h3>
+        		<h3>CECJ06所有同學 </h3>
+        	</div>
+        </div>
         <!-- 開發工具-->
         <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
         <div class="row">
