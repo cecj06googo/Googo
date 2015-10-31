@@ -6,12 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.util.ConnectConstant;
+
 
 public class LoginJDBCDAO implements LoginDAO_interface {
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://i64nhzkqmt.database.windows.net:1433;database=GGDB";
-	String userid = "googocar@i64nhzkqmt";
-	String passwd = "Sa123456";
+	String driver = ConnectConstant.driver;
+	String url = ConnectConstant.url;
+	String userid = ConnectConstant.userid;
+	String passwd = ConnectConstant.passwd;
 
 	private static final String MEM_LOGIN_CHECK = "SELECT mem_id FROM  Member WHERE mem_account = ? AND   mem_pwd = ?";
 

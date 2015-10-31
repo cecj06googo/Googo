@@ -110,7 +110,7 @@ public class LoginServlet extends HttpServlet {
 			// 方便比對會員身分
 //			session.setAttribute("userIdentity", userIdentity);
 		} catch(Exception e) {
-			e.getStackTrace();
+			e.printStackTrace();
 			session.setAttribute("LoginError", "該帳號不存在或密碼錯誤");
 			session.setAttribute("errorAccount", userAccount);
 			session.setAttribute("errorPassword", userPwd);
