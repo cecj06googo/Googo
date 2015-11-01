@@ -43,7 +43,7 @@ public class Accessory_Retrieval extends HttpServlet {
 		String pw = ConnectConstant.passwd;
 		int com_id = Integer.parseInt(request.getParameter("com_id"));
 		
-		String pstmt_Retrieve = "select acc_id, acc_detail, acc_price from Accessory where com_id = ?";
+		String pstmt_Retrieve = "select acc_id, acc_name, acc_price from Accessory where com_id = ?";
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -66,11 +66,11 @@ public class Accessory_Retrieval extends HttpServlet {
 			while (rs.next()) {
 				Map<String, String> accessory = new LinkedHashMap<String, String>();
 				accessory.put("acc_id", rs.getString("acc_id"));
-				accessory.put("description", rs.getString("acc_detail"));
+				accessory.put("description", rs.getString("acc_name"));//修改配件自訂下拉顯示的是配件名稱而非配件描述
 				accessory.put("price", rs.getString("acc_price"));
 				list.add(accessory);
 				System.out.println(rs.getString("acc_id"));
-				System.out.println(rs.getString("acc_detail"));
+				System.out.println(rs.getString("acc_name"));//修改配件自訂下拉顯示的是配件名稱而非配件描述
 				System.out.println(rs.getString("acc_price"));
 			}
 			
